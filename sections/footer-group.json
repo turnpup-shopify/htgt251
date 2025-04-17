@@ -1,0 +1,93 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "tp-footer",
+      "blocks": {
+        "menu_EkBRnd": {
+          "type": "menu",
+          "settings": {
+            "title": "Shop",
+            "text": "",
+            "footer_linklist": "footer-shop-menu",
+            "block_width": "17%",
+            "mobile_block_width": "100%"
+          }
+        },
+        "menu_edMRPc": {
+          "type": "menu",
+          "settings": {
+            "title": "Resources",
+            "text": "",
+            "footer_linklist": "policies",
+            "block_width": "22%",
+            "mobile_block_width": "100%"
+          }
+        },
+        "contact_V9PQRH": {
+          "type": "contact",
+          "settings": {
+            "title": "Say Hello!",
+            "show_contact": true,
+            "phone": "(949) 515-9484",
+            "contact_text": "info@htgtfurniture.com",
+            "contact_link": "mailto:info@htgtfurniture.com",
+            "address": "<p>1644 Superior Ave, Costa Mesa, CA, 92627<br/><br/>Hours: Open 11AM-4PM Mon-Fri</p>",
+            "show_social": true,
+            "block_width": "17%",
+            "mobile_block_width": "100%"
+          }
+        },
+        "newsletter_7FxXpW": {
+          "type": "newsletter",
+          "settings": {
+            "title": "Stay in touch!",
+            "text_richtext": "<p>Sign up for our emails to get the home decor content you never knew you needed, sent on a minimal cadence.</p>",
+            "block_width": "30%",
+            "mobile_block_width": "100%"
+          }
+        }
+      },
+      "block_order": [
+        "menu_EkBRnd",
+        "menu_edMRPc",
+        "contact_V9PQRH",
+        "newsletter_7FxXpW"
+      ],
+      "custom_css": [
+        "h2,h4,a,p {color: white;}"
+      ],
+      "settings": {
+        "background_color": "#333333",
+        "background_opacity": "1",
+        "show_payment_icons": false,
+        "show_locale_selector": false,
+        "show_currency_selector": false,
+        "trust_richtext": "",
+        "footer_top_padding": "20px",
+        "tp_margin_top": 0,
+        "tp_margin_bottom": 0,
+        "tp_margin_left": 0,
+        "tp_margin_right": 0,
+        "tp_padding_top": 40,
+        "tp_padding_bottom": 40,
+        "tp_padding_left": 30,
+        "tp_padding_right": 30,
+        "organization_schema": "<script type=\"application/ld+json\">\n    {\n      \"@context\": \"https://schema.org\",\n      \"@type\": \"Organization\",\n      \"name\": \"HTGT Furniture\",\n      \"url\": \"https://www.htgtfurniture.com\",\n      \"logo\": \"https://htgtfurniture.com/cdn/shop/files/logo_black_c48af3d4-0f71-4d3e-9848-8860d3b0f539.png?v=1661746445&width=70\",\n      \"sameAs\": [        \"https://www.instagram.com/htgtfurniture\",        \"https://www.pinterest.com/htgtfurniture/\",\n\"https://www.facebook.com/htgtfurniture\"\n      ],\n      \"contactPoint\": {\n        \"@type\": \"ContactPoint\",\n        \"telephone\": \"+1-949-515-9484\",\n        \"contactType\": \"Customer Service\",\n        \"areaServed\": \"US\",\n        \"availableLanguage\": \"English\"\n      },\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"1644 Superior Ave\",\n        \"addressLocality\": \"Costa Mesa\",\n        \"addressRegion\": \"CA\",\n        \"postalCode\": \"92627\",\n        \"addressCountry\": \"US\"\n      },\n      \"founder\": {\n        \"@type\": \"Person\",\n        \"name\": \"Duane Turney\"\n      },\n      \"foundingDate\": \"2010\",\n      \"description\": \"Unique contemporary furniture store in Costa Mesa offering eclectic charm through a variety of designer furniture and accessories at below market pricing. There are many beautiful furniture and home art selections. Many items are typically available for purchase and take home on the same day. Although the exact items shown on this site may not be available tomorrow,  they represent the kinds of furniture, art and home accessories you can find in our store today. \",\n      \"brand\": {\n        \"@type\": \"Brand\",\n        \"name\": \"HTGT Furniture\",\n        \"logo\": \"https://htgtfurniture.com/cdn/shop/files/logo_black_c48af3d4-0f71-4d3e-9848-8860d3b0f539.png?v=1661746445&width=70\"\n      }\n    }  \n  </script>"
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

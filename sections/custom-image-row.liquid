@@ -1,0 +1,353 @@
+{% schema %}
+  {
+    "name": "custom-image-row",
+    "class": "custom-image-row",
+    "settings": [
+      {
+        "type": "text",
+        "id": "metaobject_handle",
+        "label": "Image Row Metaobject Handle",
+        "info": "To add an image row, please go to your [metaobject](/admin/content/metaobjects/entries/image_row)."
+      },
+      {
+        "type": "metaobject",
+        "id": "tp_metaobject",
+        "label": "Image Row Metaobject ",
+        "info": "Add a metaobject",
+        "metaobject_type": "image_row"
+      },      
+      {
+        "type": "text",
+        "id": "image_grid_header",
+        "label": "Image Grid Header"
+      },
+      {
+        "type": "text",
+        "id": "header_font_family",
+        "label": "Header Font Family",
+        "default": "'p22-mackinac-pro', serif;"
+      },
+      {
+        "type": "text",
+        "id": "header_font_size",
+        "label": "Header Font Size",
+        "default": "30px"
+      }, {
+        "type": "text",
+        "id": "header_font_weight",
+        "label": "Header Font Weight",
+        "default": "400"
+      }, {
+        "type": "color",
+        "id": "header_font_color",
+        "label": "Header Font Color",
+        "default": "#3C64B1"
+      }, {
+        "type": "text",
+        "id": "image_grid_subheader",
+        "label": "Image Grid subheader"
+      }, {
+        "type": "text",
+        "id": "subheader_font_family",
+        "label": "subheader Font Family",
+        "default": "'p22-mackinac-pro', serif;"
+      }, {
+        "type": "text",
+        "id": "subheader_font_size",
+        "label": "subheader Font Size",
+        "default": "30px"
+      }, {
+        "type": "text",
+        "id": "subheader_font_weight",
+        "label": "subheader Font Weight",
+        "default": "400"
+      }, {
+        "type": "color",
+        "id": "subheader_font_color",
+        "label": "subheader Font Color",
+        "default": "#3C64B1"
+      }, {
+        "type": "select",
+        "id": "header_alignment",
+        "label": "Header Alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Image Row",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}
+
+{%- if template.name == "product" and product.metafields.custom.module_image_row_handle != blank and product.metafields.custom.module_image_row_handle != "" -%}
+  {%- assign preferredMetaobject = section.settings.tp_metaobject -%}
+  {%- assign tempHandle = product.metafields.custom.module_image_row_handle -%}
+{%- elsif template.name == "collection" and collection.metafields.custom.module_image_row_handle != blank and collection.metafields.custom.module_image_row_handle != "" -%}
+  {%- assign preferredMetaobject = section.settings.tp_metaobject -%}
+  {%- assign tempHandle = collection.metafields.custom.module_image_row_handle -%}
+{%- else -%}
+  {%- assign preferredMetaobject = section.settings.tp_metaobject -%}
+  {%- assign tempHandle = section.settings.metaobject_handle -%}
+{%- endif -%}
+{% assign metaobject_id = section.settings.tp_metaobject %}
+{% assign my_metaobject = shop.metaobjects.image_row[metaobject_id] %}
+
+{%- if my_metaobject.display_name != blank -%}
+  {%- if my_metaobject -%}
+    {%- if my_metaobject.cells != blank -%}
+      {%- assign tempImages =my_metaobject.cells.value -%}
+      {%- for t in tempImages -%}
+        <script>
+          console.log({{ t.product.value | json }})
+        </script>
+      {%- endfor -%}
+      {%- assign toUse = tempImages -%}
+    {%- else -%}
+      <script>
+        console.log("no images")
+      </script>
+    {%- endif -%}
+  {%- else -%}
+    <script>
+      console.log("not there");
+    </script>
+  {%- endif -%}
+{%- elsif tempHandle == null or tempHandle == "" -%}
+{%- else -%}
+  {%- if shop.metaobjects.image_row[tempHandle] -%}
+    {%- if shop.metaobjects.image_row[tempHandle].cells != blank -%}
+      {%- assign tempImages = shop.metaobjects.image_row[tempHandle].cells.value -%}
+      {%- for t in tempImages -%}
+        <script>
+          console.log({{ t.product.value | json }})
+        </script>
+      {%- endfor -%}
+      {%- assign toUse = tempImages -%}
+    {%- else -%}
+      <script>
+        console.log("no images")
+      </script>
+    {%- endif -%}
+  {%- else -%}
+    <script>
+      console.log("not there");
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{%- if toUse != blank -%}
+  <div class="page_a_container">
+    <section class="playground-page">
+      <div class="playground_header_module">
+        {%- if section.settings.image_grid_header != "" and section.settings.image_grid_header != blank -%}
+          <h1 class="grid_title">{{ section.settings.image_grid_header }}</h1>
+        {%- endif -%}
+        {% if section.settings.image_grid_subheader != '' %}
+          <p class="grid_subtitle">{{ section.settings.image_grid_subheader }}</p>
+        {% endif %}
+      </div>
+    </section>
+  </div>
+  <div id="photos">
+    {% for t in toUse %}
+      <div class="imgContain {% if t.product == null or template.name == "product" %} noproduct{% endif %}">
+        {%- if t.product != null and template.name != "product" -%}
+          <a href="{{ t.product.value.url }}" target="_new">
+            {{ t.product.value.title }}
+          </a>
+        {%- endif -%}
+        {%- if t.display_image != null -%}
+          <img src="{{ t.display_image | image_url: width: 500 }}">
+        {%- else -%}
+            {% comment %} <p> {{ t.product.value.featured_image | image_url: width: 500 }} </p> {% endcomment %}
+          <img src="{{ t.product.value.featured_image | image_url: width: 500 }}">
+        {%- endif -%}
+      </div>
+    {% endfor %}
+  </div>
+
+  <style>
+     .imgContain a {
+      font-size: 22px;
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      display: block;
+      z-index: 1;
+      opacity: 0;
+      text-align: center;
+      width: 90%;
+      line-height: 1.3;
+  }
+  @media screen and (max-width: 750px) {
+    .imgContain a {
+      font-size: 14px;
+    }
+  }
+    .imgContain:hover a {
+      opacity: 1;
+      transition: all 1s;
+      -webkit-transition: all 1s;
+    }
+    .imgContain:after {
+      content: '\A';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      transition: all 1s;
+      -webkit-transition: all 1s;
+    }
+    .imgContain:hover:after {
+      opacity: 1;
+    }
+    .imgContain.noproduct:hover:after {
+      opacity: 0;
+    }
+    #photos .imgContain {
+      position: relative;
+      padding-bottom: 100%;
+      overflow: hidden;
+    }
+    .imgContain img {
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    #photos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 1200px) {
+      #photos {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    @media (max-width: 1000px) {
+      #photos {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 900px) {
+      #photos {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 400px) {
+      #photos {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+
+    .grid_title {
+      font-family: {{ section.settings.header_font_family }};
+      font-size: {{ section.settings.header_font_size }};
+      font-weight: {{ section.settings.header_font_weight }};
+      color: {{ section.settings.header_font_color }};
+      text-align: {{ section.settings.header_alignment }};
+      line-height: 1.1;
+      margin: 0 0 0.8rem;
+    }
+    .grid_subtitle {
+      font-family: {{ section.settings.subheader_font_family }};
+      font-size: {{ section.settings.subheader_font_size }};
+      font-weight: {{ section.settings.subheader_font_weight }};
+      color: {{ section.settings.subheader_font_color }};
+      text-align: {{ section.settings.header_alignment }};
+      line-height: 1.1;
+      margin: 0;
+    }
+    @media screen and (max-width: 770px) {
+      .grid_title {
+        margin: 50px 0 0.8rem;
+        font-size: calc({{ section.settings.header_font_size }} / 1.5);
+        text-align: left;
+      }
+      .grid_subtitle {
+        font-size: calc({{ section.settings.subheader_font_size }} / 1.5);
+        text-align: left;
+      }
+
+    }
+
+    .gallery_row.sho {
+      display: flex;
+    }
+    .gallery_row {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .gallery_row img {
+      max-width: 100%;
+      height: 100%;
+      width: 23%;
+      border: 0;
+      object-fit: fill;
+    }
+    .homes_choices button {
+      font-size: 14px;
+      padding: 10px 15px;
+      letter-spacing: 0.02em;
+      border: 1px solid #000;
+      border-radius: 40px;
+      text-transform: UPPERCASE;
+      text-decoration: none;
+      background-color: white;
+      transform: scale(1);
+      margin: 0 0 1rem;
+    }
+    .homes_choices button:hover {
+      transform: scale(1.1);
+      transition: transform 0.2s linear;
+    }
+    .playground_header_module {
+      text-align: left;
+      padding: 0;
+      color: #3C64B1;
+    }
+    .playground_header_title {
+      font-weight: {{ section.settings.header_font_weight }};
+      font-size: {{ section.settings.header_font_size }};
+      margin: 0;
+    }
+    .playground_header_description {
+      font-weight: 300;
+      font-size: 1rem;
+      margin: 0;
+    }
+    .theplayground {
+      width: 100%;
+      height: 65 vH;
+      background-image: url('https://cdn.shopify.com/s/files/1/0449/1667/0615/files/tryythis.jpg?v=1650775798');
+      background-size: cover;
+      /* <------ */
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+  </style>
+{%- endif -%}

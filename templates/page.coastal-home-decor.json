@@ -1,0 +1,241 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 76,
+        "padding_bottom": 28
+      }
+    },
+    "flwr_one_long_sentence_BeEjwH": {
+      "type": "flwr-one-long-sentence",
+      "blocks": {
+        "text_kUWjJ4": {
+          "type": "text",
+          "settings": {
+            "block_text": "Coastal Home Decor",
+            "heading_size": "h1",
+            "block_font_size": "32px",
+            "mobile_block_font_size": "28px",
+            "block_font_color": "#121212",
+            "font_family_text": "'p22-mackinac-pro', serif;",
+            "font_weight_text": "800",
+            "line_height_text": "1.2",
+            "letter_spacing": "3px",
+            "text_width": "100%",
+            "mobile_text_width": "90%",
+            "text_padding_left": "0px",
+            "text_padding_bottom": "10px",
+            "is_own_line": true,
+            "text_has_wavy_animation": true,
+            "wavy_animation_color": "#f6b700",
+            "underline_animation": false,
+            "underline_animation_color": "#f6b700"
+          }
+        },
+        "text_Xh6e49": {
+          "type": "text",
+          "settings": {
+            "block_text": "Get inspired with our range of coastal looks featuring furniture, accessories, art, and more. See our image gallery to get inspired by different interior looks.",
+            "heading_size": "span",
+            "block_font_size": "28px",
+            "mobile_block_font_size": "28px",
+            "block_font_color": "#121212",
+            "font_family_text": "'p22-mackinac-pro', serif;",
+            "font_weight_text": "400",
+            "line_height_text": "1.2",
+            "letter_spacing": "3px",
+            "text_width": "100%",
+            "mobile_text_width": "90%",
+            "text_padding_left": "0px",
+            "text_padding_bottom": "50px",
+            "is_own_line": true,
+            "text_has_wavy_animation": true,
+            "wavy_animation_color": "#f6b700",
+            "underline_animation": false,
+            "underline_animation_color": "#f6b700"
+          }
+        },
+        "text_acPJ4m": {
+          "type": "text",
+          "settings": {
+            "block_text": "Coastal Accent Table Ideas",
+            "heading_size": "h2",
+            "block_font_size": "24px",
+            "mobile_block_font_size": "24px",
+            "block_font_color": "#121212",
+            "font_family_text": "'Helvetica Neue'",
+            "font_weight_text": "600",
+            "line_height_text": "1.2",
+            "letter_spacing": "3px",
+            "text_width": "100%",
+            "mobile_text_width": "90%",
+            "text_padding_left": "0px",
+            "text_padding_bottom": "0px",
+            "is_own_line": true,
+            "text_has_wavy_animation": true,
+            "wavy_animation_color": "#f6b700",
+            "underline_animation": false,
+            "underline_animation_color": "#f6b700"
+          }
+        }
+      },
+      "block_order": [
+        "text_kUWjJ4",
+        "text_Xh6e49",
+        "text_acPJ4m"
+      ],
+      "settings": {
+        "subtitle": "",
+        "subtitle_font_size": "32px",
+        "subtitle_font_weight": "700",
+        "subtitle_font_family": "'p22-mackinac-pro', serif;",
+        "subtitle_font_color": "#121212",
+        "background_color": "#ffffff",
+        "background_opacity": "0.2",
+        "max_width": 90,
+        "mobile_max_width": 90,
+        "use_page_width": false,
+        "margintop": 100,
+        "marginbottom": 20,
+        "alignment": "left",
+        "turnpup_bottom_border_color": "rgba(0,0,0,0)",
+        "mobile_font_size": "12px"
+      }
+    },
+    "custom_image_row_PyPwX4": {
+      "type": "custom-image-row",
+      "settings": {
+        "metaobject_handle": "",
+        "tp_metaobject": "coastal",
+        "image_grid_header": "",
+        "header_font_family": "'p22-mackinac-pro', serif;",
+        "header_font_size": "30px",
+        "header_font_weight": "400",
+        "header_font_color": "#3c64b1",
+        "image_grid_subheader": "",
+        "subheader_font_family": "'p22-mackinac-pro', serif;",
+        "subheader_font_size": "30px",
+        "subheader_font_weight": "400",
+        "subheader_font_color": "#3c64b1",
+        "header_alignment": "center"
+      }
+    },
+    "flwr_one_long_sentence_rfLekX": {
+      "type": "flwr-one-long-sentence",
+      "blocks": {
+        "text_QtQzbY": {
+          "type": "text",
+          "settings": {
+            "block_text": "Coastal Mirrors",
+            "heading_size": "h2",
+            "block_font_size": "24px",
+            "mobile_block_font_size": "24px",
+            "block_font_color": "#121212",
+            "font_family_text": "'Helvetica Neue'",
+            "font_weight_text": "600",
+            "line_height_text": "1.2",
+            "letter_spacing": "3px",
+            "text_width": "100%",
+            "mobile_text_width": "90%",
+            "text_padding_left": "0px",
+            "text_padding_bottom": "0px",
+            "is_own_line": true,
+            "text_has_wavy_animation": true,
+            "wavy_animation_color": "#f6b700",
+            "underline_animation": false,
+            "underline_animation_color": "#f6b700"
+          }
+        }
+      },
+      "block_order": [
+        "text_QtQzbY"
+      ],
+      "settings": {
+        "subtitle": "",
+        "subtitle_font_size": "11px",
+        "subtitle_font_weight": "300",
+        "subtitle_font_family": "'Karla'",
+        "subtitle_font_color": "#555555",
+        "background_color": "#ffffff",
+        "background_opacity": "0.2",
+        "max_width": 90,
+        "mobile_max_width": 90,
+        "use_page_width": false,
+        "margintop": 100,
+        "marginbottom": 20,
+        "alignment": "left",
+        "turnpup_bottom_border_color": "rgba(0,0,0,0)",
+        "mobile_font_size": "12px"
+      }
+    },
+    "custom_image_row_RXPM6E": {
+      "type": "custom-image-row",
+      "settings": {
+        "metaobject_handle": "",
+        "tp_metaobject": "coastal-mirrors",
+        "image_grid_header": "",
+        "header_font_family": "'p22-mackinac-pro', serif;",
+        "header_font_size": "30px",
+        "header_font_weight": "400",
+        "header_font_color": "#3c64b1",
+        "image_grid_subheader": "",
+        "subheader_font_family": "'p22-mackinac-pro', serif;",
+        "subheader_font_size": "30px",
+        "subheader_font_weight": "400",
+        "subheader_font_color": "#3c64b1",
+        "header_alignment": "center"
+      }
+    },
+    "tp_seo_footer_jfEgak": {
+      "type": "tp-seo-footer",
+      "settings": {
+        "text_alignment": "left",
+        "turnpup_title_size": "24px",
+        "turnpup_mobile_title_size": "24px",
+        "turnpup_title_color": "#3c64b1",
+        "turnpup_text_size": "18px",
+        "turnpup_mobile_text_size": "16px",
+        "turnpup_text_color": "#373f41",
+        "turnpup_note_text_size": "18px",
+        "turnpup_mobile_note_text_size": "16px",
+        "turnpup_note_text_color": "#373f41",
+        "turnpup_note_text_weight": "700",
+        "tp_margin_top_bottom": "100px",
+        "tp_margin_left_right": "40px",
+        "tp_mobile_margin_top_bottom": "60px",
+        "tp_mobile_margin_left_right": "20px",
+        "turnpup_header_background": "#fff8f1",
+        "turnpup_text_background": "#fff8f1",
+        "link": "",
+        "button_label": "",
+        "turnpup_button_size": "18px",
+        "button_link": "",
+        "color_text": "#ffffff",
+        "color_accent": "#f4b237",
+        "turnpup_hover_txt_color": "#f4b237",
+        "turnpup_hover_background_color": "#ffffff",
+        "turnpup_top_border_color": "#f4b237",
+        "turnpup_bottom_border_color": "#f4b237"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "flwr_one_long_sentence_BeEjwH",
+    "custom_image_row_PyPwX4",
+    "flwr_one_long_sentence_rfLekX",
+    "custom_image_row_RXPM6E",
+    "tp_seo_footer_jfEgak"
+  ]
+}

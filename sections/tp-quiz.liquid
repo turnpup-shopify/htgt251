@@ -1,0 +1,111 @@
+{% schema %}
+    {
+      "name": "tp-quiz",
+      "class": "tp-quiz",
+      "settings": [        
+        {
+          "type": "metaobject",
+          "id": "metaobject_quiz_ref",
+          "label": "Metaobject Quiz Reference",
+          "info": "Add a metaobject",
+          "metaobject_type": "quiz"
+        }
+      ],
+      "presets": [
+        {
+          "name": "TP Quiz",
+          "category": "Text"
+        }
+      ]
+    }
+{% endschema %}
+<style>
+    .quiz-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    .quiz-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <button id="start-quiz">Take Product Quiz</button>
+
+  <div class="quiz-overlay" id="quiz-overlay"></div>
+  <div class="quiz-popup" id="quiz-popup">
+    <div id="question-container">
+      <!-- Questions will be dynamically inserted here -->
+    </div>
+    <button id="submit-quiz">Get Recommendation</button>
+  </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Liquid-injected metaobject data
+    const quizTitle = "{{ section.settings.metaobject_quiz_ref.title }}";
+    const quizQA = {{ section.settings.metaobject_quiz_ref.quiz_q_and_a }};
+    const quizMapping = {{ section.settings.metaobject_quiz_ref.mapping }};
+    console.log(quizQA);
+
+    function renderQuiz() {
+        const container = document.getElementById('question-container');
+        container.innerHTML = quizQA.map((q, index) => `
+        <div class="question">
+            <h3>${q.question_text}</h3>
+            ${q.options.map(opt => `
+            <label>
+                <input type="radio" name="q${index}" value="${opt}">
+                ${opt}
+            </label>
+            `).join('')}
+        </div>
+        `).join('');
+    }
+
+    function submitQuiz() {
+        const answers = quizQA.map((q, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            return selected ? selected.value : null;
+        });
+
+        const recommendationKey = answers.join(',');
+        const recommendedProduct = quizMapping[recommendationKey];
+
+        if (recommendedProduct) {
+            window.location.href = recommendedProduct;
+        } else {
+            alert('No recommendation found');
+        }
+    }
+
+    // Event listeners
+    document.getElementById('start-quiz').addEventListener('click', () => {
+        document.getElementById('quiz-overlay').style.display = 'block';
+        document.getElementById('quiz-popup').style.display = 'block';
+        renderQuiz();
+    });
+
+    document.getElementById('quiz-overlay').addEventListener('click', () => {
+        document.getElementById('quiz-overlay').style.display = 'none';
+        document.getElementById('quiz-popup').style.display = 'none';
+    });
+
+    document.getElementById('submit-quiz').addEventListener('click', submitQuiz);
+});
+</script>

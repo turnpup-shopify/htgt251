@@ -1,0 +1,553 @@
+{%- if template.name == "collection" -%}
+    {%- assign use_this = collection.metafields.custom.hero_banners.value -%}
+{%- elsif template.name == "product" -%}
+    {%- assign use_this = product.metafields.custom.hero_banners.value -%}
+{%- endif -%}
+
+{%- if use_this -%}
+    {% for hero_banner in use_this %}
+        <div class="hero-image" style="{%- if hero_banner.primary_cta_url != blank and hero_banner.primary_cta_url != ""-%}background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{hero_banner.desktop_image | image_url }}');{%- else -%}background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('{{hero_banner.desktop_image | image_url }}');{%- endif -%}">
+            <div class="hero-text">
+                <h2>{{hero_banner.header}}</h2>
+                <p>{{hero_banner.subheader}}</p>
+                {%- if hero_banner.primary_cta_url != blank and hero_banner.primary_cta_url != ""-%}<a href="{{hero_banner.primary_cta_url}}"><button class="hapny_button">{{hero_banner.primary_cta_text}}</button></a>{%- endif -%}
+            </div>
+        </div>
+    {% endfor %}
+    {% comment %} <h1> COLLECTION {{ collection.metafields.custom.hero_banners.value | json }} </h1> {% endcomment %}
+{%- else -%}
+{%- endif -%}
+
+<style>
+/* The hero image */
+.hero-image {
+  /* Set a specific height */
+  height: {%- if section.settings.tp_image_height != "" and section.settings.tp_image_height != blank -%}{{ section.settings.tp_image_height}}{%- else -%}400px{%- endif -%};
+  width: 100%;
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.hero-text h2 {
+  color: white;
+}
+
+@media screen and (max-width: 750px) {
+  .hero-image {
+    height: {%- if section.settings.tp_mobile_image_height != "" and section.settings.tp_mobile_image_height != blank -%}{{ section.settings.tp_mobile_image_height}}{%- else -%}200px{%- endif -%};
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "tp Auto Col Banners",
+  "class": "tp-auto-collection-banners",
+  "settings": [ 
+    {
+        "type": "text",
+        "id": "tp_image_height",
+        "label": "Image Height",
+        "default": "400px"
+    },
+    {
+        "type": "text",
+        "id": "tp_mobile_image_height",
+        "label": "Mobile Image Height",
+        "default": "200px"
+    },
+    {
+    "type": "range",
+    "id": "padding_top",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Section Padding Top",
+    "default": 0
+    },
+    {
+    "type": "range",
+    "id": "padding_bottom",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Section Padding Buttom",
+    "default": 0
+    },
+    {
+    "type": "range",
+    "id": "padding_right",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Section Padding Right",
+    "default": 0
+    },
+    {
+    "type": "range",
+    "id": "padding_left",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "section Padding Left",
+    "default": 0
+    },
+    {
+    "type": "range",
+    "id": "mobile_padding_top",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Mobile Section Padding Top",
+    "default": 0
+    },
+    {
+    "type": "range",
+    "id": "mobile_padding_bottom",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Mobile Section Padding Buttom",
+    "default": 0
+    },
+    {
+    "type": "range",
+    "id": "mobile_padding_right",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Mobile Section Padding Right",
+    "default": 0
+    },
+    {
+    "type": "range",
+    "id": "mobile_padding_left",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Mobile section Padding Left",
+    "default": 0
+    },
+    {
+      "type": "range",
+      "id": "background_opacityy",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "label": "Background Opacity",
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "overall_width",
+      "label": "Overall Width",
+      "default": "100%"
+    },   
+    {
+      "type": "text",
+      "id": "overall_width_text",
+      "label": "Overall Width for Text",
+      "default": "80%"
+    },
+    {
+      "type": "color",
+      "id": "turnpup_bottom_border_color",
+      "label": "Bottom Border Color",
+      "default": "#F4B237"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_container_margin_top_bottom",
+      "label": "Container Margin Top Bottom",
+      "default": "60px"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "background_opacity",
+      "label": "Background Opacity",
+      "default": "0.2"
+    },
+    {
+      "type": "color",
+      "id": "mobile_background_color",
+      "label": "Mobile Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "section_padding",
+      "label": "Show spacing around section",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Image",
+      "info": "Settings for the image."
+    }, 
+    {
+        "type": "video",
+        "id": "desktop_video",
+        "label": "Desktop Video"
+    },
+    {
+        "type": "video",
+        "id": "mobile_video",
+        "label": "Mobile Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image"
+    }, 
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },    
+    {
+      "type": "text",
+      "id": "image_padding",
+      "label": "Image Padding",
+      "default": "0px"
+    },
+    {
+      "type": "text",
+      "id": "image_margin",
+      "label": "Image Margin",
+      "default": "0px 3% 0px 0px"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "label": "Image Height",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "label": "Mobile Image Height",
+      "default": 90
+    },
+    {
+      "type": "color",
+      "id": "image_border_color",
+      "label": "Image Border Color",
+      "default": "#28499c"
+    },
+    {
+      "type": "text",
+      "id": "image_border_width",
+      "label": "Image Border Width",
+      "default": "10px"
+    },
+    {
+      "type": "text",
+      "id": "image_border_radius",
+      "label": "Image Border Radius",
+      "default": "0px"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Image on left"
+        },
+        {
+          "value": "right",
+          "label": "Image on right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text align",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_text_align",
+      "label": "Mobile Text align",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "turnpup_container_text_cta_margin_top",
+      "label": "Text/CTA Container Margin Top",
+      "default": "60px"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_container_text_cta_margin_bottom",
+      "label": "Text/CTA Container Margin Bottom ",
+      "default": "60px"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_mobile_container_text_cta_margin_top",
+      "label": "Mobile: Text/CTA Container Margin Top",
+      "default": "60px"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_mobile_container_text_cta_margin_bottom",
+      "label": "Mobile: Text/CTA Container Margin Bottom ",
+      "default": "60px"
+    },  
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Image with text"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "mobile_title_color",
+      "label": "Mobile Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "label_font_family_header",
+      "label": "Font Family Header",
+      "default": "'Poppins', Light"
+    }, 
+    {
+      "type": "text",
+      "id": "turnpup_title_size",
+      "label": "Heading Font Size (e.g. 40px)",
+      "default": "22px"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_mobile_title_size",
+      "label": "Mobile: Heading Font Size (e.g. 24px)",
+      "default": "24px"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_title_weight",
+      "label": "Heading Font Weight",
+      "default": "700"
+    },
+    {
+      "type": "text",
+      "id": "header_margin_below",
+      "label": "Vertical Margin Below Header",
+      "default": "12px;"
+    },
+    {
+      "type": "text",
+      "id": "mobile_header_margin_below",
+      "label": "Mobile: Vertical Margin Below Header",
+      "default": "10px;"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Text Line 2",
+      "default": "Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+    },    
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "mobile_text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_subtitle_family",
+      "label": "Subtitle Font Family"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_subtitle_size",
+      "label": "Subtitle Font Size (e.g. 40px)",
+      "default": "24px"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_mobile_subtitle_size",
+      "label": "Mobile: Subtitle Font Size (e.g. 24px)",
+      "default": "24px"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_desc_family",
+      "label": "Subtitle Font Family"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_desc_size",
+      "label": "Description Font Size (e.g. 40px)",
+      "default": "18px"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_desc_weight",
+      "label": "Description Font Weight",
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_mobile_desc_size",
+      "label": "Mobile Description Font Size (e.g. 40px)",
+      "default": "12px"
+    },
+    {
+      "type": "header",
+      "content": "Button",
+      "info": "."
+    },  
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_hero_button",
+      "label": "3D Hero Button?"
+    },    
+    {
+      "type": "color",
+      "id": "bottom_background_color",
+      "label": "Bottom Button Background Color",
+       "default": "#28499c" 
+    },    
+    {
+      "type": "color",
+      "id": "middle_background_color",
+      "label": "Middle Button Background Color",
+       "default": "#ea5e33" 
+    },
+    {
+      "type": "color",
+      "id": "top_background_color",
+      "label": "Top Button Background Color",
+       "default": "#f4b237" 
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+       "default": "#f4b237" 
+    },
+    {
+      "type": "text",
+      "id": "button_text_size",
+      "label": "Button Font Size"
+    },
+    {
+      "type": "text",
+      "id": "mobile_button_text_size",
+      "label": "Mobile: Button Font Size"
+    },
+    {
+      "type": "text",
+      "id": "button_text_weight",
+      "label": "Button Font Weight"
+    },
+    {
+      "type": "text",
+      "id": "button_text_family",
+      "label": "Button Font Family"
+    }
+  ],
+  "presets": [
+    {
+      "name": "TP-AutoCollMain",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

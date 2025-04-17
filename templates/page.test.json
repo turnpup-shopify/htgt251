@@ -1,0 +1,174 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "44df0e20-c4df-4191-98ce-27fac109e02f": {
+      "type": "at-hero",
+      "blocks": {
+        "template--15761104994535__b21ed106-0c1f-40f8-96ac-c576244358b8-1680049179cb55a7bc-0": {
+          "type": "column",
+          "settings": {
+            "image_border_radius": "0px",
+            "image_border_padding": 0,
+            "title": "Sleep Like A Pampered Hotel Guest (at Home!)",
+            "title_font_size": "30px",
+            "title_font_size_mobile": "14px",
+            "title_font_family": "'Times New Roman'",
+            "title_font_color": "#454683",
+            "title_line_height": "1.0",
+            "title_font_weight": "600",
+            "title_margin_top": 0,
+            "text": "Pillows from the same suppliers as 5-star hotels— minus the ridiculous markup.",
+            "text_font_size": "16px",
+            "text_font_size_mobile": "16px",
+            "text_font_family": "Helvetica",
+            "text_font_color": "#454683",
+            "text_line_height": "1.5",
+            "text_font_weight": "400",
+            "subtitle_margin_top": 16,
+            "description": "√  Hotel Quality   √  Affordable   √ Satisfaction Guaranteed\n<br><br>\n⭐️⭐️⭐️⭐️⭐️  <a href=\"\/hello\" style=\"text-decoration:underline\">5,000+ Reviews <\/a>",
+            "description_font_size": "14px",
+            "description_font_size_mobile": "14px",
+            "description_font_family": "Helvetica",
+            "description_font_color": "#454683",
+            "description_line_height": "1.3",
+            "description_font_weight": "400",
+            "description_margin_top": 16,
+            "description_margin_bottom": 16,
+            "link_label": "SHOP NOW & SAVE 20%",
+            "link": "shopify:\/\/collections\/frontpage",
+            "is_hero_button": true,
+            "link_label_two": "",
+            "link_two": "",
+            "is_hero_button_two": false,
+            "button_is_white_border_two": false,
+            "space_between_buttons": 8,
+            "vertically_align_center": true,
+            "top_margin_column": "",
+            "top_margin_column_mobile": "",
+            "width": "",
+            "text_max_width": "80%",
+            "hide_on_mobile": false,
+            "mobile_order": "",
+            "margin_bottom_container": "",
+            "remove_top_padding": false,
+            "remove_bottom_padding": false
+          }
+        },
+        "template--15761104994535__b21ed106-0c1f-40f8-96ac-c576244358b8-1680049179cb55a7bc-1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/table.jpg",
+            "image_border_radius": "0px",
+            "image_border_padding": 0,
+            "title": "",
+            "title_font_size": "22px",
+            "title_font_size_mobile": "14px",
+            "title_font_family": "Helvetica",
+            "title_font_color": "#000000",
+            "title_line_height": "1.0",
+            "title_font_weight": "600",
+            "title_margin_top": 0,
+            "text": "",
+            "text_font_size": "30px",
+            "text_font_size_mobile": "16px",
+            "text_font_family": "'Helvetica Neue'",
+            "text_font_color": "#000000",
+            "text_line_height": "1.3",
+            "text_font_weight": "600",
+            "subtitle_margin_top": 0,
+            "description": "",
+            "description_font_size": "30px",
+            "description_font_size_mobile": "14px",
+            "description_font_family": "'Helvetica Neue'",
+            "description_font_color": "#000000",
+            "description_line_height": "1.3",
+            "description_font_weight": "600",
+            "description_margin_top": 40,
+            "description_margin_bottom": 44,
+            "link_label": "",
+            "link": "",
+            "is_hero_button": false,
+            "link_label_two": "",
+            "link_two": "",
+            "is_hero_button_two": false,
+            "button_is_white_border_two": false,
+            "space_between_buttons": 8,
+            "vertically_align_center": false,
+            "top_margin_column": "",
+            "top_margin_column_mobile": "",
+            "width": "",
+            "text_max_width": "80%",
+            "hide_on_mobile": false,
+            "mobile_order": "",
+            "margin_bottom_container": "",
+            "remove_top_padding": false,
+            "remove_bottom_padding": false
+          }
+        }
+      },
+      "block_order": [
+        "template--15761104994535__b21ed106-0c1f-40f8-96ac-c576244358b8-1680049179cb55a7bc-0",
+        "template--15761104994535__b21ed106-0c1f-40f8-96ac-c576244358b8-1680049179cb55a7bc-1"
+      ],
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_right": 0,
+        "padding_left": 0,
+        "max_height_desktop": 80,
+        "mobile_max_height_desktop": 90,
+        "enabled_border": false,
+        "swipe_on_mobile": false,
+        "image_width": "full",
+        "column_alignment": "left",
+        "column_gap": "0px",
+        "button_padding": "10px 20px",
+        "hero_button_font_family": "'Helvetica Neue'",
+        "hero_button_font_size": "16px",
+        "hero_button_font_weight": "400",
+        "button_border_radius": "14px",
+        "button_border_color": "#ff8080",
+        "button_background_color": "#ff8080",
+        "button_text_color": "#ffffff",
+        "button_border_color_hover": "#ff8080",
+        "button_background_color_hover": "#ffffff",
+        "button_text_color_hover": "#ff8080",
+        "button_label": "",
+        "button_link": "",
+        "title": "",
+        "title_font_size": "56px",
+        "title_font_family": "'Helvetica Neue'",
+        "section_title_font_weight": "400",
+        "section_title_padding": "0px",
+        "sub_title": "",
+        "subtitle_font_size": "20px",
+        "section_subtitle_padding": "0px",
+        "subtitle_font_family": "'Helvetica Neue'",
+        "title_alignment": "left",
+        "section_text_color": "#000000",
+        "overall_background_image_url": "",
+        "section_background_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "44df0e20-c4df-4191-98ce-27fac109e02f"
+  ]
+}

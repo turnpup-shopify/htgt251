@@ -1,0 +1,246 @@
+{% if section.settings.tp_metaobject != blank %}
+    <script> console.log("TRY THIS --> {{collection.metafields.custom.qa1.value}}");</script>
+    
+    {% assign tp-question = "Do you ship black cabinet hardware?" %}
+    {% assign current_url = '' %}
+    {% assign current_title = '' %}
+      {% if template contains 'page' %}
+        {% assign current_url = page.url %}
+        {% assign current_title = page.title %}
+      {% elsif template contains 'blog' %}
+        {% assign current_url = blog.url %}
+        {% assign current_title = blog.title %}
+      {% elsif template contains 'article' %}
+        {% assign current_url = blog.url %}
+        {% assign current_title = blog.title %}
+      {% elsif template contains 'collection' %}
+        {% assign current_url = collection.url %}
+        {% assign current_title = collection.title %}
+      {% elsif template contains 'product' %}
+        {% assign current_url = product.url %}
+        {% assign current_title = product.title %}
+      {% endif %}
+      
+    <div class="tp-question-container">
+        <div>
+            <div class="section-header">
+                <div class="section-header-title">
+                    <h2 class="turnpup_header">Questions &amp; Answers</h2>
+                </div>
+            </div>
+        </div>
+        {% comment %} <p>{{ section.settings.tp_metaobject | json}}</p> {% endcomment %}
+        {% render 'tp-question' for section.settings.tp_metaobject as t %}
+    </div>
+    <script type = "application/ld+json"
+    id = "thd-helmet__script--seoGeneratedContentFAQ"
+    data - th = "client"> 
+    {
+        "@context": "http://schema.org",
+        "@type": "FAQPage",
+        "name": "{{ current_title }}",
+        "url": "https://htgtfurniture.com{{ current_url }}",
+        "mainEntity": [{% render 'tp-question-schema' for section.settings.tp_metaobject as t %}]
+    }
+    </script>
+    <style>
+        .tp-question {
+            background: {{ section.setting.background_color }}
+        }
+        .tp-question-container {
+            margin-top: {{ section.settings.padding_top }}px;
+            margin-bottom: {{ section.settings.padding_bottom }}px;
+            margin-left: {{ section.settings.padding_left }}px;
+            margin-right: {{ section.settings.padding_right }}px;
+        }
+        @media screen and (max-width: 700px) {
+            .tp-question-container {
+                margin-top: {{ section.settings.mobile_padding_top }}px;
+                margin-bottom: {{ section.settings.mobile_padding_bottom }}px;
+                margin-left: {{ section.settings.mobile_padding_left }}px;
+                margin-right: {{ section.settings.mobile_padding_right }}px;
+            }
+        }
+    </style> 
+    
+    {% endif %}
+    
+    {% schema %}
+    {
+      "name": "TP - New - Question",
+      "class": "tp-question",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "section_padding",
+          "label": "Show spacing around section",
+          "default": true
+        },
+        {
+            "type": "metaobject_list",
+            "id": "tp_metaobject",
+            "label": "Image Row Metaobject",
+            "info": "Add a metaobject",
+            "metaobject_type": "question_and_answer"
+        },
+        {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Section Padding Top",
+        "default": 0
+        },
+        {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Section Padding Buttom",
+        "default": 0
+        },
+        {
+        "type": "range",
+        "id": "padding_right",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Section Padding Right",
+        "default": 0
+        },
+        {
+        "type": "range",
+        "id": "padding_left",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "section Padding Left",
+        "default": 0
+        },
+        {
+        "type": "range",
+        "id": "mobile_padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Mobile Section Padding Top",
+        "default": 0
+        },
+        {
+        "type": "range",
+        "id": "mobile_padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Mobile Section Padding Buttom",
+        "default": 0
+        },
+        {
+        "type": "range",
+        "id": "mobile_padding_right",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Mobile Section Padding Right",
+        "default": 0
+        },
+        {
+        "type": "range",
+        "id": "mobile_padding_left",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Mobile section Padding Left",
+        "default": 0
+        },
+        {
+          "type": "range",
+          "id": "background_opacityy",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "label": "Background Opacity",
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "overall_width",
+          "label": "Overall Width",
+          "default": "100%"
+        },   
+        {
+          "type": "text",
+          "id": "overall_width_text",
+          "label": "Overall Width for Text",
+          "default": "80%"
+        },
+        {
+          "type": "color",
+          "id": "turnpup_bottom_border_color",
+          "label": "Bottom Border Color",
+          "default": "#F4B237"
+        },
+        {
+          "type": "text",
+          "id": "turnpup_container_margin_top_bottom",
+          "label": "Container Margin Top Bottom",
+          "default": "60px"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "background_opacity",
+          "label": "Background Opacity",
+          "default": "0.2"
+        },
+        {
+          "type": "color",
+          "id": "mobile_background_color",
+          "label": "Mobile Background Color",
+          "default": "#ffffff"
+        }
+      ],
+        "blocks": [
+            {
+                "name": "Question",
+                "type": "Question",
+                "settings": [
+                    {
+                        "type": "richtext",
+                        "id": "question",
+                        "label": "Question",
+                        "default": "<p>How do I likka the leffs?</p>"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "answer",
+                        "label": "Answer",
+                        "default": "<p>PeePaws Lickaloo Spindrifter the 4th</p>"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "TP - New - Question",
+                "category": "Image"
+            }
+        ]
+    }
+    {% endschema %}

@@ -1,0 +1,22 @@
+
+{% assign skip = false %}
+{% if block.settings.question != blank and block.settings.question != "" %}
+    {% assign question_to_use = block.settings.question %}
+{% else %}
+    {% assign skip = true %}
+{% endif %}
+{% if block.settings.answer != blank and block.settings.answer != "" %}
+    {% assign answer_to_use = block.settings.answer %}
+{% else %}
+    {% assign skip = true %}
+{% endif %}
+{% if skip == false %}
+    {% if forloop.first == false%},{% endif %}{
+        "@type": "Question",
+        "name": "{{ question_to_use | strip_html }}",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ answer_to_use | strip_html }}"
+        }
+    }
+{% endif %}

@@ -1,0 +1,26 @@
+{% assign skip = false %}
+{% if block.settings.question != blank %}
+    {% assign question_to_use = block.settings.question %}
+{% else %}
+    {% assign skip = true %}
+{% endif %}
+{% if block.settings.answer != blank %}
+    {% assign answer_to_use = block.settings.answer %}
+{% else %}
+    {% assign skip = true %}
+{% endif %}
+
+{% if skip == false %}
+<div class="page-accordion--single">
+    <button class="turnpup_question" aria-expanded="false" js-accordion-header="">
+        <h3 class="page-accordion__title">
+            {{ question_to_use }}
+        </h3>
+    </button>
+    <div class="turnpup_answer" js-accordion-content="" aria-hidden="true" style="display: none;">
+        <span style="display:block;margin-top:8px;">
+            {{ answer_to_use }}
+        </span>
+    </div>
+</div>
+{% endif %}

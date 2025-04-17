@@ -1,0 +1,22 @@
+
+{% assign skip = false %}
+{% if t.question != blank and t.question != "" %}
+    {% assign question_to_use = t.question %}
+{% else %}
+    {% assign skip = true %}
+{% endif %}
+{% if t.answer != blank and t.answer != "" %}
+    {% assign answer_to_use = t.answer %}
+{% else %}
+    {% assign skip = true %}
+{% endif %}
+{% if skip == false %}
+    {% if forloop.first == false%},{% endif %}{
+        "@type": "Question",
+        "name": "{{ question_to_use | strip_html }}",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ answer_to_use | strip_html }}"
+        }
+    }
+{% endif %}

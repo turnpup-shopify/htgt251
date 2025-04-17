@@ -1,0 +1,288 @@
+<div id="email-popup" class="popup">
+    <div class="popup-content">
+        <span class="close-popup" id="popup-close-button">&times;</span>
+        {%- form 'customer', id: 'homepage-popup', class: 'isolate' -%}
+            {%- if form.posted_successfully? -%}
+            <div class="form-status form-status-list form__message" tabindex="-1" autofocus>{% render 'icon-success' %} Thanks for subscribing, here is your X code for 15% off. </div>
+            {%- elsif form.errors -%}
+            <div class="form__message">
+                <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>{% render 'icon-error' %} {{ 'templates.contact.form.error_heading' | t }}</h2>
+            </div>
+            <ul class="form-status-list caption-large" role="list">
+                <li>
+                <a href="#ContactForm-email" class="link">
+                    {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+                </a>
+                </li>
+            </ul>
+            {%- endif -%}
+            <div class="contact__fields">
+            <p class="popup-header" style="margin: {{ settings.popup_header_margin_top}} 0 0 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};"> {{ settings.header_popup_message }} </p>
+            <p style="margin: {{ settings.popup_body_margin_top}} 0 {{ settings.popup_body_margin_bottom}} 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};"> {{ settings.popup_message }} </p>
+            <div class="field field--with-error">
+                <input
+                autocomplete="email"
+                type="email"
+                id="ContactForm-email"
+                class="field__input"
+                name="contact[email]"
+                spellcheck="false"
+                autocapitalize="off"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                aria-required="true"
+                {% if form.errors contains 'email' %}
+                    aria-invalid="true"
+                    aria-describedby="ContactForm-email-error"
+                {% endif %}
+                placeholder="{{ 'templates.contact.form.email' | t }}"
+                >
+                <label class="field__label" for="ContactForm-email">{{ 'templates.contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+                {%- if form.errors contains 'email' -%}
+                <small class="contact__field-error" id="ContactForm-email-error">
+                    <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+                    <span class="form__message">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</span>
+                </small>
+                {%- endif -%}
+            </div>
+            </div>            
+            <div class="contact__button">
+            <button type="submit" class="button">
+                {{ 'templates.contact.form.send' | t }}
+            </button>
+            </div>
+        {%- endform -%}
+    </div>
+</div>
+
+<div id="tp-email-success-popup" class="tp-success-popup popup">
+  <div class="popup-content">
+    <span class="close-popup" id="success-popup-close-button">&times;</span>  
+    <div style="padding: 40px 20px 20px 20px; display: flex; justify-content: center; align-items: center; line-height: 1.2;">
+      {{ settings.custom_success_message }}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.href.includes("challenge")) {
+      console.log("Challenge page detected, pop-ups disabled.");
+      return; // Stop script execution
+    }
+
+    const popup = document.getElementById("email-popup");
+    const successPopup = document.getElementById("tp-email-success-popup");
+    const closeButton = document.getElementById("popup-close-button");
+    const successCloseButton = document.getElementById("success-popup-close-button");
+    const isThemeEditor = window.Shopify && window.Shopify.designMode;
+    const showPopup = {{ settings.show_popup_in_editor }};
+    const showPopupSuccess = {{ settings.test_popup_success_state }};
+
+    // Function to set a cookie
+    function setCookie(name, value, days) {
+      let expires = "";
+      if (days) {
+        let date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + value + "; path=/" + expires;
+    }
+
+    // Function to get a cookie
+    function getCookie(name) {
+      let nameEQ = name + "=";
+      let ca = document.cookie.split(";");
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === " ") c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    // Debugging: Check if the cookie exists
+    console.log("Popup cookie value:", getCookie("popupShown"));
+
+    // Show pop-up if cookie is NOT set
+    if (!getCookie("popupShown") && popup) {
+      console.log("Pop-up has NOT been shown, showing now.");
+      setTimeout(() => {
+        popup.classList.add("active");
+        setCookie("popupShown", "true", 7); // Set cookie to expire in 7 days
+      }, 3000);
+    } else if (showPopup && popup && isThemeEditor && !showPopupSuccess) {
+      setTimeout(() => {
+        popup.classList.add("active");
+      }, 500);
+    }
+    else {
+      console.log("Pop-up has ALREADY been shown, skipping.");
+    }
+
+    if (closeButton) {
+      closeButton.addEventListener("click", () => {
+        popup.classList.remove("active");
+        popup.style.display = "none";
+      });
+    }
+
+    if (successCloseButton) {
+      successCloseButton.addEventListener("click", () => {
+        successPopup.classList.remove("active");
+        popup.classList.remove("active");
+        popup.style.display = "none";
+      });
+    }
+
+    if (popup) {
+      popup.addEventListener("click", (e) => {
+        if (e.target !== popup) return;
+        popup.classList.remove("active");
+        popup.style.display = "none";
+      });
+    }
+
+    if (successPopup) {
+      successPopup.addEventListener("click", (e) => {
+        if (e.target !== successPopup) return;
+        successPopup.classList.remove("active");
+        popup.classList.remove("active");
+        popup.style.display = "none";
+      });
+    }
+
+    // Show success pop-up if form submission was successful
+    if (window.location.search.includes("customer_posted=true") && successPopup) {
+      successPopup.classList.add("active");
+      successCloseButton.addEventListener("click", () => {
+        document.getElementById("tp-email-success-popup").style.display = "none";
+      });
+      setCookie("popupSuccessShown", "true", 7);
+    } else if (showPopupSuccess && popup && isThemeEditor && showPopup) {
+      successPopup.classList.add("active");
+      successCloseButton.addEventListener("click", () => {
+        document.getElementById("tp-email-success-popup").style.display = "none";
+      });
+    }
+  });
+</script>
+
+<style>
+    /* Background overlay covering the whole page */
+  .overlay, .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);; /* Black background with transparency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s;
+  }
+  
+  .popup-header {
+    font-size: {{ settings.popup_header_font_size }};
+  }
+
+  .popup {
+    font-size: {{ settings.popup_body_font_size }};
+  }
+
+  /* Pop-up box */
+  .popup-content {
+    background: #FAF9F6;
+    padding: 6px 20px 20px 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 340px;
+    width: auto;
+  }
+
+  /* Close button */
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  /* Show the pop-up when active */
+  .popup.active {
+    visibility: visible;
+    opacity: 1;
+    z-index: 3;
+  }
+</style>
+
+<style>
+.tp-success-popup {
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.popup-content button {
+  width: 100%;
+  padding: 10px;  
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-popup {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.field:after {
+  border: none;
+  box-shadow: none;
+}
+
+.field:hover.field:after {
+  border: none;
+  box-shadow: none;
+}
+
+.popup .field__label {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.popup .field__input:not(:placeholder-shown)~.field__label {
+  top: 20px;
+}
+
+
+
+.popup .field__input:focus~.field__label {
+  top: 20px;
+}
+.popup .field__input:focus, .popup .field__input:not(:placeholder-shown) {
+  margin: 10px 0;
+}
+</style>

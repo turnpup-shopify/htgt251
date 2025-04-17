@@ -1,0 +1,469 @@
+{% schema %}
+    { 
+      "name": "turnpup-gallery",
+      "class": "turnpup-gallery",
+      "settings": [
+        { 
+          "type": "text",
+          "id": "image_grid_header",
+          "label": "Image Grid Header",
+          "default": "Image Grid Header"
+        }, 
+        { 
+          "type": "text",
+          "id": "header_font_family",
+          "label": "Header Font Family",
+          "default": "'p22-mackinac-pro', serif;"
+        },
+        { 
+          "type": "text",
+          "id": "header_font_size",
+          "label": "Header Font Size",
+          "default": "30px"
+        },
+        { 
+          "type": "text",
+          "id": "header_font_weight",
+          "label": "Header Font Weight",
+          "default": "400"
+        },
+        { 
+          "type": "color",
+          "id": "header_font_color",
+          "label": "Header Font Color",
+          "default": "#3C64B1"
+        },   
+        { 
+          "type": "text",
+          "id": "image_grid_subheader",
+          "label": "Image Grid subheader",
+          "default": "Image Grid subheader"
+        }, 
+        { 
+          "type": "text",
+          "id": "subheader_font_family",
+          "label": "subheader Font Family",
+          "default": "'p22-mackinac-pro', serif;"
+        },
+        { 
+          "type": "text",
+          "id": "subheader_font_size",
+          "label": "subheader Font Size",
+          "default": "30px"
+        },
+        { 
+          "type": "text",
+          "id": "subheader_font_weight",
+          "label": "subheader Font Weight",
+          "default": "400"
+        },
+        { 
+          "type": "color",
+          "id": "subheader_font_color",
+          "label": "subheader Font Color",
+          "default": "#3C64B1"
+        },             
+        {
+            "type": "select",
+            "id": "header_alignment",
+            "label": "Header Alignment",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ],
+        "default": "center"
+        },
+        {
+            "type": "select",
+            "id": "aspect_ratio",
+            "label": "Aspect Ratio",
+            "default": "100%",
+            "options": [
+                {"value": "100%", "label": "1:1"},
+                {"value": "75%", "label": "4:3"},
+                {"value": "66.66%", "label": "3:2"},
+                {"value": "62.5%", "label": "8:5"},
+                {"value": "56.25%", "label": "16:9"},        
+                {"value": "200%", "label": "2:1"},
+                {"value": "177.78%", "label": "9:16"},
+                {"value": "133.33%", "label": "3:4"},
+                {"value": "125%", "label": "5:4"}
+            ]
+        }
+      ],
+      "blocks": [
+      {
+        "name": "CAROUSEL ONE",
+        "type": "carousel_one",
+        "settings": [          
+            {
+                "type": "text",
+                "id": "grid_name",
+                "label": "Grid Name"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_1",
+                "label": "Grid Image 1"
+            },
+            {
+                "type": "url",
+                "id": "link_1",
+                "label": "Button Link 1"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_2",
+                "label": "Image 2"
+            },
+            {
+                "type": "url",
+                "id": "link_2",
+                "label": "Button Link 2"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_3",
+                "label": "Image 3"
+            },
+            {
+                "type": "url",
+                "id": "link_3",
+                "label": "Button Link 3"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_4",
+                "label": "Image 4"
+            },
+            {
+                "type": "url",
+                "id": "link_4",
+                "label": "Button Link 4"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_5",
+                "label": "Grid Image 5"
+            },
+            {
+                "type": "url",
+                "id": "link_5",
+                "label": "Button Link 5"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_6",
+                "label": "Image 6"
+            },
+            {
+                "type": "url",
+                "id": "link_6",
+                "label": "Button Link 6"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_7",
+                "label": "Image 7"
+            },
+            {
+                "type": "url",
+                "id": "link_7",
+                "label": "Button Link 7"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_8",
+                "label": "Image 8"
+            },
+            {
+                "type": "url",
+                "id": "link_8",
+                "label": "Button Link 8"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_9",
+                "label": "Grid Image 9"
+            },
+            {
+                "type": "url",
+                "id": "link_9",
+                "label": "Button Link 9"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_10",
+                "label": "Image 10"
+            },
+            {
+                "type": "url",
+                "id": "link_10",
+                "label": "Button Link 10"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_11",
+                "label": "Image 11"
+            },
+            {
+                "type": "url",
+                "id": "link_11",
+                "label": "Button Link 11"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_12",
+                "label": "Image "
+            },
+            {
+                "type": "url",
+                "id": "link_12",
+                "label": "Button Link 12"
+            }              
+        ]
+      }],
+      "presets": [{
+        "name": "turnpup-gallery",
+        "category": "Text"
+      }]
+    }
+  {% endschema %}
+  
+  <div class="page_a_container">    
+    <section class="playground-page">  
+        <div class="playground_header_module">
+          <p class="grid_title">{{ section.settings.image_grid_header }}</p>
+            {% if section.settings.image_grid_subheader != "" %}
+                <p class="grid_subtitle">{{ section.settings.image_grid_subheader }}</p>
+            {% endif %}
+        </div>   
+    </section> 
+  </div>
+<div id="photos">
+    {% for block in section.blocks %}
+        <div class="imgContain"><a href="{{block.settings.link_1}}" target="_new"><img src="{{ block.settings.grid_image_1 | img_url: 'large' }}"></a></div>
+        <div class="imgContain"><a href="{{block.settings.link_2}}" target="_new"><img src="{{ block.settings.grid_image_2 | img_url: 'large' }}"></a></div>
+        <div class="imgContain"><a href="{{block.settings.link_3}}" target="_new"><img src="{{ block.settings.grid_image_3 | img_url: 'large' }}"></a></div>
+        <div class="imgContain"><a href="{{block.settings.link_4}}" target="_new"><img src="{{ block.settings.grid_image_4 | img_url: 'large' }}"></a></div>
+        <div class="imgContain"><a href="{{block.settings.link_5}}" target="_new"><img src="{{ block.settings.grid_image_5 | img_url: 'large' }}"></a></div>
+        <div class="imgContain"><a href="{{block.settings.link_6}}" target="_new"><img src="{{ block.settings.grid_image_6 | img_url: 'large' }}"></a></div>
+        <div class="imgContain"><a href="{{block.settings.link_7}}" target="_new"><img src="{{ block.settings.grid_image_7 | img_url: 'large' }}"></a></div>
+        <div class="imgContain"><a href="{{block.settings.link_8}}" target="_new"><img src="{{ block.settings.grid_image_8 | img_url: 'large' }}"></a></div>
+        <div class="imgContain"><a href="{{block.settings.link_9}}" target="_new"><img src="{{ block.settings.grid_image_9 | img_url: 'large' }}"></a></div>
+        <div class="imgContain"><a href="{{block.settings.link_10}}" target="_new"><img src="{{ block.settings.grid_image_10 | img_url: 'large' }}"></a></div>
+        <div class="imgContain"><a href="{{block.settings.link_11}}" target="_new"><img src="{{ block.settings.grid_image_11 | img_url: 'large' }}"></a></div>
+        <div class="imgContain"><a href="{{block.settings.link_12}}" target="_new"><img src="{{ block.settings.grid_image_12 | img_url: 'large' }}"></a></div>
+    {% endfor %}
+</div>
+
+  
+<style>
+    #photos {
+        {% comment %} /* Prevent vertical gaps */
+        line-height: 0;
+        
+        -webkit-column-count: 4;
+        -webkit-column-gap:   0px;
+        -moz-column-count:    4;
+        -moz-column-gap:      0px;
+        column-count:         4; {% endcomment %}
+        column-gap:           0px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
+    }
+
+    /* #photos .imgContain {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-bottom: 100%;
+        overflow: hidden;
+    }
+     */
+    /* this way doesn't have a height */
+    /* grid */
+    /* #photos img {
+        min-width: 100% !important;
+        min-height: 100% !important;
+        object-fit: cover;
+    }
+    */
+
+    /* this way has square height but no way of making image fit centered */
+    #photos .imgContain {
+        position: relative;
+        padding-bottom: {{ section.settings.aspect_ratio }};
+        overflow: hidden;
+    }
+    .imgContain img {
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (max-width: 1200px) {
+        #photos {
+        -moz-column-count:    4;
+        -webkit-column-count: 4;
+        column-count:         4;
+        }
+    }
+    @media (max-width: 1000px) {
+        #photos {
+        -moz-column-count:    3;
+        -webkit-column-count: 3;
+        column-count:         3;
+        }
+    }
+    @media (max-width: 900px) {
+        #photos {
+        -moz-column-count:    2;
+        -webkit-column-count: 2;
+        column-count:         2;
+        }
+    }
+    @media (max-width: 400px) {
+        #photos {
+        -moz-column-count:    1;
+        -webkit-column-count: 1;
+        column-count:         1;
+        }
+    }
+
+
+    .grid_title {
+        font-family: {{ section.settings.header_font_family }};
+        font-size: {{ section.settings.header_font_size }};
+        font-weight: {{ section.settings.header_font_weight }};
+        color: {{ section.settings.header_font_color }};
+        text-align: {{ section.settings.header_alignment }};
+        line-height: 1.1;
+        margin: 0 0 0.8rem;
+    }
+    .grid_subtitle {
+        font-family: {{ section.settings.subheader_font_family }};
+        font-size: {{ section.settings.subheader_font_size }};
+        font-weight: {{ section.settings.subheader_font_weight }};
+        color: {{ section.settings.subheader_font_color }};
+        text-align: {{ section.settings.header_alignment }};
+        line-height: 1.1;
+        margin: 0;
+    }
+    @media screen and (max-width: 770px) {
+        .grid_title {
+            margin: 50px 0 0.8rem;
+            font-size: calc({{ section.settings.header_font_size }} / 1.5);
+            text-align: left;
+        }
+        .grid_subtitle {
+            font-size: calc({{ section.settings.subheader_font_size }} / 1.5);
+            text-align: left;
+        }
+        
+    }
+    
+    .gallery_row.sho {
+        display: flex;
+    }
+    .gallery_row {
+        display: none;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .gallery_row img {
+        max-width: 100%;
+        height: 100%;
+        width: 23%;
+        border: 0;
+        object-fit: fill;
+    }
+    .homes_choices button {
+        font-size: 14px;
+        padding: 10px 15px;
+        letter-spacing: .02em;
+        border: 1px solid #000;
+        border-radius: 40px;
+        text-transform: UPPERCASE;
+        text-decoration: none;
+        background-color: white;
+        transform: scale(1);
+        margin: 0 0 1rem;
+    }
+    .homes_choices button:hover {        
+        transform: scale(1.1);
+        transition: transform 0.2s linear;
+    }
+    .playground_header_module {
+        text-align: left;    
+        padding: 2rem 0;  
+        color: #3C64B1;  
+    }
+    .playground_header_title {
+      font-weight: {{ section.settings.header_font_weight }};
+      font-size: {{ section.settings.header_font_size }};
+      margin: 0;
+    }
+    .playground_header_description {
+        font-weight: 300;
+        font-size: 1rem;
+        margin: 0;
+    }
+    .theplayground {
+        width: 100%;
+        height: 65vH;
+        background-image: url('https://cdn.shopify.com/s/files/1/0449/1667/0615/files/tryythis.jpg?v=1650775798');
+        background-size:     cover;                      /* <------ */
+        background-repeat:   no-repeat;
+        background-position: center center;  
+    }
+    #video-block {
+        max-height: 0px;
+        overflow: hidden;
+    }      
+    #video-block.sho {
+        max-height: 215px;
+        transition: max-height 0.4s linear;
+    }
+    .ugc {
+        margin: 0;
+        max-height: 215px;
+        padding: 5px;
+        background: #3C64B1;
+        border: 1px solid transparent;
+        border-radius: 40px;
+        max-width: 100%;
+        animation: morph 4s linear infinite; 
+    }
+    .blob {
+        cursor: url('https://cdn.shopify.com/s/files/1/0449/1667/0615/files/hapny_cursor.png?v=1650855396'), auto;
+    }
+    @keyframes morph {
+        0%, 100% {
+            border-radius: 
+                42% 56% 72% 28% / 42% 42% 56% 48%;
+        }
+        33% {
+            border-radius: 
+                72% 28% 48% 48% / 28% 28% 72% 72%;
+        }
+        66% {
+            border-radius: 
+            100% 56% 56% 100% / 100% 100% 56% 56%;
+        }
+    }
+  </style>
