@@ -129,7 +129,7 @@
             "width": "",
             "text_max_width": "calc(100% - 40px)",
             "hide_on_mobile": false,
-            "mobile_order": "",
+            "mobile_order": "1",
             "margin_bottom_container": "0px",
             "remove_top_padding": true,
             "remove_bottom_padding": true
