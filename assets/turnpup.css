@@ -90,7 +90,7 @@ table {
   padding: 4px 12px;
 }
 
-.article-template table {
+.article-template table:not([class]) {
   border: 1px solid black;
 }
 
