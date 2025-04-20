@@ -79,12 +79,12 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 /* GLOBAL TABLES */
 table:not([class]) td, table:not([class]) th {
-  border: none !important;
-  box-shadow: none !important;
+  border: none;
+  box-shadow: none;
 }
 table {
-  border: none !important;
-  box-shadow: none !important;
+  border: none;
+  box-shadow: none;
 }
 .product__info-container table:not([class]) td,.product__info-container table:not([class]) th {
   padding: 4px 12px;
