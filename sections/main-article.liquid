@@ -392,7 +392,10 @@
   Add this to your article template (e.g., article.liquid)
 {% endcomment %}
 
-{% comment %} {%- render 'article-images' -%} {% endcomment %}
+{%- if article.metafields.custom.autoImage == true -%}
+{% render 'article-images' %}
+{%- endif -%}
+
 
 {% comment %}
   Note: Consider creating alternate templates for JSON requests:

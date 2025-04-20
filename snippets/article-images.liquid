@@ -71,10 +71,12 @@
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  
     // Process the article content
-    const articleContent = document.querySelector('.article-template__content');
-    if (!articleContent) return;
+    go();
+    function go(){
+        const articleContent = document.querySelector('.article-template__content');
+        if (!articleContent) return;
     
     // Find all paragraphs that contain links
     const paragraphs = articleContent.querySelectorAll('p');
@@ -132,8 +134,11 @@
         }
       });
       
+    console.log(shopifyLinks);
+
       // If we found Shopify links, create a container after this paragraph
       if (shopifyLinks.length > 0) {
+        console.log("found shopify links");
         processedParagraphs.add(paragraph);
         
         // Create container for images
@@ -150,8 +155,10 @@
         
         // Process each link and fetch images
         const imagePromises = shopifyLinks.map(link => {
+            console.log("fetchImageInfo");
           return fetchImageInfo(link).then(info => {
             if (info && info.imageUrl) {
+                console.log(info);
               return createImageElement(info, link.href);
             }
             return null;
@@ -160,6 +167,8 @@
             return null;
           });
         });
+
+        console.log("imagePromisesi" + imagePromises);
         
         // When all images are fetched, add them to the container
         Promise.all(imagePromises).then(imageElements => {
@@ -178,14 +187,17 @@
         });
       }
     });
-  });
+};
+  
   
   // Function to fetch image information based on link type
   function fetchImageInfo(link) {
     switch (link.type) {
       case 'product':
+        console.log("fetching Proudct Image");
         return fetchProductImage(link.handle);
       case 'collection':
+        console.log("fetching Collection Image");
         return fetchCollectionImage(link.handle);
       case 'blog':
         if (link.articleHandle) {
@@ -225,13 +237,14 @@
   // Function to fetch product image
   function fetchProductImage(handle) {
     return new Promise((resolve, reject) => {
-      fetch(`/products/${handle}?view=json`)
+      fetch(`/products/${handle}.json`)
         .then(response => {
           if (!response.ok) throw new Error('Network response was not ok');
           return response.text();
         })
         .then(html => {
           // Extract JSON from the response
+          console.log("product json" + html)
           let jsonMatch = html.match(/<script type="application\/json" id="ProductJson-product-template">([\s\S]*?)<\/script>/);
           if (!jsonMatch) {
             jsonMatch = html.match(/<script type="application\/json" id="ProductJson-.*?">([\s\S]*?)<\/script>/);
@@ -276,29 +289,43 @@
   // Function to fetch collection image
   function fetchCollectionImage(handle) {
     return new Promise((resolve, reject) => {
-      fetch(`/collections/${handle}?view=json`)
+      fetch(`/collections/${handle}.json`)
         .then(response => {
           if (!response.ok) throw new Error('Network response was not ok');
-          return response.text();
+          return response.json();
         })
         .then(html => {
           // Try to extract image directly from HTML
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          const img = doc.querySelector('.collection-hero__image, .collection-image img');
-          const titleElem = doc.querySelector('.collection-hero__title, .collection-title');
+            console.log(html)
+            const imageUrl = html.collection?.image?.src || '';
+            const imageTitle = html.collection?.title || '';
+
+            console.log(html[0]);
+            console.log(html.collection);
+            console.log(html.collection.image);
+
+            if (imageUrl) {
+                console.log('Image URL:', imageUrl);
+                resolve({ imageUrl, imageTitle });
+            } else {
+                console.warn('No image found in the collection JSON');
+            }
+        //   const parser = new DOMParser();
+        //   const doc = parser.parseFromString(html, 'text/html');
+        //   const img = doc.querySelector('.collection-hero__image, .collection-image img');
+        //   const titleElem = doc.querySelector('.collection-hero__title, .collection-title');
           
-          let imageUrl = '';
-          if (img) {
-            // For responsive images, check srcset or data attributes
-            imageUrl = img.currentSrc || img.src || img.dataset.src || '';
-          }
+        //   let imageUrl = '';
+        //   if (img) {
+        //     // For responsive images, check srcset or data attributes
+        //     imageUrl = img.currentSrc || img.src || img.dataset.src || '';
+        //   }
           
-          const title = titleElem ? 
-            titleElem.textContent.trim() : 
-            handle.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        //   const title = titleElem ? 
+        //     titleElem.textContent.trim() : 
+        //     handle.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
           
-          resolve({ imageUrl, title });
+        //   resolve({ imageUrl, title });
         })
         .catch(error => {
           console.error('Error fetching collection:', error);
