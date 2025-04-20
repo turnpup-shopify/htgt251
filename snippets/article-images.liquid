@@ -240,44 +240,25 @@
       fetch(`/products/${handle}.json`)
         .then(response => {
           if (!response.ok) throw new Error('Network response was not ok');
-          return response.text();
+          return response.json();
         })
         .then(html => {
           // Extract JSON from the response
           console.log("product json" + html)
-          let jsonMatch = html.match(/<script type="application\/json" id="ProductJson-product-template">([\s\S]*?)<\/script>/);
-          if (!jsonMatch) {
-            jsonMatch = html.match(/<script type="application\/json" id="ProductJson-.*?">([\s\S]*?)<\/script>/);
-          }
-          
-          if (jsonMatch && jsonMatch[1]) {
-            const productData = JSON.parse(jsonMatch[1]);
-            let imageUrl = '';
-            let title = '';
-            
-            if (productData.featured_image) {
-              imageUrl = productData.featured_image;
-            } else if (productData.images && productData.images.length > 0) {
-              imageUrl = productData.images[0];
+          console.log(html)
+            const imageUrl = html.product?.image?.src || '';
+            const imageTitle = html.product?.title || '';
+
+            console.log(html[0]);
+            console.log(html.product);
+            console.log(html.product.image);
+
+            if (imageUrl) {
+                console.log('Image URL:', imageUrl);
+                resolve({ imageUrl, imageTitle });
+            } else {
+                console.warn('No image found in the product JSON');
             }
-            
-            if (productData.title) {
-              title = productData.title;
-            }
-            
-            resolve({ imageUrl, title });
-          } else {
-            // Try to extract image directly from HTML
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const img = doc.querySelector('.product__media img, .product-featured-media img, .featured-image');
-            const titleElem = doc.querySelector('.product__title, .product-single__title');
-            
-            const imageUrl = img ? img.src || img.dataset.src : '';
-            const title = titleElem ? titleElem.textContent.trim() : handle.replace(/-/g, ' ');
-            
-            resolve({ imageUrl, title });
-          }
         })
         .catch(error => {
           console.error('Error fetching product:', error);
