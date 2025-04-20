@@ -90,6 +90,10 @@ table {
   padding: 4px 12px;
 }
 
+.article-template table {
+  border: 1px solid black;
+}
+
 /* GLOBAL FONT */
 html body {
   -webkit-font-smoothing: antialiased;
