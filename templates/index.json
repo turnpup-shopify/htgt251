@@ -121,7 +121,7 @@
             "link_label_two": "Shop Coastal Decor",
             "link_two": "shopify://collections/coral-decor",
             "is_hero_button_two": true,
-            "button_is_white_border_two": false,
+            "button_is_white_border_two": true,
             "space_between_buttons": 12,
             "vertically_align_center": true,
             "top_margin_column": "",
