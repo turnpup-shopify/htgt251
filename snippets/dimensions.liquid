@@ -1,29 +1,25 @@
 {%- assign raw_dimensions = dimensions | default: '' -%}
 {%- if raw_dimensions != '' -%}
 
-  {%- comment -%}Check if there are multiple size sets by looking for size labels{%- endcomment -%}
+  {%- comment -%}Check if there are multiple size sets by looking for common size labels{%- endcomment -%}
   {%- assign has_multiple_sizes = false -%}
   {%- if raw_dimensions contains 'Small:' or raw_dimensions contains 'Large:' or raw_dimensions contains 'Medium:' -%}
     {%- assign has_multiple_sizes = true -%}
-    {%- assign size_sets = raw_dimensions | split: ':' -%}
+    {%- assign multiple_dimensions = raw_dimensions | replace: 'Small:', '##SIZE##Small:' | replace: 'Medium:', '##SIZE##Medium:' | replace: 'Large:', '##SIZE##Large:' -%}
+    {%- assign size_sets = multiple_dimensions | split: '##SIZE##' -%}
   {%- endif -%}
 
   {%- if has_multiple_sizes -%}
     {%- comment -%}Handle multiple size sets{%- endcomment -%}
-    {%- for i in (1..size_sets.size) -%}
-      {%- if i > 1 -%}
-        {%- assign current_set = size_sets[i] | strip -%}
-        {%- assign size_label = size_sets[i-1] | split: ' ' | first | strip -%}
+    {%- for size_set in size_sets -%}
+      {%- if size_set != '' -%}
+        {%- assign current_set = size_set | strip -%}
+        {%- assign size_parts = current_set | split: ':' -%}
+        {%- assign size_label = size_parts[0] | strip -%}
 
-        {%- if forloop.index < size_sets.size -%}
-          {%- comment -%}If not the last set, we need to trim the portion that belongs to the next set{%- endcomment -%}
-          {%- assign next_label_index = current_set | downcase | search: size_sets[i+1] | split: ' ' | first | downcase -%}
-          {%- if next_label_index > 0 -%}
-            {%- assign current_set = current_set | slice: 0, next_label_index -%}
-          {%- endif -%}
-        {%- endif -%}
-
-        {%- assign clean_dimensions = current_set 
+        {%- assign dimension_part = size_parts[1] | default: '' | strip -%}
+        
+        {%- assign clean_dimensions = dimension_part 
           | replace: '(', '' 
           | replace: ')', '' 
           | replace: 'IN', '' 
