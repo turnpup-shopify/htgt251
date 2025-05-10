@@ -1,46 +1,112 @@
 {%- assign raw_dimensions = dimensions | default: '' -%}
 {%- if raw_dimensions != '' -%}
 
-  {%- assign clean_dimensions = raw_dimensions 
-    | replace: '(', '' 
-    | replace: ')', '' 
-    | replace: 'IN', '' 
-    | replace: 'in', '' 
-    | strip_html 
-    | strip_newlines 
-    | strip 
-    | upcase 
-  -%}
+  {%- comment -%}Check if there are multiple size sets by looking for size labels{%- endcomment -%}
+  {%- assign has_multiple_sizes = false -%}
+  {%- if raw_dimensions contains 'Small:' or raw_dimensions contains 'Large:' or raw_dimensions contains 'Medium:' -%}
+    {%- assign has_multiple_sizes = true -%}
+    {%- assign size_sets = raw_dimensions | split: ':' -%}
+  {%- endif -%}
 
-  {%- assign dims = clean_dimensions | split: ' X ' -%}
+  {%- if has_multiple_sizes -%}
+    {%- comment -%}Handle multiple size sets{%- endcomment -%}
+    {%- for i in (1..size_sets.size) -%}
+      {%- if i > 1 -%}
+        {%- assign current_set = size_sets[i] | strip -%}
+        {%- assign size_label = size_sets[i-1] | split: ' ' | first | strip -%}
 
-  <table style="border: 1px solid black !important; border-collapse: collapse; width: 200px;">
-    <tbody>
-      <tr> {{ dim }}</tr>
-      {%- for dim in dims -%}
-        {%- assign parts = dim | split: ' ' -%}
-        {%- assign value = parts[0] | strip -%}
-        {%- assign unit = parts[1] | strip -%}
-
-        {%- if unit == 'W' -%}
-          {%- assign label = 'Width' -%}
-        {%- elsif unit == 'H' -%}
-          {%- assign label = 'Height' -%}
-        {%- elsif unit == 'D' -%}
-          {%- assign label = 'Depth' -%}
-        {%- elsif unit == 'SH' -%}
-          {%- assign label = 'Seat Height' -%}
-        {%- else -%}
-          {%- assign label = unit -%} 
+        {%- if forloop.index < size_sets.size -%}
+          {%- comment -%}If not the last set, we need to trim the portion that belongs to the next set{%- endcomment -%}
+          {%- assign next_label_index = current_set | downcase | search: size_sets[i+1] | split: ' ' | first | downcase -%}
+          {%- if next_label_index > 0 -%}
+            {%- assign current_set = current_set | slice: 0, next_label_index -%}
+          {%- endif -%}
         {%- endif -%}
 
-        <tr>
-          <td style="width: 100px; background-color: #eee; border: 1px solid black; padding: 8px;">{{ label }}</td>
-          <td style="width: 100px; border: 1px solid black; padding: 8px;">{{ value }} inches</td>
-        </tr>
+        {%- assign clean_dimensions = current_set 
+          | replace: '(', '' 
+          | replace: ')', '' 
+          | replace: 'IN', '' 
+          | replace: 'in', '' 
+          | strip_html 
+          | strip_newlines 
+          | strip 
+          | upcase 
+        -%}
 
-      {%- endfor -%}
-    </tbody>
-  </table>
+        {%- assign dims = clean_dimensions | split: ' X ' -%}
+
+        <h4>{{ size_label }}</h4>
+        <table style="border: 1px solid black !important; border-collapse: collapse; width: 200px; margin-bottom: 20px;">
+          <tbody>
+            {%- for dim in dims -%}
+              {%- assign parts = dim | split: ' ' -%}
+              {%- assign value = parts[0] | strip -%}
+              {%- assign unit = parts[1] | strip -%}
+
+              {%- if unit == 'W' -%}
+                {%- assign label = 'Width' -%}
+              {%- elsif unit == 'H' -%}
+                {%- assign label = 'Height' -%}
+              {%- elsif unit == 'D' -%}
+                {%- assign label = 'Depth' -%}
+              {%- elsif unit == 'SH' -%}
+                {%- assign label = 'Seat Height' -%}
+              {%- else -%}
+                {%- assign label = unit -%} 
+              {%- endif -%}
+
+              <tr>
+                <td style="width: 100px; background-color: #eee; border: 1px solid black; padding: 8px;">{{ label }}</td>
+                <td style="width: 100px; border: 1px solid black; padding: 8px;">{{ value }} inches</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      {%- endif -%}
+    {%- endfor -%}
+
+  {%- else -%}
+    {%- comment -%}Original code for a single dimension set{%- endcomment -%}
+    {%- assign clean_dimensions = raw_dimensions 
+      | replace: '(', '' 
+      | replace: ')', '' 
+      | replace: 'IN', '' 
+      | replace: 'in', '' 
+      | strip_html 
+      | strip_newlines 
+      | strip 
+      | upcase 
+    -%}
+
+    {%- assign dims = clean_dimensions | split: ' X ' -%}
+
+    <table style="border: 1px solid black !important; border-collapse: collapse; width: 200px;">
+      <tbody>
+        {%- for dim in dims -%}
+          {%- assign parts = dim | split: ' ' -%}
+          {%- assign value = parts[0] | strip -%}
+          {%- assign unit = parts[1] | strip -%}
+
+          {%- if unit == 'W' -%}
+            {%- assign label = 'Width' -%}
+          {%- elsif unit == 'H' -%}
+            {%- assign label = 'Height' -%}
+          {%- elsif unit == 'D' -%}
+            {%- assign label = 'Depth' -%}
+          {%- elsif unit == 'SH' -%}
+            {%- assign label = 'Seat Height' -%}
+          {%- else -%}
+            {%- assign label = unit -%} 
+          {%- endif -%}
+
+          <tr>
+            <td style="width: 100px; background-color: #eee; border: 1px solid black; padding: 8px;">{{ label }}</td>
+            <td style="width: 100px; border: 1px solid black; padding: 8px;">{{ value }} inches</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+  {%- endif -%}
 
 {%- endif -%}
