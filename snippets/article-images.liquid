@@ -1,5 +1,4 @@
 <style>
-  /* Styling for injected images */
   .dynamic-image-container {
     margin: 1.5rem 0;
     display: flex;
@@ -7,7 +6,7 @@
     gap: 15px;
     justify-content: flex-start;
   }
-  
+
   .dynamic-image-item {
     max-width: 200px;
     margin-bottom: 10px;
@@ -16,33 +15,32 @@
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
-  
+
   .dynamic-image-item:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   }
-  
+
   .dynamic-image-item a {
     display: block;
     text-decoration: none;
     color: inherit;
   }
-  
+
   .dynamic-image-item img {
     width: 100%;
     height: auto;
     display: block;
     border-radius: 5px 5px 0 0;
   }
-  
+
   .dynamic-image-caption {
     padding: 8px;
     font-size: 0.9rem;
     text-align: center;
     background: #f9f9f9;
   }
-  
-  /* Loading indicator */
+
   .image-loading {
     display: flex;
     justify-content: center;
@@ -51,7 +49,7 @@
     height: 50px;
     margin: 1rem 0;
   }
-  
+
   .image-loading:after {
     content: " ";
     display: block;
@@ -62,51 +60,39 @@
     border-color: #ccc transparent #ccc transparent;
     animation: image-loading 1.2s linear infinite;
   }
-  
+
   @keyframes image-loading {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
 </style>
 
-
 <script>
-  
-    // Process the article content
-    go();
-    function go(){
-        const articleContent = document.querySelector('.article-template__content');
-        if (!articleContent) return;
-    
-    // Find all paragraphs that contain links
-    const paragraphs = articleContent.querySelectorAll('p');
-    
-    // Track paragraphs that have been processed
-    const processedParagraphs = new Set();
-    
-    // Process each paragraph
-    paragraphs.forEach(paragraph => {
-      // Skip if already processed
-      if (processedParagraphs.has(paragraph)) return;
-      
-      // Find all links in this paragraph
-      const links = paragraph.querySelectorAll('a');
+  go();
+  function go(){
+    const articleContent = document.querySelector('.article-template__content');
+    if (!articleContent) return;
+
+    const elementsToProcess = articleContent.querySelectorAll('p, h2, h3');
+    const processedElements = new Set();
+
+    elementsToProcess.forEach(element => {
+      if (processedElements.has(element)) return;
+
+      const links = element.querySelectorAll('a');
       const shopifyLinks = [];
-      
-      // Filter and process shopify links
+
       links.forEach(link => {
         const href = link.getAttribute('href');
         if (!href) return;
-        
-        // Check if it's a link to a product, collection, or blog
+
         const isProductLink = href.includes('/products/');
         const isCollectionLink = href.includes('/collections/') && !href.includes('/products');
         const isBlogLink = href.includes('/blogs/');
-        
+
         if (isProductLink || isCollectionLink || isBlogLink) {
-          // Determine link type and extract handle
           let type, handle, blogHandle, articleHandle;
-          
+
           if (isProductLink) {
             type = 'product';
             handle = href.split('/products/')[1].split(/[?#]/)[0];
@@ -114,15 +100,15 @@
             type = 'collection';
             handle = href.split('/collections/')[1].split(/[?#]/)[0];
           } else if (isBlogLink) {
-            type = 'blog';
             const parts = href.split('/blogs/')[1].split(/[?#]/)[0].split('/');
             blogHandle = parts[0];
             if (parts.length > 1) {
               articleHandle = parts[1];
             }
-            handle = parts[0];
+            type = 'blog';
+            handle = blogHandle;
           }
-          
+
           shopifyLinks.push({
             element: link,
             href,
@@ -133,32 +119,22 @@
           });
         }
       });
-      
-    console.log(shopifyLinks);
 
-      // If we found Shopify links, create a container after this paragraph
       if (shopifyLinks.length > 0) {
-        console.log("found shopify links");
-        processedParagraphs.add(paragraph);
-        
-        // Create container for images
+        processedElements.add(element);
+
         const imageContainer = document.createElement('div');
         imageContainer.className = 'dynamic-image-container';
-        
-        // Insert loading indicator initially
+
         const loadingIndicator = document.createElement('div');
         loadingIndicator.className = 'image-loading';
         imageContainer.appendChild(loadingIndicator);
-        
-        // Insert container after paragraph
-        paragraph.after(imageContainer);
-        
-        // Process each link and fetch images
+
+        element.after(imageContainer);
+
         const imagePromises = shopifyLinks.map(link => {
-            console.log("fetchImageInfo");
           return fetchImageInfo(link).then(info => {
             if (info && info.imageUrl) {
-                console.log(info);
               return createImageElement(info, link.href);
             }
             return null;
@@ -168,36 +144,26 @@
           });
         });
 
-        console.log("imagePromisesi" + imagePromises);
-        
-        // When all images are fetched, add them to the container
         Promise.all(imagePromises).then(imageElements => {
-          // Remove loading indicator
           loadingIndicator.remove();
-          
-          // Add all valid image elements to the container
+
           imageElements.filter(el => el !== null).forEach(el => {
             imageContainer.appendChild(el);
           });
-          
-          // If no images were found, remove the empty container
+
           if (imageContainer.children.length === 0) {
             imageContainer.remove();
           }
         });
       }
     });
-};
-  
-  
-  // Function to fetch image information based on link type
+  }
+
   function fetchImageInfo(link) {
     switch (link.type) {
       case 'product':
-        console.log("fetching Proudct Image");
         return fetchProductImage(link.handle);
       case 'collection':
-        console.log("fetching Collection Image");
         return fetchCollectionImage(link.handle);
       case 'blog':
         if (link.articleHandle) {
@@ -209,175 +175,87 @@
         return Promise.resolve(null);
     }
   }
-  
-  // Function to create an image element
+
   function createImageElement(info, href) {
     const imageItem = document.createElement('div');
     imageItem.className = 'dynamic-image-item';
-    
+
     const link = document.createElement('a');
     link.href = href;
-    
+
     const img = document.createElement('img');
     img.src = info.imageUrl;
     img.alt = info.title;
     img.loading = 'lazy';
-    
+
     const caption = document.createElement('div');
     caption.className = 'dynamic-image-caption';
     caption.textContent = info.title;
-    
+
     link.appendChild(img);
     link.appendChild(caption);
     imageItem.appendChild(link);
-    
+
     return imageItem;
   }
-  
-  // Function to fetch product image
+
   function fetchProductImage(handle) {
-    return new Promise((resolve, reject) => {
-      fetch(`/products/${handle}.json`)
-        .then(response => {
-          if (!response.ok) throw new Error('Network response was not ok');
-          return response.json();
-        })
-        .then(html => {
-          // Extract JSON from the response
-          console.log("product json" + html)
-          console.log(html)
-            const imageUrl = html.product?.image?.src || '';
-            const imageTitle = html.product?.title || '';
-
-            console.log(html[0]);
-            console.log(html.product);
-            console.log(html.product.image);
-
-            if (imageUrl) {
-                console.log('Image URL:', imageUrl);
-                resolve({ imageUrl, imageTitle });
-            } else {
-                console.warn('No image found in the product JSON');
-            }
-        })
-        .catch(error => {
-          console.error('Error fetching product:', error);
-          reject(error);
-        });
-    });
+    return fetch(`/products/${handle}.json`)
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
+      .then(json => {
+        const imageUrl = json.product?.image?.src || '';
+        const imageTitle = json.product?.title || '';
+        if (imageUrl) return { imageUrl, title: imageTitle };
+        throw new Error('No image found for product');
+      });
   }
-  
-  // Function to fetch collection image
+
   function fetchCollectionImage(handle) {
-    return new Promise((resolve, reject) => {
-      fetch(`/collections/${handle}.json`)
-        .then(response => {
-          if (!response.ok) throw new Error('Network response was not ok');
-          return response.json();
-        })
-        .then(html => {
-          // Try to extract image directly from HTML
-            console.log(html)
-            const imageUrl = html.collection?.image?.src || '';
-            const imageTitle = html.collection?.title || '';
-
-            console.log(html[0]);
-            console.log(html.collection);
-            console.log(html.collection.image);
-
-            if (imageUrl) {
-                console.log('Image URL:', imageUrl);
-                resolve({ imageUrl, imageTitle });
-            } else {
-                console.warn('No image found in the collection JSON');
-            }
-        //   const parser = new DOMParser();
-        //   const doc = parser.parseFromString(html, 'text/html');
-        //   const img = doc.querySelector('.collection-hero__image, .collection-image img');
-        //   const titleElem = doc.querySelector('.collection-hero__title, .collection-title');
-          
-        //   let imageUrl = '';
-        //   if (img) {
-        //     // For responsive images, check srcset or data attributes
-        //     imageUrl = img.currentSrc || img.src || img.dataset.src || '';
-        //   }
-          
-        //   const title = titleElem ? 
-        //     titleElem.textContent.trim() : 
-        //     handle.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-          
-        //   resolve({ imageUrl, title });
-        })
-        .catch(error => {
-          console.error('Error fetching collection:', error);
-          reject(error);
-        });
-    });
+    return fetch(`/collections/${handle}.json`)
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
+      .then(json => {
+        const imageUrl = json.collection?.image?.src || '';
+        const imageTitle = json.collection?.title || '';
+        if (imageUrl) return { imageUrl, title: imageTitle };
+        throw new Error('No image found for collection');
+      });
   }
-  
-  // Function to fetch blog article image
+
   function fetchArticleImage(blogHandle, articleHandle) {
-    return new Promise((resolve, reject) => {
-      fetch(`/blogs/${blogHandle}/${articleHandle}?view=json`)
-        .then(response => {
-          if (!response.ok) throw new Error('Network response was not ok');
-          return response.text();
-        })
-        .then(html => {
-          // Try to extract image directly from HTML
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          const img = doc.querySelector('.article__featured-image, .article-featured-image img');
-          const titleElem = doc.querySelector('.article__title, .article-title');
-          
-          let imageUrl = '';
-          if (img) {
-            imageUrl = img.currentSrc || img.src || img.dataset.src || '';
-          }
-          
-          const title = titleElem ? 
-            titleElem.textContent.trim() : 
-            articleHandle.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-          
-          resolve({ imageUrl, title });
-        })
-        .catch(error => {
-          console.error('Error fetching article:', error);
-          reject(error);
-        });
-    });
+    return fetch(`/blogs/${blogHandle}/${articleHandle}?view=json`)
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.text();
+      })
+      .then(html => {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const img = doc.querySelector('.article__featured-image, .article-featured-image img');
+        const titleElem = doc.querySelector('.article__title, .article-title');
+        const imageUrl = img?.currentSrc || img?.src || img?.dataset?.src || '';
+        const title = titleElem?.textContent.trim() || articleHandle.replace(/-/g, ' ');
+        return { imageUrl, title };
+      });
   }
-  
-  // Function to fetch blog image (index page)
+
   function fetchBlogImage(blogHandle) {
-    return new Promise((resolve, reject) => {
-      fetch(`/blogs/${blogHandle}?view=json`)
-        .then(response => {
-          if (!response.ok) throw new Error('Network response was not ok');
-          return response.text();
-        })
-        .then(html => {
-          // Try to extract blog image if available
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          const img = doc.querySelector('.blog-hero__image, .blog-featured-image img');
-          const titleElem = doc.querySelector('.blog-hero__title, .blog-title');
-          
-          let imageUrl = '';
-          if (img) {
-            imageUrl = img.currentSrc || img.src || img.dataset.src || '';
-          }
-          
-          const title = titleElem ? 
-            titleElem.textContent.trim() : 
-            `Blog: ${blogHandle.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}`;
-          
-          resolve({ imageUrl, title });
-        })
-        .catch(error => {
-          console.error('Error fetching blog:', error);
-          reject(error);
-        });
-    });
+    return fetch(`/blogs/${blogHandle}?view=json`)
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.text();
+      })
+      .then(html => {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const img = doc.querySelector('.blog-hero__image, .blog-featured-image img');
+        const titleElem = doc.querySelector('.blog-hero__title, .blog-title');
+        const imageUrl = img?.currentSrc || img?.src || img?.dataset?.src || '';
+        const title = titleElem?.textContent.trim() || `Blog: ${blogHandle.replace(/-/g, ' ')}`;
+        return { imageUrl, title };
+      });
   }
 </script>
