@@ -39,7 +39,6 @@
       "block_order": [
         "text_jJB3HC"
       ],
-      "disabled": true,
       "custom_css": [],
       "settings": {
         "subtitle": "STORE CLOSED - May 23-27\nOpen Again - May 28th, 11:00 AM.",
@@ -284,7 +283,7 @@
         "container_bottom_margin": 30,
         "module_background_color": "#ffffff",
         "header_text_color": "rgba(0,0,0,0)",
-        "header_text": "",
+        "header_text": "STORE CLOSED MAY 23rd - MAY 27th;              OPEN MAY 28th @ 11:00 PM",
         "header_font_size": "40px",
         "header_mobile_font_size": "22px",
         "header_font_family": "assistant_n4",
