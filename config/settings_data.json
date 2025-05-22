@@ -148,7 +148,7 @@
           "announcement_QitHwB": {
             "type": "announcement",
             "settings": {
-              "text": "STORE CLOSED MAY 23rd - 27th",
+              "text": "STORE CLOSED MAY 23RD - 27TH",
               "is_red": false,
               "color_scheme": "accent-1",
               "link": ""
