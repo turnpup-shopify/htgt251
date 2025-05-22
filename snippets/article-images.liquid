@@ -77,86 +77,129 @@
     const processedElements = new Set();
 
     elementsToProcess.forEach(element => {
-      if (processedElements.has(element)) return;
+  if (processedElements.has(element)) return;
 
-      const links = element.querySelectorAll('a');
-      const shopifyLinks = [];
+  const shopifyLinks = [];
 
-      links.forEach(link => {
-        const href = link.getAttribute('href');
-        if (!href) return;
+  // Check if the element itself is an <a> inside an <h2>/<h3>/<p>
+  if (element.children.length === 1 && element.children[0].tagName === 'A') {
+    const link = element.children[0];
+    const href = link.getAttribute('href');
 
-        const isProductLink = href.includes('/products/');
-        const isCollectionLink = href.includes('/collections/') && !href.includes('/products');
-        const isBlogLink = href.includes('/blogs/');
+    if (href) {
+      const isProductLink = href.includes('/products/');
+      const isCollectionLink = href.includes('/collections/') && !href.includes('/products');
+      const isBlogLink = href.includes('/blogs/');
 
-        if (isProductLink || isCollectionLink || isBlogLink) {
-          let type, handle, blogHandle, articleHandle;
+      if (isProductLink || isCollectionLink || isBlogLink) {
+        let type, handle, blogHandle, articleHandle;
 
-          if (isProductLink) {
-            type = 'product';
-            handle = href.split('/products/')[1].split(/[?#]/)[0];
-          } else if (isCollectionLink) {
-            type = 'collection';
-            handle = href.split('/collections/')[1].split(/[?#]/)[0];
-          } else if (isBlogLink) {
-            const parts = href.split('/blogs/')[1].split(/[?#]/)[0].split('/');
-            blogHandle = parts[0];
-            if (parts.length > 1) {
-              articleHandle = parts[1];
-            }
-            type = 'blog';
-            handle = blogHandle;
+        if (isProductLink) {
+          type = 'product';
+          handle = href.split('/products/')[1].split(/[?#]/)[0];
+        } else if (isCollectionLink) {
+          type = 'collection';
+          handle = href.split('/collections/')[1].split(/[?#]/)[0];
+        } else if (isBlogLink) {
+          const parts = href.split('/blogs/')[1].split(/[?#]/)[0].split('/');
+          blogHandle = parts[0];
+          if (parts.length > 1) {
+            articleHandle = parts[1];
           }
-
-          shopifyLinks.push({
-            element: link,
-            href,
-            type,
-            handle,
-            blogHandle,
-            articleHandle
-          });
+          type = 'blog';
+          handle = blogHandle;
         }
-      });
 
-      if (shopifyLinks.length > 0) {
-        processedElements.add(element);
-
-        const imageContainer = document.createElement('div');
-        imageContainer.className = 'dynamic-image-container';
-
-        const loadingIndicator = document.createElement('div');
-        loadingIndicator.className = 'image-loading';
-        imageContainer.appendChild(loadingIndicator);
-
-        element.after(imageContainer);
-
-        const imagePromises = shopifyLinks.map(link => {
-          return fetchImageInfo(link).then(info => {
-            if (info && info.imageUrl) {
-              return createImageElement(info, link.href);
-            }
-            return null;
-          }).catch(error => {
-            console.error('Error fetching image info:', error);
-            return null;
-          });
-        });
-
-        Promise.all(imagePromises).then(imageElements => {
-          loadingIndicator.remove();
-
-          imageElements.filter(el => el !== null).forEach(el => {
-            imageContainer.appendChild(el);
-          });
-
-          if (imageContainer.children.length === 0) {
-            imageContainer.remove();
-          }
+        shopifyLinks.push({
+          element: link,
+          href,
+          type,
+          handle,
+          blogHandle,
+          articleHandle
         });
       }
+    }
+  }
+
+  // Also check for <a> tags within the element
+  const links = element.querySelectorAll('a');
+
+  links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href) return;
+
+    const isProductLink = href.includes('/products/');
+    const isCollectionLink = href.includes('/collections/') && !href.includes('/products');
+    const isBlogLink = href.includes('/blogs/');
+
+    if (isProductLink || isCollectionLink || isBlogLink) {
+      let type, handle, blogHandle, articleHandle;
+
+      if (isProductLink) {
+        type = 'product';
+        handle = href.split('/products/')[1].split(/[?#]/)[0];
+      } else if (isCollectionLink) {
+        type = 'collection';
+        handle = href.split('/collections/')[1].split(/[?#]/)[0];
+      } else if (isBlogLink) {
+        const parts = href.split('/blogs/')[1].split(/[?#]/)[0].split('/');
+        blogHandle = parts[0];
+        if (parts.length > 1) {
+          articleHandle = parts[1];
+        }
+        type = 'blog';
+        handle = blogHandle;
+      }
+
+      shopifyLinks.push({
+        element: link,
+        href,
+        type,
+        handle,
+        blogHandle,
+        articleHandle
+      });
+    }
+  });
+
+  if (shopifyLinks.length > 0) {
+    processedElements.add(element);
+
+    const imageContainer = document.createElement('div');
+    imageContainer.className = 'dynamic-image-container';
+
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'image-loading';
+    imageContainer.appendChild(loadingIndicator);
+
+    element.after(imageContainer);
+
+    const imagePromises = shopifyLinks.map(link => {
+      return fetchImageInfo(link).then(info => {
+        if (info && info.imageUrl) {
+          return createImageElement(info, link.href);
+        }
+        return null;
+      }).catch(error => {
+        console.error('Error fetching image info:', error);
+        return null;
+      });
     });
+
+    Promise.all(imagePromises).then(imageElements => {
+      loadingIndicator.remove();
+
+      imageElements.filter(el => el !== null).forEach(el => {
+        imageContainer.appendChild(el);
+      });
+
+      if (imageContainer.children.length === 0) {
+        imageContainer.remove();
+      }
+    });
+  }
+});
   }
 
   function fetchImageInfo(link) {
