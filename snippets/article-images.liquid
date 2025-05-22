@@ -79,61 +79,26 @@
     elementsToProcess.forEach(element => {
   if (processedElements.has(element)) return;
 
+  const seenHrefs = new Set(); // ✅ Track unique hrefs per element
   const shopifyLinks = [];
 
-  // Check if the element itself is an <a> inside an <h2>/<h3>/<p>
+  // Collect all <a> tags (including if element itself is a single <a>)
+  const allLinks = [];
   if (element.children.length === 1 && element.children[0].tagName === 'A') {
-    const link = element.children[0];
-    const href = link.getAttribute('href');
-
-    if (href) {
-      const isProductLink = href.includes('/products/');
-      const isCollectionLink = href.includes('/collections/') && !href.includes('/products');
-      const isBlogLink = href.includes('/blogs/');
-
-      if (isProductLink || isCollectionLink || isBlogLink) {
-        let type, handle, blogHandle, articleHandle;
-
-        if (isProductLink) {
-          type = 'product';
-          handle = href.split('/products/')[1].split(/[?#]/)[0];
-        } else if (isCollectionLink) {
-          type = 'collection';
-          handle = href.split('/collections/')[1].split(/[?#]/)[0];
-        } else if (isBlogLink) {
-          const parts = href.split('/blogs/')[1].split(/[?#]/)[0].split('/');
-          blogHandle = parts[0];
-          if (parts.length > 1) {
-            articleHandle = parts[1];
-          }
-          type = 'blog';
-          handle = blogHandle;
-        }
-
-        shopifyLinks.push({
-          element: link,
-          href,
-          type,
-          handle,
-          blogHandle,
-          articleHandle
-        });
-      }
-    }
+    allLinks.push(element.children[0]);
   }
+  element.querySelectorAll('a').forEach(link => allLinks.push(link));
 
-  // Also check for <a> tags within the element
-  const links = element.querySelectorAll('a');
-
-  links.forEach(link => {
+  allLinks.forEach(link => {
     const href = link.getAttribute('href');
-    if (!href) return;
+    if (!href || seenHrefs.has(href)) return; // ✅ Skip if already processed
 
     const isProductLink = href.includes('/products/');
     const isCollectionLink = href.includes('/collections/') && !href.includes('/products');
     const isBlogLink = href.includes('/blogs/');
 
     if (isProductLink || isCollectionLink || isBlogLink) {
+      seenHrefs.add(href); // ✅ Mark this href as seen
       let type, handle, blogHandle, articleHandle;
 
       if (isProductLink) {
