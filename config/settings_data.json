@@ -147,7 +147,6 @@
         "blocks": {
           "announcement_QitHwB": {
             "type": "announcement",
-            "disabled": true,
             "settings": {
               "text": "Welcome to our store",
               "is_red": false,

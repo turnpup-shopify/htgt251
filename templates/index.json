@@ -14,6 +14,7 @@
       "blocks": {
         "text_jJB3HC": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "block_text": "STORE CLOSED MAY 23rd - 27th",
             "heading_size": "span",
