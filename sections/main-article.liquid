@@ -254,7 +254,62 @@
     text-decoration: none;
     color: {{ settings.colors_accent_1 }} !important;
   }
+  
 </style>
+<style>
+  .table-of-contents-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+
+  .table-of-contents-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .table-of-contents-toggle::after {
+    content: '▸';
+    transition: transform 0.2s;
+  }
+
+  .table-of-contents-wrapper.expanded .table-of-contents-toggle::after {
+    transform: rotate(90deg);
+  }
+
+  .table-of-contents ul {
+    display: none;
+    list-style: none;
+    padding-left: 20px;
+    margin: 10px 0 0 0;
+  }
+
+  .table-of-contents-wrapper.expanded ul {
+    display: block;
+  }
+
+  .table-of-contents li {
+    margin-bottom: 6px;
+  }
+
+  .table-of-contents a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  .table-of-contents a:hover {
+    text-decoration: underline;
+  }
+</style>
+
 <script type="application/ld+json">
   {
     "@context": "http://schema.org",
