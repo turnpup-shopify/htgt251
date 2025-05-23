@@ -442,7 +442,8 @@
         tocWrapper.appendChild(toggle);
         tocWrapper.appendChild(tocContainer);
 
-        document.body.insertBefore(tocWrapper, document.body.firstChild);
+        const nav = document.querySelector('#shopify-section-header');
+        nav.insertAdjacentElement('afterend', tocWrapper);
       }
     }, 50);
   });
