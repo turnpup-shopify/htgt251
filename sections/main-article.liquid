@@ -403,16 +403,13 @@
     const tocWrapper = document.querySelector('.table-of-contents-wrapper');
     const tocContainer = document.querySelector('.table-of-contents.page-width');
 
-    // Create an unordered list to hold the TOC links
+    if (!tocContainer || headings.length === 0) return;
+
     const tocList = document.createElement('ul');
 
     headings.forEach((heading, index) => {
-      // Assign ID if missing
-      if (!heading.id) {
-        heading.id = `section-${index + 1}`;
-      }
+      if (!heading.id) heading.id = `section-${index + 1}`;
 
-      // Create list item
       const tocItem = document.createElement('li');
       const tocLink = document.createElement('a');
       tocLink.href = `#${heading.id}`;
@@ -422,16 +419,15 @@
       tocList.appendChild(tocItem);
     });
 
-    // Inject the list into the existing container
-    tocContainer.innerHTML = ''; // clear any static HTML
+    tocContainer.innerHTML = '';
     tocContainer.appendChild(tocList);
 
-    // Allow default expanded toggle if there's no JS fallback
-    if (!tocWrapper.classList.contains('expanded')) {
+    if (tocWrapper && !tocWrapper.classList.contains('expanded')) {
       tocWrapper.classList.remove('expanded');
     }
   });
 </script>
+
 
 
 {% comment %}
