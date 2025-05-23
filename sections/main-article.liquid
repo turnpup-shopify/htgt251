@@ -401,46 +401,50 @@
   document.addEventListener('DOMContentLoaded', () => {
     const headings = document.querySelectorAll('.blog-container h2');
 
-    // Only run if headings exist
     if (!headings.length) return;
 
-    // Detect the nav and get its height
-    const nav = document.querySelector('nav, .site-header, header'); // adjust selector if needed
-    const navHeight = nav ? nav.offsetHeight : 0;
+    // Try to detect the Shopify sticky nav container
+    const waitForNav = setInterval(() => {
+      const nav = document.querySelector('#shopify-section-header');
 
-    // Create wrapper
-    const tocWrapper = document.createElement('div');
-    tocWrapper.className = 'table-of-contents-wrapper';
-    tocWrapper.id = 'toc';
-    tocWrapper.style.top = `${navHeight}px`; // dynamically apply offset
+      if (nav) {
+        clearInterval(waitForNav);
 
-    // Create toggle
-    const toggle = document.createElement('div');
-    toggle.className = 'table-of-contents-toggle';
-    toggle.innerText = 'Table of Contents';
-    toggle.onclick = () => tocWrapper.classList.toggle('expanded');
+        const navHeight = nav.offsetHeight || 0;
 
-    // Create container + list
-    const tocContainer = document.createElement('div');
-    tocContainer.className = 'table-of-contents page-width';
-    const tocList = document.createElement('ul');
+        // Create wrapper and apply sticky top dynamically
+        const tocWrapper = document.createElement('div');
+        tocWrapper.className = 'table-of-contents-wrapper';
+        tocWrapper.id = 'toc';
+        tocWrapper.style.top = `${navHeight}px`; // dynamically offset by nav height
 
-    headings.forEach((heading, i) => {
-      if (!heading.id) heading.id = `section-${i + 1}`;
-      const item = document.createElement('li');
-      const link = document.createElement('a');
-      link.href = `#${heading.id}`;
-      link.textContent = heading.textContent;
-      item.appendChild(link);
-      tocList.appendChild(item);
-    });
+        const toggle = document.createElement('div');
+        toggle.className = 'table-of-contents-toggle';
+        toggle.innerText = 'Table of Contents';
+        toggle.onclick = () => tocWrapper.classList.toggle('expanded');
 
-    tocContainer.appendChild(tocList);
-    tocWrapper.appendChild(toggle);
-    tocWrapper.appendChild(tocContainer);
+        const tocContainer = document.createElement('div');
+        tocContainer.className = 'table-of-contents page-width';
 
-    // Insert TOC at top of body
-    document.body.insertBefore(tocWrapper, document.body.firstChild);
+        const tocList = document.createElement('ul');
+
+        headings.forEach((heading, i) => {
+          if (!heading.id) heading.id = `section-${i + 1}`;
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = `#${heading.id}`;
+          a.textContent = heading.textContent;
+          li.appendChild(a);
+          tocList.appendChild(li);
+        });
+
+        tocContainer.appendChild(tocList);
+        tocWrapper.appendChild(toggle);
+        tocWrapper.appendChild(tocContainer);
+
+        document.body.insertBefore(tocWrapper, document.body.firstChild);
+      }
+    }, 50);
   });
 </script>
 
