@@ -402,46 +402,58 @@
     const headings = document.querySelectorAll('.blog-container h2');
     if (!headings.length) return;
 
-    const waitForNav = setInterval(() => {
-      const nav = document.querySelector('#shopify-section-header'); // ✅ move this up
-      if (!nav) return;
+    const nav = document.querySelector('#shopify-section-header');
+    if (!nav) return;
 
-      clearInterval(waitForNav);
+    const tocWrapper = document.createElement('div');
+    tocWrapper.className = 'table-of-contents-wrapper';
+    tocWrapper.id = 'toc';
 
-      const navHeight = nav.offsetHeight || 0;
+    const toggle = document.createElement('div');
+    toggle.className = 'table-of-contents-toggle';
+    toggle.innerText = 'Table of Contents';
+    toggle.onclick = () => tocWrapper.classList.toggle('expanded');
 
-      // Create the wrapper
-      const tocWrapper = document.createElement('div');
-      tocWrapper.className = 'table-of-contents-wrapper';
-      tocWrapper.id = 'toc';
-      tocWrapper.style.top = `${navHeight}px`;
+    const tocContainer = document.createElement('div');
+    tocContainer.className = 'table-of-contents page-width';
+    const tocList = document.createElement('ul');
 
-      const toggle = document.createElement('div');
-      toggle.className = 'table-of-contents-toggle';
-      toggle.innerText = 'Table of Contents';
-      toggle.onclick = () => tocWrapper.classList.toggle('expanded');
+    headings.forEach((heading, i) => {
+      if (!heading.id) heading.id = `section-${i + 1}`;
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = `#${heading.id}`;
+      a.textContent = heading.textContent;
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
 
-      const tocContainer = document.createElement('div');
-      tocContainer.className = 'table-of-contents page-width';
+    tocContainer.appendChild(tocList);
+    tocWrapper.appendChild(toggle);
+    tocWrapper.appendChild(tocContainer);
 
-      const tocList = document.createElement('ul');
-      headings.forEach((heading, i) => {
-        if (!heading.id) heading.id = `section-${i + 1}`;
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = `#${heading.id}`;
-        a.textContent = heading.textContent;
-        li.appendChild(a);
-        tocList.appendChild(li);
-      });
+    document.body.insertBefore(tocWrapper, nav.nextSibling);
 
-      tocContainer.appendChild(tocList);
-      tocWrapper.appendChild(toggle);
-      tocWrapper.appendChild(tocContainer);
+    // --- Scroll-aware top adjustment ---
+    let lastScroll = window.scrollY;
+    let defaultTop = nav.offsetHeight;
 
-      // ✅ Insert TOC directly after the navigation element
-      nav.insertAdjacentElement('afterend', tocWrapper);
-    }, 50);
+    tocWrapper.style.top = `${defaultTop}px`;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+
+      // When scrolling down — nav animates away
+      if (currentScroll > lastScroll && currentScroll > defaultTop) {
+        tocWrapper.style.top = `0px`; // push TOC up
+      } 
+      // When scrolling up — nav reappears
+      else {
+        tocWrapper.style.top = `${defaultTop}px`;
+      }
+
+      lastScroll = currentScroll;
+    });
   });
 </script>
 
