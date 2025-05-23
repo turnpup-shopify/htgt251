@@ -398,45 +398,41 @@
 </style>
 
 <script>
-  // Get all the h2 tags in the document
-  const headings = document.querySelectorAll('.blog-container h2');
+  document.addEventListener('DOMContentLoaded', () => {
+    const headings = document.querySelectorAll('.blog-container h2');
+    const tocWrapper = document.querySelector('.table-of-contents-wrapper');
+    const tocContainer = document.querySelector('.table-of-contents.page-width');
 
-  // Create a table of contents container element
-  const tocContainer = document.querySelector('.table-of-contents');
+    // Create an unordered list to hold the TOC links
+    const tocList = document.createElement('ul');
 
-  // Create a heading for the table of contents
-  const tocHeading = document.createElement('h2');
-  tocHeading.textContent = 'Table of Contents';
+    headings.forEach((heading, index) => {
+      // Assign ID if missing
+      if (!heading.id) {
+        heading.id = `section-${index + 1}`;
+      }
 
-  // Create an unordered list to hold the table of contents items
-  const tocList = document.createElement('ul');
+      // Create list item
+      const tocItem = document.createElement('li');
+      const tocLink = document.createElement('a');
+      tocLink.href = `#${heading.id}`;
+      tocLink.textContent = heading.textContent;
 
-  // Iterate over each heading and create a table of contents item
-  headings.forEach((heading, index) => {
-    // Generate an ID for the heading if it doesn't have one
-    if (!heading.id) {
-      heading.id = `section-${index + 1}`;
+      tocItem.appendChild(tocLink);
+      tocList.appendChild(tocItem);
+    });
+
+    // Inject the list into the existing container
+    tocContainer.innerHTML = ''; // clear any static HTML
+    tocContainer.appendChild(tocList);
+
+    // Allow default expanded toggle if there's no JS fallback
+    if (!tocWrapper.classList.contains('expanded')) {
+      tocWrapper.classList.remove('expanded');
     }
-
-    // Create a list item for the table of contents
-    const tocItem = document.createElement('li');
-
-    // Create a link to the heading
-    const tocLink = document.createElement('a');
-    tocLink.href = `#${heading.id}`;
-    tocLink.textContent = heading.textContent;
-
-    // Append the link to the list item
-    tocItem.appendChild(tocLink);
-
-    // Append the list item to the table of contents list
-    tocList.appendChild(tocItem);
   });
-
-  // Append the table of contents heading and list to the container
-  tocContainer.appendChild(tocHeading);
-  tocContainer.appendChild(tocList);
 </script>
+
 
 {% comment %}
   Inline Anchor Images for Shopify Blog Posts
