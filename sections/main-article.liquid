@@ -406,11 +406,11 @@
     if (!nav) return;
 
     const tocWrapper = document.createElement('div');
-    tocWrapper.className = 'table-of-contents-wrapper page-width';
+    tocWrapper.className = 'table-of-contents-wrapper';
     tocWrapper.id = 'toc';
 
     const toggle = document.createElement('div');
-    toggle.className = 'table-of-contents-toggle';
+    toggle.className = 'table-of-contents-toggle page-width';
     toggle.innerText = 'Table of Contents';
     toggle.onclick = () => tocWrapper.classList.toggle('expanded');
 
