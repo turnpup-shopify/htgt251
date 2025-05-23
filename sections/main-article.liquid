@@ -430,6 +430,14 @@
       tocList.appendChild(li);
     });
 
+        // Collapse the TOC when a link is clicked
+    tocList.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        tocWrapper.classList.remove('expanded');
+      });
+    });
+
+
     tocContainer.appendChild(tocList);
     tocWrapper.appendChild(toggle);
     tocWrapper.appendChild(tocContainer);
