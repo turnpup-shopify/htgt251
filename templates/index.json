@@ -14,11 +14,12 @@
       "blocks": {
         "text_jJB3HC": {
           "type": "text",
+          "disabled": true,
           "settings": {
-            "block_text": "first.part.",
+            "block_text": "STORE CLOSED MAY 23rd - 27th",
             "heading_size": "span",
-            "block_font_size": "24px",
-            "mobile_block_font_size": "24px",
+            "block_font_size": "48px",
+            "mobile_block_font_size": "48px",
             "block_font_color": "#884400",
             "font_family_text": "Helvetica",
             "font_weight_text": "800",
@@ -39,24 +40,23 @@
       "block_order": [
         "text_jJB3HC"
       ],
-      "disabled": true,
       "custom_css": [],
       "settings": {
-        "subtitle": "STORE CLOSED - May 23-27\nOpen Again - May 28th, 11:00 AM.",
+        "subtitle": "STORE CLOSED MAY 23RD - 27TH",
         "subtitle_font_size": "14px",
         "subtitle_font_weight": "300px",
         "subtitle_font_family": "'Helvetica Neue'",
         "subtitle_font_color": "#121212",
-        "background_color": "#121212",
+        "background_color": "#fa6d12",
         "background_opacity": "0.1",
         "max_width": 90,
         "mobile_max_width": 90,
         "use_page_width": false,
-        "margintop": 40,
+        "margintop": 50,
         "marginbottom": 20,
         "alignment": "center",
         "turnpup_bottom_border_color": "rgba(0,0,0,0)",
-        "mobile_font_size": "12px"
+        "mobile_font_size": "14px"
       }
     },
     "turnpup_multicolumn_Cd8XQ3": {
@@ -126,7 +126,7 @@
             "title_line_height": "1.1",
             "title_font_weight": "500",
             "title_margin_top": "10px",
-            "text": "We are proud to be your designer's best kept secret. Shop online or visit our Costa Mesa location.",
+            "text": "We are proud to be your designer's best kept secret. Shop online today.",
             "text_font_size": "30px",
             "text_font_size_mobile": "20px",
             "text_font_family": "'Helvetica Neue'",
@@ -284,7 +284,7 @@
         "container_bottom_margin": 30,
         "module_background_color": "#ffffff",
         "header_text_color": "rgba(0,0,0,0)",
-        "header_text": "",
+        "header_text": "STORE CLOSED MAY 23rd - MAY 27th;  <br> OPEN MAY 28th @ 11:00 PM",
         "header_font_size": "40px",
         "header_mobile_font_size": "22px",
         "header_font_family": "assistant_n4",
