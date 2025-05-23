@@ -400,54 +400,51 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const headings = document.querySelectorAll('.blog-container h2');
-
     if (!headings.length) return;
 
-    // Try to detect the Shopify sticky nav container
     const waitForNav = setInterval(() => {
-      const nav = document.querySelector('#shopify-section-header');
+      const nav = document.querySelector('#shopify-section-header'); // ✅ move this up
+      if (!nav) return;
 
-      if (nav) {
-        clearInterval(waitForNav);
+      clearInterval(waitForNav);
 
-        const navHeight = nav.offsetHeight || 0;
+      const navHeight = nav.offsetHeight || 0;
 
-        // Create wrapper and apply sticky top dynamically
-        const tocWrapper = document.createElement('div');
-        tocWrapper.className = 'table-of-contents-wrapper';
-        tocWrapper.id = 'toc';
-        tocWrapper.style.top = `${navHeight}px`; // dynamically offset by nav height
+      // Create the wrapper
+      const tocWrapper = document.createElement('div');
+      tocWrapper.className = 'table-of-contents-wrapper';
+      tocWrapper.id = 'toc';
+      tocWrapper.style.top = `${navHeight}px`;
 
-        const toggle = document.createElement('div');
-        toggle.className = 'table-of-contents-toggle';
-        toggle.innerText = 'Table of Contents';
-        toggle.onclick = () => tocWrapper.classList.toggle('expanded');
+      const toggle = document.createElement('div');
+      toggle.className = 'table-of-contents-toggle';
+      toggle.innerText = 'Table of Contents';
+      toggle.onclick = () => tocWrapper.classList.toggle('expanded');
 
-        const tocContainer = document.createElement('div');
-        tocContainer.className = 'table-of-contents page-width';
+      const tocContainer = document.createElement('div');
+      tocContainer.className = 'table-of-contents page-width';
 
-        const tocList = document.createElement('ul');
+      const tocList = document.createElement('ul');
+      headings.forEach((heading, i) => {
+        if (!heading.id) heading.id = `section-${i + 1}`;
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${heading.id}`;
+        a.textContent = heading.textContent;
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
 
-        headings.forEach((heading, i) => {
-          if (!heading.id) heading.id = `section-${i + 1}`;
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = `#${heading.id}`;
-          a.textContent = heading.textContent;
-          li.appendChild(a);
-          tocList.appendChild(li);
-        });
+      tocContainer.appendChild(tocList);
+      tocWrapper.appendChild(toggle);
+      tocWrapper.appendChild(tocContainer);
 
-        tocContainer.appendChild(tocList);
-        tocWrapper.appendChild(toggle);
-        tocWrapper.appendChild(tocContainer);
-
-        const nav = document.querySelector('#shopify-section-header');
-        nav.insertAdjacentElement('afterend', tocWrapper);
-      }
+      // ✅ Insert TOC directly after the navigation element
+      nav.insertAdjacentElement('afterend', tocWrapper);
     }, 50);
   });
 </script>
+
 
 
 
