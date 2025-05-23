@@ -400,33 +400,47 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const headings = document.querySelectorAll('.blog-container h2');
-    const tocWrapper = document.querySelector('.table-of-contents-wrapper');
-    const tocContainer = document.querySelector('.table-of-contents.page-width');
 
-    if (!tocContainer || headings.length === 0) return;
+    // Only create TOC if headings exist
+    if (!headings.length) return;
 
+    // Create wrapper
+    const tocWrapper = document.createElement('div');
+    tocWrapper.className = 'table-of-contents-wrapper';
+    tocWrapper.id = 'toc';
+
+    // Create toggle header
+    const toggle = document.createElement('div');
+    toggle.className = 'table-of-contents-toggle';
+    toggle.innerText = 'Table of Contents';
+    toggle.onclick = () => tocWrapper.classList.toggle('expanded');
+
+    // Create content container
+    const tocContainer = document.createElement('div');
+    tocContainer.className = 'table-of-contents page-width';
+
+    // Create list
     const tocList = document.createElement('ul');
-
-    headings.forEach((heading, index) => {
-      if (!heading.id) heading.id = `section-${index + 1}`;
-
-      const tocItem = document.createElement('li');
-      const tocLink = document.createElement('a');
-      tocLink.href = `#${heading.id}`;
-      tocLink.textContent = heading.textContent;
-
-      tocItem.appendChild(tocLink);
-      tocList.appendChild(tocItem);
+    headings.forEach((heading, i) => {
+      if (!heading.id) heading.id = `section-${i + 1}`;
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = `#${heading.id}`;
+      link.textContent = heading.textContent;
+      item.appendChild(link);
+      tocList.appendChild(item);
     });
 
-    tocContainer.innerHTML = '';
+    // Append pieces
     tocContainer.appendChild(tocList);
+    tocWrapper.appendChild(toggle);
+    tocWrapper.appendChild(tocContainer);
 
-    if (tocWrapper && !tocWrapper.classList.contains('expanded')) {
-      tocWrapper.classList.remove('expanded');
-    }
+    // Insert at top of page
+    document.body.insertBefore(tocWrapper, document.body.firstChild);
   });
 </script>
+
 
 
 
