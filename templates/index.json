@@ -14,7 +14,6 @@
       "blocks": {
         "text_jJB3HC": {
           "type": "text",
-          "disabled": true,
           "settings": {
             "block_text": "STORE CLOSED MAY 23rd - 27th",
             "heading_size": "span",
@@ -40,10 +39,9 @@
       "block_order": [
         "text_jJB3HC"
       ],
-      "disabled": true,
       "custom_css": [],
       "settings": {
-        "subtitle": "STORE CLOSED MAY 23rd - 27th",
+        "subtitle": "STORE CLOSED MAY 23RD - 27TH",
         "subtitle_font_size": "14px",
         "subtitle_font_weight": "300px",
         "subtitle_font_family": "'Helvetica Neue'",

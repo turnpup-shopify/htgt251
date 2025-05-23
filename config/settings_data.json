@@ -147,6 +147,7 @@
         "blocks": {
           "announcement_QitHwB": {
             "type": "announcement",
+            "disabled": true,
             "settings": {
               "text": "STORE CLOSED MAY 23RD - 27TH",
               "is_red": false,
