@@ -268,8 +268,7 @@
 
   .table-of-contents-toggle {
     display: flex;
-    max-width: var(--page-width);
-    margin: 0 auto;
+    /* margin: 0 auto; */
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
@@ -407,7 +406,7 @@
     if (!nav) return;
 
     const tocWrapper = document.createElement('div');
-    tocWrapper.className = 'table-of-contents-wrapper';
+    tocWrapper.className = 'table-of-contents-wrapper page-width';
     tocWrapper.id = 'toc';
 
     const toggle = document.createElement('div');
