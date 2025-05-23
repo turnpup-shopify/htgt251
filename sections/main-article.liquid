@@ -416,7 +416,7 @@
 
     const tocContainer = document.createElement('div');
     tocContainer.className = 'table-of-contents page-width';
-    const tocList = document.createElement('ul');
+    const tocList = document.createElement('ol');
 
     headings.forEach((heading, i) => {
       if (!heading.id) heading.id = `section-${i + 1}`;
