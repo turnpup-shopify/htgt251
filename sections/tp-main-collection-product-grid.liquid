@@ -129,7 +129,9 @@
                 {%- endif -%}
               {%- endfor -%}
               {%- for product in collection.products -%}
-                {% unless product.available %}
+                {% comment %} <script>console.log("{{product.title}}");</script>
+                <script>console.log("{{product.available}}");</script> {% endcomment %}
+                {% comment %} {% unless product.available %} {% endcomment %}
                   <script>console.log("OOS PRODUCT");</script>
                 {% comment %} {%- if product.metafields.pdp.badge_text == true -%} {% endcomment %}
                   {% comment %} {%- if section.settings.remove_OOS_products == false or product.available -%} {% endcomment %}
@@ -153,7 +155,7 @@
                   </li>
                 {% comment %} {%- endif -%} {% endcomment %}
               {% comment %} {%- endif -%} {% endcomment %}
-              {%- endunless -%}
+              {% comment %} {%- endunless -%} {% endcomment %}
               {%- endfor -%}
             </ul>
     
