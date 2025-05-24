@@ -129,6 +129,7 @@
                 {%- endif -%}
               {%- endfor -%}
               {%- for product in collection.products -%}
+                <script>console.log("OOS PRODUCT");</script>
                 {% unless product.available %}
                   <script>console.log("OOS PRODUCT");</script>
                 {% comment %} {%- if product.metafields.pdp.badge_text == true -%} {% endcomment %}
