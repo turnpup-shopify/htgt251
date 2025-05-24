@@ -132,9 +132,10 @@
                 {% comment %} <script>console.log("{{product.title}}");</script>
                 <script>console.log("{{product.available}}");</script> {% endcomment %}
                 {% comment %} {% unless product.available %} {% endcomment %}
-                  <script>console.log("OOS PRODUCT");</script>
+                  {% comment %} <script>console.log("OOS PRODUCT");</script> {% endcomment %}
                 {% comment %} {%- if product.metafields.pdp.badge_text == true -%} {% endcomment %}
-                  {% comment %} {%- if section.settings.remove_OOS_products == false or product.available -%} {% endcomment %}
+                  {%- if section.settings.remove_OOS_products == false or product.available -%}
+                    {% comment %} don't remove OOS and product is available {% endcomment %}
                     {% assign lazy_load = false %}
                     {%- if forloop.index > 2 -%}
                       {%- assign lazy_load = true -%}
@@ -154,7 +155,7 @@
                     %}
                   </li>
                 {% comment %} {%- endif -%} {% endcomment %}
-              {% comment %} {%- endif -%} {% endcomment %}
+              {%- endif -%}
               {% comment %} {%- endunless -%} {% endcomment %}
               {%- endfor -%}
             </ul>
