@@ -134,7 +134,7 @@
                 {% comment %} {% unless product.available %} {% endcomment %}
                   {% comment %} <script>console.log("OOS PRODUCT");</script> {% endcomment %}
                 {% comment %} {%- if product.metafields.pdp.badge_text == true -%} {% endcomment %}
-                  {%- if section.settings.remove_OOS_products != true and product.available != true -%}
+                  {%- if section.settings.remove_OOS_products != true -%}
                     {% comment %} don't remove OOS and product is available {% endcomment %}
                     {% assign lazy_load = false %}
                     {%- if forloop.index > 2 -%}
