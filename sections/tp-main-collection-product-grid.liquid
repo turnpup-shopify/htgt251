@@ -100,51 +100,97 @@
             <div class="loading-overlay gradient"></div>
     
             <ul id="product-grid" data-id="{{ section.id }}" class="
-  grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
-  grid--{{ section.settings.columns_desktop }}-col-desktop">
-  {%- for product in collection.products -%}
-    {%- assign lazy_load = false -%}
-    {%- if forloop.index > 2 -%}
-      {%- assign lazy_load = true -%}
-    {%- endif -%}
+              grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
+              grid--{{ section.settings.columns_desktop }}-col-desktop">
+              {%- for product in collection.products -%}
+                {% if product.available %}
+                  {%- if product.metafields.pdp.badge_text == true -%}
+                    {%- if section.settings.remove_OOS_products == false or product.available -%}
+                      {% assign lazy_load = false %}
+                      {%- if forloop.index > 2 -%}
+                        {%- assign lazy_load = true -%}
+                      {%- endif -%}
+                      <li class="grid__item">
+                        {% render 'tp-card-product',
+                          card_product: product,
+                          media_aspect_ratio: section.settings.image_ratio,
+                          show_secondary_image: section.settings.show_secondary_image,
+                          show_vendor: section.settings.show_vendor,
+                          show_rating: section.settings.show_rating,
+                          lazy_load: lazy_load,
+                          show_quick_add: section.settings.enable_quick_add,
+                          show_price: section.settings.enable_price,
+                          button_color: section.settings.button_color,
+                          section_id: section.id,                  
+                        %}
+                      </li>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endfor -%}
 
-    {% if product.available %}
-      {% if product.metafields.pdp.badge_text == true %}
-        <li class="grid__item">
-          {% render 'tp-card-product',
-            card_product: product,
-            media_aspect_ratio: section.settings.image_ratio,
-            show_secondary_image: section.settings.show_secondary_image,
-            show_vendor: section.settings.show_vendor,
-            show_rating: section.settings.show_rating,
-            lazy_load: lazy_load,
-            show_quick_add: section.settings.enable_quick_add,
-            show_price: section.settings.enable_price,
-            button_color: section.settings.button_color,
-            section_id: section.id
-          %}
-        </li>
-      {% endif %}
-    {% else %}
-      {% unless section.settings.remove_OOS_products %}
-        <li class="grid__item">
-          {% render 'tp-card-product',
-            card_product: product,
-            media_aspect_ratio: section.settings.image_ratio,
-            show_secondary_image: section.settings.show_secondary_image,
-            show_vendor: section.settings.show_vendor,
-            show_rating: section.settings.show_rating,
-            lazy_load: lazy_load,
-            show_quick_add: section.settings.enable_quick_add,
-            show_price: section.settings.enable_price,
-            button_color: section.settings.button_color,
-            section_id: section.id
-          %}
-        </li>
-      {% endunless %}
-    {% endif %}
-  {%- endfor -%}
-</ul>
+
+              {% capture oos_products %}
+                {%- for product in collection.products -%}
+                  {% unless product.available and product.metafields.pdp.badge_text == true %}
+                    {% if section.settings.remove_OOS_products != true %}
+                      {% assign lazy_load = false %}
+                      {%- if forloop.index > 2 -%}
+                        {%- assign lazy_load = true -%}
+                      {%- endif -%}
+                      <li class="grid__item">
+                        {% render 'tp-card-product',
+                          card_product: product,
+                          media_aspect_ratio: section.settings.image_ratio,
+                          show_secondary_image: section.settings.show_secondary_image,
+                          show_vendor: section.settings.show_vendor,
+                          show_rating: section.settings.show_rating,
+                          lazy_load: lazy_load,
+                          show_quick_add: section.settings.enable_quick_add,
+                          show_price: section.settings.enable_price,
+                          button_color: section.settings.button_color,
+                          section_id: section.id
+                        %}
+                      </li>
+                    {% endif %}
+                  {% endunless %}
+                {%- endfor -%}
+              {% endcapture %}
+
+
+              {%- for product in collection.products -%}
+                {% comment %} <script>console.log("{{product.title}}");</script>
+                <script>console.log("{{product.available}}");</script> {% endcomment %}
+                {% comment %} {% unless product.available %} {% endcomment %}
+                  {% comment %} <script>console.log("OOS PRODUCT");</script> {% endcomment %}
+                {% comment %} {%- if product.metafields.pdp.badge_text == true -%} {% endcomment %}
+                  {%- if section.settings.remove_OOS_products != true -%}
+                    {% comment %} don't remove OOS and product is available {% endcomment %}
+                    {% assign lazy_load = false %}
+                    {%- if forloop.index > 2 -%}
+                      {%- assign lazy_load = true -%}
+                    {%- endif -%}
+                  <li class="grid__item">
+                    {% render 'tp-card-product',
+                      card_product: product,
+                      media_aspect_ratio: section.settings.image_ratio,
+                      show_secondary_image: section.settings.show_secondary_image,
+                      show_vendor: section.settings.show_vendor,
+                      show_rating: section.settings.show_rating,
+                      lazy_load: lazy_load,
+                      show_quick_add: section.settings.enable_quick_add,
+                      show_price: section.settings.enable_price,
+                      button_color: section.settings.button_color,
+                      section_id: section.id,                  
+                    %}
+                  </li>
+                {%- endif -%}
+              {% comment %} {%- endif -%} {% endcomment %}
+              {% comment %} {%- endunless -%} {% endcomment %}
+              {%- endfor -%}
+
+
+            </ul>
     
             {%- if paginate.pages > 1 -%}
               {% render 'pagination', paginate: paginate, anchor: '' %}
