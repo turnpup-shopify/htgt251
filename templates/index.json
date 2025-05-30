@@ -290,7 +290,7 @@
         "header_mobile_font_size": "22px",
         "header_font_family": "assistant_n4",
         "header_font_weight": "800",
-        "desktop_logo_height": "80px",
+        "desktop_logo_height": "60px",
         "mobile_logo_height": "50px",
         "desktop_space_between": 40,
         "mobile_space_between": 60
