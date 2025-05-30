@@ -177,8 +177,8 @@
       "settings": {
         "padding_top": 0,
         "padding_bottom": 0,
-        "padding_right": 60,
-        "padding_left": 60,
+        "padding_right": 0,
+        "padding_left": 0,
         "mobile_padding_top": 0,
         "mobile_padding_bottom": 20,
         "mobile_padding_right": 0,
@@ -282,7 +282,7 @@
       "settings": {
         "container_width": "65%",
         "container_top_margin": 30,
-        "container_bottom_margin": 30,
+        "container_bottom_margin": 20,
         "module_background_color": "#ffffff",
         "header_text_color": "rgba(0,0,0,0)",
         "header_text": "",
@@ -290,9 +290,9 @@
         "header_mobile_font_size": "22px",
         "header_font_family": "assistant_n4",
         "header_font_weight": "800",
-        "desktop_logo_height": "100px",
+        "desktop_logo_height": "80px",
         "mobile_logo_height": "50px",
-        "desktop_space_between": 20,
+        "desktop_space_between": 40,
         "mobile_space_between": 60
       }
     },
