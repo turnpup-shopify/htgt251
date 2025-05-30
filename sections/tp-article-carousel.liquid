@@ -148,7 +148,7 @@
   }
   .cellTitle {
     color: {{ section.settings.cell_title_color }};
-    font-size: 16px;
+    font-size: {{ section.settings.cell_title_fontsize | default: '16px' }};
     font-family: 'Arial';
     font-weight: 700;
     margin: 0.5em 0 0;
