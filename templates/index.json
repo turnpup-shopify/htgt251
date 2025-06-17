@@ -52,7 +52,7 @@
         "max_width": 90,
         "mobile_max_width": 90,
         "use_page_width": false,
-        "margintop": 120,
+        "margintop": 90,
         "marginbottom": 20,
         "alignment": "center",
         "turnpup_bottom_border_color": "rgba(0,0,0,0)",
