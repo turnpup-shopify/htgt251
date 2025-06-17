@@ -14,9 +14,8 @@
       "blocks": {
         "text_jJB3HC": {
           "type": "text",
-          "disabled": true,
           "settings": {
-            "block_text": "STORE CLOSED MAY 23rd - 27th",
+            "block_text": "STORE CLOSED 6/17- 6/25",
             "heading_size": "span",
             "block_font_size": "48px",
             "mobile_block_font_size": "48px",
@@ -40,7 +39,6 @@
       "block_order": [
         "text_jJB3HC"
       ],
-      "disabled": true,
       "custom_css": [],
       "settings": {
         "subtitle": "STORE CLOSED JUNE 17- 25",
@@ -118,7 +116,7 @@
           "type": "column",
           "settings": {
             "image_border_radius": "0px",
-            "title": "STORE CLOSED 6/17- 25",
+            "title": "",
             "title_h": "h1",
             "title_font_size": "24px",
             "title_font_size_mobile": "38px",
