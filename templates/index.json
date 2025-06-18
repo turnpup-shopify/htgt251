@@ -16,13 +16,13 @@
           "type": "text",
           "disabled": true,
           "settings": {
-            "block_text": "STORE CLOSED MAY 23rd - 27th",
+            "block_text": "",
             "heading_size": "span",
-            "block_font_size": "48px",
-            "mobile_block_font_size": "48px",
-            "block_font_color": "#884400",
-            "font_family_text": "Helvetica",
-            "font_weight_text": "800",
+            "block_font_size": "20px",
+            "mobile_block_font_size": "20px",
+            "block_font_color": "#121212",
+            "font_family_text": "\"Helvetica Neue\"",
+            "font_weight_text": "400",
             "line_height_text": "1.2",
             "letter_spacing": "3px",
             "text_width": "100%",
@@ -40,10 +40,11 @@
       "block_order": [
         "text_jJB3HC"
       ],
-      "disabled": true,
-      "custom_css": [],
+      "custom_css": [
+        "@media screen and (max-width: 700px) {.one_long_sentence_wrapper {margin-top: 20px; padding-top: 0px; }}"
+      ],
       "settings": {
-        "subtitle": "STORE CLOSED MAY 23RD - 27TH",
+        "subtitle": "COSTA MESA STORE CLOSED 6/17- 6/25",
         "subtitle_font_size": "14px",
         "subtitle_font_weight": "300px",
         "subtitle_font_family": "'Helvetica Neue'",
@@ -53,7 +54,7 @@
         "max_width": 90,
         "mobile_max_width": 90,
         "use_page_width": false,
-        "margintop": 50,
+        "margintop": 90,
         "marginbottom": 20,
         "alignment": "center",
         "turnpup_bottom_border_color": "rgba(0,0,0,0)",
@@ -118,9 +119,9 @@
           "type": "column",
           "settings": {
             "image_border_radius": "0px",
-            "title": "Coastal Furniture & Decor",
+            "title": "Designer Furniture, Low Prices",
             "title_h": "h1",
-            "title_font_size": "18px",
+            "title_font_size": "24px",
             "title_font_size_mobile": "38px",
             "title_font_family": "'Helvetica Neue'",
             "title_font_color": "#000000",
@@ -239,9 +240,9 @@
         "logo_pKewLA": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/transparent-coastal-ottoman.png",
+            "logo": "shopify://shop_images/brushed-brass-mirror.jpg",
             "link_to_article": "https://flwrmarket.com",
-            "product": "nautical-ottoman"
+            "product": "brass-arched-mirror-scalloped-brushed"
           }
         },
         "logo_4zhcEk": {
@@ -255,9 +256,9 @@
         "logo_wy9wDg": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/transparent-accent-stool-metal-balls.png",
+            "logo": "shopify://shop_images/statement-floor-lamp.jpg",
             "link_to_article": "https://flwrmarket.com",
-            "product": "iron-bedroom-small-bench"
+            "product": "unique-coastal-floor-lamp"
           }
         },
         "logo_tyHLtk": {
@@ -290,7 +291,7 @@
         "header_mobile_font_size": "22px",
         "header_font_family": "assistant_n4",
         "header_font_weight": "800",
-        "desktop_logo_height": "60px",
+        "desktop_logo_height": "70px",
         "mobile_logo_height": "50px",
         "desktop_space_between": 40,
         "mobile_space_between": 60
@@ -425,7 +426,7 @@
           "settings": {
             "block_text": "Curators of home furnishings where beautiful objects celebrate form and material. We are experts in interior design working to deliver warmth, substance and elegance to our customers' homes.",
             "heading_size": "span",
-            "block_font_size": "40px",
+            "block_font_size": "24px",
             "mobile_block_font_size": "28px",
             "block_font_color": "#333333",
             "font_family_text": "\"Helvetica Neue\"",
@@ -450,8 +451,8 @@
       ],
       "custom_css": [],
       "settings": {
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20,
         "padding_right": 40,
         "padding_left": 40,
         "mobile_padding_top": 40,
