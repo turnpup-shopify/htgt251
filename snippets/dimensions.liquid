@@ -18,16 +18,8 @@
         {%- assign size_label = size_parts[0] | strip -%}
 
         {%- assign dimension_part = size_parts[1] | default: '' | strip -%}
-        
-        {%- assign clean_dimensions = dimension_part 
-          | replace: '(', '' 
-          | replace: ')', '' 
-          | replace: 'IN', '' 
-          | replace: 'in', '' 
-          | strip_html 
-          | strip_newlines 
-          | strip 
-          | upcase 
+
+        {%- assign clean_dimensions = dimension_part | replace: '(', '' | replace: ')', '' | replace: 'IN', '' | replace: 'in', '' | strip_html | strip_newlines | strip | upcase
         -%}
 
         {%- assign dims = clean_dimensions | split: ' X ' -%}
@@ -49,7 +41,7 @@
               {%- elsif unit == 'SH' -%}
                 {%- assign label = 'Seat Height' -%}
               {%- else -%}
-                {%- assign label = unit -%} 
+                {%- assign label = unit -%}
               {%- endif -%}
 
               <tr>
@@ -64,15 +56,7 @@
 
   {%- else -%}
     {%- comment -%}Original code for a single dimension set{%- endcomment -%}
-    {%- assign clean_dimensions = raw_dimensions 
-      | replace: '(', '' 
-      | replace: ')', '' 
-      | replace: 'IN', '' 
-      | replace: 'in', '' 
-      | strip_html 
-      | strip_newlines 
-      | strip 
-      | upcase 
+    {%- assign clean_dimensions = raw_dimensions | replace: '(', '' | replace: ')', '' | replace: 'IN', '' | replace: 'in', '' | strip_html | strip_newlines | strip | upcase
     -%}
 
     {%- assign dims = clean_dimensions | split: ' X ' -%}
@@ -92,8 +76,16 @@
             {%- assign label = 'Depth' -%}
           {%- elsif unit == 'SH' -%}
             {%- assign label = 'Seat Height' -%}
+          {%- elsif unit == 'SHADEH' -%}
+            {%- assign label = 'Shade Height' -%}
+          {%- elsif unit == 'LAMPH' -%}
+            {%- assign label = 'Lamp Height' -%}
+          {%- elsif unit == 'LAMPW' -%}
+            {%- assign label = 'Lamp Width' -%}
+          {%- elsif unit == 'LAMPD' -%}
+            {%- assign label = 'Lamp Depth' -%}
           {%- else -%}
-            {%- assign label = unit -%} 
+            {%- assign label = unit -%}
           {%- endif -%}
 
           <tr>
