@@ -100,13 +100,13 @@
         "type": "text",
         "id": "desktop_font_size",
         "label": "Desktop Font Size",
-        "default": "1rem"
+        "default": "16px"
       },
       {
         "type": "text",
         "id": "mobile_font_size",
         "label": "Mobile Font Size",
-        "default": "1rem"
+        "default": "16px"
       },
       {
         "type": "select",
@@ -203,7 +203,7 @@
                   <img src="{{ collection.image | img_url: '1000x1000' }}" alt="{{ collection.image.alt }}">
                 </div>
               {% endif %}
-              <h2 style="font-size: 16px; font-weight: 400; margin: 0;  text-align: {{ section.settings.alignment }};">{{ collection.title }}</h2>
+              <h2 style="font-weight: 400; margin: 0;  text-align: {{ section.settings.alignment }};">{{ collection.title }}</h2>
             </a>
           </div>
         {% endfor %}
@@ -222,7 +222,7 @@
                     <img src="{{ c.image | img_url: '1000x1000' }}" alt="{{ c.image.alt }}">
                   </div>
                 {% endif %}
-                <h2 style="font-size: 16px; font-weight: 400; margin: 0;  text-align: {{ section.settings.alignment }};">{{ c.title }}</h2>
+                <h2 style="font-weight: 400; margin: 0;  text-align: {{ section.settings.alignment }};">{{ c.title }}</h2>
               </a>
             </div>
           {% endunless %}
@@ -237,7 +237,7 @@
           {% unless c.title == collection.title %}
             <div class="link-item" style="display: inline-block;  border: 1.4px solid black; padding: 10px 14px; border-radius: 14px;">
               <a href="{{ c.url }}" style="text-decoration: none; color: inherit;">                
-              <h3 style="font-size: 16px; font-weight: normal; margin: 0; white-space: nowrap; text-align: {{ section.settings.alignment }};">{{ c.title }}</h3>
+              <h3 style="font-weight: normal; margin: 0; white-space: nowrap; text-align: {{ section.settings.alignment }};">{{ c.title }}</h3>
               </a>
             </div>
           {% endunless %}
@@ -245,15 +245,7 @@
         <style>
           .tp-sunbav-inner-container .link-item:last-of-type {
             margin-right: {{ section.settings.mobile_padding_left}}px
-          }
-          .link-item h3 {
-            font-size: {{ section.settings.desktop_font_size }}
-          }
-          @media screen and (max-width: 700px) {
-            .link-item h3 {
-              font-size: {{ section.settings.mobile_font_size }}
-            }
-          }
+          }          
         </style>
       </div>
     </div>
@@ -263,7 +255,7 @@
         {% for link in collection.metafields.custom.tp-linklist.value %}
             <div class="link-item" style="display: inline-block;  border: 1.4px solid black; padding: 10px 14px; border-radius: 14px;">
                 <a href="{{ link.url }}" style="text-decoration: none; color: inherit;">                
-                <h2 style="font-size: 16px; font-weight: normal; margin: 0; white-space: nowrap; text-align: {{ section.settings.alignment }};">{{ link.text }}</h2>
+                <h2 style="font-weight: normal; margin: 0; white-space: nowrap; text-align: {{ section.settings.alignment }};">{{ link.text }}</h2>
                 </a>
             </div>
         {% endfor %}
@@ -275,7 +267,7 @@
           {% for c in section.settings.collection_menu %}
               <div class="link-item" style="display: inline-block;  border: 1.4px solid black; padding: 10px 14px; border-radius: 14px;">
                   <a href="{{ c.url }}" style="text-decoration: none; color: inherit;">                
-                  <h2 style="font-size: 16px; font-weight: normal; margin: 0; white-space: nowrap; text-align: {{ section.settings.alignment }};">{{ c.title }}</h2>
+                  <h2 style="font-weight: normal; margin: 0; white-space: nowrap; text-align: {{ section.settings.alignment }};">{{ c.title }}</h2>
                   </a>
               </div>
           {% endfor %}
@@ -286,6 +278,9 @@
   {% endif %}
 
   <style>
+    .tp-sunbav-inner-container .link-item h3 {
+      font-size: {{ section.settings.desktop_font_size }};
+    }    
     .tp-sunbav-inner-container {
       padding-top: {{ section.settings.mobile_padding_top }}px;
       padding-right: {{ section.settings.mobile_padding_right }}px;
@@ -299,6 +294,9 @@
         padding-right: {{ section.settings.padding_right }}px;
         padding-left: {{ section.settings.padding_left }}px;
         padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+      .tp-sunbav-inner-container.link-item h3 {
+        font-size: {{ section.settings.mobile_font_size }};
       }
     }
     .tp-subnav {
