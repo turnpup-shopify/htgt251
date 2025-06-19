@@ -385,6 +385,8 @@
           "entryway-benches"
         ],
         "no_image": true,
+        "desktop_font_size": "12px",
+        "mobile_font_size": "12px",
         "alignment": "left",
         "desktop_max_width": 100,
         "mobile_max_width": 100,
@@ -561,6 +563,8 @@
           "small-bench-for-entryway"
         ],
         "no_image": true,
+        "desktop_font_size": "12px",
+        "mobile_font_size": "12px",
         "alignment": "left",
         "desktop_max_width": 100,
         "mobile_max_width": 100,
