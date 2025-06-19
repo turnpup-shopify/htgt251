@@ -97,6 +97,18 @@
         "default": true
       },
       {
+        "type": "text",
+        "id": "desktop_font_size",
+        "label": "Desktop Font Size",
+        "default": "1rem"
+      },
+      {
+        "type": "text",
+        "id": "mobile_font_size",
+        "label": "Mobile Font Size",
+        "default": "1rem"
+      },
+      {
         "type": "select",
         "id": "alignment",
         "options": [
@@ -233,6 +245,14 @@
         <style>
           .tp-sunbav-inner-container .link-item:last-of-type {
             margin-right: {{ section.settings.mobile_padding_left}}px
+          }
+          .link-item h3 {
+            font-size: {{ section.settings.desktop_font_size }}
+          }
+          @media screen and (max-width: 700px) {
+            .link-item h3 {
+              font-size: {{ section.settings.mobile_font_size }}
+            }
           }
         </style>
       </div>
