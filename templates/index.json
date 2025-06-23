@@ -959,6 +959,9 @@
         "image_GdpqcB",
         "image_UaBag3"
       ],
+      "custom_css": [
+        "a {font-size: 16px;}"
+      ],
       "settings": {
         "padding_top": 40,
         "padding_bottom": 0,
@@ -972,10 +975,10 @@
         "container-background-color": "#2b2b2b",
         "cell_background_border_width": "8px",
         "title": "More Coastal Decor Ideas",
-        "desktop_title_size": "40px",
-        "mobile_title_size": "24px",
-        "title_font_family": "\"josefin-sans\", sans-serif;",
-        "title_font_weight": "600",
+        "desktop_title_size": "16px",
+        "mobile_title_size": "16px",
+        "title_font_family": "\"Helvetica Neue\"",
+        "title_font_weight": "700",
         "title_font_color": "#ffffff",
         "subheader": "",
         "subheader_font_size": "",
@@ -984,8 +987,8 @@
         "subheader_font_color": "#ffffff",
         "verical_space_between": "10px",
         "cell_background_color": "#ffffff",
-        "cell_title_size": "18px",
-        "cell_title_font_weight": "600",
+        "cell_title_size": "16px",
+        "cell_title_font_weight": "500",
         "cell_title_font_family": "\"Helvetica Neue\"",
         "cell_title_color": "#000000",
         "cell_subtitle_size": "16px",
