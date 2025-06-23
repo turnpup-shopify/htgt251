@@ -78,7 +78,7 @@
     {% if section.blocks.size == 0 %}
       {% unless blog.empty? %}
         <div class="at-featuredblog-cell-container">
-        {% capture _ %}{%- increment myCounter -%}{% endcapture %}
+        {%- capture -%}{%- increment myCounter -%}{%- endcapture -%}
         {% comment %} {% for link in linklists.blog-menu.links %}  {% endcomment %}
         {% for article in section.settings.blog.articles limit: section.settings.post_limit %}
         {% comment %} {% if article.tags contains 'all' and myCounter <= 4 %} {% endcomment %}
