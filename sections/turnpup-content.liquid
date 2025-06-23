@@ -39,7 +39,7 @@
     </div>
     {% if section.blocks.size > 0 %}
       <div class="at-featuredblog-cell-container {% if section.settings.cell_background_border_width == '0px' %}no-border{% endif %}">
-      {% capture _ %}{%- increment myCounter -%}{% endcapture %}
+      {%- increment myCounter -%}
       {% for block in section.blocks %}
       {% if myCounter <= 4 %}
           {%- assign image = block.settings.image -%}
@@ -78,7 +78,7 @@
     {% if section.blocks.size == 0 %}
       {% unless blog.empty? %}
         <div class="at-featuredblog-cell-container">
-        {%- capture -%}{%- increment myCounter -%}{%- endcapture -%}
+        {%- increment myCounter -%}
         {% comment %} {% for link in linklists.blog-menu.links %}  {% endcomment %}
         {% for article in section.settings.blog.articles limit: section.settings.post_limit %}
         {% comment %} {% if article.tags contains 'all' and myCounter <= 4 %} {% endcomment %}
