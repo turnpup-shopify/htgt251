@@ -85,7 +85,7 @@
         {% if myCounter <= 4 %}
             {%- assign image = article.image -%}
             {%- capture article_image -%}
-              {% capture _ %}{%- increment myCounter -%}{% endcapture %}
+              <div style="display: none;">{%- increment myCounter -%}</div>
               <div class="article-image">
                 <a href="{{ article.url }}" class="card__image-wrapper">
                   <img src="{{ image |  image_url: width: 500 }}">            
