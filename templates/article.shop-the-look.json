@@ -352,6 +352,9 @@
         "text_x6KVEy",
         "button_mD9pd7"
       ],
+      "custom_css": [
+        ".rich-text {text-align: left;}"
+      ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "color_scheme": "background-1",
