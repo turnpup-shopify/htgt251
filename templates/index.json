@@ -1451,7 +1451,7 @@
         "subheader_font_color": "#ffffff",
         "verical_space_between": "0px",
         "cell_background_color": "#ffffff",
-        "cell_title_size": "20px",
+        "cell_title_size": "18px",
         "cell_title_font_weight": "400",
         "cell_title_font_family": "\"Helvetica Neue\"",
         "cell_title_color": "#121212",
