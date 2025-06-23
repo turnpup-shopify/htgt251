@@ -80,7 +80,7 @@
         <div class="at-featuredblog-cell-container">
         {% capture _ %}{%- increment myCounter -%}{% endcapture %}
         {% comment %} {% for link in linklists.blog-menu.links %}  {% endcomment %}
-        {% for link section.settings.blog %} 
+        {% for link section.settings.blog.links %} 
         {% assign blog = link.object %}
         {% for article in blog.articles limit: section.settings.post_limit %}
         {% comment %} {% if article.tags contains 'all' and myCounter <= 4 %} {% endcomment %}
