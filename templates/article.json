@@ -33,8 +33,7 @@
         },
         "content": {
           "type": "content",
-          "settings": {
-          }
+          "settings": {}
         }
       },
       "block_order": [
@@ -43,11 +42,125 @@
         "share",
         "content"
       ],
+      "settings": {}
+    },
+    "turnpup_prod_carousel_nY83Dp": {
+      "type": "turnpup-prod-carousel",
+      "blocks": {
+        "carousel_block_3QTDFd": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "{{ article.metafields.custom.shop_the_look_1.value }}",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_6AfzkK": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "{{ article.metafields.custom.shop_the_look_2.value }}",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_Jhg6hH": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "{{ article.metafields.custom.shop_the_look_3.value }}",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_GWNWFp": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "{{ article.metafields.custom.shop_the_look_4.value }}",
+            "cell_title": "",
+            "cell_subtitle": "",
+            "button_text": "",
+            "cell_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "carousel_block_3QTDFd",
+        "carousel_block_6AfzkK",
+        "carousel_block_Jhg6hH",
+        "carousel_block_GWNWFp"
+      ],
+      "name": "TPPC - Product Carousel",
       "settings": {
+        "padding_top": 20,
+        "padding_bottom": 40,
+        "padding_right": 60,
+        "padding_left": 60,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 24,
+        "mobile_padding_right": 24,
+        "mobile_padding_left": 24,
+        "max_height_desktop": 80,
+        "mobile_max_height_desktop": 90,
+        "border_color": "#000000",
+        "border_width": 0,
+        "border_radius": 20,
+        "cell_title_color": "#000000",
+        "cell_subtitle_color": "#555555",
+        "cell_title_fontsize": "16px",
+        "cell_subtitle_fontsize": "16px",
+        "cell_title_fontfamily": "Arial",
+        "cell_subtitle_fontfamily": "Arial",
+        "cell_title_fontwegith": "700",
+        "cell_subtitle_fontweight": "400",
+        "arrow_icon_right": "",
+        "arrow_color": "#000000",
+        "swipe_on_mobile": false,
+        "image_width": "full",
+        "column_alignment": "left",
+        "column_gap": "0px",
+        "button_padding": "10px 20px",
+        "hero_button_font_family": "'Helvetica Neue'",
+        "hero_button_font_size": "18px",
+        "hero_button_font_weight": "400",
+        "button_border_radius": "0px",
+        "button_border_color": "#000000",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "button_border_color_hover": "#ffffff",
+        "button_background_color_hover": "#000000",
+        "button_text_color_hover": "#ffffff",
+        "button_label": "",
+        "button_link": "",
+        "header": "Shop the Room Scene",
+        "title_font_size": "18px",
+        "mobile_title_size": "18px",
+        "title_font_family": "'Helvetica Neue'",
+        "title_font_weight": "600",
+        "title_font_color": "#000000",
+        "section_title_padding": "0px",
+        "subtitle": "",
+        "subtitle_font_size": "20px",
+        "section_subtitle_padding": "0px",
+        "subtitle_font_family": "'Helvetica Neue'",
+        "subtitle_font_weight": "700",
+        "overall_titles_margin_top": 0,
+        "overall_titles_margin_bottom": 0,
+        "overall_titles_margin_right": 0,
+        "overall_titles_margin_left": 0,
+        "title_alignment": "left",
+        "section_text_color": "#000000",
+        "overall_background_image_url": "",
+        "section_background_color": "#ffffff"
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "turnpup_prod_carousel_nY83Dp"
   ]
 }
