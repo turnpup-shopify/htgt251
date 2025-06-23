@@ -71,45 +71,47 @@
           {% assign use_image = block.settings.carousel_image %}
           {% assign use_link = block.settings.cell_url %}
         {% endif %}
-        <div class="block-{{block.id}} custom-carousel-block-image-container{% if forloop.index != 1 %} not-hero{% endif %}">
-          <a href="{{ use_link }}">
-            {% if use_image != blank %}
-              <img
-                class="main shown"
-                src="{{ use_image | image_url: width: 1000, height: 1000 }}"
-                width="100%"
-                height="auto">
-              {% if block.settings.rollover_carousel_image != blank %}
+        {% if use_image != blank %}
+          <div class="block-{{block.id}} custom-carousel-block-image-container{% if forloop.index != 1 %} not-hero{% endif %}">
+            <a href="{{ use_link }}">
+              {% if use_image != blank %}
                 <img
-                  class="rollover"
-                  src="{{ block.settings.rollover_carousel_image | image_url: width: 1000, height: 1000 }}"
-                  width="100%"
-                  height="auto">
-              {% else %}
-                <img
-                  class="rollover"
+                  class="main shown"
                   src="{{ use_image | image_url: width: 1000, height: 1000 }}"
                   width="100%"
                   height="auto">
+                {% if block.settings.rollover_carousel_image != blank %}
+                  <img
+                    class="rollover"
+                    src="{{ block.settings.rollover_carousel_image | image_url: width: 1000, height: 1000 }}"
+                    width="100%"
+                    height="auto">
+                {% else %}
+                  <img
+                    class="rollover"
+                    src="{{ use_image | image_url: width: 1000, height: 1000 }}"
+                    width="100%"
+                    height="auto">
+                {% endif %}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
               {% endif %}
-            {% else %}
-              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            </a>
+            {% if block.settings.cell_product %}
+              <p class="cellTitle">
+                {{ block.settings.cell_product.title }}
+              </p>
+            {% comment %} <p class="cellSubtitle"> {{ block.settings.cell_subtitle }} </p>  {% endcomment %}
+            {% elsif block.settings.cell_title != "" %}
+              <p class="cellTitle">
+                {{ block.settings.cell_title }}
+              </p>
+              <p class="cellSubtitle">
+                {{ block.settings.cell_subtitle }}
+              </p>
             {% endif %}
-          </a>
-          {% if block.settings.cell_product %}
-            <p class="cellTitle">
-              {{ block.settings.cell_product.title }}
-            </p>
-          {% comment %} <p class="cellSubtitle"> {{ block.settings.cell_subtitle }} </p>  {% endcomment %}
-          {% elsif block.settings.cell_title != "" %}
-            <p class="cellTitle">
-              {{ block.settings.cell_title }}
-            </p>
-            <p class="cellSubtitle">
-              {{ block.settings.cell_subtitle }}
-            </p>
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
       {% endfor %}
       <div class="carousel-arrows">
         <button id="go-left">
