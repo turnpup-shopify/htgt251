@@ -1465,7 +1465,7 @@
       "name": "TPC - Content",
       "settings": {
         "padding_top": 40,
-        "padding_bottom": 40,
+        "padding_bottom": 0,
         "padding_right": 40,
         "padding_left": 40,
         "mobile_padding_top": 20,
