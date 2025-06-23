@@ -50,7 +50,7 @@
         "carousel_block_3QTDFd": {
           "type": "carousel_block",
           "settings": {
-            "cell_product": "",
+            "cell_product": "{{ article.metafields.custom.shop_the_look_1.value }}",
             "cell_title": "Product Title",
             "cell_subtitle": "Product Subtitle",
             "button_text": "",
@@ -60,9 +60,29 @@
         "carousel_block_6AfzkK": {
           "type": "carousel_block",
           "settings": {
-            "cell_product": "2-drawer-shelf-28x20x30h",
+            "cell_product": "{{ article.metafields.custom.shop_the_look_2.value }}",
             "cell_title": "Product Title",
             "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_Jhg6hH": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "{{ article.metafields.custom.shop_the_look_3.value }}",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_GWNWFp": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "{{ article.metafields.custom.shop_the_look_4.value }}",
+            "cell_title": "",
+            "cell_subtitle": "",
             "button_text": "",
             "cell_url": ""
           }
@@ -70,7 +90,9 @@
       },
       "block_order": [
         "carousel_block_3QTDFd",
-        "carousel_block_6AfzkK"
+        "carousel_block_6AfzkK",
+        "carousel_block_Jhg6hH",
+        "carousel_block_GWNWFp"
       ],
       "name": "TPPC - Product Carousel",
       "settings": {
