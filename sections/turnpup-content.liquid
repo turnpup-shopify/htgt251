@@ -211,7 +211,8 @@
     grid-column-gap: 30px;
     grid-row-gap: 60px;
     grid-template-rows: auto auto;
-    grid-template-columns: repeat({{ section.blocks.size}}, 1fr);
+    /* grid-template-columns: repeat({{ section.blocks.size }}, 1fr); */
+    grid-template-columns: repeat({{ myCounter }}, 1fr);
     display: grid;
   }
   @media screen and (max-width: 700px) {
