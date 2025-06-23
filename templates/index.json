@@ -1422,46 +1422,6 @@
     },
     "turnpup_content_YfJDWj": {
       "type": "turnpup-content",
-      "blocks": {
-        "image_UyMBki": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/gray-dresser-for-bedroom.jpg",
-            "link": "",
-            "title": "",
-            "body": "",
-            "button_text": "",
-            "button_link": ""
-          }
-        },
-        "image_k99J3F": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/gray-dresser-bowls.jpg",
-            "link": "",
-            "title": "",
-            "body": "",
-            "button_text": "",
-            "button_link": ""
-          }
-        },
-        "image_GwGhDf": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/industrial-light-oak-dresser.jpg",
-            "link": "",
-            "title": "",
-            "body": "",
-            "button_text": "",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_UyMBki",
-        "image_k99J3F",
-        "image_GwGhDf"
-      ],
       "name": "TPC - Content",
       "settings": {
         "padding_top": 40,
