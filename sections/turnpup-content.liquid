@@ -82,7 +82,8 @@
         {% for link in linklists.blog-menu.links %} 
         {% assign blog = link.object %}
         {% for article in blog.articles limit: section.settings.post_limit %}
-        {% if article.tags contains 'all' and myCounter <= 4 %}
+        {% comment %} {% if article.tags contains 'all' and myCounter <= 4 %} {% endcomment %}
+        {% if myCounter <= 4 %}
             {%- assign image = article.image -%}
             {%- capture article_image -%}
               {% capture _ %}{%- increment myCounter -%}{% endcapture %}
