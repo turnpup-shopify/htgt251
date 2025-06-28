@@ -42,6 +42,43 @@
     colorSelect.addEventListener('change', filterArticles);
   });
 </script>
+<style>
+  #tag-filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: "Helvetica Neue"
+    , sans-serif;
+    margin-bottom: 2rem;
+  }
+
+  #tag-filter-controls label {
+    font-size: 14px;
+    color: #333;
+    margin-right: 4px;
+  }
+
+  #tag-filter-controls select {
+    appearance: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+
+  #tag-filter-controls select:focus {
+    outline: none;
+    border-color: #000;
+  }
+
+  #tag-filter-controls select:hover {
+    border-color: #999;
+  }
+</style>
 {%- style -%}
   a:-webkit-any-link {
     text-decoration: none;
