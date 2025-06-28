@@ -50,7 +50,6 @@
 {% assign tag_filter = section.settings.article_tag %}
 
 {% assign source_blog = blogs[section.settings.blog_handle] %}
-{% assign tag_filter = section.settings.article_tag %}
 
 {% if tag_filter != blank %}
   {% assign filtered_articles = source_blog.articles | where: "tags", tag_filter %}
