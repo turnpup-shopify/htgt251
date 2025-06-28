@@ -1622,7 +1622,7 @@
         "button_border_color_hover": "#ffffff",
         "button_background_color_hover": "#000000",
         "button_text_color_hover": "#ffffff",
-        "button_label": "all",
+        "button_label": "",
         "button_link": "",
         "header": "Shop The Look",
         "title_font_size": "40px",
