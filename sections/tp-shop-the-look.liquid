@@ -48,28 +48,15 @@
 {% comment %} {% render 'tp-prod-carousel-block', input_collection: article.metafields.custom.collection, input_type: "collection" %} {% endcomment %}
 {% assign blog_handle = section.settings.blog_handle %}
 {% assign tag_filter = section.settings.article_tag %}
+{% assign source_blog = blogs[blog_handle] %}
 
-{% assign source_blog = blogs[section.settings.blog_handle] %}
-
-{% assign filtered_articles = "" %}
-{% assign results = "" %}
-{% for article in source_blog.articles %}
-  {% if article.tags contains tag_filter %}
-    {% assign results = results | append: article.id | append: "," %}
-  {% endif %}
-{% endfor %}
-
-{% assign results_array = results | split: "," %}
-{% assign filtered_articles = source_blog.articles | where: "id", results_array %}
-
-{% if filtered_articles.size > 0 %}
-  {% render 'tp-prod-carousel-block'
-    , input_articles: filtered_articles
-    , input_type: "articles"
-    , input_title: section.settings.header
-    , input_shop_all_text: section.settings.button_label
-    , input_shop_all_link: source_blog.url %}
-{% endif %}
+{% render 'tp-prod-carousel-block'
+  , input_type: "articles"
+  , source_blog: source_blog
+  , tag_filter: tag_filter
+  , input_title: section.settings.header
+  , input_shop_all_text: section.settings.button_label
+  , input_shop_all_link: source_blog.url %}
 
 
 <style>
