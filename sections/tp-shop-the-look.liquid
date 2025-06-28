@@ -51,11 +51,16 @@
 
 {% assign source_blog = blogs[section.settings.blog_handle] %}
 
-{% if tag_filter != blank %}
-  {% assign filtered_articles = source_blog.articles | where: "tags", tag_filter %}
-{% else %}
-  {% assign filtered_articles = source_blog.articles %}
-{% endif %}
+{% assign filtered_articles = "" %}
+{% assign results = "" %}
+{% for article in source_blog.articles %}
+  {% if article.tags contains tag_filter %}
+    {% assign results = results | append: article.id | append: "," %}
+  {% endif %}
+{% endfor %}
+
+{% assign results_array = results | split: "," %}
+{% assign filtered_articles = source_blog.articles | where: "id", results_array %}
 
 {% if filtered_articles.size > 0 %}
   {% render 'tp-prod-carousel-block'
