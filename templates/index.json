@@ -40,6 +40,7 @@
       "block_order": [
         "text_jJB3HC"
       ],
+      "disabled": true,
       "custom_css": [
         "@media screen and (max-width: 700px) {.one_long_sentence_wrapper {margin-top: 20px; padding-top: 0px; }}"
       ],
@@ -1580,8 +1581,10 @@
       "settings": {
         "blog_handle": "looks",
         "article_tag": "industrial",
-        "padding_top": 20,
-        "padding_bottom": 40,
+        "interior_style_tag": "industrial,coastal,modern",
+        "color_tag": "black, gray, orange, white, blue, navy",
+        "padding_top": 40,
+        "padding_bottom": 12,
         "padding_right": 60,
         "padding_left": 60,
         "mobile_padding_top": 24,
