@@ -1580,7 +1580,7 @@
       "name": "TP - Shop the Look Carousel",
       "settings": {
         "blog_handle": "looks",
-        "article_tag": "industrial",
+        "article_tag": "",
         "interior_style_tag": "industrial,coastal,modern",
         "color_tag": "black, gray, orange, white, blue, navy",
         "padding_top": 40,
@@ -1624,7 +1624,7 @@
         "button_text_color_hover": "#ffffff",
         "button_label": "all",
         "button_link": "",
-        "header": "",
+        "header": "Shop The Look",
         "title_font_size": "40px",
         "mobile_title_size": "24px",
         "title_font_family": "'Helvetica Neue'",
