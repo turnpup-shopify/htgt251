@@ -17,6 +17,31 @@
     });    
   });
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const styleSelect = document.getElementById('interiorTag');
+    const colorSelect = document.getElementById('colorTag');
+    const articleCards = document.querySelectorAll('.custom-carousel-block-image-container');
+
+    function matchesTags(card, style, color) {
+      const tags = (card.dataset.tags || "").split(",");
+      if (style && !tags.includes(style)) return false;
+      if (color && !tags.includes(color)) return false;
+      return true;
+    }
+
+    function filterArticles() {
+      const style = styleSelect.value;
+      const color = colorSelect.value;
+      articleCards.forEach(card => {
+        card.style.display = matchesTags(card, style, color) ? "" : "none";
+      });
+    }
+
+    styleSelect.addEventListener('change', filterArticles);
+    colorSelect.addEventListener('change', filterArticles);
+  });
+</script>
 {%- style -%}
   a:-webkit-any-link {
     text-decoration: none;
@@ -47,16 +72,43 @@
   }{%- endstyle -%}
 {% comment %} {% render 'tp-prod-carousel-block', input_collection: article.metafields.custom.collection, input_type: "collection" %} {% endcomment %}
 {% assign blog_handle = section.settings.blog_handle %}
-{% assign tag_filter = section.settings.article_tag %}
-{% assign source_blog = blogs[blog_handle] %}
+{% assign source_blog = blogs[section.settings.blog_handle] %}
+{% assign interior_tag = section.settings.interior_style_tag %}{% assign color_tag = section.settings.color_tag %}
+{% comment %} {% assign tag_filter = section.settings.article_tag %}
+{% assign source_blog = blogs[blog_handle] %} {% endcomment %}
 
-{% render 'tp-prod-carousel-block'
-  , input_type: "articles"
-  , source_blog: source_blog
-  , tag_filter: tag_filter
-  , input_title: section.settings.header
-  , input_shop_all_text: section.settings.button_label
-  , input_shop_all_link: source_blog.url %}
+{% assign interior_style_options = interior_tag | split: ',' %}
+{% assign color_tag_options = color_tag | split: ',' %}
+
+<div class="custom-carousel-outer-{{section.id}}">
+
+  <div id="tag-filter-controls" style="margin-bottom: 1rem;">
+    <label for="interiorTag">Style:</label>
+    <select id="interiorTag">
+      <option value="">All</option>
+      {% for tag in interior_style_options %}
+        <option value="{{ tag | strip }}">{{ tag | capitalize }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="colorTag">Color:</label>
+    <select id="colorTag">
+      <option value="">All</option>
+      {% for tag in color_tag_options %}
+        <option value="{{ tag | strip }}">{{ tag | capitalize }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  {% render 'tp-prod-carousel-block'
+    , input_type: "articles"
+    , source_blog: source_blog
+    , tag_filter: tag_filter
+    , input_title: section.settings.header
+    , input_shop_all_text: section.settings.button_label
+    , input_shop_all_link: source_blog.url %}
+
+</div>
 
 <style>
   .custom-carousel-slider-container {
@@ -260,10 +312,20 @@
         "label": "Article Tag to Filter"
       },
       {
-        "type": "header",
-        "content": "Module Global Settings"
+        "type": "text",
+        "id": "interior_style_tag",
+        "label": "Interior Style Tag",
+        "default": "industrial,coastal,modern"
       },
       {
+        "type": "text",
+        "id": "color_tag",
+        "label": "Color Tag",
+        "default": "black, gray, orange, white, blue, navy"
+      }, {
+        "type": "header",
+        "content": "Module Global Settings"
+      }, {
         "type": "range",
         "id": "padding_top",
         "min": 0,
