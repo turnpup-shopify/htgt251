@@ -1,55 +1,80 @@
-{% comment %} {% assign tp_collection = collections[input_collection] %} {% endcomment %}
 {%- if input_type == "products" and input_products != "" and input_products != blank -%}
-    <div class="custom-carousel-outer-{{section.id}}">    
-        <div class="custom-carousel-slider-container">
-        {% if input_title != null %}
-            <div class="header-container">
-                <p class="header reveal-left"> {{ input_title }}</p>
-                {% if input_shop_all_text != null %}
-                    <p class="more"><a href="{{ input_shop_all_link }}"> {{ input_shop_all_text }} </a></p>
-                {% endif %}
-            </div>
-        {% endif %}
-        <div class="custom-carousel-slider">
-            {%- for tp_product in input_products limit: 6-%}
-                {% if tp_product != blank %}
-                    {% assign use_image = tp_product.featured_image %}
-                    {% assign use_link = tp_product.url %}
-                {% elsif block.settings.carousel_image != blank %}
-                    {% assign use_image = block.settings.carousel_image %}
-                    {% assign use_link = block.settings.cell_url %} 
-                {% endif %}
-                <div class="block-{{block.id}} custom-carousel-block-image-container{% if forloop.index != 1 %} not-hero{% endif %}"> 
-                    <a href="{{ use_link }}">                    
-                        {% if use_image != blank %}
-                            <img class="main shown" src="{{ use_image | image_url: width: 1000, height: 1000 }}" width="100%" height="auto">
-                            {% comment %} {% if block.settings.rollover_carousel_image != blank %}
-                            <img class="rollover" src="{{ block.settings.rollover_carousel_image | image_url: width: 1000, height: 1000 }}" width="100%" height="auto">
-                            {% else %}  
-                            <img class="rollover" src="{{ use_image | image_url: width: 1000, height: 1000 }}" width="100%" height="auto">
-                            {% endif %} {% endcomment %}
-                        {% else %}
-                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                        {% endif %}
-                    </a> 
-                    {% if tp_product %}
-                        <p class="cellTitle"> {{ tp_product.title }} </p>
-                        {% comment %} <p class="cellSubtitle"> {{ block.settings.cell_subtitle }} </p>  {% endcomment %}
-                    {% elsif block.settings.cell_title != "" %}
-                        <p class="cellTitle"> {{ block.settings.cell_title }} </p>
-                        <p class="cellSubtitle"> {{ block.settings.cell_subtitle }} </p> 
-                    {% endif %}
-                </div>           
-            {% endfor %}
-            <div class="carousel-arrows">
-                <button id="go-left">
-                {{ section.settings.arrow_icon_right }}
-                </button>
-                <button id="go-right">
-                {{ section.settings.arrow_icon_right }}
-                </button>
-            </div>        
+  <div class="custom-carousel-outer-{{ section.id }}">
+    <div class="custom-carousel-slider-container">
+      {% if input_title != null %}
+        <div class="header-container">
+          <p class="header reveal-left">{{ input_title }}</p>
+          {% if input_shop_all_text != null %}
+            <p class="more">
+              <a href="{{ input_shop_all_link }}">{{ input_shop_all_text }}</a>
+            </p>
+          {% endif %}
         </div>
+      {% endif %}
+      <div class="custom-carousel-slider">
+        {%- for tp_product in input_products limit: 6 -%}
+          {% assign use_image = tp_product.featured_image %}
+          {% assign use_link = tp_product.url %}
+          <div class="block-{{ block.id }} custom-carousel-block-image-container{% if forloop.index != 1 %} not-hero{% endif %}">
+            <a href="{{ use_link }}">
+              {% if use_image %}
+                <img
+                  class="main shown"
+                  src="{{ use_image | image_url: width: 1000, height: 1000 }}"
+                  width="100%"
+                  height="auto">
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </a>
+            <p class="cellTitle">{{ tp_product.title }}</p>
+          </div>
+        {% endfor %}
+        <div class="carousel-arrows">
+          <button id="go-left">{{ section.settings.arrow_icon_right }}</button>
+          <button id="go-right">{{ section.settings.arrow_icon_right }}</button>
         </div>
+      </div>
     </div>
-{%- endif -%}    
+  </div>
+{%- elsif input_type == "articles" and input_articles != blank -%}
+  <div class="custom-carousel-outer-{{ section.id }}">
+    <div class="custom-carousel-slider-container">
+      {% if input_title != null %}
+        <div class="header-container">
+          <p class="header reveal-left">{{ input_title }}</p>
+          {% if input_shop_all_text != null %}
+            <p class="more">
+              <a href="{{ input_shop_all_link }}">{{ input_shop_all_text }}</a>
+            </p>
+          {% endif %}
+        </div>
+      {% endif %}
+      <div class="custom-carousel-slider">
+        {%- for article in input_articles limit: 6 -%}
+          {% assign use_image = article.image %}
+          {% assign use_link = article.url %}
+          <div class="block-{{ block.id }} custom-carousel-block-image-container{% if forloop.index != 1 %} not-hero{% endif %}">
+            <a href="{{ use_link }}">
+              {% if use_image %}
+                <img
+                  class="main shown"
+                  src="{{ use_image | image_url: width: 1000, height: 1000 }}"
+                  width="100%"
+                  height="auto">
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </a>
+            <p class="cellTitle">{{ article.title }}</p>
+            <p class="cellSubtitle">{{ article.excerpt | strip_html | truncate: 100 }}</p>
+          </div>
+        {% endfor %}
+        <div class="carousel-arrows">
+          <button id="go-left">{{ section.settings.arrow_icon_right }}</button>
+          <button id="go-right">{{ section.settings.arrow_icon_right }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
