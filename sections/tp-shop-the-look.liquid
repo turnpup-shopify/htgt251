@@ -21,7 +21,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     const styleSelect = document.getElementById('interiorTag');
     const colorSelect = document.getElementById('colorTag');
-    const articleCards = document.querySelectorAll('.custom-carousel-block-image-container');
+    const articleCards = document.querySelectorAll('.shop-the-look-outer-container .custom-carousel-block-image-container');
 
     function matchesTags(card, style, color) {
       const tags = (card.dataset.tags || "").split(",");
@@ -125,7 +125,7 @@
 {% assign interior_style_options = interior_tag | split: ',' %}
 {% assign color_tag_options = color_tag | split: ',' %}
 
-<div class="custom-carousel-outer-{{section.id}}">
+<div class="shop-the-look-outer-container custom-carousel-outer-{{section.id}}">
 
   <div id="tag-filter-controls" style="margin-bottom: 1rem;">
     <label for="interiorTag">Style:</label>
