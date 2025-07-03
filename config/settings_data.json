@@ -169,6 +169,9 @@
           "announcement_QitHwB",
           "f7f0086d-bebe-4fba-b086-a66b296eabaf"
         ],
+        "custom_css": [
+          ".announcement-bar__message.h5 {margin-bottom: 0px;}"
+        ],
         "settings": {}
       },
       "header": {
