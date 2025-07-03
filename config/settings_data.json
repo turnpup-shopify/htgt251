@@ -26,7 +26,7 @@
     "popup_body_margin_top": "20px",
     "popup_body_margin_bottom": "14px",
     "timer_start_date": "December 25, 2024 23:24:00",
-    "timer_end_date": "June 27, 2025 23:24:00",
+    "timer_end_date": "July 4, 2025 23:24:00",
     "card_desktop_title_size": "1.6rem",
     "card_mobile_title_size": "1.4rem",
     "pdp_product_title_size": "40px",
@@ -147,9 +147,8 @@
         "blocks": {
           "announcement_QitHwB": {
             "type": "announcement",
-            "disabled": true,
             "settings": {
-              "text": "STORE CLOSED MAY 23RD - 27TH",
+              "text": "JULY 4TH SALE IS ON - MARKDOWNS SITEWIDE",
               "is_red": false,
               "color_scheme": "accent-1",
               "link": ""
@@ -169,6 +168,9 @@
         "block_order": [
           "announcement_QitHwB",
           "f7f0086d-bebe-4fba-b086-a66b296eabaf"
+        ],
+        "custom_css": [
+          ".announcement-bar__message.h5 {margin-bottom: 0px;}"
         ],
         "settings": {}
       },
