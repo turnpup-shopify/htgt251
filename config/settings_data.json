@@ -147,7 +147,6 @@
         "blocks": {
           "announcement_QitHwB": {
             "type": "announcement",
-            "disabled": true,
             "settings": {
               "text": "JULY 4TH SALE IS ON - MARKDOWNS SITEWIDE",
               "is_red": false,
