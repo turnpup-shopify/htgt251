@@ -83,7 +83,7 @@ body {
 }
 
 #shopify-section-header {
-    position: fixed;
+    position: relative;
     width: 100%;
 }
 
