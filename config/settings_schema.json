@@ -127,12 +127,12 @@
         "default": false
       },
       {
-        "type": "image",
+        "type": "image_picker",
         "id": "popup_image_desktop",
         "label": "Header Popup Image Desktop"
       },
       {
-        "type": "image",
+        "type": "image_picker",
         "id": "popup_image_mobile",
         "label": "Header Popup Image Mobile"
       },
