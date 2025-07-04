@@ -3,7 +3,7 @@
     <div class="popup-inner">
       <div class="popup-image-container">
         {%- if settings.popup_image_desktop != blank -%}
-          {{ settings.popup_image_desktop | image_url: width: 800 | image_tag: class: 'popup-image' }}
+          {{ settings.popup_image_desktop | image_url: width: 800 | img_tag: 'Popup Image', class: 'popup-image' }}
         {%- endif -%}
       </div>
       <div class="popup-text-container">
