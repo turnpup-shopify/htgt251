@@ -127,6 +127,16 @@
         "default": false
       },
       {
+        "type": "image",
+        "id": "popup_image_desktop",
+        "label": "Header Popup Image Desktop"
+      },
+      {
+        "type": "image",
+        "id": "popup_image_mobile",
+        "label": "Header Popup Image Mobile"
+      },
+      {
         "type": "text",
         "id": "header_popup_message",
         "label": "Header Popup Message",
