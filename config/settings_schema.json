@@ -168,6 +168,18 @@
       },
       {
         "type": "text",
+        "id": "d_popup_outer_padding",
+        "label": "Desktop Pop-up Outer Padding",
+        "default": "40px"
+      },
+      {
+        "type": "text",
+        "id": "m_popup_outer_padding",
+        "label": "Mobile Pop-up Outer Padding",
+        "default": "20px"
+      },
+      {
+        "type": "text",
         "id": "popup_body_font_size",
         "label": "Pop-up Body Font Size",
         "default": "1rem"

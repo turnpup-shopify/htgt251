@@ -223,7 +223,7 @@
   /* Pop-up box */
   .popup-content {
     background: #FAF9F6;
-    padding: 20px;
+    padding: {{ settings.d_popup_outer_padding }};
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -302,6 +302,7 @@
     /* Pop-up box */
     .popup-content {
       max-width: 340px;
+      padding: {{ settings.m_popup_outer_padding }};
     }
   }
 </style>
