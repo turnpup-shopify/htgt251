@@ -1,9 +1,9 @@
 <div id="email-popup" class="popup">
   <div class="popup-content">
     <div class="popup-inner">
-      <div class="popup-image-container">
+      <div class="popup-image-container" style="height: 100%;">
         {% comment %} {%- if settings.popup_image_desktop != blank -%} {% endcomment %}
-        {{ settings.popup_image_desktop | image_url: width: 800 | image_tag }}
+        {{ settings.popup_image_desktop | image_url: width: 800 | image_tag: class: 'popup-image', alt: 'Popup Image' }}
       {% comment %} {%- endif -%} {% endcomment %}
       </div>
       <div class="popup-text-container">
@@ -251,22 +251,27 @@
   .popup-inner {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 0;
   }
 
   .popup-image-container,
   .popup-text-container {
     flex: 1 1 50%;
-    padding: 10px;
     box-sizing: border-box;
+  }
+
+  .popup-image-container {
+    padding: 0;
   }
 
   .popup-image {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   @media (max-width: 768px) {
