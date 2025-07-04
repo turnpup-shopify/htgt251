@@ -1,5 +1,6 @@
 <div id="email-popup" class="popup">
   <div class="popup-content">
+    <span class="close-popup" id="popup-close-button">&times;</span>
     <div class="popup-inner">
       <div class="popup-image-container" style="height: 100%;">
         {% comment %} {%- if settings.popup_image_desktop != blank -%} {% endcomment %}
@@ -7,7 +8,6 @@
       {% comment %} {%- endif -%} {% endcomment %}
       </div>
       <div class="popup-text-container">
-        <span class="close-popup" id="popup-close-button">&times;</span>
         {%- form 'customer'
           , id: 'homepage-popup'
           , class: 'isolate' -%}
@@ -266,6 +266,7 @@
   .popup-text-container {
     flex: 1 1 50%;
     box-sizing: border-box;
+    align-content: center;
   }
 
   .popup-image-container {
