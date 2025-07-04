@@ -2,9 +2,9 @@
   <div class="popup-content">
     <div class="popup-inner">
       <div class="popup-image-container">
-        {%- if settings.popup_image_desktop != blank -%}
-          {{ settings.popup_image_desktop | image_url: width: 800 | img_tag: 'Popup Image', class: 'popup-image' }}
-        {%- endif -%}
+        {% comment %} {%- if settings.popup_image_desktop != blank -%} {% endcomment %}
+        {{ settings.popup_image_desktop | image_url: width: 800 | image_tag: class: 'popup-image', alt: 'Popup Image' }}
+      {% comment %} {%- endif -%} {% endcomment %}
       </div>
       <div class="popup-text-container">
         <span class="close-popup" id="popup-close-button">&times;</span>
