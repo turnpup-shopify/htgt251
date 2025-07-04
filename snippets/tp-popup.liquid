@@ -2,7 +2,7 @@
   <div class="popup-content">
     <span class="close-popup" id="popup-close-button">&times;</span>
     <div class="popup-inner">
-      <div class="popup-image-container" style="height: 100%;">
+      <div class="popup-image-container">
         {% comment %} {%- if settings.popup_image_desktop != blank -%} {% endcomment %}
         {{ settings.popup_image_desktop | image_url: width: 800 | image_tag: class: 'popup-image', alt: 'Popup Image' }}
       {% comment %} {%- endif -%} {% endcomment %}
