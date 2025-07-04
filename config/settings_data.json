@@ -17,6 +17,7 @@
     "enable_popup": true,
     "show_popup_in_editor": false,
     "test_popup_success_state": false,
+    "popup_image_desktop": "shopify://shop_images/white-modern-sculpture-details.jpg",
     "header_popup_message": "Quality furniture has been overpriced for too long — ready to try something new?",
     "popup_message": "<strong>Get access to site-wide markdowns for 4th of July (ending Friday)</strong> when subscribing to emails.",
     "custom_success_message": "Thanks for subscribing, you now have access to take full advantage of markdowns sitewide. Mark downs are shown as is with original price and a slash through.",
