@@ -185,6 +185,7 @@
           "logo": "shopify://shop_images/logo_black_c48af3d4-0f71-4d3e-9848-8860d3b0f539.png",
           "logo_width": 70,
           "logo_position": "middle-left",
+          "menu_positioning": "relative",
           "menu": "main-menu",
           "online_menu": "main-menu",
           "menu_type_desktop": "mega",
