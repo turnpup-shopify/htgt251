@@ -198,7 +198,8 @@ details[open].menu-opening > .menu-drawer__submenu {
 .menu-drawer__close-button {
   /* margin-top: 1.5rem; */
   margin-top: 0;
-  padding: 1.2rem 2.6rem;
+  padding: 11px 2.6rem;
+  /* padding: 1.2rem 2.6rem; */
   text-decoration: none;
   display: flex;
   align-items: center;
