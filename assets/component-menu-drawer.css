@@ -196,12 +196,11 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer__close-button {
-  margin-top: 1.5rem;
+  /* margin-top: 1.5rem; */
+  margin-top: 0;
   padding: 1.2rem 2.6rem;
   text-decoration: none;
   display: flex;
-  /* display: none; */
-  /* turnpup tp custom swap ^ */
   align-items: center;
   font-size: 1.4rem;
   width: 100%;
