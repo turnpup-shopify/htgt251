@@ -125,7 +125,7 @@
                               {% render 'icon-arrow' %}
                               {% render 'icon-caret' %}
                             </summary>
-                            <div id="link-{{ link.title | escape }}" class="menu-drawer__submenu has-submenu gradient motion-reduce" tabindex="-1">
+                        <div id="link-{{ link.title | escape }}" class="menu-drawer__submenu has-submenu gradient motion-reduce" {% if section.settings.menu_positioning == "relative" %}style="position:relative;"{% endif %} tabindex="-1">
                               <div class="menu-drawer__inner-submenu">
                                 <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
                                   {% render 'icon-arrow' %}
@@ -795,6 +795,23 @@
         {
           "value": "top-center",
           "label": "t:sections.header.settings.logo_position.options__3.label"
+        }
+      ],
+      "default": "middle-left",
+      "label": "t:sections.header.settings.logo_position.label",
+      "info": "t:sections.header.settings.logo_position.info"
+    },
+    {
+      "type": "select",
+      "id": "menu_positioning",
+      "options": [
+        {
+          "value": "absolute",
+          "label": "in-line"
+        },
+        {
+          "value": "relative",
+          "label": "new tab"
         }
       ],
       "default": "middle-left",
