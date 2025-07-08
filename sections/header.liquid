@@ -127,10 +127,14 @@
                             </summary>
                         <div id="link-{{ link.title | escape }}" class="menu-drawer__submenu has-submenu gradient motion-reduce" {% if section.settings.menu_positioning == "relative" %}style="position:relative;"{% endif %} tabindex="-1">
                               <div class="menu-drawer__inner-submenu">
-                                <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                  {% render 'icon-arrow' %}
-                                  {{ link.title | escape }}
-                                </button>
+                                {% if section.settings.menu_positioning == "absolute" %}
+                                  <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                    {% render 'icon-arrow' %}
+                                    {{ link.title | escape }}
+                                  </button>
+                                {% else %}
+                                  <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">X</button>
+                                {% endif %}
                                 <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                                   {%- for childlink in link.links -%}
                                     <li>
