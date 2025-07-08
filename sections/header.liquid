@@ -24,6 +24,19 @@
 <noscript>{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}</noscript>
 
 <style>
+  .menu-drawer__menu.has-submenu .menu-drawer__menu.list-menu::before { 
+    content: "";
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 45px;
+    width: 3px;
+    background: #888;
+  }
+</style>
+
+
+<style>
   header-drawer {
     justify-self: start;
     margin-left: -1.2rem;
