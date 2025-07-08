@@ -75,6 +75,7 @@ details[open].menu-opening > .menu-drawer__submenu {
   /* visibility: hidden;  */
   visibility: visible; 
   /* hide menus from screen readers when hidden by submenu */
+  /* turnpup tp custom swap ^ */
 }
 
 @media screen and (min-width: 750px) {
@@ -198,7 +199,9 @@ details[open].menu-opening > .menu-drawer__submenu {
   margin-top: 1.5rem;
   padding: 1.2rem 2.6rem;
   text-decoration: none;
-  display: flex;
+  /* display: flex; */
+  display: none;
+  /* turnpup tp custom swap ^ */
   align-items: center;
   font-size: 1.4rem;
   width: 100%;
