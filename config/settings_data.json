@@ -148,6 +148,7 @@
         "blocks": {
           "announcement_QitHwB": {
             "type": "announcement",
+            "disabled": true,
             "settings": {
               "text": "Last Chance for Markdowns Through End of July 7th",
               "is_red": false,
