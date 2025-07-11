@@ -62,7 +62,7 @@
         "subtitle_font_family": "'Helvetica Neue'",
         "subtitle_font_color": "#555555",
         "background_color": "#cecece",
-        "background_opacity": "0.2",
+        "background_opacity": "1",
         "max_width": 100,
         "mobile_max_width": 90,
         "use_page_width": false,
