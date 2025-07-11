@@ -61,7 +61,7 @@
         "subtitle_font_weight": "300",
         "subtitle_font_family": "'Helvetica Neue'",
         "subtitle_font_color": "#555555",
-        "background_color": "#ffffff",
+        "background_color": "#cecece",
         "background_opacity": "0.2",
         "max_width": 100,
         "mobile_max_width": 90,
@@ -70,7 +70,7 @@
         "marginbottom": 100,
         "alignment": "center",
         "mobile_alignment": "left",
-        "turnpup_bottom_border_color": "rgba(0,0,0,0)",
+        "turnpup_bottom_border_color": "#000000",
         "mobile_font_size": "12px"
       }
     },
