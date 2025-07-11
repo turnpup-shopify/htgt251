@@ -38,9 +38,9 @@
             "text_padding_bottom": "0px",
             "is_own_line": false,
             "text_has_wavy_animation": false,
-            "wavy_animation_color": "#F6B700",
+            "wavy_animation_color": "#f6b700",
             "underline_animation": false,
-            "underline_animation_color": "#F6B700"
+            "underline_animation_color": "#f6b700"
           }
         }
       },
@@ -49,7 +49,7 @@
       ],
       "settings": {
         "padding_top": 44,
-        "padding_bottom": 0,
+        "padding_bottom": 44,
         "padding_right": 40,
         "padding_left": 40,
         "mobile_padding_top": 44,
@@ -59,7 +59,7 @@
         "subtitle": "",
         "subtitle_font_size": "11px",
         "subtitle_font_weight": "300",
-        "subtitle_font_family": "'Karla'",
+        "subtitle_font_family": "'Helvetica Neue'",
         "subtitle_font_color": "#555555",
         "background_color": "#ffffff",
         "background_opacity": "0.2",
@@ -292,6 +292,7 @@
         "column_LD4mTK",
         "column_dTAwVq"
       ],
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "padding_top": 56,
