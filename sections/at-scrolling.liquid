@@ -63,7 +63,6 @@
 </style>
 {% endstylesheet %}
 
-{% javascript %}
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const list = document.querySelector('.scrolling-product-list');
@@ -75,6 +74,7 @@
       entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
+            console.log('Product scroll module JS loaded');
             const img = entry.target.getAttribute('data-img');
             const url = entry.target.getAttribute('data-url');
             overlayImg.src = img;
@@ -96,7 +96,6 @@
     });
   });
 </script>
-{% endjavascript %}
 
 <div class="scrolling-product-showcase">
 
