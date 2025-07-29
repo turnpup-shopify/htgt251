@@ -93,9 +93,20 @@
 
     const list = container.querySelector(".scrolling-product-list");
     const items = container.querySelectorAll(".product-title");
-    const overlayImg = container.querySelector(".product-image-overlay img");
+    const overlay = container.querySelector(".product-image-overlay");
+    const overlayImg = overlay.querySelector("img");
 
     if (!list || !items.length || !overlayImg) return;
+
+    let hideTimer = null;
+
+    function updateOverlayFromItem(item) {
+      const img = item.getAttribute("data-img");
+      const url = item.getAttribute("data-url");
+      if (img) overlayImg.src = img;
+      if (url) overlayImg.setAttribute("data-link", url);
+      overlay.style.opacity = 1;
+    }
 
     function updateOverlay() {
       const listRect = list.getBoundingClientRect();
@@ -116,20 +127,33 @@
       });
 
       if (closest) {
-        const img = closest.getAttribute("data-img");
-        const url = closest.getAttribute("data-url");
-        if (img) overlayImg.src = img;
-        if (url) overlayImg.setAttribute("data-link", url);
+        updateOverlayFromItem(closest);
       }
     }
 
-    // Scroll event
+    // Initial state
+    updateOverlay();
+
+    // Scroll-based update
     list.addEventListener("scroll", () => {
       window.requestAnimationFrame(updateOverlay);
     });
 
-    // Initial state
-    updateOverlay();
+    // Mousemove to hide overlay temporarily
+    container.addEventListener("mousemove", () => {
+      overlay.style.opacity = 0;
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => {
+        updateOverlay(); // Show again after user stops moving
+      }, 600);
+    });
+
+    // Hovering on title updates instantly
+    items.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        updateOverlayFromItem(item);
+      });
+    });
 
     overlayImg.addEventListener("click", () => {
       const link = overlayImg.getAttribute("data-link");
@@ -137,12 +161,10 @@
     });
   }
 
-  // Run on load
   document.addEventListener("DOMContentLoaded", function () {
     initScrollObserver("{{ section.id }}");
   });
 
-  // Handle dynamic section load
   document.addEventListener("shopify:section:load", function (e) {
     if (e.target.querySelector(`#scrolling-product-showcase-{{ section.id }}`)) {
       initScrollObserver("{{ section.id }}");
