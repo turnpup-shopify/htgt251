@@ -99,7 +99,7 @@
 {% endjavascript %}
 
 <div class="scrolling-product-showcase">
-  {% assign collection_handle = section.settings.collection_metaobject.collection_handle.value %}
+  {% assign collection_handle = section.settings.input_metaobject.collection_handle.value %}
   <script>console.log("{{collections_handle}}");</script>
   {% assign collection = collections[collection_handle] %}
 
