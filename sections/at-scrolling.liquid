@@ -64,39 +64,62 @@
 {% endstylesheet %}
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const list = document.querySelector('.scrolling-product-list');
-    const items = document.querySelectorAll('.product-title');
-    const overlay = document.querySelector('.product-image-overlay');
-    const overlayImg = overlay.querySelector('img');
+  function initScrollObserver(container) {
+    const list = container.querySelector('.scrolling-product-list');
+    const items = container.querySelectorAll('.product-title');
+    const overlay = container.querySelector('.product-image-overlay');
+    const overlayImg = overlay?.querySelector('img');
 
-    console.log(items);
+    console.log('[Init] Found elements:', { list, items, overlay, overlayImg });
+
+    if (!list || !items.length || !overlayImg) {
+      console.warn('[Init] Missing required elements. Aborting scroll observer init.');
+      return;
+    }
 
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log('Product scroll module JS loaded');
             const img = entry.target.getAttribute('data-img');
             const url = entry.target.getAttribute('data-url');
-            overlayImg.src = img;
-            overlayImg.setAttribute('data-link', url);
+            if (img) overlayImg.src = img;
+            if (url) overlayImg.setAttribute('data-link', url);
+            console.log('[Observer] In view:', entry.target.textContent);
           }
         });
       },
       {
         root: list,
-        threshold: 0.6
+        threshold: 0.6,
       }
     );
 
-    items.forEach(item => observer.observe(item));
+    items.forEach((item) => observer.observe(item));
 
     overlayImg.addEventListener('click', () => {
       const link = overlayImg.getAttribute('data-link');
-      console.log("something clicked");
+      console.log('[Click] Navigating to:', link);
       if (link) window.location.href = link;
     });
+  }
+
+  // Initial load
+  window.addEventListener('load', () => {
+    const section = document.querySelector('#scrolling-product-showcase-{{ section.id }}');
+    if (section) {
+      console.log('[Load] Initializing scroll module for section {{ section.id }}');
+      initScrollObserver(section);
+    }
+  });
+
+  // When section is dynamically loaded
+  document.addEventListener('shopify:section:load', (event) => {
+    const section = event.target.querySelector('#scrolling-product-showcase-{{ section.id }}');
+    if (section) {
+      console.log('[Shopify Section Load] Re-initializing scroll module for section {{ section.id }}');
+      initScrollObserver(section);
+    }
   });
 </script>
 
