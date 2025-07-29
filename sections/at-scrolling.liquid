@@ -99,8 +99,24 @@
 {% endjavascript %}
 
 <div class="scrolling-product-showcase">
-  {% assign collection_handle = settings.collection_metaobject.collection_handle.value %}
+  {% assign collection_handle = settings.settings.collection_metaobject.collection_handle.value %}
+  <script>console.log("{{collections_handle}}");</script>
   {% assign collection = collections[collection_handle] %}
+
+  
+
+
+  {%- if my_metaobject.collection_handle != blank %}
+  {%- assign use_collection = collections[my_metaobject.collection_handle] -%}
+  {% render 'tp-prod-carousel-block'
+    , input_products: use_collection.products
+    , input_type: "products"
+    , input_title: my_metaobject.title
+    , input_shop_all_text: "shop all"
+    , input_shop_all_link: use_collection.url %}
+{%- endif -%}
+
+
 
   {% if collection != blank %}
     <div class="scrolling-product-list">
