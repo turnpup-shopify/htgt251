@@ -4,9 +4,9 @@
   "settings": [
     {
       "type": "metaobject",
-      "id": "product_list_metaobject",
-      "label": "Product Metaobject",
-      "metaobject_type": "product_list"
+      "id": "collection_metaobject",
+      "label": "Collection Metaobject",
+      "metaobject_type": "collection_entry"
     }
   ],
   "presets": [
@@ -99,22 +99,18 @@
 {% endjavascript %}
 
 <div class="scrolling-product-showcase">
-  {% assign metaobject = settings.product_list_metaobject %}
+  {% assign collection_handle = settings.collection_metaobject.collection_handle.value %}
+  {% assign collection = collections[collection_handle] %}
 
-  {% if metaobject != blank %}
-    {% assign products = metaobject.products.value %}
-
+  {% if collection != blank %}
     <div class="scrolling-product-list">
-      {% for product in products %}
-        {% assign prod = all_products[product] %}
-        {% if prod %}
-          <div
-            class="product-title"
-            data-img="{{ prod.featured_image | image_url: width: 800 }}"
-            data-url="{{ prod.url }}">
-            {{ prod.title }}
-          </div>
-        {% endif %}
+      {% for product in collection.products %}
+        <div
+          class="product-title"
+          data-img="{{ product.featured_image | image_url: width: 800 }}"
+          data-url="{{ product.url }}">
+          {{ product.title }}
+        </div>
       {% endfor %}
     </div>
 
@@ -122,139 +118,6 @@
       <img src="" alt="Product Preview" />
     </div>
   {% else %}
-    <p style="padding: 2rem; text-align: center;">Please select a metaobject with products.</p>
+    <p style="padding: 2rem; text-align: center;">Please select a metaobject that links to a valid collection.</p>
   {% endif %}
 </div>
-  
-  <style>
-      .flwr-multicolumn-outer {
-          margin: 0 !important;
-          padding: 0 !important;
-      }
-      .flwr-multicolumn-outer .multicolumn:not(.background-none) .multicolumn-card {
-          height: auto;
-      }
-      .multicolumn .button {
-          margin-top: 2em;
-          margin-bottom: 2em;
-      }
-      .flwr_multicolumn_hero_button {
-          padding: {{ section.settings.button_padding }};
-          border: 1px solid {{ section.settings.button_border_color }};
-          color: {{ section.settings.button_text_color }};
-          background: {{ section.settings.button_background_color }};
-          border-radius: {{ section.settings.button_border_radius }};
-          font-family: {{ section.settings.hero_button_font_family }};
-          font-size: {{ section.settings.hero_button_font_size }};
-          font-weight: {{ section.settings.hero_button_font_weight }};
-      }
-      .flwr_multicolumn_hero_button:hover {
-          border: 1px solid {{ section.settings.button_border_color_hover }};
-          color: {{ section.settings.button_text_color_hover }};
-          background: {{ section.settings.button_background_color_hover }};
-      }
-      .flwr_multicolumn_hero_button.inverse {
-          border: 1px solid {{ section.settings.button_border_color_hover }};
-          color: {{ section.settings.button_text_color_hover }};
-          background: {{ section.settings.button_background_color_hover }};
-      }
-      .flwr_multicolumn_hero_button.inverse:hover {
-          border: 1px solid {{ section.settings.button_border_color }};
-          color: {{ section.settings.button_text_color }};
-          background: {{ section.settings.button_background_color }};
-      }
-      .button {
-          box-shadow: none !important;
-      }
-      .button:not([disabled]):hover:after {
-          box-shadow: none !important;
-      }
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-      padding: 0;
-      list-style: none;
-      column-gap: var(--grid-mobile-horizontal-spacing);
-      row-gap: var(--grid-mobile-vertical-spacing);
-    }
-    .grid:last-child {
-      {% comment %} margin-bottom: 0; {% endcomment %}
-      margin: 0;
-    }
-    .grid--gapless.grid {
-      column-gap: 0;
-      row-gap: 0;
-    }
-    .media>*:not(.zoom):not(.deferred-media__poster-button), .media model-viewer {
-      display: block;
-      max-width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-    }
-    .media>img {
-      object-fit: cover;
-      object-position: center center;
-      transition: opacity .4s cubic-bezier(.25,.46,.45,.94);
-    }
-    .media--square {
-      padding-bottom: {{ section.settings.max_height_desktop }}%;
-    }
-    .media--transparent {
-      background-color: transparent;
-    }
-    .media {
-      display: flex;
-      background-color: rgba(var(--color-foreground),.1);
-      position: relative;
-      overflow: hidden;
-    }
-    .grid--1-col .grid__item {
-      max-width: 100%;
-      width: 100%;
-    }
-    .multicolumn-card__info .link {
-      text-decoration: none;
-      margin-top: 1.5rem;
-      color: {{ section.settings.button_text_color }};
-      font-family: {{ section.settings.hero_button_font_family }};
-      font-size: {{ section.settings.hero_button_font_size }};
-      font-weight: {{ section.settings.hero_button_font_weight }};
-    }
-    .multicolumn-card__info .icon-wrap {
-      margin-right: 0.8rem;
-      margin-left: 0rem;
-      white-space: nowrap;
-    }
-    .icon-arrow {
-      width: 1rem;
-      height: auto;
-    }
-      @media screen and (max-width: 749px) {
-          .flwr-multicolumn-outer .multicolumn-list:not(.slider) {
-              padding: 0px;
-          }
-          .media--square {
-              padding-bottom: {{ section.settings.mobile_max_height_desktop }}vH;
-          }
-          .flwr_multicolumn_hero_button {           	 
-              margin-bottom: 6px;
-          }
-      }
-    @media screen and (min-width: 750px) {
-      .grid--3-col-tablet .grid__item {
-          width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3);
-      }
-    }
-    @media screen and (min-width: 750px) {
-      .grid {
-          column-gap: var(--grid-desktop-horizontal-spacing);
-          row-gap: var(--grid-desktop-vertical-spacing);
-      }
-    }
-  
-  </style>
-  
