@@ -70,6 +70,8 @@
     const overlay = document.querySelector('.product-image-overlay');
     const overlayImg = overlay.querySelector('img');
 
+    console.log(items);
+
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -92,6 +94,7 @@
 
     overlayImg.addEventListener('click', () => {
       const link = overlayImg.getAttribute('data-link');
+      console.log("something clicked");
       if (link) window.location.href = link;
     });
   });
