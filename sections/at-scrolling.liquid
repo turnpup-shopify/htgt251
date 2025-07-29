@@ -5,7 +5,7 @@
     {
         "type": "metaobject",
         "id": "input_metaobject",
-        "label": "input metaobject",
+        "label": "Input Metaobject",
         "metaobject_type": "tp_carousel"
     }
   ],
@@ -17,7 +17,6 @@
 }
 {% endschema %}
 
-{% stylesheet %}
 <style>
   .scrolling-product-showcase {
     height: 50vh;
@@ -61,68 +60,11 @@
     cursor: pointer;
   }
 </style>
-{% endstylesheet %}
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const container = document.querySelector("#scrolling-product-showcase");
-
-    if (!container) {
-      console.warn("❌ Section container not found");
-      return;
-    }
-
-    const list = container.querySelector(".scrolling-product-list");
-    const items = container.querySelectorAll(".product-title");
-    const overlay = container.querySelector(".product-image-overlay");
-    const overlayImg = overlay?.querySelector("img");
-
-    if (!list || !items.length || !overlayImg) {
-      console.warn("❌ Required elements missing");
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const img = entry.target.getAttribute("data-img");
-            const url = entry.target.getAttribute("data-url");
-            if (img) overlayImg.src = img;
-            if (url) overlayImg.setAttribute("data-link", url);
-          }
-        });
-      },
-      {
-        root: list,
-        threshold: 0.5,
-      }
-    );
-
-    items.forEach((item) => observer.observe(item));
-
-    overlayImg.addEventListener("click", () => {
-      const link = overlayImg.getAttribute("data-link");
-      if (link) window.location.href = link;
-    });
-  });
-</script>
-
-<div class="scrolling-product-showcase">
-
+<div class="scrolling-product-showcase" id="scrolling-product-showcase-{{ section.id }}">
   {% assign metaobject_id = section.settings.input_metaobject %}
   {% assign my_metaobject = shop.metaobjects.tp_carousel[metaobject_id] %}
-  {%- assign use_collection = collections[my_metaobject.collection_handle] -%}
-  <script>console.log("{{use_collection.title}}");</script>
-
-  {%  comment  %}
-  {% render 'tp-prod-carousel-block'
-    , input_products: use_collection.products
-    , input_type: "products"
-    , input_title: my_metaobject.title
-    , input_shop_all_text: "shop all"
-    , input_shop_all_link: use_collection.url %}
-  {% endcomment %}
+  {% assign use_collection = collections[my_metaobject.collection_handle] %}
 
   {% if use_collection != blank %}
     <div class="scrolling-product-list">
@@ -143,3 +85,67 @@
     <p style="padding: 2rem; text-align: center;">Please select a metaobject that links to a valid collection.</p>
   {% endif %}
 </div>
+
+<script>
+  function initScrollObserver(sectionId) {
+    const container = document.querySelector(`#scrolling-product-showcase-${sectionId}`);
+    if (!container) return;
+
+    const list = container.querySelector(".scrolling-product-list");
+    const items = container.querySelectorAll(".product-title");
+    const overlayImg = container.querySelector(".product-image-overlay img");
+
+    if (!list || !items.length || !overlayImg) return;
+
+    function updateOverlay() {
+      const listRect = list.getBoundingClientRect();
+      const centerY = listRect.top + listRect.height / 2;
+
+      let closest = null;
+      let closestDistance = Infinity;
+
+      items.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        const itemCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(centerY - itemCenter);
+
+        if (distance < closestDistance) {
+          closest = item;
+          closestDistance = distance;
+        }
+      });
+
+      if (closest) {
+        const img = closest.getAttribute("data-img");
+        const url = closest.getAttribute("data-url");
+        if (img) overlayImg.src = img;
+        if (url) overlayImg.setAttribute("data-link", url);
+      }
+    }
+
+    // Scroll event
+    list.addEventListener("scroll", () => {
+      window.requestAnimationFrame(updateOverlay);
+    });
+
+    // Initial state
+    updateOverlay();
+
+    overlayImg.addEventListener("click", () => {
+      const link = overlayImg.getAttribute("data-link");
+      if (link) window.location.href = link;
+    });
+  }
+
+  // Run on load
+  document.addEventListener("DOMContentLoaded", function () {
+    initScrollObserver("{{ section.id }}");
+  });
+
+  // Handle dynamic section load
+  document.addEventListener("shopify:section:load", function (e) {
+    if (e.target.querySelector(`#scrolling-product-showcase-{{ section.id }}`)) {
+      initScrollObserver("{{ section.id }}");
+    }
+  });
+</script>
