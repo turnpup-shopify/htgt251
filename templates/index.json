@@ -298,6 +298,13 @@
         "mobile_space_between": 60
       }
     },
+    "at_scrolling_66baeL": {
+      "type": "at-scrolling",
+      "name": "AT - Scrolling Products",
+      "settings": {
+        "input_metaobject": "shop-all-sculptures"
+      }
+    },
     "tp_article_carousel_tUtyD6": {
       "type": "tp-article-carousel",
       "custom_css": [],
@@ -1754,6 +1761,7 @@
     "tp_open_closed_JKkjRY",
     "turnpup_multicolumn_Cd8XQ3",
     "turnpup_marquee_9XfUfG",
+    "at_scrolling_66baeL",
     "tp_article_carousel_tUtyD6",
     "tp_subnav_6TwtQ8",
     "16516195897b496f4a",
