@@ -45,12 +45,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-height: 60%;
+    max-height: calc(100% - 20px);
     max-width: 60%;
     z-index: 2;
     pointer-events: auto;
-    box-shadow: 0 0 40px rgba(0,0,0,0.25);
-    transition: opacity 0.3s ease;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
+    opacity: 1;
+    transition: none;
   }
 
   .product-image-overlay img {
@@ -58,6 +59,7 @@
     height: auto;
     display: block;
     cursor: pointer;
+    max-height: 100%;
   }
 </style>
 
@@ -71,7 +73,7 @@
       {% for product in use_collection.products %}
         <div
           class="product-title"
-          data-img="{{ product.featured_image | image_url: width: 800 }}"
+          data-img="{{ product.featured_image | image_url: width: 300 }}"
           data-url="{{ product.url }}">
           {{ product.title }}
         </div>
@@ -87,7 +89,7 @@
 </div>
 
 <script>
-  function initScrollObserver(sectionId) {
+  function initScrollOverlay(sectionId) {
     const container = document.querySelector(`#scrolling-product-showcase-${sectionId}`);
     if (!container) return;
 
@@ -98,12 +100,19 @@
 
     if (!list || !items.length || !overlayImg) return;
 
-    let hideTimer = null;
+    // Preload images
+    const imageCache = {};
+    items.forEach((item) => {
+      const src = item.getAttribute("data-img");
+      const img = new Image();
+      img.src = src;
+      imageCache[src] = img;
+    });
 
     function updateOverlayFromItem(item) {
       const img = item.getAttribute("data-img");
       const url = item.getAttribute("data-url");
-      if (img) overlayImg.src = img;
+      if (img) overlayImg.src = imageCache[img].src;
       if (url) overlayImg.setAttribute("data-link", url);
       overlay.style.opacity = 1;
     }
@@ -126,48 +135,40 @@
         }
       });
 
-      if (closest) {
-        updateOverlayFromItem(closest);
-      }
+      if (closest) updateOverlayFromItem(closest);
     }
 
-    // Initial state
-    updateOverlay();
-
-    // Scroll-based update
+    // Scroll interaction
     list.addEventListener("scroll", () => {
       window.requestAnimationFrame(updateOverlay);
     });
 
-    // Mousemove to hide overlay temporarily
+    // Hover instantly triggers update
+    items.forEach((item) => {
+      item.addEventListener("mouseenter", () => updateOverlayFromItem(item));
+    });
+
+    // Hide overlay on mousemove (instantly)
     container.addEventListener("mousemove", () => {
       overlay.style.opacity = 0;
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(() => {
-        updateOverlay(); // Show again after user stops moving
-      }, 600);
     });
 
-    // Hovering on title updates instantly
-    items.forEach((item) => {
-      item.addEventListener("mouseenter", () => {
-        updateOverlayFromItem(item);
-      });
-    });
-
+    // Click image to go to link
     overlayImg.addEventListener("click", () => {
       const link = overlayImg.getAttribute("data-link");
       if (link) window.location.href = link;
     });
+
+    updateOverlay(); // initial
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    initScrollObserver("{{ section.id }}");
+    initScrollOverlay("{{ section.id }}");
   });
 
   document.addEventListener("shopify:section:load", function (e) {
     if (e.target.querySelector(`#scrolling-product-showcase-{{ section.id }}`)) {
-      initScrollObserver("{{ section.id }}");
+      initScrollOverlay("{{ section.id }}");
     }
   });
 </script>
