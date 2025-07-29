@@ -34,20 +34,20 @@
   }
 
   .scrolling-product-list {
-    flex: 1;
-    height: 100%;
-    overflow-y: scroll;
-    padding: 2rem;
-    scroll-snap-type: y mandatory;
-  }
+  flex: 1;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 2rem 2rem 2rem 40px;
+  scroll-snap-type: y mandatory;
+}
 
-  .product-title {
-    font-size: 2rem;
-    margin: 3rem 0;
-    text-align: center;
-    scroll-snap-align: center;
-    cursor: pointer;
-  }
+.product-title {
+  font-size: 2rem;
+  margin: 3rem 0;
+  text-align: left;
+  scroll-snap-align: center;
+  cursor: pointer;
+}
 
   .product-image-overlay {
     flex: 1;
@@ -64,10 +64,11 @@
   display: none;
   max-height: calc(100% - 20px);
   max-width: calc(50% - 20px);
-  height: auto;
   width: auto;
+  height: auto;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  loading: eager;
 }
 
   @media (max-width: 767px) {
@@ -123,7 +124,7 @@
 
     if (!list || !items.length || !overlayImg) return;
 
-    // Preload images
+    // Preload images eagerly
     const imageCache = {};
     items.forEach((item) => {
       const src = item.getAttribute("data-img");
@@ -131,6 +132,8 @@
       img.src = src;
       imageCache[src] = img;
     });
+
+    const isMobile = window.innerWidth < 768;
 
     items.forEach((item) => {
       item.addEventListener("mouseenter", () => {
@@ -142,7 +145,9 @@
       });
 
       item.addEventListener("mouseleave", () => {
-        overlayImg.style.display = "none";
+        if (isMobile) {
+          overlayImg.style.display = "none";
+        }
       });
     });
 
@@ -150,6 +155,16 @@
       const link = overlayImg.getAttribute("data-link");
       if (link) window.location.href = link;
     });
+
+    // Show first image instantly
+    const firstItem = items[0];
+    if (firstItem) {
+      const firstImg = firstItem.getAttribute("data-img");
+      const firstUrl = firstItem.getAttribute("data-url");
+      if (firstImg) overlayImg.src = imageCache[firstImg].src;
+      if (firstUrl) overlayImg.setAttribute("data-link", firstUrl);
+      overlayImg.style.display = "block";
+    }
   }
 
   document.addEventListener("DOMContentLoaded", function () {
