@@ -17,6 +17,7 @@
 }
 {% endschema %}
 
+<style>
 .scrolling-product-showcase {
   height: 50vh;
   display: flex;
@@ -104,6 +105,7 @@
     max-width: calc(100% - 100px);
   }
 }
+</style>
 
 <div class="scrolling-product-showcase" id="scrolling-product-showcase-{{ section.id }}">
   {% assign metaobject_id = section.settings.input_metaobject %}
