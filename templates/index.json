@@ -300,6 +300,7 @@
     },
     "at_scrolling_66baeL": {
       "type": "at-scrolling",
+      "disabled": true,
       "name": "AT - Scrolling Products",
       "settings": {
         "input_metaobject": "shop-all-sculptures"
