@@ -3,10 +3,10 @@
   "name": "AT - Scrolling Products",
   "settings": [
     {
-        "type": "metaobject",
-        "id": "input_metaobject",
-        "label": "Input Metaobject",
-        "metaobject_type": "tp_carousel"
+      "type": "metaobject",
+      "id": "input_metaobject",
+      "label": "Input Metaobject",
+      "metaobject_type": "tp_carousel"
     }
   ],
   "presets": [
@@ -20,12 +20,21 @@
 <style>
   .scrolling-product-showcase {
     height: 50vh;
-    position: relative;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     background: #f8f8f8;
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    .scrolling-product-showcase {
+      flex-direction: row;
+    }
   }
 
   .scrolling-product-list {
+    flex: 1;
     height: 100%;
     overflow-y: scroll;
     padding: 2rem;
@@ -41,25 +50,38 @@
   }
 
   .product-image-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-height: calc(100% - 20px);
-    max-width: 60%;
-    z-index: 2;
-    pointer-events: auto;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
-    opacity: 1;
-    transition: none;
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 100%;
+    max-width: 100%;
+    padding: 20px;
   }
 
   .product-image-overlay img {
-    width: 100%;
-    height: auto;
-    display: block;
+    max-height: calc(100% - 20px);
+    max-width: 100%;
+    display: none;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
     cursor: pointer;
-    max-height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .product-image-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-height: 60%;
+      max-width: 60%;
+      pointer-events: auto;
+    }
+
+    .product-image-overlay img {
+      display: block;
+    }
   }
 </style>
 
@@ -89,14 +111,13 @@
 </div>
 
 <script>
-  function initScrollOverlay(sectionId) {
+  function initHoverOverlay(sectionId) {
     const container = document.querySelector(`#scrolling-product-showcase-${sectionId}`);
     if (!container) return;
 
     const list = container.querySelector(".scrolling-product-list");
     const items = container.querySelectorAll(".product-title");
-    const overlay = container.querySelector(".product-image-overlay");
-    const overlayImg = overlay.querySelector("img");
+    const overlayImg = container.querySelector(".product-image-overlay img");
 
     if (!list || !items.length || !overlayImg) return;
 
@@ -109,66 +130,33 @@
       imageCache[src] = img;
     });
 
-    function updateOverlayFromItem(item) {
-      const img = item.getAttribute("data-img");
-      const url = item.getAttribute("data-url");
-      if (img) overlayImg.src = imageCache[img].src;
-      if (url) overlayImg.setAttribute("data-link", url);
-      overlay.style.opacity = 1;
-    }
-
-    function updateOverlay() {
-      const listRect = list.getBoundingClientRect();
-      const centerY = listRect.top + listRect.height / 2;
-
-      let closest = null;
-      let closestDistance = Infinity;
-
-      items.forEach((item) => {
-        const rect = item.getBoundingClientRect();
-        const itemCenter = rect.top + rect.height / 2;
-        const distance = Math.abs(centerY - itemCenter);
-
-        if (distance < closestDistance) {
-          closest = item;
-          closestDistance = distance;
-        }
+    items.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        const img = item.getAttribute("data-img");
+        const url = item.getAttribute("data-url");
+        if (img) overlayImg.src = imageCache[img].src;
+        if (url) overlayImg.setAttribute("data-link", url);
+        overlayImg.style.display = "block";
       });
 
-      if (closest) updateOverlayFromItem(closest);
-    }
-
-    // Scroll interaction
-    list.addEventListener("scroll", () => {
-      window.requestAnimationFrame(updateOverlay);
+      item.addEventListener("mouseleave", () => {
+        overlayImg.style.display = "none";
+      });
     });
 
-    // Hover instantly triggers update
-    items.forEach((item) => {
-      item.addEventListener("mouseenter", () => updateOverlayFromItem(item));
-    });
-
-    // Hide overlay on mousemove (instantly)
-    container.addEventListener("mousemove", () => {
-      overlay.style.opacity = 0;
-    });
-
-    // Click image to go to link
     overlayImg.addEventListener("click", () => {
       const link = overlayImg.getAttribute("data-link");
       if (link) window.location.href = link;
     });
-
-    updateOverlay(); // initial
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    initScrollOverlay("{{ section.id }}");
+    initHoverOverlay("{{ section.id }}");
   });
 
   document.addEventListener("shopify:section:load", function (e) {
     if (e.target.querySelector(`#scrolling-product-showcase-{{ section.id }}`)) {
-      initScrollOverlay("{{ section.id }}");
+      initHoverOverlay("{{ section.id }}");
     }
   });
 </script>
