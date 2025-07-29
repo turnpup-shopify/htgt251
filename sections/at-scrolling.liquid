@@ -105,17 +105,18 @@
   {%- assign use_collection = collections[my_metaobject.collection_handle] -%}
   <script>console.log("{{use_collection.title}}");</script>
 
+  {%  comment  %}
   {% render 'tp-prod-carousel-block'
     , input_products: use_collection.products
     , input_type: "products"
     , input_title: my_metaobject.title
     , input_shop_all_text: "shop all"
     , input_shop_all_link: use_collection.url %}
+  {% endcomment %}
 
-
-  {% if collection != blank %}
+  {% if use_collection != blank %}
     <div class="scrolling-product-list">
-      {% for product in collection.products %}
+      {% for product in use_collection.products %}
         <div
           class="product-title"
           data-img="{{ product.featured_image | image_url: width: 800 }}"
