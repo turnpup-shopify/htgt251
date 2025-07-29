@@ -27,12 +27,31 @@
     position: relative;
   }
 
-  @media (min-width: 768px) {
-    .scrolling-product-showcase {
-      flex-direction: row;
-    }
+ @media (max-width: 767px) {
+  .scrolling-product-showcase {
+    flex-direction: column;
   }
 
+  .product-image-overlay {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    max-height: 100%;
+    max-width: 100%;
+    pointer-events: auto;
+    padding-right: 20px;
+    justify-content: flex-end;
+  }
+
+  .product-image-overlay img {
+    display: block;
+    max-height: calc(100% - 40px);
+    max-width: calc(100% - 100px);
+    height: auto;
+    width: auto;
+  }
+}
   .scrolling-product-list {
   flex: 1;
   height: 100%;
