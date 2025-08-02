@@ -17,17 +17,18 @@ document.addEventListener('DOMContentLoaded', function(event) {
     });
   });
 
-  // this below short block just dismisses the desktop menus when mouse leaves the mega menu on the bottom
-  document.querySelector("#MainContent").addEventListener("mouseover", (el) => {
-    console.log("mouseOver main");
-    document.querySelectorAll("details").forEach((e) => {
-      const openDetailsElement = e;
-      const summaryElement = openDetailsElement.querySelector('summary');
-      openDetailsElement.removeAttribute('open');
-      summaryElement.setAttribute('aria-expanded', false);
-      // summaryElement.focus();
-    })     
-  })
+  // this below block dismisses desktop menus only if any dropdown is open
+  document.querySelector("#MainContent").addEventListener("mouseover", () => {
+    const openMenus = Array.from(document.querySelectorAll("details[open]"));
+    if (openMenus.length === 0) return;
+
+    console.log("mouseOver main - closing open dropdowns");
+    openMenus.forEach((e) => {
+      const summaryElement = e.querySelector('summary');
+      e.removeAttribute('open');
+      if (summaryElement) summaryElement.setAttribute('aria-expanded', false);
+    });
+  });
 
     // find all elements with this attribute and put in an array
     const headers = document.querySelectorAll('[js-accordion-header]');
