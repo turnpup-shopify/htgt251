@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', function(event) {
   
+  // this below short block just dismisses the desktop menus when mouse leaves the mega menu on the bottom
+  document.querySelector("#MainContent").addEventListener("mouseover", (el) => {
+    console.log("mouseOver main");
+    document.querySelectorAll("details").forEach((e) => {
+      const openDetailsElement = e;
+      const summaryElement = openDetailsElement.querySelector('summary');
+      openDetailsElement.removeAttribute('open');
+      summaryElement.setAttribute('aria-expanded', false);
+      summaryElement.focus();
+    })     
+  })
+
     // find all elements with this attribute and put in an array
     const headers = document.querySelectorAll('[js-accordion-header]');
   
