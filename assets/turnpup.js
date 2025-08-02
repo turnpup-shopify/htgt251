@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
       const summaryElement = openDetailsElement.querySelector('summary');
       openDetailsElement.removeAttribute('open');
       summaryElement.setAttribute('aria-expanded', false);
-      summaryElement.focus();
+      // summaryElement.focus();
     })     
   })
 
