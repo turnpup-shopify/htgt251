@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   // this below block dismisses desktop menus only if any dropdown is open
   document.querySelector("#MainContent").addEventListener("mouseover", () => {
-    const openMenus = Array.from(document.querySelectorAll("details[open]"));
+    const openMenus = Array.from(document.querySelectorAll("header details[open]"));
     if (openMenus.length === 0) return;
 
     console.log("mouseOver main - closing open dropdowns");
