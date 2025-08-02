@@ -1,5 +1,22 @@
 document.addEventListener('DOMContentLoaded', function(event) {
   
+  document.querySelectorAll('.js-menu-summary').forEach(summary => {
+    const details = summary.closest('details');
+    const link = summary.querySelector('.js-summary-link');
+
+    link.addEventListener('click', function(e) {
+      if (details.hasAttribute('open')) {
+        // Allow click to follow link if menu is open
+        console.log("Following link:", link.href);
+      } else {
+        // Prevent click and toggle open state
+        e.preventDefault();
+        console.log("Prevented link. Opening menu instead:", link.href);
+        details.setAttribute('open', true);
+      }
+    });
+  });
+
   // this below short block just dismisses the desktop menus when mouse leaves the mega menu on the bottom
   document.querySelector("#MainContent").addEventListener("mouseover", (el) => {
     console.log("mouseOver main");

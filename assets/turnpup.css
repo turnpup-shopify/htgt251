@@ -29,6 +29,11 @@
   display: block;
 }
 
+/* GLOBAL HEADER CUSTOM TURNPUP */
+header a, header a:hover, header a:focus {
+  color: rgb(var(--color-foreground));
+}
+
 /* GLOBAL MENU PANEL FOOTER */
 .menu-drawer__utility-links {
   display: none;

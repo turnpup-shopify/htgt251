@@ -477,8 +477,12 @@
                 {%- if link.links != blank -%}
                   <header-menu>
                     <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
-                      <summary class="header__menu-item list-menu__item link focus-inset">
+                      {% comment %} <summary class="header__menu-item list-menu__item link focus-inset">
                         <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
+                        {% render 'icon-caret' %}
+                      </summary> {% endcomment %}
+                      <summary class="header__menu-item list-menu__item link focus-inset js-menu-summary" data-url="{{ link.url }}">
+                        <a href="{{ link.url }}" class="js-summary-link"{% if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</a>
                         {% render 'icon-caret' %}
                       </summary>
                       <div id="MegaMenu-Content-{{ forloop.index }}" class="mega-menu__content gradient motion-reduce global-settings-popup" tabindex="-1">
