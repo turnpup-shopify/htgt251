@@ -312,6 +312,7 @@
       "settings": {
         "input_metaobject": "materials",
         "max_items": 3,
+        "enable_scroll": false,
         "padding_top": 20,
         "padding_bottom": 40,
         "padding_right": 60,
@@ -380,6 +381,7 @@
       "settings": {
         "input_metaobject": "new-arrivals",
         "max_items": 6,
+        "enable_scroll": true,
         "padding_top": 60,
         "padding_bottom": 44,
         "padding_right": 60,
@@ -562,6 +564,7 @@
       "settings": {
         "input_metaobject": "small-benches",
         "max_items": 6,
+        "enable_scroll": true,
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_right": 60,
@@ -705,6 +708,7 @@
       "settings": {
         "input_metaobject": "bathroom-vanity-mirrors",
         "max_items": 6,
+        "enable_scroll": true,
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_right": 60,
@@ -936,6 +940,7 @@
       "settings": {
         "input_metaobject": "coastal-end-tables",
         "max_items": 6,
+        "enable_scroll": true,
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_right": 60,
@@ -1100,6 +1105,7 @@
       "settings": {
         "input_metaobject": "entryway-mirrors",
         "max_items": 6,
+        "enable_scroll": true,
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_right": 60,
@@ -1217,6 +1223,7 @@
       "settings": {
         "input_metaobject": "coastal-furniture-decor",
         "max_items": 6,
+        "enable_scroll": true,
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_right": 60,
@@ -1445,6 +1452,7 @@
       "settings": {
         "input_metaobject": "drink-tables",
         "max_items": 6,
+        "enable_scroll": true,
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_right": 60,
