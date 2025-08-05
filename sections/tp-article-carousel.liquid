@@ -59,14 +59,14 @@
       {% assign inputs = inputs | push: p %}
       <div style="display: none">{% assign index = index | plus: 1 %}</div>
       {% comment %} <script> console.log("{{index}} <  {{ section.settings.max_items }} ");</script> {% endcomment %}
+      {% render 'tp-prod-carousel-block'
+        , input_products: inputs
+        , input_type: "products"
+        , input_title: my_metaobject.title
+        , input_shop_all_text: "shop all"
+        , input_shop_all_link: use_collection.url %}
     {%- endif -%}
   {%- endfor -%}
-  {% render 'tp-prod-carousel-block'
-    , input_products: inputs
-    , input_type: "products"
-    , input_title: my_metaobject.title
-    , input_shop_all_text: "shop all"
-    , input_shop_all_link: use_collection.url %}
 {%- endif -%}
 <style>
   .custom-carousel-slider-container {
