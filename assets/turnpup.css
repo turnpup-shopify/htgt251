@@ -307,6 +307,11 @@ h2.accordion__title {
   margin-top: 0px !important;
 }
 
+/* CART */
+.cart-notification button {
+  padding: 20px 0;
+}
+
 /* COLLECTION */
 .page-width.collection, .collection {
   margin: 20px auto 0;
