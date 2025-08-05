@@ -56,8 +56,7 @@
   {%- for p in use_collection.products -%}
     {%- if index < section.settings.max_items -%}
       {% assign inputs = inputs | push: p %}
-      <p> {{ index }} </p>
-      {% increment index %}
+      <div style="display: none">{% increment index %}</div>
     {%- endif -%}
   {%- endfor -%}
   {% render 'tp-prod-carousel-block'
