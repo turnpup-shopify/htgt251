@@ -55,10 +55,10 @@
   {% assign inputs = '' | split: ',' %}
   {%- for p in use_collection.products -%}
     {%- if index < section.settings.max_items -%}
-      <script> console.log("{{index}} <  {{ section.settings.max_items }} ");</script>
+      {% comment %} <script> console.log("{{index}} <  {{ section.settings.max_items }} ");</script> {% endcomment %}
       {% assign inputs = inputs | push: p %}
       <div style="display: none">{% assign index = index | plus: 1 %}</div>
-      <script> console.log("{{index}} <  {{ section.settings.max_items }} ");</script>
+      {% comment %} <script> console.log("{{index}} <  {{ section.settings.max_items }} ");</script> {% endcomment %}
     {%- endif -%}
   {%- endfor -%}
   {% render 'tp-prod-carousel-block'
