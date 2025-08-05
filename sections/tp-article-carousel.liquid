@@ -59,7 +59,7 @@
     , input_shop_all_link: use_collection.url
     , input_max: input_max_defaulted %}
 {%- endif -%}
-<p>{{section.settings.enable_scroll}} tp</p>
+<p>{{section.settings.enable_scroll}} {{input_max_defaulted}}</p>
 <style>
   .custom-carousel-slider-container {
     width: 100%;
@@ -108,7 +108,11 @@
     border: none;
   }
   .custom-carousel-slider {
-    {% if section.settings.enable_scroll == true %} overflow-x: scroll; {% else %} overflow-x: hidden; {% endif %}
+    {% if section.settings.enable_scroll == true %} 
+      overflow-x: scroll; 
+    {% else %} 
+      overflow-x: hidden; 
+    {% endif %}
     overflow-y: hidden;
     scroll-behavior: smooth;
     height: 100%;
@@ -133,7 +137,7 @@
   .custom-carousel-outer-{{ section.id }} .custom-carousel-block-image-container {
     flex: 0 0 auto;
     {% comment %} width: 100%;{% endcomment %}
-    width: calc(100% / {{section.settings.max_items}});
+    width: calc(100% / {{section.settings.max_items}} - 20px);
     margin-right: 20px;
     height: 100%;
   }
