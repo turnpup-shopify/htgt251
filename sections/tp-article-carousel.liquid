@@ -54,8 +54,8 @@
   {%- assign index = 1 -%}
   {% assign inputs = '' | split: ',' %}
   {%- for p in use_collection.products -%}
-    <script> console.log("{{index}} {{p | json}}");</script>
     {%- if index < section.settings.max_items -%}
+      <script> console.log("{{index}} {{p | json}}");</script>
       {% assign inputs = inputs | push: p %}
       <div style="display: none">{% increment index %}</div>
     {%- endif -%}
