@@ -34,7 +34,7 @@
         "buttons"
       ],
       "custom_css": [
-        ".cart__ctas button {padding: 20px 0;}"
+        ".cart__ctas button {padding: 20px 0; font-weight: 780; text-transform: uppercase}"
       ],
       "settings": {
         "show_cart_note": false
