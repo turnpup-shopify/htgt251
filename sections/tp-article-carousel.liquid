@@ -108,8 +108,7 @@
     border: none;
   }
   .custom-carousel-slider {
-    /* {% if section.settings.enable_scroll %} overflow-x: scroll; {% else %} overflow-x: hidden; {% endif %} */
-    overflow-x: hidden;
+    {% if section.settings.enable_scroll == true %} overflow-x: scroll; {% else %} overflow-x: hidden; {% endif %}
     overflow-y: hidden;
     scroll-behavior: smooth;
     height: 100%;
