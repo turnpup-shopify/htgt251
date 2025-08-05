@@ -57,7 +57,8 @@
     {%- if index < section.settings.max_items -%}
       <script> console.log("{{index}} <  {{ section.settings.max_items }} ");</script>
       {% assign inputs = inputs | push: p %}
-      <div style="display: none">{% increment index %}</div>
+      <div style="display: none">{% assign index = index | plus: 1 %}</div>
+      <script> console.log("{{index}} <  {{ section.settings.max_items }} ");</script>
     {%- endif -%}
   {%- endfor -%}
   {% render 'tp-prod-carousel-block'
