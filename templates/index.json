@@ -311,6 +311,7 @@
       "name": "TP - Blog Post Carousel",
       "settings": {
         "input_metaobject": "materials",
+        "max_items": 3,
         "padding_top": 20,
         "padding_bottom": 40,
         "padding_right": 60,
@@ -378,6 +379,7 @@
       "custom_css": [],
       "settings": {
         "input_metaobject": "new-arrivals",
+        "max_items": 6,
         "padding_top": 60,
         "padding_bottom": 44,
         "padding_right": 60,
@@ -559,6 +561,7 @@
       "type": "tp-article-carousel",
       "settings": {
         "input_metaobject": "small-benches",
+        "max_items": 6,
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_right": 60,
@@ -701,6 +704,7 @@
       "type": "tp-article-carousel",
       "settings": {
         "input_metaobject": "bathroom-vanity-mirrors",
+        "max_items": 6,
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_right": 60,
@@ -931,6 +935,7 @@
       "custom_css": [],
       "settings": {
         "input_metaobject": "coastal-end-tables",
+        "max_items": 6,
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_right": 60,
@@ -1094,6 +1099,7 @@
       "type": "tp-article-carousel",
       "settings": {
         "input_metaobject": "entryway-mirrors",
+        "max_items": 6,
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_right": 60,
@@ -1210,6 +1216,7 @@
       "type": "tp-article-carousel",
       "settings": {
         "input_metaobject": "coastal-furniture-decor",
+        "max_items": 6,
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_right": 60,
@@ -1437,6 +1444,7 @@
       "type": "tp-article-carousel",
       "settings": {
         "input_metaobject": "drink-tables",
+        "max_items": 6,
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_right": 60,
