@@ -307,6 +307,7 @@
     },
     "tp_article_carousel_HwRjKQ": {
       "type": "tp-article-carousel",
+      "disabled": true,
       "custom_css": [],
       "name": "TP - Blog Post Carousel",
       "settings": {
