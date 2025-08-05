@@ -22,18 +22,19 @@
       "blocks": {
         "subtotal": {
           "type": "subtotal",
-          "settings": {
-          }
+          "settings": {}
         },
         "buttons": {
           "type": "buttons",
-          "settings": {
-          }
+          "settings": {}
         }
       },
       "block_order": [
         "subtotal",
         "buttons"
+      ],
+      "custom_css": [
+        ".cart__ctas button {padding: 20px 0;}"
       ],
       "settings": {
         "show_cart_note": false
@@ -57,7 +58,7 @@
         "show_view_all": true,
         "view_all_style": "solid",
         "enable_desktop_slider": false,
-        "section_background_color": "#DDDDDD",
+        "section_background_color": "#dddddd",
         "image_ratio": "square",
         "show_secondary_image": false,
         "show_vendor": false,
