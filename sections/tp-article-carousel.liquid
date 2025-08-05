@@ -50,8 +50,17 @@
 {% assign my_metaobject = shop.metaobjects.tp_carousel[metaobject_id] %}
 {%- if my_metaobject.collection_handle != blank %}
   {%- assign use_collection = collections[my_metaobject.collection_handle] -%}
+  {% comment %} {%- assign use_collection = collections[my_metaobject.collection_handle] -%} {% endcomment %}
+  {%- assign index = 1 -%}
+  {%- assign inputs = [] -%}
+  {%- for p in use_collection.products -%}
+    {%- if index < section.settings.max_items -%}
+      {% assign inputs = inputs | push: p   %}
+      {% increment index %}
+    {%- endif -%}
+  {%- endfor -%}
   {% render 'tp-prod-carousel-block'
-    , input_products: use_collection.products
+    , input_products: inputs
     , input_type: "products"
     , input_title: my_metaobject.title
     , input_shop_all_text: "shop all"
@@ -105,7 +114,7 @@
     border: none;
   }
   .custom-carousel-slider {
-    overflow-x: scroll;
+    {% if section.settings.enable_scroll %} overflow-x: scroll; {% else %} overflow-x: hidden; {% endif %}
     overflow-y: hidden;
     scroll-behavior: smooth;
     height: 100%;
@@ -146,8 +155,7 @@
   top: 0;
   left: 0;
   object-fit: cover;
-  border: {{ section.settings.border_width }}
-  px solid{{ section.settings.border_color }};
+  border: {{ section.settings.border_width }}px solid{{ section.settings.border_color }};
   border-radius: {{ section.settings.border_radius }}px;
 }
 .custom-carousel-block-image-container img.rollover {
@@ -261,6 +269,12 @@
         "max": 10,
         "step": 1,
         "default": 6
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_scroll",
+        "label": "Enable Scroll?",
+        "default": true
       },
       {
         "type": "header",
