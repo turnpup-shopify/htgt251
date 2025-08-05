@@ -40,12 +40,11 @@
       "block_order": [
         "text_jJB3HC"
       ],
-      "disabled": true,
       "custom_css": [
         "@media screen and (max-width: 700px) {.one_long_sentence_wrapper {margin-top: 20px; padding-top: 0px; }}"
       ],
       "settings": {
-        "subtitle": "COSTA MESA STORE CLOSED 8/7-9/5",
+        "subtitle": "COSTA MESA STORE CLOSED 8/7-9/5.",
         "subtitle_font_size": "14px",
         "subtitle_font_weight": "300px",
         "subtitle_font_family": "'Helvetica Neue'",
