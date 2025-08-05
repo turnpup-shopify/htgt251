@@ -50,25 +50,14 @@
 {% assign my_metaobject = shop.metaobjects.tp_carousel[metaobject_id] %}
 {%- if my_metaobject.collection_handle != blank %}
   {%- assign use_collection = collections[my_metaobject.collection_handle] -%}
-  {% comment %} {%- assign use_collection = collections[my_metaobject.collection_handle] -%} {% endcomment %}
-  {%- assign index = 1 -%}
-  {% assign inputs = '' | split: ',' %}
-  {% comment %} {%- for p in use_collection.products -%}
-    {%- if index < section.settings.max_items -%}
-      {% assign inputs = inputs | push: p %}
-      <div style="display: none">{% assign index = index | plus: 1 %}</div>
-    {%- endif -%}
-  {%- endfor -%} {% endcomment %}
-  {% assign index = 0 %}
-  {% assign max = section.settings.max_items %}  
-  {% assign limited_products = use_collection.products | slice: 0, max %}
-  <script> console.log({{ limited_products | json }});</script>[]
+  {%- assign input_max_defaulted = section.settings.max_items | default: 6 -%}
   {% render 'tp-prod-carousel-block'
-    , input_products: limited_products
+    , input_products: use_collection.products
     , input_type: "products"
     , input_title: my_metaobject.title
     , input_shop_all_text: "shop all"
-    , input_shop_all_link: use_collection.url %}
+    , input_shop_all_link: use_collection.url
+    , input_max: input_max_defaulted %}
 {%- endif -%}
 <style>
   .custom-carousel-slider-container {
