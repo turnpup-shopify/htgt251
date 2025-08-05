@@ -61,9 +61,10 @@
   {%- endfor -%} {% endcomment %}
   {% assign index = 0 %}
   {% assign max = section.settings.max_items %}  
-  <script> console.log(" {{ use_collection.products | slice: 0, max | json }} ");</script>[]
+  {% assign limited_products = use_collection.products | slice: 0, max %}
+  <script> console.log({{ limited_products | json }});</script>[]
   {% render 'tp-prod-carousel-block'
-    , input_products: use_collection.products | slice: 0, max
+    , input_products: limited_products
     , input_type: "products"
     , input_title: my_metaobject.title
     , input_shop_all_text: "shop all"
