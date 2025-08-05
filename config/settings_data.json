@@ -27,7 +27,7 @@
     "popup_body_margin_top": "20px",
     "popup_body_margin_bottom": "14px",
     "timer_start_date": "December 25, 2024 23:24:00",
-    "timer_end_date": "August 1, 2025 23:24:00",
+    "timer_end_date": "August 4, 2025 23:24:00",
     "card_desktop_title_size": "1.6rem",
     "card_mobile_title_size": "1.4rem",
     "pdp_product_title_size": "40px",
@@ -149,7 +149,7 @@
           "announcement_QitHwB": {
             "type": "announcement",
             "settings": {
-              "text": "Last Chance for Markdowns Through End of August 1st",
+              "text": "Last Chance for Markdowns Through End of August 4th",
               "is_red": false,
               "color_scheme": "accent-1",
               "link": ""
