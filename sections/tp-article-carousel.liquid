@@ -53,16 +53,17 @@
   {% comment %} {%- assign use_collection = collections[my_metaobject.collection_handle] -%} {% endcomment %}
   {%- assign index = 1 -%}
   {% assign inputs = '' | split: ',' %}
-  {%- for p in use_collection.products -%}
+  {% comment %} {%- for p in use_collection.products -%}
     {%- if index < section.settings.max_items -%}
-      {% comment %} <script> console.log("{{index}} <  {{ section.settings.max_items }} ");</script> {% endcomment %}
       {% assign inputs = inputs | push: p %}
       <div style="display: none">{% assign index = index | plus: 1 %}</div>
     {%- endif -%}
-  {%- endfor -%}
-  <script> console.log(" {{ inputs | json }} ");</script>[]
+  {%- endfor -%} {% endcomment %}
+  {% assign index = 0 %}
+  {% assign max = section.settings.max_items %}  
+  <script> console.log(" {{ use_collection.products | slice: 0, max | json }} ");</script>[]
   {% render 'tp-prod-carousel-block'
-    , input_products: inputs
+    , input_products: use_collection.products | slice: 0, max
     , input_type: "products"
     , input_title: my_metaobject.title
     , input_shop_all_text: "shop all"
