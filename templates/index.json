@@ -44,9 +44,9 @@
         "@media screen and (max-width: 700px) {.one_long_sentence_wrapper {margin-top: 10px; padding-top: 0px; }}"
       ],
       "settings": {
-        "subtitle": "COSTA MESA STORE CLOSED 8/7-9/5.",
+        "subtitle": "COSTA MESA STORE CLOSED 8/7-9/5",
         "subtitle_font_size": "14px",
-        "subtitle_font_weight": "300px",
+        "subtitle_font_weight": "500px",
         "subtitle_font_family": "'Helvetica Neue'",
         "subtitle_font_color": "#121212",
         "background_color": "#fa6d12",
