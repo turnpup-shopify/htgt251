@@ -84,7 +84,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 /* GLOBAL TABLES */
 table:not([class]) {  
-  box-shadow: 0;
+  box-shadow: none !important;
 }
 table:not([class]) td, table:not([class]) th {
   border: none;
