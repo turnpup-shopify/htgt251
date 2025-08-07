@@ -240,7 +240,7 @@
               </div>
               <div class="card__badge {{ settings.badge_position }}">
                 {%- if card_product.price == 0 %}
-                {%- elsif card_product.available == false and settings.remove_sold_out_badging == false -%}
+                {%- elsif card_product.available == false and settings.remove_sold_out_badging != true -%}
                   <span
                     id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                     class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
