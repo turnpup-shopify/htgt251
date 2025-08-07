@@ -837,7 +837,8 @@
         "email_form_mqcrMq"
       ],
       "custom_css": [
-        ".rte > p:last-child {padding: 10px 0 10px;}"
+        ".rte > p:last-child {padding: 10px 0 10px;}",
+        "div, input {background-color: #C2C2CC;}"
       ],
       "settings": {
         "color_scheme": "background-1",
