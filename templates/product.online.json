@@ -579,7 +579,7 @@
         "template--21548699484434__13648ee8-4def-4c5e-b221-a6f262e62d34-column-2": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/modular_white_background.png",
+            "image": "shopify://shop_images/modular.png",
             "image_border_radius": "0px",
             "title": "Modular, easy-to-move design",
             "title_h": "h2",
