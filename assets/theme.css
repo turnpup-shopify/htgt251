@@ -3906,7 +3906,7 @@ header.site-header nav.nav-bar ul.dropdown {
     position: absolute;
     padding: 0;
     background: #fff;
-    z-index: 1000;
+    z-index: 3;
     text-align: left;
     min-width: 180px;
     border-left: 1px solid #f2f2f2;
