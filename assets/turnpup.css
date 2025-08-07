@@ -83,6 +83,9 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 
 /* GLOBAL TABLES */
+table:not([class]) {  
+  box-shadow: 0;
+}
 table:not([class]) td, table:not([class]) th {
   border: none;
   box-shadow: none;
