@@ -528,7 +528,7 @@
         "template--21548699484434__13648ee8-4def-4c5e-b221-a6f262e62d34-column-1": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/icon_shipping_ca473f04-20ab-4fb5-9ecc-2d7a5032b261_1.png",
+            "image": "shopify://shop_images/fast-shipping.png",
             "image_border_radius": "0px",
             "title": "Fast & free shipping",
             "title_h": "h2",
@@ -630,7 +630,7 @@
         "acee3b10-781e-4ada-b964-a40fae87dfe4": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/swatches_white_background.png",
+            "image": "shopify://shop_images/swatches.png",
             "image_border_radius": "0px",
             "title": "Durable, premium materials",
             "title_h": "h2",
@@ -735,8 +735,8 @@
         "title_alignment": "left",
         "section_text_color": "#000000",
         "overall_background_image_url": "",
-        "section_background_color": "#ffffff",
-        "section_background_color_inner": "#ffffff"
+        "section_background_color": "#f1ece7",
+        "section_background_color_inner": "#f1ece7"
       }
     },
     "tp_article_carousel_V6LRPf": {
