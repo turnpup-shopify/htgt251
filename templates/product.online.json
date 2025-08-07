@@ -219,7 +219,7 @@
         "enable_video_looping": false,
         "padding_top": 40,
         "padding_bottom": 20,
-        "mobile_padding_top": 16,
+        "mobile_padding_top": 0,
         "mobile_padding_bottom": 0
       }
     },
@@ -528,16 +528,16 @@
         "template--21548699484434__13648ee8-4def-4c5e-b221-a6f262e62d34-column-1": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/icon_shipping_ca473f04-20ab-4fb5-9ecc-2d7a5032b261_1.png",
+            "image": "shopify://shop_images/fast-shipping.png",
             "image_border_radius": "0px",
             "title": "Fast & free shipping",
             "title_h": "h2",
             "title_font_size": "18px",
-            "title_font_size_mobile": "14px",
+            "title_font_size_mobile": "18px",
             "title_font_family": "'Helvetica Neue'",
             "title_font_color": "#000000",
             "title_line_height": "1.0",
-            "title_font_weight": "600",
+            "title_font_weight": "500",
             "title_margin_top": "0px",
             "text": "Every single order ships for free. No minimums, no tiers, no fine print whatsoever.",
             "text_font_size": "16px",
@@ -579,16 +579,16 @@
         "template--21548699484434__13648ee8-4def-4c5e-b221-a6f262e62d34-column-2": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/modular_white_background.png",
+            "image": "shopify://shop_images/modular.png",
             "image_border_radius": "0px",
             "title": "Modular, easy-to-move design",
             "title_h": "h2",
             "title_font_size": "18px",
-            "title_font_size_mobile": "14px",
+            "title_font_size_mobile": "18px",
             "title_font_family": "'Helvetica Neue'",
             "title_font_color": "#000000",
             "title_line_height": "1.0",
-            "title_font_weight": "600",
+            "title_font_weight": "500",
             "title_margin_top": "8px",
             "text": "Our innovative modular design is driven by the belief that furniture should fit this home, and the next one.",
             "text_font_size": "16px",
@@ -624,22 +624,22 @@
             "mobile_order": "",
             "margin_bottom_container": "0px",
             "remove_top_padding": true,
-            "remove_bottom_padding": false
+            "remove_bottom_padding": true
           }
         },
         "acee3b10-781e-4ada-b964-a40fae87dfe4": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/swatches_white_background.png",
+            "image": "shopify://shop_images/swatches.png",
             "image_border_radius": "0px",
             "title": "Durable, premium materials",
             "title_h": "h2",
             "title_font_size": "18px",
-            "title_font_size_mobile": "14px",
+            "title_font_size_mobile": "18px",
             "title_font_family": "'Helvetica Neue'",
             "title_font_color": "#000000",
             "title_line_height": "1.0",
-            "title_font_weight": "600",
+            "title_font_weight": "500",
             "title_margin_top": "8px",
             "text": "We use materials like sustainably-forested wood, strengthened steel hardware, and top-grain Italian leather.",
             "text_font_size": "16px",
@@ -703,9 +703,9 @@
         "swipe_on_mobile": true,
         "mobile_columns": 1,
         "desktop_image_width": "100%",
-        "mobile_image_width": "200px",
+        "mobile_image_width": "100%",
         "image_width": "full",
-        "column_alignment": "left",
+        "column_alignment": "center",
         "text_column_alignment": "left",
         "column_gap": "40px",
         "button_padding": "10px 20px",
@@ -725,18 +725,18 @@
         "title_h": "h2",
         "title_font_size": "30px",
         "mobile_title_font_size": "24px",
-        "title_font_family": "'Josefin-Sans', sans-serif",
+        "title_font_family": "'Helvetica Neue'",
         "section_title_font_weight": "700",
         "section_title_padding": "0px",
-        "sub_title": "We’re solving the biggest problems in furniture",
+        "sub_title": "We work to make sure you have the best possible experience.",
         "subtitle_font_size": "18px",
         "section_subtitle_padding": "0px",
         "subtitle_font_family": "'Helvetica Neue'",
         "title_alignment": "left",
         "section_text_color": "#000000",
         "overall_background_image_url": "",
-        "section_background_color": "#ffffff",
-        "section_background_color_inner": "#ffffff"
+        "section_background_color": "#f1ece7",
+        "section_background_color_inner": "#f1ece7"
       }
     },
     "tp_article_carousel_V6LRPf": {
@@ -746,6 +746,8 @@
       ],
       "settings": {
         "input_metaobject": "{{ product.metafields.custom.similar_products.value }}",
+        "max_items": 6,
+        "enable_scroll": true,
         "padding_top": 20,
         "padding_bottom": 40,
         "padding_right": 40,
@@ -815,7 +817,7 @@
           "type": "heading",
           "settings": {
             "heading": "Join our Interior VIP Program for Exclusive Offers",
-            "heading_size": "24px"
+            "heading_size": "18px"
           }
         },
         "paragraph_fD8FBQ": {
@@ -835,17 +837,18 @@
         "email_form_mqcrMq"
       ],
       "custom_css": [
-        ".rte > p:last-child {padding: 10px 0 10px;}"
+        ".rte > p:last-child {padding: 10px 0 10px;}",
+        "div,input {background-color: #c2c2cc;}"
       ],
       "settings": {
         "color_scheme": "background-1",
         "full_width": true,
-        "padding_top": 48,
+        "padding_top": 36,
         "padding_bottom": 40,
         "padding_left": 40,
         "padding_right": 40,
         "mobile_padding_top": 28,
-        "mobile_padding_bottom": 20,
+        "mobile_padding_bottom": 32,
         "mobile_padding_left": 0,
         "mobile_padding_right": 0,
         "margin_top": 0,
@@ -894,6 +897,8 @@
         "mobile_padding_left": 20,
         "collection_menu": "{{ product.metafields.custom.subnav_metaobject.value.collections.value }}",
         "no_image": true,
+        "desktop_font_size": "16px",
+        "mobile_font_size": "16px",
         "alignment": "center",
         "desktop_max_width": 100,
         "mobile_max_width": 100,
