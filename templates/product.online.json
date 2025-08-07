@@ -624,7 +624,7 @@
             "mobile_order": "",
             "margin_bottom_container": "0px",
             "remove_top_padding": true,
-            "remove_bottom_padding": false
+            "remove_bottom_padding": true
           }
         },
         "acee3b10-781e-4ada-b964-a40fae87dfe4": {
