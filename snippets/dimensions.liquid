@@ -4,7 +4,7 @@
   {%- assign has_multiple_sizes = false -%}
   {%- if raw_dimensions contains 'Small:' or raw_dimensions contains 'Medium:' or raw_dimensions contains 'Large:' or raw_dimensions contains 'Chair:' or raw_dimensions contains 'Arm:' or raw_dimensions contains 'Seat:' or raw_dimensions contains 'Shade:' or raw_dimensions contains 'Lamp:' or raw_dimensions contains 'Summary:' or raw_dimensions contains 'Overall:' -%}
     {%- assign has_multiple_sizes = true -%}
-    {%- assign multiple_dimensions = raw_dimensions | replace: 'Small:', '##SIZE##Small:' | replace: 'Medium:', '##SIZE##Medium:' | replace: 'Large:', '##SIZE##Large:' | replace: 'Arm:', '##SIZE##Arm:' | replace: 'Seat:', '##SIZE##Seat:' | replace: 'Chair:', '##SIZE##Chair:' | replace: 'Shade:', '##SIZE##Shade:' | replace: 'Lamp:', '##SIZE##Lamp:' | replace: 'Summary:', '##SIZE##Summary:' -%}
+    {%- assign multiple_dimensions = raw_dimensions | replace: 'Small:', '##SIZE##Small:' | replace: 'Medium:', '##SIZE##Medium:' | replace: 'Large:', '##SIZE##Large:' | replace: 'Arm:', '##SIZE##Arm:' | replace: 'Seat:', '##SIZE##Seat:' | replace: 'Chair:', '##SIZE##Chair:' | replace: 'Shade:', '##SIZE##Shade:' | replace: 'Lamp:', '##SIZE##Lamp:' | replace: 'Summary:', '##SIZE##Summary:' | replace: 'Overall:', '##SIZE##Overall:' -%}
     {%- assign size_sets = multiple_dimensions | split: '##SIZE##' -%}
   {%- endif -%}
 
