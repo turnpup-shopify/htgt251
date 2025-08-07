@@ -223,19 +223,22 @@ h2.accordion__title {
 .product .accordion__content {
   margin-bottom: 0px;
 }
+.flwr-multicolumn-outer .slider-buttons {
+    margin-bottom: 0px;
+}
 @media screen and (max-width: 700px) {
   .product, .product .grid__item {
     font-size: 14px;
   }
 }
 /* Product Grid / PLP */
-  /* REMOVE HORIZONTAL SPACING MOBIE PLP ON GRID */
+    /* PLP - REMOVE HORIZONTAL SPACING MOBIE PLP ON GRID */
   @media screen and (max-width: 749px) {
       .grid--2-col-tablet-down .grid__item {
           width: 50% !important;
       }
   }
-  /* OTHER */
+    /* PLP - OTHER */
 .product-swatches {
   z-index: 5;
   position: relative;
