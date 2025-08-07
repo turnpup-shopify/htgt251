@@ -21,6 +21,7 @@
         },
         "share": {
           "type": "share",
+          "disabled": true,
           "settings": {
             "share_label": ""
           }
@@ -44,7 +45,7 @@
         "content"
       ],
       "custom_css": [
-        ".article-template {margin-top: 60px;}"
+        ".article-template {margin-top: 0px;}"
       ],
       "settings": {}
     },
@@ -55,6 +56,8 @@
       ],
       "settings": {
         "input_metaobject": "{{ article.metafields.custom.tp_carousel.value }}",
+        "max_items": 6,
+        "enable_scroll": true,
         "padding_top": 20,
         "padding_bottom": 40,
         "padding_right": 60,
