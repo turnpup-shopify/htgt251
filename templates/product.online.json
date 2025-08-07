@@ -817,7 +817,7 @@
           "type": "heading",
           "settings": {
             "heading": "Join our Interior VIP Program for Exclusive Offers",
-            "heading_size": "24px"
+            "heading_size": "18px"
           }
         },
         "paragraph_fD8FBQ": {
@@ -848,7 +848,7 @@
         "padding_left": 40,
         "padding_right": 40,
         "mobile_padding_top": 28,
-        "mobile_padding_bottom": 20,
+        "mobile_padding_bottom": 32,
         "mobile_padding_left": 0,
         "mobile_padding_right": 0,
         "margin_top": 0,
