@@ -117,7 +117,7 @@
     "badge_position": "top left",
     "badge_corner_radius": 40,
     "sale_badge_color_scheme": "accent-2",
-    "sold_out_badge_color_scheme": "inverse",
+    "sold_out_badge_color_scheme": "background-1",
     "online-badge-copy": "Buy Online",
     "custom_badge_color_scheme": "#a4b7fb",
     "custom_badge_text_color": "#ffffff",
