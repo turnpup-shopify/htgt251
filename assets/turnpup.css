@@ -229,6 +229,13 @@ h2.accordion__title {
   }
 }
 /* Product Grid / PLP */
+  /* REMOVE HORIZONTAL SPACING MOBIE PLP ON GRID */
+  @media screen and (max-width: 749px) {
+      .grid--2-col-tablet-down .grid__item {
+          width: 50% !important;
+      }
+  }
+  /* OTHER */
 .product-swatches {
   z-index: 5;
   position: relative;
