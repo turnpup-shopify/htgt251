@@ -271,7 +271,7 @@
             "vertically_align_center": true,
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
-            "width": "40%",
+            "width": "50%",
             "text_max_width": "100%",
             "hide_on_mobile": true,
             "mobile_order": "2",
@@ -284,7 +284,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/green-ceramic-table-lamps_ea8b02aa-5571-487e-b32e-ef4a23e8cd40.png",
-            "image_border_radius": "100px 100px 0 0",
+            "image_border_radius": "60px 60px 0 0",
             "title": "",
             "title_h": "h1",
             "title_font_size": "24px",
