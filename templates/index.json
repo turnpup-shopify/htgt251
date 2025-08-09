@@ -1667,6 +1667,102 @@
         "overall_background_image_url": ""
       }
     },
+    "turnpup_content_KjykrB": {
+      "type": "turnpup-content",
+      "blocks": {
+        "image_Pfe4LR": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/gray-dresser-bowls.jpg",
+            "link": "",
+            "title": "",
+            "body": "",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "image_bW9AfV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/industrial-light-oak-dresser.jpg",
+            "link": "",
+            "title": "",
+            "body": "",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "image_fFbTnN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/gray-dresser-for-bedroom.jpg",
+            "link": "",
+            "title": "",
+            "body": "",
+            "button_text": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_Pfe4LR",
+        "image_bW9AfV",
+        "image_fFbTnN"
+      ],
+      "disabled": true,
+      "name": "TPC - Content",
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "padding_right": 40,
+        "padding_left": 40,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20,
+        "mobile_padding_right": 20,
+        "mobile_padding_left": 20,
+        "mobile_cell_width": 72,
+        "container-background-color": "#121212",
+        "cell_background_border_width": "8px",
+        "title": "Shop The Look",
+        "desktop_title_size": "",
+        "mobile_title_size": "",
+        "title_font_family": "\"Helvetica Neue\"",
+        "title_font_weight": "700",
+        "title_font_color": "#ffffff",
+        "subheader": "",
+        "subheader_font_size": "",
+        "subheader_font_family": "\"Helvetica Neue\"",
+        "subheader_font_weight": "700",
+        "subheader_font_color": "#ffffff",
+        "verical_space_between": "0px",
+        "cell_background_color": "#ffffff",
+        "cell_title_size": "30px",
+        "cell_title_font_weight": "400",
+        "cell_title_font_family": "\"Helvetica Neue\"",
+        "cell_title_color": "#ffffff",
+        "cell_subtitle_size": "16px",
+        "cell_subtitle_font_weight": "400",
+        "cell_subtitle_font_family": "\"Helvetica Neue\"",
+        "cell_text_color": "#ffffff",
+        "cell_border_color": "#121212",
+        "cell_border_radius": "0px",
+        "cell_border_weight": "0px",
+        "cell_btn_background_color": "#ffffff",
+        "cell_btn_color": "#ffffff",
+        "cell_btn_border_width": "0px",
+        "blog": "looks",
+        "button_label": "",
+        "button_url": "",
+        "post_limit": "3",
+        "align_text": "center",
+        "blog_image_options": "before",
+        "blog_image_aspect_ratio": "100%",
+        "show_dates": false,
+        "show_excerpts": false,
+        "show_read_more": false,
+        "overall_background_image_url": ""
+      }
+    },
     "tp_shop_the_look_bk6TxL": {
       "type": "tp-shop-the-look",
       "name": "TP - Shop the Look Carousel",
@@ -1772,74 +1868,6 @@
         "turnpup_top_border_color": "rgba(0,0,0,0)",
         "turnpup_bottom_border_color": "rgba(0,0,0,0)"
       }
-    },
-    "turnpup_hero_main_fhXG77": {
-      "type": "turnpup-hero-main",
-      "disabled": true,
-      "settings": {
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_right": 0,
-        "padding_left": 40,
-        "mobile_padding_top": 0,
-        "mobile_padding_bottom": 0,
-        "mobile_padding_right": 0,
-        "mobile_padding_left": 0,
-        "background_opacityy": 0,
-        "overall_width": "100%",
-        "overall_width_text": "100%",
-        "turnpup_bottom_border_color": "#f4b237",
-        "turnpup_container_margin_top_bottom": "60px",
-        "background_color": "#ffffff",
-        "background_opacity": "0.2",
-        "mobile_background_color": "#ffffff",
-        "section_padding": true,
-        "image_padding": "0px",
-        "image_margin": "0px 0px 0px 0px",
-        "image_height": 90,
-        "mobile_image_height": 90,
-        "image_border_color": "#28499c",
-        "image_border_width": "10px",
-        "image_border_radius": "0px",
-        "layout": "left",
-        "text_align": "left",
-        "mobile_text_align": "center",
-        "turnpup_container_text_cta_margin_top": "60px",
-        "turnpup_container_text_cta_margin_bottom": "60px",
-        "turnpup_mobile_container_text_cta_margin_top": "60px",
-        "turnpup_mobile_container_text_cta_margin_bottom": "60px",
-        "title": "Image with text",
-        "title_color": "#ffffff",
-        "mobile_title_color": "#000000",
-        "label_font_family_header": "'Poppins', Light",
-        "turnpup_title_size": "22px",
-        "turnpup_mobile_title_size": "24px",
-        "turnpup_title_weight": "700",
-        "header_margin_below": "12px;",
-        "mobile_header_margin_below": "10px;",
-        "text": "Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
-        "text_2": "Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
-        "text_color": "#ffffff",
-        "mobile_text_color": "#ffffff",
-        "turnpup_subtitle_family": "",
-        "turnpup_subtitle_size": "24px",
-        "turnpup_mobile_subtitle_size": "24px",
-        "turnpup_desc_family": "",
-        "turnpup_desc_size": "18px",
-        "turnpup_desc_weight": "400",
-        "turnpup_mobile_desc_size": "12px",
-        "button_label": "",
-        "button_link": "",
-        "is_hero_button": false,
-        "bottom_background_color": "#28499c",
-        "middle_background_color": "#ea5e33",
-        "top_background_color": "#f4b237",
-        "button_text_color": "#f4b237",
-        "button_text_size": "",
-        "mobile_button_text_size": "",
-        "button_text_weight": "",
-        "button_text_family": ""
-      }
     }
   },
   "order": [
@@ -1865,8 +1893,8 @@
     "tp_article_carousel_hcdMki",
     "turnpup_content_YfJDWj",
     "turnpup_content_jGfftL",
+    "turnpup_content_KjykrB",
     "tp_shop_the_look_bk6TxL",
-    "tp_seo_footer_DKVaJt",
-    "turnpup_hero_main_fhXG77"
+    "tp_seo_footer_DKVaJt"
   ]
 }
