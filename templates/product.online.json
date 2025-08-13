@@ -689,8 +689,8 @@
         "img {max-width: 150px;}"
       ],
       "settings": {
-        "padding_top": 72,
-        "padding_bottom": 72,
+        "padding_top": 40,
+        "padding_bottom": 40,
         "padding_right": 40,
         "padding_left": 40,
         "mobile_padding_top": 28,
@@ -723,8 +723,8 @@
         "button_link": "",
         "title": "Why shop with us?",
         "title_h": "h2",
-        "title_font_size": "30px",
-        "mobile_title_font_size": "24px",
+        "title_font_size": "22px",
+        "mobile_title_font_size": "22px",
         "title_font_family": "'Helvetica Neue'",
         "section_title_font_weight": "700",
         "section_title_padding": "0px",
@@ -748,7 +748,7 @@
         "input_metaobject": "{{ product.metafields.custom.similar_products.value }}",
         "max_items": 6,
         "enable_scroll": true,
-        "padding_top": 20,
+        "padding_top": 40,
         "padding_bottom": 40,
         "padding_right": 40,
         "padding_left": 40,
@@ -817,7 +817,7 @@
           "type": "heading",
           "settings": {
             "heading": "Join our Interior VIP Program for Exclusive Offers",
-            "heading_size": "18px"
+            "heading_size": "22px"
           }
         },
         "paragraph_fD8FBQ": {
@@ -843,8 +843,8 @@
       "settings": {
         "color_scheme": "background-1",
         "full_width": true,
-        "padding_top": 36,
-        "padding_bottom": 40,
+        "padding_top": 40,
+        "padding_bottom": 52,
         "padding_left": 40,
         "padding_right": 40,
         "mobile_padding_top": 28,

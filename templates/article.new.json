@@ -45,7 +45,7 @@
         "content"
       ],
       "custom_css": [
-        ".article-template {margin-top: 0px;}"
+        ".article-template {margin-top: 30px;}"
       ],
       "settings": {}
     },
