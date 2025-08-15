@@ -30,7 +30,7 @@
   endif
 -%}
 
-{%- if template contains 'product' %}
+{%- if template contains 'product' or template contains 'collection' and price != 0 %}
   {%- if price > 0 %}
     <div class="price
   {%- if price_class %} {{ price_class }}{% endif -%}
@@ -68,9 +68,9 @@
             </span>
           {%- endunless -%}
         {% comment %} <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
-                                                                                                                                                                                                                                                    <span class="price-item price-item--sale price-item--last">
-                                                                                                                                                                                                                                                      {{ money_price }}
-                                                                                                                                                                                              </span> {% endcomment %}
+                                                                                                                                                                                                                                                                                                                                    <span class="price-item price-item--sale price-item--last">
+                                                                                                                                                                                                                                                                                                                                      {{ money_price }}
+                                                                                                                                                                                                                                                              </span> {% endcomment %}
         </div>
         <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
           <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
