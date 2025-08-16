@@ -227,24 +227,6 @@ in theme.liquid head
 
 
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    const slickOptions = {
-      slidesToShow: 1,
-      arrows: false,
-      focusOnSelect: true,
-      adaptiveHeight: true,
-      dots: true,
-      infinite: true
-    }
-    $('.social-slick').slick(slickOptions)
-
-    window.addEventListener("resize", function(){
-      $('.js-publications').not('.slick-initialized').slick(slickOptions);
-    });
-  })
-</script>
-
 <div class="social-proof" data-section-id="{{ section.id }}" data-section-type="social-proof-section">
   <div class="quote-slider">
     <div class="actual-quote">
@@ -252,16 +234,27 @@ in theme.liquid head
         <path d="M0.820312 21.4437C0.820312 25.6437 1.22032 26.0437 5.12032 26.0437H10.4203C14.0203 26.0437 14.5203 25.5437 14.5203 22.0437V15.8437C14.5203 12.5437 14.1203 12.1437 11.4203 11.9437C9.92032 11.9437 9.42032 11.2437 9.42032 9.44368C9.42032 7.04368 10.5203 5.54368 13.2203 4.44368C14.2203 4.04367 14.5203 3.54367 14.5203 2.54368C14.5203 1.04368 13.6203 0.143677 12.1203 0.143677C8.92031 0.143677 6.22032 1.34367 4.12032 3.64367C1.92032 6.04368 0.820312 9.74368 0.820312 14.9437V21.4437ZM18.8203 21.4437C18.8203 25.6437 19.2203 26.0437 23.1203 26.0437H28.4203C32.0203 26.0437 32.5203 25.5437 32.5203 22.0437V15.8437C32.5203 12.5437 32.1203 12.1437 29.4203 11.9437C27.9203 11.9437 27.4203 11.2437 27.4203 9.44368C27.4203 7.04368 28.5203 5.54368 31.2203 4.44368C32.2203 4.04367 32.5203 3.54367 32.5203 2.54368C32.5203 1.04368 31.6203 0.143677 30.1203 0.143677C26.9203 0.143677 24.2203 1.34367 22.1203 3.64367C19.9203 6.04368 18.8203 9.74368 18.8203 14.9437V21.4437Z" fill="{{ section.settings.module_accent_color }}"></path>
       </svg> 
     </div>
-    <div class="social-slick"> 
-	    {% for block in section.blocks %}   
-		    <div class="container"> 
-          <div class="quote"> {{ block.settings.quote_text }} </div>
-  		    {% if block.settings.who_said_it != blank %} 
-            <div class="who_said_it"> {{ block.settings.who_said_it }}</div> 
-            <div class="who_said_it stars"> {{ block.settings.stars | default: '★★★★★' }}</div> 
-          {% endif %}
-        </div>
-	    {% endfor %}
+    <div class="quote-slider-container" data-current="0">
+      <div class="quote-slides">
+        {% for block in section.blocks %}   
+          <div class="quote-slide"> 
+            <div class="quote"> {{ block.settings.quote_text }} </div>
+            {% if block.settings.who_said_it != blank %} 
+              <div class="who_said_it"> {{ block.settings.who_said_it }}</div> 
+              <div class="who_said_it stars"> {{ block.settings.stars | default: '★★★★★' }}</div> 
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="quote-nav">
+        <button class="quote-prev">‹</button>
+        <button class="quote-next">›</button>
+      </div>
+      <div class="quote-dots">
+        {% for block in section.blocks %}
+          <span class="quote-dot" data-index="{{ forloop.index0 }}"></span>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>
@@ -287,7 +280,8 @@ in theme.liquid head
     margin: 0 auto 2rem;
     text-align: left;
   }
-  .social-slick .quote {
+  .quote-slide {
+    display: none;
     font-size: {{ section.settings.desktop_actual_quote_font_size }};
     text-align: left;
     margin: 0 auto;
@@ -297,7 +291,7 @@ in theme.liquid head
     color:  {{ section.settings.quote_color }};
     margin-bottom: 20px;
   }
-  .social-slick .who_said_it {
+  .quote-slide .who_said_it {
     color:  {{ section.settings.quote_color }};
     font-size: {{ section.settings.desktop_quote_size }};
     text-align: left;
@@ -307,40 +301,45 @@ in theme.liquid head
     font-family: {{ section.settings.who_said_it_font_family }} !important;
     opacity: 1;
   }
-  .social-slick .who_said_it.stars, .actual-quote {    
+  .quote-slide .who_said_it.stars, .actual-quote {    
     opacity: 1;
   }
-  .social-slick .slick-dots {
-    margin-top: 2rem;
+  .quote-slider-container {
     position: relative;
-    top: 0px;
   }
-  .slick-dotted.slick-slider {
-    margin-bottom: 0px;
+  .quote-nav {
+    margin-top: 1rem;
+    text-align: center;
   }
-  .slick-dots li button {
-    margin-right: 0.5rem;
+  .quote-nav button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: {{ section.settings.module_accent_color }};
+    margin: 0 1rem;
+    padding: 0;
+    line-height: 1;
+  }
+  .quote-dots {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  .quote-dot {
+    display: inline-block;
     height: 0.5rem;
     width: 1rem;
     cursor: pointer;
     border-radius: 1.5rem;
     background-color: {{ section.settings.dots_unselected_color }};
+    margin-right: 0.5rem;
   }
-  .slick-dots li.slick-active button:before {
-    opacity: 0;
-  }
-  .slick-dots li button:before {
-    opacity: 0;
-  }
-  .slick-dots li button:hover:before, .slick-dots li button:focus:before {
-    opacity: 0;
-  }
-  .social-slick .slick-dots li.slick-active button {
+  .quote-dot.active {
     background-color: {{ section.settings.module_accent_color }};
   }
   
   @media screen and (max-width: 750px) {                       
-    .social-slick .quote {
+    .quote-slide {
       font-size: {{ section.settings.mobile_actual_quote_font_size }};
     }
     {%- if section.settings.hide_quote_on_mobile -%}
@@ -348,7 +347,7 @@ in theme.liquid head
         display: none;
       }
     {%- endif -%}
-    .social-slick .who_said_it {
+    .quote-slide .who_said_it {
       font-size: {{ section.settings.mobile_quote_size }};
     }
     .actual-quote {
@@ -357,3 +356,41 @@ in theme.liquid head
     }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.quote-slider-container');
+    const slides = container.querySelectorAll('.quote-slide');
+    const dots = container.querySelectorAll('.quote-dot');
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.display = i === index ? 'block' : 'none';
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      container.dataset.current = index;
+    }
+
+    container.querySelector('.quote-prev').addEventListener('click', () => {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    });
+
+    container.querySelector('.quote-next').addEventListener('click', () => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        current = parseInt(dot.dataset.index);
+        showSlide(current);
+      });
+    });
+
+    showSlide(current);
+  });
+</script>
