@@ -111,42 +111,16 @@
   {%- if my_metaobject -%}
     {%- if my_metaobject.cells != blank -%}
       {%- assign tempImages =my_metaobject.cells.value -%}
-      {%- for t in tempImages -%}
-        <script>
-          console.log({{ t.product.value | json }})
-        </script>
-      {%- endfor -%}
       {%- assign toUse = tempImages -%}
-    {%- else -%}
-      <script>
-        console.log("no images")
-      </script>
     {%- endif -%}
-  {%- else -%}
-    <script>
-      console.log("not there");
-    </script>
   {%- endif -%}
 {%- elsif tempHandle == null or tempHandle == "" -%}
 {%- else -%}
   {%- if shop.metaobjects.image_row[tempHandle] -%}
     {%- if shop.metaobjects.image_row[tempHandle].cells != blank -%}
       {%- assign tempImages = shop.metaobjects.image_row[tempHandle].cells.value -%}
-      {%- for t in tempImages -%}
-        <script>
-          console.log({{ t.product.value | json }})
-        </script>
-      {%- endfor -%}
       {%- assign toUse = tempImages -%}
-    {%- else -%}
-      <script>
-        console.log("no images")
-      </script>
     {%- endif -%}
-  {%- else -%}
-    <script>
-      console.log("not there");
-    </script>
   {%- endif -%}
 {%- endif -%}
 

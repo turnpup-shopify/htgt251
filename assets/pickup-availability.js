@@ -98,7 +98,7 @@ if (!customElements.get('pickup-availability-drawer')) {
     show(focusElement) {
       this.focusElement = focusElement;
       this.setAttribute('open', '');
-      console.log('pickup-availability.js 101');
+      // console.log('pickup-availability.js 101');
       document.body.addEventListener('click', this.onBodyClick);
       document.body.classList.add('overflow-hidden');
       trapFocus(this);

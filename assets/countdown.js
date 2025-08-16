@@ -1,9 +1,6 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-    console.log('off-custom-JS DOM fully loaded and parsed');
-
     document.querySelectorAll('#klaviyo_form_button').forEach((el) => {
         el.addEventListener("click", () => {
-            console.log("click klaviyo form button");
             var _klOnsite = window._klOnsite || []; _klOnsite.push(['openForm', 'MpF4JT']);
         })
     })
@@ -29,15 +26,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         var jquerySelector = tp_block_id;
         var debug = Math.floor(toLaunchDistance / (day));
         var debugEnd = Math.floor(distance / (day));
-        console.log("tp_start_date: " + tp_start_date);
-        console.log("tp_end_date: " + tp_end_date);
-        console.log("toLaunchCountDown: " + toLaunchCountDown);
-        console.log("debug: ");
-        console.log(debug);
 
         if (toLaunchDistance >= 0) {
 
-            console.log("sale starts: " + toLaunchDistance);
             if (Math.floor(toLaunchDistance / (day)) != 0) {
                 var tempNumber = Math.floor(toLaunchDistance / (day));
                 if (tempNumber == 1) { var temp = "SALE STARTS IN " + tempNumber + " DAY" }
@@ -50,10 +41,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 else { var temp = "SALE STARTS IN " + tempNumber + " HOURS" }
                 el.querySelector(".js-timer").innerText = temp;
             }
-
-        } else {
-
-            console.log("sale ends: " + debugEnd);
+        } else {        
             if (Math.floor(distance / (day)) != 0) {
                 if (window.DaysOrHours == "Hours") {
                     var tempNumber = Math.floor((distance % (day)) / (hour));

@@ -18,11 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
     document.querySelectorAll('.sidemenu_checkbox').forEach(function(checkbox) {
       checkbox.addEventListener('change', function() {
-        if (this.checked) {
-          console.log("unchecked --> checked");
-        } else {
-          console.log("checked --> unchecked");
-        }
+        // if (this.checked) {console.log("unchecked --> checked");} else {console.log("checked --> unchecked");}
         var newURL = this.nextElementSibling.getAttribute('href');
         window.location.href = newURL;
       });
@@ -64,13 +60,13 @@ document.addEventListener('DOMContentLoaded', function() {
   
         var isScrolling;
         if (TurnpupObject.isScrollTest) {
-            console.log("ISSCROLL TEST");
+            // console.log("ISSCROLL TEST");
         } else {
             if (TurnpupObject.nav_transparent_after_scroll) {
                 document.addEventListener('scroll', function() {
                     clearTimeout(isScrolling);
                     isScrolling = setTimeout(function() {
-                        console.log("timeout - call callback");
+                        // console.log("timeout - call callback");
                         document.getElementById('shopify-section-header').classList.remove("turnpupNavEnabled");
                         document.getElementById('shopify-section-header').classList.add("turnpupNavDisabled");
                     }, TurnpupObject.time_to_transparent_header);
@@ -158,18 +154,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (popupEmailInput) {
       popupEmailInput.addEventListener("input", function() {
         if (this.value === popupEmailLastValue) {
-          console.log('no change to popup email');
+          // console.log('no change to popup email');
         } else {
-          console.log('change to popup email');
+          // console.log('change to popup email');
           popupEmailLastValue = this.value;
           var tpValue = this.value;
           document.querySelector(".newsletter_user_input").textContent = tpValue;
           // Assuming you have a lettering function defined elsewhere
           // document.querySelector(".newsletter_user_input").lettering();
           if (tpValue !== '' && tpValue !== null) {
-            console.log("text --> .popup-email");
+            // console.log("text --> .popup-email");
           } else {
-            console.log("No text --> .popup-email");
+            // console.log("No text --> .popup-email");
           }
         }
       });
@@ -178,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (footerInput) {
       footerInput.addEventListener("input", function() {
       if (this.value === footerLastValue) {
-          console.log('no change to footer');
+          // console.log('no change to footer');
         } else {
           footerLastValue = this.value;
           var tpValue = this.value;

@@ -158,7 +158,6 @@
   {% assign alex = collections["coffee-tables"] | json %}
   var alex = {{ alex }};
   var debug = {{ collections["coffee-tables"] | json }};   
-  console.log(debug);
   
   window.addEventListener('DOMContentLoaded', (event) => {
         document.querySelectorAll('.flwr_second_level').forEach(function(el) {

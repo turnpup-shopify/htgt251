@@ -89,8 +89,7 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.href.includes("challenge")) {
-      console.log("Challenge page detected, pop-ups disabled.");
+    if (window.location.href.includes("challenge")) {      
       return; // Stop script execution
     }
 
@@ -126,11 +125,10 @@
     }
 
     // Debugging: Check if the cookie exists
-    console.log("Popup cookie value:", getCookie("popupShown"));
+    // console.log("Popup cookie value:", getCookie("popupShown"));
 
     // Show pop-up if cookie is NOT set
-    if (!getCookie("popupShown") && popup) {
-      console.log("Pop-up has NOT been shown, showing now.");
+    if (!getCookie("popupShown") && popup) {      
       setTimeout(() => {
         popup.classList.add("active");
         setCookie("popupShown", "true", 7); // Set cookie to expire in 7 days
@@ -139,11 +137,7 @@
       setTimeout(() => {
         popup.classList.add("active");
       }, 500);
-    }
-    else {
-      console.log("Pop-up has ALREADY been shown, skipping.");
-    }
-
+    }    
     if (closeButton) {
       closeButton.addEventListener("click", () => {
         popup.classList.remove("active");

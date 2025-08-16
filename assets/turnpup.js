@@ -6,12 +6,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     link.addEventListener('click', function(e) {
       if (details.hasAttribute('open')) {
-        // Allow click to follow link if menu is open
-        console.log("Following link:", link.href);
+        // console.log("Following link:", link.href);
       } else {
-        // Prevent click and toggle open state
         e.preventDefault();
-        console.log("Prevented link. Opening menu instead:", link.href);
+        // console.log("Prevented link. Opening menu instead:", link.href);
         details.setAttribute('open', true);
       }
     });
@@ -22,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     const openMenus = Array.from(document.querySelectorAll("header details[open]"));
     if (openMenus.length === 0) return;
 
-    console.log("mouseOver main - closing open dropdowns");
+    // console.log("mouseOver main - closing open dropdowns");
     openMenus.forEach((e) => {
       const summaryElement = e.querySelector('summary');
       e.removeAttribute('open');
@@ -30,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     });
   });
 
-    // find all elements with this attribute and put in an array
-    const headers = document.querySelectorAll('[js-accordion-header]');
+  // find all elements with this attribute and put in an array
+  const headers = document.querySelectorAll('[js-accordion-header]');
   
     document.querySelectorAll(".product-swatches__link").forEach((temp)=>{
       temp.addEventListener("mouseover", (el) => {
@@ -196,232 +194,5 @@ document.addEventListener('DOMContentLoaded', function(event) {
           }
         }
       });
-    });
-    
-  
-    // same concept for bottom of PDP
-    // document.querySelectorAll('.pdp_bottom_header').forEach(function(header) {
-    //   header.addEventListener('click', function() {
-    //     if (window.innerWidth <= 600) {
-    //       let toExpand = header.nextElementSibling;
-    //       if (header.classList.contains('minus')) {
-    //         toExpand.classList.add('invisible');
-    //         header.classList.remove('minus');
-    //       } else {
-    //         document.querySelectorAll('.pdp_bottom_header').forEach(function(h) {
-    //           h.nextElementSibling.classList.add('invisible');
-    //           h.classList.remove('minus');
-    //         })
-    //         toExpand.classList.remove('invisible');
-    //         header.classList.add('minus');
-    //       }
-    //     }
-    //   });
-    // });
-    
-    // // update RK PDP Info
-    // // document.querySelectorAll('.product__info-wrapper table').forEach(function(header) {
-    // //   console.log("CLICK TABLE")
-    // // });
-    
-    
-    // // turnpup slick configuratino
-    // const slickOptions = {
-    //   slidesToShow: 1,
-    //   arrows: false,
-    //   focusOnSelect: true,
-    //   adaptiveHeight: true,
-    //   dots: true,
-    //   infinite: true
-    // };
-    
-    // document.addEventListener('DOMContentLoaded', function() {
-    //   const socialSlick = document.querySelector('.social-slick');
-    //   if (socialSlick) {
-    //     $(socialSlick).slick(slickOptions);
-    //   }
-    
-    //   window.addEventListener('resize', function() {
-    //     document.querySelectorAll('.js-publications').forEach(function(element) {
-    //       if (!element.classList.contains('slick-initialized')) {
-    //         $(element).slick(slickOptions);
-    //       }
-    //     });
-    //   });
-    // });
-    
-    
-    // changeMorePaymentOptionsCTA();
-  
-  
+    });  
 })
-  
-//   //  RK UPDATE TABLE INFO ON PDP + RUN HAPNY FUNCTION OTHERWISE BELOW
-//   function updatePDPInfo(variant){
-//     updateSKUInfo(variant);
-//     if (document.querySelector("table")) {
-//       tryUpdate("#item_number", variant, skus); 
-//       tryUpdate("#tp-sku", variant, skus);
-//       tryUpdate("#finish", variant, finishes2); 
-//       tryUpdate("#weight", variant, weight_in_pounds);
-//       tryUpdate("#projection", variant, meta_projection);
-//       tryUpdate("#center_to_center", variant, meta_center_to_center);
-//       tryUpdate("#length", variant, meta_length);
-//       tryUpdate("#width", variant, meta_width);
-//     }
-//   }
-  
-//   //  HAPNY SKU field is different then RK table view              
-//   function updateSKUInfo(variant){
-//       if (document.querySelector("#tp-sku")) {
-//         document.querySelector("#tp-sku").innerHTML = variant.sku;  
-//       }
-//     }
-  
-//   function tryUpdate(selector, variant, dataToUpdateFrom){
-//     var temp = document.querySelector(selector);
-//     if (temp) {
-//       if (variant && dataToUpdateFrom[variant.id]){
-//         temp.innerHTML = dataToUpdateFrom[variant.id];
-//       } else {
-//         temp.innerHTML = "Not Available";
-//       }
-//     }  
-//   }
-  
-//   // PRINT PDF FUNCTION
-//   function generatePDF() {
-//     var panel = document.querySelector("html").cloneNode(true);
-//     panel.querySelectorAll(".hideFromPrintout").forEach((el)=>{
-//       el.remove();
-//     })
-//     panel.querySelectorAll(".price, .slider-buttons, .minimal_button, .hapny_button, footer, product-recommendations, header-drawer").forEach((el)=>{
-//       el.style.display = "none";
-//     })
-//     panel.querySelectorAll(".product-media-container.constrain-height").forEach((el)=>{
-//       el.style.margin = "0px 200px 0 0";
-//     })   
-//     panel.querySelectorAll(".purchase-box").forEach((el)=>{
-//       el.style.margin = "-100px 0 0";
-//     })
-//     panel.querySelectorAll(".product-form__input").forEach((el, index)=>{
-//       if (index == 1 || index == 0) { el.style.display= "none"; }
-//     })       
-//     panel.querySelector("product-info").style.paddingTop = "0px"; 
-//     panel.querySelector("product-info").style.paddingTop = "0px"; 
-//     panel.querySelector(".header").style.setProperty("background-color", "red", "important");
-//     panel.querySelector(".header-wrapper--border-bottom").style.borderBottom = "none"; 
-//     panel.querySelector(".product .grid__item").style.marginBottom = "0px"; 
-//     panel.querySelectorAll("ul li:not(:first-of-type)").forEach((e)=>{e.style.display = "none"});
-//     panel.querySelector(".product-media-container").style.width = "200px";
-//     panel.querySelector(".product-media-modal")?.remove();  
-//     panel.querySelector(".thumbnail-slider")?.remove();
-//     panel.querySelector(".simple-collection")?.remove();
-//     panel.querySelector(".section-header")?.remove();
-    
-//     let container = document.createElement("div");
-//     let legend = document.createElement("legend");
-//     legend.className = "form__label";
-//     legend.textContent = "More Finishes"
-//     container.append(legend);
-//     let innerContainer = document.createElement("div");
-//     innerContainer.style.marginTop = "6px" ;
-//     innerContainer.style.marginLeft = "12px" ;
-//     innerContainer.style.marginBottom = "-4px" ;
-//     let ul = document.createElement("ul");
-//     ul.style.margin = "margin: 0 0 0 20px";
-//     for (finish in finishes) {
-//       let li = document.createElement("li");
-//       li.style.fontSize = "14px";
-//       li.innerHTML = finishes[finish];
-//       ul.append(li);
-//     }
-//     innerContainer.append(ul);
-//     container.append(innerContainer);
-//     panel.querySelector(".product__info-container").append(container);
-  
-//     var tempLogo = addLogoToTop();
-//     panel.querySelector("body").prepend(tempLogo);
-  
-  
-//     var printWindow = window.open('', '', 'height=1000,width=500');
-//     printWindow.document.write(panel.innerHTML);
-//     printWindow.document.close();
-//     setTimeout(function () {
-//         printWindow.print(printWindow);
-//     }, 5000);
-//     return false;
-//   }
-  
-//   function changeMorePaymentOptionsCTA() {
-//     setTimeout(() => {
-//       const element = document.querySelector("#more-payment-options-link");
-      
-//       if (element) {
-//         element.textContent = "Buy Now";
-//       }
-//     }, 500); // The delay should be a number, not a string
-//   }
-  
-//   function revealDimensionTwo(clickID){
-//     var toRevealID = clickID + "_reveal";
-//     if(document.querySelector(clickID)) {
-//       document.querySelector(clickID).addEventListener("click", (e) => {
-//         e.target.style.display = "none";
-//         document.querySelector(toRevealID).classList.remove("display_none");
-//         document.querySelector(toRevealID).classList.add("display_block");
-//       })
-//     }
-//   }
-  
-//   function addLogoToTop(){
-//     const logoElement = document.querySelector(".header__heading-logo");
-  
-//     // Check if the element exists
-//     if (logoElement) {
-//       // Create a new <img> element
-//       const newImg = document.createElement("img");
-      
-//       // Set the src of the new image to match the current element
-//       newImg.src = logoElement.src;
-      
-//       // Optionally, copy other attributes like alt
-//       newImg.alt = logoElement.alt || "Logo";
-  
-//       // Style or modify the new image (optional)
-//       newImg.style.position = "relative";
-//       newImg.style.top = "0";
-//       newImg.style.left = "8";
-//       newImg.style.width = "80px";
-//       newImg.style.display = "block";
-  
-//       // Append the new image to the top of the <body>
-//       return newImg;
-//     } else {
-//       console.log(".header__heading-logo not found");
-//     }
-//   }
-  
-//   function swapImageAndLoad(tempElement, tempNewImage){
-//     console.log("swap image function new");
-//     console.log(tempElement);
-  
-//     tempElement.closest(".media--hover-effect").classList.add('loading');
-//     tempElement.closest(".media--hover-effect").classList.add('show');
-//     tempElement.closest(".media--hover-effect").querySelectorAll("img").forEach((el) => { el.style.zIndex = "-10"; el.style.opacity = 0.4; })
-  
-//     // Preload the new image
-//     const img = new Image();
-//     img.src = tempNewImage;
-  
-//     img.onload = function () {
-//       // Swap the image
-//       tempElement.src = tempNewImage;
-  
-//       // Remove loading state
-//       tempElement.closest(".media--hover-effect").classList.remove('loading');
-//       tempElement.closest(".media--hover-effect").classList.remove('show');
-//       tempElement.closest(".media--hover-effect").querySelectorAll("img").forEach((el) => { el.style.zIndex = "1"; el.style.opacity = 1; })
-  
-//     };
-//   }
