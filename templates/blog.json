@@ -16,7 +16,7 @@
       ],
       "settings": {
         "blog_menu": "blog-menu",
-        "show_title": false,
+        "show_title": true,
         "blog_layout": "columns",
         "show_image_first": "before",
         "show_author": false,
