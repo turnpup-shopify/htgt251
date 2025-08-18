@@ -12,11 +12,11 @@
     "main": {
       "type": "blog-template",
       "custom_css": [
-        "@media screen and (min-wdith: 750px) {.blog-list .grid-item {width: 33% !important; }}"
+        "@media screen and (min-width: 750px) {.blog-list .grid-item {width: 25% !important; } .blog-list h2 a {font-size: 14px; font-weigt: 600; line-height: 1; }}"
       ],
       "settings": {
         "blog_menu": "blog-menu",
-        "show_title": false,
+        "show_title": true,
         "blog_layout": "columns",
         "show_image_first": "before",
         "show_author": false,
