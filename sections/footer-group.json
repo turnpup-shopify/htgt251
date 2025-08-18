@@ -70,6 +70,7 @@
       "settings": {
         "background_color": "#333333",
         "background_opacity": "1",
+        "footer_background_image": "shopify://shop_images/Artboard_1_2x-100.jpg",
         "show_payment_icons": false,
         "show_locale_selector": false,
         "show_currency_selector": false,
