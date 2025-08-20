@@ -14,16 +14,6 @@
     "footer": {
       "type": "tp-footer",
       "blocks": {
-        "menu_EkBRnd": {
-          "type": "menu",
-          "settings": {
-            "title": "Shop",
-            "text": "",
-            "footer_linklist": "footer-shop-menu",
-            "block_width": "17%",
-            "mobile_block_width": "100%"
-          }
-        },
         "menu_edMRPc": {
           "type": "menu",
           "settings": {
@@ -42,8 +32,18 @@
             "phone": "(949) 515-9484",
             "contact_text": "info@htgtfurniture.com",
             "contact_link": "mailto:info@htgtfurniture.com",
-            "address": "<p>1644 Superior Ave, Costa Mesa, CA, 92627<br/><br/>Hours: Open 11AM-4PM Mon-Fri</p>",
+            "address": "<p>1644 Superior Ave<br/>Costa Mesa, CA, 92627<br/><br/>Hours: <br/>Open Mon-Fri: 11AM-4PM </p>",
             "show_social": true,
+            "block_width": "17%",
+            "mobile_block_width": "100%"
+          }
+        },
+        "menu_EkBRnd": {
+          "type": "menu",
+          "settings": {
+            "title": "Shop",
+            "text": "",
+            "footer_linklist": "footer-shop-menu",
             "block_width": "17%",
             "mobile_block_width": "100%"
           }
@@ -59,17 +59,18 @@
         }
       },
       "block_order": [
-        "menu_EkBRnd",
         "menu_edMRPc",
         "contact_V9PQRH",
+        "menu_EkBRnd",
         "newsletter_7FxXpW"
       ],
       "custom_css": [
         "h2,h4,a,p {color: white;}"
       ],
       "settings": {
-        "background_color": "#333333",
+        "background_color": "#1e1e1e",
         "background_opacity": "1",
+        "footer_background_image": "shopify://shop_images/Artboard_1_2x-100.jpg",
         "show_payment_icons": false,
         "show_locale_selector": false,
         "show_currency_selector": false,
