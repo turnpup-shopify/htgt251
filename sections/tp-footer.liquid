@@ -294,9 +294,9 @@
       <div class="copyright_container">
         <!-- <button class="blob"> shop </button> -->
         {% comment %} <p class="legal_link"><a href="https://hapnyhome.com/pages/accessibility">Accessibility</a></p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <p class="legal_link">|</p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <p class="legal_link"><a href="https://hapnyhome.com/pages/ccpa-opt-out">CCPA</a></p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                          <p class="legal_link">|</p> {% endcomment %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <p class="legal_link">|</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <p class="legal_link"><a href="https://hapnyhome.com/pages/ccpa-opt-out">CCPA</a></p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <p class="legal_link">|</p> {% endcomment %}
         <p class="copyright">
           <span>site by</span>
           <a class="footer_text" href="https://alexturney.com?utm_source=htgtfurniture">Turnpup Designs</a>
@@ -319,8 +319,8 @@
     {% if section.settings.footer_background_image != blank %}
       /* background image */
       background-image: url('{{ section.settings.footer_background_image | image_url: width: 2000, format: "jpg" }}');
-      background-size: cover;
-      background-position: center;
+      background-size: contain;
+      background-position: bottom;
       background-repeat: no-repeat;
     {% endif %}
   }
