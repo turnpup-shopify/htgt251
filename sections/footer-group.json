@@ -68,9 +68,9 @@
         "h2,h4,a,p {color: white;}"
       ],
       "settings": {
-        "background_color": "#1e1e1e",
+        "background_color": "#444545",
         "background_opacity": "1",
-        "footer_background_image": "shopify://shop_images/Artboard_1_2x-100_224719fe-8769-4209-9dcf-cc063010fc23.jpg",
+        "footer_background_image": "shopify://shop_images/Artboard_1_2x-100_f1bcec65-e912-49c1-a8c5-14f7943f47b3.jpg",
         "show_payment_icons": false,
         "show_locale_selector": false,
         "show_currency_selector": false,
