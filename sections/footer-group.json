@@ -33,7 +33,7 @@
             "contact_text": "info@htgtfurniture.com",
             "contact_link": "mailto:info@htgtfurniture.com",
             "address": "<p>1644 Superior Ave<br/>Costa Mesa, CA, 92627<br/><br/>Hours: <br/>Open Mon-Fri: 11AM-4PM</p>",
-            "show_social": true,
+            "show_social": false,
             "block_width": "17%",
             "mobile_block_width": "100%"
           }
