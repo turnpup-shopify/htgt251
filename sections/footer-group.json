@@ -32,7 +32,7 @@
             "phone": "(949) 515-9484",
             "contact_text": "info@htgtfurniture.com",
             "contact_link": "mailto:info@htgtfurniture.com",
-            "address": "<p>1644 Superior Ave<br/>Costa Mesa, CA, 92627<br/><br/>Hours: <br/>Open Mon-Fri: 11AM-4PM </p>",
+            "address": "<p>1644 Superior Ave<br/>Costa Mesa, CA, 92627<br/><br/>Hours: <br/>Open Mon-Fri: 11AM-4PM</p>",
             "show_social": true,
             "block_width": "17%",
             "mobile_block_width": "100%"
@@ -70,7 +70,7 @@
       "settings": {
         "background_color": "#1e1e1e",
         "background_opacity": "1",
-        "footer_background_image": "shopify://shop_images/Artboard_1_2x-100.jpg",
+        "footer_background_image": "shopify://shop_images/Artboard_1_2x-100_224719fe-8769-4209-9dcf-cc063010fc23.jpg",
         "show_payment_icons": false,
         "show_locale_selector": false,
         "show_currency_selector": false,
