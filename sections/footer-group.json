@@ -68,7 +68,7 @@
         "h2,h4,a,p {color: white;}"
       ],
       "settings": {
-        "background_color": "#333333",
+        "background_color": "#1e1e1e",
         "background_opacity": "1",
         "footer_background_image": "shopify://shop_images/Artboard_1_2x-100.jpg",
         "show_payment_icons": false,
