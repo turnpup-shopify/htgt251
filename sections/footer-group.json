@@ -11,6 +11,31 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "rich_text_hJQYHM": {
+      "type": "rich-text",
+      "blocks": {
+        "text_QMmtic": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Htgt Furniture offers high quality contemporary furniture and decor across a wide range of categories, styles,  and sizes that perfectly fit and refresh a home, condo, or apartment.</p><p>Custom quotes available by request. We also have a warehouse in Costa Mesa / Newport Beach for easy access to favorites.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_QMmtic"
+      ],
+      "custom_css": [
+        "div {background: #444545;}",
+        "p {text-align: left; font-weight: 500; color: white;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "color_scheme": "accent-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "footer": {
       "type": "tp-footer",
       "blocks": {
@@ -89,6 +114,7 @@
     }
   },
   "order": [
+    "rich_text_hJQYHM",
     "footer"
   ]
 }
