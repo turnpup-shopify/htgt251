@@ -11,6 +11,31 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "rich_text_hJQYHM": {
+      "type": "rich-text",
+      "blocks": {
+        "text_QMmtic": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Htgt Furniture offers high quality contemporary furniture and decor across a wide range of categories, styles,  and sizes that perfectly fit and refresh a home, condo, or apartment.</p><p>Custom quotes available by request. We also have a warehouse in Costa Mesa / Newport Beach for easy access to favorites.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_QMmtic"
+      ],
+      "custom_css": [
+        "div {background: #444545;}",
+        "p {text-align: left; font-weight: 500; color: white;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "color_scheme": "accent-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "footer": {
       "type": "tp-footer",
       "blocks": {
@@ -32,8 +57,8 @@
             "phone": "(949) 515-9484",
             "contact_text": "info@htgtfurniture.com",
             "contact_link": "mailto:info@htgtfurniture.com",
-            "address": "<p>1644 Superior Ave<br/>Costa Mesa, CA, 92627<br/><br/>Hours: <br/>Open Mon-Fri: 11AM-4PM </p>",
-            "show_social": true,
+            "address": "<p>1644 Superior Ave<br/>Costa Mesa, CA, 92627<br/><br/>Hours: <br/>Open Mon-Fri: 11AM-4PM</p>",
+            "show_social": false,
             "block_width": "17%",
             "mobile_block_width": "100%"
           }
@@ -68,9 +93,9 @@
         "h2,h4,a,p {color: white;}"
       ],
       "settings": {
-        "background_color": "#1e1e1e",
+        "background_color": "#444545",
         "background_opacity": "1",
-        "footer_background_image": "shopify://shop_images/Artboard_1_2x-100.jpg",
+        "footer_background_image": "shopify://shop_images/Artboard_1_2x-100_f1bcec65-e912-49c1-a8c5-14f7943f47b3.jpg",
         "show_payment_icons": false,
         "show_locale_selector": false,
         "show_currency_selector": false,
@@ -89,6 +114,7 @@
     }
   },
   "order": [
+    "rich_text_hJQYHM",
     "footer"
   ]
 }
