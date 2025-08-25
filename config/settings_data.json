@@ -148,6 +148,7 @@
         "blocks": {
           "announcement_QitHwB": {
             "type": "announcement",
+            "disabled": true,
             "settings": {
               "text": "Labor Day Sale Live",
               "is_red": false,
@@ -321,6 +322,50 @@
           "padding_top": 88,
           "padding_bottom": 88,
           "logo": "shopify://shop_images/logo_white_93b68314-7452-4e9c-8fa2-55509dd05a3c.png"
+        }
+      },
+      "announcement-marquee": {
+        "type": "announcement-marquee",
+        "blocks": {
+          "item_dNqh9N": {
+            "type": "item",
+            "settings": {
+              "text": "FREE SHIPPING ALL ORDERS",
+              "url": ""
+            }
+          },
+          "item_XdNkAe": {
+            "type": "item",
+            "settings": {
+              "text": "LABOR DAY MARKDOWN NOW LIVE",
+              "url": ""
+            }
+          },
+          "item_F7wHUc": {
+            "type": "item",
+            "settings": {
+              "text": "NEW ARRIVALS HERE",
+              "url": ""
+            }
+          }
+        },
+        "block_order": [
+          "item_dNqh9N",
+          "item_XdNkAe",
+          "item_F7wHUc"
+        ],
+        "settings": {
+          "bg_color": "#e9f0e6",
+          "text_color": "#1a1a1a",
+          "font_size": 12,
+          "font_family": "Helvetica Neue",
+          "font_weight": "600",
+          "text_decoration": "none",
+          "uppercase": true,
+          "item_gap": 24,
+          "separator_text": "|",
+          "speed": 40,
+          "pause_on_hover": true
         }
       }
     },
