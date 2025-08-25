@@ -338,14 +338,15 @@
             "type": "item",
             "settings": {
               "text": "LABOR DAY MARKDOWN NOW LIVE",
-              "url": ""
+              "url": "shopify://collections/accent-table-for-entryway"
             }
           },
           "item_F7wHUc": {
             "type": "item",
             "settings": {
               "text": "NEW ARRIVALS HERE",
-              "url": ""
+              "url": "shopify://collections/top-trending-furniture",
+              "preview_image": "shopify://shop_images/navy-bedroom-bench-1.jpg"
             }
           }
         },
