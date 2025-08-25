@@ -7,11 +7,13 @@
     assign popup_header = settings.blog_header_popup_message
     assign popup_body = settings.blog_popup_message
     assign popup_img = settings.blog_popup_image_desktop
+    assign popup_img_mobile = settings.blog_popup_image_mobile
     assign success_msg = settings.blog_custom_success_message
   else
     assign popup_header = settings.header_popup_message
     assign popup_body = settings.popup_message
     assign popup_img = settings.popup_image_desktop
+    assign popup_img_mobile = settings.popup_image_mobile
     assign success_msg = settings.custom_success_message
   endif
 %}
@@ -23,9 +25,29 @@
     <span class="close-popup" id="popup-close-button">&times;</span>
     <div class="popup-inner">
       <div class="popup-image-container">
-        {% comment %} {%- if settings.popup_image_desktop != blank -%} {% endcomment %}
-        {{ popup_img | image_url: width: 800 | image_tag: class: 'popup-image', alt: 'Popup Image' }}
-      {% comment %} {%- endif -%} {% endcomment %}
+        {% comment %} {{ popup_img | image_url: width: 800 | image_tag: class: 'popup-image', alt: 'Popup Image' }} {% endcomment %}
+        {% if popup_img_mobile != blank or popup_img != blank %}
+          <picture>
+            {% if popup_img_mobile != blank %}
+              <source media="(max-width: 749px)" srcset="{{ popup_img_mobile | image_url: width: 800 }}">
+            {% endif %}
+            {% if popup_img != blank %}
+              <img
+                class="popup-image"
+                src="{{ popup_img | image_url: width: 1200 }}"
+                alt="Popup Image"
+                loading="lazy">
+            {% else %}
+              {% if popup_img_mobile != blank %}
+                <img
+                  class="popup-image"
+                  src="{{ popup_img_mobile | image_url: width: 1200 }}"
+                  alt="Popup Image"
+                  loading="lazy">
+              {% endif %}
+            {% endif %}
+          </picture>
+        {% endif %}
       </div>
       <div class="popup-text-container">
         {%- form 'customer'
