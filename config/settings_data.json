@@ -175,10 +175,6 @@
         ],
         "settings": {}
       },
-      "announcement-marquee": {
-        "type": "announcement-marquee",        
-        "settings": {}
-      },
       "header": {
         "type": "header",
         "custom_css": [
