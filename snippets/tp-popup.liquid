@@ -1,10 +1,30 @@
-<div id="email-popup" class="popup">
+{% liquid
+  assign is_blog = false
+  if canonical_url contains '/blogs/' or canonical_url contains '/blog'
+    assign is_blog = true
+  endif
+  if is_blog
+    assign popup_header = settings.blog_header_popup_message
+    assign popup_body = settings.blog_popup_message
+    assign popup_img = settings.blog_popup_image_desktop
+    assign success_msg = settings.blog_custom_success_message
+  else
+    assign popup_header = settings.header_popup_message
+    assign popup_body = settings.popup_message
+    assign popup_img = settings.popup_image_desktop
+    assign success_msg = settings.custom_success_message
+  endif
+%}
+<div
+  id="email-popup"
+  class="popup"
+  data-context="{% if is_blog %}blog{% else %}default{% endif %}">
   <div class="popup-content">
     <span class="close-popup" id="popup-close-button">&times;</span>
     <div class="popup-inner">
       <div class="popup-image-container">
         {% comment %} {%- if settings.popup_image_desktop != blank -%} {% endcomment %}
-        {{ settings.popup_image_desktop | image_url: width: 800 | image_tag: class: 'popup-image', alt: 'Popup Image' }}
+        {{ popup_img | image_url: width: 800 | image_tag: class: 'popup-image', alt: 'Popup Image' }}
       {% comment %} {%- endif -%} {% endcomment %}
       </div>
       <div class="popup-text-container">
@@ -35,10 +55,10 @@
           {%- endif -%}
           <div class="contact__fields">
             <p class="popup-header" style="margin: {{ settings.popup_header_margin_top}} 0 0 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
-              {{ settings.header_popup_message }}
+              {{ popup_header }}
             </p>
             <p style="margin: {{ settings.popup_body_margin_top}} 0 {{ settings.popup_body_margin_bottom}} 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
-              {{ settings.popup_message }}
+              {{ popup_body }}
             </p>
             <div class="field field--with-error">
               <input
@@ -78,11 +98,14 @@
   </div>
 </div>
 
-<div id="tp-email-success-popup" class="tp-success-popup popup">
+<div
+  id="tp-email-success-popup"
+  class="tp-success-popup popup"
+  data-context="{% if is_blog %}blog{% else %}default{% endif %}">
   <div class="popup-content">
     <span class="close-popup" id="success-popup-close-button">&times;</span>
     <div style="padding: 40px 20px 20px 20px; display: flex; justify-content: center; align-items: center; line-height: 1.2;">
-      {{ settings.custom_success_message }}
+      {{ success_msg }}
     </div>
   </div>
 </div>
@@ -100,6 +123,8 @@
     const isThemeEditor = window.Shopify && window.Shopify.designMode;
     const showPopup = {{ settings.show_popup_in_editor }};
     const showPopupSuccess = {{ settings.test_popup_success_state }};
+
+    const context = (popup && popup.dataset && popup.dataset.context) || 'default';
 
     // Function to set a cookie
     function setCookie(name, value, days) {
@@ -128,10 +153,10 @@
     // console.log("Popup cookie value:", getCookie("popupShown"));
 
     // Show pop-up if cookie is NOT set
-    if (!getCookie("popupShown") && popup) {      
+    if (!getCookie("popupShown_" + context) && popup) {      
       setTimeout(() => {
         popup.classList.add("active");
-        setCookie("popupShown", "true", 7); // Set cookie to expire in 7 days
+        setCookie("popupShown_" + context, "true", 7); // Set cookie to expire in 7 days
       }, 3000);
     } else if (showPopup && popup && isThemeEditor && !showPopupSuccess) {
       setTimeout(() => {
@@ -176,7 +201,7 @@
       successCloseButton.addEventListener("click", () => {
         document.getElementById("tp-email-success-popup").style.display = "none";
       });
-      setCookie("popupSuccessShown", "true", 7);
+      setCookie("popupSuccessShown_" + context, "true", 7);
     } else if (showPopupSuccess && popup && isThemeEditor && showPopup) {
       successPopup.classList.add("active");
       successCloseButton.addEventListener("click", () => {
