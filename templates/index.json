@@ -826,7 +826,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/coastal-modern-living-room-idea.jpg",
-            "image_link": "",
+            "image_link": "shopify://collections/coffee-table",
             "image_border_radius": "0px",
             "title": "COFFEE TABLES",
             "title_font_size": "22px",
