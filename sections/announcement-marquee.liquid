@@ -144,40 +144,79 @@
     }
   }
 </style>
+<style>
+  /* use dynamic distance for seamless loop */
+  @keyframes ann-scroll {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(calc(-1 * var(--ann-distance, 0px)), 0, 0);
+    }
+  }
+</style>
 
 <script>
   (function(){
-    const track = document.currentScript.closest('#announcement-marquee').querySelector('.ann-marquee__track');
-    // Duplicate content only once at runtime if merchant reduces blocks
-    if(track && track.dataset.duped !== '1'){
-      const clone = track.cloneNode(true);
-      track.parentNode.appendChild(clone); // ensures smooth loop even with few items
-      track.dataset.duped = '1';
+  const root = document.getElementById('announcement-marquee');
+  if (!root) return;
+
+  const wrapper = root.querySelector('.ann-marquee__track-wrapper');
+  const track   = root.querySelector('.ann-marquee__track');
+
+  // 1) Build a content fragment from current items (incl. separators).
+  const unit = document.createDocumentFragment();
+  [...track.children].forEach(n => unit.appendChild(n.cloneNode(true)));
+
+  // 2) Fill the track until its width exceeds 2x the wrapper (for seamless loop).
+  function fill() {
+    // clear current content
+    track.innerHTML = '';
+    // append at least once
+    track.appendChild(unit.cloneNode(true));
+
+    // keep appending until width goal reached
+    const target = wrapper.clientWidth * 2 + 40; // small buffer
+    while (track.scrollWidth < target) {
+      track.appendChild(unit.cloneNode(true));
     }
 
-    // Hover preview logic
+    // distance to scroll = width of the FIRST repetition (one unit)
+    // measure by temporarily rendering one unit in isolation
+    const temp = document.createElement('div');
+    temp.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;display:inline-flex;gap:inherit;';
+    temp.appendChild(unit.cloneNode(true));
+    document.body.appendChild(temp);
+    const unitWidth = temp.scrollWidth;
+    temp.remove();
+
+    // 3) Set CSS var so keyframes use a pixel-perfect distance
+    track.style.setProperty('--ann-distance', unitWidth + 'px');
+
+    // 4) Re-attach hover preview listeners (if any)
     const preview = document.getElementById('annPreview');
-    const imgEl = document.getElementById('annPreviewImg');
-    if(preview && imgEl){
-      const onEnter = (e)=>{
-        const url = e.currentTarget.getAttribute('data-preview');
-        if(!url) return;
-        imgEl.src = url; preview.hidden = false; position(e);
-      };
-      const onMove = (e)=> position(e);
-      const onLeave = ()=>{ preview.hidden = true; imgEl.removeAttribute('src'); };
+    const imgEl   = document.getElementById('annPreviewImg');
+    if (preview && imgEl) {
+      const onEnter = e => { const u = e.currentTarget.dataset.preview; if (!u) return; imgEl.src = u; preview.hidden = false; position(e); };
+      const onMove  = e => position(e);
+      const onLeave = () => { preview.hidden = true; imgEl.removeAttribute('src'); };
       function position(e){
-        const pad = 12; let x = e.clientX + pad; let y = e.clientY + pad;
-        const vw = window.innerWidth, vh = window.innerHeight, pw = preview.offsetWidth, ph = preview.offsetHeight;
-        if(x + pw > vw - 8) x = vw - pw - 8; if(y + ph > vh - 8) y = vh - ph - 8;
+        const pad=12; let x=e.clientX+pad, y=e.clientY+pad;
+        const vw=innerWidth, vh=innerHeight, pw=preview.offsetWidth, ph=preview.offsetHeight;
+        if(x+pw>vw-8) x=vw-pw-8; if(y+ph>vh-8) y=vh-ph-8;
         preview.style.transform = `translate(${x}px, ${y}px)`;
       }
-      document.querySelectorAll('#announcement-marquee a[data-preview]').forEach(a=>{
+      track.querySelectorAll('a[data-preview]').forEach(a=>{
         a.addEventListener('mouseenter', onEnter);
         a.addEventListener('mousemove', onMove);
         a.addEventListener('mouseleave', onLeave);
       });
     }
+  }
+
+  // Run now and on resize for responsiveness
+  fill();
+  let rAF; addEventListener('resize', () => { cancelAnimationFrame(rAF); rAF = requestAnimationFrame(fill); });
   })();
 </script>
 
