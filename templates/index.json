@@ -297,6 +297,26 @@
         "mobile_space_between": 60
       }
     },
+    "turnpup_cat_cells_e4UbRR": {
+      "type": "turnpup-cat-cells",
+      "blocks": {
+        "tab_ciVN9p": {
+          "type": "tab",
+          "settings": {
+            "label": "Mirrors",
+            "menu": "menu-mirrors"
+          }
+        }
+      },
+      "block_order": [
+        "tab_ciVN9p"
+      ],
+      "name": "Tabbed merch navigator",
+      "settings": {
+        "heading": "Shop",
+        "max_items": 8
+      }
+    },
     "at_scrolling_66baeL": {
       "type": "at-scrolling",
       "disabled": true,
@@ -1988,6 +2008,7 @@
     "tp_open_closed_JKkjRY",
     "turnpup_multicolumn_Cd8XQ3",
     "turnpup_marquee_9XfUfG",
+    "turnpup_cat_cells_e4UbRR",
     "at_scrolling_66baeL",
     "tp_article_carousel_HwRjKQ",
     "tp_article_carousel_tUtyD6",
