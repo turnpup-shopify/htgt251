@@ -9,7 +9,7 @@
 <section
   class="tc-tabs-wrapper"
   id="tc-tabs-{{ section.id }}"
-  style="margin: {{ section.settings.margin_top | default: 0 }}px {{ section.settings.margin_right | default: 0 }}px {{ section.settings.margin_bottom | default: 0 }}px {{ section.settings.margin_left | default: 0 }}px; padding: {{ section.settings.padding_top | default: 0 }}px {{ section.settings.padding_right | default: 0 }}px {{ section.settings.padding_bottom | default: 0 }}px {{ section.settings.padding_left | default: 0 }}px;">
+  style="--outer-mt: {{ section.settings.margin_top | default: 0 }}px; --outer-mr: {{ section.settings.margin_right | default: 0 }}px; --outer-mb: {{ section.settings.margin_bottom | default: 0 }}px; --outer-ml: {{ section.settings.margin_left | default: 0 }}px; --outer-pt: {{ section.settings.padding_top | default: 0 }}px; --outer-pr: {{ section.settings.padding_right | default: 0 }}px; --outer-pb: {{ section.settings.padding_bottom | default: 0 }}px; --outer-pl: {{ section.settings.padding_left | default: 0 }}px; margin: var(--outer-mt) var(--outer-mr) var(--outer-mb) var(--outer-ml); padding: var(--outer-pt) var(--outer-pr) var(--outer-pb) var(--outer-pl);">
   {% if section.settings.heading != blank %}
     <h2 class="tc-heading">{{ section.settings.heading | escape }}</h2>
   {% endif %}
@@ -163,6 +163,18 @@
     --gap: 16px;
     --pill-gap: 10px;
     --fade-ms: 220ms;
+  }
+  @media(max-width: 700px) {
+    #tc-tabs-{{ section.id }} {
+      --outer-mt: {{ section.settings.m_margin_top | default: section.settings.margin_top | default: 0 }}px;
+      --outer-mr: {{ section.settings.m_margin_right | default: section.settings.margin_right | default: 0 }}px;
+      --outer-mb: {{ section.settings.m_margin_bottom | default: section.settings.margin_bottom | default: 0 }}px;
+      --outer-ml: {{ section.settings.m_margin_left | default: section.settings.margin_left | default: 0 }}px;
+      --outer-pt: {{ section.settings.m_padding_top | default: section.settings.padding_top | default: 0 }}px;
+      --outer-pr: {{ section.settings.m_padding_right | default: section.settings.padding_right | default: 0 }}px;
+      --outer-pb: {{ section.settings.m_padding_bottom | default: section.settings.padding_bottom | default: 0 }}px;
+      --outer-pl: {{ section.settings.m_padding_left | default: section.settings.padding_left | default: 0 }}px;
+    }
   }
   #tc-tabs-{{ section.id }}
   .tc-heading {
@@ -414,6 +426,73 @@
         "type": "range",
         "id": "padding_left",
         "label": "Padding left",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "header",
+        "content": "Mobile spacing (≤700px)"
+      }, {
+        "type": "range",
+        "id": "m_margin_top",
+        "label": "Mobile margin top",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "m_margin_right",
+        "label": "Mobile margin right",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "m_margin_bottom",
+        "label": "Mobile margin bottom",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "m_margin_left",
+        "label": "Mobile margin left",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "m_padding_top",
+        "label": "Mobile padding top",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "m_padding_right",
+        "label": "Mobile padding right",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "m_padding_bottom",
+        "label": "Mobile padding bottom",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "m_padding_left",
+        "label": "Mobile padding left",
         "min": 0,
         "max": 160,
         "step": 4,
