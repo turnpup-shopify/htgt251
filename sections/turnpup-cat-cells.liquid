@@ -219,45 +219,59 @@
   #tc-tabs-{{ section.id }}
   .tc-tablist {
     display: flex;
-    gap: var(--gap);
+    gap: 8px;
     margin-bottom: 12px;
     flex-wrap: wrap;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 6px;
   }
   #tc-tabs-{{ section.id }}
   .tc-tab {
     appearance: none;
     border: 0;
-    background: #f3f3f3;
-    padding: 10px 14px;
-    border-radius: 999px;
+    background: transparent;
+    color: #555;
+    padding: 8px 2px;
+    border-radius: 0;
     cursor: pointer;
     font-weight: 600;
+    border-bottom: 2px solid transparent;
   }
   #tc-tabs-{{ section.id }}
   .tc-tab.is-active {
-    background: #111;
-    color: #fff;
+    color: #111;
+    border-bottom-color: #111;
+    background: transparent;
+  }
+  #tc-tabs-{{ section.id }}.tc-tab:hover {
+    color: #111;
   }
   #tc-tabs-{{ section.id }}
   .tc-subnav {
     display: flex;
-    gap: var(--pill-gap);
-    margin-bottom: 14px;
+    gap: 8px;
+    margin: 6px 0 16px;
     flex-wrap: wrap;
   }
   #tc-tabs-{{ section.id }}
   .tc-pill {
     appearance: none;
-    border: 1px solid #d9d9d9;
+    border: 1px solid #e0e0e0;
     background: #fff;
-    padding: 8px 12px;
+    color: #444;
+    padding: 6px 10px;
     border-radius: 999px;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
   }
   #tc-tabs-{{ section.id }}
   .tc-pill.is-active {
+    background: #f3f3f3;
     border-color: #111;
+    color: #111;
+  }
+  #tc-tabs-{{ section.id }}.tc-pill:hover {
+    border-color: #bbb;
     color: #111;
   }
   #tc-tabs-{{ section.id }}
