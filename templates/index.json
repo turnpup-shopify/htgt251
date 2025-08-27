@@ -300,23 +300,15 @@
     "turnpup_cat_cells_e4UbRR": {
       "type": "turnpup-cat-cells",
       "blocks": {
-        "tab_UtmDY7": {
-          "type": "tab",
-          "settings": {
-            "label": "Bestsellers",
-            "menu": "main-menu"
-          }
-        },
         "tab_ciVN9p": {
           "type": "tab",
           "settings": {
             "label": "Mirrors",
-            "menu": "main-menu"
+            "menu": "menu-mirrors"
           }
         }
       },
       "block_order": [
-        "tab_UtmDY7",
         "tab_ciVN9p"
       ],
       "name": "Tabbed merch navigator",
