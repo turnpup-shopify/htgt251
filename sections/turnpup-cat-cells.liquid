@@ -39,7 +39,7 @@
       aria-labelledby="tc-tab-{{ section.id }}-{{ block.id }}"
       {% unless is_active %}
       hidden{% endunless %}>
-      {% if menu and menu.links_count > 0 %}
+      {% if menu and menu.links.size > 0 %}
         <div
           class="tc-subnav"
           role="tablist"
@@ -69,7 +69,10 @@
               hidden{% endunless %}>
               {% case link_type %}
                 {% when 'collection_link' %}
-                  {% assign coll = l.object %}
+                  {% assign handle_from_object = l.object.handle %}
+                  {% assign handle_from_url = l.url | split: '/collections/' | last | split: '?' | first %}
+                  {% assign coll_handle = handle_from_object | default: handle_from_url %}
+                  {% assign coll = collections[coll_handle] %}
                   {% if coll %}
                     {% for product in coll.products limit: section.settings.max_items %}
                       <a class="tc-card" href="{{ product.url }}">
