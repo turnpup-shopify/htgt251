@@ -319,10 +319,29 @@
         "tab_ciVN9p",
         "tab_cXyAH4"
       ],
+      "custom_css": [
+        ".tc-card img {border-radius: 0px !important;}"
+      ],
       "name": "Tabbed merch navigator",
       "settings": {
         "heading": "Shop",
-        "max_items": 8
+        "max_items": 8,
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0,
+        "m_margin_top": 0,
+        "m_margin_right": 0,
+        "m_margin_bottom": 0,
+        "m_margin_left": 0,
+        "m_padding_top": 0,
+        "m_padding_right": 0,
+        "m_padding_bottom": 0,
+        "m_padding_left": 0
       }
     },
     "at_scrolling_66baeL": {
