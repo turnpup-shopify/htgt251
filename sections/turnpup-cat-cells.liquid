@@ -1,0 +1,374 @@
+{% comment %}
+  Section: Tabbed merch navigator (True Classic–style)
+  - Add blocks for each tab. Each block has a label and a menu (link list).
+  - Each tab renders inline buttons from the menu’s top-level links.
+  - Clicking a button swaps the grid below with a soft fade.
+  - Supported link targets: collections (renders products), products (renders single card).
+{% endcomment %}
+
+<section class="tc-tabs-wrapper" id="tc-tabs-{{ section.id }}">
+  {% if section.settings.heading != blank %}
+    <h2 class="tc-heading">{{ section.settings.heading | escape }}</h2>
+  {% endif %}
+
+  <div
+    class="tc-tablist"
+    role="tablist"
+    aria-label="{{ section.settings.heading | default: 'Catalog tabs' | escape }}">
+    {% for block in section.blocks %}
+      {% assign is_active = forloop.first %}
+      <button
+        class="tc-tab {% if is_active %}is-active{% endif %}"
+        id="tc-tab-{{ section.id }}-{{ block.id }}"
+        role="tab"
+        aria-selected="{% if is_active %}true{% else %}false{% endif %}"
+        aria-controls="tc-panel-{{ section.id }}-{{ block.id }}"
+        data-tab-target="tc-panel-{{ section.id }}-{{ block.id }}">
+        {{ block.settings.label | escape }}
+      </button>
+    {% endfor %}
+  </div>
+
+  {% for block in section.blocks %}
+    {% assign is_active = forloop.first %}
+    {% assign menu = linklists[block.settings.menu] %}
+    <div
+      id="tc-panel-{{ section.id }}-{{ block.id }}"
+      class="tc-tabpanel {% if is_active %}is-active{% endif %}"
+      role="tabpanel"
+      aria-labelledby="tc-tab-{{ section.id }}-{{ block.id }}"
+      {% unless is_active %}
+      hidden{% endunless %}>
+      {% if menu and menu.links_count > 0 %}
+        <div
+          class="tc-subnav"
+          role="tablist"
+          aria-label="{{ block.settings.label | escape }} subfilters">
+          {% for l in menu.links %}
+            {% assign sub_active = forloop.first %}
+            <button
+              class="tc-pill {% if sub_active %}is-active{% endif %}"
+              role="tab"
+              aria-selected="{% if sub_active %}true{% else %}false{% endif %}"
+              aria-controls="tc-grid-{{ section.id }}-{{ block.id }}-{{ forloop.index }}"
+              data-subgrid-target="tc-grid-{{ section.id }}-{{ block.id }}-{{ forloop.index }}">
+              {{ l.title | escape }}
+            </button>
+          {% endfor %}
+        </div>
+
+        {% comment %} Render a grid per subfilter button {% endcomment %}
+        <div class="tc-grids">
+          {% for l in menu.links %}
+            {% assign sub_active = forloop.first %}
+            {% assign link_type = l.type %}
+            <div
+              id="tc-grid-{{ section.id }}-{{ block.id }}-{{ forloop.index }}"
+              class="tc-grid {% if sub_active %}is-active{% endif %}"
+              {% unless sub_active %}
+              hidden{% endunless %}>
+              {% case link_type %}
+                {% when 'collection_link' %}
+                  {% assign coll = l.object %}
+                  {% if coll %}
+                    {% for product in coll.products | limit: section.settings.max_items %}
+                      <a class="tc-card" href="{{ product.url }}">
+                        <div class="tc-imgwrap">
+                          {% assign img = product.featured_image %}
+                          {% if img %}
+                            <img
+                              loading="lazy"
+                              src="{{ img | image_url: width: 600 }}"
+                              srcset="{{ img | image_url: width: 400 }} 400w, {{ img | image_url: width: 600 }} 600w, {{ img | image_url: width: 900 }} 900w"
+                              sizes="(min-width: 990px) 240px, 45vw"
+                              alt="{{ img.alt | escape }}">
+                          {% endif %}
+                        </div>
+                        <div class="tc-meta">
+                          <span class="tc-title">{{ product.title }}</span>
+                          {% if product.price %}
+                            <span class="tc-price">{{ product.price | money }}</span>
+                          {% endif %}
+                        </div>
+                      </a>
+                    {% else %}
+                      <p class="tc-empty">{{ 'sections.collection_template.empty' | t }}</p>
+                    {% endfor %}
+                  {% endif %}
+
+                {% when 'product_link' %}
+                  {% assign p = l.object %}
+                  {% if p %}
+                    <a class="tc-card" href="{{ p.url }}">
+                      <div class="tc-imgwrap">
+                        {% if p.featured_image %}
+                          <img
+                            loading="lazy"
+                            src="{{ p.featured_image | image_url: width: 800 }}"
+                            alt="{{ p.featured_image.alt | escape }}">
+                        {% endif %}
+                      </div>
+                      <div class="tc-meta">
+                        <span class="tc-title">{{ p.title }}</span>
+                        <span class="tc-price">{{ p.price | money }}</span>
+                      </div>
+                    </a>
+                  {% endif %}
+
+                {% else %}
+                  {% comment %}
+                    Fallback for generic links. If it resolves to a collection handle in URL, try to fetch it.
+                  {% endcomment %}
+                  {% assign handle = l.url | split: '/collections/' | last | split: '?' | first %}
+                  {% assign fallback_coll = collections[handle] %}
+                  {% if fallback_coll %}
+                    {% for product in fallback_coll.products | limit: section.settings.max_items %}
+                      <a class="tc-card" href="{{ product.url }}">
+                        <div class="tc-imgwrap">
+                          {% if product.featured_image %}
+                            <img
+                              loading="lazy"
+                              src="{{ product.featured_image | image_url: width: 600 }}"
+                              alt="{{ product.featured_image.alt | escape }}">
+                          {% endif %}
+                        </div>
+                        <div class="tc-meta">
+                          <span class="tc-title">{{ product.title }}</span>
+                          <span class="tc-price">{{ product.price | money }}</span>
+                        </div>
+                      </a>
+                    {% endfor %}
+                  {% else %}
+                    <a class="tc-card tc-linkonly" href="{{ l.url }}">{{ l.title | escape }}</a>
+                  {% endif %}
+              {% endcase %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="tc-empty">Assign a menu to this tab.</p>
+      {% endif %}
+    </div>
+  {% endfor %}
+</section>
+
+<style>
+  #tc-tabs-{{ section.id }} {
+    --gap: 16px;
+    --pill-gap: 10px;
+    --fade-ms: 220ms;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-heading {
+    margin-bottom: 14px;
+    font-size: 28px;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-tablist {
+    display: flex;
+    gap: var(--gap);
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-tab {
+    appearance: none;
+    border: 0;
+    background: #f3f3f3;
+    padding: 10px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-tab.is-active {
+    background: #111;
+    color: #fff;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-subnav {
+    display: flex;
+    gap: var(--pill-gap);
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-pill {
+    appearance: none;
+    border: 1px solid #d9d9d9;
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-pill.is-active {
+    border-color: #111;
+    color: #111;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-tabpanel {
+    opacity: 0;
+    transition: opacity var(--fade-ms) ease;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-tabpanel.is-active {
+    opacity: 1;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-grids {
+    position: relative;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+    opacity: 0;
+    transition: opacity var(--fade-ms) ease;
+  }
+  @media(min-width: 990px) {
+    #tc-tabs-{{ section.id }} .tc-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-grid.is-active {
+    opacity: 1;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-imgwrap {
+    aspect-ratio: 1 / 1;
+    background: #f7f7f7;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-imgwrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 200ms ease;
+  }
+  #tc-tabs-{{ section.id }}.tc-card:hover .tc-imgwrap img {
+    transform: scale(1.03);
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-meta {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-title {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-price {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  #tc-tabs-{{ section.id }}
+  .tc-empty {
+    color: #666;
+    font-size: 14px;
+  }
+  #tc-tabs-{{ section.id }}
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<script>
+  (function() {
+    const root = document.getElementById('tc-tabs-{{ section.id }}');
+    if (!root) return;
+
+    // Tabs
+    const tabs = root.querySelectorAll('.tc-tab');
+    const panels = root.querySelectorAll('.tc-tabpanel');
+
+    function activateTab(btn) {
+      tabs.forEach(t => { t.classList.remove('is-active'); t.setAttribute('aria-selected','false'); });
+      panels.forEach(p => { p.classList.remove('is-active'); p.hidden = true; });
+      btn.classList.add('is-active'); btn.setAttribute('aria-selected','true');
+      const id = btn.dataset.tabTarget;
+      const panel = root.querySelector('#' + id);
+      if (panel) { panel.hidden = false; requestAnimationFrame(() => panel.classList.add('is-active')); }
+    }
+
+    tabs.forEach(btn => btn.addEventListener('click', () => activateTab(btn)));
+
+    // Subfilters within each tab
+    panels.forEach(panel => {
+      const pills = panel.querySelectorAll('.tc-pill');
+      const grids = panel.querySelectorAll('.tc-grid');
+      function activatePill(p) {
+        pills.forEach(el => { el.classList.remove('is-active'); el.setAttribute('aria-selected','false'); });
+        grids.forEach(g => { g.classList.remove('is-active'); g.hidden = true; });
+        p.classList.add('is-active'); p.setAttribute('aria-selected','true');
+        const id = p.dataset.subgridTarget;
+        const grid = panel.querySelector('#' + id);
+        if (grid) { grid.hidden = false; requestAnimationFrame(() => grid.classList.add('is-active')); }
+      }
+      pills.forEach(p => p.addEventListener('click', () => activatePill(p)));
+    });
+  })();
+</script>
+
+{% schema %}
+  {
+    "name": "Tabbed merch navigator",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Shop"
+      }, {
+        "type": "range",
+        "id": "max_items",
+        "label": "Max products per grid",
+        "min": 4,
+        "max": 24,
+        "step": 1,
+        "default": 8
+      }
+    ],
+    "blocks": [
+      {
+        "type": "tab",
+        "name": "Tab",
+        "settings": [
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Tab label",
+            "default": "Bestsellers"
+          }, {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Menu for subfilters",
+            "default": ""
+          }
+        ]
+      }
+    ],
+    "max_blocks": 8,
+    "presets": [
+      {
+        "name": "Tabbed merch navigator",
+        "category": "Merchandising"
+      }
+    ]
+  }
+{% endschema %}
