@@ -71,7 +71,7 @@
                 {% when 'collection_link' %}
                   {% assign coll = l.object %}
                   {% if coll %}
-                    {% for product in coll.products | limit: section.settings.max_items %}
+                    {% for product in coll.products limit: section.settings.max_items %}
                       <a class="tc-card" href="{{ product.url }}">
                         <div class="tc-imgwrap">
                           {% assign img = product.featured_image %}
@@ -122,7 +122,7 @@
                   {% assign handle = l.url | split: '/collections/' | last | split: '?' | first %}
                   {% assign fallback_coll = collections[handle] %}
                   {% if fallback_coll %}
-                    {% for product in fallback_coll.products | limit: section.settings.max_items %}
+                    {% for product in fallback_coll.products limit: section.settings.max_items %}
                       <a class="tc-card" href="{{ product.url }}">
                         <div class="tc-imgwrap">
                           {% if product.featured_image %}
@@ -358,7 +358,7 @@
             "type": "link_list",
             "id": "menu",
             "label": "Menu for subfilters",
-            "default": ""
+            "default": "main-menu"
           }
         ]
       }
