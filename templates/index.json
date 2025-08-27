@@ -306,10 +306,18 @@
             "label": "Mirrors",
             "menu": "menu-mirrors"
           }
+        },
+        "tab_cXyAH4": {
+          "type": "tab",
+          "settings": {
+            "label": "Bestsellers",
+            "menu": "main-menu"
+          }
         }
       },
       "block_order": [
-        "tab_ciVN9p"
+        "tab_ciVN9p",
+        "tab_cXyAH4"
       ],
       "name": "Tabbed merch navigator",
       "settings": {
