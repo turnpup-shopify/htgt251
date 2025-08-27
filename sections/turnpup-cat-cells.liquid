@@ -9,7 +9,7 @@
 <section
   class="tc-tabs-wrapper"
   id="tc-tabs-{{ section.id }}"
-  style="--outer-mt: {{ section.settings.margin_top | default: 0 }}px; --outer-mr: {{ section.settings.margin_right | default: 0 }}px; --outer-mb: {{ section.settings.margin_bottom | default: 0 }}px; --outer-ml: {{ section.settings.margin_left | default: 0 }}px; --outer-pt: {{ section.settings.padding_top | default: 0 }}px; --outer-pr: {{ section.settings.padding_right | default: 0 }}px; --outer-pb: {{ section.settings.padding_bottom | default: 0 }}px; --outer-pl: {{ section.settings.padding_left | default: 0 }}px; margin: var(--outer-mt) var(--outer-mr) var(--outer-mb) var(--outer-ml); padding: var(--outer-pt) var(--outer-pr) var(--outer-pb) var(--outer-pl);">
+  style="margin: var(--outer-mt) var(--outer-mr) var(--outer-mb) var(--outer-ml); padding: var(--outer-pt) var(--outer-pr) var(--outer-pb) var(--outer-pl);">
   {% if section.settings.heading != blank %}
     <h2 class="tc-heading">{{ section.settings.heading | escape }}</h2>
   {% endif %}
@@ -163,6 +163,17 @@
     --gap: 16px;
     --pill-gap: 10px;
     --fade-ms: 220ms;
+    --outer-mt: {{ section.settings.margin_top | default: 0 }}px;
+    --outer-mr: {{ section.settings.margin_right | default: 0 }}px;
+    --outer-mb: {{ section.settings.margin_bottom | default: 0 }}px;
+    --outer-ml: {{ section.settings.margin_left | default: 0 }}px;
+    --outer-pt: {{ section.settings.padding_top | default: 0 }}px;
+    --outer-pr: {{ section.settings.padding_right | default: 0 }}px;
+    --outer-pb: {{ section.settings.padding_bottom | default: 0 }}px;
+    --outer-pl: {{ section.settings.padding_left | default: 0 }}px;
+    --img-radius: {{ section.settings.img_radius | default: 12 }}px;
+    --cols-mobile: {{ section.settings.cols_mobile | default: 2 }};
+    --cols-desktop: {{ section.settings.cols_desktop | default: 4 }};
   }
   @media(max-width: 700px) {
     #tc-tabs-{{ section.id }} {
@@ -241,14 +252,14 @@
   #tc-tabs-{{ section.id }}
   .tc-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(var(--cols-mobile), 1fr);
     gap: var(--gap);
     opacity: 0;
     transition: opacity var(--fade-ms) ease;
   }
   @media(min-width: 990px) {
     #tc-tabs-{{ section.id }} .tc-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(var(--cols-desktop), 1fr);
     }
   }
   #tc-tabs-{{ section.id }}
@@ -266,7 +277,7 @@
     aspect-ratio: 1 / 1;
     background: #f7f7f7;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: var(--img-radius);
   }
   #tc-tabs-{{ section.id }}
   .tc-imgwrap img {
@@ -431,6 +442,14 @@
         "step": 4,
         "default": 0
       }, {
+        "type": "range",
+        "id": "img_radius",
+        "label": "Image border radius (px)",
+        "min": 0,
+        "max": 48,
+        "step": 1,
+        "default": 12
+      }, {
         "type": "header",
         "content": "Mobile spacing (≤700px)"
       }, {
@@ -497,6 +516,25 @@
         "max": 160,
         "step": 4,
         "default": 0
+      }, {
+        "type": "header",
+        "content": "Grid columns"
+      }, {
+        "type": "range",
+        "id": "cols_mobile",
+        "label": "Columns on mobile",
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "default": 2
+      }, {
+        "type": "range",
+        "id": "cols_desktop",
+        "label": "Columns on desktop",
+        "min": 3,
+        "max": 5,
+        "step": 1,
+        "default": 4
       }
     ],
     "blocks": [
