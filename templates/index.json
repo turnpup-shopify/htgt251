@@ -155,12 +155,12 @@
             "space_between_buttons": 12,
             "vertically_align_center": true,
             "top_margin_column": "",
-            "top_margin_column_mobile": "40px",
+            "top_margin_column_mobile": "20px",
             "width": "",
             "text_max_width": "calc(100% - 40px)",
             "hide_on_mobile": false,
             "mobile_order": "1",
-            "margin_bottom_container": "30px",
+            "margin_bottom_container": "10px",
             "remove_top_padding": true,
             "remove_bottom_padding": true
           }
@@ -319,12 +319,10 @@
         "tab_ciVN9p",
         "tab_cXyAH4"
       ],
-      "custom_css": [
-        ".tc-card img {border-radius: 0px !important;}"
-      ],
+      "custom_css": [],
       "name": "Tabbed merch navigator",
       "settings": {
-        "heading": "Shop",
+        "heading": "Browse Top Sellers",
         "max_items": 8,
         "margin_top": 0,
         "margin_right": 0,
@@ -334,14 +332,17 @@
         "padding_right": 0,
         "padding_bottom": 0,
         "padding_left": 0,
-        "m_margin_top": 0,
-        "m_margin_right": 28,
-        "m_margin_bottom": 0,
-        "m_margin_left": 28,
+        "img_radius": 0,
+        "m_margin_top": 32,
+        "m_margin_right": 20,
+        "m_margin_bottom": 32,
+        "m_margin_left": 20,
         "m_padding_top": 0,
         "m_padding_right": 0,
         "m_padding_bottom": 0,
-        "m_padding_left": 0
+        "m_padding_left": 0,
+        "cols_mobile": 3,
+        "cols_desktop": 4
       }
     },
     "at_scrolling_66baeL": {
