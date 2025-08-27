@@ -6,7 +6,10 @@
   - Supported link targets: collections (renders products), products (renders single card).
 {% endcomment %}
 
-<section class="tc-tabs-wrapper" id="tc-tabs-{{ section.id }}">
+<section
+  class="tc-tabs-wrapper"
+  id="tc-tabs-{{ section.id }}"
+  style="margin: {{ section.settings.margin_top | default: 0 }}px {{ section.settings.margin_right | default: 0 }}px {{ section.settings.margin_bottom | default: 0 }}px {{ section.settings.margin_left | default: 0 }}px; padding: {{ section.settings.padding_top | default: 0 }}px {{ section.settings.padding_right | default: 0 }}px {{ section.settings.padding_bottom | default: 0 }}px {{ section.settings.padding_left | default: 0 }}px;">
   {% if section.settings.heading != blank %}
     <h2 class="tc-heading">{{ section.settings.heading | escape }}</h2>
   {% endif %}
@@ -337,7 +340,8 @@
         "id": "heading",
         "label": "Heading",
         "default": "Shop"
-      }, {
+      },
+      {
         "type": "range",
         "id": "max_items",
         "label": "Max products per grid",
@@ -345,6 +349,75 @@
         "max": 24,
         "step": 1,
         "default": 8
+      },
+      {
+        "type": "header",
+        "content": "Outer spacing"
+      },
+      {
+        "type": "range",
+        "id": "margin_top",
+        "label": "Margin top",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "margin_right",
+        "label": "Margin right",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "margin_bottom",
+        "label": "Margin bottom",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "margin_left",
+        "label": "Margin left",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Padding top",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "padding_right",
+        "label": "Padding right",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Padding bottom",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "padding_left",
+        "label": "Padding left",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "default": 0
       }
     ],
     "blocks": [
