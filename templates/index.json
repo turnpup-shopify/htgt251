@@ -544,7 +544,7 @@
       "type": "turnpup-keyword-cats",
       "name": "Keyword cloud collect",
       "settings": {
-        "menu": "main-menu",
+        "menu": "cloud",
         "bg_color": "#f8efe6",
         "max_width": 1400,
         "row_gap": 18,
