@@ -363,7 +363,7 @@
           "text_color": "#1a1a1a",
           "font_size": 12,
           "font_family": "Helvetica Neue",
-          "font_weight": "600",
+          "font_weight": "400",
           "text_decoration": "none",
           "uppercase": true,
           "item_gap": 24,
