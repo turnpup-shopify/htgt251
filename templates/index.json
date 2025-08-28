@@ -540,6 +540,39 @@
         "mobile_max_height_image": 150
       }
     },
+    "turnpup_keyword_cats_JBhy3a": {
+      "type": "turnpup-keyword-cats",
+      "name": "Keyword cloud collect",
+      "settings": {
+        "menu": "coffee-tables",
+        "bg_color": "#F8EFE6",
+        "max_width": 1400,
+        "row_gap": 18,
+        "col_gap": 28,
+        "show_counts": true,
+        "uppercase": true,
+        "pad_t_d": 48,
+        "pad_r_d": 24,
+        "pad_b_d": 48,
+        "pad_l_d": 24,
+        "pad_t_m": 32,
+        "pad_r_m": 16,
+        "pad_b_m": 32,
+        "pad_l_m": 16,
+        "ttl_font": "Helvetica Neue",
+        "ttl_weight": "700",
+        "ttl_size_d": 72,
+        "ttl_size_m": 40,
+        "ttl_color": "#111111",
+        "ttl_tracking": 0,
+        "num_font": "Helvetica Neue",
+        "num_weight": "400",
+        "num_size_d": 22,
+        "num_size_m": 16,
+        "num_color": "#CFC8BF",
+        "num_opacity": 1
+      }
+    },
     "turnpup_multicolumn_DKf67w": {
       "type": "turnpup-multicolumn",
       "blocks": {
@@ -2055,6 +2088,7 @@
     "tp_article_carousel_HwRjKQ",
     "tp_article_carousel_tUtyD6",
     "tp_subnav_6TwtQ8",
+    "turnpup_keyword_cats_JBhy3a",
     "turnpup_multicolumn_DKf67w",
     "16516195897b496f4a",
     "tp_article_carousel_QCQJ8h",
