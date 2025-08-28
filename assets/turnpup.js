@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
       }
     });
 
-    link.addEventListener('mouseOver', function(e) {
+    link.addEventListener('mouseover', function(e) {
       if (details.hasAttribute('open')) {
         // console.log("Following link:", link.href);
       } else {
