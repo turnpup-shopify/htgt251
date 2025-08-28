@@ -13,6 +13,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
         details.setAttribute('open', true);
       }
     });
+
+    link.addEventListener('mouseOver', function(e) {
+      if (details.hasAttribute('open')) {
+        // console.log("Following link:", link.href);
+      } else {
+        e.preventDefault();
+        // console.log("Prevented link. Opening menu instead:", link.href);
+        details.setAttribute('open', true);
+      }
+    });
+
   });
 
   // this below block dismisses desktop menus only if any dropdown is open
