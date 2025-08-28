@@ -2675,7 +2675,8 @@ details[open] > .header__menu-item .icon-caret {
 }
 
 .header__menu-item .icon-caret {
-  right: 0.8rem;
+  /* right: 0.8rem; */
+  right: 12px;
 }
 
 .header__submenu .icon-caret {
