@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
           if (summaryElement) summaryElement.setAttribute('aria-expanded', false);
         });
         // CLOSE TURNPUP CUSTOM  ^ 
+        details.setAttribute('open', true);
+        // REOPEN THE ONE
       } else {
         e.preventDefault();
         // console.log("Prevented link. Opening menu instead:", link.href);
