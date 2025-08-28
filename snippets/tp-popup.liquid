@@ -234,6 +234,14 @@
 </script>
 
 <style>
+  :root {
+    --tp-popup-w-d: {{ settings.d_popup_width | default: 600 }}px;
+    --tp-popup-h-d: {{ settings.d_popup_height | default: 550 }}px;
+    --tp-popup-w-m: {{ settings.m_popup_width | default: 340 }}px;
+    --tp-popup-h-m: {{ settings.m_popup_height | default: 420 }}px;
+  }
+</style>
+<style>
   /* Background overlay covering the whole page */
   .overlay,
   .popup {
@@ -268,12 +276,13 @@
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    max-width: 600px;
-    width: auto;
+    width: var(--tp-popup-w-d);
+    max-width: min(90vw, var(--tp-popup-w-d));
+    height: var(--tp-popup-h-d);
+    max-height: min(90vh, var(--tp-popup-h-d));
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 550px;
     position: relative;
   }
 
@@ -328,6 +337,7 @@
     display: block;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+    max-height: 100%;
   }
 
   @media (max-width: 768px) {
@@ -341,15 +351,23 @@
     }
 
     .popup-image-container {
-      height: 200px;
+      height: clamp(160px, calc(var(--tp-popup-h-m) * 0.35), 320px);
     }
 
     /* Pop-up box */
     .popup-content {
-      max-width: 340px;
+      width: var(--tp-popup-w-m);
+      max-width: min(94vw, var(--tp-popup-w-m));
       padding: {{ settings.m_popup_outer_padding }};
-      height: auto;
+      height: var(--tp-popup-h-m);
+      max-height: min(90vh, var(--tp-popup-h-m));
     }
+  }
+</style>
+
+<style>
+  .popup-content {
+    overflow: auto;
   }
 </style>
 
