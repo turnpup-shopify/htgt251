@@ -1,0 +1,378 @@
+{% comment %}
+  Section: keyword-cloud-collections.liquid
+  Inputs:
+  - Link list of collection links
+  - Background image or color
+  - Padding desktop and mobile (mobile breakpoint 700px)
+  - Typography controls for collection title and count number
+{% endcomment %}
+
+<section class="kwc-section" style="
+    {% if section.settings.bg_image != blank %}
+      background-image:url({{ section.settings.bg_image | image_url }});
+      background-size:cover;background-position:center;
+    {% endif %}
+    background-color: {{ section.settings.bg_color }};
+  ">
+  <div class="kwc-inner">
+    {% assign nav = linklists[section.settings.menu] %}
+    {% if nav %}
+      <ul class="kwc-list" role="list">
+        {% for link in nav.links %}
+          {% assign coll = link.object %}
+          {% assign is_collection = link.type = = 'collection_link' %}
+          {% assign count = 0 %}
+          {% if is_collection and coll != blank %}
+            {% assign count = coll.all_products_count %}
+          {% endif %}
+          <li class="kwc-item">
+            <a
+              class="kwc-link"
+              href="{{ link.url }}"
+              aria-label="{{ link.title | strip }}">
+              <span class="kwc-title">{{ link.title }}</span>
+              {% if section.settings.show_counts %}
+                <span class="kwc-count">{{ count }}</span>
+              {% endif %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+
+  <style>
+    .kwc-section {
+      {% comment %} desktop padding {% endcomment %}
+    padding-top: {{ section.settings.pad_t_d }}px;
+    padding-right: {{ section.settings.pad_r_d }}px;
+    padding-bottom: {{ section.settings.pad_b_d }}px;
+    padding-left: {{ section.settings.pad_l_d }}px;
+  }
+  .kwc-inner {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  .kwc-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: {{ section.settings.row_gap }}px{{ section.settings.col_gap }}px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .kwc-item {
+    display: inline-block;
+  }
+  .kwc-link {
+    text-decoration: none;
+    line-height: 1.05;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* Title typography */
+  .kwc-title {
+    font-family: {{ section.settings.ttl_font | default: 'Helvetica Neue' }};
+    font-weight: {{ section.settings.ttl_weight }};
+    font-size: {{ section.settings.ttl_size_d }}px;
+    color: {{ section.settings.ttl_color }};
+    text-transform: {{ section.settings.uppercase | default: true | ternary: 'uppercase','none' }};
+    letter-spacing: {{ section.settings.ttl_tracking }}em;
+  }
+
+  /* Count typography */
+  .kwc-count {
+    font-family: {{ section.settings.num_font | default: 'Helvetica Neue' }};
+    font-weight: {{ section.settings.num_weight }};
+    font-size: {{ section.settings.num_size_d }}px;
+    color: {{ section.settings.num_color }};
+    opacity: {{ section.settings.num_opacity }};
+    position: relative;
+    top: -0.35em;
+  }
+
+  /* Mobile */
+  @media (max-width: 700px) {
+    .kwc-section {
+      padding-top: {{ section.settings.pad_t_m }}px;
+      padding-right: {{ section.settings.pad_r_m }}px;
+      padding-bottom: {{ section.settings.pad_b_m }}px;
+      padding-left: {{ section.settings.pad_l_m }}px;
+    }
+    .kwc-title {
+      font-size: {{ section.settings.ttl_size_m }}px;
+    }
+    .kwc-count {
+      font-size: {{ section.settings.num_size_m }}px;
+    }
+  }
+  </style>
+</section>
+
+{% schema %}
+  {
+    "name": "Keyword cloud: collections",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Link list (collections only)"
+      },
+
+      {
+        "type": "header",
+        "content": "Background"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Background image"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background color",
+        "default": "#F8EFE6"
+      }, {
+        "type": "header",
+        "content": "Layout"
+      }, {
+        "type": "range",
+        "id": "max_width",
+        "label": "Max width",
+        "min": 720,
+        "max": 1920,
+        "step": 10,
+        "default": 1400
+      }, {
+        "type": "range",
+        "id": "row_gap",
+        "label": "Row gap",
+        "min": 0,
+        "max": 64,
+        "step": 1,
+        "default": 18
+      }, {
+        "type": "range",
+        "id": "col_gap",
+        "label": "Column gap",
+        "min": 0,
+        "max": 64,
+        "step": 1,
+        "default": 28
+      }, {
+        "type": "checkbox",
+        "id": "show_counts",
+        "label": "Show product counts",
+        "default": true
+      }, {
+        "type": "checkbox",
+        "id": "uppercase",
+        "label": "Uppercase titles",
+        "default": true
+      }, {
+        "type": "header",
+        "content": "Padding desktop"
+      }, {
+        "type": "range",
+        "id": "pad_t_d",
+        "label": "Top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "default": 48
+      }, {
+        "type": "range",
+        "id": "pad_r_d",
+        "label": "Right",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "default": 24
+      }, {
+        "type": "range",
+        "id": "pad_b_d",
+        "label": "Bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "default": 48
+      }, {
+        "type": "range",
+        "id": "pad_l_d",
+        "label": "Left",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "default": 24
+      }, {
+        "type": "header",
+        "content": "Padding mobile (≤700px)"
+      }, {
+        "type": "range",
+        "id": "pad_t_m",
+        "label": "Top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "default": 32
+      }, {
+        "type": "range",
+        "id": "pad_r_m",
+        "label": "Right",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "default": 16
+      }, {
+        "type": "range",
+        "id": "pad_b_m",
+        "label": "Bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "default": 32
+      }, {
+        "type": "range",
+        "id": "pad_l_m",
+        "label": "Left",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "default": 16
+      }, {
+        "type": "header",
+        "content": "Title typography"
+      }, {
+        "type": "text",
+        "id": "ttl_font",
+        "label": "Font family",
+        "default": "Helvetica Neue"
+      }, {
+        "type": "select",
+        "id": "ttl_weight",
+        "label": "Font weight",
+        "default": "700",
+        "options": [
+          {
+            "value": "300",
+            "label": "300"
+          },
+          {
+            "value": "400",
+            "label": "400"
+          },
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          }, {
+            "value": "700",
+            "label": "700"
+          }, {
+            "value": "800",
+            "label": "800"
+          }
+        ]
+      }, {
+        "type": "range",
+        "id": "ttl_size_d",
+        "label": "Font size desktop (px)",
+        "min": 16,
+        "max": 120,
+        "step": 1,
+        "default": 72
+      }, {
+        "type": "range",
+        "id": "ttl_size_m",
+        "label": "Font size mobile (px)",
+        "min": 12,
+        "max": 72,
+        "step": 1,
+        "default": 40
+      }, {
+        "type": "color",
+        "id": "ttl_color",
+        "label": "Color",
+        "default": "#111111"
+      }, {
+        "type": "range",
+        "id": "ttl_tracking",
+        "label": "Letter spacing (em)",
+        "min": -0.05,
+        "max": 0.2,
+        "step": 0.005,
+        "default": 0
+      }, {
+        "type": "header",
+        "content": "Number typography"
+      }, {
+        "type": "text",
+        "id": "num_font",
+        "label": "Font family",
+        "default": "Helvetica Neue"
+      }, {
+        "type": "select",
+        "id": "num_weight",
+        "label": "Font weight",
+        "default": "400",
+        "options": [
+          {
+            "value": "300",
+            "label": "300"
+          }, {
+            "value": "400",
+            "label": "400"
+          }, {
+            "value": "500",
+            "label": "500"
+          }, {
+            "value": "600",
+            "label": "600"
+          }
+        ]
+      }, {
+        "type": "range",
+        "id": "num_size_d",
+        "label": "Font size desktop (px)",
+        "min": 8,
+        "max": 48,
+        "step": 1,
+        "default": 22
+      }, {
+        "type": "range",
+        "id": "num_size_m",
+        "label": "Font size mobile (px)",
+        "min": 8,
+        "max": 32,
+        "step": 1,
+        "default": 16
+      }, {
+        "type": "color",
+        "id": "num_color",
+        "label": "Color",
+        "default": "#CFC8BF"
+      }, {
+        "type": "range",
+        "id": "num_opacity",
+        "label": "Opacity",
+        "min": 0.1,
+        "max": 1.0,
+        "step": 0.05,
+        "default": 0.8
+      }
+    ],
+    "presets": [
+      {
+        "name": "Keyword cloud collections",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}
