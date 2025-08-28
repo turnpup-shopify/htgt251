@@ -24,13 +24,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
         // console.log("mouseOver main - closing open dropdowns");
         openMenus.forEach((e) => {
+          if (e == details){ console.log("same one"); return; }
           const summaryElement = e.querySelector('summary');
           e.removeAttribute('open');
           if (summaryElement) summaryElement.setAttribute('aria-expanded', false);
         });
         // CLOSE TURNPUP CUSTOM  ^ 
-        details.setAttribute('open', true);
-        // REOPEN THE ONE
       } else {
         e.preventDefault();
         // console.log("Prevented link. Opening menu instead:", link.href);
