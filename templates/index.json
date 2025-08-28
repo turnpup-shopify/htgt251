@@ -567,8 +567,8 @@
         "ttl_tracking": 0,
         "num_font": "Helvetica Neue",
         "num_weight": "400",
-        "num_size_d": 22,
-        "num_size_m": 16,
+        "num_size_d": 16,
+        "num_size_m": 14,
         "num_color": "#aba49d",
         "num_opacity": 1
       }
