@@ -544,8 +544,8 @@
       "type": "turnpup-keyword-cats",
       "name": "Keyword cloud collect",
       "settings": {
-        "menu": "coffee-tables",
-        "bg_color": "#F8EFE6",
+        "menu": "main-menu",
+        "bg_color": "#f8efe6",
         "max_width": 1400,
         "row_gap": 18,
         "col_gap": 28,
@@ -561,7 +561,7 @@
         "pad_l_m": 16,
         "ttl_font": "Helvetica Neue",
         "ttl_weight": "700",
-        "ttl_size_d": 72,
+        "ttl_size_d": 48,
         "ttl_size_m": 40,
         "ttl_color": "#111111",
         "ttl_tracking": 0,
@@ -569,7 +569,7 @@
         "num_weight": "400",
         "num_size_d": 22,
         "num_size_m": 16,
-        "num_color": "#CFC8BF",
+        "num_color": "#cfc8bf",
         "num_opacity": 1
       }
     },
