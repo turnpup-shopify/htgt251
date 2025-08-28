@@ -507,39 +507,6 @@
         "section_background_color": "#ffffff"
       }
     },
-    "tp_subnav_6TwtQ8": {
-      "type": "tp-subnav",
-      "settings": {
-        "padding_top": 0,
-        "padding_bottom": 28,
-        "padding_right": 0,
-        "padding_left": 60,
-        "mobile_padding_top": 0,
-        "mobile_padding_bottom": 40,
-        "mobile_padding_right": 0,
-        "mobile_padding_left": 20,
-        "collection_menu": [
-          "small-bench-for-entryway",
-          "drink-tables",
-          "coastal-mirrors",
-          "coffee-table-trays",
-          "coastal-art",
-          "coastal-lighting",
-          "entryway-benches"
-        ],
-        "no_image": true,
-        "desktop_font_size": "12px",
-        "mobile_font_size": "12px",
-        "alignment": "left",
-        "desktop_max_width": 100,
-        "mobile_max_width": 100,
-        "desktop_column_gap": 20,
-        "mobile_column_gap": 10,
-        "use_max_height_below": true,
-        "desktop_max_height_image": 150,
-        "mobile_max_height_image": 150
-      }
-    },
     "turnpup_keyword_cats_JBhy3a": {
       "type": "turnpup-keyword-cats",
       "name": "Keyword cloud collect",
@@ -2084,11 +2051,10 @@
     "turnpup_multicolumn_Cd8XQ3",
     "turnpup_marquee_9XfUfG",
     "turnpup_cat_cells_e4UbRR",
+    "turnpup_keyword_cats_JBhy3a",
     "at_scrolling_66baeL",
     "tp_article_carousel_HwRjKQ",
     "tp_article_carousel_tUtyD6",
-    "tp_subnav_6TwtQ8",
-    "turnpup_keyword_cats_JBhy3a",
     "turnpup_multicolumn_DKf67w",
     "16516195897b496f4a",
     "tp_article_carousel_QCQJ8h",
