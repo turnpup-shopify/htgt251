@@ -17,6 +17,18 @@ document.addEventListener('DOMContentLoaded', function(event) {
     details.addEventListener('mouseover', function(e) {
       if (details.hasAttribute('open')) {
         // console.log("Following link:", link.href);
+
+        // CLOSE TURNPUP CUSTOM 
+        const openMenus = Array.from(document.querySelectorAll("header details[open]"));
+        if (openMenus.length === 0) return;
+
+        // console.log("mouseOver main - closing open dropdowns");
+        openMenus.forEach((e) => {
+          const summaryElement = e.querySelector('summary');
+          e.removeAttribute('open');
+          if (summaryElement) summaryElement.setAttribute('aria-expanded', false);
+        });
+        // CLOSE TURNPUP CUSTOM  ^ 
       } else {
         e.preventDefault();
         // console.log("Prevented link. Opening menu instead:", link.href);
