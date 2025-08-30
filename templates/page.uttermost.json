@@ -11,16 +11,19 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "custom_css": [
+        "h1 {font-size: 24px;}"
+      ],
       "settings": {
-        "padding_top": 76,
-        "padding_bottom": 28
+        "padding_top": 24,
+        "padding_bottom": 4
       }
     },
     "tp_article_carousel_n9Ekr7": {
       "type": "tp-article-carousel",
       "name": "TP - Blog Post Carousel",
       "settings": {
-        "input_metaobject": "coastal-mirrors",
+        "input_metaobject": "bathroom-vanity-mirrors",
         "max_items": 6,
         "enable_scroll": true,
         "padding_top": 20,
