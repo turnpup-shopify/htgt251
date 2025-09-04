@@ -189,7 +189,7 @@
       "type": "tp-article-carousel",
       "name": "TP - Blog Post Carousel",
       "settings": {
-        "input_metaobject": "new-arrivals",
+        "input_metaobject": "uttermost-furniture-decor",
         "max_items": 6,
         "enable_scroll": true,
         "padding_top": 40,
@@ -418,7 +418,7 @@
       "type": "tp-article-carousel",
       "name": "TP - Blog Post Carousel",
       "settings": {
-        "input_metaobject": "bathroom-vanity-mirrors",
+        "input_metaobject": "uttermost-mirrors",
         "max_items": 6,
         "enable_scroll": true,
         "padding_top": 40,
@@ -647,7 +647,7 @@
       "type": "tp-article-carousel",
       "name": "TP - Blog Post Carousel",
       "settings": {
-        "input_metaobject": "more-green-lamps",
+        "input_metaobject": "uttermost-drink-tables",
         "max_items": 6,
         "enable_scroll": true,
         "padding_top": 40,
