@@ -172,8 +172,8 @@
         "overall_background_image": "shopify://shop_images/pebble-background.jpg",
         "overall_background_image_url": "https://cdn.shopify.com/s/files/1/0507/4452/5007/files/pebble-background.jpg?v=1757043154",
         "section_background_color": "#ffffff",
-        "section_background_color_inner": "#f9f1e3",
-        "section_background_color_inner_opacity": 100
+        "section_background_color_inner": "#ffffff",
+        "section_background_color_inner_opacity": 85
       }
     },
     "tp_open_closed_JKkjRY": {
