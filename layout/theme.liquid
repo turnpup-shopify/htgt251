@@ -288,27 +288,8 @@ body {
   }
 }
   {% endstyle %}
-
   {{ 'base.css' | asset_url | stylesheet_tag }}
   {{ 'flwr.css' | asset_url | stylesheet_tag }}
-
-  {%- unless settings.type_body_font.system? -%}
-    <link
-      rel="preload"
-      as="font"
-      href="{{ settings.type_body_font | font_url }}"
-      type="font/woff2"
-      crossorigin>
-  {%- endunless -%}
-  {%- unless settings.type_header_font.system? -%}
-    <link
-      rel="preload"
-      as="font"
-      href="{{ settings.type_header_font | font_url }}"
-      type="font/woff2"
-      crossorigin>
-  {%- endunless -%}
-
   {%- if settings.predictive_search_enabled -%}
     <link
       rel="stylesheet"
@@ -316,17 +297,14 @@ body {
       media="print"
       onload="this.media='all'">
   {%- endif -%}
-
   <script src="{{ 'turnpup.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'turnpup-nav.js' | asset_url }}" defer="defer"></script>
-
   <script>
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     if (Shopify.designMode) {
       document.documentElement.classList.add('shopify-design-mode');
     }
   </script>
-
   <script src="{{ 'countdown.js' | asset_url }}" defer="defer"></script>
 </head>
 
