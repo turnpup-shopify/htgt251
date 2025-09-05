@@ -102,6 +102,17 @@
         "id": "hero_button_padding",
         "label": "Hero Button Padding",
         "default": "20px 10px 20px"
+      },
+      {
+        "type": "header",
+        "content": "Performance"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_minified_assets",
+        "label": "Use minified CSS/JS (requires .min files)",
+        "default": false,
+        "info": "Enable only after CI has generated .min.css and .min.js files in assets/."
       }
     ]
   },
