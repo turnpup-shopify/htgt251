@@ -1,0 +1,58 @@
+name: Minify assets
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'assets/**/*.js'
+      - 'assets/**/*.css'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'assets/**/*.js'
+      - 'assets/**/*.css'
+
+jobs:
+  minify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install minifiers
+        run: |
+          npm i -g terser csso-cli
+
+      - name: Build .min assets alongside sources
+        run: |
+          set -euo pipefail
+          js_files=$(find assets -type f -name "*.js" ! -name "*.min.js" || true)
+          css_files=$(find assets -type f -name "*.css" ! -name "*.min.css" || true)
+
+          for f in $js_files; do
+            out="${f%.js}.min.js"
+            echo "Minifying JS: $f -> $out";
+            terser --compress --mangle -o "$out" -- "$f" || true;
+          done
+          for f in $css_files; do
+            out="${f%.css}.min.css"
+            echo "Minifying CSS: $f -> $out";
+            csso -i "$f" -o "$out" || true;
+          done
+          git add assets/**/*.min.js assets/**/*.min.css || true
+
+      - name: Commit minified assets
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore(ci): auto-minify assets'
+          file_pattern: |
+            assets/**/*.min.js
+            assets/**/*.min.css
