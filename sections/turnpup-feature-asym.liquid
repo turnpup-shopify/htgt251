@@ -47,11 +47,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 function isElementInViewport (el) {
 
-    // Special bonus for those using jQuery
-    {% comment %} if (typeof jQuery === "function" && el instanceof jQuery) {
-        el = el[0];
-    } {% endcomment %}
-
     var rect = el.getBoundingClientRect();
 
     return (
