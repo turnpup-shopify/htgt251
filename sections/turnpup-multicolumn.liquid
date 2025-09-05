@@ -247,16 +247,17 @@
         </a>
       {%- endif-%}
     </div>
-    {% if section.settings.linklist != blank and linklists[section.settings.linklist] %}
-      <nav class="center multicolumn-linklist" aria-label="secondary">
-        <ul>
-          {% for l in linklists[section.settings.linklist].links %}
-            <li><a href="{{ l.url }}">{{ l.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </nav>
-    {% endif %}
-  </div>
+              {%- endif -%}
+              {% if block.settings.block_linklist != blank and linklists[block.settings.block_linklist] %}
+                <nav class="multicolumn-linklist" aria-label="secondary">
+                  <ul>
+                    {% for l in linklists[block.settings.block_linklist].links %}
+                      <li><a href="{{ l.url }}">{{ l.title }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </nav>
+              {% endif %}
+              </div>
 </div>
 
 <style>
@@ -696,11 +697,6 @@
         "label": "Button Link"
     },
     {
-      "type": "link_list",
-      "id": "linklist",
-      "label": "Optional Link List below button"
-    },
-    {
         "type": "header",
         "content": "Optional Title/Subtitle - Above Main Content",
         "info": "This section is for the title that is the overall title across all columns. "
@@ -1113,7 +1109,12 @@
             "unit": "px",
             "label": "Space Between Buttons",
             "default": 8
-        },        
+        },
+        {
+          "type": "link_list",
+          "id": "block_linklist",
+          "label": "Optional Link List below block button"
+        },
         {
           "type": "checkbox",
           "id": "vertically_align_center",
