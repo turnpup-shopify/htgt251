@@ -18,7 +18,7 @@
       href="https://cdn.shopify.com"
       crossorigin>
     {% if canonical_url == 'https://htgtfurniture.com/collections' %}
-      <title>All Htgt Funrniture Collections</title>
+      <title>All HTGT Furniture Collections</title>
       <meta name="description" content="We offer a variety of collections in various furniture and decor categories that ship nationwide.">
     {% else %}
       <title>{{ page_title }}</title>
@@ -58,17 +58,7 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           })(window, document, "clarity", "script", "qtg8s55dyo");
     </script>
-
-    <link
-      rel="preload"
-      href="https://use.typekit.net/hpj1ehc.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://use.typekit.net/hpj1ehc.css"></noscript>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-      {% comment %} <!--  custom fonts    --> {% endcomment %}
-    <link rel="stylesheet" href="https://use.typekit.net/tvm5end.css">
-      {% comment %} <!--  CUSTOM GOOGLE CONSOLE OWNERSHIP    --> {% endcomment %}
+    {% comment %} <!--  CUSTOM GOOGLE CONSOLE OWNERSHIP    --> {% endcomment %}
     <meta name="google-site-verification" content="kBRT5hMFDvUFScDV7558k2Lr6xl30F05uqbxOE9e0yw" />
     {% render 'meta-tags' %}
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
@@ -169,7 +159,7 @@
   --media-shadow-blur-radius: {{ settings.media_shadow_blur }}px;
 
   --page-width: {{ settings.page_width | divided_by: 10 }}rem;
-  --page-width-m--font-heading-familyargin: {% if settings.page_width == '1600' %}2{% else %}0{% endif %}rem;
+  --page-width-margin: {% if settings.page_width == '1600' %}2{% else %}0{% endif %}rem;
 
   --card-image-padding: {{ settings.card_image_padding | divided_by: 10.0 }}rem;
   --card-corner-radius: {{ settings.card_corner_radius | divided_by: 10.0 }}rem;
@@ -338,7 +328,9 @@ body {
   </script>
 
   <script src="{{ 'countdown.js' | asset_url }}" defer="defer"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- Legacy jQuery 1.11.0 removed to simplify and avoid conflicts. Uncomment only if a specific script truly depends on it.
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+-->
 </head>
 
 
