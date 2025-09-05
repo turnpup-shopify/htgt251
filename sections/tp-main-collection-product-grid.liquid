@@ -151,7 +151,33 @@
     </div>
   </div>
 </div>
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {% for product in collection.products %}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.index }},
+        "item": {
+          "@type": "Product",
+          "name": {{ product.title | json }},
+          "url": {{ product.url | prepend: shop.url | json }},
+          "image": {{ product.featured_image | img_url: '600x600' | prepend: 'https:' | json }},
+          "sku": {{ product.sku | json }},
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": {{ cart.currency.iso_code | json }},
+            "price": {{ product.price | money_without_currency | replace: ',', '' | json }},
+            "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
+          }
+        }
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
 
 {% schema %}
 {
