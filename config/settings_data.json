@@ -341,6 +341,7 @@
           },
           "item_XdNkAe": {
             "type": "item",
+            "disabled": true,
             "settings": {
               "text": "LABOR DAY SALE MARKDOWNS NOW LIVE",
               "url": "shopify://collections/best-sellers"
@@ -360,9 +361,7 @@
           "item_XdNkAe",
           "item_F7wHUc"
         ],
-        "custom_css": [
-          ".ann-marquee__track-wrapper {display: none;}"
-        ],
+        "custom_css": [],
         "settings": {
           "bg_color": "#e9f0e6",
           "text_color": "#1a1a1a",
