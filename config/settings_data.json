@@ -14,7 +14,7 @@
     "button_padding": "10px 20px",
     "hero_button_font_size": "16px",
     "hero_button_padding": "15px 30px",
-    "use_minified_assets": true,
+    "use_minified_assets": false,
     "enable_popup": true,
     "show_popup_in_editor": false,
     "test_popup_success_state": false,
