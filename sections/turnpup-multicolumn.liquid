@@ -247,6 +247,15 @@
         </a>
       {%- endif-%}
     </div>
+    {% if section.settings.linklist != blank and linklists[section.settings.linklist] %}
+      <nav class="center multicolumn-linklist" aria-label="secondary">
+        <ul>
+          {% for l in linklists[section.settings.linklist].links %}
+            <li><a href="{{ l.url }}">{{ l.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
   </div>
 </div>
 
@@ -265,6 +274,11 @@
         margin-top: 2em;
         margin-bottom: 2em;
     }
+    #shopify-section-{{ section.id }} .multicolumn-linklist { margin-top: 0.75rem; }
+    #shopify-section-{{ section.id }} .multicolumn-linklist ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; justify-content: {{ section.settings.column_alignment }}; }
+    #shopify-section-{{ section.id }} .multicolumn-linklist li { display: inline-block; }
+    #shopify-section-{{ section.id }} .multicolumn-linklist a { text-decoration: underline; font-family: {{ section.settings.hero_button_font_family }}; font-size: {{ section.settings.hero_button_font_size }}; font-weight: {{ section.settings.hero_button_font_weight }}; color: {{ section.settings.button_text_color }}; }
+    #shopify-section-{{ section.id }} .multicolumn-linklist a:hover { color: {{ section.settings.button_text_color_hover }}; }
     #shopify-section-{{ section.id }} .flwr_multicolumn_hero_button {
         padding: {{ section.settings.button_padding }};
         border: 1px solid {{ section.settings.button_border_color }};
@@ -680,6 +694,11 @@
         "type": "url",
         "id": "button_link",
         "label": "Button Link"
+    },
+    {
+      "type": "link_list",
+      "id": "linklist",
+      "label": "Optional Link List below button"
     },
     {
         "type": "header",
