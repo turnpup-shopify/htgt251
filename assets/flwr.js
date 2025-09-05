@@ -1,10 +1,21 @@
 window.DaysOrHours = "Hours";
 
-window.addEventListener("scroll", function () {
-  const collage = document.querySelector(".collage");
+// Reveal .collage elements efficiently using IntersectionObserver
+document.addEventListener('DOMContentLoaded', () => {
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('flwr_show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { root: null, rootMargin: '0px 0px -10% 0px' });
 
-  if (collage && collage.offsetParent !== null) { // Check if element is visible
-      collage.classList.add("flwr_show");
+    document.querySelectorAll('.collage').forEach(el => io.observe(el));
+  } else {
+    // Fallback: reveal immediately if IO not supported
+    document.querySelectorAll('.collage').forEach(el => el.classList.add('flwr_show'));
   }
 });
 

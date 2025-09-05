@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    // Simple rAF-based throttle for scroll handlers
+    function rafThrottle(fn){
+      let ticking = false;
+      return function throttled(){
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { ticking = false; fn(); });
+      };
+    }
   
     function handleScroll() {
       var mobileNavHeader = document.getElementById("fixed_mobile_nav_bar");
@@ -14,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   
     handleScroll(); // Initial check on page load
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', rafThrottle(handleScroll), { passive: true });
   
     document.querySelectorAll('.sidemenu_checkbox').forEach(function(checkbox) {
       checkbox.addEventListener('change', function() {
@@ -56,14 +66,14 @@ document.addEventListener('DOMContentLoaded', function() {
   
     if (typeof TurnpupObject !== "undefined" && TurnpupObject) {     
         updateHeader(); // Initial check on page load
-        window.addEventListener('scroll', updateHeader);
+        window.addEventListener('scroll', rafThrottle(updateHeader), { passive: true });
   
         var isScrolling;
         if (TurnpupObject.isScrollTest) {
             // console.log("ISSCROLL TEST");
         } else {
             if (TurnpupObject.nav_transparent_after_scroll) {
-                document.addEventListener('scroll', function() {
+                document.addEventListener('scroll', rafThrottle(function() {
                     clearTimeout(isScrolling);
                     isScrolling = setTimeout(function() {
                         // console.log("timeout - call callback");
@@ -97,9 +107,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                 }
-                });
+                }), { passive: true });
             } else {
-                document.addEventListener('scroll', function() {
+                document.addEventListener('scroll', rafThrottle(function() {
                 var header = document.getElementById('shopify-section-header');
                 var navLinks = document.getElementsByClassName("tpup_nav_link");
         
@@ -126,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                     }          
                 }
-                });
+                }), { passive: true });
             }
         }
     }

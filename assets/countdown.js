@@ -5,6 +5,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         })
     })
 
+    // Early exit if no timers are present on the page
+    if (!document.querySelector('.timer')) {
+        return;
+    }
+
     var second = 1000,
         minute = second * 60,
         hour = minute * 60,
@@ -70,4 +75,3 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
 });
-

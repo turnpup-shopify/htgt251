@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function(event) {
+  // Early exit if page doesn't contain any target elements for this script
+  if (!document.querySelector('.js-menu-summary') &&
+      !document.querySelector('.product-swatches__link') &&
+      !document.querySelector('[js-accordion-header]') &&
+      !document.querySelector('.turnpup_question')) {
+    return;
+  }
   
   document.querySelectorAll('.js-menu-summary').forEach(summary => {
     const details = summary.closest('details');
