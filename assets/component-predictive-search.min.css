@@ -1,0 +1,2 @@
+/* temp shim: import original until CI minifies */
+@import url("{{ 'component-predictive-search.css' | asset_url }}");

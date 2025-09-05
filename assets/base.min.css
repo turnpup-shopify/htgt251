@@ -1,0 +1,2 @@
+/* temp shim: import original until CI minifies */
+@import url("{{ 'base.css' | asset_url }}");

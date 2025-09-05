@@ -1,16 +1,21 @@
 name: Minify assets
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main, master ]
     paths:
       - 'assets/**/*.js'
       - 'assets/**/*.css'
+      - 'layout/theme.liquid'
+      - '.github/workflows/minify.yml'
   pull_request:
     branches: [ main, master ]
     paths:
       - 'assets/**/*.js'
       - 'assets/**/*.css'
+      - 'layout/theme.liquid'
+      - '.github/workflows/minify.yml'
 
 jobs:
   minify:
