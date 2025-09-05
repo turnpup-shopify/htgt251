@@ -113,6 +113,10 @@
         "label": "Use minified CSS/JS (requires .min files)",
         "default": false,
         "info": "Enable only after CI has generated .min.css and .min.js files in assets/."
+      },
+      {
+        "type": "paragraph",
+        "content": "To generate .min files: 1) Push any change that touches assets/*.js or assets/*.css, or 2) In GitHub, open the Actions tab, select 'Minify assets', click 'Run workflow', choose the branch (usually main), and run it. After it commits .min files, enable the toggle above."
       }
     ]
   },
