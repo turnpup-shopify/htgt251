@@ -1,6 +1,6 @@
 <div class="tpfa-outerContainer" data-section-id="{{ section.id }}" data-section-type="featured-row-section" id="{{ section.id }}">
-    {% if section.settings.subheader_text != "" %}<p class="subheader"> {{ section.settings.subheader_text }} </p>{% endif %}
-    {% if section.settings.button_label != "" %}<button><a href="{{ section.setting.button_link }}"> {{ section.settings.button_label }} </a></button>{% endif %}
+    {% if section.settings.subheader_text != blank %}<div class="subheader">{{ section.settings.subheader_text }}</div>{% endif %}
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}<a class="tpfa-button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>{% endif %}
     <div class="tpfa">
         <div class="feature-blocks">
             {% for block in section.blocks %}
@@ -8,15 +8,15 @@
                     {% when 'image' %}
                     {% if block.settings.image %}
                     <div class="feature block-{{ block.id}}" id="{{ block.id }}">
-                        {{ block.settings.image | image_url: width: 1000 | image_tag }}
+                        {{ block.settings.image | image_url: width: 1000 | image_tag: alt: block.settings.image_caption }}
                     <p class="caption"> {{ block.settings.image_caption }} </p>
                     </div>
                     <style>
                         .block-{{block.id}} {
                             opacity:calc({{ block.settings.image_opacity }} / 10);
                             z-index:{{block.settings.zindex}};
-                            grid-row:{{block.settings.image_vertical_position}} / {{block.settings.image_vertical_size}};
-                            grid-column:{{block.settings.image_horizontal_position}} / {{ block.settings.image_horizontal_size }};                                                            
+                            grid-row: {{ block.settings.image_vertical_position }} / span {{ block.settings.image_vertical_size }};
+                            grid-column: {{ block.settings.image_horizontal_position }} / span {{ block.settings.image_horizontal_size }};                                                            
                         }
                         @media screen and (max-width: 700px) {
                             {% if block.settings.hide_on_mobile %}.block-{{block.id}} { display: none; }{% endif %}
@@ -26,39 +26,11 @@
                     {% else %}
                 {% endcase %}
             {% endfor %}
-            {% if section.settings.header_text != "" %}<p class="tpfa-header"> {{ section.settings.header_text }} </p>{% endif %}
+            {% if section.settings.header_text != blank %}<p class="tpfa-header">{{ section.settings.header_text }}</p>{% endif %}
         </div>
     </div>
 </div>
 
-{% comment %} <script>
-var enableFadeIn = {{ section.settings.fade_in }};
-window.addEventListener('DOMContentLoaded', (event) => {
-    window.addEventListener("scroll", (event) => {
-        var temp = document.querySelectorAll(".caption,img");
-        for (let i = 0; i < temp.length; i++) {
-            if (!enableFadeIn || isElementInViewport(temp[i])) {  
-                setTimeout(() => {
-                    temp[i].classList.add("fade-in");
-                }, (i)*200);                 
-            }
-        }
-    });
-});
-function isElementInViewport (el) {
-
-    var rect = el.getBoundingClientRect();
-
-    return (
-        {% comment %} rect.top >= 0 && {% endcomment %}
-        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.left >= 0 &&
-        {% comment %} rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */ {% endcomment %}
-        rect.bottom >=0 &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
-    );
-}
-</script> {% endcomment %}
 
 <style>
 .tpfa-outerContainer {
@@ -75,11 +47,11 @@ function isElementInViewport (el) {
     align-self: center;
     justify-self: center;
 }
-.tpfa-outerContainer .subheader_text {
+.tpfa-outerContainer .subheader {
     
 }
-.tpfa-outerContainer .button {
-    
+.tpfa-outerContainer .tpfa-button {
+    display: inline-block;
 }
 .tpfa {
     margin-top: {{ section.settings.module_margin_top }}px;
