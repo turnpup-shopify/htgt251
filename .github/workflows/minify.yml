@@ -6,6 +6,8 @@ on:
     branches: [ main, master ]
     paths:
       - 'assets/**/*.js'
+      - 'assets/*.js'
+      - 'assets/*.css'
       - 'assets/**/*.css'
       - 'layout/theme.liquid'
       - '.github/workflows/minify.yml'
@@ -14,6 +16,8 @@ on:
     paths:
       - 'assets/**/*.js'
       - 'assets/**/*.css'
+      - 'assets/*.js'
+      - 'assets/*.css'
       - 'layout/theme.liquid'
       - '.github/workflows/minify.yml'
 
