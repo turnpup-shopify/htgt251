@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     const link = summary.querySelector('.js-summary-link');
 
     link.addEventListener('click', function(e) {
-      if (details.hasAttribute('open')) {
-        // console.log("Following link:", link.href);
+      if (!details.hasAttribute('open')) {
+        
       } else {
         e.preventDefault();
         // console.log("Prevented link. Opening menu instead:", link.href);
