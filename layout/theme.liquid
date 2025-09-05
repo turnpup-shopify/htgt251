@@ -305,7 +305,9 @@ body {
       document.documentElement.classList.add('shopify-design-mode');
     }
   </script>
-  <script src="{{ 'countdown.js' | asset_url }}" defer="defer"></script>
+  {% if request.page_type == 'product' %}
+    <script src="{{ 'countdown.js' | asset_url }}" defer></script>
+  {% endif %}
 </head>
 
 
@@ -322,7 +324,10 @@ body {
   <!-- End Google Tag Manager (noscript) -->
 
   {%- if template == 'collection.home-accessories' -%}
-    <img class="design_badge_three" src="{{ settings.badge_image | image_url }}">
+    <img
+      class="design_badge_three"
+      alt="Top Sellers Badge"
+      src="{{ settings.badge_image | image_url }}">
   {%- endif -%}
 
   <a class="skip-to-content-link button visually-hidden" href="#MainContent">
@@ -352,10 +357,10 @@ body {
   {% else %}
     <a href="tel:1-949-279-5791">
       <div class="floating_phone">✆</div>
-    </a>{% endcase %}
+    </a>
+{% endcase %}
 
 
-{% comment %} {% section 'flwr-simple-footer' %} {% endcomment %}
 {% sections 'footer-group' %}
 
 
