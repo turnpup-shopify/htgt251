@@ -23,6 +23,8 @@
 
 {% assign bg_color = section.settings.section_background_color %}
 {% assign text_color = section.settings.section_text_color %}
+{% assign inner_opacity = section.settings.section_background_color_inner_opacity | default: 100 %}
+{% assign inner_alpha = inner_opacity | times: 0.01 %}
 
 {% if section.settings.overall_background_image != blank %}
   <div class="multicolumn {% if section.settings.title == blank %} no-heading{% endif %}"
@@ -53,7 +55,7 @@
       <ul class="multicolumn-list grid grid--gapless grid--1-col{% if section.blocks.size > 3 and section.settings.image_width != 'full' %} grid--2-col-tablet grid--4-col-desktop{% elsif section.blocks.size > 3 and section.settings.image_width == 'full' %} grid--2-col-tablet{% else %} grid--3-col-tablet{% endif %}{% if section.settings.swipe_on_mobile and section.blocks.size > 1 %} slider slider--mobile grid--peek{% endif %}"
         id="Slider-{{ section.id }}"
         role="list"
-        style="column-gap: {{ section.settings.column_gap }}; background-color: {{ section.settings.section_background_color_inner}};"
+        style="column-gap: {{ section.settings.column_gap }}; background-color: {{ section.settings.section_background_color_inner | color_modify: 'alpha', inner_alpha }};"
       >
         {%- for block in section.blocks -%}
           <li 
@@ -822,6 +824,16 @@
         "id": "section_background_color_inner",     
         "default": "#ffffff",
         "label": "Background Color Inner"
+      },
+      {
+        "type": "range",
+        "id": "section_background_color_inner_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Background Color Inner Opacity",
+        "default": 100
       }
   ],
   "blocks": [
