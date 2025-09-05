@@ -49,14 +49,6 @@
         role="list"
         style="column-gap: {{ section.settings.column_gap }}; background-color: {{ section.settings.section_background_color_inner}};"
       >
-        {%- liquid
-          assign highest_ratio = 0
-          for block in section.blocks
-            if block.settings.image.aspect_ratio > highest_ratio
-              assign highest_ratio = block.settings.image.aspect_ratio
-            endif
-          endfor
-        -%}
         {%- for block in section.blocks -%}
           <li 
               id="Slide-{{ section.id }}-{{ forloop.index }}" 
