@@ -439,7 +439,10 @@
         },
         "judge_me_reviews_review_widget_wGiQnm": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200
+          }
         }
       },
       "block_order": [
@@ -721,6 +724,7 @@
         "button_text_color_hover": "#ffffff",
         "button_label": "",
         "button_link": "",
+        "linklist": "",
         "title": "Why shop with us?",
         "title_h": "h2",
         "title_font_size": "22px",
@@ -736,7 +740,8 @@
         "section_text_color": "#000000",
         "overall_background_image_url": "",
         "section_background_color": "#f1ece7",
-        "section_background_color_inner": "#f1ece7"
+        "section_background_color_inner": "#f1ece7",
+        "section_background_color_inner_opacity": 100
       }
     },
     "tp_article_carousel_V6LRPf": {
@@ -943,10 +948,41 @@
         "turnpup_top_border_color": "rgba(0,0,0,0)",
         "turnpup_bottom_border_color": "#f4b237"
       }
+    },
+    "main_product_hapny_pRt9TU": {
+      "type": "main-product-hapny",
+      "name": "Hapny - PDP Details",
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "hide",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "product_inventory_enable": true,
+        "bottom_left_section_title": "Description",
+        "bottom_middle_section_title": "Description",
+        "bottom_right_section_title": "Lower Left Section Title",
+        "pdp_dscription_font_size": "14px",
+        "buy_online_button_copy": "Buy at MyKnobs",
+        "tp_horizontal_divider_color": "#f6b700",
+        "tp_bottom_header_color": "#f6b700",
+        "tp_specification_font_size": "12px",
+        "tp_specification_font_color": "#000000",
+        "tp_bottom_header_font_size": "24px"
+      }
     }
   },
   "order": [
     "main",
+    "main_product_hapny_pRt9TU",
     "turnpup_marquee_DGNi7J",
     "tp_questions_tYPppc",
     "tp_quiz_LYAkfE",
