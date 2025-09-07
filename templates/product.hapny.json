@@ -133,6 +133,7 @@
         },
         "dimensions_q4tmAx": {
           "type": "dimensions",
+          "disabled": true,
           "settings": {
             "text": "<p>{{ product.metafields.pdp.dimensions | metafield_tag }}</p>",
             "default_open": false
@@ -221,6 +222,36 @@
         "padding_bottom": 20,
         "mobile_padding_top": 0,
         "mobile_padding_bottom": 0
+      }
+    },
+    "main_product_hapny_pRt9TU": {
+      "type": "main-product-hapny",
+      "name": "Hapny - PDP Details",
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "hide",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "product_inventory_enable": true,
+        "bottom_left_section_title": "Details",
+        "bottom_middle_section_title": "Dimensions",
+        "bottom_right_section_title": "Product Care",
+        "pdp_dscription_font_size": "14px",
+        "buy_online_button_copy": "Buy at MyKnobs",
+        "tp_horizontal_divider_color": "#f6b700",
+        "tp_bottom_header_color": "#f6b700",
+        "tp_specification_font_size": "12px",
+        "tp_specification_font_color": "#000000",
+        "tp_bottom_header_font_size": "24px"
       }
     },
     "turnpup_marquee_DGNi7J": {
@@ -947,36 +978,6 @@
         "turnpup_hover_background_color": "#ffffff",
         "turnpup_top_border_color": "rgba(0,0,0,0)",
         "turnpup_bottom_border_color": "#f4b237"
-      }
-    },
-    "main_product_hapny_pRt9TU": {
-      "type": "main-product-hapny",
-      "name": "Hapny - PDP Details",
-      "settings": {
-        "enable_sticky_info": true,
-        "color_scheme": "",
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "stacked",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "mobile_thumbnails": "hide",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "product_inventory_enable": true,
-        "bottom_left_section_title": "Description",
-        "bottom_middle_section_title": "Description",
-        "bottom_right_section_title": "Lower Left Section Title",
-        "pdp_dscription_font_size": "14px",
-        "buy_online_button_copy": "Buy at MyKnobs",
-        "tp_horizontal_divider_color": "#f6b700",
-        "tp_bottom_header_color": "#f6b700",
-        "tp_specification_font_size": "12px",
-        "tp_specification_font_color": "#000000",
-        "tp_bottom_header_font_size": "24px"
       }
     }
   },
