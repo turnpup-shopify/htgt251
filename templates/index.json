@@ -444,7 +444,7 @@
       "name": "Tabbed merch navigator",
       "settings": {
         "heading": "",
-        "max_items": 8,
+        "max_items": 10,
         "margin_top": 40,
         "margin_right": 60,
         "margin_bottom": 40,
@@ -463,7 +463,7 @@
         "m_padding_bottom": 0,
         "m_padding_left": 0,
         "cols_mobile": 3,
-        "cols_desktop": 4,
+        "cols_desktop": 5,
         "title_font_size_desktop": 16,
         "title_font_size_mobile": 12,
         "title_font_weight": "400",
