@@ -425,12 +425,20 @@
             "label": "Decor",
             "menu": "decor"
           }
+        },
+        "tab_XD7W6H": {
+          "type": "tab",
+          "settings": {
+            "label": "Hardware",
+            "menu": "hardware"
+          }
         }
       },
       "block_order": [
         "tab_ciVN9p",
         "tab_cXyAH4",
-        "tab_qyVTWb"
+        "tab_qyVTWb",
+        "tab_XD7W6H"
       ],
       "custom_css": [],
       "name": "Tabbed merch navigator",
