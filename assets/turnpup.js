@@ -89,7 +89,20 @@ document.addEventListener('DOMContentLoaded', function(event) {
   var menuOverlay = document.querySelectorAll('.mobile-menu-overlay'); // Replace with the actual selector
   var turnpupMobileMenuClose = document.querySelectorAll('.mobile-icon-close'); // Replace with the actual selector
   
-//   revealDimensionTwo("#dimension_read_more");
+  const sel = '#dimension_read_more';
+  if (document.querySelector(sel)) {
+    revealDimensionTwo(sel);
+  }
+  function revealDimensionTwo(clickID){
+    var toRevealID = clickID + "_reveal";
+    if(document.querySelector(clickID)) {
+      document.querySelector(clickID).addEventListener("click", (e) => {
+        e.target.style.display = "none";
+        document.querySelector(toRevealID).classList.remove("display_none");
+        document.querySelector(toRevealID).classList.add("display_block");
+      })
+    }
+  }
   
   function togglePanelMenu() {
     // Define your togglePanelMenu function here
