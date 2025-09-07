@@ -10,6 +10,11 @@
   class="tc-tabs-wrapper"
   id="tc-tabs-{{ section.id }}"
   style="margin: var(--outer-mt) var(--outer-mr) var(--outer-mb) var(--outer-ml); padding: var(--outer-pt) var(--outer-pr) var(--outer-pb) var(--outer-pl);">
+  {%- comment -%} Determine how many items to render so both desktop and mobile limits are supported. {%- endcomment -%}
+  {%- assign max_render = section.settings.max_items -%}
+  {%- if section.settings.max_items_mobile and section.settings.max_items_mobile > section.settings.max_items -%}
+    {%- assign max_render = section.settings.max_items_mobile -%}
+  {%- endif -%}
   {% if section.settings.heading != blank %}
     <h2 class="tc-heading">{{ section.settings.heading | escape }}</h2>
   {% endif %}
@@ -77,7 +82,7 @@
                   {% assign coll_handle = handle_from_object | default: handle_from_url %}
                   {% assign coll = collections[coll_handle] %}
                   {% if coll %}
-                    {% for product in coll.products limit: section.settings.max_items %}
+                    {% for product in coll.products limit: max_render %}
                       <a class="tc-card" href="{{ product.url }}">
                         <div class="tc-imgwrap">
                           {% assign img = product.featured_image %}
@@ -128,7 +133,7 @@
                   {% assign handle = l.url | split: '/collections/' | last | split: '?' | first %}
                   {% assign fallback_coll = collections[handle] %}
                   {% if fallback_coll %}
-                    {% for product in fallback_coll.products limit: section.settings.max_items %}
+                    {% for product in fallback_coll.products limit: max_render %}
                       <a class="tc-card" href="{{ product.url }}">
                         <div class="tc-imgwrap">
                           {% if product.featured_image %}
@@ -200,6 +205,10 @@
       --outer-pr: {{ section.settings.m_padding_right | default: section.settings.padding_right | default: 0 }}px;
       --outer-pb: {{ section.settings.m_padding_bottom | default: section.settings.padding_bottom | default: 0 }}px;
       --outer-pl: {{ section.settings.m_padding_left | default: section.settings.padding_left | default: 0 }}px;
+    }
+    /* Hide overflow items on mobile beyond mobile max */
+    #tc-tabs-{{ section.id }}.tc-grid > .tc-card:nth-child(n + {{ section.settings.max_items_mobile | default: section.settings.max_items | plus: 1 }}) {
+      display: none;
     }
   }
   #tc-tabs-{{ section.id }}
@@ -451,10 +460,18 @@
         "default": 8
       },
       {
-        "type": "header",
-        "content": "Outer spacing"
+        "type": "range",
+        "id": "max_items_mobile",
+        "label": "Max products on mobile",
+        "min": 1,
+        "max": 24,
+        "step": 1,
+        "default": 6
       },
       {
+        "type": "header",
+        "content": "Outer spacing"
+      }, {
         "type": "range",
         "id": "margin_top",
         "label": "Margin top",
