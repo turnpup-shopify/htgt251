@@ -156,6 +156,7 @@
         "button_text_color_hover": "#252525",
         "button_label": "",
         "button_link": "",
+        "linklist": "",
         "title": "",
         "title_h": "h1",
         "title_font_size": "56px",
@@ -417,11 +418,19 @@
             "label": "Coffee Tables",
             "menu": "coffee-tables"
           }
+        },
+        "tab_qyVTWb": {
+          "type": "tab",
+          "settings": {
+            "label": "Decor",
+            "menu": "decor"
+          }
         }
       },
       "block_order": [
         "tab_ciVN9p",
-        "tab_cXyAH4"
+        "tab_cXyAH4",
+        "tab_qyVTWb"
       ],
       "custom_css": [],
       "name": "Tabbed merch navigator",
@@ -685,6 +694,7 @@
         "button_text_color_hover": "#000000",
         "button_label": "",
         "button_link": "",
+        "linklist": "",
         "title": "",
         "title_h": "h1",
         "title_font_size": "56px",
@@ -1411,6 +1421,7 @@
         "button_text_color_hover": "#000000",
         "button_label": "",
         "button_link": "",
+        "linklist": "",
         "title": "",
         "title_h": "h2",
         "title_font_size": "56px",
@@ -1925,6 +1936,7 @@
         "button_text_color_hover": "#121212",
         "button_label": "",
         "button_link": "",
+        "linklist": "",
         "title": "",
         "title_h": "h2",
         "title_font_size": "56px",
