@@ -175,6 +175,8 @@
     --img-radius: {{ section.settings.img_radius | default: 12 }}px;
     --cols-mobile: {{ section.settings.cols_mobile | default: 2 }};
     --cols-desktop: {{ section.settings.cols_desktop | default: 4 }};
+    --tab-fs: {{ section.settings.tab_font_size_desktop | default: 14 }}px;
+    --tab-fs-m: {{ section.settings.tab_font_size_mobile | default: 14 }}px;
     --title-fs: {{ section.settings.title_font_size_desktop | default: 14 }}px;
     --title-fs-m: {{ section.settings.title_font_size_mobile | default: 14 }}px;
     --title-fw: {{ section.settings.title_font_weight | default: 600 }};
@@ -238,7 +240,13 @@
     border-radius: 0;
     cursor: pointer;
     font-weight: 600;
+    font-size: var(--tab-fs);
     border-bottom: 2px solid transparent;
+  }
+  @media(max-width: 700px) {
+    #tc-tabs-{{ section.id }} .tc-tab {
+      font-size: var(--tab-fs-m);
+    }
   }
   #tc-tabs-{{ section.id }}
   .tc-tab.is-active {
@@ -607,6 +615,22 @@
       }, {
         "type": "header",
         "content": "Typography"
+      }, {
+        "type": "range",
+        "id": "tab_font_size_desktop",
+        "label": "Tab font size desktop (px)",
+        "min": 10,
+        "max": 36,
+        "step": 1,
+        "default": 14
+      }, {
+        "type": "range",
+        "id": "tab_font_size_mobile",
+        "label": "Tab font size mobile (px)",
+        "min": 10,
+        "max": 36,
+        "step": 1,
+        "default": 14
       }, {
         "type": "range",
         "id": "title_font_size_desktop",
