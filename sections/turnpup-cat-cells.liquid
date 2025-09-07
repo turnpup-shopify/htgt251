@@ -207,7 +207,7 @@
       --outer-pl: {{ section.settings.m_padding_left | default: section.settings.padding_left | default: 0 }}px;
     }
     /* Hide overflow items on mobile beyond mobile max */
-    #tc-tabs-{{ section.id }}.tc-grid > .tc-card:nth-child(n + {{ section.settings.max_items_mobile | default: section.settings.max_items | plus: 1 }}) {
+    #tc-tabs-{{ section.id }} .tc-grid > .tc-card:nth-child(n+{{ section.settings.max_items_mobile | default: section.settings.max_items | plus: 1 }}) {
       display: none;
     }
   }
