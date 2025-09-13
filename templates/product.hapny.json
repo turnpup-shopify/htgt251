@@ -360,6 +360,21 @@
         "mobile_background_color": "#ffffff"
       }
     },
+    "tp_pdp_products_in_collection_EzAgRV": {
+      "type": "tp-pdp-products-in-collection",
+      "name": "TP - PDP Other Products",
+      "settings": {
+        "top_border_color": "#f4b237",
+        "margin": "0px auto 20px",
+        "title": "Shop the Collection",
+        "header_font_size": "1.8em",
+        "center_heading": true,
+        "button_label": "",
+        "button_link": "",
+        "collection": "{{ product.metafields.custom.other_products_in_collection.value }}",
+        "product_count_range": 4
+      }
+    },
     "tp_quiz_LYAkfE": {
       "type": "tp-quiz",
       "disabled": true,
@@ -986,6 +1001,7 @@
     "main_product_hapny_pRt9TU",
     "turnpup_marquee_DGNi7J",
     "tp_questions_tYPppc",
+    "tp_pdp_products_in_collection_EzAgRV",
     "tp_quiz_LYAkfE",
     "featured_row_j4Ri8j",
     "featured_row_TH4hPR",
