@@ -1,111 +1,410 @@
-{% schema %}
-    {
-      "name": "tp-quiz",
-      "class": "tp-quiz",
-      "settings": [        
-        {
-          "type": "metaobject",
-          "id": "metaobject_quiz_ref",
-          "label": "Metaobject Quiz Reference",
-          "info": "Add a metaobject",
-          "metaobject_type": "quiz"
-        }
-      ],
-      "presets": [
-        {
-          "name": "TP Quiz",
-          "category": "Text"
-        }
-      ]
-    }
-{% endschema %}
-<style>
-    .quiz-popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      z-index: 1000;
-    }
-    .quiz-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 999;
-    }
-  </style>
-</head>
-<body>
-  <button id="start-quiz">Take Product Quiz</button>
+{%- liquid
+  assign quiz_meta = section.settings.metaobject_quiz_ref
+  assign form_id = 'tp-quiz-contact-' | append: section.id
+  assign form_target = form_id | append: '-target'
+  assign fallback_email = 'quiz@' | append: shop.domain
+-%}
 
-  <div class="quiz-overlay" id="quiz-overlay"></div>
-  <div class="quiz-popup" id="quiz-popup">
-    <div id="question-container">
-      <!-- Questions will be dynamically inserted here -->
+{%- if quiz_meta == blank -%}
+  <div class="tp-quiz tp-quiz--empty">
+    <p>{{ 'general.form.post_error' | t | default: 'Quiz data is missing.' }}</p>
+  </div>
+{%- else -%}
+  <div class="tp-quiz" data-section-id="{{ section.id }}">
+    <button type="button" class="tp-quiz__trigger" data-quiz-trigger>
+      {{ quiz_meta.cta | default: 'Take Product Quiz' }}
+    </button>
+
+    <div class="tp-quiz__overlay" data-quiz-overlay hidden></div>
+
+    <div class="tp-quiz__popup" data-quiz-popup hidden role="dialog" aria-modal="true" aria-labelledby="{{ section.id }}-quiz-title">
+      <div class="tp-quiz__header">
+        <h2 id="{{ section.id }}-quiz-title" class="tp-quiz__title">{{ quiz_meta.title | escape }}</h2>
+        <button type="button" class="tp-quiz__close" data-quiz-close aria-label="{{ 'general.accessibility.close' | t | default: 'Close' }}">&times;</button>
+      </div>
+      <div class="tp-quiz__questions" data-quiz-container></div>
+      <div class="tp-quiz__footer">
+        <button type="button" class="tp-quiz__submit" data-quiz-submit>{{ quiz_meta.submit_label | default: 'Get Recommendation' }}</button>
+      </div>
     </div>
-    <button id="submit-quiz">Get Recommendation</button>
+
+    <iframe name="{{ form_target }}" id="{{ form_target }}" class="tp-quiz__form-target" hidden></iframe>
+
+    {% form 'contact', id: form_id, class: 'tp-quiz__form', target: form_target %}
+      <input type="hidden" name="contact[email]" value="{{ customer.email | default: fallback_email }}">
+      <input type="hidden" name="contact[quiz_title]" value="{{ quiz_meta.title | escape }}">
+      <input type="hidden" name="contact[quiz_status]" id="{{ form_id }}-status">
+      <input type="hidden" name="contact[quiz_result]" id="{{ form_id }}-result">
+      <input type="hidden" name="contact[quiz_progress]" id="{{ form_id }}-progress">
+      <input type="hidden" name="contact[quiz_url]" value="{{ canonical_url }}">
+      <textarea name="contact[body]" id="{{ form_id }}-body" hidden></textarea>
+    {% endform %}
   </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Liquid-injected metaobject data
-    const quizTitle = "{{ section.settings.metaobject_quiz_ref.title }}";
-    const quizQA = {{ section.settings.metaobject_quiz_ref.quiz_q_and_a }};
-    const quizMapping = {{ section.settings.metaobject_quiz_ref.mapping }};
-    console.log(quizQA);
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+      if (!section) {
+        return;
+      }
 
-    function renderQuiz() {
-        const container = document.getElementById('question-container');
-        container.innerHTML = quizQA.map((q, index) => `
-        <div class="question">
-            <h3>${q.question_text}</h3>
-            ${q.options.map(opt => `
-            <label>
-                <input type="radio" name="q${index}" value="${opt}">
-                ${opt}
-            </label>
-            `).join('')}
-        </div>
-        `).join('');
-    }
+      const quizData = {{ quiz_meta.quiz_q_and_a | json }};
+      const quizMapping = {{ quiz_meta.mapping | json }} || {};
+      const quizTitle = {{ quiz_meta.title | json }};
+      const quizHandle = {{ quiz_meta.handle | json }};
 
-    function submitQuiz() {
-        const answers = quizQA.map((q, index) => {
-            const selected = document.querySelector(`input[name="q${index}"]:checked`);
-            return selected ? selected.value : null;
-        });
+      if (!Array.isArray(quizData) || !quizData.length) {
+        return;
+      }
 
-        const recommendationKey = answers.join(',');
-        const recommendedProduct = quizMapping[recommendationKey];
+      const overlay = section.querySelector('[data-quiz-overlay]');
+      const popup = section.querySelector('[data-quiz-popup]');
+      const trigger = section.querySelector('[data-quiz-trigger]');
+      const closeButton = section.querySelector('[data-quiz-close]');
+      const submitButton = section.querySelector('[data-quiz-submit]');
+      const questionContainer = section.querySelector('[data-quiz-container]');
+      const contactForm = section.querySelector('form.tp-quiz__form');
+      const statusField = document.getElementById('{{ form_id }}-status');
+      const resultField = document.getElementById('{{ form_id }}-result');
+      const progressField = document.getElementById('{{ form_id }}-progress');
+      const bodyField = document.getElementById('{{ form_id }}-body');
 
-        if (recommendedProduct) {
-            window.location.href = recommendedProduct;
-        } else {
-            alert('No recommendation found');
+      if (!overlay || !popup || !trigger || !closeButton || !submitButton || !questionContainer || !contactForm || !statusField || !progressField || !bodyField) {
+        return;
+      }
+
+      let quizRendered = false;
+      let lastSubmissionSignature = null;
+      let hasCompletedSubmission = false;
+
+      const escapeHtml = (value) => {
+        if (value == null) {
+          return '';
         }
+        return String(value).replace(/[&<>"]|'/g, function(match) {
+          switch (match) {
+            case '&': return '&amp;';
+            case '<': return '&lt;';
+            case '>': return '&gt;';
+            case '"': return '&quot;';
+            case "'": return '&#39;';
+            default: return match;
+          }
+        });
+      };
+
+      const normaliseOption = (option) => {
+        if (option == null) {
+          return '';
+        }
+        if (typeof option === 'string') {
+          return option;
+        }
+        if (typeof option === 'object') {
+          return option.value || option.label || option.title || option.name || option.option_text || '';
+        }
+        return String(option);
+      };
+
+      const getQuestionText = (question, index) => {
+        if (!question) {
+          return `Question ${index + 1}`;
+        }
+        if (typeof question === 'string') {
+          return question;
+        }
+        return (
+          question.question_text ||
+          question.text ||
+          question.title ||
+          question.question ||
+          `Question ${index + 1}`
+        );
+      };
+
+      const renderQuiz = () => {
+        const markup = quizData.map((question, questionIndex) => {
+          const questionText = escapeHtml(getQuestionText(question, questionIndex));
+          const options = Array.isArray(question.options) ? question.options : [];
+          const optionsMarkup = options.map((option, optionIndex) => {
+            const optionValue = normaliseOption(option);
+            const escapedValue = escapeHtml(optionValue);
+            const inputId = `${section.dataset.sectionId}-q${questionIndex}-o${optionIndex}`;
+            return `
+              <label class="tp-quiz__option" for="${inputId}">
+                <input type="radio" id="${inputId}" name="q${questionIndex}" value="${escapedValue}">
+                <span>${escapedValue}</span>
+              </label>
+            `;
+          }).join('');
+
+          return `
+            <fieldset class="tp-quiz__question">
+              <legend class="tp-quiz__question-title">${questionText}</legend>
+              <div class="tp-quiz__answers">${optionsMarkup}</div>
+            </fieldset>
+          `;
+        }).join('');
+
+        questionContainer.innerHTML = markup;
+      };
+
+      const getAnswers = () => {
+        return quizData.map((question, index) => {
+          const questionText = getQuestionText(question, index);
+          const selected = questionContainer.querySelector(`input[name="q${index}"]:checked`);
+          return {
+            question: questionText,
+            answer: selected ? selected.value : null
+          };
+        });
+      };
+
+      const buildBody = (answers, status, recommendation) => {
+        const answered = answers.filter((entry) => entry.answer);
+        const lines = [
+          `Quiz title: ${quizTitle || ''}`,
+          `Quiz handle: ${quizHandle || ''}`,
+          `Status: ${status}`,
+          `Answered: ${answered.length} of ${quizData.length}`,
+          `Recommendation: ${recommendation || 'N/A'}`,
+          `Page URL: ${window.location.href}`,
+          ''
+        ];
+
+        if (answered.length) {
+          lines.push('Responses:');
+          answered.forEach((entry) => {
+            lines.push(`- ${entry.question}: ${entry.answer}`);
+          });
+        } else {
+          lines.push('No responses selected.');
+        }
+
+        return lines.join('\n');
+      };
+
+      const submitContact = (status, recommendation) => {
+        const answers = getAnswers();
+        const answeredCount = answers.filter((entry) => entry.answer).length;
+
+        if (!answeredCount && status !== 'completed') {
+          return;
+        }
+
+        const messageBody = buildBody(answers, status, recommendation);
+        const signature = `${status}|${answeredCount}|${recommendation || ''}|${messageBody}`;
+
+        if (lastSubmissionSignature === signature) {
+          return;
+        }
+
+        statusField.value = status;
+        progressField.value = `${answeredCount}/${quizData.length}`;
+        resultField.value = recommendation || '';
+        bodyField.value = messageBody;
+
+        if (typeof contactForm.requestSubmit === 'function') {
+          contactForm.requestSubmit();
+        } else {
+          contactForm.submit();
+        }
+
+        lastSubmissionSignature = signature;
+        if (status === 'completed') {
+          hasCompletedSubmission = true;
+        }
+      };
+
+      const openQuiz = () => {
+        if (!quizRendered) {
+          renderQuiz();
+          quizRendered = true;
+        }
+
+        overlay.hidden = false;
+        popup.hidden = false;
+        document.body.classList.add('tp-quiz-open');
+      };
+
+      const closeQuiz = (submitPartial = true) => {
+        overlay.hidden = true;
+        popup.hidden = true;
+        document.body.classList.remove('tp-quiz-open');
+
+        if (submitPartial && !hasCompletedSubmission) {
+          submitContact('partial');
+        }
+      };
+
+      const handleSubmit = () => {
+        const answers = getAnswers();
+        if (answers.some((entry) => entry.answer === null)) {
+          submitContact('partial');
+          alert('Please answer all questions to receive a recommendation.');
+          return;
+        }
+
+        const recommendationKey = answers.map((entry) => entry.answer).join(',');
+        const recommendation = quizMapping ? quizMapping[recommendationKey] : null;
+
+        submitContact('completed', recommendation);
+
+        if (recommendation) {
+          setTimeout(() => {
+            window.location.href = recommendation;
+          }, 300);
+        } else {
+          alert('No recommendation found for your responses.');
+        }
+
+        closeQuiz(false);
+      };
+
+      trigger.addEventListener('click', () => {
+        openQuiz();
+      });
+
+      overlay.addEventListener('click', () => {
+        closeQuiz(true);
+      });
+
+      closeButton.addEventListener('click', () => {
+        closeQuiz(true);
+      });
+
+      submitButton.addEventListener('click', () => {
+        handleSubmit();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !overlay.hidden) {
+          closeQuiz(true);
+        }
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden' && !hasCompletedSubmission) {
+          submitContact('partial');
+        }
+      });
+    });
+  </script>
+{%- endif -%}
+
+<style>
+  .tp-quiz__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .tp-quiz__popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 540px;
+    width: calc(100% - 32px);
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    z-index: 1001;
+  }
+
+  .tp-quiz__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .tp-quiz__title {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .tp-quiz__close {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .tp-quiz__question {
+    border: none;
+    padding: 0;
+    margin: 0 0 20px;
+  }
+
+  .tp-quiz__question-title {
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .tp-quiz__answers {
+    display: grid;
+    gap: 8px;
+  }
+
+  .tp-quiz__option {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .tp-quiz__option input {
+    margin: 0;
+  }
+
+  .tp-quiz__footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+  }
+
+  .tp-quiz__submit {
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+  }
+
+  .tp-quiz__form,
+  .tp-quiz__form-target {
+    display: none;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "tp-quiz",
+  "class": "tp-quiz",
+  "settings": [
+    {
+      "type": "metaobject",
+      "id": "metaobject_quiz_ref",
+      "label": "Metaobject Quiz Reference",
+      "info": "Add a metaobject",
+      "metaobject_type": "quiz"
     }
-
-    // Event listeners
-    document.getElementById('start-quiz').addEventListener('click', () => {
-        document.getElementById('quiz-overlay').style.display = 'block';
-        document.getElementById('quiz-popup').style.display = 'block';
-        renderQuiz();
-    });
-
-    document.getElementById('quiz-overlay').addEventListener('click', () => {
-        document.getElementById('quiz-overlay').style.display = 'none';
-        document.getElementById('quiz-popup').style.display = 'none';
-    });
-
-    document.getElementById('submit-quiz').addEventListener('click', submitQuiz);
-});
-</script>
+  ],
+  "presets": [
+    {
+      "name": "TP Quiz",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
