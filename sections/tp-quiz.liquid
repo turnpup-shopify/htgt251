@@ -51,6 +51,7 @@
       const quizMappingRaw = {{ quiz_mapping_json | json }};
       const quizTitle = {{ quiz_meta.title | json }};
       const quizHandle = {{ quiz_meta.handle | json }};
+      const shopUrl = {{ shop.url | json }};
 
       const parseJson = (value, fallback) => {
         if (Array.isArray(value) || (value && typeof value === 'object')) {
@@ -97,7 +98,7 @@
           if (value == null) {
             return '';
           }
-          return String(value).replace(/[&<>"']|'/g, function(match) {
+          return String(value).replace(/[&<>"']/g, function(match) {
             switch (match) {
               case '&': return '&amp;';
               case '<': return '&lt;';
@@ -120,6 +121,46 @@
             return option.value || option.label || option.title || option.name || option.option_text || '';
           }
           return String(option);
+        };
+
+        const normaliseRecommendation = (value) => {
+          if (!value) {
+            return { handle: '', url: '' };
+          }
+
+          const valueString = String(value).trim();
+
+          if (!valueString) {
+            return { handle: '', url: '' };
+          }
+
+          if (/^https?:\/\//i.test(valueString)) {
+            const url = valueString;
+            const handleMatch = url.match(/\/products\/([^/?#]+)/i);
+            return {
+              handle: handleMatch ? handleMatch[1] : '',
+              url
+            };
+          }
+
+          let cleaned = valueString.replace(/^\/+/, '');
+          if (cleaned.toLowerCase().startsWith('products/')) {
+            cleaned = cleaned.substring(9);
+          }
+
+          cleaned = cleaned.split(/[?#]/)[0];
+
+          if (!cleaned) {
+            return { handle: '', url: '' };
+          }
+
+          const baseUrl = shopUrl ? shopUrl.replace(/\/$/, '') : '';
+          const url = baseUrl ? `${baseUrl}/products/${cleaned}` : `/products/${cleaned}`;
+
+          return {
+            handle: cleaned,
+            url
+          };
         };
 
         const getQuestionText = (question, index) => {
@@ -181,7 +222,8 @@
           });
         };
 
-        const buildBody = (answers, status, recommendation) => {
+        const buildBody = (answers, status, recommendationInfo) => {
+          const info = recommendationInfo || { handle: '', url: '' };
           const totalQuestions = Array.isArray(quizData) ? quizData.length : 0;
           const answered = answers.filter((entry) => entry.answer);
           const lines = [
@@ -189,7 +231,8 @@
             `Quiz handle: ${quizHandle || ''}`,
             `Status: ${status}`,
             `Answered: ${answered.length} of ${totalQuestions}`,
-            `Recommendation: ${recommendation || 'N/A'}`,
+            `Recommendation handle: ${info.handle || 'N/A'}`,
+            `Recommendation URL: ${info.url || 'N/A'}`,
             `Page URL: ${window.location.href}`,
             ''
           ];
@@ -210,7 +253,7 @@
         let hasCompletedSubmission = false;
         let quizRendered = false;
 
-        const submitContact = (status, recommendation) => {
+        const submitContact = (status, recommendationInfo) => {
           const answers = getAnswers();
           const answeredCount = answers.filter((entry) => entry.answer).length;
           const totalQuestions = Array.isArray(quizData) ? quizData.length : 0;
@@ -219,8 +262,9 @@
             return;
           }
 
-          const messageBody = buildBody(answers, status, recommendation);
-          const signature = `${status}|${answeredCount}|${recommendation || ''}|${messageBody}`;
+          const info = recommendationInfo || { handle: '', url: '' };
+          const messageBody = buildBody(answers, status, info);
+          const signature = `${status}|${answeredCount}|${info.handle}|${info.url}|${messageBody}`;
 
           if (lastSubmissionSignature === signature) {
             return;
@@ -228,7 +272,7 @@
 
           statusField.value = status;
           progressField.value = totalQuestions ? `${answeredCount}/${totalQuestions}` : String(answeredCount);
-          resultField.value = recommendation || '';
+          resultField.value = info.url || info.handle || '';
           bodyField.value = messageBody;
 
           if (typeof contactForm.requestSubmit === 'function') {
@@ -275,14 +319,13 @@
           }
 
           const recommendationKey = answers.map((entry) => entry.answer).join(',');
-          const recommendation = quizMapping ? quizMapping[recommendationKey] : null;
+          const recommendationHandle = quizMapping ? quizMapping[recommendationKey] : null;
+          const recommendationInfo = normaliseRecommendation(recommendationHandle);
 
-          submitContact('completed', recommendation);
+          submitContact('completed', recommendationInfo);
 
-          if (recommendation) {
-            setTimeout(() => {
-              window.location.href = recommendation;
-            }, 300);
+          if (recommendationInfo.url) {
+            window.open(recommendationInfo.url, '_blank', 'noopener');
           } else {
             alert('No recommendation found for your responses.');
           }
