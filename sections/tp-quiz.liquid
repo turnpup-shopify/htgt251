@@ -6,7 +6,7 @@
 
   assign quiz_qa_json = quiz_meta.quiz_q_and_a.value | default: quiz_meta.quiz_q_and_a | default: '[]'
   assign quiz_mapping_json = quiz_meta.mapping.value | default: quiz_meta.mapping | default: '{}'
---%}
+-%}
 
 {%- if quiz_meta == blank -%}
   <div class="tp-quiz tp-quiz--empty">
@@ -15,7 +15,7 @@
 {%- else -%}
   <div class="tp-quiz" data-section-id="{{ section.id }}">
     <button type="button" class="tp-quiz__trigger" data-quiz-trigger>
-      {{ quiz_meta.cta | default: 'Take Product Quiz' }}!
+      {{ quiz_meta.cta | default: 'Take Product Quiz' }}
     </button>
 
     <div class="tp-quiz__overlay" data-quiz-overlay hidden></div>
@@ -97,7 +97,7 @@
           if (value == null) {
             return '';
           }
-          return String(value).replace(/[&<>"']/g, function(match) {
+          return String(value).replace(/[&<>"']|'/g, function(match) {
             switch (match) {
               case '&': return '&amp;';
               case '<': return '&lt;';

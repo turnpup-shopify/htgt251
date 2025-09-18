@@ -353,7 +353,8 @@
 }
 .actual-quote {
   max-width: 100%;
-  margin: 0 auto{{ section.settings.quote_space_between }}px;
+  margin: 0 auto;
+  margin-bottom: {{ section.settings.quote_space_between }}px;
 }
 .actual-quote p {
   margin: 0;
@@ -435,12 +436,8 @@
   }
   .actual-quote {
     max-width: 100%;
-    margin: 0 auto{{ section.settings.quote_space_between |;
-    text-align: {{ section.settings.section_alignment }};
+    margin: 0 auto{{ section.settings.quote_space_between }};
   }
   .social-slick .quote {
     font-size: {{ section.settings.m_quote_font_size }};
-    margin: 0 auto{{ section.settings.space_between |;
-  }
-}
-</style>
+    margin: 0 auto</style>
