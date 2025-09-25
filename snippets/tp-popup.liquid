@@ -16,6 +16,13 @@
     assign popup_img_mobile = settings.popup_image_mobile
     assign success_msg = settings.custom_success_message
   endif
+
+  assign popup_body_font_desktop = settings.popup_body_font_size | default: '1rem'
+  assign popup_body_font_mobile = settings.popup_body_font_size_mobile | default: popup_body_font_desktop
+  assign popup_header_font_desktop = settings.popup_header_font_size | default: '1.4rem'
+  assign popup_header_font_mobile = settings.popup_header_font_size_mobile | default: popup_header_font_desktop
+  assign popup_subheader_font_desktop = settings.popup_subheader_font_size | default: popup_body_font_desktop
+  assign popup_subheader_font_mobile = settings.popup_subheader_font_size_mobile | default: popup_subheader_font_desktop
 %}
 <div
   id="email-popup"
@@ -79,7 +86,7 @@
             <p class="popup-header" style="margin: {{ settings.popup_header_margin_top}} 0 0 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
               {{ popup_header }}
             </p>
-            <p style="margin: {{ settings.popup_body_margin_top}} 0 {{ settings.popup_body_margin_bottom}} 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
+            <p class="popup-subheader" style="margin: {{ settings.popup_body_margin_top}} 0 {{ settings.popup_body_margin_bottom}} 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
               {{ popup_body }}
             </p>
             <div class="field field--with-error">
@@ -261,12 +268,30 @@
     , visibility 0.3s;
   }
 
-  .popup-header {
-    font-size: {{ settings.popup_header_font_size }};
+  .popup {
+    font-size: {{ popup_body_font_desktop }};
   }
 
-  .popup {
-    font-size: {{ settings.popup_body_font_size }};
+  .popup-header {
+    font-size: {{ popup_header_font_desktop }};
+  }
+
+  .popup-subheader {
+    font-size: {{ popup_subheader_font_desktop }};
+  }
+
+  @media (max-width: 700px) {
+    .popup {
+      font-size: {{ popup_body_font_mobile }};
+    }
+
+    .popup-header {
+      font-size: {{ popup_header_font_mobile }};
+    }
+
+    .popup-subheader {
+      font-size: {{ popup_subheader_font_mobile }};
+    }
   }
 
   /* Pop-up box */

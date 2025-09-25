@@ -172,8 +172,26 @@
       {
         "type": "text",
         "id": "popup_header_font_size",
-        "label": "Pop-up Header Font Size",
+        "label": "Pop-up Header Font Size (desktop)",
         "default": "1.4rem"
+      },
+      {
+        "type": "text",
+        "id": "popup_header_font_size_mobile",
+        "label": "Pop-up Header Font Size (mobile)",
+        "default": "1.2rem"
+      },
+      {
+        "type": "text",
+        "id": "popup_subheader_font_size",
+        "label": "Pop-up Subheader Font Size (desktop)",
+        "default": "1rem"
+      },
+      {
+        "type": "text",
+        "id": "popup_subheader_font_size_mobile",
+        "label": "Pop-up Subheader Font Size (mobile)",
+        "default": "0.95rem"
       },
       {
         "type": "text",
@@ -240,8 +258,14 @@
       {
         "type": "text",
         "id": "popup_body_font_size",
-        "label": "Pop-up Body Font Size",
+        "label": "Pop-up Body Font Size (desktop)",
         "default": "1rem"
+      },
+      {
+        "type": "text",
+        "id": "popup_body_font_size_mobile",
+        "label": "Pop-up Body Font Size (mobile)",
+        "default": "0.9rem"
       },
       {
         "type": "text",
