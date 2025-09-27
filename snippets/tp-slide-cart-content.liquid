@@ -2,53 +2,6 @@
   assign empty_state_title = 'sections.cart.empty' | t
   assign continue_shopping = 'general.continue_shopping' | t
 -%}
-
-
-{% liquid
-  assign free_shipping_threshold = settings.slide_cart_free_shipping_threshold | default: 0
-  assign free_shipping_enabled = false
-  if free_shipping_threshold > 0
-    assign free_shipping_enabled = true
-  endif
-%}
-
-{% if free_shipping_enabled %}
-  {% liquid
-    assign threshold_cents = free_shipping_threshold | times: 100
-    assign subtotal_cents = cart.total_price
-    assign remaining_cents = threshold_cents | minus: subtotal_cents
-    if remaining_cents < 0
-      assign remaining_cents = 0
-    endif
-    assign progress = 0
-    if threshold_cents > 0
-      assign progress = subtotal_cents | times: 100 | divided_by: threshold_cents
-    endif
-    if progress > 100
-      assign progress = 100
-    endif
-
-    assign locked_message = settings.slide_cart_free_shipping_message_locked | default: '$[amount] to unlock free shipping'
-    assign unlocked_message = settings.slide_cart_free_shipping_message_unlocked | default: 'Free shipping unlocked!'
-    assign remaining_formatted = remaining_cents | money
-    assign free_shipping_message = unlocked_message
-    assign meter_state = 'unlocked'
-    if remaining_cents > 0
-      assign free_shipping_message = locked_message | replace: '[amount]', remaining_formatted
-      assign meter_state = 'locked'
-    endif
-  %}
-  <div
-    class="tp-slide-cart__goal tp-slide-cart__goal--{{ meter_state }}"
-    style="margin-bottom: 30px"
-    data-free-shipping-goal>
-    <p class="tp-slide-cart__goal-message">{{ free_shipping_message }}</p>
-    <div class="tp-slide-cart__goal-bar">
-      <span class="tp-slide-cart__goal-progress" style="width: {{ progress }}%"></span>
-    </div>
-  </div>
-{% endif %}
-
 {%- if cart == empty -%}
   <div class="tp-slide-cart__empty">
     <p class="tp-slide-cart__empty-title">{{ empty_state_title }}</p>
@@ -60,6 +13,52 @@
     method="post"
     id="TP-SlideCartForm"
     class="tp-slide-cart__form">
+    {% liquid
+      assign free_shipping_threshold = settings.slide_cart_free_shipping_threshold | default: 0
+      assign free_shipping_enabled = false
+      if free_shipping_threshold > 0
+        assign free_shipping_enabled = true
+      endif
+    %}
+
+    {% if free_shipping_enabled %}
+      {% liquid
+        assign threshold_cents = free_shipping_threshold | times: 100
+        assign subtotal_cents = cart.total_price
+        assign remaining_cents = threshold_cents | minus: subtotal_cents
+        if remaining_cents < 0
+          assign remaining_cents = 0
+        endif
+        assign progress = 0
+        if threshold_cents > 0
+          assign progress = subtotal_cents | times: 100 | divided_by: threshold_cents
+        endif
+        if progress > 100
+          assign progress = 100
+        endif
+
+        assign locked_message = settings.slide_cart_free_shipping_message_locked | default: '$[amount] to unlock free shipping'
+        assign unlocked_message = settings.slide_cart_free_shipping_message_unlocked | default: 'Free shipping unlocked!'
+        assign remaining_formatted = remaining_cents | money
+        assign free_shipping_message = unlocked_message
+        assign meter_state = 'unlocked'
+        if remaining_cents > 0
+          assign free_shipping_message = locked_message | replace: '[amount]', remaining_formatted
+          assign meter_state = 'locked'
+        endif
+      %}
+      <div class="tp-slide-cart__goal-wrapper">
+        <div class="tp-slide-cart__goal tp-slide-cart__goal--{{ meter_state }}" data-free-shipping-goal>
+          <p class="tp-slide-cart__goal-message">{{ free_shipping_message }}</p>
+          <div class="tp-slide-cart__goal-track">
+            <div class="tp-slide-cart__goal-bar">
+              <span class="tp-slide-cart__goal-progress" style="width: {{ progress }}%"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
     <ul class="tp-slide-cart__items" role="list">
       {%- for item in cart.items -%}
         <li
