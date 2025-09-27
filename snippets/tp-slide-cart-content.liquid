@@ -2,12 +2,6 @@
   assign empty_state_title = 'sections.cart.empty' | t
   assign continue_shopping = 'general.continue_shopping' | t
 -%}
-{%- if cart == empty -%}
-  <div class="tp-slide-cart__empty">
-    <p class="tp-slide-cart__empty-title">{{ empty_state_title }}</p>
-    <a class="hapny_button button button--primary tp-slide-cart__continue" href="{{ routes.all_products_collection_url }}">Shop Best Sellers</a>
-  </div>
-{%- else -%}
   <form
     action="{{ routes.cart_url }}"
     method="post"
@@ -58,6 +52,13 @@
         </div>
       </div>
     {% endif %}
+
+{%- if cart == empty -%}
+  <div class="tp-slide-cart__empty">
+    <p class="tp-slide-cart__empty-title">{{ empty_state_title }}</p>
+    <a class="hapny_button button button--primary tp-slide-cart__continue" href="{{ routes.all_products_collection_url }}">Shop Best Sellers</a>
+  </div>
+{%- else -%}
 
     <ul class="tp-slide-cart__items" role="list">
       {%- for item in cart.items -%}
