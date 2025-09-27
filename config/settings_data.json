@@ -15,6 +15,8 @@
     "hero_button_font_size": "16px",
     "hero_button_padding": "15px 30px",
     "use_minified_assets": false,
+    "enable_slide_cart": true,
+    "slide_cart_overlay_blur": 30,
     "enable_popup": true,
     "show_popup_in_editor": false,
     "test_popup_success_state": false,
@@ -381,6 +383,10 @@
           "speed": 40,
           "pause_on_hover": true
         }
+      },
+      "tp-slide-cart": {
+        "type": "tp-slide-cart",
+        "settings": {}
       }
     },
     "content_for_index": [],
