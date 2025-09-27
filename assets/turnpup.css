@@ -221,7 +221,7 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
 .tp-slide-cart__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(var(--tp-slide-cart-overlay-rgb, 0, 0, 0), var(--tp-slide-cart-overlay-opacity, 0.45));
   opacity: 0;
   backdrop-filter: blur(var(--tp-slide-cart-blur));
   -webkit-backdrop-filter: blur(var(--tp-slide-cart-blur));

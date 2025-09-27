@@ -139,6 +139,22 @@
         "step": 1,
         "unit": "px",
         "info": "Adjust the background blur that appears behind the slide-out cart."
+      },
+      {
+        "type": "color",
+        "id": "slide_cart_overlay_color",
+        "label": "Slide-out cart overlay color",
+        "default": "#000000"
+      },
+      {
+        "type": "range",
+        "id": "slide_cart_overlay_opacity",
+        "label": "Slide-out cart overlay opacity",
+        "default": 45,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%"
       }
     ]
   },
