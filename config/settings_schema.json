@@ -165,8 +165,6 @@
         "id": "slide_cart_free_shipping_threshold",
         "label": "Free shipping threshold",
         "default": 0,
-        "min": 0,
-        "step": 1,
         "info": "Set the cart subtotal (in store currency) required to unlock free shipping."
       },
       {
