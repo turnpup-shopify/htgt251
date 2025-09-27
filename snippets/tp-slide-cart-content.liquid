@@ -151,7 +151,10 @@
 
     {% liquid
       assign free_shipping_threshold = settings.slide_cart_free_shipping_threshold | default: 0
-      assign free_shipping_enabled = free_shipping_threshold > 0
+      assign free_shipping_enabled = false
+      if free_shipping_threshold > 0
+        assign free_shipping_enabled = true
+      endif
     %}
 
     <div class="tp-slide-cart__footer">
@@ -202,7 +205,9 @@
         </ul>
       {%- endif -%}
 
-      <p class="tp-slide-cart__note">As a new customer you qualify for free shipping.</p>
+      {% unless free_shipping_enabled %}
+        <p class="tp-slide-cart__note">As a new customer you qualify for free shipping.</p>
+      {% endunless %}
 
       <div class="tp-slide-cart__actions">
         <button class="hapny_button button button--primary tp-slide-cart__checkout" name="checkout">{{ 'sections.cart.checkout' | t }}</button>
