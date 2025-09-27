@@ -409,6 +409,38 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
   font-weight: 600;
 }
 
+.tp-slide-cart__goal {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.tp-slide-cart__goal-message {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.tp-slide-cart__goal-bar {
+  position: relative;
+  height: 0.8rem;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.tp-slide-cart__goal-progress {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: rgb(var(--color-base-accent-1, 17, 17, 17));
+  border-radius: inherit;
+  display: block;
+  transition: width 200ms ease;
+}
+
+.tp-slide-cart__goal--unlocked .tp-slide-cart__goal-progress {
+  width: 100% !important;
+}
+
 .tp-slide-cart__note {
   margin: 0;
   font-size: 1.2rem;

@@ -155,6 +155,32 @@
         "max": 100,
         "step": 1,
         "unit": "%"
+      },
+      {
+        "type": "header",
+        "content": "Slide-out cart free shipping meter"
+      },
+      {
+        "type": "number",
+        "id": "slide_cart_free_shipping_threshold",
+        "label": "Free shipping threshold",
+        "default": 0,
+        "min": 0,
+        "step": 1,
+        "info": "Set the cart subtotal (in store currency) required to unlock free shipping."
+      },
+      {
+        "type": "text",
+        "id": "slide_cart_free_shipping_message_locked",
+        "label": "Locked message",
+        "default": "$[amount] to unlock free shipping",
+        "info": "Use [amount] as a placeholder for the remaining subtotal."
+      },
+      {
+        "type": "text",
+        "id": "slide_cart_free_shipping_message_unlocked",
+        "label": "Unlocked message",
+        "default": "Free shipping unlocked!"
       }
     ]
   },
