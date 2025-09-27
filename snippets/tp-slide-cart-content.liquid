@@ -129,13 +129,13 @@
             </div>
 
             {% comment %} <div class="tp-slide-cart__line-price">
-                                          {%- if item.original_line_price != item.final_line_price -%}
-                                            <s class="tp-slide-cart__line-price--compare">{{ item.original_line_price | money }}</s>
-                                            <span class="tp-slide-cart__line-price--final">{{ item.final_line_price | money }}</span>
-                                          {%- else -%}
-                                            <span class="tp-slide-cart__line-price--final">{{ item.final_line_price | money }}</span>
-                                          {%- endif -%}
-                                    </div> {% endcomment %}
+                                                                                    {%- if item.original_line_price != item.final_line_price -%}
+                                                                                      <s class="tp-slide-cart__line-price--compare">{{ item.original_line_price | money }}</s>
+                                                                                      <span class="tp-slide-cart__line-price--final">{{ item.final_line_price | money }}</span>
+                                                                                    {%- else -%}
+                                                                                      <span class="tp-slide-cart__line-price--final">{{ item.final_line_price | money }}</span>
+                                                                                    {%- endif -%}
+                                                                        </div> {% endcomment %}
 
             {%- if item.discounts != blank -%}
               <ul class="tp-slide-cart__discounts" role="list">
