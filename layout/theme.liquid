@@ -315,6 +315,9 @@ body {
     <script src="{{ 'turnpup.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'turnpup-nav.js' | asset_url }}" defer="defer"></script>
   {% endif %}
+  {% if settings.enable_slide_cart %}
+    <script src="{{ 'tp-slide-cart.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
   <script>
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     if (Shopify.designMode) {
@@ -357,6 +360,9 @@ body {
   {% section 'announcement-bar' %}
   {% section 'announcement-marquee' %}
   {% section 'header' %}
+  {% if settings.enable_slide_cart %}
+    {% section 'tp-slide-cart' %}
+  {% endif %}
   <main
     id="MainContent"
     class="content-for-layout focus-none"
@@ -401,6 +407,9 @@ body {
         error: `{{ 'sections.cart.cart_error' | t }}`,
         quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`
       }
+
+      window.themeSettings = window.themeSettings || {};
+      window.themeSettings.enableSlideCart = {{ settings.enable_slide_cart | json }};
 
       window.variantStrings = {
         addToCart: `{{ 'products.product.add_to_cart' | t }}`,

@@ -614,7 +614,7 @@
         </a>
       {%- endif -%}
 
-      <a href="https://htgtfurniture.com/cart" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble" data-slide-cart-trigger aria-haspopup="dialog" aria-expanded="false">
         {%- liquid
           if cart == empty
             render 'icon-cart-empty'

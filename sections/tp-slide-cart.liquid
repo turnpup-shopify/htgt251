@@ -1,0 +1,37 @@
+{% if settings.enable_slide_cart %}
+  <tp-slide-cart
+    id="tp-slide-cart"
+    class="tp-slide-cart"
+    data-section-id="{{ section.id }}"
+    data-empty="{% if cart == empty %}true{% else %}false{% endif %}"
+    style="--tp-slide-cart-blur: {{ settings.slide_cart_overlay_blur | default: 0 }}px;">
+    <div class="tp-slide-cart__overlay" data-slide-cart-close></div>
+    <aside
+      class="tp-slide-cart__panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="tp-slide-cart-heading"
+      tabindex="-1">
+      <header class="tp-slide-cart__header">
+        <h2 id="tp-slide-cart-heading" class="tp-slide-cart__heading">{{ 'sections.cart.title' | t }}</h2>
+        <button
+          type="button"
+          class="tp-slide-cart__close"
+          data-slide-cart-close
+          aria-label="{{ 'accessibility.close' | t }}">
+          {% render 'icon-close' %}
+        </button>
+      </header>
+      <div class="tp-slide-cart__content" data-slide-cart-content>
+        {% render 'tp-slide-cart-content' %}
+      </div>
+    </aside>
+  </tp-slide-cart>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Slide cart",
+    "settings": []
+  }
+{% endschema %}

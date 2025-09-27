@@ -117,6 +117,28 @@
       {
         "type": "paragraph",
         "content": "To generate .min files: 1) Push any change that touches assets/*.js or assets/*.css, or 2) In GitHub, open the Actions tab, select 'Minify assets', click 'Run workflow', choose the branch (usually main), and run it. After it commits .min files, enable the toggle above."
+      },
+      {
+        "type": "header",
+        "content": "Cart"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_slide_cart",
+        "label": "Enable slide-out cart",
+        "default": false,
+        "info": "When enabled, the cart icon opens a slide-out cart instead of the cart page."
+      },
+      {
+        "type": "range",
+        "id": "slide_cart_overlay_blur",
+        "label": "Slide-out cart overlay blur",
+        "default": 0,
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "info": "Adjust the background blur that appears behind the slide-out cart."
       }
     ]
   },
