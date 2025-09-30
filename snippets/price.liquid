@@ -30,6 +30,9 @@
   endif
 -%}
 
+<script>
+  console.log("TP PRICE --> {{price}}");
+</script>
 {%- if price == 5000 %}
 {%- elsif price > 0 %}
   {%- if price > 0 %}
@@ -69,9 +72,9 @@
             </span>
           {%- endunless -%}
         {% comment %} <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="price-item price-item--sale price-item--last">
-                                                                                                                                                                                                                                                                                                                                                                                                                                          {{ money_price }}
-                                                                                                                                                                                                                                                                                                                                              </span> {% endcomment %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span class="price-item price-item--sale price-item--last">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                              {{ money_price }}
+                                                                                                                                                                                                                                                                                                                                                              </span> {% endcomment %}
         </div>
         <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
           <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
