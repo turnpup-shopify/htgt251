@@ -22,14 +22,17 @@
 
 {%- if visible != "" and tp_skip != true -%}
   <div class="seo_footer">
-    {%- if header != "" -%}
+    {%- if header != "" and header != blank -%}
       <h2>
         {{ header }}
       </h2>
     {%- endif -%}
-    <p id="tp_visible_text" style="display: block;">
-      {{ visible }}
-    </p>
+    {%- if visible != "" and visible != blank -%}
+      <p id="tp_visible_text" style="display: block;">{{ visible }}</p>
+      <script>
+        console.log("VISIBLE: {{visible}}");
+      </script>
+    {%- endif -%}
     {%- if truncate != "" -%}
       <div id="tp_truncated_text" style="display: none;">
         <p>{{ truncate }}</p>
