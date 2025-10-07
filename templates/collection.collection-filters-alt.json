@@ -208,6 +208,7 @@
     },
     "1655249273615617be": {
       "type": "svg-benefits",
+      "disabled": true,
       "custom_css": [
         ".benefit_container {line-height: 1 !important;}"
       ],
@@ -452,6 +453,7 @@
         "column_LD4mTK",
         "column_dTAwVq"
       ],
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "padding_top": 40,
