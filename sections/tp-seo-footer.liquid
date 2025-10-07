@@ -1,39 +1,49 @@
 {%- if template.name == "product" and product.metafields.custom.seo_footer.value != blank -%}
-    {%- assign header = product.metafields.custom.seo_footer.value.title -%}
-    {%- assign visible = product.metafields.custom.seo_footer.value.visible_portion -%}
-    {%- assign truncate = product.metafields.custom.seo_footer.value.hidden_footer -%}
+  {%- assign header = product.metafields.custom.seo_footer.value.title -%}
+  {%- assign visible = product.metafields.custom.seo_footer.value.visible_portion -%}
+  {%- assign truncate = product.metafields.custom.seo_footer.value.hidden_footer -%}
 {%- elsif template.name == "collection" and collection.metafields.custom.seo_footer.value != blank -%}
-    {%- assign header = collection.metafields.custom.seo_footer.value.title -%}
-    {%- assign visible = collection.metafields.custom.seo_footer.value.visible_portion -%}
-    {%- assign truncate = collection.metafields.custom.seo_footer.value.hidden_footer -%}
+  {%- assign header = collection.metafields.custom.seo_footer.value.title -%}
+  {%- assign visible = collection.metafields.custom.seo_footer.value.visible_portion -%}
+  {%- assign truncate = collection.metafields.custom.seo_footer.value.hidden_footer -%}
 {%- elsif template.name == "page" and page.metafields.custom.seo_footer.value != blank -%}
-    {%- assign header = page.metafields.custom.seo_footer.value.title -%}
-    {%- assign visible = page.metafields.custom.seo_footer.value.visible_portion -%}
-    {%- assign truncate = page.metafields.custom.seo_footer.value.hidden_footer -%}
+  {%- assign header = page.metafields.custom.seo_footer.value.title -%}
+  {%- assign visible = page.metafields.custom.seo_footer.value.visible_portion -%}
+  {%- assign truncate = page.metafields.custom.seo_footer.value.hidden_footer -%}
 {%- else -%}
-    {%- if section.settings.text_one != blank or section.settings.text_two != blank or section.settings.text_three != blank%}
-        {%- assign header = section.settings.text_one -%}
-        {%- assign visible = section.settings.text_two -%}
-        {%- assign truncate = section.settings.text_three -%}
-    {%- else -%}
-        {%- assign tp_skip = true -%}
-    {%- endif -%}
+  {%- if section.settings.text_one != blank or section.settings.text_two != blank or section.settings.text_three != blank %}
+    {%- assign header = section.settings.text_one -%}
+    {%- assign visible = section.settings.text_two -%}
+    {%- assign truncate = section.settings.text_three -%}
+  {%- else -%}
+    {%- assign tp_skip = true -%}
+  {%- endif -%}
 {%- endif -%}
 
 {%- if visible != "" and tp_skip != true -%}
-    <div class="seo_footer">
-        {%- if header != "" -%} 
-            <h2> {{ header }} </h2> 
-        {%- endif -%}
-        <p id="tp_visible_text" style="display: block;"> {{ visible }} </p>
-        {%- if truncate != "" -%}
-            <div id="tp_truncated_text" style="display: none;"> 
-                <p>{{ truncate }}</p>
-            </div> 
-            <button id="seo_footer_button" class="read-more-button" data-status="closed" onclick="readMoreSEO()"> Read More </button> 
-        {%- endif -%}
-    </div>
-    <script>
+  <div class="seo_footer">
+    {%- if header != "" -%}
+      <h2>
+        {{ header }}
+      </h2>
+    {%- endif -%}
+    <p id="tp_visible_text" style="display: block;">
+      {{ visible }}
+    </p>
+    {%- if truncate != "" -%}
+      <div id="tp_truncated_text" style="display: none;">
+        <p>{{ truncate }}</p>
+      </div>
+      <button
+        id="seo_footer_button"
+        class="read-more-button"
+        data-status="closed"
+        onclick="readMoreSEO()">
+        Read More
+      </button>
+    {%- endif -%}
+  </div>
+  <script>
         function readMoreSEO() {
               
             if (document.getElementById("seo_footer_button").dataset.status == "closed") { 
@@ -46,220 +56,206 @@
                 document.getElementById("seo_footer_button").innerText = "Read More";  
             }
         }
-    </script>
-    <style> 
-        .seo_footer {
-            padding: {{ section.settings.tp_margin_top_bottom }} {{ section.settings.tp_margin_left_right }};
-            border-top: 1px solid {{ section.settings.turnpup_top_border_color }};
-        }
-        .seo_footer p, .seo_footer button.read-more-button {
-            font-size: {{ section.settings.turnpup_text_size }};
-        }
-        .seo_footer h2 {
-            font-size: {{ section.settings.turnpup_title_size }};
-        }
-        .seo_footer h3 {
-            margin: .5em 0 !important;
-        }
-        @media screen and (max-width: 700px) {
-            .seo_footer {
-                padding: {{ section.settings.tp_mobile_margin_top_bottom }} {{ section.settings.tp_mobile_margin_left_right }};
-            }
-            .seo_footer p, .seo_footer button.read-more-button {
-                font-size: {{ section.settings.turnpup_mobile_text_size }};
-            }
-            .seo_footer h2 {
-                font-size: {{ section.settings.turnpup_mobile_title_size }};
-            }
-        }
-    </style>
+  </script>
+  <style>
+    .seo_footer {
+      padding: {{ section.settings.tp_margin }}
+      border-top: 1px solid{{ section.settings.turnpup_top_border_color }};
+    }
+    .seo_footer p,
+    .seo_footer button.read-more-button {
+      font-size: {{ section.settings.turnpup_text_size }};
+    }
+    .seo_footer h2 {
+      font-size: {{ section.settings.turnpup_title_size }};
+    }
+    .seo_footer h3 {
+      margin: 0.5em 0 !important;
+    }
+    @media screen and (max-width: 700px) {
+      .seo_footer {
+        padding: {{ section.settings.tp_mobile_margin }};
+      }
+      .seo_footer p,
+      .seo_footer button.read-more-button {
+        font-size: {{ section.settings.turnpup_mobile_text_size }};
+      }
+      .seo_footer h2 {
+        font-size: {{ section.settings.turnpup_mobile_title_size }};
+      }
+    }
+  </style>
 {%- endif -%}
 
 {% schema %}
-    {
+  {
     "name": "TP SEO Footer",
     "class": "tp_seo_footer_container",
     "settings": [
-        {
-            "type": "text",
-            "id": "text_one",
-            "label": "Text One"
-        },
-        {
-            "type": "text",
-            "id": "text_two",
-            "label": "Text Two"
-        },
-        {
-            "type": "text",
-            "id": "text_three",
-            "label": "Text Three"
-        },
-        {
-            "type": "text",
-            "id": "text_alignment",
-            "label": "Text Alignment",
-            "default": "left"
-        },
-        {
-            "type": "text",
-            "id": "turnpup_title_size",
-            "label": "Heading Font Size (e.g. 24px)",
-            "default": "24px"
-        },
-        {
-            "type": "text",
-            "id": "turnpup_mobile_title_size",
-            "label": "Mobile: Heading Font Size (e.g. 24px)",
-            "default": "24px"
-        },
-        {
-            "type": "color",
-            "id": "turnpup_title_color",
-            "label": "Title Color",
-            "default": "#3C64B1"
-        },
-        {
-            "type": "text",
-            "id": "turnpup_text_size",
-            "label": "Text Font Size (e.g. 18px)",
-            "default": "18px"
-        },
-        {
-            "type": "text",
-            "id": "turnpup_mobile_text_size",
-            "label": "Mobile: Text Font Size (e.g. 18px)",
-            "default": "16px"
-        },
-        {
-            "type": "color",
-            "id": "turnpup_text_color",
-            "label": "Text Color",
-            "default": "#373F41"
-        },
-        {
-            "type": "text",
-            "id": "turnpup_note_text_size",
-            "label": "Note Font Size (e.g. 18px)",
-            "default": "18px"
-        },
-        {
-            "type": "text",
-            "id": "turnpup_mobile_note_text_size",
-            "label": "Mobile: Note Font Size (e.g. 18px)",
-            "default": "16px"
-        },
-        {
-            "type": "color",
-            "id": "turnpup_note_text_color",
-            "label": "Note Text Color",
-            "default": "#373F41"
-        },
-        { 
-            "type": "text",
-            "id": "turnpup_note_text_weight",
-            "label": "Note Text Color",
-            "default": "700"
-        },
-        {
-                "type": "text",
-                "id": "tp_margin_top_bottom",
-                "label": "Margin top / bottom",
-                "default": "100px"
-        },
-        {
-                "type": "text",
-                "id": "tp_margin_left_right",
-                "label": "Margin left / right",
-                "default": "40px"
-        },
-        {
-            "type": "text",
-            "id": "tp_mobile_margin_top_bottom",
-            "label": "Mobile: Margin top / bottom",
-            "default": "60px"
-        },
-        {
-            "type": "text",
-            "id": "tp_mobile_margin_left_right",
-            "label": "Mobile: Margin left / right",
-            "default": "20px"
-        },
-        {
-            "type": "color",
-            "id": "turnpup_header_background",
-            "label": "Header Background",
-            "default": "#FFF8F1"
-        },
-        {
-            "type": "color",
-            "id": "turnpup_text_background",
-            "label": "Text Background",
-            "default": "#FFF8F1"
-        },
-        {
-            "type": "url",
-            "id": "link",
-            "label": "Image link"
-        },
-        {
-            "type": "text",
-            "id": "button_label",
-            "label": "Button label"
-        },
-        {
-            "type": "text",
-            "id": "turnpup_button_size",
-            "label": "Button Font Size",
-            "default": "18px"
-        },
-        {
-            "type": "url",
-            "id": "button_link",
-            "label": "Button link"
-        },
-        {
-            "type": "color",
-            "id": "color_text",
-            "label": "Text",
-            "default": "#ffffff"
-        },
-        {
-            "type": "color",
-            "id": "color_accent",
-            "label": "Accent",
-            "default": "#F4B237"
-        },
-        {
-            "type": "color",
-            "id": "turnpup_hover_txt_color",
-            "label": "Hover Text Color",
-            "default": "#F4B237"
-        },
-        {
-            "type": "color",
-            "id": "turnpup_hover_background_color",
-            "label": "Hover Background Color",
-            "default": "#ffffff"
-        },
-        {
-            "type": "color",
-            "id": "turnpup_top_border_color",
-            "label": "Top Border Color",
-            "default": "#F4B237"
-        },
-        {
-            "type": "color",
-            "id": "turnpup_bottom_border_color",
-            "label": "Bottom Border Color",
-            "default": "#F4B237"
-        }
+      {
+        "type": "text",
+        "id": "text_one",
+        "label": "Text One"
+      },
+      {
+        "type": "text",
+        "id": "text_two",
+        "label": "Text Two"
+      },
+      {
+        "type": "text",
+        "id": "text_three",
+        "label": "Text Three"
+      },
+      {
+        "type": "text",
+        "id": "text_alignment",
+        "label": "Text Alignment",
+        "default": "left"
+      }, {
+        "type": "text",
+        "id": "turnpup_title_size",
+        "label": "Heading Font Size (e.g. 24px)",
+        "default": "24px"
+      }, {
+        "type": "text",
+        "id": "turnpup_mobile_title_size",
+        "label": "Mobile: Heading Font Size (e.g. 24px)",
+        "default": "24px"
+      }, {
+        "type": "color",
+        "id": "turnpup_title_color",
+        "label": "Title Color",
+        "default": "#3C64B1"
+      }, {
+        "type": "text",
+        "id": "turnpup_text_size",
+        "label": "Text Font Size (e.g. 18px)",
+        "default": "18px"
+      }, {
+        "type": "text",
+        "id": "turnpup_mobile_text_size",
+        "label": "Mobile: Text Font Size (e.g. 18px)",
+        "default": "16px"
+      }, {
+        "type": "color",
+        "id": "turnpup_text_color",
+        "label": "Text Color",
+        "default": "#373F41"
+      }, {
+        "type": "text",
+        "id": "turnpup_note_text_size",
+        "label": "Note Font Size (e.g. 18px)",
+        "default": "18px"
+      }, {
+        "type": "text",
+        "id": "turnpup_mobile_note_text_size",
+        "label": "Mobile: Note Font Size (e.g. 18px)",
+        "default": "16px"
+      }, {
+        "type": "color",
+        "id": "turnpup_note_text_color",
+        "label": "Note Text Color",
+        "default": "#373F41"
+      }, {
+        "type": "text",
+        "id": "turnpup_note_text_weight",
+        "label": "Note Text Color",
+        "default": "700"
+      }, {
+        "type": "text",
+        "id": "tp_margin",
+        "label": "Margin - Desktop",
+        "default": "100px 40px 100px 40px"
+      }, {
+        "type": "text",
+        "id": "tp_mobile_margin",
+        "label": "Margin - Mobile",
+        "default": "60px 20px 60px 20px"
+      }, {
+        "type": "text",
+        "id": "tp_margin_top_bottom",
+        "label": "Margin top / bottom",
+        "default": "100px"
+      }, {
+        "type": "text",
+        "id": "tp_margin_left_right",
+        "label": "Margin left / right",
+        "default": "40px"
+      }, {
+        "type": "text",
+        "id": "tp_mobile_margin_top_bottom",
+        "label": "Mobile: Margin top / bottom",
+        "default": "60px"
+      }, {
+        "type": "text",
+        "id": "tp_mobile_margin_left_right",
+        "label": "Mobile: Margin left / right",
+        "default": "20px"
+      }, {
+        "type": "color",
+        "id": "turnpup_header_background",
+        "label": "Header Background",
+        "default": "#FFF8F1"
+      }, {
+        "type": "color",
+        "id": "turnpup_text_background",
+        "label": "Text Background",
+        "default": "#FFF8F1"
+      }, {
+        "type": "url",
+        "id": "link",
+        "label": "Image link"
+      }, {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      }, {
+        "type": "text",
+        "id": "turnpup_button_size",
+        "label": "Button Font Size",
+        "default": "18px"
+      }, {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }, {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#ffffff"
+      }, {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent",
+        "default": "#F4B237"
+      }, {
+        "type": "color",
+        "id": "turnpup_hover_txt_color",
+        "label": "Hover Text Color",
+        "default": "#F4B237"
+      }, {
+        "type": "color",
+        "id": "turnpup_hover_background_color",
+        "label": "Hover Background Color",
+        "default": "#ffffff"
+      }, {
+        "type": "color",
+        "id": "turnpup_top_border_color",
+        "label": "Top Border Color",
+        "default": "#F4B237"
+      }, {
+        "type": "color",
+        "id": "turnpup_bottom_border_color",
+        "label": "Bottom Border Color",
+        "default": "#F4B237"
+      }
     ],
     "presets": [
-        {
+      {
         "name": "TP SEO Footer",
         "category": "Advanced layout"
-        }
+      }
     ]
-    }
+  }
 {% endschema %}
