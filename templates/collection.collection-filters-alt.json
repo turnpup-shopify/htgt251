@@ -62,6 +62,8 @@
         "turnpup_mobile_note_text_size": "16px",
         "turnpup_note_text_color": "#373f41",
         "turnpup_note_text_weight": "700",
+        "tp_margin": "0px 40px 20px 40px",
+        "tp_mobile_margin": "60px 20px 60px 20px",
         "tp_margin_top_bottom": "20px",
         "tp_margin_left_right": "40px",
         "tp_mobile_margin_top_bottom": "0px",
