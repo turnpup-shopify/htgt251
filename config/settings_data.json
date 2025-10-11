@@ -42,7 +42,7 @@
     "blog_popup_image_desktop": "shopify://shop_images/mid-century-modern-mirror-2.jpg",
     "blog_header_popup_message": "Quality furniture has been overpriced for too long — ready to try something new?",
     "timer_start_date": "December 25, 2024 23:24:00",
-    "timer_end_date": "October 10, 2025 23:24:00",
+    "timer_end_date": "October 11, 2025 23:24:00",
     "card_desktop_title_size": "1.6rem",
     "card_mobile_title_size": "1.4rem",
     "pdp_product_title_size": "40px",
@@ -345,7 +345,7 @@
           "item_dNqh9N": {
             "type": "item",
             "settings": {
-              "text": "Limited Fall Markdowns until 10/10",
+              "text": "Limited Fall Markdowns until 10/11",
               "url": ""
             }
           },
