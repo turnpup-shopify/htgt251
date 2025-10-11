@@ -344,6 +344,7 @@
         "blocks": {
           "item_dNqh9N": {
             "type": "item",
+            "disabled": true,
             "settings": {
               "text": "Limited Fall Markdowns until 10/11",
               "url": ""
@@ -359,6 +360,7 @@
           },
           "item_F7wHUc": {
             "type": "item",
+            "disabled": true,
             "settings": {
               "text": "Shop New Arrivals",
               "url": "shopify://collections/top-trending-furniture",
@@ -389,6 +391,45 @@
       "tp-slide-cart": {
         "type": "tp-slide-cart",
         "settings": {}
+      },
+      "announcement-timer": {
+        "type": "announcement-timer",
+        "blocks": {
+          "item_anj6zi": {
+            "type": "item",
+            "settings": {
+              "text": "SITEWIDE LIMITED MARKDOWNS UNTIL 10/11",
+              "url": ""
+            }
+          },
+          "item_UAfhLb": {
+            "type": "item",
+            "settings": {
+              "text": "The Event of the Season",
+              "url": ""
+            }
+          }
+        },
+        "block_order": [
+          "item_anj6zi",
+          "item_UAfhLb"
+        ],
+        "settings": {
+          "bg_color": "#e9f0e6",
+          "text_color": "#1a1a1a",
+          "font_size": 12,
+          "font_family": "Helvetica Neue",
+          "font_weight": "600",
+          "text_decoration": "none",
+          "uppercase": true,
+          "item_gap": 24,
+          "separator_text": "|",
+          "speed": 40,
+          "pause_on_hover": true,
+          "countdown_enable": true,
+          "countdown_target": "2025-10-11T23:59:59",
+          "countdown_label": "Offer ends in"
+        }
       }
     },
     "content_for_index": [],
