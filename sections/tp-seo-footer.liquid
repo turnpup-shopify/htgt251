@@ -29,9 +29,6 @@
     {%- endif -%}
     {%- if visible != "" and visible != blank -%}
       <p id="tp_visible_text" style="display: block;">{{ visible }}</p>
-      <script>
-        console.log("VISIBLE: {{visible}}");
-      </script>
     {%- endif -%}
     {%- if truncate != "" -%}
       <div id="tp_truncated_text" style="display: none;">
