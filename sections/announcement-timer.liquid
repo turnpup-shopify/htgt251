@@ -10,6 +10,12 @@
   • Optional image preview tooltip on link hover (set per‑block)
 {% endcomment %}
 
+{% assign rotate_enabled = section.settings.enable_rotation %}
+{% assign marquee_items = section.blocks %}
+{% if rotate_enabled %}
+  {% assign marquee_items = section.blocks | concat: section.blocks %}
+{% endif %}
+
 <section
   id="announcement-marquee"
   class="ann-marquee"
@@ -19,16 +25,17 @@
       {% if section.settings.countdown_label != blank %}
         <span class="ann-countdown__label">{{ section.settings.countdown_label }}</span>
       {% endif %}
-      <span class="ann-countdown__timer" aria-live="polite">--:--:--</span>
+      <span class="ann-countdown__timer" aria-live="polite">--d --h --m --s</span>
     </div>
   {% endif %}
-  <div class="ann-marquee__track-wrapper {% if section.settings.pause_on_hover %}is-pausable{% endif %}">
+  <div
+    class="ann-marquee__track-wrapper {% if rotate_enabled and section.settings.pause_on_hover %}is-pausable{% endif %}{% unless rotate_enabled %} is-static{% endunless %}"
+    data-rotate="{{ rotate_enabled }}">
     <div
-      class="ann-marquee__track"
+      class="ann-marquee__track{% if rotate_enabled %} ann-marquee__track--animated{% endif %}"
       data-sep="{{ section.settings.separator_text }}"
       aria-label="Promotions">
-      {% assign blocks_twice = section.blocks | concat: section.blocks %}
-      {% for block in blocks_twice %}
+      {% for block in marquee_items %}
         {% assign b = block.settings %}
         <div class="ann-item" {{ block.shopify_attributes }}>
           {% if b.url != blank %}
@@ -44,7 +51,7 @@
             <span class="ann-text">{{ b.text | escape }}</span>
           {% endif %}
         </div>
-        {% if section.settings.separator_text != blank and forloop.index != blocks_twice.size %}
+        {% if section.settings.separator_text != blank and forloop.index != marquee_items.size %}
           <div class="ann-sep" aria-hidden="true">{{ section.settings.separator_text }}</div>
         {% endif %}
       {% endfor %}
@@ -82,6 +89,8 @@
     align-items: center;
     gap: var(--am-gap);
     white-space: nowrap;
+  }
+  .ann-marquee__track--animated {
     animation: ann-scroll var(--am-speed) linear infinite;
   }
   .ann-countdown {
@@ -102,7 +111,7 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.04em;
   }
-  .ann-marquee__track-wrapper.is-pausable:hover .ann-marquee__track {
+  .ann-marquee__track-wrapper.is-pausable:hover .ann-marquee__track--animated {
     animation-play-state: paused
   }
   .ann-item {
@@ -203,7 +212,7 @@
       const parsedTarget = targetRaw ? new Date(targetRaw) : null;
 
       if (!parsedTarget || Number.isNaN(parsedTarget.getTime())) {
-        timerEl.textContent = '--:--:--';
+        timerEl.textContent = '--d --h --m --s';
       } else {
         let activeTarget = parsedTarget;
         const dayMs = 24 * 60 * 60 * 1000;
@@ -225,10 +234,10 @@
           const seconds = totalSeconds % 60;
 
           if (days >= 1) {
-            timerEl.textContent = `${pad(days)}:${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+            timerEl.textContent = `${pad(days)}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
           } else {
             const hoursRemaining = Math.floor(totalSeconds / 3600);
-            timerEl.textContent = `${pad(hoursRemaining)}:${pad(minutes)}:${pad(seconds)}`;
+            timerEl.textContent = `${pad(hoursRemaining)}h ${pad(minutes)}m ${pad(seconds)}s`;
           }
         };
 
@@ -238,36 +247,75 @@
     }
   }
 
+  if (!wrapper || !track) return;
+
+  const rotateEnabled = wrapper.dataset.rotate === 'true';
+
+  const attachPreviewListeners = () => {
+    const preview = document.getElementById('annPreview');
+    const imgEl   = document.getElementById('annPreviewImg');
+    if (!preview || !imgEl) return;
+    const onEnter = e => {
+      const u = e.currentTarget.dataset.preview;
+      if (!u) return;
+      imgEl.src = u;
+      preview.hidden = false;
+      position(e);
+    };
+    const onMove  = e => position(e);
+    const onLeave = () => {
+      preview.hidden = true;
+      imgEl.removeAttribute('src');
+    };
+    function position(e){
+      const pad = 12;
+      let x = e.clientX + pad;
+      let y = e.clientY + pad;
+      const vw = innerWidth;
+      const vh = innerHeight;
+      const pw = preview.offsetWidth;
+      const ph = preview.offsetHeight;
+      if (x + pw > vw - 8) x = vw - pw - 8;
+      if (y + ph > vh - 8) y = vh - ph - 8;
+      preview.style.transform = `translate(${x}px, ${y}px)`;
+    }
+    track.querySelectorAll('a[data-preview]').forEach(a=>{
+      a.addEventListener('mouseenter', onEnter);
+      a.addEventListener('mousemove', onMove);
+      a.addEventListener('mouseleave', onLeave);
+    });
+  };
+
+  if (!rotateEnabled) {
+    attachPreviewListeners();
+    return;
+  }
+
   // 1) Build a content fragment from current items (incl. separators).
   const unit = document.createDocumentFragment();
   [...track.children].forEach(n => unit.appendChild(n.cloneNode(true)));
 
   // ensure a trailing separator so seams have one
-    const sepText = track.dataset.sep;
-    const last = unit.lastElementChild;
-    if (sepText && !(last && last.classList && last.classList.contains('ann-sep'))) {
+  const sepText = track.dataset.sep;
+  const last = unit.lastElementChild;
+  if (sepText && !(last && last.classList && last.classList.contains('ann-sep'))) {
     const sep = document.createElement('div');
     sep.className = 'ann-sep';
     sep.setAttribute('aria-hidden', 'true');
     sep.textContent = sepText;
     unit.appendChild(sep);
-    }
+  }
 
   // 2) Fill the track until its width exceeds 2x the wrapper (for seamless loop).
   function fill() {
-    // clear current content
     track.innerHTML = '';
-    // append at least once
     track.appendChild(unit.cloneNode(true));
 
-    // keep appending until width goal reached
     const target = wrapper.clientWidth * 2 + 40; // small buffer
     while (track.scrollWidth < target) {
       track.appendChild(unit.cloneNode(true));
     }
 
-    // distance to scroll = width of the FIRST repetition (one unit)
-    // measure by temporarily rendering one unit in isolation
     const temp = document.createElement('div');
     temp.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;display:inline-flex;gap:inherit;';
     temp.appendChild(unit.cloneNode(true));
@@ -275,28 +323,9 @@
     const unitWidth = temp.scrollWidth;
     temp.remove();
 
-    // 3) Set CSS var so keyframes use a pixel-perfect distance
     track.style.setProperty('--ann-distance', unitWidth + 'px');
 
-    // 4) Re-attach hover preview listeners (if any)
-    const preview = document.getElementById('annPreview');
-    const imgEl   = document.getElementById('annPreviewImg');
-    if (preview && imgEl) {
-      const onEnter = e => { const u = e.currentTarget.dataset.preview; if (!u) return; imgEl.src = u; preview.hidden = false; position(e); };
-      const onMove  = e => position(e);
-      const onLeave = () => { preview.hidden = true; imgEl.removeAttribute('src'); };
-      function position(e){
-        const pad=12; let x=e.clientX+pad, y=e.clientY+pad;
-        const vw=innerWidth, vh=innerHeight, pw=preview.offsetWidth, ph=preview.offsetHeight;
-        if(x+pw>vw-8) x=vw-pw-8; if(y+ph>vh-8) y=vh-ph-8;
-        preview.style.transform = `translate(${x}px, ${y}px)`;
-      }
-      track.querySelectorAll('a[data-preview]').forEach(a=>{
-        a.addEventListener('mouseenter', onEnter);
-        a.addEventListener('mousemove', onMove);
-        a.addEventListener('mouseleave', onLeave);
-      });
-    }
+    attachPreviewListeners();
   }
 
   // Run now and on resize for responsiveness
@@ -398,6 +427,11 @@
         "step": 2,
         "unit": "s",
         "default": 40
+      }, {
+        "type": "checkbox",
+        "id": "enable_rotation",
+        "label": "Animate marquee",
+        "default": true
       }, {
         "type": "checkbox",
         "id": "pause_on_hover",
