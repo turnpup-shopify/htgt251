@@ -394,8 +394,8 @@ body {
     {{ "accessibility.skip_to_text" | t }}
   </a>
 
-  {% section 'announcement-bar' %}
-  {% section 'announcement-marquee' %}
+{% section 'announcement-bar' %}
+  {% comment %} {% section 'announcement-marquee' %} {% endcomment %}
   {% section 'announcement-timer' %}
   {% section 'header' %}
   {% if settings.enable_slide_cart %}
