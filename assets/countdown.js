@@ -15,17 +15,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
         hour = minute * 60,
         day = hour * 24;
 
-    var now = new Date().getTime();
-
     document.querySelectorAll(".timer").forEach(el => {
+
+        var nowDate = new Date();
+        var now = nowDate.getTime();
 
         var tp_start_date = el.getAttribute("data-start");
         var tp_end_date = el.getAttribute("data-end");
         var tp_block_id = el.getAttribute("data-block-id");
         var tp_label_color = el.getAttribute("data-label-color");
 
-        var toLaunchCountDown = new Date(tp_start_date).getTime();
-        var countDown = new Date(tp_end_date).getTime();
+        var startDate = tp_start_date ? new Date(tp_start_date) : null;
+        var toLaunchCountDown = startDate && !isNaN(startDate.getTime()) ? startDate.getTime() : now;
+
+        var endDate = tp_end_date ? new Date(tp_end_date) : null;
+        var countDownDate = endDate && !isNaN(endDate.getTime()) ? endDate : null;
+
+        if (countDownDate && countDownDate.getTime() <= now) {
+            var endOfDay = new Date(nowDate);
+            endOfDay.setHours(23, 59, 59, 999);
+            countDownDate = endOfDay;
+            el.setAttribute("data-end", endOfDay.toISOString());
+        }
+
+        var countDown = countDownDate ? countDownDate.getTime() : now;
         var distance = countDown - now;
         var toLaunchDistance = toLaunchCountDown - now;
         var jquerySelector = tp_block_id;
