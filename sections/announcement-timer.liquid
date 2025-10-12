@@ -28,9 +28,7 @@
       <span class="ann-countdown__timer" aria-live="polite">--d --h --m --s</span>
     </div>
   {% endif %}
-  <div
-    class="ann-marquee__track-wrapper {% if rotate_enabled and section.settings.pause_on_hover %}is-pausable{% endif %}{% unless rotate_enabled %} is-static{% endunless %}"
-    data-rotate="{{ rotate_enabled }}">
+  <div class="ann-marquee__track-wrapper {% if rotate_enabled and section.settings.pause_on_hover %}is-pausable{% endif %}{% unless rotate_enabled %} is-static{% endunless %}" data-rotate="{{ rotate_enabled }}">
     <div
       class="ann-marquee__track{% if rotate_enabled %} ann-marquee__track--animated{% endif %}"
       data-sep="{{ section.settings.separator_text }}"
@@ -99,7 +97,7 @@
     justify-content: center;
     gap: 12px;
     width: 100%;
-    padding: 8px 16px;
+    padding: 8px 16px 0;
     margin-bottom: var(--am-countdown-gap);
     font-size: var(--am-font-size);
     font-weight: var(--am-font-weight);
@@ -464,7 +462,7 @@
         "max": 32,
         "step": 2,
         "unit": "px",
-        "default": 12
+        "default": 4
       }
     ],
     "blocks": [
