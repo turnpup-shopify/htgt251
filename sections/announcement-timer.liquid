@@ -19,7 +19,7 @@
 <section
   id="announcement-marquee"
   class="ann-marquee"
-  style="--am-bg: {{ section.settings.bg_color }}; --am-color: {{ section.settings.text_color }}; --am-gap: {{ section.settings.item_gap }}px; --am-speed: {{ section.settings.speed }}s; --am-font-size: {{ section.settings.font_size }}px; --am-font-weight: {{ section.settings.font_weight }}; --am-underline: {{ section.settings.text_decoration }}; --am-font-family: {{ section.settings.font_family | replace:'\"','\\\"' }};">
+  style="--am-bg: {{ section.settings.bg_color }}; --am-color: {{ section.settings.text_color }}; --am-gap: {{ section.settings.item_gap }}px; --am-speed: {{ section.settings.speed }}s; --am-font-size: {{ section.settings.font_size }}px; --am-font-weight: {{ section.settings.font_weight }}; --am-underline: {{ section.settings.text_decoration }}; --am-font-family: {{ section.settings.font_family | replace:'\"','\\\"' }}; --am-countdown-gap: {{ section.settings.countdown_spacing | default: 12 }}px;">
   {% if section.settings.countdown_enable and section.settings.countdown_target != blank %}
     <div class="ann-countdown" data-countdown-target="{{ section.settings.countdown_target | escape }}">
       {% if section.settings.countdown_label != blank %}
@@ -100,6 +100,7 @@
     gap: 12px;
     width: 100%;
     padding: 8px 16px;
+    margin-bottom: var(--am-countdown-gap);
     font-size: var(--am-font-size);
     font-weight: var(--am-font-weight);
     color: var(--am-color);
@@ -455,6 +456,15 @@
         "id": "countdown_label",
         "label": "Countdown label",
         "default": "Offer ends in"
+      }, {
+        "type": "range",
+        "id": "countdown_spacing",
+        "label": "Spacing below countdown",
+        "min": 0,
+        "max": 32,
+        "step": 2,
+        "unit": "px",
+        "default": 12
       }
     ],
     "blocks": [
