@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
     <meta name="p:domain_verify" content="49da8dd3ab0f2273db8c5728f875e90b" />
+    <meta name="facebook-domain-verification" content="49eh0xt6n2ysdutezrxkfvx26egg09" />
     {% assign canonical_parts = canonical_url | split: '?' %}
     {% assign base_url = canonical_parts[0] %}
     {% if canonical_url contains '?page=' %}
@@ -398,7 +399,8 @@ body {
   {% comment %} {% section 'announcement-marquee' %} {% endcomment %}
 {% section 'announcement-timer' %}
   {% comment %} {% section 'header-group' %} {% endcomment %}
-  {% section 'header' %}
+  {% comment %} {% section 'header' %} {% endcomment %}
+  {% sections 'header-group' %}
   {% if settings.enable_slide_cart %}
     {% section 'tp-slide-cart' %}
   {% endif %}
