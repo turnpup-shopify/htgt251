@@ -18,7 +18,7 @@
         "logo": "shopify://shop_images/logo_black_61ab1088-9d8d-413e-af48-eb0d1cdc5e8b.jpg",
         "logo_width": 50,
         "logo_position": "middle-left",
-        "menu_positioning": "absolute",
+        "menu_positioning": "relative",
         "menu": "main-menu",
         "online_menu": "main-menu",
         "menu_type_desktop": "mega",
