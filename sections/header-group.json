@@ -13,7 +13,19 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "color_scheme": "background-1",
+        "logo": "shopify://shop_images/logo_black_61ab1088-9d8d-413e-af48-eb0d1cdc5e8b.jpg",
+        "logo_width": 100,
+        "logo_position": "middle-left",
+        "menu_positioning": "absolute",
+        "menu": "main-menu",
+        "online_menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "show_line_separator": true,
+        "enable_sticky_header": true,
+        "margin_bottom": 0
+      }
     }
   },
   "order": [
