@@ -392,12 +392,12 @@ body {
 
   <a class="skip-to-content-link button visually-hidden" href="#MainContent">
     {{ "accessibility.skip_to_text" | t }}
-  </a>
+</a>
 
-{% section 'announcement-bar' %}
+  {% comment %} {% section 'announcement-bar' %} {% endcomment %}
   {% comment %} {% section 'announcement-marquee' %} {% endcomment %}
   {% section 'announcement-timer' %}
-  {% section 'header' %}
+  {% section 'header-group' %}
   {% if settings.enable_slide_cart %}
     {% section 'tp-slide-cart' %}
   {% endif %}
