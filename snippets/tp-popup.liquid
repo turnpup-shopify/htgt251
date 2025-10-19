@@ -155,6 +155,20 @@
 
     const context = (popup && popup.dataset && popup.dataset.context) || 'default';
 
+    // Fire GA4 event when popup submission succeeds
+    function reportPopupSuccess(context) {
+      if (window.dataLayer && typeof window.dataLayer.push === "function") {
+        window.dataLayer.push({
+          event: "newsletter_popup_success",
+          popup_context: context
+        });
+      } else if (typeof window.gtag === "function") {
+        window.gtag("event", "gtag_newsletter_popup_success", {
+          popup_context: context
+        });
+      }
+    }
+
     // Function to set a cookie
     function setCookie(name, value, days) {
       let expires = "";
@@ -231,6 +245,14 @@
         document.getElementById("tp-email-success-popup").style.display = "none";
       });
       setCookie("popupSuccessShown_" + context, "true", 7);
+      reportPopupSuccess(context);
+      if (window.history && window.history.replaceState) {
+        try {
+          const updatedUrl = new URL(window.location.href);
+          updatedUrl.searchParams.delete("customer_posted");
+          window.history.replaceState(null, "", updatedUrl.toString());
+        } catch (error) {}
+      }
     } else if (showPopupSuccess && popup && isThemeEditor && showPopup) {
       successPopup.classList.add("active");
       successCloseButton.addEventListener("click", () => {
