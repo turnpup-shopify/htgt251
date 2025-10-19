@@ -192,6 +192,12 @@
         "default": false
       },
       {
+        "type": "checkbox",
+        "id": "enable_hapny_popup",
+        "label": "Enable Hapny Home Popup?",
+        "default": false
+      },
+      {
         "label": "Enable Pop-Up in Editor",
         "id": "show_popup_in_editor",
         "type": "checkbox",
@@ -346,6 +352,38 @@
         "id": "popup_alignment",
         "label": "Pop-up Alignment",
         "default": "left"
+      },
+      {
+        "type": "header",
+        "content": "Hapny Home – Popup Overrides"
+      },
+      {
+        "type": "image_picker",
+        "id": "hapny_popup_image_desktop",
+        "label": "Hapny Popup Image – Desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "hapny_popup_image_mobile",
+        "label": "Hapny Popup Image – Mobile"
+      },
+      {
+        "type": "text",
+        "id": "hapny_header_popup_message",
+        "label": "Hapny Header Popup Message",
+        "default": "Join Hapny Home emails for styling tips and offers."
+      },
+      {
+        "type": "text",
+        "id": "hapny_popup_message",
+        "label": "Hapny Popup Body Message",
+        "default": "Subscribe to get Hapny Home product news, inspiration, and exclusive promotions."
+      },
+      {
+        "type": "text",
+        "id": "hapny_custom_success_message",
+        "label": "Hapny Success Message",
+        "default": "Thanks for subscribing to Hapny Home!"
       },
       {
         "type": "header",

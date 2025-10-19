@@ -410,7 +410,13 @@ body {
     tabindex="-1">
     {{ content_for_layout }}
 
-    {%- if settings.enable_popup or form.posted_successfully? -%}
+    {%- assign hapny_product_page = false -%}
+    {%- if request.page_type == 'product' and product and product.vendor -%}
+      {%- if product.vendor | strip | downcase == 'hapny home' -%}
+        {%- assign hapny_product_page = true -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if settings.enable_popup or (settings.enable_hapny_popup and hapny_product_page) or form.posted_successfully? -%}
       {% render 'tp-popup' %}
     {%- endif -%}
 

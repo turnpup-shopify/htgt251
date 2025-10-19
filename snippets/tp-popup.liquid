@@ -1,9 +1,32 @@
 {% liquid
   assign is_blog = false
+  assign is_hapny = false
+  assign is_hapny_vendor = false
+
+  if request.page_type == 'product'
+    if product and product.vendor
+      assign normalized_vendor = product.vendor | strip | downcase
+      if normalized_vendor == 'hapny home'
+        assign is_hapny_vendor = true
+      endif
+    endif
+  endif
+
+  if is_hapny_vendor and settings.enable_hapny_popup
+    assign is_hapny = true
+  endif
+
   if canonical_url contains '/blogs/' or canonical_url contains '/blog'
     assign is_blog = true
   endif
-  if is_blog
+
+  if is_hapny
+    assign popup_header = settings.hapny_header_popup_message | default: settings.header_popup_message
+    assign popup_body = settings.hapny_popup_message | default: settings.popup_message
+    assign popup_img = settings.hapny_popup_image_desktop | default: settings.popup_image_desktop
+    assign popup_img_mobile = settings.hapny_popup_image_mobile | default: settings.popup_image_mobile
+    assign success_msg = settings.hapny_custom_success_message | default: settings.custom_success_message
+  elsif is_blog
     assign popup_header = settings.blog_header_popup_message
     assign popup_body = settings.blog_popup_message
     assign popup_img = settings.blog_popup_image_desktop
@@ -17,6 +40,13 @@
     assign success_msg = settings.custom_success_message
   endif
 
+  assign popup_context = 'default'
+  if is_hapny
+    assign popup_context = 'hapny'
+  elsif is_blog
+    assign popup_context = 'blog'
+  endif
+
   assign popup_body_font_desktop = settings.popup_body_font_size | default: '1rem'
   assign popup_body_font_mobile = settings.popup_body_font_size_mobile | default: popup_body_font_desktop
   assign popup_header_font_desktop = settings.popup_header_font_size | default: '1.4rem'
@@ -27,7 +57,7 @@
 <div
   id="email-popup"
   class="popup"
-  data-context="{% if is_blog %}blog{% else %}default{% endif %}">
+  data-context="{{ popup_context }}">
   <div class="popup-content">
     <span class="close-popup" id="popup-close-button">&times;</span>
     <div class="popup-inner">
@@ -130,7 +160,7 @@
 <div
   id="tp-email-success-popup"
   class="tp-success-popup popup"
-  data-context="{% if is_blog %}blog{% else %}default{% endif %}">
+  data-context="{{ popup_context }}">
   <div class="popup-content">
     <span class="close-popup" id="success-popup-close-button">&times;</span>
     <div style="padding: 40px 20px 20px 20px; display: flex; justify-content: center; align-items: center; line-height: 1.2;">
@@ -154,6 +184,10 @@
     const showPopupSuccess = {{ settings.test_popup_success_state }};
 
     const context = (popup && popup.dataset && popup.dataset.context) || 'default';
+    const popupEnabled = {{ settings.enable_popup | json }};
+    const hapnyPopupEnabled = {{ settings.enable_hapny_popup | json }};
+    const isHapnyContext = context === "hapny";
+    const shouldShowPopup = isHapnyContext ? hapnyPopupEnabled : popupEnabled;
 
     // Fire GA4 event when popup submission succeeds
     function reportPopupSuccess(context) {
@@ -163,7 +197,7 @@
           popup_context: context
         });
       } else if (typeof window.gtag === "function") {
-        window.gtag("event", "gtag_newsletter_popup_success", {
+        window.gtag("event", "newsletter_popup_success", {
           popup_context: context
         });
       }
@@ -217,7 +251,7 @@
     // console.log("Popup cookie value:", getCookie("popupShown"));
 
     // Show pop-up if cookie is NOT set
-    if (!getCookie("popupShown_" + context) && popup) {      
+    if (popup && shouldShowPopup && !getCookie("popupShown_" + context)) {
       setTimeout(() => {
         popup.classList.add("active");
         setCookie("popupShown_" + context, "true", 7); // Set cookie to expire in 7 days
@@ -226,9 +260,11 @@
     } else if (showPopup && popup && isThemeEditor && !showPopupSuccess) {
       setTimeout(() => {
         popup.classList.add("active");
-        reportPopupView(context);
+        if (shouldShowPopup) {
+          reportPopupView(context);
+        }
       }, 500);
-    }    
+    }
     if (closeButton) {
       closeButton.addEventListener("click", () => {
         popup.classList.remove("active");
