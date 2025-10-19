@@ -393,11 +393,20 @@ body {
 
   <a class="skip-to-content-link button visually-hidden" href="#MainContent">
     {{ "accessibility.skip_to_text" | t }}
-</a>
+  </a>
+
+  {%- assign hapny_product_page = false -%}
+  {%- if request.page_type == 'product' and product and product.vendor -%}
+    {%- if product.vendor | strip | downcase == 'hapny home' -%}
+      {%- assign hapny_product_page = true -%}
+    {%- endif -%}
+  {%- endif -%}
 
   {% comment %} {% section 'announcement-bar' %} {% endcomment %}
   {% comment %} {% section 'announcement-marquee' %} {% endcomment %}
-  {% section 'announcement-timer' %}
+  {% unless hapny_product_page %}
+    {% section 'announcement-timer' %}
+  {% endunless %}
   {% section 'header' %}
   {% comment %} {% sections 'header-group' %} {% endcomment %}
   {% if settings.enable_slide_cart %}
@@ -410,12 +419,6 @@ body {
     tabindex="-1">
     {{ content_for_layout }}
 
-    {%- assign hapny_product_page = false -%}
-    {%- if request.page_type == 'product' and product and product.vendor -%}
-      {%- if product.vendor | strip | downcase == 'hapny home' -%}
-        {%- assign hapny_product_page = true -%}
-      {%- endif -%}
-    {%- endif -%}
     {%- assign render_popup = false -%}
     {%- if hapny_product_page -%}
       {%- if settings.enable_hapny_popup -%}
