@@ -664,6 +664,7 @@
   "platform_customizations": {
     "custom_css": [
       ".floating_phone {display: none;}",
+      ".jdgm-rev[data-verified-buyer=\"true\"] .jdgm-rev__icon.jdgm-rev__icon:after {DISPLAY: NONE;}",
       "@media screen and (max-width: 900px) {h1 img {width: 80px; padding: 0px; margin: 0px; }}"
     ]
   }
