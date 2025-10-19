@@ -416,7 +416,15 @@ body {
         {%- assign hapny_product_page = true -%}
       {%- endif -%}
     {%- endif -%}
-    {%- if settings.enable_popup or (settings.enable_hapny_popup and hapny_product_page) or form.posted_successfully? -%}
+    {%- assign render_popup = false -%}
+    {%- if hapny_product_page -%}
+      {%- if settings.enable_hapny_popup -%}
+        {%- assign render_popup = true -%}
+      {%- endif -%}
+    {%- elsif settings.enable_popup -%}
+      {%- assign render_popup = true -%}
+    {%- endif -%}
+    {%- if render_popup or (form.posted_successfully? and not hapny_product_page) -%}
       {% render 'tp-popup' %}
     {%- endif -%}
 

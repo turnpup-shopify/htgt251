@@ -2,6 +2,7 @@
   assign is_blog = false
   assign is_hapny = false
   assign is_hapny_vendor = false
+  assign skip_popup_render = false
 
   if request.page_type == 'product'
     if product and product.vendor
@@ -14,6 +15,8 @@
 
   if is_hapny_vendor and settings.enable_hapny_popup
     assign is_hapny = true
+  elsif is_hapny_vendor
+    assign skip_popup_render = true
   endif
 
   if canonical_url contains '/blogs/' or canonical_url contains '/blog'
@@ -54,6 +57,7 @@
   assign popup_subheader_font_desktop = settings.popup_subheader_font_size | default: popup_body_font_desktop
   assign popup_subheader_font_mobile = settings.popup_subheader_font_size_mobile | default: popup_subheader_font_desktop
 %}
+{% unless skip_popup_render %}
 <div
   id="email-popup"
   class="popup"
@@ -545,3 +549,4 @@
     margin: 10px 0;
   }
 </style>
+{% endunless %}
