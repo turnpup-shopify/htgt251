@@ -169,6 +169,27 @@
       }
     }
 
+    // Fire GA4 event when popup is viewed
+    function reportPopupView(context) {
+      const eventCookieName = "popupViewEventSent_" + context;
+      if (getCookie(eventCookieName)) {
+        return;
+      }
+
+      if (window.dataLayer && typeof window.dataLayer.push === "function") {
+        window.dataLayer.push({
+          event: "newsletter_popup_view",
+          popup_context: context
+        });
+      } else if (typeof window.gtag === "function") {
+        window.gtag("event", "newsletter_popup_view", {
+          popup_context: context
+        });
+      }
+
+      setCookie(eventCookieName, "true", 7);
+    }
+
     // Function to set a cookie
     function setCookie(name, value, days) {
       let expires = "";
@@ -200,10 +221,12 @@
       setTimeout(() => {
         popup.classList.add("active");
         setCookie("popupShown_" + context, "true", 7); // Set cookie to expire in 7 days
+        reportPopupView(context);
       }, 3000);
     } else if (showPopup && popup && isThemeEditor && !showPopupSuccess) {
       setTimeout(() => {
         popup.classList.add("active");
+        reportPopupView(context);
       }, 500);
     }    
     if (closeButton) {
