@@ -555,6 +555,19 @@ h2.accordion__title {
   position: relative !important;
 }
 
+.simple-collection .product-container .card-wrapper {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 18px;
+    min-height: 1px;
+    vertical-align: top;
+    width: 25%;
+    margin-bottom: 30px;
+}
+
+
+
 /* this needs to only first if there is more that one child - ensure we hide first image in product card if there isn't a second*/
 /* :not(:only-child): Ensures the rule only applies if there’s more than one child inside the parent element. */
 .card__inner a:hover > :first-child:not(:only-child) {
