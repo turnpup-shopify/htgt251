@@ -20,6 +20,7 @@
     "slide_cart_free_shipping_threshold": 50,
     "slide_cart_free_shipping_message_locked": "[amount] to unlock free shipping",
     "enable_popup": true,
+    "enable_hapny_popup": true,
     "show_popup_in_editor": false,
     "test_popup_success_state": false,
     "popup_image_desktop": "shopify://shop_images/travertine-drink-table-2.jpg",
