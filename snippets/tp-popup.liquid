@@ -23,24 +23,29 @@
     assign is_blog = true
   endif
 
+  assign default_button_label = 'Unlock Markdowns'
+
   if is_hapny
     assign popup_header = settings.hapny_header_popup_message | default: settings.header_popup_message
     assign popup_body = settings.hapny_popup_message | default: settings.popup_message
     assign popup_img = settings.hapny_popup_image_desktop | default: settings.popup_image_desktop
     assign popup_img_mobile = settings.hapny_popup_image_mobile | default: settings.popup_image_mobile
     assign success_msg = settings.hapny_custom_success_message | default: settings.custom_success_message
+    assign popup_button_label = settings.hapny_popup_button_label | default: settings.popup_button_label | default: default_button_label
   elsif is_blog
     assign popup_header = settings.blog_header_popup_message
     assign popup_body = settings.blog_popup_message
     assign popup_img = settings.blog_popup_image_desktop
     assign popup_img_mobile = settings.blog_popup_image_mobile
     assign success_msg = settings.blog_custom_success_message
+    assign popup_button_label = settings.blog_popup_button_label | default: settings.popup_button_label | default: default_button_label
   else
     assign popup_header = settings.header_popup_message
     assign popup_body = settings.popup_message
     assign popup_img = settings.popup_image_desktop
     assign popup_img_mobile = settings.popup_image_mobile
     assign success_msg = settings.custom_success_message
+    assign popup_button_label = settings.popup_button_label | default: default_button_label
   endif
 
   assign popup_context = 'default'
@@ -152,7 +157,7 @@
           </div>
           <div class="contact__button">
             <button type="submit" class="button">
-              Unlock Markdowns
+              {{ popup_button_label }}
             </button>
           </div>
         {%- endform -%}

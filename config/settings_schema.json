@@ -233,6 +233,12 @@
       },
       {
         "type": "text",
+        "id": "popup_button_label",
+        "label": "Popup Button Text",
+        "default": "Unlock Markdowns"
+      },
+      {
+        "type": "text",
         "id": "custom_success_message",
         "label": "Custom Success Message",
         "default": "Thanks for subscribing!"
@@ -381,6 +387,12 @@
       },
       {
         "type": "text",
+        "id": "hapny_popup_button_label",
+        "label": "Hapny Popup Button Text",
+        "default": "Unlock Markdowns"
+      },
+      {
+        "type": "text",
         "id": "hapny_custom_success_message",
         "label": "Hapny Success Message",
         "default": "Thanks for subscribing to Hapny Home!"
@@ -410,6 +422,12 @@
         "id": "blog_popup_message",
         "label": "Blog Popup Body Message",
         "default": "Join our newsletter for coastal design ideas, product drops, and your welcome code."
+      },
+      {
+        "type": "text",
+        "id": "blog_popup_button_label",
+        "label": "Blog Popup Button Text",
+        "default": "Unlock Markdowns"
       },
       {
         "type": "text",
