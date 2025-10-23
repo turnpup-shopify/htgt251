@@ -906,7 +906,7 @@
         "center_heading": false,
         "button_label": "",
         "button_link": "",
-        "collection": "woven-banana-leaf",
+        "collection": "{{ product.metafields.custom.other_products_in_collection.value }}",
         "product_count_range": 4
       }
     },
