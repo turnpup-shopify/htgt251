@@ -900,7 +900,7 @@
       "name": "TP - PDP Other Products",
       "settings": {
         "top_border_color": "#f4b237",
-        "margin": "0px auto 20px",
+        "margin": "0px auto",
         "title": "Other Products in Collection",
         "header_font_size": "1.8em",
         "center_heading": false,
