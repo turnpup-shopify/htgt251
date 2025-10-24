@@ -11,6 +11,10 @@
             {% if product.metafields.custom.breadcrumb_metaobject.value.collection_list != blank %}
             {% if product.metafields.custom.breadcrumb_metaobject.value.collection_list.value != blank %}
             <a href="{{ routes.root_url }}" style="text-transform:capitalize;" title="Back to the frontpage">Home</a>
+            {%- assign first_link = nil -%}
+            {%- assign first_name = nil -%}
+            {%- assign second_link = nil -%}
+            {%- assign second_name = nil -%}
             {%- for c in product.metafields.custom.breadcrumb_metaobject.value.collection_list.value %}
                 <a href="{{c.url}}" title="{{c.title}}">- {{ c.title }}</a>
             {%- if forloop.index0 == 0 -%} {%- assign first_link = c.url -%}{%- assign first_name = c.title -%} {%- endif -%}
@@ -21,23 +25,26 @@
             {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
-            "itemListElement": [{
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://htgtfurniture.com"
-            },{%- if first_link -%}
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "{{ first_name}}",
-                "item": "https://htgtfurniture.com{{ first_link}}"
-            },{%- endif -%}{%- if second_link -%}{
-                "@type": "ListItem",
-                "position": 3,
-                "name": "{{ second_name }}",
-                "item": "https://htgtfurniture.com{{ second_link }}"
-            }{%- endif -%}]
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://htgtfurniture.com"
+                }{% if first_link %},
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "{{ first_name }}",
+                    "item": "https://htgtfurniture.com{{ first_link }}"
+                }{% endif %}{% if second_link %},
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "{{ second_name }}",
+                    "item": "https://htgtfurniture.com{{ second_link }}"
+                }{% endif %}
+            ]
             }
             </script>
 
