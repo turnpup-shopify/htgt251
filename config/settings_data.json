@@ -42,6 +42,9 @@
     "popup_body_margin_bottom": "14px",
     "hapny_popup_image_desktop": "shopify://shop_images/Knurled-Graphite-Macro.jpg",
     "hapny_popup_image_mobile": "shopify://shop_images/Knurled-Graphite-Macro.jpg",
+    "hapny_header_popup_message": "Interested in Samples?",
+    "hapny_popup_message": "Submit your email if you would like samples for your next kitchen, bath project or if you would like finish chips. We will reach out within one hour to the email provided.",
+    "hapny_popup_button_label": "Sign Up Now",
     "blog_popup_image_desktop": "shopify://shop_images/mid-century-modern-mirror-2.jpg",
     "blog_header_popup_message": "Quality furniture has been overpriced for too long — ready to try something new?",
     "timer_start_date": "December 25, 2024 23:24:00",
@@ -393,6 +396,9 @@
       },
       "tp-slide-cart": {
         "type": "tp-slide-cart",
+        "custom_css": [
+          ".tp-slide-cart__discounts {display: none !important;}"
+        ],
         "settings": {}
       },
       "announcement-timer": {
@@ -668,6 +674,7 @@
     "custom_css": [
       ".floating_phone {display: none;}",
       ".jdgm-rev[data-verified-buyer=\"true\"] .jdgm-rev__icon.jdgm-rev__icon:after {display: NONE;}",
+      "..tp-slide-cart__discounts {display: none;}",
       "@media screen and (max-width: 900px) {h1 img {width: 80px; padding: 0px; margin: 0px; }}"
     ]
   }
