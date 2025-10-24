@@ -61,6 +61,10 @@
   assign popup_header_font_mobile = settings.popup_header_font_size_mobile | default: popup_header_font_desktop
   assign popup_subheader_font_desktop = settings.popup_subheader_font_size | default: popup_body_font_desktop
   assign popup_subheader_font_mobile = settings.popup_subheader_font_size_mobile | default: popup_subheader_font_desktop
+  assign popup_border_radius = settings.popup_border_radius | default: 8
+  assign popup_overlay_opacity_percentage = settings.popup_overlay_opacity | default: 50
+  assign popup_overlay_opacity = popup_overlay_opacity_percentage | divided_by: 100.0
+  assign popup_delay_seconds = settings.popup_delay_seconds | default: 3
 %}
 {% unless skip_popup_render %}
 <div
@@ -197,6 +201,8 @@
     const hapnyPopupEnabled = {{ settings.enable_hapny_popup | json }};
     const isHapnyContext = context === "hapny";
     const shouldShowPopup = isHapnyContext ? hapnyPopupEnabled : popupEnabled;
+    const popupDelaySeconds = {{ popup_delay_seconds | json }};
+    const popupDelayMs = Math.max(0, Number(popupDelaySeconds) * 1000 || 0);
 
     // Fire GA4 event when popup submission succeeds
     function reportPopupSuccess(context) {
@@ -265,7 +271,7 @@
         popup.classList.add("active");
         setCookie("popupShown_" + context, "true", 7); // Set cookie to expire in 7 days
         reportPopupView(context);
-      }, 3000);
+      }, popupDelayMs);
     } else if (showPopup && popup && isThemeEditor && !showPopupSuccess) {
       setTimeout(() => {
         popup.classList.add("active");
@@ -347,7 +353,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, {{ popup_overlay_opacity }});
     /* Black background with transparency */
     display: flex;
     align-items: center;
@@ -388,7 +394,7 @@
   .popup-content {
     background: #FAF9F6;
     padding: {{ settings.d_popup_outer_padding }};
-    border-radius: 8px;
+    border-radius: {{ popup_border_radius }}px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     width: var(--tp-popup-w-d);
@@ -450,8 +456,8 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    border-top-left-radius: {{ popup_border_radius }}px;
+    border-bottom-left-radius: {{ popup_border_radius }}px;
     max-height: 100%;
   }
 
@@ -494,7 +500,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, {{ popup_overlay_opacity }});
     justify-content: center;
     align-items: center;
     z-index: 1000;
