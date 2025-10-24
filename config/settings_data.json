@@ -396,6 +396,9 @@
       },
       "tp-slide-cart": {
         "type": "tp-slide-cart",
+        "custom_css": [
+          ".tp-slide-cart__discounts {display: none !important;}"
+        ],
         "settings": {}
       },
       "announcement-timer": {
