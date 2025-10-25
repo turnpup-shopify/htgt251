@@ -65,9 +65,25 @@
   assign popup_overlay_opacity_percentage = settings.popup_overlay_opacity | default: 50
   assign popup_overlay_opacity = popup_overlay_opacity_percentage | divided_by: 100.0
   assign popup_delay_seconds = settings.popup_delay_seconds | default: 3
-  assign popup_version = settings.popup_version | default: 'version-1'
-  assign popup_version_tag = 'popup-' | append: popup_version
+  assign popup_background_color = settings.popup_background_color | default: '#FAF9F6'
+  assign popup_background_blur = settings.popup_background_blur | default: 10
+  assign popup_bg_red = popup_background_color | color_extract: 'red'
+  assign popup_bg_green = popup_background_color | color_extract: 'green'
+  assign popup_bg_blue = popup_background_color | color_extract: 'blue'
+  assign popup_variant_tag_default = settings.popup_variant_tag_default | default: 'popup-default'
+  assign hapny_popup_variant_tag = settings.hapny_popup_variant_tag | default: 'popup-hapny'
+  assign blog_popup_variant_tag = settings.blog_popup_variant_tag | default: 'popup-blog'
+  assign popup_variant_tag = popup_variant_tag_default
+  if is_hapny
+    assign popup_variant_tag = hapny_popup_variant_tag
+  elsif is_blog
+    assign popup_variant_tag = blog_popup_variant_tag
+  endif
   assign popup_context_tag = 'popup-context-' | append: popup_context
+  assign popup_tags = popup_variant_tag
+  if popup_context_tag != blank
+    assign popup_tags = popup_tags | append: ', ' | append: popup_context_tag
+  endif
 %}
 {% unless skip_popup_render %}
   <div
@@ -109,11 +125,7 @@
             <input
               type="hidden"
               name="contact[tags]"
-              value="{{ popup_version_tag }}">
-            <input
-              type="hidden"
-              name="contact[tags]"
-              value="{{ popup_context_tag }}">
+              value="{{ popup_tags }}">
             {%- if form.posted_successfully? -%}
               <div
                 class="form-status form-status-list form__message"
@@ -404,7 +416,7 @@
   /* Pop-up box */
   .popup-content {
     overflow: auto;
-    background: #FAF9F6;
+    background: rgba({{ popup_bg_red }}, {{ popup_bg_green }}, {{ popup_bg_blue }}, {{ popup_overlay_opacity }});
     padding: {{ settings.d_popup_outer_padding }};
     border-radius: {{ popup_border_radius }}px;
     text-align: center;
@@ -417,6 +429,8 @@
     flex-direction: column;
     justify-content: center;
     position: relative;
+    backdrop-filter: blur({{ popup_background_blur }}px);
+    -webkit-backdrop-filter: blur({{ popup_background_blur }}px);
   }
 
 

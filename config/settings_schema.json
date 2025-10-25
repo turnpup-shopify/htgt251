@@ -360,16 +360,28 @@
         "default": "left"
       },
       {
-        "type": "select",
-        "id": "popup_version",
-        "label": "Pop-up Variant Tag",
-        "options": [
-          { "value": "version-1", "label": "Version 1" },
-          { "value": "version-2", "label": "Version 2" },
-          { "value": "version-3", "label": "Version 3" }
-        ],
-        "default": "version-1",
-        "info": "Used for tagging new subscribers so you can identify which version they saw."
+        "type": "text",
+        "id": "popup_variant_tag_default",
+        "label": "Default Pop-up Tag",
+        "default": "popup-default",
+        "info": "Applied to the standard sitewide pop-up when a subscriber is created."
+      },
+      {
+        "type": "color",
+        "id": "popup_background_color",
+        "label": "Pop-up Background Color",
+        "default": "#FAF9F6"
+      },
+      {
+        "type": "range",
+        "id": "popup_background_blur",
+        "label": "Pop-up Background Blur",
+        "default": 10,
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "info": "Applies to the pop-up panel to create a glass effect."
       },
       {
         "type": "range",
@@ -439,6 +451,13 @@
         "default": "Thanks for subscribing to Hapny Home!"
       },
       {
+        "type": "text",
+        "id": "hapny_popup_variant_tag",
+        "label": "Hapny Pop-up Tag",
+        "default": "popup-hapny",
+        "info": "Tag applied when the Hapny pop-up collects an email."
+      },
+      {
         "type": "header",
         "content": "Blog Pages – Popup Overrides"
       },
@@ -475,6 +494,13 @@
         "id": "blog_custom_success_message",
         "label": "Blog Success Message",
         "default": "Thanks for subscribing! Your code is on the way."
+      },
+      {
+        "type": "text",
+        "id": "blog_popup_variant_tag",
+        "label": "Blog Pop-up Tag",
+        "default": "popup-blog",
+        "info": "Tag applied when the blog pop-up collects an email."
       }
     ]
   },
