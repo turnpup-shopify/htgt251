@@ -41,6 +41,7 @@
     "popup_body_margin_top": "20px",
     "popup_body_margin_bottom": "14px",
     "popup_background_color": "#FFFFFF",
+    "popup_background_opacity": 55,
     "popup_background_blur": 9,
     "popup_overlay_opacity": 50,
     "popup_border_radius": 17,
