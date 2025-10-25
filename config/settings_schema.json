@@ -374,6 +374,16 @@
       },
       {
         "type": "range",
+        "id": "popup_background_opacity",
+        "label": "Pop-up Background Opacity",
+        "default": 70,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%"
+      },
+      {
+        "type": "range",
         "id": "popup_background_blur",
         "label": "Pop-up Background Blur",
         "default": 10,

@@ -77,8 +77,9 @@
   assign popup_overlay_opacity = popup_overlay_opacity_percentage | divided_by: 100.0
   assign popup_delay_seconds = settings.popup_delay_seconds | default: 3
   assign popup_background_color = settings.popup_background_color | default: '#FAF9F6'
+  assign popup_background_opacity_percentage = settings.popup_background_opacity | default: 70
   assign popup_background_blur = settings.popup_background_blur | default: 10
-  assign popup_panel_opacity = popup_overlay_opacity_percentage | times: 0.01
+  assign popup_panel_opacity = popup_background_opacity_percentage | times: 0.01
   assign popup_panel_color = popup_background_color | color_modify: 'alpha', popup_panel_opacity
   assign popup_variant_tag_default = settings.popup_variant_tag_default | default: 'popup-default'
   assign hapny_popup_variant_tag = settings.hapny_popup_variant_tag | default: 'popup-hapny'
