@@ -67,9 +67,8 @@
   assign popup_delay_seconds = settings.popup_delay_seconds | default: 3
   assign popup_background_color = settings.popup_background_color | default: '#FAF9F6'
   assign popup_background_blur = settings.popup_background_blur | default: 10
-  assign popup_bg_red = popup_background_color | color_extract: 'red'
-  assign popup_bg_green = popup_background_color | color_extract: 'green'
-  assign popup_bg_blue = popup_background_color | color_extract: 'blue'
+  assign popup_panel_opacity = popup_overlay_opacity_percentage | times: 0.01
+  assign popup_panel_color = popup_background_color | color_modify: 'alpha', popup_panel_opacity
   assign popup_variant_tag_default = settings.popup_variant_tag_default | default: 'popup-default'
   assign hapny_popup_variant_tag = settings.hapny_popup_variant_tag | default: 'popup-hapny'
   assign blog_popup_variant_tag = settings.blog_popup_variant_tag | default: 'popup-blog'
@@ -416,7 +415,7 @@
   /* Pop-up box */
   .popup-content {
     overflow: auto;
-    background: rgba({{ popup_bg_red }}, {{ popup_bg_green }}, {{ popup_bg_blue }}, {{ popup_overlay_opacity }});
+    background: {{ popup_panel_color }};
     padding: {{ settings.d_popup_outer_padding }};
     border-radius: {{ popup_border_radius }}px;
     text-align: center;
