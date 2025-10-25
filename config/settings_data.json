@@ -40,7 +40,7 @@
     "popup_body_font_size_mobile": "2rem",
     "popup_body_margin_top": "20px",
     "popup_body_margin_bottom": "14px",
-    "popup_overlay_opacity": 20,
+    "popup_overlay_opacity": 60,
     "popup_border_radius": 22,
     "hapny_popup_image_desktop": "shopify://shop_images/Knurled-Graphite-Macro.jpg",
     "hapny_popup_image_mobile": "shopify://shop_images/Knurled-Graphite-Macro.jpg",
