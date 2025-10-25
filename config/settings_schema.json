@@ -360,6 +360,18 @@
         "default": "left"
       },
       {
+        "type": "select",
+        "id": "popup_version",
+        "label": "Pop-up Variant Tag",
+        "options": [
+          { "value": "version-1", "label": "Version 1" },
+          { "value": "version-2", "label": "Version 2" },
+          { "value": "version-3", "label": "Version 3" }
+        ],
+        "default": "version-1",
+        "info": "Used for tagging new subscribers so you can identify which version they saw."
+      },
+      {
         "type": "range",
         "id": "popup_overlay_opacity",
         "label": "Pop-up Overlay Opacity",

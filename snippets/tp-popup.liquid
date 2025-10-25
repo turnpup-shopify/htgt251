@@ -65,125 +65,136 @@
   assign popup_overlay_opacity_percentage = settings.popup_overlay_opacity | default: 50
   assign popup_overlay_opacity = popup_overlay_opacity_percentage | divided_by: 100.0
   assign popup_delay_seconds = settings.popup_delay_seconds | default: 3
+  assign popup_version = settings.popup_version | default: 'version-1'
+  assign popup_version_tag = 'popup-' | append: popup_version
+  assign popup_context_tag = 'popup-context-' | append: popup_context
 %}
 {% unless skip_popup_render %}
-<div
-  id="email-popup"
-  class="popup"
-  data-context="{{ popup_context }}">
-  <div class="popup-content">
-    <span class="close-popup" id="popup-close-button">&times;</span>
-    <div class="popup-inner">
-      <div class="popup-image-container">
-        {% comment %} {{ popup_img | image_url: width: 800 | image_tag: class: 'popup-image', alt: 'Popup Image' }} {% endcomment %}
-        {% if popup_img_mobile != blank or popup_img != blank %}
-          <picture>
-            {% if popup_img_mobile != blank %}
-              <source media="(max-width: 749px)" srcset="{{ popup_img_mobile | image_url: width: 800 }}">
-            {% endif %}
-            {% if popup_img != blank %}
-              <img
-                class="popup-image"
-                src="{{ popup_img | image_url: width: 1200 }}"
-                alt="Popup Image"
-                loading="lazy">
-            {% else %}
+  <div
+    id="email-popup"
+    class="popup"
+    data-context="{{ popup_context }}">
+    <div class="popup-content">
+      <span class="close-popup" id="popup-close-button">&times;</span>
+      <div class="popup-inner">
+        <div class="popup-image-container">
+          {% comment %} {{ popup_img | image_url: width: 800 | image_tag: class: 'popup-image', alt: 'Popup Image' }} {% endcomment %}
+          {% if popup_img_mobile != blank or popup_img != blank %}
+            <picture>
               {% if popup_img_mobile != blank %}
+                <source media="(max-width: 749px)" srcset="{{ popup_img_mobile | image_url: width: 800 }}">
+              {% endif %}
+              {% if popup_img != blank %}
                 <img
                   class="popup-image"
-                  src="{{ popup_img_mobile | image_url: width: 1200 }}"
+                  src="{{ popup_img | image_url: width: 1200 }}"
                   alt="Popup Image"
                   loading="lazy">
-              {% endif %}
-            {% endif %}
-          </picture>
-        {% endif %}
-      </div>
-      <div class="popup-text-container">
-        {%- form 'customer'
-          , id: 'homepage-popup'
-          , class: 'isolate' -%}
-          {%- if form.posted_successfully? -%}
-            <div
-              class="form-status form-status-list form__message"
-              tabindex="-1"
-              autofocus>{% render 'icon-success' %} Thanks for subscribing, here is your X code for 15% off.
-            </div>
-          {%- elsif form.errors -%}
-            <div class="form__message">
-              <h2
-                class="form-status caption-large text-body"
-                role="alert"
-                tabindex="-1"
-                autofocus>{% render 'icon-error' %} {{ 'templates.contact.form.error_heading' | t }}</h2>
-            </div>
-            <ul class="form-status-list caption-large" role="list">
-              <li>
-                <a href="#ContactForm-email" class="link">
-                  {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
-                </a>
-              </li>
-            </ul>
-          {%- endif -%}
-          <div class="contact__fields">
-            <p class="popup-header" style="margin: {{ settings.popup_header_margin_top}} 0 0 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
-              {{ popup_header }}
-            </p>
-            <p class="popup-subheader" style="margin: {{ settings.popup_body_margin_top}} 0 {{ settings.popup_body_margin_bottom}} 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
-              {{ popup_body }}
-            </p>
-            <div class="field field--with-error">
-              <input
-                autocomplete="email"
-                type="email"
-                id="ContactForm-email"
-                class="field__input"
-                name="contact[email]"
-                spellcheck="false"
-                autocapitalize="off"
-                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-                aria-required="true"
-                {% if form.errors contains 'email' %}
-                aria-invalid="true"
-                aria-describedby="ContactForm-email-error"
+              {% else %}
+                {% if popup_img_mobile != blank %}
+                  <img
+                    class="popup-image"
+                    src="{{ popup_img_mobile | image_url: width: 1200 }}"
+                    alt="Popup Image"
+                    loading="lazy">
                 {% endif %}
-                placeholder="{{ 'templates.contact.form.email' | t }}">
-              <label class="field__label" for="ContactForm-email">{{ 'templates.contact.form.email' | t }}
-                <span aria-hidden="true">*</span>
-              </label>
-              {%- if form.errors contains 'email' -%}
-                <small class="contact__field-error" id="ContactForm-email-error">
-                  <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
-                  <span class="form__message">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</span>
-                </small>
-              {%- endif -%}
+              {% endif %}
+            </picture>
+          {% endif %}
+        </div>
+        <div class="popup-text-container">
+          {%- form 'customer'
+            , id: 'homepage-popup'
+            , class: 'isolate' -%}
+            <input
+              type="hidden"
+              name="contact[tags]"
+              value="{{ popup_version_tag }}">
+            <input
+              type="hidden"
+              name="contact[tags]"
+              value="{{ popup_context_tag }}">
+            {%- if form.posted_successfully? -%}
+              <div
+                class="form-status form-status-list form__message"
+                tabindex="-1"
+                autofocus>{% render 'icon-success' %} Thanks for subscribing, here is your X code for 15% off.
+              </div>
+            {%- elsif form.errors -%}
+              <div class="form__message">
+                <h2
+                  class="form-status caption-large text-body"
+                  role="alert"
+                  tabindex="-1"
+                  autofocus>{% render 'icon-error' %} {{ 'templates.contact.form.error_heading' | t }}</h2>
+              </div>
+              <ul class="form-status-list caption-large" role="list">
+                <li>
+                  <a href="#ContactForm-email" class="link">
+                    {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+                  </a>
+                </li>
+              </ul>
+            {%- endif -%}
+            <div class="contact__fields">
+              <p class="popup-header" style="margin: {{ settings.popup_header_margin_top}} 0 0 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
+                {{ popup_header }}
+              </p>
+              <p class="popup-subheader" style="margin: {{ settings.popup_body_margin_top}} 0 {{ settings.popup_body_margin_bottom}} 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
+                {{ popup_body }}
+              </p>
+              <div class="field field--with-error">
+                <input
+                  autocomplete="email"
+                  type="email"
+                  id="ContactForm-email"
+                  class="field__input"
+                  name="contact[email]"
+                  spellcheck="false"
+                  autocapitalize="off"
+                  value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                  aria-required="true"
+                  {% if form.errors contains 'email' %}
+                  aria-invalid="true"
+                  aria-describedby="ContactForm-email-error"
+                  {% endif %}
+                  placeholder="{{ 'templates.contact.form.email' | t }}">
+                <label class="field__label" for="ContactForm-email">{{ 'templates.contact.form.email' | t }}
+                  <span aria-hidden="true">*</span>
+                </label>
+                {%- if form.errors contains 'email' -%}
+                  <small class="contact__field-error" id="ContactForm-email-error">
+                    <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+                    <span class="form__message">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</span>
+                  </small>
+                {%- endif -%}
+              </div>
             </div>
-          </div>
-          <div class="contact__button">
-            <button type="submit" class="button">
-              {{ popup_button_label }}
-            </button>
-          </div>
-        {%- endform -%}
+            <div class="contact__button">
+              <button type="submit" class="button">
+                {{ popup_button_label }}
+              </button>
+            </div>
+          {%- endform -%}
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div
-  id="tp-email-success-popup"
-  class="tp-success-popup popup"
-  data-context="{{ popup_context }}">
-  <div class="popup-content">
-    <span class="close-popup" id="success-popup-close-button">&times;</span>
-    <div style="padding: 40px 20px 20px 20px; display: flex; justify-content: center; align-items: center; line-height: 1.2;">
-      {{ success_msg }}
+  <div
+    id="tp-email-success-popup"
+    class="tp-success-popup popup"
+    data-context="{{ popup_context }}">
+    <div class="popup-content">
+      <span class="close-popup" id="success-popup-close-button">&times;</span>
+      <div style="padding: 40px 20px 20px 20px; display: flex; justify-content: center; align-items: center; line-height: 1.2;">
+        {{ success_msg }}
+      </div>
     </div>
   </div>
-</div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
     if (window.location.href.includes("challenge")) {      
       return; // Stop script execution
     }
@@ -333,11 +344,11 @@
         document.getElementById("tp-email-success-popup").style.display = "none";
       });
     }
-  });
-</script>
+      });
+  </script>
 
-<style>
-  :root {
+  <style > :root
+  {
     --tp-popup-w-d: {{ settings.d_popup_width | default: 600 }}px;
     --tp-popup-h-d: {{ settings.d_popup_height | default: 550 }}px;
     --tp-popup-w-m: {{ settings.m_popup_width | default: 340 }}px;
@@ -392,7 +403,7 @@
 
   /* Pop-up box */
   .popup-content {
-    background: #FAF9F6;
+    overflow: auto;
     padding: {{ settings.d_popup_outer_padding }};
     border-radius: {{ popup_border_radius }}px;
     text-align: center;
@@ -487,12 +498,6 @@
 </style>
 
 <style>
-  .popup-content {
-    overflow: auto;
-  }
-</style>
-
-<style>
   .tp-success-popup {
     display: flex;
     position: fixed;
@@ -559,5 +564,4 @@
   .popup .field__input:not(:placeholder-shown) {
     margin: 10px 0;
   }
-</style>
-{% endunless %}
+</style>{% endunless %}
