@@ -13,7 +13,18 @@
     endif
   endif
 
-  if is_hapny_vendor and settings.enable_hapny_popup
+  assign hapny_collection_handles_setting = settings.hapny_popup_collections | to_s | strip
+  assign hapny_collection_handles = hapny_collection_handles_setting | newline_to_br | split: '<br />'
+  assign hapny_collection_handles = hapny_collection_handles | map: 'strip'
+  assign hapny_on_collection = false
+  if request.page_type == 'collection' and collection
+    assign current_collection_handle = collection.handle | strip
+    if hapny_collection_handles contains current_collection_handle
+      assign hapny_on_collection = true
+    endif
+  endif
+
+  if (is_hapny_vendor or hapny_on_collection) and settings.enable_hapny_popup
     assign is_hapny = true
   elsif is_hapny_vendor
     assign skip_popup_render = true

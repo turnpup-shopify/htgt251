@@ -451,6 +451,12 @@
         "default": "Thanks for subscribing to Hapny Home!"
       },
       {
+        "type": "textarea",
+        "id": "hapny_popup_collections",
+        "label": "Hapny Popup Collections",
+        "info": "Enter collection handles (one per line) where the Hapny popup should appear even if the product vendor does not match."
+      },
+      {
         "type": "text",
         "id": "hapny_popup_variant_tag",
         "label": "Hapny Pop-up Tag",
