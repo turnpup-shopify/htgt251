@@ -41,6 +41,7 @@
     "popup_body_margin_top": "20px",
     "popup_body_margin_bottom": "14px",
     "popup_background_color": "#FFFFFF",
+    "popup_background_opacity": 55,
     "popup_background_blur": 9,
     "popup_overlay_opacity": 50,
     "popup_border_radius": 17,
@@ -52,7 +53,7 @@
     "blog_popup_image_desktop": "shopify://shop_images/mid-century-modern-mirror-2.jpg",
     "blog_header_popup_message": "Quality furniture has been overpriced for too long — ready to try something new?",
     "timer_start_date": "December 25, 2024 23:24:00",
-    "timer_end_date": "October 12, 2025 23:24:00",
+    "timer_end_date": "October 31, 2025 23:24:00",
     "card_desktop_title_size": "1.6rem",
     "card_mobile_title_size": "1.4rem",
     "pdp_product_title_size": "40px",
@@ -411,14 +412,14 @@
           "item_anj6zi": {
             "type": "item",
             "settings": {
-              "text": "SITEWIDE LIMITED MARKDOWNS",
+              "text": "Markdowns Sitewide",
               "url": ""
             }
           },
           "item_UAfhLb": {
             "type": "item",
             "settings": {
-              "text": "The Event of the Season",
+              "text": "Free Shipping on Orders $50+",
               "url": ""
             }
           }
