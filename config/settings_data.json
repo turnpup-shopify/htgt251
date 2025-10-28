@@ -50,6 +50,7 @@
     "hapny_header_popup_message": "Interested in Samples?",
     "hapny_popup_message": "Submit your email if you would like samples for your next kitchen, bath project or if you would like finish chips. We will reach out to the email provided.",
     "hapny_popup_button_label": "Sign Up Now",
+    "hapny_popup_collections": "cabinet-knobs\ncabinet-pulls\nappliance-pulls\nappliance-handles",
     "blog_popup_image_desktop": "shopify://shop_images/mid-century-modern-mirror-2.jpg",
     "blog_header_popup_message": "Quality furniture has been overpriced for too long — ready to try something new?",
     "timer_start_date": "December 25, 2024 23:24:00",
@@ -442,7 +443,7 @@
           "enable_rotation": true,
           "pause_on_hover": true,
           "countdown_enable": true,
-          "countdown_target": "2025-10-11T23:59:59",
+          "countdown_target": "2025-10-31T23:59:59",
           "countdown_label": "Offer ends in",
           "countdown_spacing": 0
         }
