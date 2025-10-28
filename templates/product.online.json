@@ -102,17 +102,6 @@
             "page": ""
           }
         },
-        "collapsible-row-1": {
-          "type": "collapsible_tab",
-          "disabled": true,
-          "settings": {
-            "heading": "Free Shipping",
-            "default_open": true,
-            "icon": "none",
-            "content": "<p>Same day order processing! Free nationwide shipping with next day order fulfillment. Arrives in 2-5 days in most cases.</p>",
-            "page": ""
-          }
-        },
         "collapsible_tab_DAkg6R": {
           "type": "collapsible_tab",
           "settings": {
@@ -120,6 +109,16 @@
             "default_open": true,
             "icon": "none",
             "content": "",
+            "page": ""
+          }
+        },
+        "collapsible-row-1": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Free Shipping",
+            "default_open": true,
+            "icon": "none",
+            "content": "<p>Same day order processing! Free nationwide shipping with next day order fulfillment. Arrives in 2-5 days in most cases.</p>",
             "page": ""
           }
         },
@@ -199,8 +198,8 @@
         "buy_buttons",
         "custom_liquid_897xTG",
         "collapsible_tab_QV88KF",
-        "collapsible-row-1",
         "collapsible_tab_DAkg6R",
+        "collapsible-row-1",
         "collapsible-row-2",
         "dimensions_q4tmAx",
         "collapsible-row-0",
