@@ -109,7 +109,7 @@
             "link": "shopify://collections/uttermost-furniture-and-decor",
             "is_hero_button": true,
             "link_label_two": "Request Samples",
-            "link_two": "",
+            "link_two": "#data-popup-trigger",
             "is_hero_button_two": true,
             "button_is_white_border_two": true,
             "space_between_buttons": 12,
