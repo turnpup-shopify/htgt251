@@ -479,6 +479,12 @@
         "info": "Enter collection handles (one per line) where the Hapny popup should appear even if the product vendor does not match."
       },
       {
+        "type": "textarea",
+        "id": "hapny_popup_handles",
+        "label": "Hapny Popup Page Handles",
+        "info": "Enter page handles or URL path segments (one per line) that should trigger the Hapny popup."
+      },
+      {
         "type": "text",
         "id": "hapny_popup_variant_tag",
         "label": "Hapny Pop-up Tag",

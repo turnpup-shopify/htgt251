@@ -82,9 +82,27 @@
     endif
   endif
 
-  if (is_hapny_vendor or hapny_on_collection) and settings.enable_hapny_popup
+  assign hapny_popup_handles_setting = settings.hapny_popup_handles | to_s | strip
+  assign hapny_on_handle = false
+  if hapny_popup_handles_setting != blank
+    assign hapny_popup_handles = hapny_popup_handles_setting | newline_to_br | split: '<br />'
+    for hapny_handle in hapny_popup_handles
+      assign trimmed_hapny_handle = hapny_handle | strip | downcase
+      if trimmed_hapny_handle != blank
+        if current_page_handle_downcase != blank and current_page_handle_downcase == trimmed_hapny_handle
+          assign hapny_on_handle = true
+        elsif last_path_segment != blank and last_path_segment == trimmed_hapny_handle
+          assign hapny_on_handle = true
+        elsif request_path_downcase != blank and request_path_downcase contains trimmed_hapny_handle
+          assign hapny_on_handle = true
+        endif
+      endif
+    endfor
+  endif
+
+  if (is_hapny_vendor or hapny_on_collection or hapny_on_handle) and settings.enable_hapny_popup
     assign is_hapny = true
-  elsif is_hapny_vendor
+  elsif is_hapny_vendor or hapny_on_handle or hapny_on_collection
     assign skip_popup_render = true
   endif
 
