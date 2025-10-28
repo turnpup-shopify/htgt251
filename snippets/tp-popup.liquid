@@ -4,6 +4,64 @@
   assign is_hapny_vendor = false
   assign skip_popup_render = false
 
+  assign current_page_handle = ''
+  if request.page_type == 'product' and product
+    assign current_page_handle = product.handle | default: ''
+  elsif request.page_type == 'collection' and collection
+    assign current_page_handle = collection.handle | default: ''
+  elsif request.page_type == 'page' and page
+    assign current_page_handle = page.handle | default: ''
+  elsif request.page_type == 'article' and article
+    assign current_page_handle = article.handle | default: ''
+  elsif request.page_type == 'blog' and blog
+    assign current_page_handle = blog.handle | default: ''
+  endif
+
+  assign current_page_handle_downcase = current_page_handle | downcase
+  assign request_path = request.path | default: ''
+  assign request_path_downcase = request_path | downcase
+  assign last_path_segment = request_path_downcase | split: '/' | last
+  assign popup_include_handles_setting = settings.popup_include_handles | to_s | strip
+  assign handle_included = true
+  if popup_include_handles_setting != blank
+    assign handle_included = false
+    assign popup_include_handles = popup_include_handles_setting | newline_to_br | split: '<br />'
+    for handle in popup_include_handles
+      assign trimmed_handle = handle | strip | downcase
+      if trimmed_handle != blank
+        if current_page_handle_downcase != blank and current_page_handle_downcase == trimmed_handle
+          assign handle_included = true
+        elsif last_path_segment != blank and last_path_segment == trimmed_handle
+          assign handle_included = true
+        elsif request_path_downcase != blank and request_path_downcase contains trimmed_handle
+          assign handle_included = true
+        endif
+      endif
+    endfor
+  endif
+
+  assign popup_excluded_handles_setting = settings.popup_excluded_handles | to_s | strip
+  assign handle_excluded = false
+  if popup_excluded_handles_setting != blank
+    assign popup_excluded_handles = popup_excluded_handles_setting | newline_to_br | split: '<br />'
+    for handle in popup_excluded_handles
+      assign trimmed_handle = handle | strip | downcase
+      if trimmed_handle != blank
+        if current_page_handle_downcase != blank and current_page_handle_downcase == trimmed_handle
+          assign handle_excluded = true
+        elsif last_path_segment != blank and last_path_segment == trimmed_handle
+          assign handle_excluded = true
+        elsif request_path_downcase != blank and request_path_downcase contains trimmed_handle
+          assign handle_excluded = true
+        endif
+      endif
+    endfor
+  endif
+
+  if handle_included == false or handle_excluded
+    assign skip_popup_render = true
+  endif
+
   if request.page_type == 'product'
     if product and product.vendor
       assign normalized_vendor = product.vendor | strip | downcase
@@ -299,19 +357,84 @@
     // Debugging: Check if the cookie exists
     // console.log("Popup cookie value:", getCookie("popupShown"));
 
+    function openPopup(options = {}) {
+      if (!popup) {
+        return;
+      }
+
+      const manualOpen = options.manual === true;
+      const skipCookie = options.skipCookie === true;
+      const shouldReportView = options.reportView !== false && (shouldShowPopup || manualOpen);
+
+      popup.style.removeProperty("display");
+      popup.classList.add("active");
+
+      if (!skipCookie) {
+        setCookie("popupShown_" + context, "true", 7);
+      }
+
+      if (shouldReportView) {
+        reportPopupView(context);
+      }
+    }
+
+    function getPopupTriggers() {
+      const triggerSet = new Set();
+
+      document.querySelectorAll("[data-popup-trigger]").forEach((node) => {
+        triggerSet.add(node);
+      });
+
+      const idTrigger = document.getElementById("data-popup-trigger");
+      if (idTrigger) {
+        triggerSet.add(idTrigger);
+      }
+
+      document.querySelectorAll('a[href="#data-popup-trigger"]').forEach((node) => {
+        triggerSet.add(node);
+      });
+
+      return Array.from(triggerSet);
+    }
+
+    function bindPopupTriggers() {
+      if (!popup) {
+        return;
+      }
+
+      const triggers = getPopupTriggers();
+      if (!triggers.length) {
+        return;
+      }
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener("click", (event) => {
+          if (trigger.tagName === "A") {
+            event.preventDefault();
+          }
+          openPopup({
+            manual: true,
+            skipCookie: isThemeEditor,
+          });
+        });
+      });
+    }
+
+    bindPopupTriggers();
+
     // Show pop-up if cookie is NOT set
     if (popup && shouldShowPopup && !getCookie("popupShown_" + context)) {
       setTimeout(() => {
-        popup.classList.add("active");
-        setCookie("popupShown_" + context, "true", 7); // Set cookie to expire in 7 days
-        reportPopupView(context);
+        openPopup({
+          skipCookie: isThemeEditor,
+        });
       }, popupDelayMs);
     } else if (showPopup && popup && isThemeEditor && !showPopupSuccess) {
       setTimeout(() => {
-        popup.classList.add("active");
-        if (shouldShowPopup) {
-          reportPopupView(context);
-        }
+        openPopup({
+          skipCookie: true,
+          reportView: shouldShowPopup,
+        });
       }, 500);
     }
     if (closeButton) {

@@ -210,6 +210,18 @@
         "default": false
       },
       {
+        "type": "textarea",
+        "id": "popup_include_handles",
+        "label": "Show popup on these URL handles",
+        "info": "Enter handles or URL path segments (one per line) where the popup should appear. Leave blank to allow all pages."
+      },
+      {
+        "type": "textarea",
+        "id": "popup_excluded_handles",
+        "label": "Hide popup on these URL handles",
+        "info": "Enter handles or URL path segments (one per line) where the popup should never appear."
+      },
+      {
         "type": "image_picker",
         "id": "popup_image_desktop",
         "label": "Header Popup Image Desktop"
