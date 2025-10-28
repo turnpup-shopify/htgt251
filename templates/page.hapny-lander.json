@@ -420,12 +420,12 @@
         "section_background_color_inner_opacity": 100
       }
     },
-    "tp_article_carousel_gGjjw8": {
+    "tp_article_carousel_fazBHY": {
       "type": "tp-article-carousel",
       "name": "TP - Blog Post Carousel",
       "settings": {
-        "input_metaobject": "more-appliance-pulls",
-        "max_items": 6,
+        "input_metaobject": "shop-cabinet-pulls",
+        "max_items": 5,
         "enable_scroll": true,
         "padding_top": 40,
         "padding_bottom": 40,
@@ -652,12 +652,12 @@
         "section_background_color_inner_opacity": 100
       }
     },
-    "tp_article_carousel_fazBHY": {
+    "tp_article_carousel_gGjjw8": {
       "type": "tp-article-carousel",
       "name": "TP - Blog Post Carousel",
       "settings": {
-        "input_metaobject": "two-tone-knobs-and-pulls",
-        "max_items": 6,
+        "input_metaobject": "more-appliance-pulls",
+        "max_items": 5,
         "enable_scroll": true,
         "padding_top": 40,
         "padding_bottom": 40,
@@ -891,9 +891,9 @@
     "turnpup_multicolumn_Cd8XQ9",
     "tp_article_carousel_n9Ekr7",
     "turnpup_multicolumn_E3iQHV",
-    "tp_article_carousel_gGjjw8",
-    "turnpup_multicolumn_x8RjWA",
     "tp_article_carousel_fazBHY",
+    "turnpup_multicolumn_x8RjWA",
+    "tp_article_carousel_gGjjw8",
     "turnpup_multicolumn_3ymUwq"
   ]
 }
