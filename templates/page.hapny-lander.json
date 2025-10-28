@@ -62,6 +62,7 @@
             "is_hero_button_two": false,
             "button_is_white_border_two": false,
             "space_between_buttons": 8,
+            "block_linklist": "",
             "vertically_align_center": true,
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
@@ -78,7 +79,7 @@
           "type": "column",
           "settings": {
             "image_border_radius": "0px",
-            "title": "Uttermost Designer Favorites",
+            "title": "100% Solid Brass Cabinet Hardware",
             "title_h": "h1",
             "title_font_size": "30px",
             "title_font_size_mobile": "38px",
@@ -87,7 +88,7 @@
             "title_line_height": "1.1",
             "title_font_weight": "600",
             "title_margin_top": "10px",
-            "text": "20 years of bringing the very best furniture and home decor quickly and affordably to customers around the coutnry.",
+            "text": "There is a reason why 200+ showrooms carry Hapny Home hardware. Accessible pricepoint, premium designs, and solid brass construction.",
             "text_font_size": "30px",
             "text_font_size_mobile": "20px",
             "text_font_family": "'Helvetica Neue'",
@@ -112,6 +113,7 @@
             "is_hero_button_two": true,
             "button_is_white_border_two": true,
             "space_between_buttons": 12,
+            "block_linklist": "",
             "vertically_align_center": true,
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
@@ -182,7 +184,8 @@
         "section_text_color": "#000000",
         "overall_background_image_url": "",
         "section_background_color": "#ffffff",
-        "section_background_color_inner": "#ecdbbe"
+        "section_background_color_inner": "#ecdbbe",
+        "section_background_color_inner_opacity": 100
       }
     },
     "tp_article_carousel_n9Ekr7": {
@@ -295,6 +298,7 @@
             "is_hero_button_two": true,
             "button_is_white_border_two": true,
             "space_between_buttons": 12,
+            "block_linklist": "",
             "vertically_align_center": true,
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
@@ -346,6 +350,7 @@
             "is_hero_button_two": false,
             "button_is_white_border_two": false,
             "space_between_buttons": 8,
+            "block_linklist": "",
             "vertically_align_center": true,
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
@@ -411,7 +416,8 @@
         "section_text_color": "#000000",
         "overall_background_image_url": "",
         "section_background_color": "#ffffff",
-        "section_background_color_inner": "#ecdbbe"
+        "section_background_color_inner": "#ecdbbe",
+        "section_background_color_inner_opacity": 100
       }
     },
     "tp_article_carousel_gGjjw8": {
@@ -525,6 +531,7 @@
             "is_hero_button_two": false,
             "button_is_white_border_two": false,
             "space_between_buttons": 8,
+            "block_linklist": "",
             "vertically_align_center": true,
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
@@ -575,6 +582,7 @@
             "is_hero_button_two": true,
             "button_is_white_border_two": true,
             "space_between_buttons": 12,
+            "block_linklist": "",
             "vertically_align_center": true,
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
@@ -640,7 +648,8 @@
         "section_text_color": "#000000",
         "overall_background_image_url": "",
         "section_background_color": "#ffffff",
-        "section_background_color_inner": "#ecdbbe"
+        "section_background_color_inner": "#ecdbbe",
+        "section_background_color_inner_opacity": 100
       }
     },
     "tp_article_carousel_fazBHY": {
@@ -753,6 +762,7 @@
             "is_hero_button_two": true,
             "button_is_white_border_two": true,
             "space_between_buttons": 12,
+            "block_linklist": "",
             "vertically_align_center": true,
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
@@ -804,6 +814,7 @@
             "is_hero_button_two": false,
             "button_is_white_border_two": false,
             "space_between_buttons": 8,
+            "block_linklist": "",
             "vertically_align_center": true,
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
@@ -869,7 +880,8 @@
         "section_text_color": "#000000",
         "overall_background_image_url": "",
         "section_background_color": "#ffffff",
-        "section_background_color_inner": "#ecdbbe"
+        "section_background_color_inner": "#ecdbbe",
+        "section_background_color_inner_opacity": 100
       }
     }
   },
