@@ -63,6 +63,7 @@
         },
         "description": {
           "type": "description",
+          "disabled": true,
           "settings": {}
         },
         "6e3cb80f-7395-4806-8a51-8eb62abc629e": {
