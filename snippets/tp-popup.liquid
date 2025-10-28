@@ -148,6 +148,9 @@
   assign popup_header_font_mobile = settings.popup_header_font_size_mobile | default: popup_header_font_desktop
   assign popup_subheader_font_desktop = settings.popup_subheader_font_size | default: popup_body_font_desktop
   assign popup_subheader_font_mobile = settings.popup_subheader_font_size_mobile | default: popup_subheader_font_desktop
+  assign popup_cta_color = settings.popup_cta_color | default: '#0b2440'
+  assign popup_cta_border_radius = settings.popup_cta_border_radius | default: 5
+  assign popup_close_color = settings.popup_close_color | default: '#ffffff'
   assign popup_border_radius = settings.popup_border_radius | default: 8
   assign popup_overlay_opacity_percentage = settings.popup_overlay_opacity | default: 50
   assign popup_overlay_opacity = popup_overlay_opacity_percentage | divided_by: 100.0
@@ -686,13 +689,24 @@
     border-radius: 5px;
   }
 
+  .popup-content .button,
   .popup-content button {
     width: 100%;
     padding: 10px;
     color: white;
-    border: none;
-    border-radius: 5px;
+    background-color: {{ popup_cta_color }};
+    border: 1px solid {{ popup_cta_color }};
+    border-radius: {{ popup_cta_border_radius }}px;
     cursor: pointer;
+  }
+
+  .popup-content .button:hover,
+  .popup-content .button:focus,
+  .popup-content button:hover,
+  .popup-content button:focus {
+    background-color: {{ popup_cta_color }};
+    border-color: {{ popup_cta_color }};
+    opacity: 0.9;
   }
 
   .close-popup {
@@ -702,7 +716,7 @@
     position: absolute;
     top: 10px;
     right: 30px;
-    color: white;
+    color: {{ popup_close_color }};
   }
 
   .field:after {

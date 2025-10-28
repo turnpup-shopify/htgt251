@@ -256,6 +256,27 @@
         "default": "Thanks for subscribing!"
       },
       {
+        "type": "color",
+        "id": "popup_cta_color",
+        "label": "Popup CTA Color",
+        "default": "#0b2440"
+      },
+      {
+        "type": "color",
+        "id": "popup_close_color",
+        "label": "Popup Close Icon Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "range",
+        "id": "popup_cta_border_radius",
+        "label": "Popup CTA Border Radius",
+        "min": 0,
+        "max": 32,
+        "step": 1,
+        "default": 5
+      },
+      {
         "type": "text",
         "id": "popup_header_font_size",
         "label": "Pop-up Header Font Size (desktop)",
