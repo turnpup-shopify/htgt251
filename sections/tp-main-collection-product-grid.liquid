@@ -102,7 +102,9 @@
               grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
               grid--{{ section.settings.columns_desktop }}-col-desktop">
 
-              {%- capture fallback_products -%}{%- endcapture -%}
+              {%- capture priority_products -%}{%- endcapture -%}
+              {%- capture available_products -%}{%- endcapture -%}
+              {%- capture unavailable_products -%}{%- endcapture -%}
 
               {%- for product in collection.products -%}
                 {% assign should_render_now = false %}
@@ -133,13 +135,17 @@
                 {% endcapture %}
 
                 {%- if should_render_now -%}
-                  {{ product_html }}
+                  {%- capture priority_products -%}{{ priority_products }}{{ product_html }}{%- endcapture -%}
+                {%- elsif product.available -%}
+                  {%- capture available_products -%}{{ available_products }}{{ product_html }}{%- endcapture -%}
                 {%- else -%}
-                  {%- capture fallback_products -%}{{ fallback_products }}{{ product_html }}{%- endcapture -%}
+                  {%- capture unavailable_products -%}{{ unavailable_products }}{{ product_html }}{%- endcapture -%}
                 {%- endif -%}
               {%- endfor -%}
 
-              {{ fallback_products }}
+              {{ priority_products }}
+              {{ available_products }}
+              {{ unavailable_products }}
             </ul>
     
             {%- if paginate.pages > 1 -%}
