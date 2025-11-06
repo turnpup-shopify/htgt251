@@ -84,14 +84,11 @@
 
     <div class="product-grid-container{% if section.settings.filter_type == 'vertical' and section.settings.collapse_on_larger_devices %} product-grid-container-vertical{% endif %}" id="ProductGridContainer">
       {%- liquid
-        assign products_per_page_setting = section.settings.products_per_page | default: 16
         assign products_for_display_count = 0
-        assign available_handle_string = ''
+        assign priority_handle_string = ''
+        assign preferred_handle_string = ''
+        assign other_handle_string = ''
         assign unavailable_handle_string = ''
-        assign chunk_priority_handles = ''
-        assign chunk_preferred_handles = ''
-        assign chunk_other_handles = ''
-        assign chunk_unavailable_handles = ''
 
         for product in collection.products
           assign should_render_now = false
@@ -102,38 +99,6 @@
           assign is_preferred_vendor = false
           if product.vendor == 'Hapny Home' or product.vendor == 'Uttermost'
             assign is_preferred_vendor = true
-          endif
-
-          assign index_mod = forloop.index0 | modulo: products_per_page_setting
-          if forloop.index0 > 0 and index_mod == 0
-            if chunk_priority_handles != ''
-              if available_handle_string != ''
-                assign available_handle_string = available_handle_string | append: '|'
-              endif
-              assign available_handle_string = available_handle_string | append: chunk_priority_handles
-            endif
-            if chunk_preferred_handles != ''
-              if available_handle_string != ''
-                assign available_handle_string = available_handle_string | append: '|'
-              endif
-              assign available_handle_string = available_handle_string | append: chunk_preferred_handles
-            endif
-            if chunk_other_handles != ''
-              if available_handle_string != ''
-                assign available_handle_string = available_handle_string | append: '|'
-              endif
-              assign available_handle_string = available_handle_string | append: chunk_other_handles
-            endif
-            if chunk_unavailable_handles != ''
-              if unavailable_handle_string != ''
-                assign unavailable_handle_string = unavailable_handle_string | append: '|'
-              endif
-              assign unavailable_handle_string = unavailable_handle_string | append: chunk_unavailable_handles
-            endif
-            assign chunk_priority_handles = ''
-            assign chunk_preferred_handles = ''
-            assign chunk_other_handles = ''
-            assign chunk_unavailable_handles = ''
           endif
 
           assign bucket_key = ''
@@ -152,55 +117,45 @@
           if bucket_key != ''
             assign products_for_display_count = products_for_display_count | plus: 1
             if bucket_key == 'priority'
-              if chunk_priority_handles != ''
-                assign chunk_priority_handles = chunk_priority_handles | append: '|'
+              if priority_handle_string != ''
+                assign priority_handle_string = priority_handle_string | append: '|'
               endif
-              assign chunk_priority_handles = chunk_priority_handles | append: product.handle
+              assign priority_handle_string = priority_handle_string | append: product.handle
             elsif bucket_key == 'preferred'
-              if chunk_preferred_handles != ''
-                assign chunk_preferred_handles = chunk_preferred_handles | append: '|'
+              if preferred_handle_string != ''
+                assign preferred_handle_string = preferred_handle_string | append: '|'
               endif
-              assign chunk_preferred_handles = chunk_preferred_handles | append: product.handle
+              assign preferred_handle_string = preferred_handle_string | append: product.handle
             elsif bucket_key == 'other'
-              if chunk_other_handles != ''
-                assign chunk_other_handles = chunk_other_handles | append: '|'
+              if other_handle_string != ''
+                assign other_handle_string = other_handle_string | append: '|'
               endif
-              assign chunk_other_handles = chunk_other_handles | append: product.handle
+              assign other_handle_string = other_handle_string | append: product.handle
             elsif bucket_key == 'unavailable'
-              if chunk_unavailable_handles != ''
-                assign chunk_unavailable_handles = chunk_unavailable_handles | append: '|'
+              if unavailable_handle_string != ''
+                assign unavailable_handle_string = unavailable_handle_string | append: '|'
               endif
-              assign chunk_unavailable_handles = chunk_unavailable_handles | append: product.handle
+              assign unavailable_handle_string = unavailable_handle_string | append: product.handle
             endif
           endif
         endfor
 
-        if chunk_priority_handles != ''
-          if available_handle_string != ''
-            assign available_handle_string = available_handle_string | append: '|'
-          endif
-          assign available_handle_string = available_handle_string | append: chunk_priority_handles
+        assign sorted_handle_string = ''
+        if priority_handle_string != ''
+          assign sorted_handle_string = priority_handle_string
         endif
-        if chunk_preferred_handles != ''
-          if available_handle_string != ''
-            assign available_handle_string = available_handle_string | append: '|'
+        if preferred_handle_string != ''
+          if sorted_handle_string != ''
+            assign sorted_handle_string = sorted_handle_string | append: '|'
           endif
-          assign available_handle_string = available_handle_string | append: chunk_preferred_handles
+          assign sorted_handle_string = sorted_handle_string | append: preferred_handle_string
         endif
-        if chunk_other_handles != ''
-          if available_handle_string != ''
-            assign available_handle_string = available_handle_string | append: '|'
+        if other_handle_string != ''
+          if sorted_handle_string != ''
+            assign sorted_handle_string = sorted_handle_string | append: '|'
           endif
-          assign available_handle_string = available_handle_string | append: chunk_other_handles
+          assign sorted_handle_string = sorted_handle_string | append: other_handle_string
         endif
-        if chunk_unavailable_handles != ''
-          if unavailable_handle_string != ''
-            assign unavailable_handle_string = unavailable_handle_string | append: '|'
-          endif
-          assign unavailable_handle_string = unavailable_handle_string | append: chunk_unavailable_handles
-        endif
-
-        assign sorted_handle_string = available_handle_string
         if unavailable_handle_string != '' and section.settings.remove_OOS_products != true
           if sorted_handle_string != ''
             assign sorted_handle_string = sorted_handle_string | append: '|'
