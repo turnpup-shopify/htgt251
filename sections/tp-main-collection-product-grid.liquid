@@ -187,9 +187,11 @@
         </div>
       {%- else -%}
         {%- paginate collection.products by section.settings.products_per_page -%}
-          {% comment %}
-            Handles order: {{ sorted_handle_array | join: ', ' }}
-          {% endcomment %}
+          {% capture debug_handles -%}{{ sorted_handle_array | join: ', ' }}{%- endcapture %}
+          <script>
+            console.log('TP Product Grid {{ section.id }} sorted handles:', {{ debug_handles | json }});
+            console.log('TP Product Grid {{ section.id }} pagination - page:', {{ paginate.current_page | json }}, 'page size:', {{ paginate.page_size | json }}, 'items:', {{ paginate.items | size | json }});
+          </script>
           {% assign start_index = paginate.current_page | minus: 1 | times: paginate.page_size %}
           {% assign end_index = start_index | plus: paginate.page_size %}
           {% assign rendered_index = 0 %}
@@ -213,8 +215,15 @@
                   {%- break -%}
                 {%- endif -%}
 
+                <script>
+                  console.log('Rendering handle {{ product_handle }} (array index {{ forloop.index0 }}) for page {{ paginate.current_page }} [{{ start_index }}-{{ end_index }}).');
+                </script>
+
                 {%- assign product = all_products[product_handle] -%}
                 {%- if product == blank -%}
+                  <script>
+                    console.warn('Handle {{ product_handle }} not found in all_products.');
+                  </script>
                   {%- continue -%}
                 {%- endif -%}
 
