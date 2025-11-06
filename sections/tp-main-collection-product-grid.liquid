@@ -187,6 +187,9 @@
         </div>
       {%- else -%}
         {%- paginate collection.products by section.settings.products_per_page -%}
+          {% assign start_index = paginate.current_page | minus: 1 | times: paginate.page_size %}
+          {% assign end_index = start_index | plus: paginate.page_size %}
+          {% assign rendered_index = 0 %}
           <div class="collection{% if section.settings.filter_type != 'vertical' %} {% endif %}">
             <div class="loading-overlay gradient"></div>
 
@@ -194,9 +197,17 @@
               grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
               grid--{{ section.settings.columns_desktop }}-col-desktop">
 
-              {%- for product_handle in sorted_handle_array offset: paginate.current_offset limit: paginate.page_size -%}
+              {%- for product_handle in sorted_handle_array -%}
                 {%- if product_handle == blank -%}
                   {%- continue -%}
+                {%- endif -%}
+
+                {%- if forloop.index0 < start_index -%}
+                  {%- continue -%}
+                {%- endif -%}
+
+                {%- if forloop.index0 >= end_index -%}
+                  {%- break -%}
                 {%- endif -%}
 
                 {%- assign product = all_products[product_handle] -%}
@@ -205,7 +216,7 @@
                 {%- endif -%}
 
                 {%- assign lazy_load = false -%}
-                {%- if forloop.index > 2 -%}
+                {%- if rendered_index > 1 -%}
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
 
@@ -222,6 +233,7 @@
                     button_color: section.settings.button_color,
                     section_id: section.id %}
                 </li>
+                {%- assign rendered_index = rendered_index | plus: 1 -%}
               {%- endfor -%}
             </ul>
 
