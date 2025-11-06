@@ -117,32 +117,31 @@
 
           if bucket_key != ''
             assign handle_marker = '|' | append: product.handle | append: '|'
-            if used_handle_tracker contains handle_marker
-              continue
-            endif
-            assign used_handle_tracker = used_handle_tracker | append: product.handle | append: '|'
-            assign products_for_display_count = products_for_display_count | plus: 1
-            if bucket_key == 'priority'
-              if priority_handle_string != ''
-                assign priority_handle_string = priority_handle_string | append: '|'
+            unless used_handle_tracker contains handle_marker
+              assign used_handle_tracker = used_handle_tracker | append: product.handle | append: '|'
+              assign products_for_display_count = products_for_display_count | plus: 1
+              if bucket_key == 'priority'
+                if priority_handle_string != ''
+                  assign priority_handle_string = priority_handle_string | append: '|'
+                endif
+                assign priority_handle_string = priority_handle_string | append: product.handle
+              elsif bucket_key == 'preferred'
+                if preferred_handle_string != ''
+                  assign preferred_handle_string = preferred_handle_string | append: '|'
+                endif
+                assign preferred_handle_string = preferred_handle_string | append: product.handle
+              elsif bucket_key == 'other'
+                if other_handle_string != ''
+                  assign other_handle_string = other_handle_string | append: '|'
+                endif
+                assign other_handle_string = other_handle_string | append: product.handle
+              elsif bucket_key == 'unavailable'
+                if unavailable_handle_string != ''
+                  assign unavailable_handle_string = unavailable_handle_string | append: '|'
+                endif
+                assign unavailable_handle_string = unavailable_handle_string | append: product.handle
               endif
-              assign priority_handle_string = priority_handle_string | append: product.handle
-            elsif bucket_key == 'preferred'
-              if preferred_handle_string != ''
-                assign preferred_handle_string = preferred_handle_string | append: '|'
-              endif
-              assign preferred_handle_string = preferred_handle_string | append: product.handle
-            elsif bucket_key == 'other'
-              if other_handle_string != ''
-                assign other_handle_string = other_handle_string | append: '|'
-              endif
-              assign other_handle_string = other_handle_string | append: product.handle
-            elsif bucket_key == 'unavailable'
-              if unavailable_handle_string != ''
-                assign unavailable_handle_string = unavailable_handle_string | append: '|'
-              endif
-              assign unavailable_handle_string = unavailable_handle_string | append: product.handle
-            endif
+            endunless
           endif
         endfor
 
@@ -172,6 +171,7 @@
         assign sorted_handle_array = ''
         if sorted_handle_string != '' and sorted_handle_string != nil
           assign sorted_handle_array = sorted_handle_string | split: '|'
+          assign sorted_handle_array = sorted_handle_array | uniq
         endif
       -%}
 
@@ -187,6 +187,9 @@
         </div>
       {%- else -%}
         {%- paginate collection.products by section.settings.products_per_page -%}
+          {% comment %}
+            Handles order: {{ sorted_handle_array | join: ', ' }}
+          {% endcomment %}
           {% assign start_index = paginate.current_page | minus: 1 | times: paginate.page_size %}
           {% assign end_index = start_index | plus: paginate.page_size %}
           {% assign rendered_index = 0 %}
