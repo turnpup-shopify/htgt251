@@ -85,6 +85,7 @@
     <div class="product-grid-container{% if section.settings.filter_type == 'vertical' and section.settings.collapse_on_larger_devices %} product-grid-container-vertical{% endif %}" id="ProductGridContainer">
       {%- liquid
         assign products_for_display_count = 0
+        assign used_handle_tracker = '|'
         assign priority_handle_string = ''
         assign preferred_handle_string = ''
         assign other_handle_string = ''
@@ -115,6 +116,11 @@
           endif
 
           if bucket_key != ''
+            assign handle_marker = '|' | append: product.handle | append: '|'
+            if used_handle_tracker contains handle_marker
+              continue
+            endif
+            assign used_handle_tracker = used_handle_tracker | append: product.handle | append: '|'
             assign products_for_display_count = products_for_display_count | plus: 1
             if bucket_key == 'priority'
               if priority_handle_string != ''
