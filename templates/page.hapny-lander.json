@@ -723,6 +723,9 @@
     },
     "featured_row_tAUpCA": {
       "type": "featured-row",
+      "custom_css": [
+        "div, h2 {background: #3E2F2E; color: white;}"
+      ],
       "name": "Featured Row Section",
       "settings": {
         "section_padding": true,
