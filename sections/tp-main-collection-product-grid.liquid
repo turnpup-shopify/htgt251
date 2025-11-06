@@ -236,7 +236,12 @@
       {%- endif -%}
       {%- assign pagination_range = '' -%}
       {%- if sorted_items_count > 0 -%}
-        {%- assign pagination_range = (1..sorted_items_count) -%}
+        {%- capture pagination_string -%}
+          {%- for i in (1..sorted_items_count) -%}
+            {%- if i > 1 -%},{%- endif -%}{{ i }}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- assign pagination_range = pagination_string | split: ',' -%}
       {%- endif -%}
 
       {%- if products_for_display_count == 0 or sorted_html_array == '' -%}
