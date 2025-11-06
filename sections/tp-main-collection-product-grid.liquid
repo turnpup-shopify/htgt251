@@ -240,6 +240,17 @@
         {%- assign pagination_range = pagination_string | split: ',' -%}
       {%- endif -%}
 
+      {% capture pagination_range_debug -%}
+        count: {{ sorted_items_count }}, array: [
+        {%- if pagination_range != '' -%}
+          {%- for item in pagination_range -%}
+            {{ item }}{% unless forloop.last %}, {% endunless %}
+          {%- endfor -%}
+        {%- endif -%}
+        ]
+      {%- endcapture %}
+      <script>console.log('TP Product Grid {{ section.id }} pagination_range -> {{ pagination_range_debug | strip_newlines | strip }}');</script>
+
       {%- if products_for_display_count == 0 or sorted_html_array == '' -%}
         <div class="collection collection--empty " id="product-grid" data-id="{{ section.id }}">
           <div class="loading-overlay gradient"></div>
