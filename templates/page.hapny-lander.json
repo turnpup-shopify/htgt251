@@ -721,6 +721,24 @@
         "section_background_color": "#ffffff"
       }
     },
+    "featured_row_tAUpCA": {
+      "type": "featured-row",
+      "name": "Featured Row Section",
+      "settings": {
+        "section_padding": true,
+        "border_top": "",
+        "border_bottom": "",
+        "image": "shopify://shop_images/hapny-home-founder.jpg",
+        "layout": "left",
+        "text_align": "left",
+        "title": "Female Founded Brand",
+        "text": "<p>Hapny Home is a cabinet hardware brand founded by Priya in Houston, Texas. Everything is designed by her and shipped nationwide same day. All cabinet hardware is 100% solid brass.</p>",
+        "body_font_size": 20,
+        "mobile_body_font_size": 20,
+        "button_label": "",
+        "button_link": ""
+      }
+    },
     "turnpup_multicolumn_3ymUwq": {
       "type": "turnpup-multicolumn",
       "blocks": {
@@ -894,6 +912,7 @@
     "tp_article_carousel_fazBHY",
     "turnpup_multicolumn_x8RjWA",
     "tp_article_carousel_gGjjw8",
+    "featured_row_tAUpCA",
     "turnpup_multicolumn_3ymUwq"
   ]
 }
