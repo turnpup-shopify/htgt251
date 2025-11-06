@@ -236,11 +236,7 @@
       {%- endif -%}
       {%- assign pagination_range = '' -%}
       {%- if sorted_items_count > 0 -%}
-        {%- capture pagination_string -%}
-          {%- for i in (1..sorted_items_count) -%}
-            {%- if i > 1 -%},{%- endif -%}{{ i }}
-          {%- endfor -%}
-        {%- endcapture -%}
+        {%- capture pagination_string -%}{%- for i in (1..sorted_items_count) -%}{%- if i > 1 -%},{%- endif -%}{{ i }}{%- endfor -%}{%- endcapture -%}
         {%- assign pagination_range = pagination_string | split: ',' -%}
       {%- endif -%}
 
