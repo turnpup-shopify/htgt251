@@ -103,7 +103,8 @@
               grid--{{ section.settings.columns_desktop }}-col-desktop">
 
               {%- capture priority_products -%}{%- endcapture -%}
-              {%- capture available_products -%}{%- endcapture -%}
+              {%- capture preferred_vendor_products -%}{%- endcapture -%}
+              {%- capture other_vendor_products -%}{%- endcapture -%}
               {%- capture unavailable_products -%}{%- endcapture -%}
 
               {%- for product in collection.products -%}
@@ -117,6 +118,8 @@
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
+
+                {% assign is_preferred_vendor = product.vendor == 'Hapny Home' or product.vendor == 'Uttermost' %}
 
                 {% capture product_html %}
                   <li class="grid__item">
@@ -134,17 +137,22 @@
                   </li>
                 {% endcapture %}
 
-                {%- if should_render_now -%}
+                {%- if should_render_now and is_preferred_vendor -%}
                   {%- capture priority_products -%}{{ priority_products }}{{ product_html }}{%- endcapture -%}
+                {%- elsif should_render_now -%}
+                  {%- capture other_vendor_products -%}{{ other_vendor_products }}{{ product_html }}{%- endcapture -%}
+                {%- elsif product.available and is_preferred_vendor -%}
+                  {%- capture preferred_vendor_products -%}{{ preferred_vendor_products }}{{ product_html }}{%- endcapture -%}
                 {%- elsif product.available -%}
-                  {%- capture available_products -%}{{ available_products }}{{ product_html }}{%- endcapture -%}
+                  {%- capture other_vendor_products -%}{{ other_vendor_products }}{{ product_html }}{%- endcapture -%}
                 {%- else -%}
                   {%- capture unavailable_products -%}{{ unavailable_products }}{{ product_html }}{%- endcapture -%}
                 {%- endif -%}
               {%- endfor -%}
 
               {{ priority_products }}
-              {{ available_products }}
+              {{ preferred_vendor_products }}
+              {{ other_vendor_products }}
               {{ unavailable_products }}
             </ul>
     
