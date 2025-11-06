@@ -230,6 +230,14 @@
       {%- if sorted_html_string != '' and sorted_html_string != nil -%}
         {%- assign sorted_html_array = sorted_html_string | split: tp_html_delimiter -%}
       {%- endif -%}
+      {%- assign sorted_items_count = 0 -%}
+      {%- if sorted_html_array != '' -%}
+        {%- assign sorted_items_count = sorted_html_array | size -%}
+      {%- endif -%}
+      {%- assign pagination_range = '' -%}
+      {%- if sorted_items_count > 0 -%}
+        {%- assign pagination_range = (1..sorted_items_count) -%}
+      {%- endif -%}
 
       {%- if products_for_display_count == 0 or sorted_html_array == '' -%}
         <div class="collection collection--empty " id="product-grid" data-id="{{ section.id }}">
@@ -242,7 +250,7 @@
           </div>
         </div>
       {%- else -%}
-        {%- paginate collection.products by section.settings.products_per_page -%}
+        {%- paginate pagination_range by section.settings.products_per_page -%}
           {% capture debug_handles -%}{{ sorted_handle_array | join: ', ' }}{%- endcapture %}
           <script>
             console.log('TP Product Grid {{ section.id }} sorted handles:', {{ debug_handles | json }});
