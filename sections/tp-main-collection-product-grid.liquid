@@ -230,27 +230,6 @@
       {%- if sorted_html_string != '' and sorted_html_string != nil -%}
         {%- assign sorted_html_array = sorted_html_string | split: tp_html_delimiter -%}
       {%- endif -%}
-      {%- assign sorted_items_count = 0 -%}
-      {%- if sorted_html_array != '' -%}
-        {%- assign sorted_items_count = sorted_html_array | size -%}
-      {%- endif -%}
-      {%- assign pagination_range = '' -%}
-      {%- if sorted_items_count > 0 -%}
-        {%- capture pagination_string -%}{%- for i in (1..sorted_items_count) -%}{%- if i > 1 -%},{%- endif -%}{{ i }}{%- endfor -%}{%- endcapture -%}
-        {%- assign pagination_range = pagination_string | split: ',' -%}
-      {%- endif -%}
-
-      {% capture pagination_range_debug -%}
-        count: {{ sorted_items_count }}, array: [
-        {%- if pagination_range != '' -%}
-          {%- for item in pagination_range -%}
-            {{ item }}{% unless forloop.last %}, {% endunless %}
-          {%- endfor -%}
-        {%- endif -%}
-        ]
-      {%- endcapture %}
-      <script>console.log('TP Product Grid {{ section.id }} pagination_range -> {{ pagination_range_debug | strip_newlines | strip }}');</script>
-
       {%- if products_for_display_count == 0 or sorted_html_array == '' -%}
         <div class="collection collection--empty " id="product-grid" data-id="{{ section.id }}">
           <div class="loading-overlay gradient"></div>
@@ -262,15 +241,10 @@
           </div>
         </div>
       {%- else -%}
-        {%- paginate pagination_range by section.settings.products_per_page -%}
-          {% capture debug_handles -%}{{ sorted_handle_array | join: ', ' }}{%- endcapture %}
+        {%- paginate sorted_html_array by section.settings.products_per_page -%}
           <script>
-            console.log('TP Product Grid {{ section.id }} sorted handles:', {{ debug_handles | json }});
-            console.log('TP Product Grid {{ section.id }} pagination - page:', {{ paginate.current_page | json }}, 'page size:', {{ paginate.page_size | json }}, 'items:', {{ paginate.items | size | json }});
+            console.log('TP Product Grid {{ section.id }} pagination - page:', {{ paginate.current_page | json }}, 'page size:', {{ paginate.page_size | json }}, 'items this page:', {{ paginate.items | size | json }});
           </script>
-          {% assign start_index = paginate.current_page | minus: 1 | times: paginate.page_size %}
-          {% assign end_index = start_index | plus: paginate.page_size %}
-          {% assign rendered_index = 0 %}
           <div class="collection{% if section.settings.filter_type != 'vertical' %} {% endif %}">
             <div class="loading-overlay gradient"></div>
 
@@ -278,25 +252,12 @@
               grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
               grid--{{ section.settings.columns_desktop }}-col-desktop">
 
-              {%- for product_entry in sorted_html_array -%}
+              {%- for product_entry in paginate.items -%}
                 {%- if product_entry == blank -%}
                   {%- continue -%}
                 {%- endif -%}
-
-                {%- if forloop.index0 < start_index -%}
-                  {%- continue -%}
-                {%- endif -%}
-
-                {%- if forloop.index0 >= end_index -%}
-                  {%- break -%}
-                {%- endif -%}
-
-                <script>
-                  console.log('Rendering product entry index {{ forloop.index0 }} for page {{ paginate.current_page }} [{{ start_index }}-{{ end_index }}).');
-                </script>
-
+                
                 {{ product_entry }}
-                {%- assign rendered_index = rendered_index | plus: 1 -%}
               {%- endfor -%}
             </ul>
 
