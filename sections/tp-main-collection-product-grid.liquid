@@ -207,15 +207,9 @@
           endif
           assign sorted_handle_string = sorted_handle_string | append: unavailable_handle_string
         endif
-
-        if sorted_handle_string != '' and sorted_handle_string != nil
-          assign sorted_handle_array = sorted_handle_string | split: '|'
-        else
-          assign sorted_handle_array = blank
-        endif
       -%}
 
-      {%- if products_for_display_count == 0 -%}
+      {%- if products_for_display_count == 0 or sorted_handle_string == '' or sorted_handle_string == nil -%}
         <div class="collection collection--empty " id="product-grid" data-id="{{ section.id }}">
           <div class="loading-overlay gradient"></div>
           <div class="title-wrapper center">
@@ -226,6 +220,7 @@
           </div>
         </div>
       {%- else -%}
+        {%- assign sorted_handle_array = sorted_handle_string | split: '|' -%}
         {%- paginate sorted_handle_array by section.settings.products_per_page -%}
           <div class="collection{% if section.settings.filter_type != 'vertical' %} {% endif %}">
             <div class="loading-overlay gradient"></div>
