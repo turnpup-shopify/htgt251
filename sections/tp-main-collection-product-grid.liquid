@@ -123,7 +123,10 @@
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
 
-                {% assign is_preferred_vendor = product.vendor == 'Hapny Home' or product.vendor == 'Uttermost' %}
+                {% assign is_preferred_vendor = false %}
+                {% if product.vendor == 'Hapny Home' or product.vendor == 'Uttermost' %}
+                  {% assign is_preferred_vendor = true %}
+                {% endif %}
 
                 {% capture product_html %}
                   <li class="grid__item">
