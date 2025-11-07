@@ -83,187 +83,18 @@
     {%- endif -%}
 
     <div class="product-grid-container{% if section.settings.filter_type == 'vertical' and section.settings.collapse_on_larger_devices %} product-grid-container-vertical{% endif %}" id="ProductGridContainer">
-      {%- assign products_for_display_count = 0 -%}
-      {%- assign used_handle_tracker = '|' -%}
-      {%- assign priority_handle_string = '' -%}
-      {%- assign preferred_handle_string = '' -%}
-      {%- assign other_handle_string = '' -%}
-      {%- assign unavailable_handle_string = '' -%}
-      {%- assign priority_html_string = '' -%}
-      {%- assign preferred_html_string = '' -%}
-      {%- assign other_html_string = '' -%}
-      {%- assign unavailable_html_string = '' -%}
-      {%- assign tp_html_delimiter = '__TP_ITEM_DELIM__' -%}
-
-      {%- for product in collection.products -%}
-        {%- assign should_render_now = false -%}
-        {%- if product.available and product.metafields.pdp.badge_text == true -%}
-          {%- assign should_render_now = true -%}
-        {%- endif -%}
-
-        {%- assign is_preferred_vendor = false -%}
-        {%- if product.vendor == 'Hapny Home' or product.vendor == 'Uttermost' -%}
-          {%- assign is_preferred_vendor = true -%}
-        {%- endif -%}
-
-        {%- assign bucket_key = '' -%}
-        {%- if should_render_now and is_preferred_vendor -%}
-          {%- assign bucket_key = 'priority' -%}
-        {%- elsif should_render_now -%}
-          {%- assign bucket_key = 'other' -%}
-        {%- elsif product.available and is_preferred_vendor -%}
-          {%- assign bucket_key = 'preferred' -%}
-        {%- elsif product.available -%}
-          {%- assign bucket_key = 'other' -%}
-        {%- elsif section.settings.remove_OOS_products != true -%}
-          {%- assign bucket_key = 'unavailable' -%}
-        {%- endif -%}
-
-        {%- if bucket_key != '' -%}
-          {%- assign handle_marker = '|' | append: product.handle | append: '|' -%}
-          {%- unless used_handle_tracker contains handle_marker -%}
-            {%- assign used_handle_tracker = used_handle_tracker | append: product.handle | append: '|' -%}
-            {%- assign products_for_display_count = products_for_display_count | plus: 1 -%}
-
-            {%- capture product_html -%}
-              <li class="grid__item">
-                {% render 'tp-card-product',
-                  card_product: product,
-                  media_aspect_ratio: section.settings.image_ratio,
-                  show_secondary_image: section.settings.show_secondary_image,
-                  show_vendor: section.settings.show_vendor,
-                  show_rating: section.settings.show_rating,
-                  lazy_load: true,
-                  show_quick_add: section.settings.enable_quick_add,
-                  show_price: section.settings.enable_price,
-                  button_color: section.settings.button_color,
-                  section_id: section.id %}
-              </li>
-            {%- endcapture -%}
-
-            {%- if bucket_key == 'priority' -%}
-              {%- if priority_handle_string != '' -%}
-                {%- assign priority_handle_string = priority_handle_string | append: '|' -%}
-                {%- assign priority_html_string = priority_html_string | append: tp_html_delimiter -%}
-              {%- endif -%}
-              {%- assign priority_handle_string = priority_handle_string | append: product.handle -%}
-              {%- assign priority_html_string = priority_html_string | append: product_html -%}
-            {%- elsif bucket_key == 'preferred' -%}
-              {%- if preferred_handle_string != '' -%}
-                {%- assign preferred_handle_string = preferred_handle_string | append: '|' -%}
-                {%- assign preferred_html_string = preferred_html_string | append: tp_html_delimiter -%}
-              {%- endif -%}
-              {%- assign preferred_handle_string = preferred_handle_string | append: product.handle -%}
-              {%- assign preferred_html_string = preferred_html_string | append: product_html -%}
-            {%- elsif bucket_key == 'other' -%}
-              {%- if other_handle_string != '' -%}
-                {%- assign other_handle_string = other_handle_string | append: '|' -%}
-                {%- assign other_html_string = other_html_string | append: tp_html_delimiter -%}
-              {%- endif -%}
-              {%- assign other_handle_string = other_handle_string | append: product.handle -%}
-              {%- assign other_html_string = other_html_string | append: product_html -%}
-            {%- elsif bucket_key == 'unavailable' -%}
-              {%- if unavailable_handle_string != '' -%}
-                {%- assign unavailable_handle_string = unavailable_handle_string | append: '|' -%}
-                {%- assign unavailable_html_string = unavailable_html_string | append: tp_html_delimiter -%}
-              {%- endif -%}
-              {%- assign unavailable_handle_string = unavailable_handle_string | append: product.handle -%}
-              {%- assign unavailable_html_string = unavailable_html_string | append: product_html -%}
-            {%- endif -%}
-          {%- endunless -%}
-        {%- endif -%}
-      {%- endfor -%}
-
-      {%- assign sorted_handle_string = '' -%}
-      {%- if priority_handle_string != '' -%}
-        {%- assign sorted_handle_string = priority_handle_string -%}
-      {%- endif -%}
-      {%- if preferred_handle_string != '' -%}
-        {%- if sorted_handle_string != '' -%}
-          {%- assign sorted_handle_string = sorted_handle_string | append: '|' -%}
-        {%- endif -%}
-        {%- assign sorted_handle_string = sorted_handle_string | append: preferred_handle_string -%}
-      {%- endif -%}
-      {%- if other_handle_string != '' -%}
-        {%- if sorted_handle_string != '' -%}
-          {%- assign sorted_handle_string = sorted_handle_string | append: '|' -%}
-        {%- endif -%}
-        {%- assign sorted_handle_string = sorted_handle_string | append: other_handle_string -%}
-      {%- endif -%}
-      {%- if unavailable_handle_string != '' and section.settings.remove_OOS_products != true -%}
-        {%- if sorted_handle_string != '' -%}
-          {%- assign sorted_handle_string = sorted_handle_string | append: '|' -%}
-        {%- endif -%}
-        {%- assign sorted_handle_string = sorted_handle_string | append: unavailable_handle_string -%}
-      {%- endif -%}
-
-      {%- assign sorted_handle_array = '' -%}
-      {%- if sorted_handle_string != '' and sorted_handle_string != nil -%}
-        {%- assign sorted_handle_array = sorted_handle_string | split: '|' -%}
-        {%- assign sorted_handle_array = sorted_handle_array | uniq -%}
-      {%- endif -%}
-
-      {%- assign sorted_html_string = '' -%}
-      {%- if priority_html_string != '' -%}
-        {%- assign sorted_html_string = priority_html_string -%}
-      {%- endif -%}
-      {%- if preferred_html_string != '' -%}
-        {%- if sorted_html_string != '' -%}
-          {%- assign sorted_html_string = sorted_html_string | append: tp_html_delimiter -%}
-        {%- endif -%}
-        {%- assign sorted_html_string = sorted_html_string | append: preferred_html_string -%}
-      {%- endif -%}
-      {%- if other_html_string != '' -%}
-        {%- if sorted_html_string != '' -%}
-          {%- assign sorted_html_string = sorted_html_string | append: tp_html_delimiter -%}
-        {%- endif -%}
-        {%- assign sorted_html_string = sorted_html_string | append: other_html_string -%}
-      {%- endif -%}
-      {%- if unavailable_html_string != '' -%}
-        {%- if sorted_html_string != '' -%}
-          {%- assign sorted_html_string = sorted_html_string | append: tp_html_delimiter -%}
-        {%- endif -%}
-        {%- assign sorted_html_string = sorted_html_string | append: unavailable_html_string -%}
-      {%- endif -%}
-
-      {%- assign sorted_html_array = '' -%}
-      {%- if sorted_html_string != '' and sorted_html_string != nil -%}
-        {%- assign sorted_html_array = sorted_html_string | split: tp_html_delimiter -%}
-      {%- endif -%}
-      {%- assign sorted_items_count = 0 -%}
-      {%- if sorted_html_array != '' -%}
-        {%- assign sorted_items_count = sorted_html_array | size -%}
-      {%- endif -%}
-      {%- assign pagination_range = '' -%}
-      {%- if sorted_items_count > 0 -%}
-        {%- capture pagination_string -%}
-          {%- for i in (1..sorted_items_count) -%}
-            {%- if i > 1 -%},{%- endif -%}{{ i }}
-          {%- endfor -%}
-        {%- endcapture -%}
-        {%- assign pagination_range = pagination_string | split: ',' -%}
-      {%- endif -%}
-
-      {%- if products_for_display_count == 0 or sorted_html_array == '' -%}
-        <div class="collection collection--empty " id="product-grid" data-id="{{ section.id }}">
-          <div class="loading-overlay gradient"></div>
-          <div class="title-wrapper center">
-            <h2 class="title title--primary">
-              {{ 'sections.collection_template.empty' | t }}<br>
-              {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "underlined-link link" }}
-            </h2>
+      {%- paginate collection.products by section.settings.products_per_page -%}
+        {%- if collection.products.size == 0 -%}
+          <div class="collection collection--empty " id="product-grid" data-id="{{ section.id }}">
+            <div class="loading-overlay gradient"></div>
+            <div class="title-wrapper center">
+              <h2 class="title title--primary">
+                {{ 'sections.collection_template.empty' | t }}<br>
+                {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "underlined-link link" }}
+              </h2>
+            </div>
           </div>
-        </div>
-      {%- else -%}
-        {%- paginate pagination_range by section.settings.products_per_page -%}
-          {% capture debug_handles -%}{{ sorted_handle_array | join: ', ' }}{%- endcapture %}
-          <script>
-            console.log('TP Product Grid {{ section.id }} sorted handles:', {{ debug_handles | json }});
-            console.log('TP Product Grid {{ section.id }} pagination - page:', {{ paginate.current_page | json }}, 'page size:', {{ paginate.page_size | json }}, 'items:', {{ paginate.items | size | json }});
-          </script>
-          {% assign start_index = paginate.current_page | minus: 1 | times: paginate.page_size %}
-          {% assign end_index = start_index | plus: paginate.page_size %}
-          {% assign rendered_index = 0 %}
+        {%- else -%}
           <div class="collection{% if section.settings.filter_type != 'vertical' %} {% endif %}">
             <div class="loading-overlay gradient"></div>
 
@@ -271,34 +102,73 @@
               grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
               grid--{{ section.settings.columns_desktop }}-col-desktop">
 
-              {%- for product_entry in sorted_html_array -%}
-                {%- if product_entry == blank -%}
+              {%- capture priority_products -%}{%- endcapture -%}
+              {%- capture preferred_vendor_products -%}{%- endcapture -%}
+              {%- capture other_vendor_products -%}{%- endcapture -%}
+              {%- capture unavailable_products -%}{%- endcapture -%}
+
+              {%- for product in collection.products -%}
+                {%- if section.settings.remove_OOS_products and product.available == false -%}
                   {%- continue -%}
                 {%- endif -%}
 
-                {%- if forloop.index0 < start_index -%}
-                  {%- continue -%}
+                {% assign should_render_now = false %}
+
+                {%- if product.available and product.metafields.pdp.badge_text == true -%}
+                  {% assign should_render_now = true %}
                 {%- endif -%}
 
-                {%- if forloop.index0 >= end_index -%}
-                  {%- break -%}
+                {%- assign lazy_load = false -%}
+                {%- if forloop.index > 2 -%}
+                  {%- assign lazy_load = true -%}
                 {%- endif -%}
 
-                <script>
-                  console.log('Rendering product entry index {{ forloop.index0 }} for page {{ paginate.current_page }} [{{ start_index }}-{{ end_index }}).');
-                </script>
+                {% assign is_preferred_vendor = false %}
+                {% if product.vendor == 'Hapny Home' or product.vendor == 'Uttermost' %}
+                  {% assign is_preferred_vendor = true %}
+                {% endif %}
 
-                {{ product_entry }}
-                {%- assign rendered_index = rendered_index | plus: 1 -%}
+                {% capture product_html %}
+                  <li class="grid__item">
+                    {% render 'tp-card-product',
+                      card_product: product,
+                      media_aspect_ratio: section.settings.image_ratio,
+                      show_secondary_image: section.settings.show_secondary_image,
+                      show_vendor: section.settings.show_vendor,
+                      show_rating: section.settings.show_rating,
+                      lazy_load: lazy_load,
+                      show_quick_add: section.settings.enable_quick_add,
+                      show_price: section.settings.enable_price,
+                      button_color: section.settings.button_color,
+                      section_id: section.id %}
+                  </li>
+                {% endcapture %}
+
+                {%- if should_render_now and is_preferred_vendor -%}
+                  {%- capture priority_products -%}{{ priority_products }}{{ product_html }}{%- endcapture -%}
+                {%- elsif should_render_now -%}
+                  {%- capture other_vendor_products -%}{{ other_vendor_products }}{{ product_html }}{%- endcapture -%}
+                {%- elsif product.available and is_preferred_vendor -%}
+                  {%- capture preferred_vendor_products -%}{{ preferred_vendor_products }}{{ product_html }}{%- endcapture -%}
+                {%- elsif product.available -%}
+                  {%- capture other_vendor_products -%}{{ other_vendor_products }}{{ product_html }}{%- endcapture -%}
+                {%- else -%}
+                  {%- capture unavailable_products -%}{{ unavailable_products }}{{ product_html }}{%- endcapture -%}
+                {%- endif -%}
               {%- endfor -%}
+
+              {{ priority_products }}
+              {{ preferred_vendor_products }}
+              {{ other_vendor_products }}
+              {% unless section.settings.remove_OOS_products %}{{ unavailable_products }}{% endunless %}
             </ul>
 
             {%- if paginate.pages > 1 -%}
               {% render 'pagination', paginate: paginate, anchor: '' %}
             {%- endif -%}
           </div>
-        {%- endpaginate -%}
-      {%- endif -%}
+        {%- endif -%}
+      {%- endpaginate -%}
     </div>
   </div>
 </div>
