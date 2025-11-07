@@ -415,14 +415,14 @@
           "item_anj6zi": {
             "type": "item",
             "settings": {
-              "text": "Markdowns Sitewide",
+              "text": "Black Friday Markdowns Now Live",
               "url": ""
             }
           },
           "item_UAfhLb": {
             "type": "item",
             "settings": {
-              "text": "Free Shipping on Orders $50+",
+              "text": "Fast, Free Shipping on Orders $50+",
               "url": ""
             }
           }
@@ -486,7 +486,7 @@
           "button_text": "chat_with_us",
           "button_horizontal_position": "bottom_right",
           "button_vertical_position": "lowest",
-          "greeting_message": "🙋‍♂️ You've got a direct line with us. What's on your mind? (pricing, specifications, delivery)"
+          "greeting_message": "🙋‍♂️ Black Friday is here which means big savings. Fast & free shipping and black friday markdowns. What's on your mind?"
         }
       }
     }
