@@ -179,9 +179,23 @@
   <div
     id="email-popup"
     class="popup"
-    data-context="{{ popup_context }}">
-    <div class="popup-content">
-      <span class="close-popup" id="popup-close-button">&times;</span>
+    data-context="{{ popup_context }}"
+    aria-hidden="true">
+    <div
+      class="popup-content"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="email-popup-heading"
+      aria-describedby="email-popup-body"
+      data-popup-panel>
+      <button
+        type="button"
+        class="close-popup"
+        id="popup-close-button"
+        aria-label="{{ 'accessibility.close' | t }}"
+        data-popup-close>
+        &times;
+      </button>
       <div class="popup-inner">
         <div class="popup-image-container">
           {% comment %} {{ popup_img | image_url: width: 800 | image_tag: class: 'popup-image', alt: 'Popup Image' }} {% endcomment %}
@@ -239,10 +253,16 @@
               </ul>
             {%- endif -%}
             <div class="contact__fields">
-              <p class="popup-header" style="margin: {{ settings.popup_header_margin_top}} 0 0 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
+              <p
+                id="email-popup-heading"
+                class="popup-header"
+                style="margin: {{ settings.popup_header_margin_top}} 0 0 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
                 {{ popup_header }}
               </p>
-              <p class="popup-subheader" style="margin: {{ settings.popup_body_margin_top}} 0 {{ settings.popup_body_margin_bottom}} 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
+              <p
+                id="email-popup-body"
+                class="popup-subheader"
+                style="margin: {{ settings.popup_body_margin_top}} 0 {{ settings.popup_body_margin_bottom}} 0; line-height: 1.2; text-align: {{ settings.popup_alignment }};">
                 {{ popup_body }}
               </p>
               <div class="field field--with-error">
@@ -256,6 +276,7 @@
                   autocapitalize="off"
                   value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
                   aria-required="true"
+                  data-popup-initial-focus
                   {% if form.errors contains 'email' %}
                   aria-invalid="true"
                   aria-describedby="ContactForm-email-error"
@@ -286,10 +307,25 @@
   <div
     id="tp-email-success-popup"
     class="tp-success-popup popup"
-    data-context="{{ popup_context }}">
-    <div class="popup-content">
-      <span class="close-popup" id="success-popup-close-button">&times;</span>
-      <div style="padding: 40px 20px 20px 20px; display: flex; justify-content: center; align-items: center; line-height: 1.2;">
+    data-context="{{ popup_context }}"
+    aria-hidden="true">
+    <div
+      class="popup-content"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="tp-email-success-message"
+      data-popup-panel>
+      <button
+        type="button"
+        class="close-popup"
+        id="success-popup-close-button"
+        aria-label="{{ 'accessibility.close' | t }}"
+        data-popup-close>
+        &times;
+      </button>
+      <div
+        id="tp-email-success-message"
+        style="padding: 40px 20px 20px 20px; display: flex; justify-content: center; align-items: center; line-height: 1.2;">
         {{ success_msg }}
       </div>
     </div>
@@ -378,6 +414,112 @@
     // Debugging: Check if the cookie exists
     // console.log("Popup cookie value:", getCookie("popupShown"));
 
+    const popupState = {
+      activePopup: null,
+      lastFocusedElement: null
+    };
+
+    function showPopupElement(target) {
+      if (!target) {
+        return;
+      }
+      target.style.removeProperty("display");
+      target.classList.add("active");
+      target.setAttribute("aria-hidden", "false");
+    }
+
+    function hidePopupElement(target) {
+      if (!target) {
+        return;
+      }
+      target.classList.remove("active");
+      target.style.display = "none";
+      target.setAttribute("aria-hidden", "true");
+    }
+
+    function getPopupPanel(target) {
+      return target ? target.querySelector("[data-popup-panel]") : null;
+    }
+
+    function activatePopup(target) {
+      if (!target) {
+        return;
+      }
+
+      const isAlreadyActive = target.classList.contains("active");
+      showPopupElement(target);
+
+      if (isAlreadyActive && popupState.activePopup === target) {
+        return;
+      }
+
+      popupState.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+      const panel = getPopupPanel(target);
+      if (panel) {
+        panel.setAttribute("tabindex", "-1");
+        const focusTarget =
+          panel.querySelector("[data-popup-initial-focus]") ||
+          panel.querySelector("input, button, select, textarea, a[href], [tabindex]:not([tabindex^='-'])");
+        if (typeof trapFocus === "function") {
+          trapFocus(panel, focusTarget || panel);
+        } else if (focusTarget) {
+          focusTarget.focus();
+        } else {
+          panel.focus();
+        }
+      }
+
+      document.addEventListener("keydown", handlePopupKeydown);
+      popupState.activePopup = target;
+    }
+
+    function deactivatePopup(target, { restoreFocus = true } = {}) {
+      if (!target) {
+        return;
+      }
+
+      const wasOpen = target.classList.contains("active");
+      const wasActivePopup = popupState.activePopup === target;
+
+      hidePopupElement(target);
+
+      if (wasOpen) {
+        const panel = getPopupPanel(target);
+        if (panel) {
+          panel.removeAttribute("tabindex");
+        }
+      }
+
+      if (wasActivePopup) {
+        document.removeEventListener("keydown", handlePopupKeydown);
+        const focusTarget = restoreFocus && popupState.lastFocusedElement && typeof popupState.lastFocusedElement.focus === "function"
+          ? popupState.lastFocusedElement
+          : null;
+        if (typeof removeTrapFocus === "function") {
+          removeTrapFocus(focusTarget);
+        } else if (focusTarget) {
+          focusTarget.focus();
+        }
+        popupState.activePopup = null;
+        popupState.lastFocusedElement = null;
+      }
+    }
+
+    function handlePopupKeydown(event) {
+      if (event.key === "Escape" && popupState.activePopup) {
+        deactivatePopup(popupState.activePopup);
+      }
+    }
+
+    function showSuccessPopup() {
+      if (!successPopup) {
+        return;
+      }
+      deactivatePopup(popup, { restoreFocus: false });
+      activatePopup(successPopup);
+    }
+
     function openPopup(options = {}) {
       if (!popup) {
         return;
@@ -387,8 +529,7 @@
       const skipCookie = options.skipCookie === true;
       const shouldReportView = options.reportView !== false && (shouldShowPopup || manualOpen);
 
-      popup.style.removeProperty("display");
-      popup.classList.add("active");
+      activatePopup(popup);
 
       if (!skipCookie) {
         setCookie("popupShown_" + context, "true", 7);
@@ -460,42 +601,35 @@
     }
     if (closeButton) {
       closeButton.addEventListener("click", () => {
-        popup.classList.remove("active");
-        popup.style.display = "none";
+        deactivatePopup(popup);
       });
     }
 
     if (successCloseButton) {
       successCloseButton.addEventListener("click", () => {
-        successPopup.classList.remove("active");
-        popup.classList.remove("active");
-        popup.style.display = "none";
+        deactivatePopup(successPopup);
       });
     }
 
     if (popup) {
-      popup.addEventListener("click", (e) => {
-        if (e.target !== popup) return;
-        popup.classList.remove("active");
-        popup.style.display = "none";
+      popup.addEventListener("click", (event) => {
+        if (event.target === popup) {
+          deactivatePopup(popup);
+        }
       });
     }
 
     if (successPopup) {
-      successPopup.addEventListener("click", (e) => {
-        if (e.target !== successPopup) return;
-        successPopup.classList.remove("active");
-        popup.classList.remove("active");
-        popup.style.display = "none";
+      successPopup.addEventListener("click", (event) => {
+        if (event.target === successPopup) {
+          deactivatePopup(successPopup);
+        }
       });
     }
 
     // Show success pop-up if form submission was successful
     if (window.location.search.includes("customer_posted=true") && successPopup) {
-      successPopup.classList.add("active");
-      successCloseButton.addEventListener("click", () => {
-        document.getElementById("tp-email-success-popup").style.display = "none";
-      });
+      showSuccessPopup();
       setCookie("popupSuccessShown_" + context, "true", 7);
       reportPopupSuccess(context);
       if (window.history && window.history.replaceState) {
@@ -506,10 +640,7 @@
         } catch (error) {}
       }
     } else if (showPopupSuccess && popup && isThemeEditor && showPopup) {
-      successPopup.classList.add("active");
-      successCloseButton.addEventListener("click", () => {
-        document.getElementById("tp-email-success-popup").style.display = "none";
-      });
+      showSuccessPopup();
     }
       });
   </script>
@@ -717,6 +848,19 @@
     top: 10px;
     right: 30px;
     color: {{ popup_close_color }};
+    background: transparent;
+    border: 0;
+    line-height: 1;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .close-popup:focus-visible {
+    outline-offset: 4px;
   }
 
   .field:after {

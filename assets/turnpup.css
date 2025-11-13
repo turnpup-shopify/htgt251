@@ -48,10 +48,6 @@ header a, header a:hover, header a:focus {
 } */
 
 /* GLOBAL SITEWIDE */
-*:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
-}
 
 .media {
   background-color: transparent !important;
