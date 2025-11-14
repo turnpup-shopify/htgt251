@@ -236,7 +236,7 @@
         "button_label": "all",
         "button_link": "",
         "header": "",
-        "title_font_size": "40px",
+        "title_font_size": "30px",
         "mobile_title_size": "24px",
         "title_font_family": "'Helvetica Neue'",
         "title_font_weight": "600",
@@ -468,7 +468,7 @@
         "button_label": "all",
         "button_link": "",
         "header": "",
-        "title_font_size": "40px",
+        "title_font_size": "30px",
         "mobile_title_size": "24px",
         "title_font_family": "'Helvetica Neue'",
         "title_font_weight": "600",
@@ -700,14 +700,14 @@
         "button_label": "all",
         "button_link": "",
         "header": "",
-        "title_font_size": "40px",
+        "title_font_size": "30px",
         "mobile_title_size": "24px",
         "title_font_family": "'Helvetica Neue'",
         "title_font_weight": "600",
         "title_font_color": "#000000",
         "section_title_padding": "0px",
         "subtitle": "",
-        "subtitle_font_size": "20px",
+        "subtitle_font_size": "16px",
         "section_subtitle_padding": "0px",
         "subtitle_font_family": "'Helvetica Neue'",
         "subtitle_font_weight": "700",
@@ -724,7 +724,7 @@
     "featured_row_tAUpCA": {
       "type": "featured-row",
       "custom_css": [
-        "div, h2 {background: #3E2F2E; color: white;}"
+        "div,h2 {background: #3e2f2e; color: white;}"
       ],
       "name": "Featured Row Section",
       "settings": {
