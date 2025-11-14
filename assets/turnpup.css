@@ -266,6 +266,12 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
   cursor: pointer;
   display: grid;
   place-items: center;
+  color: inherit;
+  transition: color 120ms ease-in-out;
+}
+
+.tp-slide-cart__close:hover {
+  color: #fff;
 }
 
 .tp-slide-cart__content {
