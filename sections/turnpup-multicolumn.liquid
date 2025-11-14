@@ -341,6 +341,9 @@
     position: relative;
     overflow: hidden;
   }
+  #shopify-section-{{ section.id }} .tp-multicolumn-image--pending {
+    visibility: hidden;
+  }
   .multicolumn .grid__item {
     max-width: 100%;
     width: 100%;
@@ -399,7 +402,7 @@
     (function() {
       if (typeof window === 'undefined' || !('URLSearchParams' in window) || !window.fetch) return;
 
-      document.addEventListener('DOMContentLoaded', function() {
+      var init = function() {
         var paramKey = {{ section.settings.url_param_image_key | default: 'multicolumn_product' | json }};
         paramKey = (paramKey || 'multicolumn_product').trim();
         if (!paramKey) return;
@@ -407,6 +410,27 @@
         var params = new URLSearchParams(window.location.search);
         var handle = params.get(paramKey);
         if (!handle) return;
+
+        var sectionRoot = document.getElementById('shopify-section-{{ section.id }}');
+        if (!sectionRoot) return;
+
+        var targetImage = sectionRoot.querySelector('[data-multicolumn-image-target]') || sectionRoot.querySelector('.multicolumn-card__image');
+        if (!targetImage) return;
+
+        var authored = {
+          src: targetImage.getAttribute('src'),
+          srcset: targetImage.getAttribute('srcset'),
+          sizes: targetImage.getAttribute('sizes')
+        };
+
+        var showAuthoredImage = function() {
+          if (authored.src) targetImage.src = authored.src;
+          if (authored.srcset) targetImage.srcset = authored.srcset;
+          if (authored.sizes) targetImage.sizes = authored.sizes;
+          targetImage.classList.remove('tp-multicolumn-image--pending');
+        };
+
+        targetImage.classList.add('tp-multicolumn-image--pending');
 
         fetch('/products/' + encodeURIComponent(handle) + '.js')
           .then(function(response) {
@@ -416,29 +440,49 @@
             return response.json();
           })
           .then(function(product) {
-            if (!product || !product.images || product.images.length < 2) return;
+            if (!product || !product.images || product.images.length < 2) {
+              showAuthoredImage();
+              return;
+            }
 
             var secondImage = product.images[1];
             var imageSrc = typeof secondImage === 'string' ? secondImage : secondImage && secondImage.src;
-            if (!imageSrc) return;
+            if (!imageSrc) {
+              showAuthoredImage();
+              return;
+            }
 
-            var sectionRoot = document.getElementById('shopify-section-{{ section.id }}');
-            if (!sectionRoot) return;
+            var handleLoad = function() {
+              targetImage.classList.remove('tp-multicolumn-image--pending');
+            };
 
-            var targetImage = sectionRoot.querySelector('[data-multicolumn-image-target]') || sectionRoot.querySelector('.multicolumn-card__image');
-            if (!targetImage) return;
+            targetImage.addEventListener('load', handleLoad, { once: true });
+            targetImage.addEventListener('error', function() {
+              targetImage.removeEventListener('load', handleLoad);
+              showAuthoredImage();
+            }, { once: true });
 
             targetImage.removeAttribute('srcset');
             targetImage.removeAttribute('sizes');
             targetImage.src = imageSrc;
+            if (targetImage.complete) {
+              targetImage.classList.remove('tp-multicolumn-image--pending');
+            }
             if (!targetImage.getAttribute('alt') && product.title) {
               targetImage.alt = product.title;
             }
           })
           .catch(function(error) {
             console.warn('Turnpup MultiColumn image swap failed:', error);
+            showAuthoredImage();
           });
-      });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
     })();
   </script>
 {% endif %}
