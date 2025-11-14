@@ -269,7 +269,9 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
   color: inherit;
   transition: color 120ms ease-in-out;
 }
-
+.popup-content .close-popup:hover {
+  color: #fff;
+}
 .tp-slide-cart__close:hover {
   color: #fff;
 }
