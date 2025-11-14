@@ -68,6 +68,7 @@
                   <div class="media media--transparent" style="background-color: {{section.settings.section_background_color}};">
                     <img
                       class="multicolumn-card__image"
+                      {% if forloop.first %}data-multicolumn-image-target{% endif %}
                       srcset="{%- if block.settings.image.width >= 275 -%}{{ block.settings.image | img_url: '275x' }} 275w,{%- endif -%}
                         {%- if block.settings.image.width >= 550 -%}{{ block.settings.image | img_url: '550x' }} 550w,{%- endif -%}
                         {%- if block.settings.image.width >= 710 -%}{{ block.settings.image | img_url: '710x' }} 710w,{%- endif -%}
@@ -393,6 +394,55 @@
 
 </style>
 
+{% if section.settings.enable_url_param_image_swap %}
+  <script>
+    (function() {
+      if (typeof window === 'undefined' || !('URLSearchParams' in window) || !window.fetch) return;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var paramKey = {{ section.settings.url_param_image_key | default: 'multicolumn_product' | json }};
+        paramKey = (paramKey || 'multicolumn_product').trim();
+        if (!paramKey) return;
+
+        var params = new URLSearchParams(window.location.search);
+        var handle = params.get(paramKey);
+        if (!handle) return;
+
+        fetch('/products/' + encodeURIComponent(handle) + '.js')
+          .then(function(response) {
+            if (!response.ok) {
+              throw new Error('Product not found');
+            }
+            return response.json();
+          })
+          .then(function(product) {
+            if (!product || !product.images || product.images.length < 2) return;
+
+            var secondImage = product.images[1];
+            var imageSrc = typeof secondImage === 'string' ? secondImage : secondImage && secondImage.src;
+            if (!imageSrc) return;
+
+            var sectionRoot = document.getElementById('shopify-section-{{ section.id }}');
+            if (!sectionRoot) return;
+
+            var targetImage = sectionRoot.querySelector('[data-multicolumn-image-target]') || sectionRoot.querySelector('.multicolumn-card__image');
+            if (!targetImage) return;
+
+            targetImage.removeAttribute('srcset');
+            targetImage.removeAttribute('sizes');
+            targetImage.src = imageSrc;
+            if (!targetImage.getAttribute('alt') && product.title) {
+              targetImage.alt = product.title;
+            }
+          })
+          .catch(function(error) {
+            console.warn('Turnpup MultiColumn image swap failed:', error);
+          });
+      });
+    })();
+  </script>
+{% endif %}
+
 {% schema %}
     {
     "name": "Turnpup - MultiColumn",
@@ -520,6 +570,20 @@
     "default": false,
     "label": "Swipe on Mobile"
     }, 
+    {
+    "type": "checkbox",
+    "id": "enable_url_param_image_swap",
+    "label": "Enable image override via URL parameter?",
+    "default": false,
+    "info": "When enabled, appending '?multicolumn_product=<product-handle>' to the page URL swaps the primary column image with that product's second image."
+    },
+    {
+    "type": "text",
+    "id": "url_param_image_key",
+    "label": "URL parameter key",
+    "default": "multicolumn_product",
+    "info": "Optional. Set the query parameter name that carries the product handle for the image override."
+    },
     {
     "type": "range",
     "id": "mobile_columns",
