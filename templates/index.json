@@ -160,7 +160,7 @@
             "top_margin_column_mobile": "",
             "width": "",
             "text_max_width": "80%",
-            "hide_on_mobile": false,
+            "hide_on_mobile": true,
             "mobile_order": "",
             "margin_bottom_container": "",
             "remove_top_padding": false,
