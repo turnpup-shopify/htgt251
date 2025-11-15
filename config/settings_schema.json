@@ -563,13 +563,13 @@
         "label": "Blog Popup Image – Mobile"
       },
       {
-        "type": "text",
+        "type": "textarea",
         "id": "blog_header_popup_message",
         "label": "Blog Header Popup Message",
         "default": "Get design tips and 15% off—subscribe on the blog."
       },
       {
-        "type": "text",
+        "type": "textarea",
         "id": "blog_popup_message",
         "label": "Blog Popup Body Message",
         "default": "Join our newsletter for coastal design ideas, product drops, and your welcome code."
@@ -581,7 +581,7 @@
         "default": "Unlock Markdowns"
       },
       {
-        "type": "text",
+        "type": "textarea",
         "id": "blog_custom_success_message",
         "label": "Blog Success Message",
         "default": "Thanks for subscribing! Your code is on the way."
