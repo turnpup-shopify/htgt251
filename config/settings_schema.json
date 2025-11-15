@@ -232,13 +232,13 @@
         "label": "Header Popup Image Mobile"
       },
       {
-        "type": "text",
+        "type": "textarea",
         "id": "header_popup_message",
         "label": "Header Popup Message",
         "default": "Want 15% off your first purchase? Subscribe to emails to get your code today."
       },
       {
-        "type": "text",
+        "type": "textarea",
         "id": "popup_message",
         "label": "Popup Message",
         "default": "Want 15% off your first purchase? Subscribe to emails to get your code today."
@@ -250,7 +250,7 @@
         "default": "Unlock Markdowns"
       },
       {
-        "type": "text",
+        "type": "textarea",
         "id": "custom_success_message",
         "label": "Custom Success Message",
         "default": "Thanks for subscribing!"
@@ -506,13 +506,13 @@
         "label": "Hapny Popup Image – Mobile"
       },
       {
-        "type": "text",
+        "type": "textarea",
         "id": "hapny_header_popup_message",
         "label": "Hapny Header Popup Message",
         "default": "Join Hapny Home emails for styling tips and offers."
       },
       {
-        "type": "text",
+        "type": "textarea",
         "id": "hapny_popup_message",
         "label": "Hapny Popup Body Message",
         "default": "Subscribe to get Hapny Home product news, inspiration, and exclusive promotions."
@@ -524,7 +524,7 @@
         "default": "Unlock Markdowns"
       },
       {
-        "type": "text",
+        "type": "textarea",
         "id": "hapny_custom_success_message",
         "label": "Hapny Success Message",
         "default": "Thanks for subscribing to Hapny Home!"
