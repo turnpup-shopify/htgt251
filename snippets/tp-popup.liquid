@@ -146,6 +146,10 @@
   assign popup_body_font_mobile = settings.popup_body_font_size_mobile | default: popup_body_font_desktop
   assign popup_header_font_desktop = settings.popup_header_font_size | default: '1.4rem'
   assign popup_header_font_mobile = settings.popup_header_font_size_mobile | default: popup_header_font_desktop
+  assign popup_header_font_weight_desktop = settings.popup_header_font_weight | default: 600
+  assign popup_header_font_weight_mobile = settings.popup_header_font_weight_mobile | default: popup_header_font_weight_desktop
+  assign popup_body_font_weight_desktop = settings.popup_body_font_weight | default: 400
+  assign popup_body_font_weight_mobile = settings.popup_body_font_weight_mobile | default: popup_body_font_weight_desktop
   assign popup_subheader_font_desktop = settings.popup_subheader_font_size | default: popup_body_font_desktop
   assign popup_subheader_font_mobile = settings.popup_subheader_font_size_mobile | default: popup_subheader_font_desktop
   assign popup_cta_color = settings.popup_cta_color | default: '#0b2440'
@@ -679,10 +683,12 @@
 
   .popup-header {
     font-size: {{ popup_header_font_desktop }};
+    font-weight: {{ popup_header_font_weight_desktop }};
   }
 
   .popup-subheader {
     font-size: {{ popup_subheader_font_desktop }};
+    font-weight: {{ popup_body_font_weight_desktop }};
   }
 
   @media (max-width: 700px) {
@@ -692,10 +698,12 @@
 
     .popup-header {
       font-size: {{ popup_header_font_mobile }};
+      font-weight: {{ popup_header_font_weight_mobile }};
     }
 
     .popup-subheader {
       font-size: {{ popup_subheader_font_mobile }};
+      font-weight: {{ popup_body_font_weight_mobile }};
     }
   }
 

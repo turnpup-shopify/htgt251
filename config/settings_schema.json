@@ -289,6 +289,24 @@
         "default": "1.2rem"
       },
       {
+        "type": "range",
+        "id": "popup_header_font_weight",
+        "label": "Pop-up Header Font Weight (desktop)",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "default": 600
+      },
+      {
+        "type": "range",
+        "id": "popup_header_font_weight_mobile",
+        "label": "Pop-up Header Font Weight (mobile)",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "default": 600
+      },
+      {
         "type": "text",
         "id": "popup_subheader_font_size",
         "label": "Pop-up Subheader Font Size (desktop)",
@@ -373,6 +391,24 @@
         "id": "popup_body_font_size_mobile",
         "label": "Pop-up Body Font Size (mobile)",
         "default": "0.9rem"
+      },
+      {
+        "type": "range",
+        "id": "popup_body_font_weight",
+        "label": "Pop-up Body Font Weight (desktop)",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "default": 400
+      },
+      {
+        "type": "range",
+        "id": "popup_body_font_weight_mobile",
+        "label": "Pop-up Body Font Weight (mobile)",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "default": 400
       },
       {
         "type": "text",
