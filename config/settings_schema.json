@@ -184,7 +184,7 @@
         "type": "text",
         "id": "slide_cart_checkout_note",
         "label": "Checkout helper text",
-        "default": "",
+        "default": "Secure Checkout through Shopify",
         "info": "Optional line of text shown below the checkout button (e.g. “30 day returns”)."
       },
       {
