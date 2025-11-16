@@ -179,6 +179,38 @@
         "id": "slide_cart_free_shipping_message_unlocked",
         "label": "Unlocked message",
         "default": "Free shipping unlocked!"
+      },
+      {
+        "type": "text",
+        "id": "slide_cart_checkout_note",
+        "label": "Checkout helper text",
+        "default": "",
+        "info": "Optional line of text shown below the checkout button (e.g. “30 day returns”)."
+      },
+      {
+        "type": "header",
+        "content": "Slide-out cart upsell"
+      },
+      {
+        "type": "text",
+        "id": "slide_cart_upsell_heading",
+        "label": "Upsell heading",
+        "default": "You may also like"
+      },
+      {
+        "type": "collection",
+        "id": "slide_cart_upsell_collection",
+        "label": "Upsell collection",
+        "info": "Select a curated collection. Only in-stock products are shown."
+      },
+      {
+        "type": "range",
+        "id": "slide_cart_upsell_limit",
+        "label": "Upsell products to show",
+        "min": 1,
+        "max": 6,
+        "step": 1,
+        "default": 3
       }
     ]
   },

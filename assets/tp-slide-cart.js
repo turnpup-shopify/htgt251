@@ -166,6 +166,13 @@
           this.updateQuantity(button.dataset.line, 0);
         });
       });
+
+      this.form.querySelectorAll('[data-upsell-add]').forEach((button) => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          this.handleUpsellAdd(button);
+        });
+      });
     }
 
     onChange(event) {
@@ -205,6 +212,40 @@
           if (updateTarget) {
             updateTarget.classList.remove('is-updating');
           }
+        });
+    }
+
+    handleUpsellAdd(button) {
+      if (!button || button.disabled) {
+        return;
+      }
+
+      const variantId = Number(button.dataset.variantId);
+      if (!variantId) {
+        return;
+      }
+
+      button.disabled = true;
+      button.classList.add('is-loading');
+
+      const body = JSON.stringify({
+        items: [{ id: variantId, quantity: 1 }]
+      });
+
+      fetch(`${routes.cart_add_url}`, { ...fetchConfig(), body })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Upsell add to cart failed');
+          }
+          return response.json();
+        })
+        .then(() => this.refresh())
+        .catch((error) => {
+          console.error('[Slide Cart] Upsell add error', error);
+        })
+        .finally(() => {
+          button.disabled = false;
+          button.classList.remove('is-loading');
         });
     }
 

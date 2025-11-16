@@ -280,17 +280,24 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
   flex: 1 1 auto;
   overflow-y: auto;
   padding: 2.4rem 2.0rem 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
 }
 
 .tp-slide-cart__form {
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .tp-slide-cart__empty {
   text-align: center;
   display: grid;
   gap: 1.6rem;
+  flex: 1 1 auto;
+  align-content: center;
 }
 
 .tp-slide-cart__items {
@@ -299,6 +306,7 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
   padding: 0;
   display: grid;
   gap: 1.6rem;
+  flex: 1 1 auto;
 }
 
 .tp-slide-cart__item {
@@ -413,7 +421,7 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
   padding: 1.6rem 0 3.2rem;
   display: grid;
   gap: 1.6rem;
-  margin-top: 1.6rem;
+  margin-top: auto;
 }
 
 .tp-slide-cart__subtotal {
@@ -480,6 +488,92 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
 
 .tp-slide-cart__checkout {
   padding: 1.4rem 2rem;
+}
+
+.tp-slide-cart__checkout-note {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #111;
+  text-align: center;
+}
+
+.tp-slide-cart__upsell {
+  margin-top: 2rem;
+  padding: 2rem 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: grid;
+  gap: 1.2rem;
+}
+
+.tp-slide-cart__upsell-heading {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.tp-slide-cart__upsell-items {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.tp-slide-cart__upsell-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.tp-slide-cart__upsell-media img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+}
+
+.tp-slide-cart__upsell-details {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.tp-slide-cart__upsell-title {
+  font-weight: 600;
+  font-size: 1.35rem;
+  margin: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.tp-slide-cart__upsell-title:hover {
+  text-decoration: underline;
+}
+
+.tp-slide-cart__upsell-price {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.tp-slide-cart__upsell-price-compare {
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1.2rem;
+}
+
+.tp-slide-cart__upsell-actions {
+  grid-column: 1 / -1;
+}
+
+.tp-slide-cart__upsell-add {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+}
+
+.tp-slide-cart__upsell-add.is-loading {
+  opacity: 0.65;
+  pointer-events: none;
 }
 
 body.tp-slide-cart-open {

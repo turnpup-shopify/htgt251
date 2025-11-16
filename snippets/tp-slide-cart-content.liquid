@@ -10,6 +10,13 @@
     assign free_shipping_enabled = true
   endif
 %}
+{% liquid
+  assign slide_cart_checkout_note = settings.slide_cart_checkout_note | to_s | strip
+  assign upsell_collection = settings.slide_cart_upsell_collection
+  assign upsell_products_limit = settings.slide_cart_upsell_limit | default: 3
+  assign upsell_products_limit = upsell_products_limit | plus: 0
+  assign upsell_heading = settings.slide_cart_upsell_heading | default: 'You may also like'
+%}
 
 {% if free_shipping_enabled %}
   {% liquid
@@ -220,7 +227,67 @@
 
       <div class="tp-slide-cart__actions">
         <button class="hapny_button button button--primary tp-slide-cart__checkout" name="checkout">{{ 'sections.cart.checkout' | t }}</button>
+        {% if slide_cart_checkout_note != blank %}
+          <p class="tp-slide-cart__checkout-note">{{ slide_cart_checkout_note }}</p>
+        {% endif %}
       </div>
     </div>
+
+    {% if upsell_collection %}
+      {% assign upsell_rendered = 0 %}
+      {% capture upsell_items %}
+        {% for upsell_product in upsell_collection.products %}
+          {% if upsell_product.available %}
+            {% assign upsell_rendered = upsell_rendered | plus: 1 %}
+            {% assign upsell_variant = upsell_product.selected_or_first_available_variant %}
+            <article class="tp-slide-cart__upsell-item">
+              {% if upsell_product.featured_image %}
+                {% assign upsell_image_ratio = upsell_product.featured_image.aspect_ratio | default: 1 %}
+                <a class="tp-slide-cart__upsell-media" href="{{ upsell_product.url }}">
+                  <img
+                    src="{{ upsell_product.featured_image | image_url: width: 180 }}"
+                    alt="{{ upsell_product.featured_image.alt | default: upsell_product.title | escape }}"
+                    loading="lazy"
+                    width="90"
+                    height="{{ 90 | divided_by: upsell_image_ratio | ceil }}">
+                </a>
+              {% endif %}
+              <div class="tp-slide-cart__upsell-details">
+                <a class="tp-slide-cart__upsell-title" href="{{ upsell_product.url }}">{{ upsell_product.title }}</a>
+                <div class="tp-slide-cart__upsell-price">
+                  <span class="tp-slide-cart__upsell-price-current">{{ upsell_variant.price | money }}</span>
+                  {% if upsell_variant.compare_at_price > upsell_variant.price %}
+                    <span class="tp-slide-cart__upsell-price-compare">{{ upsell_variant.compare_at_price | money }}</span>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="tp-slide-cart__upsell-actions">
+                <button
+                  type="button"
+                  class="tp-slide-cart__upsell-add button button--secondary"
+                  data-upsell-add
+                  data-variant-id="{{ upsell_variant.id }}"
+                  data-product-title="{{ upsell_product.title | escape }}">
+                  {{ 'products.product.add_to_cart' | t }}
+                </button>
+              </div>
+            </article>
+            {% if upsell_rendered >= upsell_products_limit %}
+              {% break %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endcapture %}
+      {% if upsell_rendered > 0 %}
+        <div class="tp-slide-cart__upsell" data-slide-cart-upsell>
+          {% if upsell_heading != blank %}
+            <p class="tp-slide-cart__upsell-heading">{{ upsell_heading }}</p>
+          {% endif %}
+          <div class="tp-slide-cart__upsell-items">
+            {{ upsell_items }}
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
   </form>
 {%- endif -%}
