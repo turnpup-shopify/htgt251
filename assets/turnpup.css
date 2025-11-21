@@ -499,11 +499,13 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
 }
 
 .tp-slide-cart__upsell {
-  margin-top: 2rem;
-  padding: 2rem 0 0;
+  margin-top: 0;
+  padding: 1.6rem;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
   display: grid;
   gap: 1.2rem;
+  background: #f8f6f2;
+  border-radius: 10px;
 }
 
 .tp-slide-cart__upsell-heading {
@@ -568,8 +570,18 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
 }
 
 .tp-slide-cart__upsell-add {
-  width: 100%;
-  padding: 0.8rem 1.2rem;
+  width: auto;
+  padding: 0;
+  margin-top: 0;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.2rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .tp-slide-cart__upsell-add.is-loading {

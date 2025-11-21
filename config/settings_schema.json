@@ -120,6 +120,23 @@
       },
       {
         "type": "header",
+        "content": "Announcement timer"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_announcement_timer_on_products",
+        "label": "Show announcement timer on product pages",
+        "default": true,
+        "info": "Controls rendering of the Announcement Timer section on product templates."
+      },
+      {
+        "type": "textarea",
+        "id": "announcement_timer_excluded_product_handles",
+        "label": "Hide timer on these product handles",
+        "info": "Enter one product handle per line to hide the announcement timer. Leave blank to show on all products."
+      },
+      {
+        "type": "header",
         "content": "Cart"
       },
       {

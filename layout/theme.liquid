@@ -404,9 +404,25 @@ body {
 
   {% comment %} {% section 'announcement-bar' %} {% endcomment %}
   {% comment %} {% section 'announcement-marquee' %} {% endcomment %}
-  {% unless hapny_product_page %}
+  {%- assign render_announcement_timer = true -%}
+  {%- if request.page_type == 'product' -%}
+    {%- unless settings.enable_announcement_timer_on_products -%}
+      {%- assign render_announcement_timer = false -%}
+    {%- endunless -%}
+    {%- if render_announcement_timer and product and settings.announcement_timer_excluded_product_handles != blank -%}
+      {%- assign ann_excluded_handles = settings.announcement_timer_excluded_product_handles | replace: '\r', '' | split: '\n' -%}
+      {%- assign product_handle_downcase = product.handle | downcase -%}
+      {%- for handle in ann_excluded_handles -%}
+        {%- assign clean_handle = handle | strip | downcase -%}
+        {%- if clean_handle != '' and clean_handle == product_handle_downcase -%}
+          {%- assign render_announcement_timer = false -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endif -%}
+  {% if render_announcement_timer %}
     {% section 'announcement-timer' %}
-  {% endunless %}
+  {% endif %}
   {% section 'header' %}
   {% comment %} {% sections 'header-group' %} {% endcomment %}
   {% if settings.enable_slide_cart %}
