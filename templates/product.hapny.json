@@ -224,36 +224,6 @@
         "mobile_padding_bottom": 0
       }
     },
-    "main_product_hapny_pRt9TU": {
-      "type": "main-product-hapny",
-      "name": "Hapny - PDP Details",
-      "settings": {
-        "enable_sticky_info": true,
-        "color_scheme": "",
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "stacked",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "mobile_thumbnails": "hide",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "product_inventory_enable": true,
-        "bottom_left_section_title": "Details",
-        "bottom_middle_section_title": "Dimensions",
-        "bottom_right_section_title": "Product Care",
-        "pdp_dscription_font_size": "14px",
-        "buy_online_button_copy": "Buy at MyKnobs",
-        "tp_horizontal_divider_color": "#f6b700",
-        "tp_bottom_header_color": "#f6b700",
-        "tp_specification_font_size": "12px",
-        "tp_specification_font_color": "#000000",
-        "tp_bottom_header_font_size": "24px"
-      }
-    },
     "turnpup_marquee_DGNi7J": {
       "type": "turnpup-marquee",
       "blocks": {
@@ -332,6 +302,36 @@
         "mobile_logo_height": "30px",
         "desktop_space_between": 50,
         "mobile_space_between": 140
+      }
+    },
+    "main_product_hapny_pRt9TU": {
+      "type": "main-product-hapny",
+      "name": "Hapny - PDP Details",
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "hide",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "product_inventory_enable": true,
+        "bottom_left_section_title": "Details",
+        "bottom_middle_section_title": "Dimensions",
+        "bottom_right_section_title": "Product Care",
+        "pdp_dscription_font_size": "14px",
+        "buy_online_button_copy": "Buy at MyKnobs",
+        "tp_horizontal_divider_color": "#f6b700",
+        "tp_bottom_header_color": "#f6b700",
+        "tp_specification_font_size": "12px",
+        "tp_specification_font_color": "#000000",
+        "tp_bottom_header_font_size": "24px"
       }
     },
     "tp_questions_tYPppc": {
@@ -487,7 +487,9 @@
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "review_data": "sample_data",
-            "max_width": 1200
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
           }
         }
       },
@@ -613,6 +615,7 @@
             "is_hero_button_two": false,
             "button_is_white_border_two": false,
             "space_between_buttons": 0,
+            "block_linklist": "",
             "vertically_align_center": false,
             "top_margin_column": "",
             "top_margin_column_mobile": "0px",
@@ -664,6 +667,7 @@
             "is_hero_button_two": false,
             "button_is_white_border_two": false,
             "space_between_buttons": 8,
+            "block_linklist": "",
             "vertically_align_center": false,
             "top_margin_column": "",
             "top_margin_column_mobile": "0px",
@@ -715,6 +719,7 @@
             "is_hero_button_two": false,
             "button_is_white_border_two": false,
             "space_between_buttons": 8,
+            "block_linklist": "",
             "vertically_align_center": false,
             "top_margin_column": "",
             "top_margin_column_mobile": "0px",
@@ -750,6 +755,8 @@
         "mobile_max_height_desktop": 90,
         "enabled_border": false,
         "swipe_on_mobile": true,
+        "enable_url_param_image_swap": false,
+        "url_param_image_key": "multicolumn_product",
         "mobile_columns": 1,
         "desktop_image_width": "100%",
         "mobile_image_width": "100%",
@@ -770,7 +777,6 @@
         "button_text_color_hover": "#ffffff",
         "button_label": "",
         "button_link": "",
-        "linklist": "",
         "title": "Why shop with us?",
         "title_h": "h2",
         "title_font_size": "22px",
@@ -977,6 +983,8 @@
         "turnpup_mobile_note_text_size": "16px",
         "turnpup_note_text_color": "#373f41",
         "turnpup_note_text_weight": "700",
+        "tp_margin": "100px 40px 100px 40px",
+        "tp_mobile_margin": "60px 20px 60px 20px",
         "tp_margin_top_bottom": "60px",
         "tp_margin_left_right": "40px",
         "tp_mobile_margin_top_bottom": "40px",
@@ -998,8 +1006,8 @@
   },
   "order": [
     "main",
-    "main_product_hapny_pRt9TU",
     "turnpup_marquee_DGNi7J",
+    "main_product_hapny_pRt9TU",
     "tp_questions_tYPppc",
     "tp_pdp_products_in_collection_EzAgRV",
     "tp_quiz_LYAkfE",
