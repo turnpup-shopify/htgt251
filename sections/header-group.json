@@ -12,26 +12,49 @@
   "type": "header",
   "sections": {
     "header": {
-        "type": "header",
-        "custom_css": [
-          ".mega-menu__content {background-color: rgba(255, 255, 255, 0.8); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);}"
-        ],
-        "settings": {
-          "color_scheme": "background-1",
-          "logo": "shopify://shop_images/logo_black_c48af3d4-0f71-4d3e-9848-8860d3b0f539.png",
-          "logo_width": 50,
-          "logo_position": "middle-left",
-          "menu_positioning": "relative",
-          "menu": "main-menu",
-          "online_menu": "main-menu",
-          "menu_type_desktop": "mega",
-          "show_line_separator": true,
-          "enable_sticky_header": true,
-          "margin_bottom": 0
-        }
+      "type": "header",
+      "custom_css": [
+        ".mega-menu__content {background-color: rgba(255, 255, 255, 0.8); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);}"
+      ],
+      "settings": {
+        "color_scheme": "background-1",
+        "logo": "shopify://shop_images/logo_black_c48af3d4-0f71-4d3e-9848-8860d3b0f539.png",
+        "logo_width": 50,
+        "logo_position": "middle-left",
+        "menu_positioning": "relative",
+        "menu": "main-menu",
+        "online_menu": "main-menu",
+        "menu_type_desktop": "mega",
+        "show_line_separator": true,
+        "enable_sticky_header": true,
+        "margin_bottom": 0
       }
+    },
+    "announcement_timer_mfte4E": {
+      "type": "announcement-timer",
+      "name": "Announcement Timer",
+      "settings": {
+        "bg_color": "#E9F0E6",
+        "text_color": "#1A1A1A",
+        "font_size": 12,
+        "font_family": "Helvetica Neue",
+        "font_weight": "600",
+        "text_decoration": "none",
+        "uppercase": true,
+        "item_gap": 24,
+        "separator_text": "|",
+        "speed": 40,
+        "enable_rotation": true,
+        "pause_on_hover": true,
+        "countdown_enable": false,
+        "countdown_target": "",
+        "countdown_label": "Offer ends in",
+        "countdown_spacing": 4
+      }
+    }
   },
   "order": [
-    "header"
+    "header",
+    "announcement_timer_mfte4E"
   ]
 }
