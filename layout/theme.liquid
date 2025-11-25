@@ -402,6 +402,8 @@ body {
     {%- endif -%}
   {%- endif -%}
 
+{% sections 'header-group' %}
+
   {% comment %} {% section 'announcement-bar' %} {% endcomment %}
   {% comment %} {% section 'announcement-marquee' %} {% endcomment %}
   {%- assign render_announcement_timer = true -%}
@@ -424,7 +426,7 @@ body {
     {% section 'announcement-timer' %}
   {% endif %}
   {% section 'header' %}
-  {% comment %} {% sections 'header-group' %} {% endcomment %}
+
   {% if settings.enable_slide_cart %}
     {% section 'tp-slide-cart' %}
   {% endif %}
