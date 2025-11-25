@@ -33,24 +33,44 @@
     "announcement_timer_mfte4E": {
       "type": "announcement-timer",
       "name": "Announcement Timer",
-      "settings": {
-        "bg_color": "#E9F0E6",
-        "text_color": "#1A1A1A",
-        "font_size": 12,
-        "font_family": "Helvetica Neue",
-        "font_weight": "600",
-        "text_decoration": "none",
-        "uppercase": true,
-        "item_gap": 24,
-        "separator_text": "|",
-        "speed": 40,
-        "enable_rotation": true,
-        "pause_on_hover": true,
-        "countdown_enable": false,
-        "countdown_target": "",
-        "countdown_label": "Offer ends in",
-        "countdown_spacing": 4
-      }
+      "blocks": {
+          "item_anj6zi": {
+            "type": "item",
+            "settings": {
+              "text": "Black Friday Markdowns Now Live",
+              "url": ""
+            }
+          },
+          "item_UAfhLb": {
+            "type": "item",
+            "settings": {
+              "text": "Fast, Free Shipping on Orders $50+",
+              "url": ""
+            }
+          }
+        },
+        "block_order": [
+          "item_anj6zi",
+          "item_UAfhLb"
+        ],
+        "settings": {
+          "bg_color": "#e9f0e6",
+          "text_color": "#1a1a1a",
+          "font_size": 12,
+          "font_family": "Helvetica Neue",
+          "font_weight": "500",
+          "text_decoration": "none",
+          "uppercase": true,
+          "item_gap": 24,
+          "separator_text": "|",
+          "speed": 40,
+          "enable_rotation": true,
+          "pause_on_hover": true,
+          "countdown_enable": true,
+          "countdown_target": "2025-10-31T23:59:59",
+          "countdown_label": "Offer ends in",
+          "countdown_spacing": 0
+        }
     }
   },
   "order": [
