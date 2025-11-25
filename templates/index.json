@@ -286,77 +286,6 @@
         "mobile_font_size": "14px"
       }
     },
-    "turnpup_marquee_9XfUfG": {
-      "type": "turnpup-marquee",
-      "blocks": {
-        "logo_6GyHkA": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/transparent-white-marble-accent-table.png",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "white-marble-drink-table"
-          }
-        },
-        "logo_pKewLA": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/brushed-brass-mirror.jpg",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "brass-arched-mirror-scalloped-brushed"
-          }
-        },
-        "logo_4zhcEk": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/transparent-side-table-wood-drum.png",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "mango-wood-side-table"
-          }
-        },
-        "logo_wy9wDg": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/statement-floor-lamp.jpg",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "unique-coastal-floor-lamp"
-          }
-        },
-        "logo_tyHLtk": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/transparent-modern-grey-side-table.png",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "modern-grey-side-table"
-          }
-        }
-      },
-      "block_order": [
-        "logo_6GyHkA",
-        "logo_pKewLA",
-        "logo_4zhcEk",
-        "logo_wy9wDg",
-        "logo_tyHLtk"
-      ],
-      "custom_css": [
-        ".flwr-pr-marquee-container {border-bottom: 1px solid black; border-top: 1px solid black;}"
-      ],
-      "settings": {
-        "container_width": "65%",
-        "container_top_margin": 30,
-        "container_bottom_margin": 20,
-        "module_background_color": "#ffffff",
-        "header_text_color": "rgba(0,0,0,0)",
-        "header_text": "",
-        "header_font_size": "40px",
-        "header_mobile_font_size": "22px",
-        "header_font_family": "assistant_n4",
-        "header_font_weight": "800",
-        "desktop_logo_height": "70px",
-        "mobile_logo_height": "50px",
-        "desktop_space_between": 40,
-        "mobile_space_between": 60
-      }
-    },
     "tp_article_carousel_tUtyD6": {
       "type": "tp-article-carousel",
       "custom_css": [],
@@ -457,6 +386,77 @@
         "num_size_m": 14,
         "num_color": "#aba49d",
         "num_opacity": 1
+      }
+    },
+    "turnpup_marquee_9XfUfG": {
+      "type": "turnpup-marquee",
+      "blocks": {
+        "logo_6GyHkA": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/transparent-white-marble-accent-table.png",
+            "link_to_article": "https://flwrmarket.com",
+            "product": "white-marble-drink-table"
+          }
+        },
+        "logo_pKewLA": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/brushed-brass-mirror.jpg",
+            "link_to_article": "https://flwrmarket.com",
+            "product": "brass-arched-mirror-scalloped-brushed"
+          }
+        },
+        "logo_4zhcEk": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/transparent-side-table-wood-drum.png",
+            "link_to_article": "https://flwrmarket.com",
+            "product": "mango-wood-side-table"
+          }
+        },
+        "logo_wy9wDg": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/statement-floor-lamp.jpg",
+            "link_to_article": "https://flwrmarket.com",
+            "product": "unique-coastal-floor-lamp"
+          }
+        },
+        "logo_tyHLtk": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/transparent-modern-grey-side-table.png",
+            "link_to_article": "https://flwrmarket.com",
+            "product": "modern-grey-side-table"
+          }
+        }
+      },
+      "block_order": [
+        "logo_6GyHkA",
+        "logo_pKewLA",
+        "logo_4zhcEk",
+        "logo_wy9wDg",
+        "logo_tyHLtk"
+      ],
+      "custom_css": [
+        ".flwr-pr-marquee-container {border-bottom: 1px solid black; border-top: 1px solid black;}"
+      ],
+      "settings": {
+        "container_width": "65%",
+        "container_top_margin": 30,
+        "container_bottom_margin": 20,
+        "module_background_color": "#ffffff",
+        "header_text_color": "rgba(0,0,0,0)",
+        "header_text": "",
+        "header_font_size": "40px",
+        "header_mobile_font_size": "22px",
+        "header_font_family": "assistant_n4",
+        "header_font_weight": "800",
+        "desktop_logo_height": "70px",
+        "mobile_logo_height": "50px",
+        "desktop_space_between": 40,
+        "mobile_space_between": 60
       }
     },
     "turnpup_cat_cells_e4UbRR": {
@@ -2145,9 +2145,9 @@
   "order": [
     "turnpup_multicolumn_Cd8XQ3",
     "tp_open_closed_JKkjRY",
-    "turnpup_marquee_9XfUfG",
     "tp_article_carousel_tUtyD6",
     "turnpup_keyword_cats_JBhy3a",
+    "turnpup_marquee_9XfUfG",
     "turnpup_cat_cells_e4UbRR",
     "at_scrolling_66baeL",
     "tp_article_carousel_HwRjKQ",
