@@ -402,7 +402,9 @@ body {
     {%- endif -%}
   {%- endif -%}
 
-  {% sections 'header-group' %}
+  <div id="shopify-section-header">
+    {% sections 'header-group' %}
+  </div>
 
   {% if settings.enable_slide_cart %}
     {% section 'tp-slide-cart' %}
