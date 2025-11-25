@@ -223,7 +223,7 @@
   const wrapper = root.querySelector('.ann-marquee__track-wrapper');
   const track   = root.querySelector('.ann-marquee__track');
   const countdownEl = root.querySelector('.ann-countdown');
-  const announcementSection = document.querySelector('.tp-ann-timer');
+  const announcementSection = root.closest('.tp-ann-timer') || root;
   const headerEl = document.querySelector('.shopify-section-group-header-group');
 
   const toggleAnnouncementHeight = () => {
