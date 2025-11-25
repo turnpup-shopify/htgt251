@@ -230,6 +230,10 @@
     if (!announcementSection || !headerEl) return;
     const scrolled = (window.pageYOffset || document.documentElement.scrollTop) !== 0;
     const isHidden = headerEl.classList.contains('shopify-section-header-sticky') && headerEl.classList.contains('shopify-section-header-hidden');
+    console.log(announcementSection);
+    console.log(headerEl);
+    console.log(scrolled);
+    console.log(isHidden);
     announcementSection.style.height = isHidden && scrolled ? '0px' : 'auto';
   };
 
