@@ -16,53 +16,73 @@
   {% assign marquee_items = section.blocks | concat: section.blocks %}
 {% endif %}
 
-<section
-  id="announcement-marquee"
-  class="ann-marquee"
-  style="--am-bg: {{ section.settings.bg_color }}; --am-color: {{ section.settings.text_color }}; --am-gap: {{ section.settings.item_gap }}px; --am-speed: {{ section.settings.speed }}s; --am-font-size: {{ section.settings.font_size }}px; --am-font-weight: {{ section.settings.font_weight }}; --am-underline: {{ section.settings.text_decoration }}; --am-font-family: {{ section.settings.font_family | replace:'\"','\\\"' }}; --am-countdown-gap: {{ section.settings.countdown_spacing | default: 12 }}px;">
-  {% if section.settings.countdown_enable and section.settings.countdown_target != blank %}
-    <div class="ann-countdown" data-countdown-target="{{ section.settings.countdown_target | escape }}">
-      {% if section.settings.countdown_label != blank %}
-        <span class="ann-countdown__label">{{ section.settings.countdown_label }}</span>
-      {% endif %}
-      <span class="ann-countdown__timer" aria-live="polite">--d --h --m --s</span>
-    </div>
-  {% endif %}
-  <div class="ann-marquee__track-wrapper {% if rotate_enabled and section.settings.pause_on_hover %}is-pausable{% endif %}{% unless rotate_enabled %} is-static{% endunless %}" data-rotate="{{ rotate_enabled }}">
-    <div
-      class="ann-marquee__track{% if rotate_enabled %} ann-marquee__track--animated{% endif %}"
-      data-sep="{{ section.settings.separator_text }}"
-      aria-label="Promotions">
-      {% for block in marquee_items %}
-        {% assign b = block.settings %}
-        <div class="ann-item" {{ block.shopify_attributes }}>
-          {% if b.url != blank %}
-            <a
-              href="{{ b.url }}"
-              class="ann-link"
-              {% if b.preview_image != blank %}
-              data-preview="{{ b.preview_image | image_url: width: 480 }}"
-              {% endif %}>
-              {{ b.text | escape }}
-            </a>
-          {% else %}
-            <span class="ann-text">{{ b.text | escape }}</span>
-          {% endif %}
-        </div>
-        {% if section.settings.separator_text != blank and forloop.index != marquee_items.size %}
-          <div class="ann-sep" aria-hidden="true">{{ section.settings.separator_text }}</div>
+{%- assign render_announcement_timer = true -%}
+{%- if request.page_type == 'product' -%}
+  {%- unless settings.enable_announcement_timer_on_products -%}
+    {%- assign render_announcement_timer = false -%}
+  {%- endunless -%}
+  {%- if render_announcement_timer and product and settings.announcement_timer_excluded_product_handles != blank -%}
+    {%- assign ann_excluded_handles = settings.announcement_timer_excluded_product_handles | replace: '\r', '' | split: '\n' -%}
+    {%- assign product_handle_downcase = product.handle | downcase -%}
+    {%- for handle in ann_excluded_handles -%}
+      {%- assign clean_handle = handle | strip | downcase -%}
+      {%- if clean_handle != '' and clean_handle == product_handle_downcase -%}
+        {%- assign render_announcement_timer = false -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endif -%}
+{% if render_announcement_timer %}
+  <section
+    id="announcement-marquee"
+    class="ann-marquee"
+    style="--am-bg: {{ section.settings.bg_color }}; --am-color: {{ section.settings.text_color }}; --am-gap: {{ section.settings.item_gap }}px; --am-speed: {{ section.settings.speed }}s; --am-font-size: {{ section.settings.font_size }}px; --am-font-weight: {{ section.settings.font_weight }}; --am-underline: {{ section.settings.text_decoration }}; --am-font-family: {{ section.settings.font_family | replace:'\"','\\\"' }}; --am-countdown-gap: {{ section.settings.countdown_spacing | default: 12 }}px;">
+    {% if section.settings.countdown_enable and section.settings.countdown_target != blank %}
+      <div class="ann-countdown" data-countdown-target="{{ section.settings.countdown_target | escape }}">
+        {% if section.settings.countdown_label != blank %}
+          <span class="ann-countdown__label">{{ section.settings.countdown_label }}</span>
         {% endif %}
-      {% endfor %}
+        <span class="ann-countdown__timer" aria-live="polite">--d --h --m --s</span>
+      </div>
+    {% endif %}
+    <div class="ann-marquee__track-wrapper {% if rotate_enabled and section.settings.pause_on_hover %}is-pausable{% endif %}{% unless rotate_enabled %} is-static{% endunless %}" data-rotate="{{ rotate_enabled }}">
+      <div
+        class="ann-marquee__track{% if rotate_enabled %} ann-marquee__track--animated{% endif %}"
+        data-sep="{{ section.settings.separator_text }}"
+        aria-label="Promotions">
+        {% for block in marquee_items %}
+          {% assign b = block.settings %}
+          <div class="ann-item" {{ block.shopify_attributes }}>
+            {% if b.url != blank %}
+              <a
+                href="{{ b.url }}"
+                class="ann-link"
+                {% if b.preview_image != blank %}
+                data-preview="{{ b.preview_image | image_url: width: 480 }}"
+                {% endif %}>
+                {{ b.text | escape }}
+              </a>
+            {% else %}
+              <span class="ann-text">{{ b.text | escape }}</span>
+            {% endif %}
+          </div>
+          {% if section.settings.separator_text != blank and forloop.index != marquee_items.size %}
+            <div class="ann-sep" aria-hidden="true">{{ section.settings.separator_text }}</div>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
-  </div>
 
-  <div
-    class="ann-preview"
-    id="annPreview"
-    hidden>
-    <img id="annPreviewImg" alt="" />
-  </div>
-</section>
+    <div
+      class="ann-preview"
+      id="annPreview"
+      hidden>
+      <img id="annPreviewImg" alt="" />
+    </div>
+  </section>
+
+{% endif %}
+{% comment %} {% section 'header' %} {% endcomment %}
 
 <style>
   .ann-marquee {
