@@ -11,6 +11,50 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
+    "announcement_timer_mfte4E": {
+      "type": "announcement-timer",
+      "blocks": {
+        "item_anj6zi": {
+          "type": "item",
+          "settings": {
+            "text": "Black Friday Markdowns Now Live",
+            "url": ""
+          }
+        },
+        "item_UAfhLb": {
+          "type": "item",
+          "settings": {
+            "text": "Fast, Free Shipping on Orders $50+",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_anj6zi",
+        "item_UAfhLb"
+      ],
+      "name": "Announcement Timer",
+      "settings": {
+        "bg_color": "#e9f0e6",
+        "text_color": "#1a1a1a",
+        "font_size": 12,
+        "font_family": "Helvetica Neue",
+        "font_weight": "500",
+        "show_marquee": true,
+        "text_decoration": "none",
+        "uppercase": true,
+        "item_gap": 24,
+        "separator_text": "|",
+        "speed": 40,
+        "enable_rotation": true,
+        "pause_on_hover": true,
+        "countdown_enable": true,
+        "show_countdown": false,
+        "countdown_target": "2025-10-31T23:59:59",
+        "countdown_label": "Offer ends in",
+        "countdown_spacing": 0
+      }
+    },
     "header": {
       "type": "header",
       "custom_css": [
@@ -29,52 +73,10 @@
         "enable_sticky_header": true,
         "margin_bottom": 0
       }
-    },
-    "announcement_timer_mfte4E": {
-      "type": "announcement-timer",
-      "name": "Announcement Timer",
-      "blocks": {
-          "item_anj6zi": {
-            "type": "item",
-            "settings": {
-              "text": "Black Friday Markdowns Now Live",
-              "url": ""
-            }
-          },
-          "item_UAfhLb": {
-            "type": "item",
-            "settings": {
-              "text": "Fast, Free Shipping on Orders $50+",
-              "url": ""
-            }
-          }
-        },
-        "block_order": [
-          "item_anj6zi",
-          "item_UAfhLb"
-        ],
-        "settings": {
-          "bg_color": "#e9f0e6",
-          "text_color": "#1a1a1a",
-          "font_size": 12,
-          "font_family": "Helvetica Neue",
-          "font_weight": "500",
-          "text_decoration": "none",
-          "uppercase": true,
-          "item_gap": 24,
-          "separator_text": "|",
-          "speed": 40,
-          "enable_rotation": true,
-          "pause_on_hover": true,
-          "countdown_enable": true,
-          "countdown_target": "2025-10-31T23:59:59",
-          "countdown_label": "Offer ends in",
-          "countdown_spacing": 0
-        }
     }
   },
   "order": [
-        "announcement_timer_mfte4E",
-        "header"
+    "announcement_timer_mfte4E",
+    "header"
   ]
 }
