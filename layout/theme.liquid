@@ -423,9 +423,9 @@ body {
     {%- endif -%}
   {%- endif -%}
   {% if render_announcement_timer %}
-    {% section 'announcement-timer' %}
+    {% comment %} {% section 'announcement-timer' %} {% endcomment %}
   {% endif %}
-  {% section 'header' %}
+  {% comment %} {% section 'header' %} {% endcomment %}
 
   {% if settings.enable_slide_cart %}
     {% section 'tp-slide-cart' %}
