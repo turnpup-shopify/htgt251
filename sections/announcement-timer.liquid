@@ -223,30 +223,6 @@
   const wrapper = root.querySelector('.ann-marquee__track-wrapper');
   const track   = root.querySelector('.ann-marquee__track');
   const countdownEl = root.querySelector('.ann-countdown');
-  const announcementSection = root.closest('.tp-ann-timer') || root;
-  const headerEl = document.querySelector('#shopify-section-header');
-
-  const setAnnHiddenClass = () => {
-    if (!headerEl) return;
-    const shouldHide = headerEl.classList.contains('shopify-section-header-sticky') && headerEl.classList.contains('shopify-section-header-hidden');
-    root.classList.toggle('ann-marquee-is-hidden', shouldHide);
-  };
-
-  const toggleAnnouncementHeight = () => {
-    if (!announcementSection || !headerEl) return;
-    const scrolled = (window.pageYOffset || document.documentElement.scrollTop) !== 0;
-    const isHidden = headerEl.classList.contains('shopify-section-header-sticky') && headerEl.classList.contains('shopify-section-header-hidden');
-    announcementSection.style.height = isHidden && scrolled ? '0px' : 'auto';
-    setAnnHiddenClass();
-  };
-
-  toggleAnnouncementHeight();
-  window.addEventListener('scroll', toggleAnnouncementHeight, { passive: true });
-  if (headerEl) {
-    const mo = new MutationObserver(setAnnHiddenClass);
-    mo.observe(headerEl, { attributes: true, attributeFilter: ['class'] });
-    setAnnHiddenClass();
-  }
 
   if (countdownEl) {
     const timerEl = countdownEl.querySelector('.ann-countdown__timer');
