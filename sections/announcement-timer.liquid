@@ -223,6 +223,18 @@
   const wrapper = root.querySelector('.ann-marquee__track-wrapper');
   const track   = root.querySelector('.ann-marquee__track');
   const countdownEl = root.querySelector('.ann-countdown');
+  const announcementSection = document.querySelector('.tp-ann-timer');
+  const headerEl = document.querySelector('.shopify-section-group-header-group.section-header');
+
+  const toggleAnnouncementHeight = () => {
+    if (!announcementSection || !headerEl) return;
+    const scrolled = (window.pageYOffset || document.documentElement.scrollTop) !== 0;
+    const isHidden = headerEl.classList.contains('shopify-section-header-sticky') && headerEl.classList.contains('shopify-section-header-hidden');
+    announcementSection.style.height = isHidden && scrolled ? '0px' : 'auto';
+  };
+
+  toggleAnnouncementHeight();
+  window.addEventListener('scroll', toggleAnnouncementHeight, { passive: true });
 
   if (countdownEl) {
     const timerEl = countdownEl.querySelector('.ann-countdown__timer');
@@ -511,7 +523,8 @@
     "presets": [
       {
         "name": "Announcement Timer",
-        "category": "Header"
+        "category": "Header",
+        "class": "tp-ann-timer"
       }
     ]
   }
