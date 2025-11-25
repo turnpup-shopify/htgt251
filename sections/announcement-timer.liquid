@@ -223,6 +223,26 @@
   const wrapper = root.querySelector('.ann-marquee__track-wrapper');
   const track   = root.querySelector('.ann-marquee__track');
   const countdownEl = root.querySelector('.ann-countdown');
+  const headerEl = document.querySelector('.shopify-section-group-header-group.section-header') || document.querySelector('#shopify-section-header');
+  let annHiddenState = null;
+
+  const updateAnnouncementVisibility = () => {
+    if (!headerEl) return;
+    const scrolled = (window.pageYOffset || document.documentElement.scrollTop) > 0;
+    const headerHidden = headerEl.classList.contains('shopify-section-header-sticky') && headerEl.classList.contains('shopify-section-header-hidden');
+    const shouldHide = scrolled && headerHidden;
+    if (annHiddenState === shouldHide) return;
+    annHiddenState = shouldHide;
+    root.classList.toggle('ann-marquee-is-hidden', shouldHide);
+    root.style.height = shouldHide ? '0px' : '';
+  };
+
+  updateAnnouncementVisibility();
+  window.addEventListener('scroll', updateAnnouncementVisibility, { passive: true });
+  if (headerEl) {
+    const mo = new MutationObserver(updateAnnouncementVisibility);
+    mo.observe(headerEl, { attributes: true, attributeFilter: ['class'] });
+  }
 
   if (countdownEl) {
     const timerEl = countdownEl.querySelector('.ann-countdown__timer');
