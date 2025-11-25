@@ -688,7 +688,7 @@
             "title_line_height": "1.1",
             "title_font_weight": "500",
             "title_margin_top": "10px",
-            "text": "Browse the <b><i>green edit</i></b> and see what designers are talking about.",
+            "text": "Browse the green edit and see what designers are talking about.",
             "text_font_size": "30px",
             "text_font_size_mobile": "20px",
             "text_font_family": "'Helvetica Neue'",
@@ -781,7 +781,7 @@
         "section_text_color": "#000000",
         "overall_background_image_url": "",
         "section_background_color": "#ffffff",
-        "section_background_color_inner": "#f5f5f5",
+        "section_background_color_inner": "#ffffff",
         "section_background_color_inner_opacity": 100
       }
     },
