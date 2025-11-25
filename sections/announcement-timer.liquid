@@ -225,8 +225,10 @@
   const countdownEl = root.querySelector('.ann-countdown');
   const headerEl = document.querySelector('.shopify-section-group-header-group.section-header') || document.querySelector('#shopify-section-header');
   let annHiddenState = null;
+  let scheduled = false;
 
-  const updateAnnouncementVisibility = () => {
+  const applyAnnouncementVisibility = () => {
+    scheduled = false;
     if (!headerEl) return;
     const scrolled = (window.pageYOffset || document.documentElement.scrollTop) > 0;
     const headerHidden = headerEl.classList.contains('shopify-section-header-sticky') && headerEl.classList.contains('shopify-section-header-hidden');
@@ -237,10 +239,16 @@
     root.style.height = shouldHide ? '0px' : '';
   };
 
-  updateAnnouncementVisibility();
-  window.addEventListener('scroll', updateAnnouncementVisibility, { passive: true });
+  const scheduleUpdate = () => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(applyAnnouncementVisibility);
+  };
+
+  scheduleUpdate();
+  window.addEventListener('scroll', scheduleUpdate, { passive: true });
   if (headerEl) {
-    const mo = new MutationObserver(updateAnnouncementVisibility);
+    const mo = new MutationObserver(scheduleUpdate);
     mo.observe(headerEl, { attributes: true, attributeFilter: ['class'] });
   }
 
