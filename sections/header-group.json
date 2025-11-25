@@ -43,7 +43,7 @@
         "show_marquee": true,
         "text_decoration": "none",
         "uppercase": true,
-        "item_gap": 24,
+        "item_gap": 66,
         "separator_text": "|",
         "speed": 40,
         "enable_rotation": true,
