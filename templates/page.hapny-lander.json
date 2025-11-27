@@ -411,11 +411,11 @@
         "section_background_color_inner_opacity": 100
       }
     },
-    "tp_article_carousel_n9Ekr7": {
+    "tp_article_carousel_fazBHY": {
       "type": "tp-article-carousel",
       "name": "TP - Blog Post Carousel",
       "settings": {
-        "input_metaobject": "more-knobs",
+        "input_metaobject": "shop-cabinet-pulls",
         "max_items": 5,
         "enable_scroll": true,
         "padding_top": 40,
@@ -478,6 +478,25 @@
         "section_text_color": "#000000",
         "overall_background_image_url": "",
         "section_background_color": "#ffffff"
+      }
+    },
+    "custom_image_row_xMaXT4": {
+      "type": "custom-image-row",
+      "name": "Custom Image Row",
+      "settings": {
+        "metaobject_handle": "",
+        "tp_metaobject": "twist",
+        "image_grid_header": "",
+        "header_font_family": "'p22-mackinac-pro', serif;",
+        "header_font_size": "30px",
+        "header_font_weight": "400",
+        "header_font_color": "#3C64B1",
+        "image_grid_subheader": "",
+        "subheader_font_family": "'p22-mackinac-pro', serif;",
+        "subheader_font_size": "30px",
+        "subheader_font_weight": "400",
+        "subheader_font_color": "#3C64B1",
+        "header_alignment": "center"
       }
     },
     "turnpup_multicolumn_E3iQHV": {
@@ -645,11 +664,11 @@
         "section_background_color_inner_opacity": 100
       }
     },
-    "tp_article_carousel_fazBHY": {
+    "tp_article_carousel_n9Ekr7": {
       "type": "tp-article-carousel",
       "name": "TP - Blog Post Carousel",
       "settings": {
-        "input_metaobject": "shop-cabinet-pulls",
+        "input_metaobject": "more-knobs",
         "max_items": 5,
         "enable_scroll": true,
         "padding_top": 40,
@@ -1140,9 +1159,10 @@
     "main",
     "turnpup_multicolumn_Cd8XQ9",
     "turnpup_multicolumn_bkdXRz",
-    "tp_article_carousel_n9Ekr7",
-    "turnpup_multicolumn_E3iQHV",
     "tp_article_carousel_fazBHY",
+    "custom_image_row_xMaXT4",
+    "turnpup_multicolumn_E3iQHV",
+    "tp_article_carousel_n9Ekr7",
     "turnpup_multicolumn_x8RjWA",
     "tp_article_carousel_gGjjw8",
     "featured_row_tAUpCA",
