@@ -25,7 +25,7 @@
         "text_QMmtic"
       ],
       "custom_css": [
-        "div {background: #444545;}",
+        "div {background: #331B25;}",
         "p {text-align: left; font-weight: 500; color: white;}"
       ],
       "name": "t:sections.rich-text.presets.name",
@@ -93,9 +93,9 @@
         "h2,h4,a,p {color: white;}"
       ],
       "settings": {
-        "background_color": "#444545",
+        "background_color": "#331b25",
         "background_opacity": "1",
-        "footer_background_image": "shopify://shop_images/Artboard_1_2x-100_f1bcec65-e912-49c1-a8c5-14f7943f47b3.jpg",
+        "footer_background_image": "shopify://shop_images/htgt-footer-burgundy.jpg",
         "show_payment_icons": false,
         "show_locale_selector": false,
         "show_currency_selector": false,

@@ -118,7 +118,7 @@
         "column_GwJj6q": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/distressed-round-white-mirror-1.jpg",
+            "image": "shopify://shop_images/coastal-table-top-decor-3.jpg",
             "image_border_radius": "0px",
             "title": "",
             "title_h": "h2",
@@ -199,7 +199,7 @@
         "image_width": "full",
         "column_alignment": "left",
         "text_column_alignment": "left",
-        "column_gap": "20px",
+        "column_gap": "0px",
         "button_padding": "1em",
         "hero_button_font_family": "'Helvetica Neue'",
         "hero_button_font_size": "16px",
@@ -284,77 +284,6 @@
         "alignment": "center",
         "turnpup_bottom_border_color": "rgba(0,0,0,0)",
         "mobile_font_size": "14px"
-      }
-    },
-    "turnpup_marquee_9XfUfG": {
-      "type": "turnpup-marquee",
-      "blocks": {
-        "logo_6GyHkA": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/transparent-white-marble-accent-table.png",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "white-marble-drink-table"
-          }
-        },
-        "logo_pKewLA": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/brushed-brass-mirror.jpg",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "brass-arched-mirror-scalloped-brushed"
-          }
-        },
-        "logo_4zhcEk": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/transparent-side-table-wood-drum.png",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "mango-wood-side-table"
-          }
-        },
-        "logo_wy9wDg": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/statement-floor-lamp.jpg",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "unique-coastal-floor-lamp"
-          }
-        },
-        "logo_tyHLtk": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/transparent-modern-grey-side-table.png",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "modern-grey-side-table"
-          }
-        }
-      },
-      "block_order": [
-        "logo_6GyHkA",
-        "logo_pKewLA",
-        "logo_4zhcEk",
-        "logo_wy9wDg",
-        "logo_tyHLtk"
-      ],
-      "custom_css": [
-        ".flwr-pr-marquee-container {border-bottom: 1px solid black; border-top: 1px solid black;}"
-      ],
-      "settings": {
-        "container_width": "65%",
-        "container_top_margin": 30,
-        "container_bottom_margin": 20,
-        "module_background_color": "#ffffff",
-        "header_text_color": "rgba(0,0,0,0)",
-        "header_text": "",
-        "header_font_size": "40px",
-        "header_mobile_font_size": "22px",
-        "header_font_family": "assistant_n4",
-        "header_font_weight": "800",
-        "desktop_logo_height": "70px",
-        "mobile_logo_height": "50px",
-        "desktop_space_between": 40,
-        "mobile_space_between": 60
       }
     },
     "tp_article_carousel_tUtyD6": {
@@ -457,6 +386,77 @@
         "num_size_m": 14,
         "num_color": "#aba49d",
         "num_opacity": 1
+      }
+    },
+    "turnpup_marquee_9XfUfG": {
+      "type": "turnpup-marquee",
+      "blocks": {
+        "logo_6GyHkA": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/transparent-white-marble-accent-table.png",
+            "link_to_article": "https://flwrmarket.com",
+            "product": "white-marble-drink-table"
+          }
+        },
+        "logo_pKewLA": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/brushed-brass-mirror.jpg",
+            "link_to_article": "https://flwrmarket.com",
+            "product": "brass-arched-mirror-scalloped-brushed"
+          }
+        },
+        "logo_4zhcEk": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/transparent-side-table-wood-drum.png",
+            "link_to_article": "https://flwrmarket.com",
+            "product": "mango-wood-side-table"
+          }
+        },
+        "logo_wy9wDg": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/statement-floor-lamp.jpg",
+            "link_to_article": "https://flwrmarket.com",
+            "product": "unique-coastal-floor-lamp"
+          }
+        },
+        "logo_tyHLtk": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/transparent-modern-grey-side-table.png",
+            "link_to_article": "https://flwrmarket.com",
+            "product": "modern-grey-side-table"
+          }
+        }
+      },
+      "block_order": [
+        "logo_6GyHkA",
+        "logo_pKewLA",
+        "logo_4zhcEk",
+        "logo_wy9wDg",
+        "logo_tyHLtk"
+      ],
+      "custom_css": [
+        ".flwr-pr-marquee-container {border-bottom: 1px solid black; border-top: 1px solid black;}"
+      ],
+      "settings": {
+        "container_width": "65%",
+        "container_top_margin": 30,
+        "container_bottom_margin": 20,
+        "module_background_color": "#ffffff",
+        "header_text_color": "rgba(0,0,0,0)",
+        "header_text": "",
+        "header_font_size": "40px",
+        "header_mobile_font_size": "22px",
+        "header_font_family": "assistant_n4",
+        "header_font_weight": "800",
+        "desktop_logo_height": "70px",
+        "mobile_logo_height": "50px",
+        "desktop_space_between": 40,
+        "mobile_space_between": 60
       }
     },
     "turnpup_cat_cells_e4UbRR": {
@@ -688,7 +688,7 @@
             "title_line_height": "1.1",
             "title_font_weight": "500",
             "title_margin_top": "10px",
-            "text": "Browse the <b><i>green edit</i></b> and see what designers are talking about.",
+            "text": "Browse the green edit and see what designers are talking about.",
             "text_font_size": "30px",
             "text_font_size_mobile": "20px",
             "text_font_family": "'Helvetica Neue'",
@@ -781,7 +781,7 @@
         "section_text_color": "#000000",
         "overall_background_image_url": "",
         "section_background_color": "#ffffff",
-        "section_background_color_inner": "#f5f5f5",
+        "section_background_color_inner": "#ffffff",
         "section_background_color_inner_opacity": 100
       }
     },
@@ -2145,9 +2145,9 @@
   "order": [
     "turnpup_multicolumn_Cd8XQ3",
     "tp_open_closed_JKkjRY",
-    "turnpup_marquee_9XfUfG",
     "tp_article_carousel_tUtyD6",
     "turnpup_keyword_cats_JBhy3a",
+    "turnpup_marquee_9XfUfG",
     "turnpup_cat_cells_e4UbRR",
     "at_scrolling_66baeL",
     "tp_article_carousel_HwRjKQ",
