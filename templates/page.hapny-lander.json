@@ -749,11 +749,19 @@
             "text": "FREE SHIPPING OVER $50",
             "url": ""
           }
+        },
+        "item_fHt9Yq": {
+          "type": "item",
+          "settings": {
+            "text": "EASY RETURNS",
+            "url": ""
+          }
         }
       },
       "block_order": [
         "item_nEDzDe",
-        "item_TeVnyH"
+        "item_TeVnyH",
+        "item_fHt9Yq"
       ],
       "name": "Announcement Marquee",
       "settings": {
