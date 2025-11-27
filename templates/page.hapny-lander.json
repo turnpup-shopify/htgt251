@@ -516,8 +516,8 @@
             "title_font_weight": "600",
             "title_margin_top": "10px",
             "text": "Upgrading your hardware is one of the lowest cost, highest impact ways to decorate your kitchen.",
-            "text_font_size": "24px",
-            "text_font_size_mobile": "20px",
+            "text_font_size": "16px",
+            "text_font_size_mobile": "16px",
             "text_font_family": "'Helvetica Neue'",
             "text_font_color": "#ffffff",
             "text_line_height": "1.2",
@@ -731,6 +731,44 @@
         "section_text_color": "#000000",
         "overall_background_image_url": "",
         "section_background_color": "#ffffff"
+      }
+    },
+    "announcement_marquee_98QzPf": {
+      "type": "announcement-marquee",
+      "blocks": {
+        "item_nEDzDe": {
+          "type": "item",
+          "settings": {
+            "text": "100% Solid Brass",
+            "url": ""
+          }
+        },
+        "item_TeVnyH": {
+          "type": "item",
+          "settings": {
+            "text": "FREE SHIPPING OVER $50",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_nEDzDe",
+        "item_TeVnyH"
+      ],
+      "disabled": true,
+      "name": "Announcement Marquee",
+      "settings": {
+        "bg_color": "#E9F0E6",
+        "text_color": "#1A1A1A",
+        "font_size": 12,
+        "font_family": "Helvetica Neue",
+        "font_weight": "600",
+        "text_decoration": "none",
+        "uppercase": true,
+        "item_gap": 24,
+        "separator_text": "|",
+        "speed": 40,
+        "pause_on_hover": true
       }
     },
     "turnpup_multicolumn_x8RjWA": {
@@ -1163,6 +1201,7 @@
     "custom_image_row_xMaXT4",
     "turnpup_multicolumn_E3iQHV",
     "tp_article_carousel_n9Ekr7",
+    "announcement_marquee_98QzPf",
     "turnpup_multicolumn_x8RjWA",
     "tp_article_carousel_gGjjw8",
     "featured_row_tAUpCA",
