@@ -224,86 +224,6 @@
         "mobile_padding_bottom": 0
       }
     },
-    "turnpup_marquee_DGNi7J": {
-      "type": "turnpup-marquee",
-      "blocks": {
-        "22824aa8-dbb1-49da-961c-19db9adcf4b5": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/BOH.png",
-            "link_to_article": "",
-            "product": ""
-          }
-        },
-        "085f4f76-5850-4976-aaf9-042b88e8a31a": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/dwell.png",
-            "link_to_article": "https://www.hunker.com/13774986/cpgd-direct-to-consumer-brands",
-            "product": ""
-          }
-        },
-        "15fd7fb7-cbde-4bf8-9f57-5e220409d103": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/HGTC_Black.png",
-            "link_to_article": "",
-            "product": ""
-          }
-        },
-        "ce6ee1e1-2427-460b-a4a6-d958f358ca0b": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/interior_design.png",
-            "link_to_article": "",
-            "product": ""
-          }
-        },
-        "e9fe64f5-f4d5-4e05-9451-2f14c9c11204": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/Hunker.png",
-            "link_to_article": "",
-            "product": ""
-          }
-        },
-        "c949fff9-0986-46c9-864c-609f3e6a4654": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/apartment_therapy_allblack.png",
-            "link_to_article": "",
-            "product": ""
-          }
-        }
-      },
-      "block_order": [
-        "22824aa8-dbb1-49da-961c-19db9adcf4b5",
-        "085f4f76-5850-4976-aaf9-042b88e8a31a",
-        "15fd7fb7-cbde-4bf8-9f57-5e220409d103",
-        "ce6ee1e1-2427-460b-a4a6-d958f358ca0b",
-        "e9fe64f5-f4d5-4e05-9451-2f14c9c11204",
-        "c949fff9-0986-46c9-864c-609f3e6a4654"
-      ],
-      "custom_css": [
-        "@media screen and (max-width: 700px) {.marquee {width: 800%; }}"
-      ],
-      "settings": {
-        "container_width": "65%",
-        "container_top_margin": 30,
-        "container_bottom_margin": 30,
-        "module_background_color": "#f1ece7",
-        "header_text_color": "#000000",
-        "header_text": "",
-        "header_font_size": "40px",
-        "header_mobile_font_size": "22px",
-        "header_font_family": "assistant_n4",
-        "header_font_weight": "800",
-        "desktop_logo_height": "30px",
-        "mobile_logo_height": "30px",
-        "desktop_space_between": 50,
-        "mobile_space_between": 140
-      }
-    },
     "main_product_hapny_pRt9TU": {
       "type": "main-product-hapny",
       "name": "Hapny - PDP Details",
@@ -1006,7 +926,6 @@
   },
   "order": [
     "main",
-    "turnpup_marquee_DGNi7J",
     "main_product_hapny_pRt9TU",
     "tp_questions_tYPppc",
     "tp_pdp_products_in_collection_EzAgRV",
