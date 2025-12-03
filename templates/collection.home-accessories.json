@@ -198,7 +198,7 @@
         "column_weUMEP": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/coastal-entryway-bench-white-bedroom.png",
+            "image": "shopify://shop_images/black-metal-wall-art-4.jpg",
             "image_link": "shopify://collections/dining-benches",
             "image_border_radius": "100%",
             "title": "BENCHES",
@@ -250,10 +250,10 @@
         "column_Fz3xFJ": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/abstract_art_in_room.jpg",
-            "image_link": "shopify://collections/online-art",
+            "image": "shopify://shop_images/industrial-window-pane-floor-mirror.jpg",
+            "image_link": "shopify://collections/mirrors",
             "image_border_radius": "100%",
-            "title": "ART",
+            "title": "MIRRORS",
             "title_font_size": "22px",
             "title_font_size_mobile": "14px",
             "title_font_family": "'Helvetica Neue'",
@@ -302,10 +302,10 @@
         "column_LD4mTK": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/table.jpg",
-            "image_link": "",
+            "image": "shopify://shop_images/carved-wood-side-table-2.jpg",
+            "image_link": "shopify://collections/accent-tables",
             "image_border_radius": "100%",
-            "title": "TABLE",
+            "title": "TABLES",
             "title_font_size": "22px",
             "title_font_size_mobile": "14px",
             "title_font_family": "'Helvetica Neue'",
@@ -354,10 +354,10 @@
         "column_dTAwVq": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/uttermost-paoli-gray-abstract-9-x-12-rug_qb13385253_10.jpg",
+            "image": "shopify://shop_images/two-tone-knobs-pulls.jpg",
             "image_link": "",
             "image_border_radius": "100%",
-            "title": "RUGS",
+            "title": "HARDWARE",
             "title_font_size": "22px",
             "title_font_size_mobile": "14px",
             "title_font_family": "'Helvetica Neue'",
@@ -414,8 +414,8 @@
       "settings": {
         "padding_top": 40,
         "padding_bottom": 68,
-        "padding_right": 100,
-        "padding_left": 100,
+        "padding_right": 40,
+        "padding_left": 40,
         "mobile_padding_top": 40,
         "mobile_padding_bottom": 40,
         "mobile_padding_right": 20,
@@ -444,20 +444,20 @@
         "button_text_color_hover": "#ffffff",
         "button_label": "",
         "button_link": "",
-        "title": "More To Love",
-        "title_font_size": "48px",
-        "mobile_title_font_size": "36px",
-        "title_font_family": "'josefin-sans', sans-serif",
+        "title": "Shop by Category",
+        "title_font_size": "24px",
+        "mobile_title_font_size": "24px",
+        "title_font_family": "'Helvetica Neue'",
         "section_title_font_weight": "600",
         "section_title_padding": "0px",
-        "sub_title": "Shop by Category",
-        "subtitle_font_size": "36px",
+        "sub_title": "",
+        "subtitle_font_size": "24px",
         "section_subtitle_padding": "0 0 10px",
         "subtitle_font_family": "'Helvetica Neue'",
         "title_alignment": "left",
-        "section_text_color": "#000000",
+        "section_text_color": "#ffffff",
         "overall_background_image_url": "",
-        "section_background_color": "#f5f5f5"
+        "section_background_color": "#331b25"
       }
     },
     "tp_auto_col_banners_Lwfkg9": {
