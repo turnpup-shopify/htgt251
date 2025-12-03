@@ -58,6 +58,8 @@
         "mobile_padding_left": 20,
         "collection_menu": [],
         "no_image": true,
+        "desktop_font_size": "16px",
+        "mobile_font_size": "16px",
         "alignment": "left",
         "desktop_max_width": 100,
         "mobile_max_width": 100,
@@ -124,6 +126,7 @@
         "title": "{{ collection.metafields.custom.feature_one.value.header.value }}",
         "text": "<p>{{ collection.metafields.custom.feature_one.value.subheader | metafield_tag }}</p>",
         "body_font_size": 16,
+        "mobile_body_font_size": 20,
         "button_label": "{{ collection.metafields.custom.feature_one.value.button_text.value }}",
         "button_link": "{{ collection.metafields.custom.feature_one.value.button_url.value }}"
       }
@@ -140,6 +143,7 @@
         "title": "{{ collection.metafields.custom.feature_two.value.header.value }}",
         "text": "<p>{{ collection.metafields.custom.feature_two.value.subheader | metafield_tag }}</p>",
         "body_font_size": 16,
+        "mobile_body_font_size": 20,
         "button_label": "{{ collection.metafields.custom.feature_two.value.button_text.value }}",
         "button_link": "{{ collection.metafields.custom.feature_two.value.button_url.value }}"
       }
@@ -199,7 +203,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/black-metal-wall-art-4.jpg",
-            "image_link": "shopify://collections/dining-benches",
+            "image_link": "shopify://collections/benches-ottomans-stools",
             "image_border_radius": "100%",
             "title": "BENCHES",
             "title_font_size": "22px",
@@ -532,6 +536,9 @@
     "tp_seo_footer_4WkYab": {
       "type": "tp-seo-footer",
       "settings": {
+        "text_one": "",
+        "text_two": "",
+        "text_three": "",
         "text_alignment": "left",
         "turnpup_title_size": "16px",
         "turnpup_mobile_title_size": "16px",
@@ -543,6 +550,8 @@
         "turnpup_mobile_note_text_size": "16px",
         "turnpup_note_text_color": "#373f41",
         "turnpup_note_text_weight": "700",
+        "tp_margin": "100px 40px 100px 40px",
+        "tp_mobile_margin": "60px 20px 60px 20px",
         "tp_margin_top_bottom": "100px",
         "tp_margin_left_right": "40px",
         "tp_mobile_margin_top_bottom": "60px",
