@@ -205,7 +205,7 @@
         "column_weUMEP": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/coastal-entryway-bench-white-bedroom.png",
+            "image": "shopify://shop_images/black-metal-wall-art-4.jpg",
             "image_link": "shopify://collections/dining-benches",
             "image_border_radius": "100%",
             "title": "BENCHES",
@@ -257,10 +257,10 @@
         "column_Fz3xFJ": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/abstract_art_in_room.jpg",
-            "image_link": "shopify://collections/online-art",
+            "image": "shopify://shop_images/industrial-window-pane-floor-mirror.jpg",
+            "image_link": "shopify://collections/mirrors",
             "image_border_radius": "100%",
-            "title": "ART",
+            "title": "MIRRORS",
             "title_font_size": "22px",
             "title_font_size_mobile": "14px",
             "title_font_family": "'Helvetica Neue'",
@@ -309,10 +309,10 @@
         "column_LD4mTK": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/table.jpg",
-            "image_link": "",
+            "image": "shopify://shop_images/carved-wood-side-table-2.jpg",
+            "image_link": "shopify://collections/accent-tables",
             "image_border_radius": "100%",
-            "title": "TABLE",
+            "title": "TABLES",
             "title_font_size": "22px",
             "title_font_size_mobile": "14px",
             "title_font_family": "'Helvetica Neue'",
@@ -361,10 +361,10 @@
         "column_dTAwVq": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/uttermost-paoli-gray-abstract-9-x-12-rug_qb13385253_10.jpg",
+            "image": "shopify://shop_images/two-tone-knobs-pulls.jpg",
             "image_link": "",
             "image_border_radius": "100%",
-            "title": "RUGS",
+            "title": "HARDWARE",
             "title_font_size": "22px",
             "title_font_size_mobile": "14px",
             "title_font_family": "'Helvetica Neue'",
@@ -462,9 +462,9 @@
         "section_subtitle_padding": "0 0 10px",
         "subtitle_font_family": "'Helvetica Neue'",
         "title_alignment": "left",
-        "section_text_color": "#000000",
+        "section_text_color": "#ffffff",
         "overall_background_image_url": "",
-        "section_background_color": "#f5f5f5"
+        "section_background_color": "#331b25"
       }
     },
     "tp_auto_col_banners_Lwfkg9": {
@@ -641,6 +641,8 @@
         "turnpup_mobile_note_text_size": "16px",
         "turnpup_note_text_color": "#373f41",
         "turnpup_note_text_weight": "700",
+        "tp_margin": "100px 40px 100px 40px",
+        "tp_mobile_margin": "60px 20px 60px 20px",
         "tp_margin_top_bottom": "100px",
         "tp_margin_left_right": "40px",
         "tp_mobile_margin_top_bottom": "60px",
