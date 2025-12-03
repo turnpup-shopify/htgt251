@@ -33,6 +33,9 @@
         "item_anj6zi",
         "item_UAfhLb"
       ],
+      "custom_css": [
+        ".ann-countdown {color: black !important;}"
+      ],
       "name": "Announcement Timer",
       "settings": {
         "bg_color": "#331b25",
