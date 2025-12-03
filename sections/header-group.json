@@ -17,7 +17,7 @@
         "item_anj6zi": {
           "type": "item",
           "settings": {
-            "text": "Black Friday Markdowns Now Live",
+            "text": "Cyber Week Markdowns End Tonight",
             "url": ""
           }
         },
@@ -48,8 +48,8 @@
         "speed": 40,
         "enable_rotation": true,
         "pause_on_hover": true,
-        "countdown_enable": false,
-        "show_countdown": false,
+        "countdown_enable": true,
+        "show_countdown": true,
         "countdown_target": "2025-10-31T23:59:59",
         "countdown_label": "Offer ends in",
         "countdown_spacing": 0
