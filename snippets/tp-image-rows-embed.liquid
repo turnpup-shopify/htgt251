@@ -13,8 +13,9 @@
 -%}
 
 {{ tp_rows.value.list.value | json }}
-
-{%- if tp_rows.value.list.size > 0 -%}
+edit
+{%- if tp_rows.value.list.value.size > 0 -%}
+  try
   {{ tp_rows.value.list.value.value }}
   <div class="module-tp-image-rows module-tp-image-rows--embed" id="{{ container_id }}-wrapper">
     <div class="header-content">
