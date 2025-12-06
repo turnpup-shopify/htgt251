@@ -494,7 +494,16 @@
                       {% render 'icon-caret' %}
                     </summary>
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {{ block.settings.metafield_html }}
+                      {%- liquid
+                        assign hapny_meta = block.settings.metafield_html
+                        assign hapny_meta_rendered = hapny_meta | metafield_tag
+                        if hapny_meta_rendered != blank
+                          assign hapny_meta_output = hapny_meta_rendered
+                        else
+                          assign hapny_meta_output = hapny_meta
+                        endif
+                      -%}
+                      {{ hapny_meta_output }}
                     </div>
                   </details>
                 </div>
