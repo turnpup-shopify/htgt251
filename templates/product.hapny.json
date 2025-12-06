@@ -111,6 +111,7 @@
           "settings": {
             "heading": "Details",
             "metafield_reference": "pdp.details",
+            "metafield_reference_invisible": "",
             "default_open": true,
             "icon": "none",
             "metafield_html": ""
@@ -121,6 +122,7 @@
           "settings": {
             "heading": "Care Instructions",
             "metafield_reference": "pdp.downloads",
+            "metafield_reference_invisible": "",
             "default_open": true,
             "icon": "none",
             "metafield_html": ""
@@ -131,6 +133,7 @@
           "settings": {
             "heading": "Dimensions",
             "metafield_reference": "pdp.dimensions",
+            "metafield_reference_invisible": "pdp.dimensions-invisible",
             "default_open": true,
             "icon": "none",
             "metafield_html": ""
