@@ -73,7 +73,7 @@
           {%- else -%}
             {{ content_parts[0] }}
 
-            {%- if image_rows_primary != blank -%}
+            {%- if image_rows_primary != blank and content_parts.size > 1 -%}
               {% render 'tp-image-rows-embed'
                 , tp_rows: image_rows_primary %}
             {%- endif -%}
@@ -82,7 +82,7 @@
               {{ content_parts[1] }}
             {%- endif -%}
 
-            {%- if image_rows_secondary != blank -%}
+            {%- if image_rows_secondary != blank and content_parts.size > 2 -%}
               {% render 'tp-image-rows-embed'
                 , tp_rows: image_rows_secondary %}
             {%- endif -%}
