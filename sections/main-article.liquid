@@ -73,17 +73,19 @@
           {%- else -%}
             {{ content_parts[0] }}
 
-              {%- if image_rows_primary != blank -%}
-                {% render 'tp-image-rows-embed', tp_rows: image_rows_primary %}
-              {%- endif -%}
+            {%- if image_rows_primary != blank -%}
+              {% render 'tp-image-rows-embed'
+                , tp_rows: image_rows_primary %}
+            {%- endif -%}
 
             {%- if content_parts.size > 1 -%}
               {{ content_parts[1] }}
             {%- endif -%}
 
-              {%- if image_rows_secondary != blank -%}
-                {% render 'tp-image-rows-embed', tp_rows: image_rows_secondary %}
-              {%- endif -%}
+            {%- if image_rows_secondary != blank -%}
+              {% render 'tp-image-rows-embed'
+                , tp_rows: image_rows_secondary %}
+            {%- endif -%}
 
             {%- if content_parts.size > 2 -%}
               {{ content_parts[2] }}
@@ -204,7 +206,7 @@
                   <a href="#CommentForm-{{ field }}" class="link">
                     {%- if form.errors.translated_fields[field] contains 'author' -%}
                       {{ 'blogs.article.name' | t }}
-                    {%- elsif form.errors.translated_fields[field] contains 'body' - %}
+                    {%- elsif form.errors.translated_fields[field] contains 'body' -%}
                       {{ 'blogs.article.message' | t }}
                     {%- else -%}
                       {{ form.errors.translated_fields[field] }}
