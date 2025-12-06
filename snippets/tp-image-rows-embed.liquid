@@ -38,7 +38,8 @@
       {% endfor %}
     </div>
   </div>
-  <script>
+{%- endif -%}
+<script>
     (() => {
       const wrapper = document.getElementById('{{ container_id }}-wrapper');
       if (!wrapper) return;
@@ -51,37 +52,36 @@
         btn.textContent = isOpen ? '{{ toggle_label_hide }}' : '{{ toggle_label_show }}';
       });
     })();
-  </script>
-  <style>
-    .module-tp-image-rows--embed {
-      margin: 24px 0;
-    }
-    .module-tp-image-rows--embed .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .module-tp-image-rows--embed h2 {
-      margin: 0;
-      font-size: 1.4rem;
-    }
-    .module-tp-image-rows--embed .tp-image-rows__toggle {
-      border: none;
-      background: none;
-      font-size: 1.4rem;
-      padding: 0;
-      cursor: pointer;
-    }
-    .module-tp-image-rows--embed .tp-image-rows__container .tp-image-row {
-      display: none;
-    }
-    .module-tp-image-rows--embed .tp-image-rows__container .tp-image-row.isFirst {
-      display: grid;
-    }
-    .module-tp-image-rows--embed .tp-image-rows__container.open .tp-image-row {
-      display: grid;
-    }
-  </style>
-{%- endif -%}
+</script>
+<style>
+  .module-tp-image-rows--embed {
+    margin: 24px 0;
+  }
+  .module-tp-image-rows--embed .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .module-tp-image-rows--embed h2 {
+    margin: 0;
+    font-size: 1.4rem;
+  }
+  .module-tp-image-rows--embed .tp-image-rows__toggle {
+    border: none;
+    background: none;
+    font-size: 1.4rem;
+    padding: 0;
+    cursor: pointer;
+  }
+  .module-tp-image-rows--embed .tp-image-rows__container .tp-image-row {
+    display: none;
+  }
+  .module-tp-image-rows--embed .tp-image-rows__container .tp-image-row.isFirst {
+    display: grid;
+  }
+  .module-tp-image-rows--embed .tp-image-rows__container.open .tp-image-row {
+    display: grid;
+  }
+</style>
