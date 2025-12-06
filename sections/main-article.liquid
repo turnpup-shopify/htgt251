@@ -73,17 +73,17 @@
           {%- else -%}
             {{ content_parts[0] }}
 
-            {%- if image_rows_primary != blank -%}
-              {{ image_rows_primary | metafield_tag }}
-            {%- endif -%}
+              {%- if image_rows_primary != blank -%}
+                {% render 'tp-image-rows-embed', tp_rows: image_rows_primary %}
+              {%- endif -%}
 
             {%- if content_parts.size > 1 -%}
               {{ content_parts[1] }}
             {%- endif -%}
 
-            {%- if image_rows_secondary != blank -%}
-              {{ image_rows_secondary | metafield_tag }}
-            {%- endif -%}
+              {%- if image_rows_secondary != blank -%}
+                {% render 'tp-image-rows-embed', tp_rows: image_rows_secondary %}
+              {%- endif -%}
 
             {%- if content_parts.size > 2 -%}
               {{ content_parts[2] }}

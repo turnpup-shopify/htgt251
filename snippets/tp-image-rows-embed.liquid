@@ -1,0 +1,83 @@
+{%- liquid
+  assign rows = tp_rows
+  if rows == blank or rows.list == blank or rows.list.value == blank
+    return
+  endif
+
+  assign list_items = rows.list.value
+  assign container_id = 'tp-image-rows-' | append: rows.id | default: 'tp-image-rows-embed'
+  assign toggle_label_show = toggle_label_show | default: 'Show Gallery'
+  assign toggle_label_hide = toggle_label_hide | default: 'Hide Gallery'
+  assign header_text = header_text | default: rows.image_gallery_header | default: rows.title
+  assign button_color = button_color | default: rows.open_close_button_color | default: '#3C64B1'
+-%}
+
+{%- if list_items.size > 0 -%}
+  <div class="module-tp-image-rows module-tp-image-rows--embed" id="{{ container_id }}-wrapper">
+    <div class="header-content">
+      {%- if header_text != blank -%}
+        <h2>{{ header_text }}</h2>
+      {%- endif -%}
+      {%- if list_items.size > 1 -%}
+        <button
+          type="button"
+          class="tp-image-rows__toggle"
+          aria-expanded="false"
+          style="color: {{ button_color }};">{{ toggle_label_show }}</button>
+      {%- endif -%}
+    </div>
+    <div id="{{ container_id }}" class="tp-image-rows__container">
+      {%- for item in list_items -%}
+        <div class="tp-image-row{% if forloop.first %} isFirst{% endif %}">
+          {{ item | metafield_tag }}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+  <script>
+    (() => {
+      const wrapper = document.getElementById('{{ container_id }}-wrapper');
+      if (!wrapper) return;
+      const btn = wrapper.querySelector('.tp-image-rows__toggle');
+      const gallery = document.getElementById('{{ container_id }}');
+      if (!btn || !gallery) return;
+      btn.addEventListener('click', () => {
+        const isOpen = gallery.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+        btn.textContent = isOpen ? '{{ toggle_label_hide }}' : '{{ toggle_label_show }}';
+      });
+    })();
+  </script>
+  <style>
+    .module-tp-image-rows--embed {
+      margin: 24px 0;
+    }
+    .module-tp-image-rows--embed .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .module-tp-image-rows--embed h2 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+    .module-tp-image-rows--embed .tp-image-rows__toggle {
+      border: none;
+      background: none;
+      font-size: 1.4rem;
+      padding: 0;
+      cursor: pointer;
+    }
+    .module-tp-image-rows--embed .tp-image-rows__container .tp-image-row {
+      display: none;
+    }
+    .module-tp-image-rows--embed .tp-image-rows__container .tp-image-row.isFirst {
+      display: grid;
+    }
+    .module-tp-image-rows--embed .tp-image-rows__container.open .tp-image-row {
+      display: grid;
+    }
+  </style>
+{%- endif -%}

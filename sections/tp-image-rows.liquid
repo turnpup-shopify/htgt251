@@ -1,4 +1,3 @@
-
 {% schema %}
   {
     "name": "module-tp-image-rows",
@@ -84,12 +83,6 @@
         "id": "image_gallery",
         "label": "Image Rows Metaobject ",
         "info": "Add a metaobject",
-        "metaobject_type": "tp_image_rows"
-      }, {
-        "type": "metaobject",
-        "id": "image_gallery_override",
-        "label": "Image Rows Override (optional)",
-        "info": "If set, this metaobject is used instead of the main Image Rows metaobject.",
         "metaobject_type": "tp_image_rows"
       }, {
         "type": "text",
@@ -183,45 +176,39 @@
   }
 {% endschema %}
 {% if section.settings.image_gallery %}
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
-  }
-
-  @media screen and (max-width: 750px) {
+  {%- style -%}
     .section-{{ section.id }}-padding {
-      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+      padding: {{ section.settings.padding_top }}px{{ section.settings.padding_right }}px{{ section.settings.padding_bottom }}px{{ section.settings.padding_left }}px;
     }
-  }
-{%- endstyle -%}
-{% liquid
-  assign tp_rows_id = section.settings.image_gallery_override | default: section.settings.image_gallery
-  assign tp_rows = nil
-  if tp_rows_id != blank
-    assign tp_rows = shop.metaobjects.tp_image_rows[tp_rows_id]
-  endif
-%}
-<div class="section-container section-{{ section.id }}-padding">
-  <div class="header-content">
-    {% if section.settings.image_gallery_header %}
+
+    @media screen and (max-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding: {{ section.settings.mobile_padding_top }}px{{ section.settings.mobile_padding_right }}px{{ section.settings.mobile_padding_bottom }}px{{ section.settings.mobile_padding_left }}px;
+      }
+    }
+  {%- endstyle -%}
+{% assign tp_rows = shop.metaobjects.tp_image_rows[section.settings.image_gallery] %}
+  <div class="section-container section-{{ section.id }}-padding">
+    <div class="header-content">
+      {% if section.settings.image_gallery_header %}
         <h2>
-        {{ section.settings.image_gallery_header }}
+          {{ section.settings.image_gallery_header }}
         </h2>
-    {% endif %}
-    {% if section.settings.open_close_button and tp_rows.list.value.count > 1  %}
+      {% endif %}
+      {% if section.settings.open_close_button and tp_rows.list.value.count > 1 %}
         <button aria-expanded="false">{{ section.settings.open_close_button }}</button>
-    {% endif %}
+      {% endif %}
     </div>
     <div id="image_rows_container">
-    {% for tp in tp_rows.list.value %}
+      {% for tp in tp_rows.list.value %}
         {% render 'tp-image-row'
-        , my_metaobject: tp
-        , index: forloop.index0
+          , my_metaobject: tp
+          , index: forloop.index0
         %}
-    {% endfor %}
+      {% endfor %}
     </div>
-</div>
-<script>
+  </div>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
         const btn     = document.querySelector('.module-tp-image-rows button');
         const gallery = document.querySelector('#image_rows_container');
@@ -231,25 +218,26 @@
             btn.textContent = isOpen ? 'Hide Gallery' : 'Show Gallery';
         });
     });
-</script>
-<style>
-.module-tp-image-rows button {
-  border: none;
-  font-size: 1.4rem;
-  padding: 0;
-  color: {{ section.settings.open_close_button_color }};  
-}
-.module-tp-image-rows h2, .module-tp-image-rows button {
-    margin: 0 0 12px 0px;
-}
-#image_rows_container .tp-image-row.isFirst {
-  display: grid;
-}
-#image_rows_container .tp-image-row {
-  display: none;
-}
-#image_rows_container.open .tp-image-row {
-  display: grid;
-}
-</style>
+  </script>
+  <style>
+    .module-tp-image-rows button {
+      border: none;
+      font-size: 1.4rem;
+      padding: 0;
+      color: {{ section.settings.open_close_button_color }};
+    }
+    .module-tp-image-rows h2,
+    .module-tp-image-rows button {
+      margin: 0 0 12px;
+    }
+    #image_rows_container .tp-image-row.isFirst {
+      display: grid;
+    }
+    #image_rows_container .tp-image-row {
+      display: none;
+    }
+    #image_rows_container.open .tp-image-row {
+      display: grid;
+    }
+  </style>
 {% endif %}
