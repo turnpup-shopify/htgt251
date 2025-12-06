@@ -73,10 +73,7 @@
           {%- else -%}
             {{ content_parts[0] }}
 
-            after 1
             {%- if image_rows_primary != blank -%}
-              render 1
-              {{ image_rows_primary | json }}
               {% render 'tp-image-rows-embed'
                 , tp_rows: image_rows_primary %}
             {%- endif -%}
@@ -85,9 +82,7 @@
               {{ content_parts[1] }}
             {%- endif -%}
             
-            after 2
             {%- if image_rows_secondary != blank -%}
-              render 2
               {% render 'tp-image-rows-embed'
                 , tp_rows: image_rows_secondary %}
             {%- endif -%}
