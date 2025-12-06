@@ -35,7 +35,7 @@ edit
       <div class="tp-image-row{% if forloop.first %} isFirst{% endif %}">
         <div id="image_rows_container">
           hi
-          {% for tp in tp_rows %}
+          {% for tp in tp_rows.value.list %}
             {{ forloop.index0 }}
             hi hi
             {% render 'tp-image-row'
