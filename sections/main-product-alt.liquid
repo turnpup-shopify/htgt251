@@ -495,13 +495,20 @@
                     </summary>
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
                       {%- liquid
-                        assign hapny_meta = block.settings.metafield_html
-                        assign hapny_meta_rendered = hapny_meta | metafield_tag
-                        if hapny_meta_rendered != blank
-                          assign hapny_meta_output = hapny_meta_rendered
-                        else
-                          assign hapny_meta_output = hapny_meta
+                        assign hapny_meta_rendered = block.settings.metafield_html | metafield_tag
+                        if hapny_meta_rendered == blank
+                          assign hapny_meta_rendered = block.settings.metafield_html
                         endif
+
+                        assign hapny_meta_output = hapny_meta_rendered
+                        assign hapny_meta_output = hapny_meta_output
+                          | remove: '<p><span class="metafield-multi_line_text_field">'
+                          | remove: '</span></p>'
+                          | replace: '&lt;', '<'
+                          | replace: '&gt;', '>'
+                          | replace: '&quot;', '"'
+                          | replace: '&#39;', "'"
+                          | replace: '&amp;', '&'
                       -%}
                       {{ hapny_meta_output }}
                     </div>
