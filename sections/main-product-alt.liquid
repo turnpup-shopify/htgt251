@@ -428,8 +428,16 @@
               {{ block.settings.custom_liquid }}
             {%- when 'collapsible_tab' -%}
               {% liquid
-                assign has_custom_html = block.settings.custom_html != blank
-                assign has_content = block.settings.content != '' or block.settings.page != blank
+                assign has_custom_html = false
+                if block.settings.custom_html != blank
+                  assign has_custom_html = true
+                endif
+
+                assign has_content = false
+                if block.settings.content != '' or block.settings.page != blank
+                  assign has_content = true
+                endif
+
                 assign is_description_row = block.settings.heading == 'Description'
                 assign summary_heading = block.settings.heading | default: block.settings.page.title
               %}
