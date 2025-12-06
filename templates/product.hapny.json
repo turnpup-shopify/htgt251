@@ -83,6 +83,7 @@
             "default_open": true,
             "icon": "none",
             "content": "{{ product.metafields.custom.offers | metafield_tag }}",
+            "metafield_liquid": "",
             "page": ""
           }
         },
@@ -93,6 +94,7 @@
             "default_open": true,
             "icon": "none",
             "content": "<p>Same day order processing! Free nationwide shipping with next day order fulfillment. Arrives in 2-5 days in most cases.</p>",
+            "metafield_liquid": "",
             "page": ""
           }
         },
@@ -103,6 +105,7 @@
             "default_open": true,
             "icon": "none",
             "content": "",
+            "metafield_liquid": "",
             "page": ""
           }
         },
@@ -112,7 +115,8 @@
             "heading": "Dimensions",
             "default_open": true,
             "icon": "none",
-            "content": "<p>{{ product.metafields.pdp.dimensions | metafield_tag }}</p>",
+            "content": "",
+            "metafield_liquid": "{{product.metafields.pdp.dimensions | metafield_tag }}",
             "page": ""
           }
         },
@@ -131,6 +135,7 @@
             "default_open": false,
             "icon": "none",
             "content": "<p>{{ product.metafields.custom.materials | metafield_tag }}</p>",
+            "metafield_liquid": "",
             "page": ""
           }
         },
@@ -141,6 +146,7 @@
             "default_open": false,
             "icon": "none",
             "content": "<p>{{ product.metafields.pdp.downloads | metafield_tag }}</p>",
+            "metafield_liquid": "",
             "page": ""
           }
         },
@@ -151,6 +157,7 @@
             "default_open": false,
             "icon": "none",
             "content": "{{ product.metafields.custom.design_style | metafield_tag }}",
+            "metafield_liquid": "",
             "page": ""
           }
         },
