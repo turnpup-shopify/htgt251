@@ -120,9 +120,10 @@
           "type": "hapny_collapsible_row",
           "settings": {
             "heading": "Care",
+            "metafield_reference": "pdp.downloads",
             "default_open": false,
             "icon": "none",
-            "metafield_html": "<p>{{ product.metafields.pdp.downloads | metafield_tag }}</p>"
+            "metafield_html": ""
           }
         },
         "dimensions_q4tmAx": {
