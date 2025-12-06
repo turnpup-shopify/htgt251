@@ -12,11 +12,7 @@
   assign button_color = button_color | default: rows.open_close_button_color | default: '#3C64B1'
 -%}
 
-value: {{ tp_rows.value.list.value | json }}
-edit
 {%- if tp_rows.value.list.value.count > 0 -%}
-  try
-  {{ tp_rows.value.list.value }}
   <div class="module-tp-image-rows module-tp-image-rows--embed" id="{{ container_id }}-wrapper">
     <div class="header-content">
       {%- if header_text != blank -%}
@@ -31,13 +27,15 @@ edit
       {%- endif -%}
     </div>
     <div id="{{ container_id }}" class="tp-image-rows__container">
-      <div class="tp-image-row{% if forloop.first %} isFirst{% endif %}">
-        <div id="image_rows_container">
-            {% for tp in tp_rows.value.list.value %}
-              {% render 'tp-image-row', my_metaobject: tp, index: forloop.index0 %}
-            {% endfor %}
+      {% for tp in tp_rows.value.list.value %}
+        <div class="tp-image-row{% if forloop.first %} isFirst{% endif %}">
+          <div id="image_rows_container">
+            {% render 'tp-image-row'
+              , my_metaobject: tp
+              , index: forloop.index0 %}
+          </div>
         </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
   <script>
