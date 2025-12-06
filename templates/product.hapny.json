@@ -132,7 +132,7 @@
             "heading": "Dimensions",
             "metafield_reference": "pdp.dimensions",
             "default_open": false,
-            "icon": "check_mark",
+            "icon": "none",
             "metafield_html": ""
           }
         },
