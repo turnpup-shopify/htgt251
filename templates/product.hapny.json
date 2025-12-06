@@ -106,14 +106,14 @@
             "page": ""
           }
         },
-        "collapsible-row-2": {
-          "type": "collapsible_tab",
+        "hapny_collapsible_row_y6GaqY": {
+          "type": "hapny_collapsible_row",
           "settings": {
-            "heading": "Dimensions",
+            "heading": "Details",
+            "metafield_reference": "pdp.details",
             "default_open": true,
             "icon": "none",
-            "content": "",
-            "page": ""
+            "metafield_html": ""
           }
         },
         "hapny_collapsible_row_Ne4Jee": {
@@ -121,37 +121,19 @@
           "settings": {
             "heading": "Care Instructions",
             "metafield_reference": "pdp.downloads",
-            "default_open": false,
+            "default_open": true,
             "icon": "none",
             "metafield_html": ""
           }
         },
-        "dimensions_q4tmAx": {
-          "type": "dimensions",
-          "disabled": true,
+        "hapny_collapsible_row_Hiic4C": {
+          "type": "hapny_collapsible_row",
           "settings": {
-            "text": "<p>{{ product.metafields.pdp.dimensions | metafield_tag }}</p>",
-            "default_open": false
-          }
-        },
-        "collapsible-row-0": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Materials",
-            "default_open": false,
+            "heading": "Dimensions",
+            "metafield_reference": "pdp.dimensions",
+            "default_open": true,
             "icon": "none",
-            "content": "<p>{{ product.metafields.custom.materials | metafield_tag }}</p>",
-            "page": ""
-          }
-        },
-        "collapsible-row-3": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Care Instructions",
-            "default_open": false,
-            "icon": "none",
-            "content": "<p>{{ product.metafields.pdp.downloads | metafield_tag }}</p>",
-            "page": ""
+            "metafield_html": ""
           }
         },
         "collapsible_tab_HMYJVH": {
@@ -192,11 +174,9 @@
         "collapsible_tab_QV88KF",
         "collapsible-row-1",
         "collapsible_tab_DAkg6R",
-        "collapsible-row-2",
+        "hapny_collapsible_row_y6GaqY",
         "hapny_collapsible_row_Ne4Jee",
-        "dimensions_q4tmAx",
-        "collapsible-row-0",
-        "collapsible-row-3",
+        "hapny_collapsible_row_Hiic4C",
         "collapsible_tab_HMYJVH",
         "share",
         "upsell_yJXGBT"
@@ -220,6 +200,7 @@
     },
     "main_product_hapny_pRt9TU": {
       "type": "main-product-hapny",
+      "disabled": true,
       "name": "Hapny - PDP Details",
       "settings": {
         "enable_sticky_info": true,
