@@ -1,22 +1,22 @@
 {%- liquid
-  assign rows = tp_rows
+  assign rows_obj = tp_rows
   assign list_items = nil
-  if rows and rows.list and rows.list.value != blank
-    assign list_items = rows.list.value
+
+  if rows_obj and rows_obj.list and rows_obj.list.value != blank
+    assign list_items = rows_obj.list.value
   endif
 
-  assign container_id = 'tp-image-rows-' | append: rows.id | default: 'tp-image-rows-embed'
-  assign toggle_label_show = toggle_label_show | default: 'Show Gallery'
-  assign toggle_label_hide = toggle_label_hide | default: 'Hide Gallery'
-  assign header_text = header_text | default: rows.image_gallery_header | default: rows.title
-  assign button_color = button_color | default: rows.open_close_button_color | default: '#3C64B1'
+  if list_items and list_items.size > 0
+    assign container_id = 'tp-image-rows-' | append: rows_obj.id | default: 'tp-image-rows-embed'
+    assign header_text = header_text | default: rows_obj.image_gallery_header | default: rows_obj.title
+    assign toggle_label_show = toggle_label_show | default: 'Show Gallery'
+    assign toggle_label_hide = toggle_label_hide | default: 'Hide Gallery'
+    assign button_color = button_color | default: rows_obj.open_close_button_color | default: '#3C64B1'
+    assign open_by_default = list_items.size == 1
+  endif
 -%}
 
-value: {{ tp_rows.value.list.value | json }}
-edit
-{%- if tp_rows.value.list.value.count > 0 -%}
-  try
-  {{ tp_rows.value.list.value }}
+{%- if list_items and list_items.size > 0 -%}
   <div class="module-tp-image-rows module-tp-image-rows--embed" id="{{ container_id }}-wrapper">
     <div class="header-content">
       {%- if header_text != blank -%}
@@ -24,26 +24,26 @@ edit
       {%- endif -%}
       {%- if list_items.size > 1 -%}
         <button
+          aria-expanded="{{ open_by_default | default: false }}"
           type="button"
           class="tp-image-rows__toggle"
-          aria-expanded="false"
-          style="color: {{ button_color }};">{{ toggle_label_show }}</button>
+          style="color: {{ button_color }};">
+          {%- if open_by_default -%}
+            {{ toggle_label_hide }}
+          {%- else -%}
+            {{ toggle_label_show }}
+          {%- endif -%}
+        </button>
       {%- endif -%}
     </div>
-    <div id="{{ container_id }}" class="tp-image-rows__container">
-      <div class="tp-image-row{% if forloop.first %} isFirst{% endif %}">
-        <div id="image_rows_container">
-          {% liquid
-            assign rows = tp_rows.value.list.value
-          %}
-          {% if rows != blank %}
-            {% for tp in rows %}
-              {% render 'tp-image-row', my_metaobject: tp, index: forloop.index0 %}
-            {% endfor %}
-          {% else %}
-          {% endif %}
+    <div id="{{ container_id }}" class="tp-image-rows__container{% if open_by_default %} open{% endif %}">
+      {%- for tp in list_items -%}
+        <div class="tp-image-row{% if forloop.first %} isFirst{% endif %}">
+          {% render 'tp-image-row'
+            , my_metaobject: tp
+            , index: forloop.index0 %}
         </div>
-      </div>
+      {%- endfor -%}
     </div>
   </div>
   <script>
@@ -81,6 +81,7 @@ edit
       font-size: 1.4rem;
       padding: 0;
       cursor: pointer;
+      color: {{ button_color }};
     }
     .module-tp-image-rows--embed .tp-image-rows__container .tp-image-row {
       display: none;
