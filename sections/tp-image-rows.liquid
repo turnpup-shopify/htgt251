@@ -86,6 +86,12 @@
         "info": "Add a metaobject",
         "metaobject_type": "tp_image_rows"
       }, {
+        "type": "metaobject",
+        "id": "image_gallery_override",
+        "label": "Image Rows Override (optional)",
+        "info": "If set, this metaobject is used instead of the main Image Rows metaobject.",
+        "metaobject_type": "tp_image_rows"
+      }, {
         "type": "text",
         "id": "image_gallery_header",
         "label": "Image Grid Header"
@@ -188,7 +194,13 @@
     }
   }
 {%- endstyle -%}
-{% assign tp_rows = shop.metaobjects.tp_image_rows[section.settings.image_gallery] %}
+{% liquid
+  assign tp_rows_id = section.settings.image_gallery_override | default: section.settings.image_gallery
+  assign tp_rows = nil
+  if tp_rows_id != blank
+    assign tp_rows = shop.metaobjects.tp_image_rows[tp_rows_id]
+  endif
+%}
 <div class="section-container section-{{ section.id }}-padding">
   <div class="header-content">
     {% if section.settings.image_gallery_header %}
