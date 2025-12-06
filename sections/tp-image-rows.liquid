@@ -201,9 +201,8 @@
     </div>
     <div id="image_rows_container">
       {% for tp in tp_rows.list.value %}
-        {% render 'tp-image-row'
-          , my_metaobject: tp
-          , index: forloop.index0
+        {{ tp.display_name.value }}
+        {% render 'tp-image-row', my_metaobject: tp, index: forloop.index0
         %}
       {% endfor %}
     </div>
