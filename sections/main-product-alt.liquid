@@ -428,7 +428,7 @@
               {% liquid
                 assign summary_heading = block.settings.heading | default: block.settings.page.title
               %}
-              {% if block.settings.content != '' %}
+              {% if block.settings.metafield_liquid != blank or block.settings.content != '' or block.settings.page != blank or block.settings.heading == 'Description' %}
                 <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
@@ -446,28 +446,14 @@
                       {% render 'icon-caret' %}
                     </summary>
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {{ block.settings.content }}
-                      {{ block.settings.page.content }}
-                    </div>
-                  </details>
-                </div>
-              {%- elsif block.settings.heading == 'Description' -%}
-                <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
-                  <details
-                    id="Details-{{ block.id }}-{{ section.id }}"
-                    {%- if block.settings.default_open -%}
-                      open
-                    {%- endif -%}
-                  >
-                    <summary>
-                      <div class="summary__title">
-                        {% render 'icon-accordion', icon: block.settings.icon %}
-                        <h2 class="h4 accordion__title">Description</h2>
-                      </div>
-                      {% render 'icon-caret' %}
-                    </summary>
-                    <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {{ product.description }}
+                      {%- if block.settings.metafield_liquid != blank -%}
+                        {{ block.settings.metafield_liquid }}
+                      {%- elsif block.settings.content != '' or block.settings.page != blank -%}
+                        {{ block.settings.content }}
+                        {{ block.settings.page.content }}
+                      {%- else -%}
+                        {{ product.description }}
+                      {%- endif -%}
                     </div>
                   </details>
                 </div>
@@ -1382,6 +1368,12 @@
           "type": "richtext",
           "id": "content",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
+        },
+        {
+          "type": "liquid",
+          "id": "metafield_liquid",
+          "label": "Metafield or custom markup",
+          "info": "Optional. Insert a metafield (rich text/HTML) or custom Liquid/HTML. If provided, it overrides the row content above."
         },
         {
           "type": "page",
