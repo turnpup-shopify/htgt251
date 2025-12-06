@@ -507,31 +507,11 @@
                       </div>
                       {% render 'icon-caret' %}
                     </summary>
-                    <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {%- liquid
-                        assign hapny_meta_output = nil
-                        if meta_value
-                          assign hapny_meta_output = meta_value | metafield_tag
-                          if hapny_meta_output contains 'metafield-multi_line_text_field'
-                            assign hapny_meta_output = meta_value.value | default: meta_value
-                          endif
-                        endif
-
-                        if hapny_meta_output == blank and block.settings.metafield_html != blank
-                          assign hapny_meta_output = block.settings.metafield_html
-                        endif
-
-                        assign hapny_meta_output = hapny_meta_output
-                          | replace: '&lt;', '<'
-                          | replace: '&gt;', '>'
-                          | replace: '&quot;', '"'
-                          | replace: '&#39;', "'"
-                          | replace: '&amp;', '&'
-                      -%}
-                      {{ hapny_meta_output }}
+                    <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">                     
+                      {{ meta_value }}
                       {%- if meta_hidden_value -%}
                         <span class="display_none" aria-hidden="true">
-                          {{ meta_hidden_value | metafield_tag }}
+                          {{ meta_hidden_value }}
                         </span>
                       {%- endif -%}
                     </div>
