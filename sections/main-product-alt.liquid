@@ -428,7 +428,7 @@
               {% liquid
                 assign summary_heading = block.settings.heading | default: block.settings.page.title
               %}
-              {% if block.settings.metafield_liquid != blank or block.settings.content != '' or block.settings.page != blank or block.settings.heading == 'Description' %}
+              {% if block.settings.content != '' or block.settings.page != blank %}
                 <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
@@ -446,26 +446,55 @@
                       {% render 'icon-caret' %}
                     </summary>
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {%- if block.settings.metafield_liquid != blank -%}
-                        {%- liquid
-                          assign metafield_content = block.settings.metafield_liquid | metafield_tag
-                          if metafield_content == blank
-                            assign metafield_content = block.settings.metafield_liquid
-                          endif
-                          assign metafield_content = metafield_content
-                            | replace: '&lt;', '<'
-                            | replace: '&gt;', '>'
-                            | replace: '&quot;', '"'
-                            | replace: '&#39;', "'"
-                            | replace: '&amp;', '&'
-                        -%}
-                        {{ metafield_content }}
-                      {%- elsif block.settings.content != '' or block.settings.page != blank -%}
-                        {{ block.settings.content }}
-                        {{ block.settings.page.content }}
-                      {%- else -%}
-                        {{ product.description }}
-                      {%- endif -%}
+                      {{ block.settings.content }}
+                      {{ block.settings.page.content }}
+                    </div>
+                  </details>
+                </div>
+              {%- elsif block.settings.heading == 'Description' -%}
+                <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+                  <details
+                    id="Details-{{ block.id }}-{{ section.id }}"
+                    {%- if block.settings.default_open -%}
+                      open
+                    {%- endif -%}
+                  >
+                    <summary>
+                      <div class="summary__title">
+                        {% render 'icon-accordion', icon: block.settings.icon %}
+                        <h2 class="h4 accordion__title">Description</h2>
+                      </div>
+                      {% render 'icon-caret' %}
+                    </summary>
+                    <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                      {{ product.description }}
+                    </div>
+                  </details>
+                </div>
+              {%- endif -%}
+            {%- when 'hapny_collapsible_row' -%}
+              {% liquid
+                assign summary_heading = block.settings.heading | default: 'Details'
+              %}
+              {% if block.settings.metafield_html != blank %}
+                <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+                  <details
+                    id="Details-{{ block.id }}-{{ section.id }}"
+                    {%- if block.settings.default_open -%}
+                      open
+                    {%- endif -%}
+                  >
+                    <summary>
+                      <div class="summary__title">
+                        {% render 'icon-accordion', icon: block.settings.icon %}
+                        <h2 class="h4 accordion__title">
+                          {{ summary_heading }}
+                        </h2>
+                      </div>
+                      {% render 'icon-caret' %}
+                    </summary>
+                    <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                      {{ block.settings.metafield_html }}
                     </div>
                   </details>
                 </div>
@@ -1382,15 +1411,85 @@
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
         },
         {
-          "type": "liquid",
-          "id": "metafield_liquid",
-          "label": "Metafield or custom markup",
-          "info": "Optional. Insert a metafield (rich text/HTML) or custom Liquid/HTML. If provided, it overrides the row content above."
-        },
-        {
           "type": "page",
           "id": "page",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
+        }
+      ]
+    },
+    {
+      "type": "hapny_collapsible_row",
+      "name": "HAPNY Collapsible Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Collapsible row",
+          "label": "Heading"
+        },
+        {
+          "type": "checkbox",
+          "id": "default_open",
+          "label": "Default open?",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "apple", "label": "Apple" },
+            { "value": "banana", "label": "Banana" },
+            { "value": "bottle", "label": "Bottle" },
+            { "value": "box", "label": "Box" },
+            { "value": "carrot", "label": "Carrot" },
+            { "value": "chat_bubble", "label": "Chat bubble" },
+            { "value": "check_mark", "label": "Check mark" },
+            { "value": "clipboard", "label": "Clipboard" },
+            { "value": "dairy", "label": "Dairy" },
+            { "value": "dairy_free", "label": "Dairy free" },
+            { "value": "dryer", "label": "Dryer" },
+            { "value": "eye", "label": "Eye" },
+            { "value": "fire", "label": "Fire" },
+            { "value": "gluten_free", "label": "Gluten free" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "iron", "label": "Iron" },
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "leather", "label": "Leather" },
+            { "value": "lightning_bolt", "label": "Lightning bolt" },
+            { "value": "lipstick", "label": "Lipstick" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "map_pin", "label": "Map pin" },
+            { "value": "nut_free", "label": "Nut free" },
+            { "value": "pants", "label": "Pants" },
+            { "value": "paw_print", "label": "Paw print" },
+            { "value": "pepper", "label": "Pepper" },
+            { "value": "perfume", "label": "Perfume" },
+            { "value": "plane", "label": "Plane" },
+            { "value": "plant", "label": "Plant" },
+            { "value": "price_tag", "label": "Price tag" },
+            { "value": "question_mark", "label": "Question mark" },
+            { "value": "recycle", "label": "Recycle" },
+            { "value": "return", "label": "Return" },
+            { "value": "ruler", "label": "Ruler" },
+            { "value": "serving_dish", "label": "Serving dish" },
+            { "value": "shirt", "label": "Shirt" },
+            { "value": "shoe", "label": "Shoe" },
+            { "value": "silhouette", "label": "Silhouette" },
+            { "value": "snowflake", "label": "Snowflake" },
+            { "value": "star", "label": "Star" },
+            { "value": "stopwatch", "label": "Stopwatch" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "washing", "label": "Washing" }
+          ],
+          "default": "check_mark",
+          "label": "Icon"
+        },
+        {
+          "type": "liquid",
+          "id": "metafield_html",
+          "label": "Metafield (rich text/HTML)",
+          "info": "Use the dynamic source picker to select your metafield. Content renders unescaped."
         }
       ]
     },
