@@ -32,13 +32,6 @@
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
-        "custom_liquid_NdUtca": {
-          "type": "custom_liquid",
-          "disabled": true,
-          "settings": {
-            "custom_liquid": "<div>\n    <span class=\"fa fa-star checked\"></span>\n    <span class=\"fa fa-star checked\"></span>\n    <span class=\"fa fa-star checked\"></span>\n    <span class=\"fa fa-star checked\"></span>\n    <span class=\"fa fa-star checked\"></span> \n<span style=\"margin-left:10px;\"> Reviews </span>\n</div>\n<style>\n.checked {\n  color: black;\n}\n</style>\n<div>\nNow In Stock: {{ product.selected_or_first_available_variant.inventory_quantity }} \n</div>"
-          }
-        },
         "price": {
           "type": "price",
           "settings": {}
@@ -83,13 +76,6 @@
             "show_dynamic_checkout": false
           }
         },
-        "custom_liquid_897xTG": {
-          "type": "custom_liquid",
-          "disabled": true,
-          "settings": {
-            "custom_liquid": "Free Shipping in the United States. Limited stock available."
-          }
-        },
         "collapsible_tab_QV88KF": {
           "type": "collapsible_tab",
           "settings": {
@@ -97,7 +83,6 @@
             "default_open": true,
             "icon": "none",
             "content": "{{ product.metafields.custom.offers | metafield_tag }}",
-            "custom_html": "",
             "page": ""
           }
         },
@@ -108,7 +93,6 @@
             "default_open": true,
             "icon": "none",
             "content": "<p>Same day order processing! Free nationwide shipping with next day order fulfillment. Arrives in 2-5 days in most cases.</p>",
-            "custom_html": "",
             "page": ""
           }
         },
@@ -119,7 +103,6 @@
             "default_open": true,
             "icon": "none",
             "content": "",
-            "custom_html": "",
             "page": ""
           }
         },
@@ -129,8 +112,7 @@
             "heading": "Dimensions",
             "default_open": true,
             "icon": "none",
-            "content": "",
-            "custom_html": "",
+            "content": "<p>{{ product.metafields.pdp.dimensions | metafield_tag }}</p>",
             "page": ""
           }
         },
@@ -149,7 +131,6 @@
             "default_open": false,
             "icon": "none",
             "content": "<p>{{ product.metafields.custom.materials | metafield_tag }}</p>",
-            "custom_html": "",
             "page": ""
           }
         },
@@ -159,8 +140,7 @@
             "heading": "Care Instructions",
             "default_open": false,
             "icon": "none",
-            "content": "<p>{{ product.metafields.custom.care_instructions | metafield_tag }}</p>",
-            "custom_html": "",
+            "content": "<p>{{ product.metafields.pdp.downloads | metafield_tag }}</p>",
             "page": ""
           }
         },
@@ -171,7 +151,6 @@
             "default_open": false,
             "icon": "none",
             "content": "{{ product.metafields.custom.design_style | metafield_tag }}",
-            "custom_html": "",
             "page": ""
           }
         },
@@ -192,7 +171,6 @@
         "breadcrumb_yfxxfH",
         "title",
         "judge_me_reviews_preview_badge_rGQ9HX",
-        "custom_liquid_NdUtca",
         "price",
         "countdown_hyqeK8",
         "variant_picker",
@@ -201,7 +179,6 @@
         "6e3cb80f-7395-4806-8a51-8eb62abc629e",
         "quantity_selector",
         "buy_buttons",
-        "custom_liquid_897xTG",
         "collapsible_tab_QV88KF",
         "collapsible-row-1",
         "collapsible_tab_DAkg6R",
