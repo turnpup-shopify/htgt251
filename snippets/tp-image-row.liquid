@@ -1,5 +1,4 @@
 {%- assign snippet_index = index | default: 0 -%}
-
 {%- if my_metaobject.display_name != blank -%}
   {%- if my_metaobject -%}
     {%- if my_metaobject.cells != blank -%}
@@ -30,12 +29,12 @@
       </div>
     </section>
   </div>
-  <div id="photos" class="tp-image-row{% if snippet_index == 0 %} isFirst{% endif %}">
+  <div id="photos">
     {% for t in toUse %}
       <div class="imgContain {% if t.product == null or template.name == "product" %} noproduct{% endif %}">
         {%- if t.product != null and template.name != "product" -%}
           <a href="{{ t.product.value.url }}" target="_new">
-            {{ t.product.value.title | remove: section.settings.keyword_to_remove }}
+            {{ t.product.value.title }}
           </a>
         {%- endif -%}
         {%- if t.display_image != null -%}
@@ -49,7 +48,7 @@
   </div>
 
   <style>
-    .imgContain a {
+    .imgContain a:-webkit-any-link {
       font-size: 22px;
       color: white;
       position: absolute;
