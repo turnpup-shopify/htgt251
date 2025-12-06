@@ -475,8 +475,15 @@
             {%- when 'hapny_collapsible_row' -%}
               {% liquid
                 assign summary_heading = block.settings.heading | default: 'Details'
+                assign meta_value = nil
+                if block.settings.metafield_reference contains '.'
+                  assign meta_parts = block.settings.metafield_reference | split: '.'
+                  assign meta_namespace = meta_parts[0]
+                  assign meta_key = meta_parts[1]
+                  assign meta_value = product.metafields[meta_namespace][meta_key]
+                endif
               %}
-              {% if block.settings.metafield_html != blank %}
+              {% if meta_value or block.settings.metafield_html != blank %}
                 <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
@@ -495,20 +502,11 @@
                     </summary>
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
                       {%- liquid
-                        assign hapny_meta_rendered = block.settings.metafield_html | metafield_tag
-                        if hapny_meta_rendered == blank
-                          assign hapny_meta_rendered = block.settings.metafield_html
+                        if meta_value
+                          assign hapny_meta_output = meta_value | metafield_tag
+                        elsif block.settings.metafield_html != blank
+                          assign hapny_meta_output = block.settings.metafield_html
                         endif
-
-                        assign hapny_meta_output = hapny_meta_rendered
-                        assign hapny_meta_output = hapny_meta_output
-                          | remove: '<p><span class="metafield-multi_line_text_field">'
-                          | remove: '</span></p>'
-                          | replace: '&lt;', '<'
-                          | replace: '&gt;', '>'
-                          | replace: '&quot;', '"'
-                          | replace: '&#39;', "'"
-                          | replace: '&amp;', '&'
                       -%}
                       {{ hapny_meta_output }}
                     </div>
@@ -1444,6 +1442,12 @@
           "label": "Heading"
         },
         {
+          "type": "text",
+          "id": "metafield_reference",
+          "label": "Metafield reference (namespace.key)",
+          "info": "Example: pdp.care. Leave blank to use the manual rich text below."
+        },
+        {
           "type": "checkbox",
           "id": "default_open",
           "label": "Default open?",
@@ -1504,8 +1508,8 @@
         {
           "type": "richtext",
           "id": "metafield_html",
-          "label": "Metafield (rich text/HTML)",
-          "info": "Use the dynamic source picker to select your HTML/rich text metafield. Content renders as provided."
+          "label": "Fallback content",
+          "info": "Optional manual content if no metafield reference is provided."
         }
       ]
     },
