@@ -30,6 +30,14 @@
       {%- for item in list_items -%}
         <div class="tp-image-row{% if forloop.first %} isFirst{% endif %}">
           {{ item | metafield_tag }}
+          <div id="image_rows_container">
+            {% for tp in tp_rows.list.value %}
+              {% render 'tp-image-row'
+                , my_metaobject: tp
+                , index: forloop.index0
+              %}
+            {% endfor %}
+          </div>
         </div>
       {%- endfor -%}
     </div>
