@@ -187,7 +187,7 @@
       }
     }
   {%- endstyle -%}
-{% assign tp_rows = shop.metaobjects.tp_image_rows[section.settings.image_gallery] %}
+  {% assign tp_rows = shop.metaobjects.tp_image_rows[section.settings.image_gallery] %}
   <div class="section-container section-{{ section.id }}-padding">
     <div class="header-content">
       {% if section.settings.image_gallery_header %}
