@@ -119,7 +119,7 @@
         "hapny_collapsible_row_Ne4Jee": {
           "type": "hapny_collapsible_row",
           "settings": {
-            "heading": "Care",
+            "heading": "Care Instructions",
             "metafield_reference": "pdp.downloads",
             "default_open": false,
             "icon": "none",
