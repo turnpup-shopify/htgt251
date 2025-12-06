@@ -106,14 +106,14 @@
             "page": ""
           }
         },
-        "collapsible-row-2": {
-          "type": "collapsible_tab",
+        "hapny_collapsible_row_y6GaqY": {
+          "type": "hapny_collapsible_row",
           "settings": {
-            "heading": "Dimensions",
-            "default_open": true,
+            "heading": "Details",
+            "metafield_reference": "pdp.details",
+            "default_open": false,
             "icon": "none",
-            "content": "",
-            "page": ""
+            "metafield_html": ""
           }
         },
         "hapny_collapsible_row_Ne4Jee": {
@@ -203,7 +203,7 @@
         "collapsible_tab_QV88KF",
         "collapsible-row-1",
         "collapsible_tab_DAkg6R",
-        "collapsible-row-2",
+        "hapny_collapsible_row_y6GaqY",
         "hapny_collapsible_row_Ne4Jee",
         "hapny_collapsible_row_Hiic4C",
         "dimensions_q4tmAx",
