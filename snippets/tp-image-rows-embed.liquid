@@ -1,10 +1,10 @@
 {%- liquid
   assign rows = tp_rows
-  if rows == blank or rows.list == blank or rows.list.value == blank
-    return
+  assign list_items = nil
+  if rows and rows.list and rows.list.value != blank
+    assign list_items = rows.list.value
   endif
 
-  assign list_items = rows.list.value
   assign container_id = 'tp-image-rows-' | append: rows.id | default: 'tp-image-rows-embed'
   assign toggle_label_show = toggle_label_show | default: 'Show Gallery'
   assign toggle_label_hide = toggle_label_hide | default: 'Hide Gallery'
@@ -12,7 +12,7 @@
   assign button_color = button_color | default: rows.open_close_button_color | default: '#3C64B1'
 -%}
 
-{%- if list_items.size > 0 -%}
+{%- if list_items and list_items.size > 0 -%}
   <div class="module-tp-image-rows module-tp-image-rows--embed" id="{{ container_id }}-wrapper">
     <div class="header-content">
       {%- if header_text != blank -%}
