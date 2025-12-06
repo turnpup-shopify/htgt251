@@ -12,6 +12,10 @@
   assign button_color = button_color | default: rows.open_close_button_color | default: '#3C64B1'
 -%}
 
+{{ tp_rows.value | json }}
+{{ tp_rows.value.list | json }}
+{{ tp_rows.value.list.value | json }}
+
 {%- if list_items and list_items.size > 0 -%}
   <div class="module-tp-image-rows module-tp-image-rows--embed" id="{{ container_id }}-wrapper">
     <div class="header-content">
