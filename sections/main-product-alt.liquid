@@ -447,7 +447,19 @@
                     </summary>
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
                       {%- if block.settings.metafield_liquid != blank -%}
-                        {{ block.settings.metafield_liquid }}
+                        {%- liquid
+                          assign metafield_content = block.settings.metafield_liquid | metafield_tag
+                          if metafield_content == blank
+                            assign metafield_content = block.settings.metafield_liquid
+                          endif
+                          assign metafield_content = metafield_content
+                            | replace: '&lt;', '<'
+                            | replace: '&gt;', '>'
+                            | replace: '&quot;', '"'
+                            | replace: '&#39;', "'"
+                            | replace: '&amp;', '&'
+                        -%}
+                        {{ metafield_content }}
                       {%- elsif block.settings.content != '' or block.settings.page != blank -%}
                         {{ block.settings.content }}
                         {{ block.settings.page.content }}
