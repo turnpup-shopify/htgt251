@@ -76,6 +76,7 @@
             after 1
             {%- if image_rows_primary != blank -%}
               render 1
+              {{ image_rows_primary | json }}
               {% render 'tp-image-rows-embed'
                 , tp_rows: image_rows_primary %}
             {%- endif -%}
