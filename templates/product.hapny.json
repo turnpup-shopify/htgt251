@@ -97,6 +97,7 @@
             "default_open": true,
             "icon": "none",
             "content": "{{ product.metafields.custom.offers | metafield_tag }}",
+            "custom_html": "",
             "page": ""
           }
         },
@@ -107,6 +108,7 @@
             "default_open": true,
             "icon": "none",
             "content": "<p>Same day order processing! Free nationwide shipping with next day order fulfillment. Arrives in 2-5 days in most cases.</p>",
+            "custom_html": "",
             "page": ""
           }
         },
@@ -117,17 +119,18 @@
             "default_open": true,
             "icon": "none",
             "content": "",
+            "custom_html": "",
             "page": ""
           }
         },
         "collapsible-row-2": {
           "type": "collapsible_tab",
-          "disabled": true,
           "settings": {
             "heading": "Dimensions",
             "default_open": true,
             "icon": "none",
-            "content": "<p>{{ product.metafields.pdp.dimensions | metafield_tag }}</p>",
+            "content": "",
+            "custom_html": "",
             "page": ""
           }
         },
@@ -146,6 +149,7 @@
             "default_open": false,
             "icon": "none",
             "content": "<p>{{ product.metafields.custom.materials | metafield_tag }}</p>",
+            "custom_html": "",
             "page": ""
           }
         },
@@ -156,6 +160,7 @@
             "default_open": false,
             "icon": "none",
             "content": "<p>{{ product.metafields.custom.care_instructions | metafield_tag }}</p>",
+            "custom_html": "",
             "page": ""
           }
         },
@@ -166,6 +171,7 @@
             "default_open": false,
             "icon": "none",
             "content": "{{ product.metafields.custom.design_style | metafield_tag }}",
+            "custom_html": "",
             "page": ""
           }
         },
