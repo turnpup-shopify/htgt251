@@ -27,19 +27,17 @@
       {%- endif -%}
     </div>
     <div id="{{ container_id }}" class="tp-image-rows__container">
-      {%- for item in list_items -%}
-        <div class="tp-image-row{% if forloop.first %} isFirst{% endif %}">
-          {{ item | metafield_tag }}
-          <div id="image_rows_container">
-            {% for tp in tp_rows.list.value %}
-              {% render 'tp-image-row'
-                , my_metaobject: tp
-                , index: forloop.index0
-              %}
-            {% endfor %}
-          </div>
+      <div class="tp-image-row{% if forloop.first %} isFirst{% endif %}">
+        <div id="image_rows_container">
+          {% for tp in tp_rows.list.value %}
+            loop 1
+            {% render 'tp-image-row'
+              , my_metaobject: tp
+              , index: forloop.index0
+            %}
+          {% endfor %}
         </div>
-      {%- endfor -%}
+      </div>
     </div>
   </div>
   <script>
