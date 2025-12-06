@@ -476,11 +476,18 @@
               {% liquid
                 assign summary_heading = block.settings.heading | default: 'Details'
                 assign meta_value = nil
+                assign meta_hidden_value = nil
                 if block.settings.metafield_reference contains '.'
                   assign meta_parts = block.settings.metafield_reference | split: '.'
                   assign meta_namespace = meta_parts[0]
                   assign meta_key = meta_parts[1]
                   assign meta_value = product.metafields[meta_namespace][meta_key]
+                endif
+                if block.settings.metafield_reference_invisible contains '.'
+                  assign meta_hidden_parts = block.settings.metafield_reference_invisible | split: '.'
+                  assign meta_hidden_namespace = meta_hidden_parts[0]
+                  assign meta_hidden_key = meta_hidden_parts[1]
+                  assign meta_hidden_value = product.metafields[meta_hidden_namespace][meta_hidden_key]
                 endif
               %}
               {% if meta_value or block.settings.metafield_html != blank %}
@@ -501,7 +508,32 @@
                       {% render 'icon-caret' %}
                     </summary>
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {{ meta_value }}
+                      {%- liquid
+                        assign hapny_meta_output = nil
+                        if meta_value
+                          assign hapny_meta_output = meta_value | metafield_tag
+                          if hapny_meta_output contains 'metafield-multi_line_text_field'
+                            assign hapny_meta_output = meta_value.value | default: meta_value
+                          endif
+                        endif
+
+                        if hapny_meta_output == blank and block.settings.metafield_html != blank
+                          assign hapny_meta_output = block.settings.metafield_html
+                        endif
+
+                        assign hapny_meta_output = hapny_meta_output
+                          | replace: '&lt;', '<'
+                          | replace: '&gt;', '>'
+                          | replace: '&quot;', '"'
+                          | replace: '&#39;', "'"
+                          | replace: '&amp;', '&'
+                      -%}
+                      {{ hapny_meta_output }}
+                      {%- if meta_hidden_value -%}
+                        <span class="display_none" aria-hidden="true">
+                          {{ meta_hidden_value | metafield_tag }}
+                        </span>
+                      {%- endif -%}
                     </div>
                   </details>
                 </div>
@@ -1439,6 +1471,12 @@
           "id": "metafield_reference",
           "label": "Metafield reference (namespace.key)",
           "info": "Example: pdp.care. Leave blank to use the manual rich text below."
+        },
+        {
+          "type": "text",
+          "id": "metafield_reference_invisible",
+          "label": "Invisible metafield (namespace.key)",
+          "info": "Optional extra metafield rendered inside an invisible span."
         },
         {
           "type": "checkbox",
