@@ -33,15 +33,19 @@ edit
     <div id="{{ container_id }}" class="tp-image-rows__container">
       <div class="tp-image-row{% if forloop.first %} isFirst{% endif %}">
         <div id="image_rows_container">
-          hi size:{{ tp_rows.value.list  }}
-          {% for tp in tp_rows.value.list %}
-            {{ tp.display_name.value }}
-            hi hi
-            {% render 'tp-image-row'
-              , my_metaobject: tp
-              , index: forloop.index0
-            %}
-          {% endfor %}
+          {% assign rows = tp_rows.list.value %}
+
+          hi size: {{ rows | size }}
+
+          {% if rows != blank %}
+            {% for tp in rows %}
+              {{ tp.display_name.value }}
+              hi hi
+              {% render 'tp-image-row', my_metaobject: tp, index: forloop.index0 %}
+            {% endfor %}
+          {% else %}
+            no rows found
+          {% endif %}
         </div>
       </div>
     </div>
