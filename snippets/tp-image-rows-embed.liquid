@@ -12,7 +12,11 @@
     assign toggle_label_show = toggle_label_show | default: 'Show Gallery'
     assign toggle_label_hide = toggle_label_hide | default: 'Hide Gallery'
     assign button_color = button_color | default: rows_obj.open_close_button_color | default: '#3C64B1'
-    assign open_by_default = list_items.size == 1
+
+    assign open_by_default = false
+    if list_items.size == 1
+      assign open_by_default = true
+    endif
   endif
 -%}
 
