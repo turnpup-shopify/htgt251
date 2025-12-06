@@ -83,7 +83,6 @@
             "default_open": true,
             "icon": "none",
             "content": "{{ product.metafields.custom.offers | metafield_tag }}",
-            "metafield_liquid": "",
             "page": ""
           }
         },
@@ -94,7 +93,6 @@
             "default_open": true,
             "icon": "none",
             "content": "<p>Same day order processing! Free nationwide shipping with next day order fulfillment. Arrives in 2-5 days in most cases.</p>",
-            "metafield_liquid": "",
             "page": ""
           }
         },
@@ -105,7 +103,6 @@
             "default_open": true,
             "icon": "none",
             "content": "",
-            "metafield_liquid": "",
             "page": ""
           }
         },
@@ -116,8 +113,16 @@
             "default_open": true,
             "icon": "none",
             "content": "",
-            "metafield_liquid": "{{product.metafields.pdp.dimensions | metafield_tag }}",
             "page": ""
+          }
+        },
+        "hapny_collapsible_row_Ne4Jee": {
+          "type": "hapny_collapsible_row",
+          "settings": {
+            "heading": "Care",
+            "default_open": false,
+            "icon": "none",
+            "metafield_html": "<p>{{ product.metafields.pdp.downloads | metafield_tag }}</p>"
           }
         },
         "dimensions_q4tmAx": {
@@ -135,7 +140,6 @@
             "default_open": false,
             "icon": "none",
             "content": "<p>{{ product.metafields.custom.materials | metafield_tag }}</p>",
-            "metafield_liquid": "",
             "page": ""
           }
         },
@@ -146,7 +150,6 @@
             "default_open": false,
             "icon": "none",
             "content": "<p>{{ product.metafields.pdp.downloads | metafield_tag }}</p>",
-            "metafield_liquid": "",
             "page": ""
           }
         },
@@ -157,7 +160,6 @@
             "default_open": false,
             "icon": "none",
             "content": "{{ product.metafields.custom.design_style | metafield_tag }}",
-            "metafield_liquid": "",
             "page": ""
           }
         },
@@ -190,6 +192,7 @@
         "collapsible-row-1",
         "collapsible_tab_DAkg6R",
         "collapsible-row-2",
+        "hapny_collapsible_row_Ne4Jee",
         "dimensions_q4tmAx",
         "collapsible-row-0",
         "collapsible-row-3",
