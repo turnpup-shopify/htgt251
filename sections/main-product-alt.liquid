@@ -424,24 +424,11 @@
                   </div>
                 {%- endif -%}
               {% endcomment %}
-            {%- when 'custom_liquid' -%}
-              {{ block.settings.custom_liquid }}
             {%- when 'collapsible_tab' -%}
               {% liquid
-                assign has_custom_html = false
-                if block.settings.custom_html != blank
-                  assign has_custom_html = true
-                endif
-
-                assign has_content = false
-                if block.settings.content != '' or block.settings.page != blank
-                  assign has_content = true
-                endif
-
-                assign is_description_row = block.settings.heading == 'Description'
                 assign summary_heading = block.settings.heading | default: block.settings.page.title
               %}
-              {% if has_custom_html or has_content or is_description_row %}
+              {% if block.settings.content != '' %}
                 <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
@@ -459,14 +446,28 @@
                       {% render 'icon-caret' %}
                     </summary>
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {%- if has_custom_html -%}
-                        {{ block.settings.custom_html }}
-                      {%- elsif has_content -%}
-                        {{ block.settings.content }}
-                        {{ block.settings.page.content }}
-                      {%- elsif is_description_row -%}
-                        {{ product.description }}
-                      {%- endif -%}
+                      {{ block.settings.content }}
+                      {{ block.settings.page.content }}
+                    </div>
+                  </details>
+                </div>
+              {%- elsif block.settings.heading == 'Description' -%}
+                <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+                  <details
+                    id="Details-{{ block.id }}-{{ section.id }}"
+                    {%- if block.settings.default_open -%}
+                      open
+                    {%- endif -%}
+                  >
+                    <summary>
+                      <div class="summary__title">
+                        {% render 'icon-accordion', icon: block.settings.icon %}
+                        <h2 class="h4 accordion__title">Description</h2>
+                      </div>
+                      {% render 'icon-caret' %}
+                    </summary>
+                    <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                      {{ product.description }}
                     </div>
                   </details>
                 </div>
@@ -1177,18 +1178,6 @@
       ]
     },
     {
-      "type": "custom_liquid",
-      "name": "t:sections.main-product.blocks.custom_liquid.name",
-      "settings": [
-        {
-          "type": "liquid",
-          "id": "custom_liquid",
-          "label": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.label",
-          "info": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.info"
-        }
-      ]
-    },
-    {
       "type": "collapsible_tab",
       "name": "t:sections.main-product.blocks.collapsible_tab.name",
       "settings": [
@@ -1393,12 +1382,6 @@
           "type": "richtext",
           "id": "content",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
-        },
-        {
-            "type": "liquid",
-            "id": "custom_html",
-            "label": "Custom HTML or Liquid",
-            "info": "Use HTML or Liquid. Dynamic sources (e.g. product metafields) are supported."
         },
         {
           "type": "page",
