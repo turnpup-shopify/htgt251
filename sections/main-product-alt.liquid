@@ -510,7 +510,7 @@
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">                     
                       <div class="pdp_lower_cms_section invisible" aria-hidden="true" js-accordion-content>                      
                         {{ meta_value }}
-                        <span id="dimension_read_more_reveal" class="display_none" aria-hidden="true">{{ meta_hidden_value }}</span>
+                         {%- if meta_hidden_value -%}<span id="dimension_read_more_reveal" class="display_none" aria-hidden="true">{{ meta_hidden_value }}</span>{%- endif -%}  
                       </div>
                       {%- if meta_hidden_value -%}
                         <a id="dimension_read_more" style="cursor:auto;display:inline-block;margin-top: 10px;color: var(--hapny-blue);text-decoration: underline;"> Expand All </a>
