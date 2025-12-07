@@ -949,7 +949,7 @@
         "turnpup_mobile_note_text_size": "16px",
         "turnpup_note_text_color": "#373f41",
         "turnpup_note_text_weight": "700",
-        "tp_margin": "100px 40px 100px 40px",
+        "tp_margin": "40px",
         "tp_mobile_margin": "40px 20px",
         "tp_margin_top_bottom": "60px",
         "tp_margin_left_right": "40px",
