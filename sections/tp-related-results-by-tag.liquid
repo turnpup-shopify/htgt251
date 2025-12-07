@@ -9,13 +9,7 @@
 {%- capture article_links -%}
   {%- if filter_tag != blank -%}
     {%- if blog_object -%}
-      {%- assign blogs_to_check = blog_object | array -%}
-    {%- else -%}
-      {%- assign blogs_to_check = blogs -%}
-    {%- endif -%}
-
-    {%- for blog in blogs_to_check -%}
-      {%- for article in blog.articles -%}
+      {%- for article in blog_object.articles -%}
         {%- if article.tags contains filter_tag and article.url != request.path -%}
           {%- assign articles_found = articles_found | plus: 1 -%}
           <a
@@ -29,10 +23,27 @@
           {%- endif -%}
         {%- endif -%}
       {%- endfor -%}
-      {%- if articles_found == 10 -%}
-        {%- break -%}
-      {%- endif -%}
-    {%- endfor -%}
+    {%- else -%}
+      {%- for blog in blogs -%}
+        {%- for article in blog.articles -%}
+          {%- if article.tags contains filter_tag and article.url != request.path -%}
+            {%- assign articles_found = articles_found | plus: 1 -%}
+            <a
+              class="minimal_button"
+              style="display: inline-block; margin-right: 20px; border: 1px solid black;"
+              href="{{ article.url }}">
+              {{ article.title }}
+            </a>
+            {%- if articles_found == 10 -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if articles_found == 10 -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
   {%- endif -%}
 {%- endcapture -%}
 {%- if articles_found > 0 -%}
