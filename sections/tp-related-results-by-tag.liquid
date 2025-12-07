@@ -40,22 +40,25 @@
       {%- endif -%}
 
       {%- for blog in blogs_to_loop -%}
-        {%- for article in blog.articles -%}
-          {%- if article.tags contains filter_tag and article.url != request.path -%}
-            {%- assign articles_found = articles_found | plus: 1 -%}
-            <a
-              class="minimal_button"
-              style="display: inline-block; margin-right: 20px; border: 1px solid black;"
-              href="{{ article.url }}">
-              {{ article.title }}
-            </a>
-            {%- if articles_found == 10 -%}
-              {%- break -%}
+        {%- assign blog_obj = blog[1] | default: blog -%}
+        {%- if blog_obj and blog_obj.articles -%}
+          {%- for article in blog_obj.articles -%}
+            {%- if article.tags contains filter_tag and article.url != request.path -%}
+              {%- assign articles_found = articles_found | plus: 1 -%}
+              <a
+                class="minimal_button"
+                style="display: inline-block; margin-right: 20px; border: 1px solid black;"
+                href="{{ article.url }}">
+                {{ article.title }}
+              </a>
+              {%- if articles_found == 10 -%}
+                {%- break -%}
+              {%- endif -%}
             {%- endif -%}
+          {%- endfor -%}
+          {%- if articles_found == 10 -%}
+            {%- break -%}
           {%- endif -%}
-        {%- endfor -%}
-        {%- if articles_found == 10 -%}
-          {%- break -%}
         {%- endif -%}
       {%- endfor -%}
     {%- endif -%}
@@ -147,8 +150,7 @@
         "id": "text_alignment",
         "label": "Text Alignment",
         "default": "left"
-      },
-      {
+      }, {
         "type": "text",
         "id": "turnpup_title_size",
         "label": "Heading Font Size (e.g. 24px)",
