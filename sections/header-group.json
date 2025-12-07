@@ -34,7 +34,8 @@
         "item_UAfhLb"
       ],
       "custom_css": [
-        ".ann-countdown {color: black !important;}"
+        ".ann-countdown {color: black !important;}",
+        ".ann-countdown {background: #EDDBC2;}"
       ],
       "name": "Announcement Timer",
       "settings": {
