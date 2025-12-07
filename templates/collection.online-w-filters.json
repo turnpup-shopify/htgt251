@@ -629,8 +629,8 @@
       "name": "TP Related Results (Blog Tag)",
       "settings": {
         "blog": "",
-        "filter_tag": "accent-tables",
-        "blog_handles": "how",
+        "filter_tag": "{{ collection.metafields.custom.related_results_tag.value }}",
+        "blog_handles": "",
         "text_alignment": "left",
         "turnpup_title_size": "24px",
         "turnpup_mobile_title_size": "24px",
