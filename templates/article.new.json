@@ -54,7 +54,7 @@
       "name": "TP Related Results (Blog Tag)",
       "settings": {
         "blog": "",
-        "filter_tag": "accent-tables",
+        "filter_tag": "{{ article.metafields.custom.related_results_tag.value }}",
         "blog_handles": "how-to,inspiration,trends,local",
         "text_alignment": "left",
         "turnpup_title_size": "24px",
@@ -78,11 +78,11 @@
         "turnpup_button_size": "18px",
         "button_link": "",
         "color_text": "#ffffff",
-        "color_accent": "#f4b237",
-        "turnpup_hover_txt_color": "#f4b237",
+        "color_accent": "#391212",
+        "turnpup_hover_txt_color": "#391212",
         "turnpup_hover_background_color": "#ffffff",
-        "turnpup_top_border_color": "#f4b237",
-        "turnpup_bottom_border_color": "#f4b237"
+        "turnpup_top_border_color": "#391212",
+        "turnpup_bottom_border_color": "#391212"
       }
     }
   },
