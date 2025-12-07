@@ -32,13 +32,6 @@
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
-        "custom_liquid_NdUtca": {
-          "type": "custom_liquid",
-          "disabled": true,
-          "settings": {
-            "custom_liquid": "<div>\n    <span class=\"fa fa-star checked\"></span>\n    <span class=\"fa fa-star checked\"></span>\n    <span class=\"fa fa-star checked\"></span>\n    <span class=\"fa fa-star checked\"></span>\n    <span class=\"fa fa-star checked\"></span> \n<span style=\"margin-left:10px;\"> Reviews </span>\n</div>\n<style>\n.checked {\n  color: black;\n}\n</style>\n<div>\nNow In Stock: {{ product.selected_or_first_available_variant.inventory_quantity }} \n</div>"
-          }
-        },
         "price": {
           "type": "price",
           "settings": {}
@@ -82,13 +75,6 @@
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": false
-          }
-        },
-        "custom_liquid_897xTG": {
-          "type": "custom_liquid",
-          "disabled": true,
-          "settings": {
-            "custom_liquid": "Free Shipping in the United States. Limited stock available."
           }
         },
         "collapsible_tab_QV88KF": {
@@ -187,7 +173,6 @@
         "breadcrumb_yfxxfH",
         "title",
         "judge_me_reviews_preview_badge_rGQ9HX",
-        "custom_liquid_NdUtca",
         "price",
         "countdown_hyqeK8",
         "variant_picker",
@@ -196,7 +181,6 @@
         "6e3cb80f-7395-4806-8a51-8eb62abc629e",
         "quantity_selector",
         "buy_buttons",
-        "custom_liquid_897xTG",
         "collapsible_tab_QV88KF",
         "collapsible_tab_DAkg6R",
         "collapsible-row-1",
@@ -443,9 +427,9 @@
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "review_data": "sample_data",
+            "max_width": 1200,
             "show_shop_reviews": false,
-            "empty_state": "empty_widget",
-            "max_width": 1200
+            "empty_state": "empty_widget"
           }
         }
       },
@@ -711,6 +695,8 @@
         "mobile_max_height_desktop": 90,
         "enabled_border": false,
         "swipe_on_mobile": true,
+        "enable_url_param_image_swap": false,
+        "url_param_image_key": "multicolumn_product",
         "mobile_columns": 1,
         "desktop_image_width": "100%",
         "mobile_image_width": "100%",
@@ -821,31 +807,6 @@
         "section_background_color": "#ffffff"
       }
     },
-    "tp_subnav_xBm8Wh": {
-      "type": "tp-subnav",
-      "settings": {
-        "padding_top": 0,
-        "padding_bottom": 40,
-        "padding_right": 0,
-        "padding_left": 40,
-        "mobile_padding_top": 0,
-        "mobile_padding_bottom": 40,
-        "mobile_padding_right": 0,
-        "mobile_padding_left": 20,
-        "collection_menu": "{{ product.metafields.custom.subnav_metaobject.value.collections.value }}",
-        "no_image": true,
-        "desktop_font_size": "16px",
-        "mobile_font_size": "16px",
-        "alignment": "center",
-        "desktop_max_width": 100,
-        "mobile_max_width": 100,
-        "desktop_column_gap": 20,
-        "mobile_column_gap": 18,
-        "use_max_height_below": true,
-        "desktop_max_height_image": 138,
-        "mobile_max_height_image": 128
-      }
-    },
     "newsletter_QBWWCd": {
       "type": "newsletter",
       "blocks": {
@@ -935,6 +896,42 @@
         "padding_bottom": 0
       }
     },
+    "tp_related_results_by_tag_FpiHWc": {
+      "type": "tp-related-results-by-tag",
+      "name": "TP Related Results (Blog Tag)",
+      "settings": {
+        "blog": "",
+        "filter_tag": "{{ product.metafields.custom.related_results_tag.value }}",
+        "blog_handles": "how-to,inspiration,trends,local",
+        "text_alignment": "left",
+        "turnpup_title_size": "24px",
+        "turnpup_mobile_title_size": "24px",
+        "turnpup_title_color": "#3C64B1",
+        "turnpup_text_size": "18px",
+        "turnpup_mobile_text_size": "16px",
+        "turnpup_text_color": "#373F41",
+        "turnpup_note_text_size": "18px",
+        "turnpup_mobile_note_text_size": "16px",
+        "turnpup_note_text_color": "#373F41",
+        "turnpup_note_text_weight": "700",
+        "tp_margin_top_bottom": "100px",
+        "tp_margin_left_right": "40px",
+        "tp_mobile_margin_top_bottom": "60px",
+        "tp_mobile_margin_left_right": "20px",
+        "turnpup_header_background": "#FFF8F1",
+        "turnpup_text_background": "#FFF8F1",
+        "link": "",
+        "button_label": "",
+        "turnpup_button_size": "18px",
+        "button_link": "",
+        "color_text": "#ffffff",
+        "color_accent": "#F4B237",
+        "turnpup_hover_txt_color": "#F4B237",
+        "turnpup_hover_background_color": "#ffffff",
+        "turnpup_top_border_color": "#F4B237",
+        "turnpup_bottom_border_color": "#F4B237"
+      }
+    },
     "tp_seo_footer_xe6XF9": {
       "type": "tp-seo-footer",
       "settings": {
@@ -985,10 +982,10 @@
     "tp_auto_col_banners_tb99zR",
     "turnpup_multicolumn_JxhK7g",
     "tp_article_carousel_V6LRPf",
-    "tp_subnav_xBm8Wh",
     "newsletter_QBWWCd",
     "tp_pdp_products_in_collection_K8bNmF",
     "product-recommendations",
+    "tp_related_results_by_tag_FpiHWc",
     "tp_seo_footer_xe6XF9"
   ]
 }
