@@ -27,40 +27,32 @@
     {%- else -%}
       {%- if related_blog_handles != blank -%}
         {%- assign handle_list = related_blog_handles | split: "," -%}
-        {%- assign blogs_to_loop = "" | split: "," -%}
+
         {%- for handle in handle_list -%}
           {%- assign trimmed_handle = handle | strip -%}
-          {%- assign blog_lookup = blogs[trimmed_handle] -%}
-          {%- if blog_lookup -%}
-            {%- assign blogs_to_loop = blogs_to_loop | push: blog_lookup -%}
-          {%- endif -%}
-        {%- endfor -%}
-      {%- else -%}
-        {%- assign blogs_to_loop = blogs -%}
-      {%- endif -%}
-
-      {%- for blog in blogs_to_loop -%}
-        {%- assign blog_obj = blog[1] | default: blog -%}
-        {%- if blog_obj and blog_obj.articles -%}
-          {%- for article in blog_obj.articles -%}
-            {%- if article.tags contains filter_tag and article.url != request.path -%}
-              {%- assign articles_found = articles_found | plus: 1 -%}
-              <a
-                class="minimal_button"
-                style="display: inline-block; margin-right: 20px; border: 1px solid black;"
-                href="{{ article.url }}">
-                {{ article.title }}
-              </a>
-              {%- if articles_found == 10 -%}
-                {%- break -%}
+          {%- assign blog_obj = blogs[trimmed_handle] -%}
+          {%- if blog_obj and blog_obj.articles -%}
+            {%- for article in blog_obj.articles -%}
+              {%- if article.tags contains filter_tag and article.url != request.path -%}
+                {%- assign articles_found = articles_found | plus: 1 -%}
+                <a
+                  class="minimal_button"
+                  style="display: inline-block; margin-right: 20px; border: 1px solid black;"
+                  href="{{ article.url }}">
+                  {{ article.title }}
+                </a>
+                {%- if articles_found == 10 -%}
+                  {%- break -%}
+                {%- endif -%}
               {%- endif -%}
-            {%- endif -%}
-          {%- endfor -%}
+            {%- endfor -%}
+          {%- endif -%}
+
           {%- if articles_found == 10 -%}
             {%- break -%}
           {%- endif -%}
-        {%- endif -%}
-      {%- endfor -%}
+        {%- endfor -%}
+      {%- endif -%}
     {%- endif -%}
   {%- endif -%}
 {%- endcapture -%}
