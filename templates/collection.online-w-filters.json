@@ -624,6 +624,42 @@
         "turnpup_bottom_border_color": "rgba(0,0,0,0)"
       }
     },
+    "tp_related_results_by_tag_F3FiTG": {
+      "type": "tp-related-results-by-tag",
+      "name": "TP Related Results (Blog Tag)",
+      "settings": {
+        "blog": "",
+        "filter_tag": "accent-tables",
+        "blog_handles": "how",
+        "text_alignment": "left",
+        "turnpup_title_size": "24px",
+        "turnpup_mobile_title_size": "24px",
+        "turnpup_title_color": "#3C64B1",
+        "turnpup_text_size": "18px",
+        "turnpup_mobile_text_size": "16px",
+        "turnpup_text_color": "#373F41",
+        "turnpup_note_text_size": "18px",
+        "turnpup_mobile_note_text_size": "16px",
+        "turnpup_note_text_color": "#373F41",
+        "turnpup_note_text_weight": "700",
+        "tp_margin_top_bottom": "100px",
+        "tp_margin_left_right": "40px",
+        "tp_mobile_margin_top_bottom": "60px",
+        "tp_mobile_margin_left_right": "20px",
+        "turnpup_header_background": "#FFF8F1",
+        "turnpup_text_background": "#FFF8F1",
+        "link": "",
+        "button_label": "",
+        "turnpup_button_size": "18px",
+        "button_link": "",
+        "color_text": "#ffffff",
+        "color_accent": "#F4B237",
+        "turnpup_hover_txt_color": "#F4B237",
+        "turnpup_hover_background_color": "#ffffff",
+        "turnpup_top_border_color": "#F4B237",
+        "turnpup_bottom_border_color": "#F4B237"
+      }
+    },
     "tp_seo_footer_4WkYab": {
       "type": "tp-seo-footer",
       "settings": {
@@ -688,6 +724,7 @@
     "tp_auto_col_banners_Lwfkg9",
     "turnpup_content_CeHczC",
     "tp_related_results_Jgr4Yd",
+    "tp_related_results_by_tag_F3FiTG",
     "tp_seo_footer_4WkYab",
     "banner"
   ]
