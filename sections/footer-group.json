@@ -25,7 +25,7 @@
         "text_QMmtic"
       ],
       "custom_css": [
-        "div {background: #331B25;}",
+        "div {background: #331b25;}",
         "p {text-align: left; font-weight: 500; color: white;}"
       ],
       "name": "t:sections.rich-text.presets.name",
