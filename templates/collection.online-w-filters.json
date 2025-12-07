@@ -596,7 +596,7 @@
       "name": "TP Related Results (Blog Tag)",
       "settings": {
         "blog": "",
-        "filter_tag": "accent-tables",
+        "filter_tag": "{{ collection.metafields.custom.related_results_tag.value }}",
         "blog_handles": "how-to,inspiration,trends,local",
         "text_alignment": "left",
         "turnpup_title_size": "24px",
