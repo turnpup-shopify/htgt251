@@ -402,6 +402,7 @@
         "logo_pKewLA": {
           "type": "logo",
           "settings": {
+            "logo": "shopify://shop_images/brass-arched-gold-mirror-straight.jpg",
             "link_to_article": "https://flwrmarket.com",
             "product": "brass-arched-mirror-scalloped-brushed"
           }
