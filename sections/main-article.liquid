@@ -526,7 +526,10 @@
       // When scrolling down — nav animates away
       if (currentScroll > lastScroll && currentScroll > defaultTop) {
         tocWrapper.style.top = `0px`; // push TOC up
-      } else if (currentScroll > lastScroll) {
+      } else if (currentScroll <= lastScroll){
+        tocWrapper.style.top = `${defaultTop}px`;
+      } 
+      else if (currentScroll > lastScroll) {
         tocWrapper.style.top = `${defaultTop - currentScroll}px`; // push TOC up
         console.log(defaultTop);
       }
