@@ -527,8 +527,8 @@
       if (currentScroll > lastScroll && currentScroll > defaultTop) {
         tocWrapper.style.top = `0px`; // push TOC up
       } else if (currentScroll > lastScroll) {
-        tocWrapper.style.top = defaultTop - currentScroll; // push TOC up
-        console.log(defaultTop - currentScroll);
+        tocWrapper.style.top = `${defaultTop - currentScroll}px`; // push TOC up
+        console.log(defaultTop);
       }
       // When scrolling up — nav reappears
       else {
