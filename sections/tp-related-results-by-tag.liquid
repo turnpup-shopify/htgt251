@@ -24,9 +24,8 @@
         {%- endif -%}
       {%- endfor -%}
     {%- else -%}
-      {%- for blog_item in blogs -%}
-        {%- assign blog_obj = blog_item[1] -%}
-        {%- for article in blog_obj.articles -%}
+      {%- for blog in blogs -%}
+        {%- for article in blog.articles -%}
           {%- if article.tags contains filter_tag and article.url != request.path -%}
             {%- assign articles_found = articles_found | plus: 1 -%}
             <a
