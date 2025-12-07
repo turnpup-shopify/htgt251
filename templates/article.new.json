@@ -55,6 +55,7 @@
       "settings": {
         "blog": "",
         "filter_tag": "accent-tables",
+        "blog_handles": "how-to,inspiration,trends,local",
         "text_alignment": "left",
         "turnpup_title_size": "24px",
         "turnpup_mobile_title_size": "24px",
