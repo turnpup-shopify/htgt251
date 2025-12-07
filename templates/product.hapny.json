@@ -262,7 +262,7 @@
       "type": "tp-pdp-products-in-collection",
       "name": "TP - PDP Other Products",
       "settings": {
-        "top_border_color": "#f4b237",
+        "top_border_color": "rgba(0,0,0,0)",
         "margin": "0px auto 20px",
         "title": "Shop the Collection",
         "header_font_size": "1.8em",
