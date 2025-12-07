@@ -78,11 +78,11 @@
         "turnpup_button_size": "18px",
         "button_link": "",
         "color_text": "#ffffff",
-        "color_accent": "#f4b237",
-        "turnpup_hover_txt_color": "#f4b237",
+        "color_accent": "#391212",
+        "turnpup_hover_txt_color": "#391212",
         "turnpup_hover_background_color": "#ffffff",
-        "turnpup_top_border_color": "#f4b237",
-        "turnpup_bottom_border_color": "#f4b237"
+        "turnpup_top_border_color": "#391212",
+        "turnpup_bottom_border_color": "#391212"
       }
     }
   },
