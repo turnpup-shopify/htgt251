@@ -1,6 +1,7 @@
 {%- assign tp_skip = false -%}
 {%- assign filter_tag = section.settings.filter_tag | strip -%}
 {%- assign related_blog = section.settings.blog | default: blank -%}
+{%- assign related_blog_handles = section.settings.blog_handles | strip -%}
 {%- if related_blog != blank -%}
   {%- assign blog_object = blogs[related_blog] -%}
 {%- endif -%}
@@ -24,7 +25,21 @@
         {%- endif -%}
       {%- endfor -%}
     {%- else -%}
-      {%- for blog in blogs -%}
+      {%- if related_blog_handles != blank -%}
+        {%- assign handle_list = related_blog_handles | split: "," -%}
+        {%- assign blogs_to_loop = "" | split: "," -%}
+        {%- for handle in handle_list -%}
+          {%- assign trimmed_handle = handle | strip -%}
+          {%- assign blog_lookup = blogs[trimmed_handle] -%}
+          {%- if blog_lookup -%}
+            {%- assign blogs_to_loop = blogs_to_loop | push: blog_lookup -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- assign blogs_to_loop = blogs -%}
+      {%- endif -%}
+
+      {%- for blog in blogs_to_loop -%}
         {%- for article in blog.articles -%}
           {%- if article.tags contains filter_tag and article.url != request.path -%}
             {%- assign articles_found = articles_found | plus: 1 -%}
@@ -120,6 +135,12 @@
         "id": "filter_tag",
         "label": "Tag to filter by",
         "info": "The first 10 posts with this tag from the selected blog (or all blogs if none selected) will render."
+      },
+      {
+        "type": "textarea",
+        "id": "blog_handles",
+        "label": "Optional blog handles (comma-separated)",
+        "info": "Leave blank to use the selected blog above, or to search all blogs when none selected. Provide handles to limit search when no blog is selected."
       },
       {
         "type": "text",
