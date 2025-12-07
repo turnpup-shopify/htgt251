@@ -11,6 +11,9 @@
   "sections": {
     "tp_article_carousel_mntFiR": {
       "type": "tp-article-carousel",
+      "custom_css": [
+        ".custom-carousel-slider {border-bottom: 1px solid #331B25;}"
+      ],
       "settings": {
         "input_metaobject": "{{ product.metafields.custom.similar_products.value }}",
         "max_items": 6,
