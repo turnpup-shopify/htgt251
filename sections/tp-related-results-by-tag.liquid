@@ -7,19 +7,30 @@
 
 {%- assign articles_found = 0 -%}
 {%- capture article_links -%}
-  {%- if blog_object and filter_tag != blank -%}
-    {%- for article in blog_object.articles -%}
-      {%- if article.tags contains filter_tag and article.url != request.path -%}
-        {%- assign articles_found = articles_found | plus: 1 -%}
-        <a
-          class="minimal_button"
-          style="display: inline-block; margin-right: 20px; border: 1px solid black;"
-          href="{{ article.url }}">
-          {{ article.title }}
-        </a>
-        {%- if articles_found == 10 -%}
-          {%- break -%}
+  {%- if filter_tag != blank -%}
+    {%- if blog_object -%}
+      {%- assign blogs_to_check = blog_object | array -%}
+    {%- else -%}
+      {%- assign blogs_to_check = blogs -%}
+    {%- endif -%}
+
+    {%- for blog in blogs_to_check -%}
+      {%- for article in blog.articles -%}
+        {%- if article.tags contains filter_tag and article.url != request.path -%}
+          {%- assign articles_found = articles_found | plus: 1 -%}
+          <a
+            class="minimal_button"
+            style="display: inline-block; margin-right: 20px; border: 1px solid black;"
+            href="{{ article.url }}">
+            {{ article.title }}
+          </a>
+          {%- if articles_found == 10 -%}
+            {%- break -%}
+          {%- endif -%}
         {%- endif -%}
+      {%- endfor -%}
+      {%- if articles_found == 10 -%}
+        {%- break -%}
       {%- endif -%}
     {%- endfor -%}
   {%- endif -%}
@@ -90,13 +101,14 @@
       {
         "type": "blog",
         "id": "blog",
-        "label": "Blog source"
+        "label": "Blog source",
+        "info": "Optional. Leave blank to search all blogs."
       },
       {
         "type": "text",
         "id": "filter_tag",
         "label": "Tag to filter by",
-        "info": "The first 10 posts with this tag from the selected blog will render."
+        "info": "The first 10 posts with this tag from the selected blog (or all blogs if none selected) will render."
       },
       {
         "type": "text",
