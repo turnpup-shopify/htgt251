@@ -390,6 +390,7 @@
     const hapnyPopupEnabled = {{ settings.enable_hapny_popup | json }};
     const isHapnyContext = context === "hapny";
     const shouldShowPopup = isHapnyContext ? hapnyPopupEnabled : popupEnabled;
+    const popupCookieName = "popupShown_" + context;
     const popupDelaySeconds = {{ popup_delay_seconds | json }};
     const popupDelayMs = Math.max(0, Number(popupDelaySeconds) * 1000 || 0);
 
@@ -592,7 +593,7 @@
       activatePopup(popup);
 
       if (!skipCookie) {
-        setCookie("popupShown_" + context, "true", 7);
+      setCookie(popupCookieName, "true", 7);
       }
 
       logDebug("Popup opened", {
@@ -655,7 +656,7 @@
     bindPopupTriggers();
 
     // Show pop-up if cookie is NOT set
-    if (popup && shouldShowPopup && !getCookie("popupShown_" + context)) {
+    if (popup && shouldShowPopup && !getCookie(popupCookieName)) {
       setTimeout(() => {
         openPopup({
           skipCookie: isThemeEditor,
