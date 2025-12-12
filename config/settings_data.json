@@ -22,7 +22,7 @@
     "slide_cart_upsell_collection": "home-accessories",
     "enable_popup": true,
     "enable_hapny_popup": true,
-    "show_popup_in_editor": false,
+    "show_popup_in_editor": true,
     "test_popup_success_state": false,
     "popup_excluded_handles": "pull\nknob\nhardware",
     "popup_image_desktop": "shopify://shop_images/travertine-drink-table-2.jpg",
