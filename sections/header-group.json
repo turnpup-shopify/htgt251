@@ -33,9 +33,10 @@
         "item_anj6zi",
         "item_UAfhLb"
       ],
+      "disabled": true,
       "custom_css": [
         ".ann-countdown {color: black !important;}",
-        ".ann-countdown {background: #EDDBC2;}"
+        ".ann-countdown {background: #eddbc2;}"
       ],
       "name": "Announcement Timer",
       "settings": {
