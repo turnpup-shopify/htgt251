@@ -97,10 +97,18 @@
     endfor
   endif
 
-  if (is_hapny_vendor or hapny_on_collection or hapny_on_handle) and settings.enable_hapny_popup
-    assign is_hapny = true
-  elsif is_hapny_vendor or hapny_on_handle or hapny_on_collection
-    assign skip_popup_render = true
+  assign hapny_match = false
+  if is_hapny_vendor or hapny_on_collection or hapny_on_handle
+    assign hapny_match = true
+  endif
+
+  if hapny_match
+    if settings.enable_hapny_popup
+      assign is_hapny = true
+      assign skip_popup_render = false
+    else
+      assign skip_popup_render = true
+    endif
   endif
 
   if is_design_mode and settings.show_popup_in_editor
