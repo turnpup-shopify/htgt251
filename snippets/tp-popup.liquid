@@ -20,6 +20,8 @@
   assign current_page_handle_downcase = current_page_handle | downcase
   assign request_path = request.path | default: ''
   assign request_path_downcase = request_path | downcase
+  assign current_url = canonical_url | default: request.path | default: ''
+  assign current_url_downcase = current_url | downcase
   assign last_path_segment = request_path_downcase | split: '/' | last
   assign popup_include_handles_setting = settings.popup_include_handles | to_s | strip
   assign handle_included = true
@@ -42,18 +44,12 @@
 
   assign popup_excluded_handles_setting = settings.popup_excluded_handles | to_s | strip
   assign handle_excluded = false
-  if popup_excluded_handles_setting != blank
+  if popup_excluded_handles_setting != blank and current_url_downcase != blank
     assign popup_excluded_handles = popup_excluded_handles_setting | newline_to_br | split: '<br />'
     for handle in popup_excluded_handles
       assign trimmed_handle = handle | strip | downcase
-      if trimmed_handle != blank
-        if current_page_handle_downcase != blank and current_page_handle_downcase == trimmed_handle
-          assign handle_excluded = true
-        elsif last_path_segment != blank and last_path_segment == trimmed_handle
-          assign handle_excluded = true
-        elsif request_path_downcase != blank and request_path_downcase contains trimmed_handle
-          assign handle_excluded = true
-        endif
+      if trimmed_handle != blank and current_url_downcase contains trimmed_handle
+        assign handle_excluded = true
       endif
     endfor
   endif
@@ -327,9 +323,7 @@
         data-popup-close>
         &times;
       </button>
-      <div
-        id="tp-email-success-message"
-        style="padding: 40px 20px 20px 20px; display: flex; justify-content: center; align-items: center; line-height: 1.2;">
+      <div id="tp-email-success-message" style="padding: 40px 20px 20px 20px; display: flex; justify-content: center; align-items: center; line-height: 1.2;">
         {{ success_msg }}
       </div>
     </div>
@@ -834,7 +828,7 @@
     padding: 10px;
     color: white;
     background-color: {{ popup_cta_color }};
-    border: 1px solid {{ popup_cta_color }};
+    border: 1px solid{{ popup_cta_color }};
     border-radius: {{ popup_cta_border_radius }}px;
     cursor: pointer;
   }
