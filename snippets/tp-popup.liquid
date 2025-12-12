@@ -367,6 +367,16 @@
       return; // Stop script execution
     }
 
+    const debugEnabled = true;
+    const logDebug = (...args) => {
+      if (!debugEnabled) return;
+      console.log("[TP Popup]", ...args);
+    };
+    const logWarn = (...args) => {
+      if (!debugEnabled) return;
+      console.warn("[TP Popup]", ...args);
+    };
+
     const popup = document.getElementById("email-popup");
     const successPopup = document.getElementById("tp-email-success-popup");
     const closeButton = document.getElementById("popup-close-button");
@@ -382,6 +392,21 @@
     const shouldShowPopup = isHapnyContext ? hapnyPopupEnabled : popupEnabled;
     const popupDelaySeconds = {{ popup_delay_seconds | json }};
     const popupDelayMs = Math.max(0, Number(popupDelaySeconds) * 1000 || 0);
+
+    logDebug("Initialized", {
+      url: window.location.href,
+      hasPopup: !!popup,
+      hasSuccessPopup: !!successPopup,
+      isThemeEditor,
+      showPopup,
+      showPopupSuccess,
+      popupEnabled,
+      hapnyPopupEnabled,
+      shouldShowPopup,
+      popupDelayMs,
+      context,
+      cookieValue: document.cookie
+    });
 
     // Fire GA4 event when popup submission succeeds
     function reportPopupSuccess(context) {
@@ -451,6 +476,7 @@
 
     function showPopupElement(target) {
       if (!target) {
+        logWarn("showPopupElement called without a target");
         return;
       }
       target.style.removeProperty("display");
@@ -460,6 +486,7 @@
 
     function hidePopupElement(target) {
       if (!target) {
+        logWarn("hidePopupElement called without a target");
         return;
       }
       target.classList.remove("active");
@@ -473,6 +500,7 @@
 
     function activatePopup(target) {
       if (!target) {
+        logWarn("activatePopup called without a target");
         return;
       }
 
@@ -506,6 +534,7 @@
 
     function deactivatePopup(target, { restoreFocus = true } = {}) {
       if (!target) {
+        logWarn("deactivatePopup called without a target");
         return;
       }
 
@@ -552,6 +581,7 @@
 
     function openPopup(options = {}) {
       if (!popup) {
+        logWarn("openPopup aborted - popup element missing");
         return;
       }
 
@@ -564,6 +594,13 @@
       if (!skipCookie) {
         setCookie("popupShown_" + context, "true", 7);
       }
+
+      logDebug("Popup opened", {
+        manualOpen,
+        skipCookie,
+        reportView: shouldReportView,
+        context
+      });
 
       if (shouldReportView) {
         reportPopupView(context);
@@ -596,8 +633,11 @@
 
       const triggers = getPopupTriggers();
       if (!triggers.length) {
+        logDebug("No popup triggers found on page");
         return;
       }
+
+      logDebug("Binding popup triggers", { triggerCount: triggers.length });
 
       triggers.forEach((trigger) => {
         trigger.addEventListener("click", (event) => {
@@ -621,6 +661,7 @@
           skipCookie: isThemeEditor,
         });
       }, popupDelayMs);
+      logDebug("Scheduled popup open", { reason: "shouldShowPopup", popupDelayMs });
     } else if (showPopup && popup && isThemeEditor && !showPopupSuccess) {
       setTimeout(() => {
         openPopup({
@@ -628,16 +669,19 @@
           reportView: shouldShowPopup,
         });
       }, 500);
+      logDebug("Theme editor preview - scheduled popup open");
     }
     if (closeButton) {
       closeButton.addEventListener("click", () => {
         deactivatePopup(popup);
+        logDebug("Popup closed via close button");
       });
     }
 
     if (successCloseButton) {
       successCloseButton.addEventListener("click", () => {
         deactivatePopup(successPopup);
+        logDebug("Success popup closed via close button");
       });
     }
 
@@ -645,6 +689,7 @@
       popup.addEventListener("click", (event) => {
         if (event.target === popup) {
           deactivatePopup(popup);
+          logDebug("Popup closed via overlay click");
         }
       });
     }
@@ -653,6 +698,7 @@
       successPopup.addEventListener("click", (event) => {
         if (event.target === successPopup) {
           deactivatePopup(successPopup);
+          logDebug("Success popup closed via overlay click");
         }
       });
     }
@@ -662,6 +708,7 @@
       showSuccessPopup();
       setCookie("popupSuccessShown_" + context, "true", 7);
       reportPopupSuccess(context);
+      logDebug("Success popup shown after form submission", { context });
       if (window.history && window.history.replaceState) {
         try {
           const updatedUrl = new URL(window.location.href);
