@@ -3,6 +3,7 @@
   assign is_hapny = false
   assign is_hapny_vendor = false
   assign skip_popup_render = false
+  assign is_design_mode = request.design_mode
 
   assign current_page_handle = ''
   if request.page_type == 'product' and product
@@ -100,6 +101,10 @@
     assign is_hapny = true
   elsif is_hapny_vendor or hapny_on_handle or hapny_on_collection
     assign skip_popup_render = true
+  endif
+
+  if is_design_mode and settings.show_popup_in_editor
+    assign skip_popup_render = false
   endif
 
   if canonical_url contains '/blogs/' or canonical_url contains '/blog'
@@ -340,8 +345,8 @@
     const closeButton = document.getElementById("popup-close-button");
     const successCloseButton = document.getElementById("success-popup-close-button");
     const isThemeEditor = window.Shopify && window.Shopify.designMode;
-    const showPopup = {{ settings.show_popup_in_editor }};
-    const showPopupSuccess = {{ settings.test_popup_success_state }};
+    const showPopup = {{ settings.show_popup_in_editor | json }};
+    const showPopupSuccess = {{ settings.test_popup_success_state | json }};
 
     const context = (popup && popup.dataset && popup.dataset.context) || 'default';
     const popupEnabled = {{ settings.enable_popup | json }};
