@@ -416,7 +416,7 @@
       "name": "TP - Blog Post Carousel",
       "settings": {
         "input_metaobject": "shop-cabinet-pulls",
-        "max_items": 5,
+        "max_items": 7,
         "enable_scroll": true,
         "padding_top": 40,
         "padding_bottom": 40,
