@@ -72,26 +72,27 @@
   assign hapny_collection_handles = hapny_collection_handles_setting | newline_to_br | split: '<br />'
   assign hapny_collection_handles = hapny_collection_handles | map: 'strip'
   assign hapny_on_collection = false
+  assign current_collection_handle = ''
   if request.page_type == 'collection' and collection
     assign current_collection_handle = collection.handle | strip
-    assign current_collection_handle_downcase = current_collection_handle | downcase
-    for hapny_collection_handle in hapny_collection_handles
-      assign trimmed_hapny_collection = hapny_collection_handle | strip | downcase
-      if trimmed_hapny_collection == blank
-        continue
-      endif
-      if current_collection_handle_downcase == trimmed_hapny_collection
-        assign hapny_on_collection = true
-      elsif last_path_segment != blank and last_path_segment == trimmed_hapny_collection
-        assign hapny_on_collection = true
-      elsif request_path_downcase != blank and request_path_downcase contains trimmed_hapny_collection
-        assign hapny_on_collection = true
-      endif
-      if hapny_on_collection
-        break
-      endif
-    endfor
   endif
+  assign current_collection_handle_downcase = current_collection_handle | downcase
+  for hapny_collection_handle in hapny_collection_handles
+    assign trimmed_hapny_collection = hapny_collection_handle | strip | downcase
+    if trimmed_hapny_collection == blank
+      continue
+    endif
+    if current_collection_handle_downcase != blank and current_collection_handle_downcase == trimmed_hapny_collection
+      assign hapny_on_collection = true
+    elsif last_path_segment != blank and last_path_segment == trimmed_hapny_collection
+      assign hapny_on_collection = true
+    elsif request_path_downcase != blank and request_path_downcase contains trimmed_hapny_collection
+      assign hapny_on_collection = true
+    endif
+    if hapny_on_collection
+      break
+    endif
+  endfor
 
   assign hapny_popup_handles_setting = settings.hapny_popup_handles | to_s | strip
   assign hapny_on_handle = false
