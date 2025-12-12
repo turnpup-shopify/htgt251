@@ -8,113 +8,204 @@
  * ------------------------------------------------------------
  */
 {
-  "name": "t:sections.footer.name",
   "type": "footer",
+  "name": "Footer",
   "sections": {
-    "rich_text_hJQYHM": {
-      "type": "rich-text",
+    "footer_m9NzUG": {
+      "type": "footer",
       "blocks": {
-        "text_QMmtic": {
-          "type": "text",
+        "group_H6VpwJ": {
+          "type": "group",
           "settings": {
-            "text": "<p>Htgt Furniture offers high quality contemporary furniture and decor across a wide range of categories, styles, and sizes that perfectly fit and refresh a home, condo, or apartment.</p><p>Custom quotes available by request. We also have a warehouse in <a href=\"/pages/costa-mesa\" title=\"Costa Mesa Furniture Store\">Costa Mesa</a> / <a href=\"/pages/newport\" title=\"Newport Beach - Furniture Store - Htgt Furniture\">Newport Beach</a> for easy access to our favorite in-person assortment.</p>"
-          }
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 6,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_LWt8Pz": {
+              "type": "text",
+              "settings": {
+                "text": "<h2>Join our email list</h2>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_f9CFLH": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Get exclusive deals and early access to new products.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_LWt8Pz",
+            "text_f9CFLH"
+          ]
+        },
+        "email_signup_crihX7": {
+          "type": "email-signup",
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "inherit_color_scheme": true,
+            "heading": "",
+            "heading_preset": "h3",
+            "color_scheme": "",
+            "border_style": "all",
+            "border_width": 1,
+            "border_radius": 100,
+            "input_type_preset": "paragraph",
+            "style_class": "button-unstyled",
+            "display_type": "arrow",
+            "label": "Sign up",
+            "integrated_button": true,
+            "button_type_preset": "paragraph",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "text_QMmtic"
+        "group_H6VpwJ",
+        "email_signup_crihX7"
       ],
-      "custom_css": [
-        "div {background: #331b25;}",
-        "p {text-align: left; font-weight: 500; color: white;}"
-      ],
-      "name": "t:sections.rich-text.presets.name",
+      "name": "t:names.footer",
       "settings": {
-        "color_scheme": "accent-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "section_width": "page-width",
+        "gap": 20,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 30,
+        "padding-block-end": 30
       }
     },
-    "footer": {
-      "type": "tp-footer",
+    "footer_utilities_jLGE8U": {
+      "type": "footer-utilities",
       "blocks": {
-        "menu_edMRPc": {
-          "type": "menu",
+        "footer_copyright_jweRK8": {
+          "type": "footer-copyright",
           "settings": {
-            "title": "Resources",
-            "text": "",
-            "footer_linklist": "policies",
-            "block_width": "22%",
-            "mobile_block_width": "100%"
-          }
+            "show_powered_by": true,
+            "font_size": "0.75rem",
+            "case": "none"
+          },
+          "blocks": {}
         },
-        "contact_V9PQRH": {
-          "type": "contact",
+        "footer_policy_list_VCdnpa": {
+          "type": "footer-policy-list",
           "settings": {
-            "title": "Say Hello!",
-            "show_contact": true,
-            "phone": "(949) 515-9484",
-            "contact_text": "info@htgtfurniture.com",
-            "contact_link": "mailto:info@htgtfurniture.com",
-            "address": "<p>1644 Superior Ave<br/>Costa Mesa, CA, 92627<br/><br/>Hours: <br/>Open Mon-Fri: 11AM-4PM</p>",
-            "show_social": false,
-            "block_width": "17%",
-            "mobile_block_width": "100%"
-          }
+            "font_size": "0.75rem",
+            "case": "none"
+          },
+          "blocks": {}
         },
-        "menu_EkBRnd": {
-          "type": "menu",
+        "social_links_Ew63Kq": {
+          "type": "social-links",
           "settings": {
-            "title": "Shop",
-            "text": "",
-            "footer_linklist": "footer-shop-menu",
-            "block_width": "17%",
-            "mobile_block_width": "100%"
-          }
-        },
-        "newsletter_7FxXpW": {
-          "type": "newsletter",
-          "settings": {
-            "title": "Stay in touch!",
-            "text_richtext": "<p>Sign up for our emails to get the home decor content you never knew you needed, sent on a minimal cadence.</p>",
-            "block_width": "30%",
-            "mobile_block_width": "100%"
-          }
+            "facebook_url": "https://www.facebook.com/",
+            "instagram_url": "https://www.instagram.com/",
+            "youtube_url": "https://www.youtube.com/",
+            "tiktok_url": "https://www.tiktok.com/",
+            "twitter_url": "https://x.com/",
+            "threads_url": "",
+            "linkedin_url": "",
+            "bluesky_url": "",
+            "snapchat_url": "",
+            "pinterest_url": "",
+            "tumblr_url": "",
+            "vimeo_url": "",
+            "custom_url": ""
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "menu_edMRPc",
-        "contact_V9PQRH",
-        "menu_EkBRnd",
-        "newsletter_7FxXpW"
+        "footer_copyright_jweRK8",
+        "footer_policy_list_VCdnpa",
+        "social_links_Ew63Kq"
       ],
-      "custom_css": [
-        "h2,h4,a,p {color: white;}"
-      ],
+      "name": "t:names.utilities",
       "settings": {
-        "background_color": "#331b25",
-        "background_opacity": "1",
-        "footer_background_image": "shopify://shop_images/htgt-footer-burgundy.jpg",
-        "show_payment_icons": false,
-        "show_locale_selector": false,
-        "show_currency_selector": false,
-        "trust_richtext": "",
-        "footer_top_padding": "20px",
-        "tp_margin_top": 0,
-        "tp_margin_bottom": 0,
-        "tp_margin_left": 0,
-        "tp_margin_right": 0,
-        "tp_padding_top": 40,
-        "tp_padding_bottom": 40,
-        "tp_padding_left": 30,
-        "tp_padding_right": 30,
-        "organization_schema": "<script type=\"application/ld+json\">\n    {\n      \"@context\": \"https://schema.org\",\n      \"@type\": \"Organization\",\n      \"name\": \"HTGT Furniture\",\n      \"url\": \"https://www.htgtfurniture.com\",\n      \"logo\": \"https://htgtfurniture.com/cdn/shop/files/logo_black_c48af3d4-0f71-4d3e-9848-8860d3b0f539.png?v=1661746445&width=70\",\n      \"sameAs\": [        \"https://www.instagram.com/htgtfurniture\",        \"https://www.pinterest.com/htgtfurniture/\",\n\"https://www.facebook.com/htgtfurniture\"\n      ],\n      \"contactPoint\": {\n        \"@type\": \"ContactPoint\",\n        \"telephone\": \"+1-949-515-9484\",\n        \"contactType\": \"Customer Service\",\n        \"areaServed\": \"US\",\n        \"availableLanguage\": \"English\"\n      },\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"1644 Superior Ave\",\n        \"addressLocality\": \"Costa Mesa\",\n        \"addressRegion\": \"CA\",\n        \"postalCode\": \"92627\",\n        \"addressCountry\": \"US\"\n      },\n      \"founder\": {\n        \"@type\": \"Person\",\n        \"name\": \"Duane Turney\"\n      },\n      \"foundingDate\": \"2010\",\n      \"description\": \"Unique contemporary furniture store in Costa Mesa offering eclectic charm through a variety of designer furniture and accessories at below market pricing. There are many beautiful furniture and home art selections. Many items are typically available for purchase and take home on the same day. Although the exact items shown on this site may not be available tomorrow,  they represent the kinds of furniture, art and home accessories you can find in our store today. \",\n      \"brand\": {\n        \"@type\": \"Brand\",\n        \"name\": \"HTGT Furniture\",\n        \"logo\": \"https://htgtfurniture.com/cdn/shop/files/logo_black_c48af3d4-0f71-4d3e-9848-8860d3b0f539.png?v=1661746445&width=70\"\n      }\n    }  \n  </script>"
+        "section_width": "page-width",
+        "gap": 24,
+        "divider_thickness": 0,
+        "color_scheme": "",
+        "padding-block-start": 20,
+        "padding-block-end": 48
       }
     }
   },
   "order": [
-    "rich_text_hJQYHM",
-    "footer"
+    "footer_m9NzUG",
+    "footer_utilities_jLGE8U"
   ]
 }
