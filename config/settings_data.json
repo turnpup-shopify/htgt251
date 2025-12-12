@@ -24,7 +24,7 @@
     "enable_hapny_popup": true,
     "show_popup_in_editor": false,
     "test_popup_success_state": false,
-    "popup_excluded_handles": "pull\nknob\nhardware",
+    "popup_excluded_handles": "",
     "popup_image_desktop": "shopify://shop_images/travertine-drink-table-2.jpg",
     "popup_image_mobile": "shopify://shop_images/warehouse-drink-table-shoot-11.png",
     "header_popup_message": "It's our annual sale. Want 15% on top of best possible markdowns?",
