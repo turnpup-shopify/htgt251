@@ -207,6 +207,11 @@
     assign popup_tags = popup_tags | append: ', ' | append: popup_context_tag
   endif
 %}
+<script>
+  console.log("{{request_path_downcase}}"); contains 
+  console.log("{{trimmed_hapny_collection}}");
+  console.log("{{hapny_on_collection}}");
+</script>
 {% unless skip_popup_render %}
   <div
     id="email-popup"
