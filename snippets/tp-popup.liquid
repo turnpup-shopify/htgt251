@@ -70,7 +70,7 @@
 
   assign hapny_collection_handles_setting = settings.hapny_popup_collections | to_s | strip
   assign hapny_collection_handles = hapny_collection_handles_setting | newline_to_br | split: '<br />'
-  assign hapny_collection_handles = hapny_collection_handles | map: 'strip'
+  {% comment %} assign hapny_collection_handles = hapny_collection_handles | map: 'strip' {% endcomment %}
   assign hapny_on_collection = false
   assign current_collection_handle = ''
   if request.page_type == 'collection' and collection
@@ -212,7 +212,7 @@
   
   console.log("request_path_downcase  {{request_path_downcase}}"); 
   
-  console.log("current_collection_handle_downcase  {{current_collection_handle_downcase}}"); 
+  console.log("current_collection_handle_downcase:{{current_collection_handle_downcase}}"); 
   console.log("trimmed_hapny_collection  {{trimmed_hapny_collection}}");
   console.log("hapny_on_collection {{hapny_on_collection}}");
   console.log("hapny_collection_handles {{hapny_collection_handles}}");
