@@ -50,7 +50,7 @@
     "popup_background_blur": 4,
     "popup_overlay_opacity": 50,
     "popup_border_radius": 17,
-    "popup_delay_seconds": 1,
+    "popup_delay_seconds": 11,
     "hapny_popup_image_desktop": "shopify://shop_images/smiley-blue-dresser-award-popup.jpg",
     "hapny_popup_image_mobile": "shopify://shop_images/smiley-design-award.jpg",
     "hapny_header_popup_message": "The Best Time to Buy Hardware",
