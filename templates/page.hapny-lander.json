@@ -485,7 +485,7 @@
       "name": "Custom Image Row",
       "settings": {
         "metaobject_handle": "",
-        "tp_metaobject": "twist",
+        "tp_metaobject": "cabinet-pulls",
         "image_grid_header": "",
         "header_font_family": "'p22-mackinac-pro', serif;",
         "header_font_size": "30px",
