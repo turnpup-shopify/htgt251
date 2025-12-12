@@ -258,6 +258,25 @@
         "mobile_background_color": "#ffffff"
       }
     },
+    "custom_image_row_dAJcqF": {
+      "type": "custom-image-row",
+      "name": "Custom Image Row",
+      "settings": {
+        "metaobject_handle": "",
+        "tp_metaobject": "twist",
+        "image_grid_header": "",
+        "header_font_family": "'p22-mackinac-pro', serif;",
+        "header_font_size": "30px",
+        "header_font_weight": "400",
+        "header_font_color": "#3C64B1",
+        "image_grid_subheader": "",
+        "subheader_font_family": "'p22-mackinac-pro', serif;",
+        "subheader_font_size": "30px",
+        "subheader_font_weight": "400",
+        "subheader_font_color": "#3C64B1",
+        "header_alignment": "center"
+      }
+    },
     "tp_pdp_products_in_collection_EzAgRV": {
       "type": "tp-pdp-products-in-collection",
       "name": "TP - PDP Other Products",
@@ -906,6 +925,7 @@
     "main",
     "main_product_hapny_pRt9TU",
     "tp_questions_tYPppc",
+    "custom_image_row_dAJcqF",
     "tp_pdp_products_in_collection_EzAgRV",
     "tp_quiz_LYAkfE",
     "featured_row_j4Ri8j",
