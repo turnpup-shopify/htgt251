@@ -111,8 +111,12 @@
     endif
   endif
 
-  if is_design_mode and settings.show_popup_in_editor
-    assign skip_popup_render = false
+  if is_design_mode
+    if settings.show_popup_in_editor
+      assign skip_popup_render = false
+    else
+      assign skip_popup_render = true
+    endif
   endif
 
   if canonical_url contains '/blogs/' or canonical_url contains '/blog'
