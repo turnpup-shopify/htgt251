@@ -235,34 +235,8 @@
       },
       "footer": {
         "type": "footer",
-        "blocks": {
-          "footer-0": {
-            "type": "link_list",
-            "settings": {
-              "heading": "Quick links",
-              "menu": "footer"
-            }
-          },
-          "footer-1": {
-            "type": "link_list",
-            "settings": {
-              "heading": "Info",
-              "menu": "footer"
-            }
-          },
-          "footer-2": {
-            "type": "text",
-            "settings": {
-              "heading": "Address",
-              "subtext": "<p>1644 Superior Ave</p><p>Costa Mesa, CA, 92627</p>"
-            }
-          }
-        },
-        "block_order": [
-          "footer-0",
-          "footer-1",
-          "footer-2"
-        ],
+        "blocks": {},
+        "block_order": [],
         "settings": {
           "color_scheme": "background-1",
           "newsletter_enable": true,
@@ -630,34 +604,8 @@
         },
         "footer": {
           "type": "footer",
-          "blocks": {
-            "footer-0": {
-              "type": "link_list",
-              "settings": {
-                "heading": "Quick links",
-                "menu": "footer"
-              }
-            },
-            "footer-1": {
-              "type": "link_list",
-              "settings": {
-                "heading": "Info",
-                "menu": "footer"
-              }
-            },
-            "footer-2": {
-              "type": "text",
-              "settings": {
-                "heading": "Our mission",
-                "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>"
-              }
-            }
-          },
-          "block_order": [
-            "footer-0",
-            "footer-1",
-            "footer-2"
-          ],
+          "blocks": {},
+          "block_order": [],
           "settings": {
             "color_scheme": "background-1",
             "newsletter_enable": true,
