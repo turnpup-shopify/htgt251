@@ -213,8 +213,9 @@
   console.log("current_collection_handle_downcase  {{current_collection_handle_downcase}}"); 
   console.log("trimmed_hapny_collection  {{trimmed_hapny_collection}}");
   console.log("hapny_on_collection {{hapny_on_collection}}");
-  {% for hap_handle in hapny_collection_handles %}
-    console.log("{{hap_handle}}");
+  {% for hapny_collection_handle in hapny_collection_handles %}
+      {% assign trimmed_hapny_collection = hapny_collection_handle | strip | downcase %}
+      console.log("trimmed_hapny_collection. {{trimmed_hapny_collection}}");
   {% endfor %}
 </script>
 {% unless skip_popup_render %}
