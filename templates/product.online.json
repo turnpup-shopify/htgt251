@@ -513,6 +513,36 @@
         "button_text_family": ""
       }
     },
+    "tp_image_rows_HL9zJE": {
+      "type": "tp-image-rows",
+      "name": "TP Image Rows",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_right": 0,
+        "padding_left": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_padding_right": 0,
+        "mobile_padding_left": 0,
+        "image_gallery": "{{ product.metafields.custom.tp_image_rows.value }}",
+        "image_gallery_header": "",
+        "open_close_button": "",
+        "open_close_button_color": "",
+        "image_grid_header": "",
+        "keyword_to_remove": "",
+        "header_font_family": "'p22-mackinac-pro', serif;",
+        "header_font_size": "30px",
+        "header_font_weight": "400",
+        "header_font_color": "#3C64B1",
+        "image_grid_subheader": "",
+        "subheader_font_family": "'p22-mackinac-pro', serif;",
+        "subheader_font_size": "30px",
+        "subheader_font_weight": "400",
+        "subheader_font_color": "#3C64B1",
+        "header_alignment": "center"
+      }
+    },
     "turnpup_multicolumn_JxhK7g": {
       "type": "turnpup-multicolumn",
       "blocks": {
@@ -980,6 +1010,7 @@
     "flwr_one_long_sentence_Hz8tCw",
     "174329153483acb687",
     "tp_auto_col_banners_tb99zR",
+    "tp_image_rows_HL9zJE",
     "turnpup_multicolumn_JxhK7g",
     "tp_article_carousel_V6LRPf",
     "newsletter_QBWWCd",
