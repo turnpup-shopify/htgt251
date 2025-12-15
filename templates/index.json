@@ -1849,7 +1849,7 @@
         "title_font_size": "40px",
         "mobile_title_size": "24px",
         "title_font_family": "'Helvetica Neue'",
-        "title_font_weight": "400",
+        "title_font_weight": "300",
         "title_font_color": "#000000",
         "section_title_padding": "0px",
         "subtitle": "",
