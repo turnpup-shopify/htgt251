@@ -1015,7 +1015,8 @@
     "featured_row_tAUpCA": {
       "type": "featured-row",
       "custom_css": [
-        "div,h2 {background: #3e2f2e; color: white;}"
+        "div,h2 {background: #3e2f2e; color: white;}",
+        "a {border-radius: 30px; padding: 1em 2em;}"
       ],
       "name": "Featured Row Section",
       "settings": {
