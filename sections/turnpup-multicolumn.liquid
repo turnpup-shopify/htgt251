@@ -64,18 +64,7 @@
             <div class="multicolumn-card content-container" {% if section.settings.enabled_border %}style="border: 1px solid {{section.settings.section_text_color}}"{% endif %} >
               {%- if block.settings.image != blank -%}
                 <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
-                  <div class="media media--transparent{% if block.settings.preload_image != blank %} tp-multicolumn-image-stack{% endif %}" style="background-color: {{section.settings.section_background_color}};{% if block.settings.preload_image != blank %} --tp-multicolumn-aspect: {{ block.settings.image.aspect_ratio | default: 1 }};{% endif %}">
-                    {%- if block.settings.preload_image != blank -%}
-                    <img
-                      class="multicolumn-card__image tp-multicolumn-preload"
-                      src="{{ block.settings.preload_image | img_url: '275x' }}"
-                      alt="{{ block.settings.preload_image.alt | default: block.settings.image.alt }}"
-                      height="{{ block.settings.preload_image.height }}"
-                      width="{{ block.settings.preload_image.width }}"
-                      loading="eager"
-                        decoding="async"
-                      >
-                    {%- endif -%}
+                  <div class="media media--transparent" style="background-color: {{section.settings.section_background_color}};{% if block.settings.preload_image != blank %} background-image: url('{{ block.settings.preload_image | img_url: '275x' }}'); background-size: cover; background-position: center;{% endif %}">
                     <img
                       class="multicolumn-card__image{% if block.settings.preload_image != blank %} tp-multicolumn-main{% endif %}"
                       {% if forloop.first %}data-multicolumn-image-target{% endif %}
@@ -351,28 +340,6 @@
     background-color: rgba(var(--color-foreground),.1);
     position: relative;
     overflow: hidden;
-  }
-  #shopify-section-{{ section.id }} .tp-multicolumn-image-stack {
-    position: relative;
-    display: block;
-    padding-bottom: calc(100% / var(--tp-multicolumn-aspect));
-  }
-  #shopify-section-{{ section.id }} .tp-multicolumn-image-stack .tp-multicolumn-preload {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-  }
-  #shopify-section-{{ section.id }} .tp-multicolumn-image-stack .tp-multicolumn-main {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    display: block;
   }
   #shopify-section-{{ section.id }} .tp-multicolumn-image--pending {
     visibility: hidden;
