@@ -200,7 +200,7 @@
         "column_alignment": "left",
         "text_column_alignment": "left",
         "column_gap": "0px",
-        "button_padding": "1em",
+        "button_padding": "1em 2em",
         "hero_button_font_family": "'Helvetica Neue'",
         "hero_button_font_size": "16px",
         "hero_button_font_weight": "500",
