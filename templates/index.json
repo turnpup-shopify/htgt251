@@ -55,7 +55,7 @@
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
             "width": "40%",
-            "text_max_width": "calc(100% - 60px)",
+            "text_max_width": "calc(100% - 40px)",
             "hide_on_mobile": false,
             "mobile_order": "1",
             "margin_bottom_container": "32px",
