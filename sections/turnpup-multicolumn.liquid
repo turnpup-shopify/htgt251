@@ -51,7 +51,7 @@
         {%- endif -%}
       </div>
     {% endunless %}
-    <slider-component class="slider-mobile-gutter">
+    <slider-component class="slider-mobile-gutter ">
       <ul class="multicolumn-list grid grid--gapless grid--1-col{% if section.blocks.size > 3 and section.settings.image_width != 'full' %} grid--2-col-tablet grid--4-col-desktop{% elsif section.blocks.size > 3 and section.settings.image_width == 'full' %} grid--2-col-tablet{% else %} grid--3-col-tablet{% endif %}{% if section.settings.swipe_on_mobile and section.blocks.size > 1 %} slider slider--mobile grid--peek{% endif %}"
         id="Slider-{{ section.id }}"
         role="list"
@@ -64,9 +64,20 @@
             <div class="multicolumn-card content-container" {% if section.settings.enabled_border %}style="border: 1px solid {{section.settings.section_text_color}}"{% endif %} >
               {%- if block.settings.image != blank -%}
                 <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
-                  <div class="media media--transparent" style="background-color: {{section.settings.section_background_color}};">
+                  <div class="media media--transparent{% if block.settings.preload_image != blank %} tp-multicolumn-image-stack{% endif %}" style="background-color: {{section.settings.section_background_color}};">
+                    {%- if block.settings.preload_image != blank -%}
+                      <img
+                        class="multicolumn-card__image tp-multicolumn-preload"
+                        src="{{ block.settings.preload_image | img_url: '275x' }}"
+                        alt="{{ block.settings.preload_image.alt | default: block.settings.image.alt }}"
+                        height="{{ block.settings.preload_image.height }}"
+                        width="{{ block.settings.preload_image.width }}"
+                        loading="eager"
+                        decoding="async"
+                      >
+                    {%- endif -%}
                     <img
-                      class="multicolumn-card__image"
+                      class="multicolumn-card__image{% if block.settings.preload_image != blank %} tp-multicolumn-main{% endif %}"
                       {% if forloop.first %}data-multicolumn-image-target{% endif %}
                       srcset="{%- if block.settings.image.width >= 275 -%}{{ block.settings.image | img_url: '275x' }} 275w,{%- endif -%}
                         {%- if block.settings.image.width >= 550 -%}{{ block.settings.image | img_url: '550x' }} 550w,{%- endif -%}
@@ -79,6 +90,7 @@
                       height="{{ block.settings.image.height }}"
                       width="{{ block.settings.image.width }}"
                       loading="lazy"
+                      {% if block.settings.preload_image != blank %}onload="this.classList.add('tp-multicolumn-main--loaded'); this.closest('.media').classList.add('tp-multicolumn-image-loaded');"{% endif %}
                     >
                   </div>
                 </div>             
@@ -340,6 +352,24 @@
     background-color: rgba(var(--color-foreground),.1);
     position: relative;
     overflow: hidden;
+  }
+  #shopify-section-{{ section.id }} .tp-multicolumn-image-stack .tp-multicolumn-main {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+  #shopify-section-{{ section.id }} .tp-multicolumn-image-stack .tp-multicolumn-preload {
+    width: 100%;
+    height: auto;
+    opacity: 1;
+  }
+  #shopify-section-{{ section.id }} .tp-multicolumn-image-stack .tp-multicolumn-main.tp-multicolumn-main--loaded {
+    opacity: 1;
+  }
+  #shopify-section-{{ section.id }} .tp-multicolumn-image-stack.tp-multicolumn-image-loaded .tp-multicolumn-preload {
+    opacity: 0;
   }
   #shopify-section-{{ section.id }} .tp-multicolumn-image--pending {
     visibility: hidden;
@@ -973,6 +1003,12 @@
           "id": "image",
           "label": "Column Image Picker",
           "info": "(Optional) - add an image if you want column to have an image. Leave blank for a text only column."
+        },
+        {
+          "type": "image_picker",
+          "id": "preload_image",
+          "label": "Column Preload Image",
+          "info": "Optional. A smaller or faster-loading image to show while the primary image loads."
         },
         {
           "type": "text",
