@@ -64,7 +64,7 @@
             <div class="multicolumn-card content-container" {% if section.settings.enabled_border %}style="border: 1px solid {{section.settings.section_text_color}}"{% endif %} >
               {%- if block.settings.image != blank -%}
                 <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
-                  <div class="media media--transparent{% if block.settings.preload_image != blank %} tp-multicolumn-image-stack{% endif %}" style="background-color: {{section.settings.section_background_color}};">
+                  <div class="media media--transparent{% if block.settings.preload_image != blank %} tp-multicolumn-image-stack{% endif %}" style="background-color: {{section.settings.section_background_color}};{% if block.settings.preload_image != blank %} --tp-multicolumn-aspect: {{ block.settings.image.aspect_ratio | default: 1 }};{% endif %}">
                     {%- if block.settings.preload_image != blank -%}
                     <img
                       class="multicolumn-card__image tp-multicolumn-preload"
@@ -354,6 +354,8 @@
   }
   #shopify-section-{{ section.id }} .tp-multicolumn-image-stack {
     position: relative;
+    display: block;
+    padding-bottom: calc(100% / var(--tp-multicolumn-aspect));
   }
   #shopify-section-{{ section.id }} .tp-multicolumn-image-stack .tp-multicolumn-preload {
     position: absolute;
@@ -365,10 +367,11 @@
     object-fit: cover;
   }
   #shopify-section-{{ section.id }} .tp-multicolumn-image-stack .tp-multicolumn-main {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 2;
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
   }
   #shopify-section-{{ section.id }} .tp-multicolumn-image--pending {
