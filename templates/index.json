@@ -239,7 +239,6 @@
       "blocks": {
         "text_jJB3HC": {
           "type": "text",
-          "disabled": true,
           "settings": {
             "block_text": "",
             "heading_size": "span",
@@ -265,7 +264,6 @@
       "block_order": [
         "text_jJB3HC"
       ],
-      "disabled": true,
       "custom_css": [
         "@media screen and (max-width: 700px) {.one_long_sentence_wrapper {margin-top: 10px; padding-top: 0px; }}"
       ],
