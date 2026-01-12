@@ -97,7 +97,7 @@
               {%- endif -%}              
             </div>
             {%- if block.settings.title != blank  or block.settings.text != blank or block.settings.description != blank -%}
-              <div class="multicolumn-card__info" style="max-width: {{ block.settings.text_max_width }}; margin: 0 auto;">
+              <div class="multicolumn-card__info" style="max-width: {{ block.settings.text_max_width }}; margin: {{ section.settings.marginTopBottom }} auto;">
                 {%- if block.settings.title != blank -%}
                   <{{ block.settings.title_h }}>
                       {{ block.settings.title }}
@@ -1032,6 +1032,12 @@
           "type": "header",
           "content": "Title",
           "info": "Settings for the Title section."
+        },
+        {
+          "type": "text",
+          "id": "marginTopBottom",
+          "default": "0px",
+          "label": "Margin Top and Bottom"
         },
         {
           "type": "text",
