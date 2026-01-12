@@ -23,16 +23,16 @@
             "title_font_family": "'Helvetica Neue'",
             "title_font_color": "#252525",
             "title_line_height": "1.1",
-            "title_font_weight": "400",
+            "title_font_weight": "600",
             "title_margin_top": "10px",
             "text": "We are proud to be your designer's best kept secret. Shop online today or in our Costa Mesa showroom.",
-            "text_font_size": "16px",
-            "text_font_size_mobile": "16px",
-            "text_font_family": "'Helvetica Neue'",
+            "text_font_size": "20px",
+            "text_font_size_mobile": "20px",
+            "text_font_family": "'Times New Roman'",
             "text_font_color": "#252525",
-            "text_line_height": "1.2",
-            "text_font_weight": "400",
-            "subtitle_margin_top": "20px",
+            "text_line_height": "1.4",
+            "text_font_weight": "500",
+            "subtitle_margin_top": "24px",
             "description": "",
             "description_font_size": "35px",
             "description_font_size_mobile": "22px",
@@ -40,9 +40,9 @@
             "description_font_color": "#000000",
             "description_line_height": "1.3",
             "description_font_weight": "600",
-            "description_margin_top": "1em",
+            "description_margin_top": "24px",
             "description_margin_bottom": "0px",
-            "link_label": "Shop All Furniture and Decor",
+            "link_label": "Shop All",
             "link": "shopify://pages/unique-designer-furniture",
             "is_hero_button": true,
             "link_label_two": "",
@@ -54,7 +54,7 @@
             "vertically_align_center": true,
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
-            "width": "40%",
+            "width": "50%",
             "text_max_width": "calc(100% - 60px)",
             "hide_on_mobile": false,
             "mobile_order": "1",
@@ -66,7 +66,7 @@
         "template--21548699353362__c9055559-1533-4182-a5af-9aa30411246f-column-1": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/mac-new-additions.gif",
+            "image": "shopify://shop_images/hero-htgt.gif",
             "preload_image": "shopify://shop_images/gold-squiggle-mirror-bathroom.jpg",
             "image_border_radius": "0px",
             "title": "",
@@ -184,8 +184,8 @@
         "padding_bottom": 0,
         "padding_right": 0,
         "padding_left": 0,
-        "mobile_padding_top": 32,
-        "mobile_padding_bottom": 0,
+        "mobile_padding_top": 8,
+        "mobile_padding_bottom": 8,
         "mobile_padding_right": 0,
         "mobile_padding_left": 0,
         "max_height_desktop": 100,
@@ -239,7 +239,6 @@
       "blocks": {
         "text_jJB3HC": {
           "type": "text",
-          "disabled": true,
           "settings": {
             "block_text": "",
             "heading_size": "span",
@@ -265,12 +264,11 @@
       "block_order": [
         "text_jJB3HC"
       ],
-      "disabled": true,
       "custom_css": [
-        "@media screen and (max-width: 700px) {.one_long_sentence_wrapper {margin-top: 10px; padding-top: 0px; }}"
+        "@media screen and (max-width: 700px) {.one_long_sentence_wrapper {margin-top: 12px; padding-top: 0px; }}"
       ],
       "settings": {
-        "subtitle": "Available online while our costa mesa location is closed from 8/7-9/5.",
+        "subtitle": "Available online while our Costa Mesa showroom is closed from 12/23 - 1/2.",
         "subtitle_font_size": "14px",
         "subtitle_font_weight": "400",
         "subtitle_font_family": "'Helvetica Neue'",

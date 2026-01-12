@@ -17,7 +17,7 @@
         "item_anj6zi": {
           "type": "item",
           "settings": {
-            "text": "Cyber Week Markdowns End Tonight",
+            "text": "New Years Flash Pricing - WELCOME15",
             "url": ""
           }
         },
@@ -33,7 +33,6 @@
         "item_anj6zi",
         "item_UAfhLb"
       ],
-      "disabled": true,
       "custom_css": [
         ".ann-countdown {color: black !important;}",
         ".ann-countdown {background: #eddbc2;}"
