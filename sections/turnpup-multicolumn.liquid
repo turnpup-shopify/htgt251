@@ -355,6 +355,8 @@
   }
   #shopify-section-{{ section.id }} .tp-multicolumn-image-stack {
     position: relative;
+    height: 100%;
+    width: 100%;
   }
   #shopify-section-{{ section.id }} .tp-multicolumn-image-stack .tp-multicolumn-preload {
     position: absolute;
@@ -368,6 +370,13 @@
     position: relative;
     z-index: 2;
     display: block;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+  #shopify-section-{{ section.id }} .multicolumn-card__image-wrapper {
+    width: 100%;
+    height: 100%;
   }
   #shopify-section-{{ section.id }} .tp-multicolumn-image-stack.tp-multicolumn-image-loaded .tp-multicolumn-preload {
     opacity: 0;
