@@ -97,7 +97,7 @@
               {%- endif -%}              
             </div>
             {%- if block.settings.title != blank  or block.settings.text != blank or block.settings.description != blank -%}
-              <div class="multicolumn-card__info" style="max-width: {{ block.settings.text_max_width }}; margin: {{ block.settings.marginTopBottom }} auto;">
+              <div class="multicolumn-card__info" style="max-width: {{ block.settings.text_max_width }};">
                 {%- if block.settings.title != blank -%}
                   <{{ block.settings.title_h }}>
                       {{ block.settings.title }}
@@ -389,7 +389,7 @@
     max-width: 100%;
     width: 100%;
     display: flex;
-  }
+  }  
   #shopify-section-{{ section.id }} .multicolumn-card__info .link {
     text-decoration: none;
     margin-top: 1.5rem;
@@ -433,6 +433,9 @@
     .grid {
         column-gap: var(--grid-desktop-horizontal-spacing);
         row-gap: var(--grid-desktop-vertical-spacing);
+    }
+    .multicolumn-card__info {
+      margin: {{ block.settings.marginTopBottom }} auto;
     }
   }
 
