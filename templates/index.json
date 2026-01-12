@@ -54,7 +54,7 @@
             "vertically_align_center": true,
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
-            "width": "40%",
+            "width": "50%",
             "text_max_width": "calc(100% - 60px)",
             "hide_on_mobile": false,
             "mobile_order": "1",
