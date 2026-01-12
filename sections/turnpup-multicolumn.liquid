@@ -191,7 +191,6 @@
             line-height: {{ block.settings.text_line_height }};
             font-weight: {{ block.settings.text_font_weight }};
             margin-top: {{ block.settings.subtitle_margin_top }};
-            margin-bottom: {{ block.settings.subtitle_margin_bottom }};
           }
           #Slide-{{ section.id }}-{{ forloop.index }} .description {  
             font-size: {{ block.settings.description_font_size }};
@@ -1144,12 +1143,6 @@
             "id": "subtitle_margin_top",
             "default": "8px",
             "label": "Sub-Title Margin Top"
-        },
-        {
-            "type": "text",
-            "id": "subtitle_margin_bottom",
-            "default": "0px",
-            "label": "Sub-Title Margin Bottom"
         },
         {
           "type": "header",
