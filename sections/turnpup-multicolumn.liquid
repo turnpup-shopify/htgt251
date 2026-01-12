@@ -423,6 +423,9 @@
       .flwr-multicolumn-outer .multicolumn-list:not(.slider) {
           padding: 0px;
       }
+      .multicolumn-card__info {
+        margin: {{ block.settings.desktopMarginTopBottom }} auto;
+      }
   }
   @media screen and (min-width: 750px) {
   .grid--3-col-tablet .grid__item {
@@ -435,7 +438,7 @@
         row-gap: var(--grid-desktop-vertical-spacing);
     }
     .multicolumn-card__info {
-      margin: {{ block.settings.marginTopBottom }} auto;
+      margin: {{ block.settings.mobileMarginTopBottom }} auto;
     }
   }
 
@@ -1038,9 +1041,15 @@
         },
         {
           "type": "text",
-          "id": "marginTopBottom",
+          "id": "desktopMarginTopBottom",
           "default": "0px",
-          "label": "Margin Top and Bottom"
+          "label": "Desktop Margin Top and Bottom"
+        },
+        {
+          "type": "text",
+          "id": "mobileMarginTopBottom",
+          "default": "0px",
+          "label": "Mobile Margin Top and Bottom"
         },
         {
           "type": "text",
