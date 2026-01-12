@@ -240,12 +240,12 @@
             #shopify-section-{{ section.id }} .multicolumn-card__info {
               margin: {{ block.settings.mobileMarginTopBottom }};
             }
-        }       
-        @media screen and (min-width: 750px) {          
-          #shopify-section-{{ section.id }} .multicolumn-card__info {
-            margin: {{ block.settings.desktopMarginTopBottom }};
+          }       
+          @media screen and (min-width: 750px) {          
+            #shopify-section-{{ section.id }} .multicolumn-card__info {
+              margin: {{ block.settings.desktopMarginTopBottom }};
+            }
           }
-        }
         </style>
         {%- endfor -%}
       </ul>
