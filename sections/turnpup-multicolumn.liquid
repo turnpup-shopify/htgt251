@@ -423,7 +423,7 @@
           padding: 0px;
       }
        #shopify-section-{{ section.id }} .multicolumn-card__info {
-        margin: {{ block.settings.desktopMarginTopBottom }};
+        margin: {{ block.settings.mobileMarginTopBottom }};
       }
   }
   @media screen and (min-width: 750px) {
@@ -437,7 +437,7 @@
         row-gap: var(--grid-desktop-vertical-spacing);
     }
      #shopify-section-{{ section.id }} .multicolumn-card__info {
-      margin: {{ block.settings.mobileMarginTopBottom }};
+      margin: {{ block.settings.desktopMarginTopBottom }};
     }
   }
 
