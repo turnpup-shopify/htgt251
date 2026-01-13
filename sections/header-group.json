@@ -35,12 +35,12 @@
       ],
       "custom_css": [
         ".ann-countdown {color: black !important;}",
-        ".ann-countdown {background: #eddbc2;}"
+        ".ann-countdown {background: #FDFBF9;}"
       ],
       "name": "Announcement Timer",
       "settings": {
-        "bg_color": "#391212",
-        "text_color": "#ffffff",
+        "bg_color": "#fdfbf9",
+        "text_color": "#121212",
         "font_size": 12,
         "font_family": "Helvetica Neue",
         "font_weight": "400",
