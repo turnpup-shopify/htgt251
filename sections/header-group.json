@@ -17,7 +17,7 @@
         "item_anj6zi": {
           "type": "item",
           "settings": {
-            "text": "New Years Flash Pricing - WELCOME15",
+            "text": "15OFF with Code WELCOME15",
             "url": ""
           }
         },
@@ -35,7 +35,7 @@
       ],
       "custom_css": [
         ".ann-countdown {color: black !important;}",
-        ".ann-countdown {background: #FDFBF9;}"
+        ".ann-countdown {background: #fdfbf9;}"
       ],
       "name": "Announcement Timer",
       "settings": {
