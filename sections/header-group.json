@@ -52,7 +52,7 @@
         "speed": 40,
         "enable_rotation": true,
         "pause_on_hover": true,
-        "countdown_enable": true,
+        "countdown_enable": false,
         "show_countdown": true,
         "countdown_target": "2025-10-31T23:59:59",
         "countdown_label": "Offer ends in",
