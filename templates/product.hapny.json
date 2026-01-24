@@ -260,6 +260,7 @@
     },
     "custom_image_row_dAJcqF": {
       "type": "custom-image-row",
+      "disabled": true,
       "name": "Custom Image Row",
       "settings": {
         "metaobject_handle": "",
@@ -268,12 +269,12 @@
         "header_font_family": "'p22-mackinac-pro', serif;",
         "header_font_size": "30px",
         "header_font_weight": "400",
-        "header_font_color": "#3C64B1",
+        "header_font_color": "#3c64b1",
         "image_grid_subheader": "",
         "subheader_font_family": "'p22-mackinac-pro', serif;",
         "subheader_font_size": "30px",
         "subheader_font_weight": "400",
-        "subheader_font_color": "#3C64B1",
+        "subheader_font_color": "#3c64b1",
         "header_alignment": "center"
       }
     },
@@ -498,6 +499,8 @@
           "settings": {
             "image": "shopify://shop_images/fast-shipping.png",
             "image_border_radius": "0px",
+            "desktopMarginTopBottom": "0px",
+            "mobileMarginTopBottom": "0px",
             "title": "Fast & free shipping",
             "title_h": "h2",
             "title_font_size": "18px",
@@ -550,6 +553,8 @@
           "settings": {
             "image": "shopify://shop_images/modular.png",
             "image_border_radius": "0px",
+            "desktopMarginTopBottom": "0px",
+            "mobileMarginTopBottom": "0px",
             "title": "Modular, easy-to-move design",
             "title_h": "h2",
             "title_font_size": "18px",
@@ -602,6 +607,8 @@
           "settings": {
             "image": "shopify://shop_images/swatches.png",
             "image_border_radius": "0px",
+            "desktopMarginTopBottom": "0px",
+            "mobileMarginTopBottom": "0px",
             "title": "Durable, premium materials",
             "title_h": "h2",
             "title_font_size": "18px",
