@@ -76,6 +76,13 @@
             "show_dynamic_checkout": false
           }
         },
+        "text_xyHpGN": {
+          "type": "text",
+          "settings": {
+            "text": "30 Day Returns + Free Shipping on Orders $50+",
+            "text_style": "body"
+          }
+        },
         "collapsible_tab_QV88KF": {
           "type": "collapsible_tab",
           "settings": {
@@ -174,6 +181,7 @@
         "6e3cb80f-7395-4806-8a51-8eb62abc629e",
         "quantity_selector",
         "buy_buttons",
+        "text_xyHpGN",
         "collapsible_tab_QV88KF",
         "collapsible-row-1",
         "collapsible_tab_DAkg6R",
