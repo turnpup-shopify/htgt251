@@ -16,7 +16,7 @@
           "type": "column",
           "settings": {
             "image_border_radius": "0px",
-            "desktopMarginTopBottom": "150px 20px",
+            "desktopMarginTopBottom": "150px 60px",
             "mobileMarginTopBottom": "0 20px",
             "title": "Timeless Furniture, Built to Last.",
             "title_h": "h1",
@@ -57,7 +57,7 @@
             "top_margin_column": "",
             "top_margin_column_mobile": "20px",
             "width": "50%",
-            "text_max_width": "calc(100% - 80px)",
+            "text_max_width": "auto",
             "hide_on_mobile": false,
             "mobile_order": "1",
             "margin_bottom_container": "32px",
