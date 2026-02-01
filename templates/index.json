@@ -60,7 +60,7 @@
             "text_max_width": "auto",
             "hide_on_mobile": false,
             "mobile_order": "1",
-            "margin_bottom_container": "32px",
+            "margin_bottom_container": "12px",
             "remove_top_padding": true,
             "remove_bottom_padding": true
           }
