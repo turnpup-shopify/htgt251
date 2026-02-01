@@ -2053,6 +2053,7 @@
     },
     "tp_shop_the_look_bk6TxL": {
       "type": "tp-shop-the-look",
+      "disabled": true,
       "name": "TP - Shop the Look Carousel",
       "settings": {
         "blog_handle": "looks",
