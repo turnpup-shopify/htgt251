@@ -426,7 +426,7 @@
         "judge_me_reviews_review_widget_wGiQnm": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
-            "review_data": "sample_data",
+            "review_data": "real_data",
             "max_width": 1200,
             "show_shop_reviews": true,
             "empty_state": "other_products_reviews"
@@ -534,12 +534,12 @@
         "header_font_family": "'p22-mackinac-pro', serif;",
         "header_font_size": "30px",
         "header_font_weight": "400",
-        "header_font_color": "#3C64B1",
+        "header_font_color": "#3c64b1",
         "image_grid_subheader": "",
         "subheader_font_family": "'p22-mackinac-pro', serif;",
         "subheader_font_size": "30px",
         "subheader_font_weight": "400",
-        "subheader_font_color": "#3C64B1",
+        "subheader_font_color": "#3c64b1",
         "header_alignment": "center"
       }
     },
@@ -551,6 +551,8 @@
           "settings": {
             "image": "shopify://shop_images/fast-shipping.png",
             "image_border_radius": "0px",
+            "desktopMarginTopBottom": "0px",
+            "mobileMarginTopBottom": "0px",
             "title": "Fast & free shipping",
             "title_h": "h2",
             "title_font_size": "18px",
@@ -603,6 +605,8 @@
           "settings": {
             "image": "shopify://shop_images/modular.png",
             "image_border_radius": "0px",
+            "desktopMarginTopBottom": "0px",
+            "mobileMarginTopBottom": "0px",
             "title": "Modular, easy-to-move design",
             "title_h": "h2",
             "title_font_size": "18px",
@@ -655,6 +659,8 @@
           "settings": {
             "image": "shopify://shop_images/swatches.png",
             "image_border_radius": "0px",
+            "desktopMarginTopBottom": "0px",
+            "mobileMarginTopBottom": "0px",
             "title": "Durable, premium materials",
             "title_h": "h2",
             "title_font_size": "18px",
