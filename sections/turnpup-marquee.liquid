@@ -91,6 +91,16 @@
         "content": "Logos",
         "info": "This section has settings for the logos"
       },
+      {
+        "type": "range",
+        "id": "marquee_speed_seconds",
+        "min": 2,
+        "max": 60,
+        "step": 1,
+        "unit": "s",
+        "label": "Marquee Speed (seconds per loop)",
+        "default": 10
+      },
 			{
 				"type": "text",
 				"id": "desktop_logo_height",
@@ -144,11 +154,6 @@
 						"id": "link_to_article",
 						"label": "Link to Article",
             "default": "https://flwrmarket.com"				
-					},
-					{
-						"type": "product",
-						"id": "product",
-						"label": "Product to Link To"
 					}
 				]
 			}
@@ -156,7 +161,7 @@
 		"presets": [
 		  {
 		    "name": "FLWR PR Marquee",
-		    "category": "PR",
+		    "category": "Custom",
 		    "blocks": [
 
 		    ]
@@ -164,18 +169,22 @@
     ]
   }
 {% endschema %}
+
 <div class="flwr-pr-marquee-container">
   <p class="flwr-title"> {{ section.settings.header_text}} </p>
   <div class="marquee">
     <div class="marquee__inner">
-      {% for block in section.blocks %}
-      {%- if block.settings.product -%} {%- assign use_link = block.settings.product.url -%} {%- else -%} {%- assign use_link = block.settings.link_to_article -%} {%- endif -%}
-        <a aria-label="{{ block.settings.logo.alt }}" class="flwr-marquee" target="_new" href="{{use_link}}"><img alt="{{ block.settings.logo.alt }}" src="{{ block.settings.logo | img_url: '400x400'}}"></a>
-      {% endfor %}      
-      {% for block in section.blocks %}
-        {%- if block.settings.product -%} {%- assign use_link = block.settings.product.url -%} {%- else -%} {%- assign use_link = block.settings.link_to_article -%} {%- endif -%}
-        <a aria-label="{{ block.settings.logo.alt }}" class="flwr-marquee"  target="_new" href="{{use_link}}"><img alt="{{ block.settings.logo.alt }}" src="{{ block.settings.logo | img_url: '400x400'}}"></a>
-      {% endfor %}   
+      {%- for i in (1..2) -%}
+        {%- for block in section.blocks -%}
+          <a aria-label="{{ block.settings.logo.alt }}" class="flwr-marquee" target="_new" href="{{block.settings.link_to_article}}">
+            {{ block.settings.logo | image_url: width: 400 | image_tag: alt: block.settings.logo.alt, 
+              loading: 'lazy', 
+              height: section.settings.desktop_logo_height
+            }}
+            {% comment %} <img height="{{ section.settings.desktop_logo_height }}" alt="{{ block.settings.logo.alt }}" src="{{ block.settings.logo | img_url: '400x400'}}"> {% endcomment %}
+          </a>
+        {%- endfor -%}         
+      {%- endfor -%}         
     </div>
   </div>
 </div>
@@ -204,17 +213,18 @@
     --offset: 0vw;
     --move-initial: calc(-0% + var(--offset));
     --move-final: calc(-50% + var(--offset));
-    width: 200%;
+    width: 100%;
     line-height: 1;
 }
 
 .marquee__inner {
-    width: 100%;
+    width: max-content;
     display: flex;
     position: relative;
-    justify-content: space-around;
+    justify-content: flex-start;
+    gap: {{ section.settings.desktop_space_between }}px;
     transform: translate3d(var(--move-initial), 0, 0);
-    animation: marquee 10s linear infinite;
+    animation: marquee {{ section.settings.marquee_speed_seconds }}s linear infinite;
     animation-play-state: running;
 }
 
@@ -246,6 +256,9 @@
     .flwr-marquee img {
       height: {{ section.settings.mobile_logo_height }};      
       width: auto;
+    }
+    .marquee__inner {
+      gap: {{ section.settings.mobile_space_between }}px;
     }
     .marquee__inner a {
 
