@@ -860,7 +860,7 @@
         "subtitle_font_weight": "400",
         "subtitle_font_family": "'Helvetica Neue'",
         "subtitle_font_color": "#121212",
-        "background_color": "#7a858b",
+        "background_color": "#e6ecef",
         "background_opacity": "1",
         "max_width": 100,
         "mobile_max_width": 100,
