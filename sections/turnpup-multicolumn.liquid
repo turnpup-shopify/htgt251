@@ -97,7 +97,7 @@
               {%- endif -%}              
             </div>
             {%- if block.settings.title != blank  or block.settings.text != blank or block.settings.description != blank -%}
-              <div class="multicolumn-card__info" style="max-width: {{ block.settings.text_max_width }};">
+              <div class="multicolumn-card__info" style="max-width: {{ block.settings.text_max_width }}; margin: 0 auto;">
                 {%- if block.settings.title != blank -%}
                   <{{ block.settings.title_h }}>
                       {{ block.settings.title }}
