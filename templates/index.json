@@ -2159,6 +2159,22 @@
         "turnpup_top_border_color": "rgba(0,0,0,0)",
         "turnpup_bottom_border_color": "rgba(0,0,0,0)"
       }
+    },
+    "1770080626182e75e8": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_medals_33pX84": {
+          "type": "shopify://apps/judge-me-reviews/blocks/medals/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_medals_33pX84"
+      ],
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -2185,6 +2201,7 @@
     "tp_article_carousel_M9BycB",
     "turnpup_multicolumn_eLrkcN",
     "tp_shop_the_look_bk6TxL",
-    "tp_seo_footer_DKVaJt"
+    "tp_seo_footer_DKVaJt",
+    "1770080626182e75e8"
   ]
 }
