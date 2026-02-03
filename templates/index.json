@@ -343,7 +343,7 @@
         "title_font_size": "18px",
         "mobile_title_size": "24px",
         "title_font_family": "\"josefin-sans\", sans-serif;",
-        "title_font_weight": "300",
+        "title_font_weight": "400",
         "title_font_color": "#000000",
         "section_title_padding": "0px",
         "subtitle": "",
@@ -401,40 +401,35 @@
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/transparent-white-marble-accent-table.png",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "white-marble-drink-table"
+            "link_to_article": "https://flwrmarket.com"
           }
         },
         "logo_pKewLA": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/brass-arched-gold-mirror-straight.jpg",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "brass-arched-mirror-scalloped-brushed"
+            "link_to_article": "https://flwrmarket.com"
           }
         },
         "logo_4zhcEk": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/transparent-side-table-wood-drum.png",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "mango-wood-side-table"
+            "link_to_article": "https://flwrmarket.com"
           }
         },
         "logo_wy9wDg": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/statement-floor-lamp.jpg",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "unique-coastal-floor-lamp"
+            "link_to_article": "https://flwrmarket.com"
           }
         },
         "logo_tyHLtk": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/transparent-modern-grey-side-table.png",
-            "link_to_article": "https://flwrmarket.com",
-            "product": "modern-grey-side-table"
+            "link_to_article": "https://flwrmarket.com"
           }
         }
       },
@@ -459,6 +454,7 @@
         "header_mobile_font_size": "22px",
         "header_font_family": "assistant_n4",
         "header_font_weight": "800",
+        "marquee_speed_seconds": 10,
         "desktop_logo_height": "70px",
         "mobile_logo_height": "50px",
         "desktop_space_between": 40,
