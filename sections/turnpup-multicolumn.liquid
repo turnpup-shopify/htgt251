@@ -97,7 +97,7 @@
               {%- endif -%}              
             </div>
             {%- if block.settings.title != blank  or block.settings.text != blank or block.settings.description != blank -%}
-              <div class="multicolumn-card__info" style="max-width: {{ block.settings.text_max_width }}; margin: 0 auto;">
+              <div class="multicolumn-card__info" style="max-width: {{ block.settings.text_max_width }};">
                 {%- if block.settings.title != blank -%}
                   <{{ block.settings.title_h }}>
                       {{ block.settings.title }}
@@ -1046,13 +1046,15 @@
           "type": "text",
           "id": "desktopMarginTopBottom",
           "default": "0px",
-          "label": "Desktop Margin Top and Bottom"
+          "label": "Desktop Margin",
+          "info": "20px auto"
         },
         {
           "type": "text",
           "id": "mobileMarginTopBottom",
           "default": "0px",
-          "label": "Mobile Margin Top and Bottom"
+          "label": "Mobile Margin",
+          "info": "20px auto"
         },
         {
           "type": "text",
