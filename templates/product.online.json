@@ -216,48 +216,42 @@
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/BOH.png",
-            "link_to_article": "",
-            "product": ""
+            "link_to_article": ""
           }
         },
         "085f4f76-5850-4976-aaf9-042b88e8a31a": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/dwell.png",
-            "link_to_article": "https://www.hunker.com/13774986/cpgd-direct-to-consumer-brands",
-            "product": ""
+            "link_to_article": "https://www.hunker.com/13774986/cpgd-direct-to-consumer-brands"
           }
         },
         "15fd7fb7-cbde-4bf8-9f57-5e220409d103": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/HGTC_Black.png",
-            "link_to_article": "",
-            "product": ""
+            "link_to_article": ""
           }
         },
         "ce6ee1e1-2427-460b-a4a6-d958f358ca0b": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/interior_design.png",
-            "link_to_article": "",
-            "product": ""
+            "link_to_article": ""
           }
         },
         "e9fe64f5-f4d5-4e05-9451-2f14c9c11204": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/Hunker.png",
-            "link_to_article": "",
-            "product": ""
+            "link_to_article": ""
           }
         },
         "c949fff9-0986-46c9-864c-609f3e6a4654": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/apartment_therapy_allblack.png",
-            "link_to_article": "",
-            "product": ""
+            "link_to_article": ""
           }
         }
       },
@@ -283,9 +277,10 @@
         "header_mobile_font_size": "22px",
         "header_font_family": "assistant_n4",
         "header_font_weight": "800",
+        "marquee_speed_seconds": 28,
         "desktop_logo_height": "30px",
         "mobile_logo_height": "30px",
-        "desktop_space_between": 50,
+        "desktop_space_between": 170,
         "mobile_space_between": 140
       }
     },
