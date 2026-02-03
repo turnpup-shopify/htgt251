@@ -366,7 +366,7 @@
       "name": "Keyword cloud collect",
       "settings": {
         "menu": "cloud",
-        "bg_color": "#eddbc2",
+        "bg_color": "#7a858b",
         "max_width": 1400,
         "row_gap": 0,
         "col_gap": 12,
