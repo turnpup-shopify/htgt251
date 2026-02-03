@@ -352,6 +352,20 @@
         "button_link": "{{ product.metafields.custom.image_with_text_two.value.button_url.value }}"
       }
     },
+    "turnpup_mock_reviews_4Dw3Kp": {
+      "type": "turnpup-mock-reviews",
+      "name": "Turnpup Mock Reviews",
+      "settings": {
+        "padding_top": 40,
+        "padding_right": 0,
+        "padding_left": 0,
+        "padding_bottom": 40,
+        "mobile_padding_top": 32,
+        "mobile_padding_right": 0,
+        "mobile_padding_left": 0,
+        "mobile_padding_bottom": 32
+      }
+    },
     "flwr_one_long_sentence_Hz8tCw": {
       "type": "flwr-one-long-sentence",
       "blocks": {
@@ -420,6 +434,7 @@
         },
         "judge_me_reviews_review_widget_wGiQnm": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
           "settings": {
             "review_data": "real_data",
             "max_width": 1200,
@@ -1008,6 +1023,7 @@
     "tp_quiz_LYAkfE",
     "featured_row_j4Ri8j",
     "featured_row_TH4hPR",
+    "turnpup_mock_reviews_4Dw3Kp",
     "flwr_one_long_sentence_Hz8tCw",
     "174329153483acb687",
     "tp_auto_col_banners_tb99zR",
