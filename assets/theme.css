@@ -11415,10 +11415,10 @@ footer.site-footer .box.payment-types svg {
 }
 
 footer.site-footer h4,footer.site-footer .h4 {
-    font-size: 1.03125em;
+    font-size: .875em;
     text-transform: none;
-    color: #fff;
-    font-weight: 600
+    color: #cccccc;
+    font-weight: 400
 }
 
 footer.site-footer p {
