@@ -822,8 +822,8 @@
           "settings": {
             "block_text": "Where beautiful objects celebrate form and material. We are experts in interior design working to achieve substance and warmth at low prices.",
             "heading_size": "span",
-            "block_font_size": "24px",
-            "mobile_block_font_size": "28px",
+            "block_font_size": "32px",
+            "mobile_block_font_size": "32px",
             "block_font_color": "#333333",
             "font_family_text": "\"Helvetica Neue\"",
             "font_weight_text": "500",
