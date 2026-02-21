@@ -858,7 +858,7 @@
         "mobile_padding_left": 12,
         "subtitle": "Curators of home furnishings",
         "subtitle_font_size": "18px",
-        "subtitle_font_weight": "400",
+        "subtitle_font_weight": "300",
         "subtitle_font_family": "'Helvetica Neue'",
         "subtitle_font_color": "#121212",
         "background_color": "#e6ecef",
@@ -1421,10 +1421,10 @@
             "title_h": "h2",
             "title_font_size": "32px",
             "title_font_size_mobile": "24px",
-            "title_font_family": "'josefin-sans', sans-serif;",
+            "title_font_family": "'Helvetica Neue'",
             "title_font_color": "#000000",
             "title_line_height": "1.4",
-            "title_font_weight": "400",
+            "title_font_weight": "300",
             "title_margin_top": "8px",
             "text": "Find the pieces that will helps transform your entryway into a work of art. Our small benches, narrow console tables, and elegant decor are perfect adds for one of the most important spaces in your home.",
             "text_font_size": "26px",
@@ -1595,103 +1595,6 @@
         "section_background_color": "#ffffff"
       }
     },
-    "turnpup_content_8jhGYD": {
-      "type": "turnpup-content",
-      "blocks": {
-        "image_eYYgLE": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/rustic-contemporary-coffee-table.jpg",
-            "link": "shopify://blogs/inspiration/10-ways-to-style-a-glass-coffee-table",
-            "title": "10 Ways to style a coffee table",
-            "body": "",
-            "button_text": "Read More",
-            "button_link": "shopify://blogs/inspiration/10-ways-to-style-a-glass-coffee-table"
-          }
-        },
-        "image_GdpqcB": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/coastal-chandelier-living-room.jpg",
-            "link": "shopify://blogs/how-to/top-25-coastal-chic-ideas-for-2025",
-            "title": "Top Coastal Chic Ideas for 2025",
-            "body": "",
-            "button_text": "Read More",
-            "button_link": "shopify://blogs/how-to/top-25-coastal-chic-ideas-for-2025"
-          }
-        },
-        "image_UaBag3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/white-coastal-coffee-table.jpg",
-            "link": "shopify://blogs/news/coast-tiny-house-ideas",
-            "title": "Coastal Tiny Home ideas",
-            "body": "",
-            "button_text": "Read More",
-            "button_link": "shopify://blogs/news/coast-tiny-house-ideas"
-          }
-        }
-      },
-      "block_order": [
-        "image_eYYgLE",
-        "image_GdpqcB",
-        "image_UaBag3"
-      ],
-      "custom_css": [
-        "a {font-size: 16px;}"
-      ],
-      "settings": {
-        "padding_top": 40,
-        "padding_bottom": 0,
-        "padding_right": 40,
-        "padding_left": 40,
-        "mobile_padding_top": 32,
-        "mobile_padding_bottom": 32,
-        "mobile_padding_right": 20,
-        "mobile_padding_left": 20,
-        "mobile_cell_width": 72,
-        "container-background-color": "#7a858b",
-        "cell_background_border_width": "8px",
-        "title": "More Coastal Decor Ideas",
-        "desktop_title_size": "32px",
-        "mobile_title_size": "24px",
-        "title_font_family": "\"josefin-sans\", sans-serif;",
-        "title_font_weight": "400",
-        "title_font_color": "#ffffff",
-        "subheader": "",
-        "subheader_font_size": "",
-        "subheader_font_family": "'Antique Olive', sans-serif",
-        "subheader_font_weight": "700",
-        "subheader_font_color": "#ffffff",
-        "verical_space_between": "10px",
-        "cell_background_color": "#ffffff",
-        "cell_title_size": "16px",
-        "cell_title_font_weight": "500",
-        "cell_title_font_family": "\"Helvetica Neue\"",
-        "cell_title_color": "#000000",
-        "cell_subtitle_size": "16px",
-        "cell_subtitle_font_weight": "400",
-        "cell_subtitle_font_family": "'Antique Olive', sans-serif",
-        "cell_text_color": "#000000",
-        "cell_border_color": "rgba(0,0,0,0)",
-        "cell_border_radius": "12px",
-        "cell_border_weight": "4px",
-        "cell_btn_background_color": "#7a858b",
-        "cell_btn_color": "#ffffff",
-        "cell_btn_border_width": "2px",
-        "blog": "",
-        "button_label": "",
-        "button_url": "",
-        "post_limit": "3",
-        "align_text": "center",
-        "blog_image_options": "before",
-        "blog_image_aspect_ratio": "100%",
-        "show_dates": true,
-        "show_excerpts": true,
-        "show_read_more": true,
-        "overall_background_image_url": ""
-      }
-    },
     "tp_article_carousel_PX9FTh": {
       "type": "tp-article-carousel",
       "settings": {
@@ -1836,8 +1739,8 @@
         "cell_subtitle_color": "#555555",
         "cell_title_fontsize": "16px",
         "cell_subtitle_fontsize": "16px",
-        "cell_title_fontfamily": "Arial",
-        "cell_subtitle_fontfamily": "Arial",
+        "cell_title_fontfamily": "'Helvetica Neue'",
+        "cell_subtitle_fontfamily": "'Helvetica Neue'",
         "cell_title_fontwegith": "300",
         "cell_subtitle_fontweight": "300",
         "arrow_icon_right": "",
@@ -1862,7 +1765,7 @@
         "header": "",
         "title_font_size": "40px",
         "mobile_title_size": "24px",
-        "title_font_family": "\"Josefin Sans\", sans-serif",
+        "title_font_family": "'Helvetica Neue'",
         "title_font_weight": "300",
         "title_font_color": "#000000",
         "section_title_padding": "0px",
@@ -2123,6 +2026,103 @@
         "section_background_color": "#ffffff"
       }
     },
+    "turnpup_content_8jhGYD": {
+      "type": "turnpup-content",
+      "blocks": {
+        "image_eYYgLE": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/rustic-contemporary-coffee-table.jpg",
+            "link": "shopify://blogs/inspiration/10-ways-to-style-a-glass-coffee-table",
+            "title": "10 Ways to style a coffee table",
+            "body": "",
+            "button_text": "Read More",
+            "button_link": "shopify://blogs/inspiration/10-ways-to-style-a-glass-coffee-table"
+          }
+        },
+        "image_GdpqcB": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/coastal-chandelier-living-room.jpg",
+            "link": "shopify://blogs/how-to/top-25-coastal-chic-ideas-for-2025",
+            "title": "Top Coastal Chic Ideas for 2025",
+            "body": "",
+            "button_text": "Read More",
+            "button_link": "shopify://blogs/how-to/top-25-coastal-chic-ideas-for-2025"
+          }
+        },
+        "image_UaBag3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/white-coastal-coffee-table.jpg",
+            "link": "shopify://blogs/news/coast-tiny-house-ideas",
+            "title": "Coastal Tiny Home ideas",
+            "body": "",
+            "button_text": "Read More",
+            "button_link": "shopify://blogs/news/coast-tiny-house-ideas"
+          }
+        }
+      },
+      "block_order": [
+        "image_eYYgLE",
+        "image_GdpqcB",
+        "image_UaBag3"
+      ],
+      "custom_css": [
+        "a {font-size: 16px;}"
+      ],
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "padding_right": 40,
+        "padding_left": 40,
+        "mobile_padding_top": 32,
+        "mobile_padding_bottom": 32,
+        "mobile_padding_right": 20,
+        "mobile_padding_left": 20,
+        "mobile_cell_width": 72,
+        "container-background-color": "#7a858b",
+        "cell_background_border_width": "8px",
+        "title": "More Coastal Decor Ideas",
+        "desktop_title_size": "32px",
+        "mobile_title_size": "24px",
+        "title_font_family": "'Helvetica Neue'",
+        "title_font_weight": "300",
+        "title_font_color": "#ffffff",
+        "subheader": "",
+        "subheader_font_size": "",
+        "subheader_font_family": "'Antique Olive', sans-serif",
+        "subheader_font_weight": "700",
+        "subheader_font_color": "#ffffff",
+        "verical_space_between": "10px",
+        "cell_background_color": "#ffffff",
+        "cell_title_size": "16px",
+        "cell_title_font_weight": "500",
+        "cell_title_font_family": "\"Helvetica Neue\"",
+        "cell_title_color": "#000000",
+        "cell_subtitle_size": "16px",
+        "cell_subtitle_font_weight": "400",
+        "cell_subtitle_font_family": "'Antique Olive', sans-serif",
+        "cell_text_color": "#000000",
+        "cell_border_color": "rgba(0,0,0,0)",
+        "cell_border_radius": "12px",
+        "cell_border_weight": "4px",
+        "cell_btn_background_color": "#7a858b",
+        "cell_btn_color": "#ffffff",
+        "cell_btn_border_width": "2px",
+        "blog": "",
+        "button_label": "",
+        "button_url": "",
+        "post_limit": "3",
+        "align_text": "center",
+        "blog_image_options": "before",
+        "blog_image_aspect_ratio": "100%",
+        "show_dates": true,
+        "show_excerpts": true,
+        "show_read_more": true,
+        "overall_background_image_url": ""
+      }
+    },
     "tp_seo_footer_DKVaJt": {
       "type": "tp-seo-footer",
       "custom_css": [
@@ -2198,12 +2198,12 @@
     "tp_article_carousel_9D4EcP",
     "turnpup_multicolumn_NjGG4z",
     "tp_article_carousel_3zAebT",
-    "turnpup_content_8jhGYD",
     "tp_article_carousel_PX9FTh",
     "1654564871fa6b94de",
     "tp_article_carousel_M9BycB",
     "turnpup_multicolumn_eLrkcN",
     "tp_shop_the_look_bk6TxL",
+    "turnpup_content_8jhGYD",
     "tp_seo_footer_DKVaJt",
     "1770080626182e75e8"
   ]
