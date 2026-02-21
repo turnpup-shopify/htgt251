@@ -20,7 +20,15 @@
         "font_family": "'Helvetica Neue'",
         "font_weight": "300",
         "desktop_font_size": "30px",
-        "mobil_font_size": "40px"
+        "mobile_font_size": "30px",
+        "margin_top": "0",
+        "margin_right": "0",
+        "margin_bottom": "0",
+        "margin_left": "0",
+        "mobile_margin_top": "0",
+        "mobile_margin_right": "0",
+        "mobile_margin_bottom": "0",
+        "mobile_margin_left": "0"
       }
     },
     "product-grid": {
