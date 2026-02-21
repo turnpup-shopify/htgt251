@@ -441,7 +441,7 @@
         "logo_tyHLtk"
       ],
       "custom_css": [
-        ".flwr-pr-marquee-container {border-bottom: 1px solid black; border-top: 1px solid black;}"
+        ".flwr-pr-marquee-container {border-bottom:none; border-top: none;}"
       ],
       "settings": {
         "container_width": "65%",
