@@ -464,18 +464,18 @@
     "turnpup_cat_cells_e4UbRR": {
       "type": "turnpup-cat-cells",
       "blocks": {
-        "tab_ciVN9p": {
-          "type": "tab",
-          "settings": {
-            "label": "Mirrors",
-            "menu": "menu-mirrors"
-          }
-        },
         "tab_cXyAH4": {
           "type": "tab",
           "settings": {
             "label": "Coffee Tables",
             "menu": "coffee-tables"
+          }
+        },
+        "tab_ciVN9p": {
+          "type": "tab",
+          "settings": {
+            "label": "Mirrors",
+            "menu": "menu-mirrors"
           }
         },
         "tab_qyVTWb": {
@@ -487,6 +487,7 @@
         },
         "tab_XD7W6H": {
           "type": "tab",
+          "disabled": true,
           "settings": {
             "label": "Hardware",
             "menu": "hardware"
@@ -494,8 +495,8 @@
         }
       },
       "block_order": [
-        "tab_ciVN9p",
         "tab_cXyAH4",
+        "tab_ciVN9p",
         "tab_qyVTWb",
         "tab_XD7W6H"
       ],
@@ -528,7 +529,7 @@
         "tab_font_size_mobile": 18,
         "title_font_size_desktop": 16,
         "title_font_size_mobile": 12,
-        "title_font_weight": "400",
+        "title_font_weight": "300",
         "title_font_family": "'Josefin Sans', sans-serif;",
         "price_font_size_desktop": 14,
         "price_font_size_mobile": 12,
