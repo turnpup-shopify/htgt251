@@ -6,6 +6,10 @@
     {% if section.settings.font_family %} font-family: {{ section.settings.font_family }}; {% endif %}
     {% if section.settings.font_weight %} font-weight: {{ section.settings.font_weight }}; {% endif %}
     {% if section.settings.desktop_font_size %} font-size: {{ section.settings.desktop_font_size }}; {% endif %}
+    {% if section.settings.margin_top %} margin-top: {{ section.settings.margin_top }}; {% endif %}
+    {% if section.settings.margin_right %} margin-right: {{ section.settings.margin_right }}; {% endif %}
+    {% if section.settings.margin_bottom %} margin-bottom: {{ section.settings.margin_bottom }}; {% endif %}
+    {% if section.settings.margin_left %} margin-left: {{ section.settings.margin_left }}; {% endif %}
   }
 
   @media screen and (max-width: 749px) {
@@ -14,6 +18,10 @@
     }
     .collection-hero__title {
       {% if section.settings.mobil_font_size %} font-size: {{ section.settings.mobil_font_size }}; {% endif %}
+      {% if section.settings.mobile_margin_top %} margin-top: {{ section.settings.mobile_margin_top }}; {% endif %}
+      {% if section.settings.mobile_margin_right %} margin-right: {{ section.settings.mobile_margin_right }}; {% endif %}
+      {% if section.settings.mobile_margin_bottom %} margin-bottom: {{ section.settings.mobile_margin_bottom }}; {% endif %}
+      {% if section.settings.mobile_margin_left %} margin-left: {{ section.settings.mobile_margin_left }}; {% endif %}
     }
   }
 {%- endstyle -%}
@@ -125,7 +133,7 @@
     {
       "type": "text",
       "id": "font_family",
-      "default": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "default": "'Helvetica Neue'",
       "label": "Font Family"
     },
     {
@@ -145,6 +153,54 @@
       "id": "mobil_font_size",
       "default": "20px",
       "label": "Mobile Font Size"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "default": "0",
+      "label": "Margin Top"
+    },
+    {
+      "type": "text",
+      "id": "margin_right",
+      "default": "0",
+      "label": "Margin Right"
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "default": "0",
+      "label": "Margin Bottom"
+    },
+    {
+      "type": "text",
+      "id": "margin_left",
+      "default": "0",
+      "label": "Margin Left"
+    },
+    {
+      "type": "text",
+      "id": "mobile_margin_top",
+      "default": "0",
+      "label": "Mobile Margin Top"
+    },
+    {
+      "type": "text",
+      "id": "mobile_margin_right",
+      "default": "0",
+      "label": "Mobile Margin Right"
+    },
+    {
+      "type": "text",
+      "id": "mobile_margin_bottom",
+      "default": "0",
+      "label": "Mobile Margin Bottom"
+    },
+    {
+      "type": "text",
+      "id": "mobile_margin_left",
+      "default": "0",
+      "label": "Mobile Margin Left"
     }
   ]
 }
