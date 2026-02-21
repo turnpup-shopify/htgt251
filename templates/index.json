@@ -59,7 +59,7 @@
             "width": "50%",
             "text_max_width": "auto",
             "hide_on_mobile": false,
-            "mobile_order": "1",
+            "mobile_order": "23",
             "margin_bottom_container": "12px",
             "remove_top_padding": true,
             "remove_bottom_padding": true
@@ -110,7 +110,7 @@
             "block_linklist": "",
             "vertically_align_center": true,
             "top_margin_column": "",
-            "top_margin_column_mobile": "20px",
+            "top_margin_column_mobile": "0px",
             "width": "",
             "text_max_width": "100%",
             "hide_on_mobile": false,
