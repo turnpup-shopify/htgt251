@@ -22,7 +22,7 @@
             "title_h": "h1",
             "title_font_size": "48px",
             "title_font_size_mobile": "32px",
-            "title_font_family": "'Helvetica Neue'",
+            "title_font_family": "\"aquavit\", sans-serif;",
             "title_font_color": "#252525",
             "title_line_height": "1.1",
             "title_font_weight": "600",
