@@ -22,7 +22,7 @@
             "title_h": "h1",
             "title_font_size": "48px",
             "title_font_size_mobile": "32px",
-            "title_font_family": "'Helvetica Neue'",
+            "title_font_family": "\"area-normal\", sans-serif;",
             "title_font_color": "#252525",
             "title_line_height": "1.1",
             "title_font_weight": "600",
@@ -59,7 +59,7 @@
             "width": "50%",
             "text_max_width": "auto",
             "hide_on_mobile": false,
-            "mobile_order": "1",
+            "mobile_order": "23",
             "margin_bottom_container": "12px",
             "remove_top_padding": true,
             "remove_bottom_padding": true
@@ -110,7 +110,7 @@
             "block_linklist": "",
             "vertically_align_center": true,
             "top_margin_column": "",
-            "top_margin_column_mobile": "20px",
+            "top_margin_column_mobile": "0px",
             "width": "",
             "text_max_width": "100%",
             "hide_on_mobile": false,
@@ -190,7 +190,7 @@
         "padding_bottom": 0,
         "padding_right": 0,
         "padding_left": 0,
-        "mobile_padding_top": 8,
+        "mobile_padding_top": 0,
         "mobile_padding_bottom": 0,
         "mobile_padding_right": 0,
         "mobile_padding_left": 0,
@@ -441,7 +441,7 @@
         "logo_tyHLtk"
       ],
       "custom_css": [
-        ".flwr-pr-marquee-container {border-bottom: 1px solid black; border-top: 1px solid black;}"
+        ".flwr-pr-marquee-container {border-bottom: none; border-top: none;}"
       ],
       "settings": {
         "container_width": "65%",
@@ -456,26 +456,26 @@
         "header_font_weight": "800",
         "marquee_speed_seconds": 31,
         "desktop_logo_height": "70px",
-        "mobile_logo_height": "50px",
+        "mobile_logo_height": "70px",
         "desktop_space_between": 180,
-        "mobile_space_between": 140
+        "mobile_space_between": 100
       }
     },
     "turnpup_cat_cells_e4UbRR": {
       "type": "turnpup-cat-cells",
       "blocks": {
-        "tab_ciVN9p": {
-          "type": "tab",
-          "settings": {
-            "label": "Mirrors",
-            "menu": "menu-mirrors"
-          }
-        },
         "tab_cXyAH4": {
           "type": "tab",
           "settings": {
             "label": "Coffee Tables",
             "menu": "coffee-tables"
+          }
+        },
+        "tab_ciVN9p": {
+          "type": "tab",
+          "settings": {
+            "label": "Mirrors",
+            "menu": "menu-mirrors"
           }
         },
         "tab_qyVTWb": {
@@ -487,6 +487,7 @@
         },
         "tab_XD7W6H": {
           "type": "tab",
+          "disabled": true,
           "settings": {
             "label": "Hardware",
             "menu": "hardware"
@@ -494,11 +495,12 @@
         }
       },
       "block_order": [
-        "tab_ciVN9p",
         "tab_cXyAH4",
+        "tab_ciVN9p",
         "tab_qyVTWb",
         "tab_XD7W6H"
       ],
+      "disabled": true,
       "custom_css": [],
       "name": "Tabbed merch navigator",
       "settings": {
@@ -528,13 +530,13 @@
         "tab_font_size_mobile": 18,
         "title_font_size_desktop": 16,
         "title_font_size_mobile": 12,
-        "title_font_weight": "400",
+        "title_font_weight": "300",
         "title_font_family": "'Josefin Sans', sans-serif;",
         "price_font_size_desktop": 14,
         "price_font_size_mobile": 12,
         "price_font_weight": "400",
         "price_font_family": "Helvetica Neue",
-        "heading_font_family": "'Josefin Sans', sans-serif;",
+        "heading_font_family": "'Helvetica Neue'",
         "heading_font_weight": "300",
         "heading_font_size_desktop": 24,
         "heading_font_size_mobile": 22,
@@ -700,7 +702,7 @@
             "text_font_family": "'Helvetica Neue'",
             "text_font_color": "#000000",
             "text_line_height": "1.2",
-            "text_font_weight": "500",
+            "text_font_weight": "400",
             "subtitle_margin_top": "20px",
             "description": "",
             "description_font_size": "35px",
@@ -744,8 +746,8 @@
         "padding_left": 100,
         "mobile_padding_top": 0,
         "mobile_padding_bottom": 0,
-        "mobile_padding_right": 0,
-        "mobile_padding_left": 0,
+        "mobile_padding_right": 20,
+        "mobile_padding_left": 20,
         "max_height_desktop": 100,
         "mobile_max_height_desktop": 90,
         "enabled_border": false,
@@ -820,13 +822,13 @@
         "d928ec0f-99fc-412e-bbbe-f80a0c183b95": {
           "type": "text",
           "settings": {
-            "block_text": "Curators of home furnishings where beautiful objects celebrate form and material. We are experts in interior design working to deliver warmth, substance and elegance to our customers' homes.",
+            "block_text": "We design around beautiful objects that  celebrate form and material. We are experts in interior design working to achieve substance and warmth at low prices.",
             "heading_size": "span",
-            "block_font_size": "24px",
-            "mobile_block_font_size": "28px",
+            "block_font_size": "32px",
+            "mobile_block_font_size": "24px",
             "block_font_color": "#333333",
             "font_family_text": "\"Helvetica Neue\"",
-            "font_weight_text": "500",
+            "font_weight_text": "600",
             "line_height_text": "1.2",
             "letter_spacing": "1.8",
             "text_width": "100%",
@@ -855,9 +857,9 @@
         "mobile_padding_bottom": 40,
         "mobile_padding_right": 12,
         "mobile_padding_left": 12,
-        "subtitle": "Furniture, Art , Decor, and More",
+        "subtitle": "Curators of home furnishings",
         "subtitle_font_size": "18px",
-        "subtitle_font_weight": "400",
+        "subtitle_font_weight": "300",
         "subtitle_font_family": "'Helvetica Neue'",
         "subtitle_font_color": "#121212",
         "background_color": "#e6ecef",
@@ -1081,14 +1083,14 @@
         "column_DUkmqK": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/payton-mirror-gold.jpg",
+            "image": "shopify://shop_images/coastal-full-length-mirror-jan-4.jpg",
             "image_link": "",
             "image_border_radius": "0px",
             "title": "ACCENT MIRRORS",
             "title_font_size": "22px",
             "title_font_size_mobile": "14px",
             "title_font_family": "'Helvetica Neue'",
-            "title_font_color": "#000000",
+            "title_font_color": "#ffffff",
             "title_line_height": "1.0",
             "title_font_weight": "600",
             "title_margin_top": "8px",
@@ -1206,7 +1208,7 @@
         "desktop_image_width": "200px",
         "mobile_image_width": "200px",
         "image_width": "full",
-        "column_alignment": "left",
+        "column_alignment": "center",
         "column_gap": "10px",
         "mobile_column_gap": "0px",
         "mobile_columns": "2",
@@ -1420,10 +1422,10 @@
             "title_h": "h2",
             "title_font_size": "32px",
             "title_font_size_mobile": "24px",
-            "title_font_family": "'josefin-sans', sans-serif;",
+            "title_font_family": "'Helvetica Neue'",
             "title_font_color": "#000000",
             "title_line_height": "1.4",
-            "title_font_weight": "400",
+            "title_font_weight": "300",
             "title_margin_top": "8px",
             "text": "Find the pieces that will helps transform your entryway into a work of art. Our small benches, narrow console tables, and elegant decor are perfect adds for one of the most important spaces in your home.",
             "text_font_size": "26px",
@@ -1594,103 +1596,6 @@
         "section_background_color": "#ffffff"
       }
     },
-    "turnpup_content_8jhGYD": {
-      "type": "turnpup-content",
-      "blocks": {
-        "image_eYYgLE": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/rustic-contemporary-coffee-table.jpg",
-            "link": "shopify://blogs/inspiration/10-ways-to-style-a-glass-coffee-table",
-            "title": "10 Ways to style a coffee table",
-            "body": "",
-            "button_text": "Read More",
-            "button_link": "shopify://blogs/inspiration/10-ways-to-style-a-glass-coffee-table"
-          }
-        },
-        "image_GdpqcB": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/coastal-chandelier-living-room.jpg",
-            "link": "shopify://blogs/how-to/top-25-coastal-chic-ideas-for-2025",
-            "title": "Top Coastal Chic Ideas for 2025",
-            "body": "",
-            "button_text": "Read More",
-            "button_link": "shopify://blogs/how-to/top-25-coastal-chic-ideas-for-2025"
-          }
-        },
-        "image_UaBag3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/white-coastal-coffee-table.jpg",
-            "link": "shopify://blogs/news/coast-tiny-house-ideas",
-            "title": "Coastal Tiny Home ideas",
-            "body": "",
-            "button_text": "Read More",
-            "button_link": "shopify://blogs/news/coast-tiny-house-ideas"
-          }
-        }
-      },
-      "block_order": [
-        "image_eYYgLE",
-        "image_GdpqcB",
-        "image_UaBag3"
-      ],
-      "custom_css": [
-        "a {font-size: 16px;}"
-      ],
-      "settings": {
-        "padding_top": 40,
-        "padding_bottom": 0,
-        "padding_right": 40,
-        "padding_left": 40,
-        "mobile_padding_top": 32,
-        "mobile_padding_bottom": 32,
-        "mobile_padding_right": 20,
-        "mobile_padding_left": 20,
-        "mobile_cell_width": 72,
-        "container-background-color": "#7a858b",
-        "cell_background_border_width": "8px",
-        "title": "More Coastal Decor Ideas",
-        "desktop_title_size": "32px",
-        "mobile_title_size": "24px",
-        "title_font_family": "\"josefin-sans\", sans-serif;",
-        "title_font_weight": "400",
-        "title_font_color": "#ffffff",
-        "subheader": "",
-        "subheader_font_size": "",
-        "subheader_font_family": "'Antique Olive', sans-serif",
-        "subheader_font_weight": "700",
-        "subheader_font_color": "#ffffff",
-        "verical_space_between": "10px",
-        "cell_background_color": "#ffffff",
-        "cell_title_size": "16px",
-        "cell_title_font_weight": "500",
-        "cell_title_font_family": "\"Helvetica Neue\"",
-        "cell_title_color": "#000000",
-        "cell_subtitle_size": "16px",
-        "cell_subtitle_font_weight": "400",
-        "cell_subtitle_font_family": "'Antique Olive', sans-serif",
-        "cell_text_color": "#000000",
-        "cell_border_color": "rgba(0,0,0,0)",
-        "cell_border_radius": "12px",
-        "cell_border_weight": "4px",
-        "cell_btn_background_color": "#7a858b",
-        "cell_btn_color": "#ffffff",
-        "cell_btn_border_width": "2px",
-        "blog": "",
-        "button_label": "",
-        "button_url": "",
-        "post_limit": "3",
-        "align_text": "center",
-        "blog_image_options": "before",
-        "blog_image_aspect_ratio": "100%",
-        "show_dates": true,
-        "show_excerpts": true,
-        "show_read_more": true,
-        "overall_background_image_url": ""
-      }
-    },
     "tp_article_carousel_PX9FTh": {
       "type": "tp-article-carousel",
       "settings": {
@@ -1786,7 +1691,10 @@
         "16545648716a37a12c-2"
       ],
       "custom_css": [
-        "div,input {background-color: #7a858b; border: none;}"
+        "div,input {background-color: #7a858b; border: none;}",
+        "h2 {font-family: \"Helvetica Neue\"; font-weight: 300; margin-bottom: 20px;}",
+        "p {margin-bottom: 30px;}",
+        ".field {border: 1px solid black;}"
       ],
       "settings": {
         "color_scheme": "background-1",
@@ -1832,8 +1740,8 @@
         "cell_subtitle_color": "#555555",
         "cell_title_fontsize": "16px",
         "cell_subtitle_fontsize": "16px",
-        "cell_title_fontfamily": "Arial",
-        "cell_subtitle_fontfamily": "Arial",
+        "cell_title_fontfamily": "'Helvetica Neue'",
+        "cell_subtitle_fontfamily": "'Helvetica Neue'",
         "cell_title_fontwegith": "300",
         "cell_subtitle_fontweight": "300",
         "arrow_icon_right": "",
@@ -1858,7 +1766,7 @@
         "header": "",
         "title_font_size": "40px",
         "mobile_title_size": "24px",
-        "title_font_family": "\"Josefin Sans\", sans-serif",
+        "title_font_family": "'Helvetica Neue'",
         "title_font_weight": "300",
         "title_font_color": "#000000",
         "section_title_padding": "0px",
@@ -1890,10 +1798,10 @@
             "title_h": "h2",
             "title_font_size": "36px",
             "title_font_size_mobile": "24px",
-            "title_font_family": "\"josefin-sans\", sans-serif;",
+            "title_font_family": "'Helvetica Neue'",
             "title_font_color": "#000000",
             "title_line_height": "1.0",
-            "title_font_weight": "400",
+            "title_font_weight": "300",
             "title_margin_top": "8px",
             "text": "HTGT Furniture stands out as a small, upscale furniture store in Costa Mesa, offering a shopping experience that larger retailers simply can’t match. With a carefully curated selection of unique pieces, HTGT Furniture prioritizes quality and craftsmanship, ensuring every item is both stylish and built to last. Unlike bigger retailers, this locally owned store provides personalized service, helping you find furniture that truly complements your home and reflects your individual taste.",
             "text_font_size": "20px",
@@ -2119,8 +2027,108 @@
         "section_background_color": "#ffffff"
       }
     },
+    "turnpup_content_8jhGYD": {
+      "type": "turnpup-content",
+      "blocks": {
+        "image_eYYgLE": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/rustic-contemporary-coffee-table.jpg",
+            "link": "shopify://blogs/inspiration/10-ways-to-style-a-glass-coffee-table",
+            "title": "10 Ways to style a coffee table",
+            "body": "",
+            "button_text": "Read More",
+            "button_link": "shopify://blogs/inspiration/10-ways-to-style-a-glass-coffee-table"
+          }
+        },
+        "image_GdpqcB": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/coastal-chandelier-living-room.jpg",
+            "link": "shopify://blogs/how-to/top-25-coastal-chic-ideas-for-2025",
+            "title": "Top Coastal Chic Ideas for 2025",
+            "body": "",
+            "button_text": "Read More",
+            "button_link": "shopify://blogs/how-to/top-25-coastal-chic-ideas-for-2025"
+          }
+        },
+        "image_UaBag3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/white-coastal-coffee-table.jpg",
+            "link": "shopify://blogs/news/coast-tiny-house-ideas",
+            "title": "Coastal Tiny Home ideas",
+            "body": "",
+            "button_text": "Read More",
+            "button_link": "shopify://blogs/news/coast-tiny-house-ideas"
+          }
+        }
+      },
+      "block_order": [
+        "image_eYYgLE",
+        "image_GdpqcB",
+        "image_UaBag3"
+      ],
+      "custom_css": [
+        "a {font-size: 16px;}"
+      ],
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "padding_right": 40,
+        "padding_left": 40,
+        "mobile_padding_top": 32,
+        "mobile_padding_bottom": 32,
+        "mobile_padding_right": 20,
+        "mobile_padding_left": 20,
+        "mobile_cell_width": 72,
+        "container-background-color": "#7a858b",
+        "cell_background_border_width": "8px",
+        "title": "More Coastal Decor Ideas",
+        "desktop_title_size": "32px",
+        "mobile_title_size": "24px",
+        "title_font_family": "'Helvetica Neue'",
+        "title_font_weight": "300",
+        "title_font_color": "#ffffff",
+        "subheader": "",
+        "subheader_font_size": "",
+        "subheader_font_family": "'Antique Olive', sans-serif",
+        "subheader_font_weight": "700",
+        "subheader_font_color": "#ffffff",
+        "verical_space_between": "10px",
+        "cell_background_color": "#ffffff",
+        "cell_title_size": "16px",
+        "cell_title_font_weight": "500",
+        "cell_title_font_family": "\"Helvetica Neue\"",
+        "cell_title_color": "#000000",
+        "cell_subtitle_size": "16px",
+        "cell_subtitle_font_weight": "400",
+        "cell_subtitle_font_family": "'Antique Olive', sans-serif",
+        "cell_text_color": "#000000",
+        "cell_border_color": "rgba(0,0,0,0)",
+        "cell_border_radius": "12px",
+        "cell_border_weight": "4px",
+        "cell_btn_background_color": "#7a858b",
+        "cell_btn_color": "#ffffff",
+        "cell_btn_border_width": "2px",
+        "blog": "",
+        "button_label": "",
+        "button_url": "",
+        "post_limit": "3",
+        "align_text": "center",
+        "blog_image_options": "before",
+        "blog_image_aspect_ratio": "100%",
+        "show_dates": true,
+        "show_excerpts": true,
+        "show_read_more": true,
+        "overall_background_image_url": ""
+      }
+    },
     "tp_seo_footer_DKVaJt": {
       "type": "tp-seo-footer",
+      "custom_css": [
+        "h2 {font-family: \"Helvetica Neue\"; font-weight: 300;}"
+      ],
       "settings": {
         "text_one": "Orange County's Premier Furniture Store for Interior Designers and the Public",
         "text_two": "Founded in 2004 in Costa Mesa, Htgt Furniture brings decades of merchandising and buying expertise to a carefully curated selection of high-end furniture and décor with personality.",
@@ -2191,12 +2199,12 @@
     "tp_article_carousel_9D4EcP",
     "turnpup_multicolumn_NjGG4z",
     "tp_article_carousel_3zAebT",
-    "turnpup_content_8jhGYD",
     "tp_article_carousel_PX9FTh",
     "1654564871fa6b94de",
     "tp_article_carousel_M9BycB",
     "turnpup_multicolumn_eLrkcN",
     "tp_shop_the_look_bk6TxL",
+    "turnpup_content_8jhGYD",
     "tp_seo_footer_DKVaJt",
     "1770080626182e75e8"
   ]
