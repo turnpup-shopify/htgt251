@@ -24,11 +24,11 @@
         "margin_top": "40px",
         "margin_right": "0",
         "margin_bottom": "0",
-        "margin_left": "0",
+        "margin_left": "",
         "mobile_margin_top": "40px",
         "mobile_margin_right": "0",
         "mobile_margin_bottom": "0",
-        "mobile_margin_left": "0"
+        "mobile_margin_left": "10px"
       }
     },
     "product-grid": {
