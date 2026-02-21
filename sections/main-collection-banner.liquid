@@ -6,6 +6,7 @@
     {% if section.settings.font_family %} font-family: {{ section.settings.font_family }}; {% endif %}
     {% if section.settings.font_weight %} font-weight: {{ section.settings.font_weight }}; {% endif %}
     {% if section.settings.desktop_font_size %} font-size: {{ section.settings.desktop_font_size }}; {% endif %}    
+    margin: 0px;
   }
   .collection-hero {
     {% if section.settings.margin_top %} margin-top: {{ section.settings.margin_top }}; {% endif %}
@@ -20,6 +21,7 @@
     }
     h1.collection-hero__title {
       {% if section.settings.mobile_font_size %} font-size: {{ section.settings.mobile_font_size }}; {% endif %}      
+      margin: 0px;
     }
     .collection-hero {
       {% if section.settings.mobile_margin_top %} margin-top: {{ section.settings.mobile_margin_top }}; {% endif %}
