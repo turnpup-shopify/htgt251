@@ -535,7 +535,7 @@
         "price_font_size_mobile": 12,
         "price_font_weight": "400",
         "price_font_family": "Helvetica Neue",
-        "heading_font_family": "'Josefin Sans', sans-serif;",
+        "heading_font_family": "'Helvetica Neue'",
         "heading_font_weight": "300",
         "heading_font_size_desktop": 24,
         "heading_font_size_mobile": 22,
