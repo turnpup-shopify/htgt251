@@ -2,7 +2,7 @@
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  h1.collection-hero__title {
+  h1:not(.site-logo).collection-hero__title {
     {% if section.settings.font_family %} font-family: {{ section.settings.font_family }}; {% endif %}
     {% if section.settings.font_weight %} font-weight: {{ section.settings.font_weight }}; {% endif %}
     {% if section.settings.desktop_font_size %} font-size: {{ section.settings.desktop_font_size }}; {% endif %}    
@@ -19,7 +19,7 @@
     .collection-hero--with-image .collection-hero__inner {
       padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
     }
-    h1.collection-hero__title {
+    h1:not(.site-logo).collection-hero__title {
       {% if section.settings.mobile_font_size %} font-size: {{ section.settings.mobile_font_size }}; {% endif %}      
       margin: 0px;
     }
