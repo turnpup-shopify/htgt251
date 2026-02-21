@@ -2,9 +2,18 @@
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  .collection-hero__title {
+    {% if section.settings.font_family %} font-family: {{ section.settings.font_family }}; {% endif %}
+    {% if section.settings.font_weight %} font-weight: {{ section.settings.font_weight }}; {% endif %}
+    {% if section.settings.desktop_font_size %} font-size: {{ section.settings.desktop_font_size }}; {% endif %}
+  }
+
   @media screen and (max-width: 749px) {
     .collection-hero--with-image .collection-hero__inner {
       padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
+    }
+    .collection-hero__title {
+      {% if section.settings.mobil_font_size %} font-size: {{ section.settings.mobil_font_size }}; {% endif %}
     }
   }
 {%- endstyle -%}
@@ -115,15 +124,27 @@
     },
     {
       "type": "text",
-      "id": "font_size_desktop",
-      "default": "30px",
-      "label": "Text Color"
+      "id": "font_family",
+      "default": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "label": "Font Family"
     },
     {
       "type": "text",
-      "id": "font_size_mobile",
+      "id": "font_weight",
+      "default": "300",
+      "label": "Font Weight"
+    },
+    {
+      "type": "text",
+      "id": "desktop_font_size",
+      "default": "30px",
+      "label": "Desktop Font Size"
+    },
+    {
+      "type": "text",
+      "id": "mobil_font_size",
       "default": "20px",
-      "label": "Text Color"
+      "label": "Mobile Font Size"
     }
   ]
 }
