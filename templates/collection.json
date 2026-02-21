@@ -17,8 +17,10 @@
         "color_scheme": "background-1",
         "background_color": "#ffffff",
         "text_color": "#000000",
-        "font_size_desktop": "30px",
-        "font_size_mobile": "20px"
+        "font_family": "'Helvetica Neue'",
+        "font_weight": "300",
+        "desktop_font_size": "30px",
+        "mobil_font_size": "40px"
       }
     },
     "product-grid": {
@@ -27,6 +29,7 @@
       "settings": {
         "products_per_page": 24,
         "columns_desktop": 4,
+        "color_scheme": "",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
