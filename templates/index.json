@@ -441,7 +441,7 @@
         "logo_tyHLtk"
       ],
       "custom_css": [
-        ".flwr-pr-marquee-container {border-bottom:none; border-top: none;}"
+        ".flwr-pr-marquee-container {border-bottom: none; border-top: none;}"
       ],
       "settings": {
         "container_width": "65%",
@@ -456,7 +456,7 @@
         "header_font_weight": "800",
         "marquee_speed_seconds": 31,
         "desktop_logo_height": "70px",
-        "mobile_logo_height": "50px",
+        "mobile_logo_height": "70px",
         "desktop_space_between": 180,
         "mobile_space_between": 140
       }
