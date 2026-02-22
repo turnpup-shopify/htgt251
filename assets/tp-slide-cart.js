@@ -16,6 +16,8 @@
       this.debouncedOnChange = debounce(this.onChange.bind(this), 300);
       this.boundHandleEscape = this.handleEscape.bind(this);
       this.handleDocumentClick = this.handleDocumentClick.bind(this);
+      this.boundDiscountApply = this.handleDiscountApply.bind(this);
+      this.boundDiscountKeydown = this.handleDiscountKeydown.bind(this);
     }
 
     connectedCallback() {
@@ -159,6 +161,7 @@
       }
 
       this.form.addEventListener('change', this.debouncedOnChange);
+      this.bindDiscountForm();
 
       this.form.querySelectorAll('[data-remove]').forEach((button) => {
         button.addEventListener('click', (event) => {
@@ -173,6 +176,92 @@
           this.handleUpsellAdd(button);
         });
       });
+    }
+
+    bindDiscountForm() {
+      if (this.discountApplyButton) {
+        this.discountApplyButton.removeEventListener('click', this.boundDiscountApply);
+      }
+      if (this.discountInput) {
+        this.discountInput.removeEventListener('keydown', this.boundDiscountKeydown);
+      }
+
+      this.discountForm = this.querySelector('[data-slide-cart-discount-form]');
+      if (!this.discountForm) {
+        return;
+      }
+
+      this.discountInput = this.discountForm.querySelector('input[name="discount"]');
+      this.discountApplyButton = this.discountForm.querySelector('button[type="button"]');
+
+      if (this.discountApplyButton) {
+        this.discountApplyButton.addEventListener('click', this.boundDiscountApply);
+      }
+      if (this.discountInput) {
+        this.discountInput.addEventListener('keydown', this.boundDiscountKeydown);
+      }
+    }
+
+    handleDiscountKeydown(event) {
+      if (event.key !== 'Enter') {
+        return;
+      }
+      event.preventDefault();
+      this.applyDiscountCode();
+    }
+
+    handleDiscountApply(event) {
+      event.preventDefault();
+      this.applyDiscountCode();
+    }
+
+    applyDiscountCode() {
+      if (!this.discountInput) {
+        return;
+      }
+      const code = this.discountInput.value.trim();
+      const status = this.querySelector('[data-slide-cart-discount-status]');
+
+      const setStatus = (message) => {
+        if (status) {
+          status.textContent = message || '';
+        }
+      };
+
+      if (!code) {
+        setStatus('Enter a discount code.');
+        this.discountInput.focus();
+        return;
+      }
+
+      setStatus('Applying…');
+      if (this.discountForm) {
+        this.discountForm.classList.add('is-loading');
+      }
+      if (this.discountApplyButton) {
+        this.discountApplyButton.disabled = true;
+      }
+
+      const redirectPath = `${window.location.pathname}${window.location.search || ''}`;
+      fetch(`/discount/${encodeURIComponent(code)}?redirect=${encodeURIComponent(redirectPath)}`, {
+        method: 'GET',
+        credentials: 'same-origin'
+      })
+        .then(() => {
+          setStatus('Updated. If valid, it will appear below.');
+          return this.refresh();
+        })
+        .catch(() => {
+          setStatus('Could not apply the code.');
+        })
+        .finally(() => {
+          if (this.discountForm) {
+            this.discountForm.classList.remove('is-loading');
+          }
+          if (this.discountApplyButton) {
+            this.discountApplyButton.disabled = false;
+          }
+        });
     }
 
     onChange(event) {

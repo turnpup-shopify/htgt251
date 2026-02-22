@@ -68,7 +68,6 @@
     method="post"
     id="TP-SlideCartForm"
     class="tp-slide-cart__form">
-
     <ul class="tp-slide-cart__items" role="list">
       {%- for item in cart.items -%}
         <li
@@ -208,6 +207,17 @@
     <div class="tp-slide-cart__footer">
 
 
+      {%- if cart.cart_level_discount_applications != blank -%}
+        {%- assign total_discount = 0 -%}
+        {%- for discount_application in cart.cart_level_discount_applications -%}
+          {%- assign total_discount = total_discount | plus: discount_application.total_allocated_amount -%}
+        {%- endfor -%}
+        <div class="tp-slide-cart__subtotal" role="presentation">
+          <span>Total discount</span>
+          <span>-{{ total_discount | money }}</span>
+        </div>
+      {%- endif -%}
+
       <div class="tp-slide-cart__subtotal" role="presentation">
         <span>{{ 'sections.cart.subtotal' | t }}</span>
         <span data-slide-cart-subtotal>{{ cart.total_price | money }}</span>
@@ -224,6 +234,22 @@
       {% unless free_shipping_enabled %}
         <p class="tp-slide-cart__note">As a new customer you qualify for free shipping.</p>
       {% endunless %}
+
+      <div class="tp-slide-cart__discount-entry">
+        <div class="tp-slide-cart__discount-form" data-slide-cart-discount-form>
+          <label class="visually-hidden" for="SlideCart-Discount">Discount code</label>
+          <input
+            id="SlideCart-Discount"
+            class="tp-slide-cart__discount-input"
+            type="text"
+            name="discount"
+            placeholder="Discount code"
+            autocomplete="off"
+            inputmode="text">
+          <button class="tp-slide-cart__discount-apply" type="button">Apply</button>
+        </div>
+        <p class="tp-slide-cart__discount-status" data-slide-cart-discount-status aria-live="polite"></p>
+      </div>
 
       <div class="tp-slide-cart__actions">
         <button class="hapny_button button button--primary tp-slide-cart__checkout" name="checkout">{{ 'sections.cart.checkout' | t }}</button>

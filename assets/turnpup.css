@@ -254,6 +254,60 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+.tp-slide-cart__discount-entry {
+  padding: 1.2rem 0 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+
+.tp-slide-cart__discount-form {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  padding: 0.3rem;
+  background: #fff;
+}
+
+.tp-slide-cart__discount-input {
+  flex: 1 1 auto;
+  border: none;
+  background: transparent;
+  padding: 0.6rem 0.9rem;
+  font-size: 1.3rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.tp-slide-cart__discount-input:focus {
+  outline: none;
+}
+
+.tp-slide-cart__discount-apply {
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 0.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: #AAA;
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+}
+
+.tp-slide-cart__discount-form.is-loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.tp-slide-cart__discount-status {
+  margin: 0.6rem 0 0;
+  font-size: 1.15rem;
+  color: rgba(0, 0, 0, 0.65);
+}
+
 .tp-slide-cart__heading {
   margin: 0;
   font-size: 1.8rem;
@@ -569,7 +623,7 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
   grid-column: 1 / -1;
 }
 
-.tp-slide-cart__upsell-add {
+.tp-slide-cart__upsell-add.button {
   width: auto;
   padding: 0;
   margin-top: 0;
@@ -582,6 +636,7 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  background-color: none;
 }
 
 .tp-slide-cart__upsell-add.is-loading {
