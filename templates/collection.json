@@ -18,17 +18,17 @@
         "background_color": "#ffffff",
         "text_color": "#000000",
         "font_family": "'Helvetica Neue'",
-        "font_weight": "300",
+        "font_weight": "400",
         "desktop_font_size": "30px",
         "mobile_font_size": "30px",
         "margin_top": "40px",
         "margin_right": "0",
         "margin_bottom": "0",
-        "margin_left": "0",
+        "margin_left": "",
         "mobile_margin_top": "40px",
         "mobile_margin_right": "0",
         "mobile_margin_bottom": "0",
-        "mobile_margin_left": "0"
+        "mobile_margin_left": "10px"
       }
     },
     "product-grid": {
