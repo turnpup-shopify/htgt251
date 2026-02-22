@@ -489,7 +489,7 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
-  padding: 1.2rem 0;
+  padding: 0 0;
 }
 
 .tp-slide-cart__goal-wrapper {
