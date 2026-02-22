@@ -145,7 +145,7 @@
 
               <div class="tp-slide-cart__quantity" data-line="{{ forloop.index }}">
                 <label class="visually-hidden" for="SlideCart-Quantity-{{ forloop.index }}">{{ 'products.product.quantity.label' | t }}</label>
-                <quantity-input class="quantity quantity--small">
+                <quantity-input class="quantity quantity--small" style="box-shadow: 0 0 0 1px rgba(var(--color-foreground), var(--inputs-border-opacity));">
                   <button
                     class="quantity__button"
                     name="minus"
@@ -207,11 +207,20 @@
     <div class="tp-slide-cart__footer">
 
 
+      {%- assign total_discount = 0 -%}
+      {%- for item in cart.items -%}
+        {%- if item.line_level_discount_allocations != blank -%}
+          {%- for allocation in item.line_level_discount_allocations -%}
+            {%- assign total_discount = total_discount | plus: allocation.amount -%}
+          {%- endfor -%}
+        {%- endif -%}
+      {%- endfor -%}
       {%- if cart.cart_level_discount_applications != blank -%}
-        {%- assign total_discount = 0 -%}
         {%- for discount_application in cart.cart_level_discount_applications -%}
           {%- assign total_discount = total_discount | plus: discount_application.total_allocated_amount -%}
         {%- endfor -%}
+      {%- endif -%}
+      {%- if total_discount > 0 -%}
         <div class="tp-slide-cart__subtotal" role="presentation">
           <span>Total discount</span>
           <span>-{{ total_discount | money }}</span>
