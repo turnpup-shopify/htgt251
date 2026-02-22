@@ -207,11 +207,8 @@
     <div class="tp-slide-cart__footer">
 
 
-      {%- if cart.cart_level_discount_applications != blank -%}
-        {%- assign total_discount = 0 -%}
-        {%- for discount_application in cart.cart_level_discount_applications -%}
-          {%- assign total_discount = total_discount | plus: discount_application.total_allocated_amount -%}
-        {%- endfor -%}
+      {%- assign total_discount = cart.original_total_price | minus: cart.total_price -%}
+      {%- if total_discount > 0 -%}
         <div class="tp-slide-cart__subtotal" role="presentation">
           <span>Total discount</span>
           <span>-{{ total_discount | money }}</span>
@@ -320,6 +317,12 @@
 
 <style>
   .quantity:after {
-    box-shadow: 0 0 0 1px rgba(var(--color-foreground), var(--inputs-border-opacity));
+    box-shadow: 0 0 0 0px rgba(var(--color-foreground), var(--inputs-border-opacity));
+  }
+  .quantity__button {
+    flex-shrink: 1;
+  }
+  .quantity {
+    width: 70px;
   }
 </style>
