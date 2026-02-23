@@ -20,6 +20,8 @@
     "slide_cart_free_shipping_threshold": 50,
     "slide_cart_free_shipping_message_locked": "[amount] to unlock free shipping",
     "slide_cart_upsell_collection": "home-accessories",
+    "gwp_variant_id": "44719752511695",
+    "gwp_threshold": 500,
     "gwp_discount_code": "BOGOMIRROR",
     "enable_popup": true,
     "enable_hapny_popup": true,
