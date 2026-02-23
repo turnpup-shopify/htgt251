@@ -209,7 +209,7 @@
 
       {%- assign total_discount = cart.original_total_price | minus: cart.total_price -%}
       {%- if total_discount > 0 -%}
-        <div class="tp-slide-cart__subtotal" role="presentation">
+        <div class="tp-slide-cart__subtotal discount" role="presentation">
           <span>Total discount</span>
           <span>-{{ total_discount | money }}</span>
         </div>

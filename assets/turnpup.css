@@ -492,6 +492,10 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
   padding: 0 0;
 }
 
+.tp-slide-cart__subtotal.discount {
+  font-weight: 400;
+}
+
 .tp-slide-cart__goal-wrapper {
   margin: 0rem 0 1.6rem;
 }
