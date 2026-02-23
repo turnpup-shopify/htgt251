@@ -228,6 +228,54 @@
         "max": 6,
         "step": 1,
         "default": 3
+      },
+      {
+        "type": "header",
+        "content": "Slide-out cart gift with purchase"
+      },
+      {
+        "type": "text",
+        "id": "gwp_variant_id",
+        "label": "GWP variant ID",
+        "info": "The variant ID of the $0 gift product. Leave blank to disable."
+      },
+      {
+        "type": "number",
+        "id": "gwp_threshold",
+        "label": "GWP threshold (in store currency)",
+        "default": 0,
+        "info": "Cart subtotal required to unlock the gift. Set to 0 to disable."
+      },
+      {
+        "type": "text",
+        "id": "gwp_locked_message",
+        "label": "Locked message",
+        "default": "Spend [amount] more to unlock your free gift",
+        "info": "Use [amount] as a placeholder for the remaining amount."
+      },
+      {
+        "type": "text",
+        "id": "gwp_eligible_message",
+        "label": "Eligible message",
+        "default": "You've unlocked a free gift!"
+      },
+      {
+        "type": "text",
+        "id": "gwp_added_message",
+        "label": "Added message",
+        "default": "Your free gift has been added"
+      },
+      {
+        "type": "text",
+        "id": "gwp_button_label",
+        "label": "Add gift button label",
+        "default": "Add free gift to cart"
+      },
+      {
+        "type": "text",
+        "id": "gwp_discount_code",
+        "label": "GWP discount code",
+        "info": "Optional. If set, this discount code is automatically applied when the customer adds the free gift to their cart."
       }
     ]
   },

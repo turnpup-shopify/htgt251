@@ -113,6 +113,7 @@
           this.contentWrapper.innerHTML = newContent.innerHTML;
           this.bindDynamicEvents();
           this.toggleEmptyState();
+          if (window.gwp) window.gwp.checkAndRemove();
         })
         .catch((error) => console.error('[Slide Cart] Failed to refresh section', error));
     }
@@ -144,6 +145,8 @@
           }
         }
       });
+
+      if (window.gwp) window.gwp.checkAndRemove();
 
       if (openDrawer) {
         this.open(null, { refresh: false });

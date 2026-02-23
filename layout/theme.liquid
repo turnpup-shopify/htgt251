@@ -354,6 +354,9 @@ body {
   {% endif %}
   {% if settings.enable_slide_cart %}
     <script src="{{ 'tp-slide-cart.js' | asset_url }}" defer="defer"></script>
+    {% if settings.gwp_variant_id != blank and settings.gwp_threshold > 0 %}
+      <script src="{{ 'gwp.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
   {% endif %}
   <script>
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');

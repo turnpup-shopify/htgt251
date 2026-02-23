@@ -203,6 +203,72 @@
       {%- endfor -%}
     </ul>
 
+    {%- liquid
+      assign gwp_variant_id_str = settings.gwp_variant_id | default: '' | strip
+      assign gwp_threshold_dollars = settings.gwp_threshold | default: 0
+    -%}
+    {%- if gwp_variant_id_str != '' and gwp_threshold_dollars > 0 -%}
+      {%- liquid
+        assign gwp_variant_id = gwp_variant_id_str | plus: 0
+        assign gwp_threshold_cents = gwp_threshold_dollars | times: 100
+        assign gwp_qualifying_subtotal = 0
+        assign gwp_in_cart = false
+        assign gwp_item_key = ''
+        for item in cart.items
+          if item.variant_id == gwp_variant_id
+            assign gwp_in_cart = true
+            assign gwp_item_key = item.key
+          else
+            assign gwp_qualifying_subtotal = gwp_qualifying_subtotal | plus: item.line_price
+          endif
+        endfor
+        assign gwp_eligible = false
+        if gwp_qualifying_subtotal >= gwp_threshold_cents
+          assign gwp_eligible = true
+        endif
+        assign gwp_remaining_cents = gwp_threshold_cents | minus: gwp_qualifying_subtotal
+        if gwp_remaining_cents < 0
+          assign gwp_remaining_cents = 0
+        endif
+        assign gwp_remaining_formatted = gwp_remaining_cents | money
+        assign gwp_locked_msg = settings.gwp_locked_message | default: 'Spend [amount] more to unlock your free gift'
+        assign gwp_locked_msg = gwp_locked_msg | replace: '[amount]', gwp_remaining_formatted
+        assign gwp_progress = 0
+        if gwp_threshold_cents > 0
+          assign gwp_progress = gwp_qualifying_subtotal | times: 100 | divided_by: gwp_threshold_cents
+        endif
+        if gwp_progress > 100
+          assign gwp_progress = 100
+        endif
+      -%}
+      <div id="gwp-zone"
+           data-gwp-variant-id="{{ gwp_variant_id }}"
+           data-gwp-threshold="{{ gwp_threshold_cents }}"
+           data-gwp-in-cart="{{ gwp_in_cart }}"
+           data-gwp-eligible="{{ gwp_eligible }}"
+           data-gwp-item-key="{{ gwp_item_key }}"
+           data-gwp-discount-code="{{ settings.gwp_discount_code | default: '' | strip }}">
+        {%- if gwp_eligible == false -%}
+          <div class="gwp-state gwp-state--ineligible">
+            <p class="gwp-message">{{ gwp_locked_msg }}</p>
+            <div class="gwp-progress-bar">
+              <div class="gwp-progress-fill" style="width: {{ gwp_progress }}%"></div>
+            </div>
+          </div>
+        {%- elsif gwp_in_cart == false -%}
+          <div class="gwp-state gwp-state--eligible">
+            <p class="gwp-message">{{ settings.gwp_eligible_message | default: "You've unlocked a free gift!" }}</p>
+            <button type="button" class="gwp-add-btn button button--primary" onclick="window.gwp&&window.gwp.addGWP()">
+              {{ settings.gwp_button_label | default: 'Add free gift to cart' }}
+            </button>
+          </div>
+        {%- else -%}
+          <div class="gwp-state gwp-state--added">
+            <p class="gwp-message">{{ settings.gwp_added_message | default: 'Your free gift has been added' }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
 
     <div class="tp-slide-cart__footer">
 
@@ -324,5 +390,46 @@
   }
   .quantity {
     width: 70px;
+  }
+
+  /* GWP Zone */
+  #gwp-zone {
+    padding: 12px 0;
+    border-top: 1px solid rgba(var(--color-foreground), 0.08);
+  }
+  .gwp-state {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .gwp-message {
+    margin: 0;
+    font-size: 1.3rem;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+  .gwp-progress-bar {
+    height: 4px;
+    background: rgba(var(--color-foreground), 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .gwp-progress-fill {
+    height: 100%;
+    background: rgb(var(--color-foreground));
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+  .gwp-state--eligible .gwp-message {
+    font-weight: 600;
+    color: rgb(var(--color-foreground));
+  }
+  .gwp-add-btn {
+    font-size: 1.3rem;
+    padding: 8px 16px;
+    align-self: flex-start;
+  }
+  .gwp-state--added .gwp-message {
+    color: rgb(var(--color-foreground));
+    font-weight: 600;
   }
 </style>
