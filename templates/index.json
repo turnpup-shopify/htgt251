@@ -1733,7 +1733,7 @@
       ],
       "custom_css": [
         "div,input {background-color: #7a858b; border: none;}",
-        "h2 {font-family: \"Helvetica Neue\"; font-weight: 300; margin-bottom: 20px;}",
+        "h2 {font-family: \"Helvetica Neue\"; font-weight: 800; margin-bottom: 20px;}",
         "p {margin-bottom: 30px;}",
         ".field {border: 1px solid black;}"
       ],
