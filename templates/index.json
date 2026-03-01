@@ -1254,7 +1254,7 @@
         "mobile_max_height_desktop": 90,
         "border_color": "#000000",
         "border_width": 0,
-        "border_radius": 20,
+        "border_radius": 0,
         "cell_title_color": "#000000",
         "cell_subtitle_color": "#555555",
         "cell_title_fontsize": "16px",
