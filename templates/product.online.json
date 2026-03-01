@@ -386,6 +386,9 @@
         "carousel_block_Dy6jpc",
         "carousel_block_EqeRPX"
       ],
+      "custom_css": [
+        "p {font-family: Helvetica}"
+      ],
       "name": "TPPC - Product Carousel",
       "settings": {
         "padding_top": 40,
