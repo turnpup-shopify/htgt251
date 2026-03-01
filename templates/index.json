@@ -1489,7 +1489,7 @@
       ],
       "name": "TPPC - Product Carousel",
       "settings": {
-        "padding_top": 20,
+        "padding_top": 40,
         "padding_bottom": 40,
         "padding_right": 60,
         "padding_left": 60,
