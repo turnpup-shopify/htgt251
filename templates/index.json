@@ -1189,14 +1189,14 @@
     "turnpup_prod_carousel_bqLw89": {
       "type": "turnpup-prod-carousel",
       "blocks": {
-        "carousel_block_Dy6jpc": {
+        "carousel_block_YVEGKG": {
           "type": "carousel_block",
           "settings": {
             "cell_product": "",
             "cell_title": "Product Title",
             "cell_subtitle": "Product Subtitle",
             "button_text": "",
-            "carousel_image": "shopify://shop_images/acloreinteriors.jpg",
+            "carousel_image": "shopify://shop_images/ivy_blu_design.jpg",
             "cell_url": ""
           }
         },
@@ -1208,6 +1208,17 @@
             "cell_subtitle": "Product Subtitle",
             "button_text": "",
             "carousel_image": "shopify://shop_images/avagrayinteriors.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_XhJcxn": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/mhousedevelopment.jpg",
             "cell_url": ""
           }
         },
@@ -1232,13 +1243,50 @@
             "carousel_image": "shopify://shop_images/katiewoodinteriors.jpg",
             "cell_url": ""
           }
+        },
+        "carousel_block_aBHiKa": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/ashley_whited_designer.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_Dy6jpc": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/acloreinteriors.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_EqeRPX": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/ashley_whited_designer.jpg",
+            "cell_url": ""
+          }
         }
       },
       "block_order": [
-        "carousel_block_Dy6jpc",
+        "carousel_block_YVEGKG",
         "carousel_block_U9EMyB",
+        "carousel_block_XhJcxn",
         "carousel_block_mwzaK3",
-        "carousel_block_VPaRJw"
+        "carousel_block_VPaRJw",
+        "carousel_block_aBHiKa",
+        "carousel_block_Dy6jpc",
+        "carousel_block_EqeRPX"
       ],
       "name": "TPPC - Product Carousel",
       "settings": {
@@ -1250,7 +1298,7 @@
         "mobile_padding_bottom": 24,
         "mobile_padding_right": 24,
         "mobile_padding_left": 24,
-        "max_height_desktop": 80,
+        "max_height_desktop": 100,
         "mobile_max_height_desktop": 90,
         "border_color": "#000000",
         "border_width": 0,
