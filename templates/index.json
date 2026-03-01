@@ -17,7 +17,7 @@
           "settings": {
             "image_border_radius": "0px",
             "desktopMarginTopBottom": "150px 60px",
-            "mobileMarginTopBottom": "0 20px",
+            "mobileMarginTopBottom": "0 20px 10px",
             "title": "Timeless Furniture, Built to Last.",
             "title_h": "h1",
             "title_font_size": "48px",
@@ -299,7 +299,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/blue-table-lamp-3.jpg",
-            "image_link": "",
+            "image_link": "shopify://collections/table-lamps",
             "image_border_radius": "0px",
             "title": "TABLE LAMPS",
             "title_font_size": "22px",
