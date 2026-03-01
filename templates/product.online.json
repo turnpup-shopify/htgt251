@@ -387,7 +387,7 @@
         "carousel_block_EqeRPX"
       ],
       "custom_css": [
-        "p {font-family: Helvetica}"
+        "p {font-family: Helvetica;}"
       ],
       "name": "TPPC - Product Carousel",
       "settings": {
@@ -523,6 +523,7 @@
     },
     "turnpup_mock_reviews_4Dw3Kp": {
       "type": "turnpup-mock-reviews",
+      "disabled": true,
       "name": "Turnpup Mock Reviews",
       "settings": {
         "padding_top": 40,
