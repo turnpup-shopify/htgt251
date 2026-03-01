@@ -1189,6 +1189,28 @@
     "turnpup_prod_carousel_bqLw89": {
       "type": "turnpup-prod-carousel",
       "blocks": {
+        "carousel_block_Dy6jpc": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/acloreinteriors.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_U9EMyB": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/avagrayinteriors.jpg",
+            "cell_url": ""
+          }
+        },
         "carousel_block_mwzaK3": {
           "type": "carousel_block",
           "settings": {
@@ -1196,6 +1218,7 @@
             "cell_title": "Product Title",
             "cell_subtitle": "Product Subtitle",
             "button_text": "",
+            "carousel_image": "shopify://shop_images/spaces_by_katie.jpg",
             "cell_url": ""
           }
         },
@@ -1212,6 +1235,8 @@
         }
       },
       "block_order": [
+        "carousel_block_Dy6jpc",
+        "carousel_block_U9EMyB",
         "carousel_block_mwzaK3",
         "carousel_block_VPaRJw"
       ],
@@ -1255,9 +1280,9 @@
         "button_border_color_hover": "#ffffff",
         "button_background_color_hover": "#000000",
         "button_text_color_hover": "#ffffff",
-        "button_label": "all",
+        "button_label": "",
         "button_link": "",
-        "header": "",
+        "header": "Real Customers Trust Our Products",
         "title_font_size": "40px",
         "mobile_title_size": "24px",
         "title_font_family": "'Helvetica Neue'",
