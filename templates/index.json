@@ -240,6 +240,204 @@
         "section_background_color_inner_opacity": 0
       }
     },
+    "at_hero_spiral_collage_8Lgigq": {
+      "type": "at-hero-spiral-collage",
+      "blocks": {
+        "tile_JLXAbr": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/organic-shaped-mirror-lifestyle-5.jpg",
+            "position_x": 4,
+            "position_y": 8,
+            "rotation": -15,
+            "rotation_drift": 4,
+            "tile_size": 80,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_WUmjG4": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/chandelier-brass-transitional-3.jpg",
+            "position_x": 22,
+            "position_y": 3,
+            "rotation": 8,
+            "rotation_drift": 3,
+            "tile_size": 64,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_hipCbd": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/abstract-organic-sculpture-1.jpg",
+            "position_x": 68,
+            "position_y": 5,
+            "rotation": -10,
+            "rotation_drift": 5,
+            "tile_size": 72,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_wPXFVW": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/coastal-full-length-mirror-jan-4.jpg",
+            "position_x": 85,
+            "position_y": 12,
+            "rotation": 18,
+            "rotation_drift": 2,
+            "tile_size": 60,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_NQeMaP": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/blue-art-living-room.jpg",
+            "position_x": 2,
+            "position_y": 42,
+            "rotation": 6,
+            "rotation_drift": 4,
+            "tile_size": 68,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_GMcf3a": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/wood-entry-stools-mudroom-2.jpg",
+            "position_x": 88,
+            "position_y": 38,
+            "rotation": -14,
+            "rotation_drift": 3,
+            "tile_size": 76,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_aynxdX": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/black-arched-windowpane-mirror-4.jpg",
+            "position_x": 8,
+            "position_y": 72,
+            "rotation": 20,
+            "rotation_drift": 5,
+            "tile_size": 72,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_jQ998w": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/cloud-wall-art-2.jpg",
+            "position_x": 28,
+            "position_y": 80,
+            "rotation": -8,
+            "rotation_drift": 2,
+            "tile_size": 56,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_fmzycA": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/modern-outdoor-sculpture-6.jpg",
+            "position_x": 60,
+            "position_y": 78,
+            "rotation": 10,
+            "rotation_drift": 4,
+            "tile_size": 80,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_mRdyVm": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/bedroom-bench-gray-3.jpg",
+            "position_x": 82,
+            "position_y": 70,
+            "rotation": -22,
+            "rotation_drift": 3,
+            "tile_size": 64,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_YHr9He": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/acrylic-and-brass-cabinet-hardware-in-satin-brass.jpg",
+            "position_x": 44,
+            "position_y": 2,
+            "rotation": 12,
+            "rotation_drift": 2,
+            "tile_size": 56,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_Q9WAQk": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/white-marble-drink-table.jpg",
+            "position_x": 50,
+            "position_y": 84,
+            "rotation": -6,
+            "rotation_drift": 4,
+            "tile_size": 68,
+            "border_radius": "4px",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "tile_JLXAbr",
+        "tile_WUmjG4",
+        "tile_hipCbd",
+        "tile_wPXFVW",
+        "tile_NQeMaP",
+        "tile_GMcf3a",
+        "tile_aynxdX",
+        "tile_jQ998w",
+        "tile_fmzycA",
+        "tile_mRdyVm",
+        "tile_YHr9He",
+        "tile_Q9WAQk"
+      ],
+      "name": "Hero Spiral Collage",
+      "settings": {
+        "section_height": 100,
+        "section_height_mobile": 80,
+        "mobile_scale": 65,
+        "background_color": "#ffffff",
+        "heading": "Portfolio",
+        "heading_font_size": "100px",
+        "heading_font_size_mobile": "56px",
+        "heading_font_family": "'Helvetica Neue', sans-serif",
+        "heading_font_weight": "400",
+        "heading_color": "#000000",
+        "eyebrow": "digital design",
+        "eyebrow_font_size": "13px",
+        "eyebrow_font_size_mobile": "11px",
+        "eyebrow_font_family": "'Helvetica Neue', sans-serif",
+        "eyebrow_font_weight": "400",
+        "eyebrow_letter_spacing": "0.1em",
+        "eyebrow_color": "#666666",
+        "text_alignment": "center",
+        "enable_animation": true,
+        "animation_duration": 9
+      }
+    },
     "turnpup_categories_D3b6BY": {
       "type": "turnpup-categories",
       "blocks": {
@@ -1420,36 +1618,6 @@
         "section_background_color": "#ffffff"
       }
     },
-    "tp_subnav_6JQEcV": {
-      "type": "tp-subnav",
-      "settings": {
-        "padding_top": 0,
-        "padding_bottom": 40,
-        "padding_right": 0,
-        "padding_left": 60,
-        "mobile_padding_top": 0,
-        "mobile_padding_bottom": 40,
-        "mobile_padding_right": 0,
-        "mobile_padding_left": 20,
-        "collection_menu": [
-          "bedroom-benches",
-          "coastal-benches",
-          "entryway-benches",
-          "small-bench-for-entryway"
-        ],
-        "no_image": true,
-        "desktop_font_size": "12px",
-        "mobile_font_size": "12px",
-        "alignment": "left",
-        "desktop_max_width": 100,
-        "mobile_max_width": 100,
-        "desktop_column_gap": 20,
-        "mobile_column_gap": 10,
-        "use_max_height_below": true,
-        "desktop_max_height_image": 150,
-        "mobile_max_height_image": 150
-      }
-    },
     "a032cb44-914b-4040-a3fb-26c1afaab22a": {
       "type": "flwr-social-proof-clean",
       "blocks": {
@@ -2220,6 +2388,7 @@
   },
   "order": [
     "turnpup_multicolumn_Cd8XQ3",
+    "at_hero_spiral_collage_8Lgigq",
     "turnpup_categories_D3b6BY",
     "tp_open_closed_JKkjRY",
     "tp_article_carousel_tUtyD6",
@@ -2232,7 +2401,6 @@
     "16516195897b496f4a",
     "turnpup_prod_carousel_bqLw89",
     "tp_article_carousel_QCQJ8h",
-    "tp_subnav_6JQEcV",
     "a032cb44-914b-4040-a3fb-26c1afaab22a",
     "tp_article_carousel_9D4EcP",
     "tp_article_carousel_3zAebT",
