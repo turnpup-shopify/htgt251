@@ -1,0 +1,448 @@
+{%- style -%}
+  .hsc-{{ section.id }} {
+    position: relative;
+    overflow: hidden;
+    height: {{ section.settings.section_height }}vh;
+    background-color: {{ section.settings.background_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hsc-{{ section.id }}__center {
+    position: relative;
+    z-index: 10;
+    text-align: {{ section.settings.text_alignment }};
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hsc-{{ section.id }}__eyebrow {
+    display: block;
+    font-size: {{ section.settings.eyebrow_font_size }};
+    font-family: {{ section.settings.eyebrow_font_family }};
+    color: {{ section.settings.eyebrow_color }};
+    font-weight: {{ section.settings.eyebrow_font_weight }};
+    letter-spacing: {{ section.settings.eyebrow_letter_spacing }};
+    margin-bottom: 6px;
+  }
+
+  .hsc-{{ section.id }}__heading {
+    font-size: {{ section.settings.heading_font_size }};
+    font-family: {{ section.settings.heading_font_family }};
+    color: {{ section.settings.heading_color }};
+    font-weight: {{ section.settings.heading_font_weight }};
+    line-height: 1.0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hsc-{{ section.id }}__tiles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hsc-tile-wrap-{{ section.id }} {
+    position: absolute;
+    transform-origin: center center;
+    transform: rotate(var(--hsc-rot));
+    pointer-events: all;
+    will-change: transform;
+  }
+
+  .hsc-tile-wrap-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hsc-tile-wrap-{{ section.id }} a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  {% if section.settings.enable_animation %}
+    @keyframes hsc-float-{{ section.id }} {
+      0%, 100% {
+        transform: rotate(var(--hsc-rot)) translate(0, 0);
+      }
+      33% {
+        transform: rotate(calc(var(--hsc-rot) + var(--hsc-rot-drift))) translate(var(--hsc-dx), var(--hsc-dy));
+      }
+      66% {
+        transform: rotate(calc(var(--hsc-rot) - var(--hsc-rot-drift))) translate(calc(var(--hsc-dx) * -0.6), calc(var(--hsc-dy) * -1));
+      }
+    }
+
+    .hsc-tile-wrap-{{ section.id }} {
+      animation: hsc-float-{{ section.id }} var(--hsc-duration) ease-in-out infinite;
+      animation-delay: var(--hsc-delay);
+    }
+  {% endif %}
+
+  @media screen and (max-width: 749px) {
+    .hsc-{{ section.id }} {
+      height: {{ section.settings.section_height_mobile }}vh;
+    }
+
+    .hsc-{{ section.id }}__heading {
+      font-size: {{ section.settings.heading_font_size_mobile }};
+    }
+
+    .hsc-{{ section.id }}__eyebrow {
+      font-size: {{ section.settings.eyebrow_font_size_mobile }};
+    }
+
+    .hsc-tile-wrap-{{ section.id }} {
+      width: calc(var(--hsc-size) * {{ section.settings.mobile_scale | divided_by: 100.0 }}) !important;
+      height: calc(var(--hsc-size) * {{ section.settings.mobile_scale | divided_by: 100.0 }}) !important;
+    }
+  }
+{%- endstyle -%}
+
+<div class="hsc-{{ section.id }}">
+
+  <div class="hsc-{{ section.id }}__tiles" aria-hidden="true">
+    {%- for block in section.blocks -%}
+      {%- if block.settings.image != blank -%}
+        {%- assign delay = forloop.index | times: -1.7 -%}
+        {%- assign drift_y = 6 -%}
+        {%- assign drift_x = 4 -%}
+        {%- if forloop.index == 1 or forloop.index == 3 or forloop.index == 5 or forloop.index == 7 or forloop.index == 9 or forloop.index == 11 -%}
+          {%- assign drift_y = -6 -%}
+          {%- assign drift_x = -4 -%}
+        {%- endif -%}
+
+        <div
+          class="hsc-tile-wrap-{{ section.id }}"
+          style="
+            left: {{ block.settings.position_x }}%;
+            top: {{ block.settings.position_y }}%;
+            width: {{ block.settings.tile_size }}px;
+            height: {{ block.settings.tile_size }}px;
+            border-radius: {{ block.settings.border_radius }};
+            --hsc-rot: {{ block.settings.rotation }}deg;
+            --hsc-rot-drift: {{ block.settings.rotation_drift }}deg;
+            --hsc-size: {{ block.settings.tile_size }}px;
+            --hsc-dx: {{ drift_x }}px;
+            --hsc-dy: {{ drift_y }}px;
+            --hsc-duration: {{ section.settings.animation_duration }}s;
+            --hsc-delay: {{ delay }}s;
+          "
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" aria-label="{{ block.settings.image.alt | default: 'Image tile' | escape }}">
+          {%- endif -%}
+
+          {{-
+            block.settings.image
+            | image_url: width: 300
+            | image_tag:
+              loading: 'lazy',
+              alt: block.settings.image.alt,
+              widths: '80, 120, 160, 200, 300'
+          -}}
+
+          {%- if block.settings.link != blank -%}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <div class="hsc-{{ section.id }}__center">
+    {%- unless section.settings.eyebrow == blank -%}
+      <span class="hsc-{{ section.id }}__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+    {%- endunless -%}
+    {%- unless section.settings.heading == blank -%}
+      <h2 class="hsc-{{ section.id }}__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endunless -%}
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Hero Spiral Collage",
+  "tag": "section",
+  "class": "hero-spiral-collage",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Size"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Height — Desktop",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "section_height_mobile",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Height — Mobile",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_scale",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Tile Scale on Mobile",
+      "default": 65,
+      "info": "Shrinks all tiles on mobile as a % of their desktop size."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Portfolio"
+    },
+    {
+      "type": "text",
+      "id": "heading_font_size",
+      "label": "Font Size — Desktop",
+      "default": "100px"
+    },
+    {
+      "type": "text",
+      "id": "heading_font_size_mobile",
+      "label": "Font Size — Mobile",
+      "default": "56px"
+    },
+    {
+      "type": "text",
+      "id": "heading_font_family",
+      "label": "Font Family",
+      "default": "'Helvetica Neue', sans-serif"
+    },
+    {
+      "type": "text",
+      "id": "heading_font_weight",
+      "label": "Font Weight",
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Eyebrow Text"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "digital design"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_font_size",
+      "label": "Font Size — Desktop",
+      "default": "13px"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_font_size_mobile",
+      "label": "Font Size — Mobile",
+      "default": "11px"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_font_family",
+      "label": "Font Family",
+      "default": "'Helvetica Neue', sans-serif"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_font_weight",
+      "label": "Font Weight",
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_letter_spacing",
+      "label": "Letter Spacing",
+      "default": "0.1em"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Text Alignment"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Center Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Drift Animation"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "Enable Drift Animation",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "unit": "s",
+      "label": "Duration per Cycle",
+      "default": 9,
+      "info": "Longer = slower, more subtle drift."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Image Tile",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Position"
+        },
+        {
+          "type": "range",
+          "id": "position_x",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Horizontal Position (% from left)",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "position_y",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Vertical Position (% from top)",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "rotation",
+          "min": -45,
+          "max": 45,
+          "step": 1,
+          "unit": "°",
+          "label": "Rotation",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "rotation_drift",
+          "min": 0,
+          "max": 12,
+          "step": 1,
+          "unit": "°",
+          "label": "Rotation Drift (animation)",
+          "default": 3,
+          "info": "How much the tile rocks during the float animation."
+        },
+        {
+          "type": "header",
+          "content": "Size & Style"
+        },
+        {
+          "type": "range",
+          "id": "tile_size",
+          "min": 40,
+          "max": 200,
+          "step": 4,
+          "unit": "px",
+          "label": "Tile Size",
+          "default": 80
+        },
+        {
+          "type": "text",
+          "id": "border_radius",
+          "label": "Border Radius",
+          "default": "4px",
+          "info": "e.g. 0px, 4px, 50%"
+        },
+        {
+          "type": "header",
+          "content": "Optional Link"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Tile Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Spiral Collage",
+      "category": "Heros",
+      "blocks": [
+        { "type": "tile", "settings": { "position_x": 4,  "position_y": 8,  "rotation": -15, "tile_size": 80,  "rotation_drift": 4 } },
+        { "type": "tile", "settings": { "position_x": 22, "position_y": 3,  "rotation": 8,   "tile_size": 64,  "rotation_drift": 3 } },
+        { "type": "tile", "settings": { "position_x": 68, "position_y": 5,  "rotation": -10, "tile_size": 72,  "rotation_drift": 5 } },
+        { "type": "tile", "settings": { "position_x": 85, "position_y": 12, "rotation": 18,  "tile_size": 60,  "rotation_drift": 2 } },
+        { "type": "tile", "settings": { "position_x": 2,  "position_y": 42, "rotation": 6,   "tile_size": 68,  "rotation_drift": 4 } },
+        { "type": "tile", "settings": { "position_x": 88, "position_y": 38, "rotation": -14, "tile_size": 76,  "rotation_drift": 3 } },
+        { "type": "tile", "settings": { "position_x": 8,  "position_y": 72, "rotation": 20,  "tile_size": 72,  "rotation_drift": 5 } },
+        { "type": "tile", "settings": { "position_x": 28, "position_y": 80, "rotation": -8,  "tile_size": 56,  "rotation_drift": 2 } },
+        { "type": "tile", "settings": { "position_x": 60, "position_y": 78, "rotation": 10,  "tile_size": 80,  "rotation_drift": 4 } },
+        { "type": "tile", "settings": { "position_x": 82, "position_y": 70, "rotation": -22, "tile_size": 64,  "rotation_drift": 3 } },
+        { "type": "tile", "settings": { "position_x": 44, "position_y": 2,  "rotation": 12,  "tile_size": 56,  "rotation_drift": 2 } },
+        { "type": "tile", "settings": { "position_x": 50, "position_y": 84, "rotation": -6,  "tile_size": 68,  "rotation_drift": 4 } }
+      ]
+    }
+  ]
+}
+{% endschema %}
