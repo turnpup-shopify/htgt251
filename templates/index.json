@@ -414,6 +414,7 @@
         "tile_YHr9He",
         "tile_Q9WAQk"
       ],
+      "disabled": true,
       "name": "Hero Spiral Collage",
       "settings": {
         "section_height": 100,
@@ -945,7 +946,7 @@
       "name": "Keyword cloud collect",
       "settings": {
         "menu": "cloud",
-        "bg_color": "#7a858b",
+        "bg_color": "#9ba6ac",
         "max_width": 1400,
         "row_gap": 0,
         "col_gap": 12,
