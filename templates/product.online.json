@@ -28,8 +28,15 @@
           "type": "title",
           "settings": {}
         },
+        "mock_reviews_link_ACaAeW": {
+          "type": "mock_reviews_link",
+          "settings": {
+            "review_count": 4
+          }
+        },
         "judge_me_reviews_preview_badge_rGQ9HX": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
           "settings": {}
         },
         "price": {
@@ -172,6 +179,7 @@
         "vendor",
         "breadcrumb_yfxxfH",
         "title",
+        "mock_reviews_link_ACaAeW",
         "judge_me_reviews_preview_badge_rGQ9HX",
         "price",
         "countdown_hyqeK8",
