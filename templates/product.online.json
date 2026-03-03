@@ -542,7 +542,7 @@
             "body": "Love this bench for my apartment entryway. Love that it has a small shelf under the bench seat."
           }
         },
-        "review_hLenaB": {
+        "review_AHzBYP": {
           "type": "review",
           "settings": {
             "author": "Blake",
@@ -550,6 +550,16 @@
             "date": "12/14/2025",
             "title": "Perfect for my apartment hallway",
             "body": "Love this bench for my apartment entryway. Love that it has a small shelf under the bench seat."
+          }
+        },
+        "review_hLenaB": {
+          "type": "review",
+          "settings": {
+            "author": "Mary Gonzales",
+            "rating": 4,
+            "date": "12/14/2025",
+            "title": "Boucle bed bench",
+            "body": "Beautiful.. looks perfect in my bedroom."
           }
         },
         "review_MDKEib": {
@@ -565,6 +575,7 @@
       },
       "block_order": [
         "review_XmbnJN",
+        "review_AHzBYP",
         "review_hLenaB",
         "review_MDKEib"
       ],
