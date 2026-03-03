@@ -532,6 +532,26 @@
     "turnpup_mock_reviews_4Dw3Kp": {
       "type": "turnpup-mock-reviews",
       "blocks": {
+        "review_XmbnJN": {
+          "type": "review",
+          "settings": {
+            "author": "Blake",
+            "rating": 5,
+            "date": "12/14/2025",
+            "title": "Perfect for my apartment hallway",
+            "body": "Love this bench for my apartment entryway. Love that it has a small shelf under the bench seat."
+          }
+        },
+        "review_hLenaB": {
+          "type": "review",
+          "settings": {
+            "author": "Blake",
+            "rating": 5,
+            "date": "12/14/2025",
+            "title": "Perfect for my apartment hallway",
+            "body": "Love this bench for my apartment entryway. Love that it has a small shelf under the bench seat."
+          }
+        },
         "review_MDKEib": {
           "type": "review",
           "settings": {
@@ -544,6 +564,8 @@
         }
       },
       "block_order": [
+        "review_XmbnJN",
+        "review_hLenaB",
         "review_MDKEib"
       ],
       "name": "Turnpup Mock Reviews",
