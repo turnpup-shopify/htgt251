@@ -615,6 +615,12 @@
                 </details>
               </share-button>
               <script src="{{ 'share.js' | asset_url }}" defer="defer"></script>
+            {%- when 'custom_html' -%}
+              {%- if block.settings.custom_html != blank -%}
+                <div class="product__custom-html rte" {{ block.shopify_attributes }}>
+                  {{ block.settings.custom_html }}
+                </div>
+              {%- endif -%}
             {%- when 'variant_picker' -%}
               {%- unless product.has_only_default_variant -%}
                 {%- if block.settings.picker_type == 'button' -%}
@@ -1224,6 +1230,17 @@
         {
           "type": "paragraph",
           "content": "t:sections.main-product.blocks.share.settings.title_info.content"
+        }
+      ]
+    },
+    {
+      "type": "custom_html",
+      "name": "Custom HTML",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_html",
+          "label": "Custom HTML"
         }
       ]
     },
