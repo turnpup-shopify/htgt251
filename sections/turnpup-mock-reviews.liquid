@@ -28,10 +28,13 @@
   }
 
   .turnpup-mock-reviews .jdgm-rev-widg__title {
+    display: block !important;
+    visibility: visible !important;
     margin: 0 0 12px;
     font-size: 28px;
     font-weight: 700;
     letter-spacing: 0.2px;
+    color: #111;
   }
 
   .turnpup-mock-reviews .jdgm-row-stars {
@@ -253,7 +256,7 @@
 
   <div class="jdgm-rev-widg" data-average-rating="{{ average_rating }}" data-number-of-reviews="{{ review_count }}">
     <div class="jdgm-rev-widg__header">
-      <h2 class="jdgm-rev-widg__title">{{ section.settings.heading }}</h2>
+      <h2 class="jdgm-rev-widg__title">{{ section.settings.heading | default: 'Customer Reviews' }}</h2>
       <div class="jdgm-row-stars">
         <div class="jdgm-rev-widg__summary">
           <div class="jdgm-rev-widg__summary-inner">
