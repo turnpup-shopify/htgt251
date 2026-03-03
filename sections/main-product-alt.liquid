@@ -419,10 +419,11 @@
               </div>
             {%- when 'mock_reviews_link' -%}
               {%- liquid
-                assign displayed_review_count = block.settings.review_count
+                assign displayed_review_count = block.settings.review_count | default: 4
                 if product.metafields.reviews.rating_count != blank
                   assign displayed_review_count = product.metafields.reviews.rating_count
                 endif
+                assign displayed_review_count = displayed_review_count | plus: 0 | at_least: 1
               -%}
               <a
                 class="product__mock-review-link"
@@ -1207,11 +1208,8 @@
       "limit": 1,
       "settings": [
         {
-          "type": "range",
+          "type": "number",
           "id": "review_count",
-          "min": 1,
-          "max": 5000,
-          "step": 1,
           "label": "Review count",
           "default": 4
         }
