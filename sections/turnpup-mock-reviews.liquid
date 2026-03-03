@@ -87,7 +87,7 @@
 
   .turnpup-mock-reviews .jdgm-widget-actions-wrapper {
     width: 100%;
-    margin: 18px 0 4px;
+    margin: {{ section.settings.write_review_button_margin_top }}px 0 4px;
   }
 
   .turnpup-mock-reviews .jdgm-write-rev-link {
@@ -463,6 +463,16 @@
       "type": "url",
       "id": "write_review_link",
       "label": "Write review button link"
+    },
+    {
+      "type": "range",
+      "id": "write_review_button_margin_top",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Write review button top margin",
+      "default": 18
     },
     {
       "type": "header",
