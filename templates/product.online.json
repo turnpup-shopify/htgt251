@@ -642,6 +642,7 @@
         "judge_me_reviews_verified_badge_yR3tjG",
         "judge_me_reviews_review_widget_wGiQnm"
       ],
+      "disabled": true,
       "custom_css": [
         ".jdgm-rev-widg {margin: 0;}"
       ],
