@@ -73,6 +73,35 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    .product__mock-review-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgb(var(--color-foreground));
+      margin: 0 0 1.2rem;
+    }
+
+    .product__mock-review-link:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .product__mock-review-stars {
+      display: inline-flex;
+      gap: 2px;
+      line-height: 1;
+    }
+
+    .product__mock-review-star {
+      font-size: 16px;
+    }
+
+    .product__mock-review-count {
+      font-size: 14px;
+      line-height: 1.2;
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
@@ -388,6 +417,31 @@
                   {%- endif -%}
                 </h1>
               </div>
+            {%- when 'mock_reviews_link' -%}
+              {%- liquid
+                assign displayed_review_count = block.settings.review_count
+                if product.metafields.reviews.rating_count != blank
+                  assign displayed_review_count = product.metafields.reviews.rating_count
+                endif
+              -%}
+              <a
+                class="product__mock-review-link"
+                href="#mock-reviews"
+                aria-label="Jump to customer reviews"
+                {{ block.shopify_attributes }}
+              >
+                <span class="product__mock-review-stars" aria-hidden="true">
+                  <span class="product__mock-review-star">★</span>
+                  <span class="product__mock-review-star">★</span>
+                  <span class="product__mock-review-star">★</span>
+                  <span class="product__mock-review-star">★</span>
+                  <span class="product__mock-review-star">★</span>
+                </span>
+                <span class="product__mock-review-count">
+                  {{ displayed_review_count }}
+                  {% if displayed_review_count == 1 %}review{% else %}reviews{% endif %}
+                </span>
+              </a>
             {%- when 'price' -%}
               <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                 {%- render 'price',
@@ -1146,6 +1200,22 @@
       "type": "breadcrumb",
       "name": "Breadcrumb",
       "limit": 1
+    },
+    {
+      "type": "mock_reviews_link",
+      "name": "Mock Reviews Link",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "review_count",
+          "min": 1,
+          "max": 5000,
+          "step": 1,
+          "label": "Review count",
+          "default": 4
+        }
+      ]
     },
     {
       "type": "price",
