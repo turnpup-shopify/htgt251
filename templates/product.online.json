@@ -556,8 +556,8 @@
         "padding_left": 0,
         "padding_bottom": 40,
         "mobile_padding_top": 32,
-        "mobile_padding_right": 0,
-        "mobile_padding_left": 0,
+        "mobile_padding_right": 20,
+        "mobile_padding_left": 20,
         "mobile_padding_bottom": 32
       }
     },
