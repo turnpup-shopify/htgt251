@@ -532,36 +532,6 @@
     "turnpup_mock_reviews_4Dw3Kp": {
       "type": "turnpup-mock-reviews",
       "blocks": {
-        "review_XmbnJN": {
-          "type": "review",
-          "settings": {
-            "author": "Blake",
-            "rating": 5,
-            "date": "12/14/2025",
-            "title": "Perfect for my apartment hallway",
-            "body": "Love this bench for my apartment entryway. Love that it has a small shelf under the bench seat."
-          }
-        },
-        "review_AHzBYP": {
-          "type": "review",
-          "settings": {
-            "author": "Blake",
-            "rating": 5,
-            "date": "12/14/2025",
-            "title": "Perfect for my apartment hallway",
-            "body": "Love this bench for my apartment entryway. Love that it has a small shelf under the bench seat."
-          }
-        },
-        "review_hLenaB": {
-          "type": "review",
-          "settings": {
-            "author": "Mary Gonzales",
-            "rating": 4,
-            "date": "12/14/2025",
-            "title": "Boucle bed bench",
-            "body": "Beautiful.. looks perfect in my bedroom."
-          }
-        },
         "review_MDKEib": {
           "type": "review",
           "settings": {
@@ -571,13 +541,43 @@
             "title": "Very nice gold decorator rings",
             "body": "The original set came with one gold and one silver. HTGT Furniture quickly sent a new set to remedy the problem."
           }
+        },
+        "review_KXWKqw": {
+          "type": "review",
+          "settings": {
+            "author": "Julie H",
+            "rating": 5,
+            "date": "11/02/2025",
+            "title": "Twist Cabinet Pulls",
+            "body": "I love the new handles - they look great, come in several sizes and have a nice heavy weight to them. In the end, I bought all 4 sizes and everything looks great on the cabinets!"
+          }
+        },
+        "review_hLenaB": {
+          "type": "review",
+          "settings": {
+            "author": "Mary Gonzales",
+            "rating": 5,
+            "date": "12/14/2025",
+            "title": "Boucle bed bench",
+            "body": "Beautiful.. looks perfect in my bedroom."
+          }
+        },
+        "review_AHzBYP": {
+          "type": "review",
+          "settings": {
+            "author": "Blake",
+            "rating": 5,
+            "date": "02/02/2025",
+            "title": "Metal Accent Stool",
+            "body": "They are high quality and look very cool"
+          }
         }
       },
       "block_order": [
-        "review_XmbnJN",
-        "review_AHzBYP",
+        "review_MDKEib",
+        "review_KXWKqw",
         "review_hLenaB",
-        "review_MDKEib"
+        "review_AHzBYP"
       ],
       "name": "Turnpup Mock Reviews",
       "settings": {
