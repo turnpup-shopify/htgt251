@@ -872,6 +872,7 @@
                             min="1"
                             value="1"
                             form="{{ product_form_id }}"
+                            style="border: 1px solid black;"
                           >
                           <button class="quantity__button no-js-hidden" name="plus" type="button">
                             <span class="visually-hidden">
@@ -884,7 +885,7 @@
                       <button
                         type="submit"
                         name="add"
-                        style="{% if block.settings.button_bg_color != blank %}background-color: {{ block.settings.button_bg_color }}; border-color: {{ block.settings.button_bg_color }};{% endif %}{% if block.settings.button_text_color != blank %} color: {{ block.settings.button_text_color }};{% endif %}"
+                        style="margin: 0px 0px 0px 20px; {% if block.settings.button_bg_color != blank %}background-color: {{ block.settings.button_bg_color }}; border-color: {{ block.settings.button_bg_color }};{% endif %}{% if block.settings.button_text_color != blank %} color: {{ block.settings.button_text_color }};{% endif %}"
                         class="product-form__submit hapny_button button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
                         {% if product.selected_or_first_available_variant.available == false %}
                           disabled
