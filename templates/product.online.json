@@ -271,6 +271,7 @@
         "e9fe64f5-f4d5-4e05-9451-2f14c9c11204",
         "c949fff9-0986-46c9-864c-609f3e6a4654"
       ],
+      "disabled": true,
       "custom_css": [
         "@media screen and (max-width: 700px) {.marquee {width: 800%; }}"
       ],
@@ -374,6 +375,7 @@
         },
         "carousel_block_EqeRPX": {
           "type": "carousel_block",
+          "disabled": true,
           "settings": {
             "cell_product": "",
             "cell_title": "Product Title",
@@ -401,8 +403,8 @@
       "settings": {
         "padding_top": 40,
         "padding_bottom": 40,
-        "padding_right": 60,
-        "padding_left": 60,
+        "padding_right": 40,
+        "padding_left": 40,
         "mobile_padding_top": 24,
         "mobile_padding_bottom": 24,
         "mobile_padding_right": 24,
@@ -584,7 +586,7 @@
         "heading": "Customer Reviews",
         "write_review_text": "Write a review",
         "write_review_link": "",
-        "write_review_button_margin_top": 8,
+        "write_review_button_margin_top": 0,
         "padding_top": 40,
         "padding_right": 0,
         "padding_left": 0,
@@ -1083,57 +1085,6 @@
         "section_background_color": "#ffffff"
       }
     },
-    "newsletter_QBWWCd": {
-      "type": "newsletter",
-      "blocks": {
-        "heading_gFnADM": {
-          "type": "heading",
-          "settings": {
-            "heading": "Join our Interior VIP Program for Exclusive Offers",
-            "heading_size": "22px"
-          }
-        },
-        "paragraph_fD8FBQ": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>Be the first to know about new collections, interior design advice, and exclusive promotions.</p>"
-          }
-        },
-        "email_form_mqcrMq": {
-          "type": "email_form",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "heading_gFnADM",
-        "paragraph_fD8FBQ",
-        "email_form_mqcrMq"
-      ],
-      "custom_css": [
-        ".rte > p:last-child {padding: 10px 0 10px;}",
-        "div,input {background-color: #c2c2cc;}"
-      ],
-      "settings": {
-        "color_scheme": "background-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52,
-        "padding_left": 40,
-        "padding_right": 40,
-        "mobile_padding_top": 28,
-        "mobile_padding_bottom": 32,
-        "mobile_padding_left": 0,
-        "mobile_padding_right": 0,
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "margin_left": 0,
-        "margin_right": 0,
-        "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_margin_left": 20,
-        "mobile_margin_right": 20
-      }
-    },
     "tp_pdp_products_in_collection_K8bNmF": {
       "type": "tp-pdp-products-in-collection",
       "name": "TP - PDP Other Products",
@@ -1261,7 +1212,6 @@
     "tp_image_rows_HL9zJE",
     "turnpup_multicolumn_JxhK7g",
     "tp_article_carousel_V6LRPf",
-    "newsletter_QBWWCd",
     "tp_pdp_products_in_collection_K8bNmF",
     "product-recommendations",
     "tp_related_results_by_tag_FpiHWc",

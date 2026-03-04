@@ -39,7 +39,7 @@
       ],
       "name": "Announcement Timer",
       "settings": {
-        "bg_color": "#e6ecef",
+        "bg_color": "#f1ece7",
         "text_color": "#121212",
         "font_size": 12,
         "font_family": "Helvetica Neue",
