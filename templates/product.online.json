@@ -41,10 +41,13 @@
         },
         "price": {
           "type": "price",
-          "settings": {}
+          "settings": {
+            "show_sale_countdown": true
+          }
         },
         "countdown_hyqeK8": {
           "type": "countdown",
+          "disabled": true,
           "settings": {}
         },
         "variant_picker": {
