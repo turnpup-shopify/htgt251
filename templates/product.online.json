@@ -403,8 +403,8 @@
       "settings": {
         "padding_top": 40,
         "padding_bottom": 40,
-        "padding_right": 60,
-        "padding_left": 60,
+        "padding_right": 40,
+        "padding_left": 40,
         "mobile_padding_top": 24,
         "mobile_padding_bottom": 24,
         "mobile_padding_right": 24,
