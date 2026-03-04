@@ -1640,6 +1640,9 @@
         "7c7355c0-1b0b-4ebe-91e9-cebbc234d664",
         "bc236382-f408-40f1-a22d-d66e51b51ef8"
       ],
+      "custom_css": [
+        "h3, h2, h4, P {font-weight: 400;}"
+      ],
       "settings": {
         "padding_top": 40,
         "padding_bottom": 20,
