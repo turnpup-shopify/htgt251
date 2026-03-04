@@ -685,7 +685,7 @@ body.tp-slide-cart-open {
   line-height: 2.1;
 }
 .product .price .price__badge-sale span {
-  font-size: 14px;
+  font-size: 14px !important;
   font-weight: 400;
 }
 
