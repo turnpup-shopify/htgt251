@@ -98,7 +98,7 @@
       {%- if show_badges -%}
         <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
           {%- if sale_countdown_end != blank -%}
-            <span class="timer" data-end="{{ sale_countdown_end }}" data-block-id="price-sale-badge" data-label-color="transparent">
+            <span class="timer" data-start="{{ settings.timer_start_date }}" data-end="{{ sale_countdown_end }}" data-block-id="price-sale-badge" data-label-color="transparent">
               <span class="timer-block">
                 <span class="timer-block__num js-timer">{{ 'products.product.on_sale' | t }}</span>
               </span>

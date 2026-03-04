@@ -490,8 +490,8 @@
             {%- when 'price' -%}
               {%- liquid
                 assign sale_countdown_end = nil
-                if block.settings.show_sale_countdown and block.settings.sale_end_date != blank
-                  assign sale_countdown_end = block.settings.sale_end_date
+                if block.settings.show_sale_countdown and settings.timer_end_date != blank and product.selected_or_first_available_variant.compare_at_price > 0
+                  assign sale_countdown_end = settings.timer_end_date
                 endif
               -%}
               <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -1301,13 +1301,8 @@
           "type": "checkbox",
           "id": "show_sale_countdown",
           "default": false,
-          "label": "Show sale countdown in badge"
-        },
-        {
-          "type": "text",
-          "id": "sale_end_date",
-          "label": "Sale end date",
-          "info": "Example: March 31, 2026 23:59:59. Only used when countdown is enabled."
+          "label": "Show sale countdown in badge",
+          "info": "Uses the same timer dates set in the Countdown Timer block."
         }
       ]
     },
