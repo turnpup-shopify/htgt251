@@ -103,6 +103,15 @@
       line-height: 1.2;
     }
 
+    .product__trust-text {
+      text-align: center;
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: #888;
+      margin: 0.6rem 0 0;
+      line-height: 1.5;
+    }
+
     .price__badge-sale .timer {
       display: contents;
     }
@@ -1060,6 +1069,12 @@
                   {{ product.metafields.custom.upsell_product.value.price | money }}
                 </p>
               {%- endif -%}
+            {%- when 'trust_text' -%}
+              {%- if block.settings.text != blank -%}
+                <p class="product__trust-text" {{ block.shopify_attributes }}>
+                  {{ block.settings.text }}
+                </p>
+              {%- endif -%}
           {%- endcase -%}
         {%- endfor -%}
         <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -1804,6 +1819,18 @@
       "name": "Upsell Module",
       "limit": 1,
       "settings": []
+    },
+    {
+      "type": "trust_text",
+      "name": "Trust text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "placeholder": "30-day risk-free guarantee. Free US shipping."
+        }
+      ]
     }
   ],
   "settings": [
