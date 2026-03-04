@@ -1641,7 +1641,7 @@
         "bc236382-f408-40f1-a22d-d66e51b51ef8"
       ],
       "custom_css": [
-        ".actual-quote,.quote, .who_said_it,span {font-weight: 400; margin-top: 10px;}"
+        ".actual-quote,.quote,.who_said_it,span {font-weight: 400; margin-top: 30px;}"
       ],
       "settings": {
         "padding_top": 40,
