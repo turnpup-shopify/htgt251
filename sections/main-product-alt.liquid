@@ -115,7 +115,6 @@
       padding: 0;
       border-radius: 0;
       font-size: inherit;
-      background-color: transparent !important;
     }
 
     .product-form__buttons--inline-qty {
@@ -490,8 +489,14 @@
             {%- when 'price' -%}
               {%- liquid
                 assign sale_countdown_end = nil
+                assign countdown_bg = nil
+                assign countdown_text = nil
+                assign countdown_border = nil
                 if block.settings.show_sale_countdown and settings.timer_end_date != blank and product.selected_or_first_available_variant.compare_at_price > 0
                   assign sale_countdown_end = settings.timer_end_date
+                  assign countdown_bg = block.settings.countdown_badge_bg_color
+                  assign countdown_text = block.settings.countdown_badge_text_color
+                  assign countdown_border = block.settings.countdown_badge_border_color
                 endif
               -%}
               <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -500,7 +505,10 @@
                   use_variant: true,
                   show_badges: true,
                   price_class: 'price--large',
-                  sale_countdown_end: sale_countdown_end
+                  sale_countdown_end: sale_countdown_end,
+                  countdown_bg: countdown_bg,
+                  countdown_text: countdown_text,
+                  countdown_border: countdown_border
                 -%}
               </div>
               {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
@@ -1303,6 +1311,25 @@
           "default": false,
           "label": "Show sale countdown in badge",
           "info": "Uses the same timer dates set in the Countdown Timer block."
+        },
+        {
+          "type": "header",
+          "content": "Countdown badge style"
+        },
+        {
+          "type": "color",
+          "id": "countdown_badge_bg_color",
+          "label": "Background color"
+        },
+        {
+          "type": "color",
+          "id": "countdown_badge_text_color",
+          "label": "Text color"
+        },
+        {
+          "type": "color",
+          "id": "countdown_badge_border_color",
+          "label": "Border color"
         }
       ]
     },

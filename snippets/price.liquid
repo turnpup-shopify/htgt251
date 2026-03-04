@@ -100,7 +100,7 @@
           {%- if sale_countdown_end != blank -%}
             <span class="timer" data-start="{{ settings.timer_start_date }}" data-end="{{ sale_countdown_end }}" data-block-id="price-sale-badge" data-label-color="transparent">
               <span class="timer-block">
-                <span class="timer-block__num js-timer">{{ 'products.product.on_sale' | t }}</span>
+                <span class="timer-block__num js-timer" style="{% if countdown_bg != blank %}background-color: {{ countdown_bg }};{% endif %}{% if countdown_text != blank %} color: {{ countdown_text }};{% endif %}{% if countdown_border != blank %} border: 1px solid {{ countdown_border }};{% endif %}">{{ 'products.product.on_sale' | t }}</span>
               </span>
             </span>
           {%- else -%}
