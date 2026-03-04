@@ -857,7 +857,7 @@
                     >
                     <div class="product-form__buttons{% if block.settings.show_inline_quantity %} product-form__buttons--inline-qty{% endif %}" style="margin-top: 20px;">
                       {%- if block.settings.show_inline_quantity -%}
-                        <quantity-input class="quantity">
+                        <quantity-input class="quantity" style="border: 1px solid black;">
                           <button class="quantity__button no-js-hidden" name="minus" type="button">
                             <span class="visually-hidden">
                               {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
@@ -872,7 +872,6 @@
                             min="1"
                             value="1"
                             form="{{ product_form_id }}"
-                            style="border: 1px solid black;"
                           >
                           <button class="quantity__button no-js-hidden" name="plus" type="button">
                             <span class="visually-hidden">
