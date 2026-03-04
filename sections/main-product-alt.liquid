@@ -103,6 +103,21 @@
       line-height: 1.2;
     }
 
+    .price__badge-sale .timer {
+      display: contents;
+    }
+
+    .price__badge-sale .timer-block {
+      display: contents;
+    }
+
+    .price__badge-sale .timer-block__num {
+      padding: 0;
+      border-radius: 0;
+      font-size: inherit;
+      background-color: transparent !important;
+    }
+
     .product-form__buttons--inline-qty {
       display: flex;
       align-items: stretch;
@@ -473,12 +488,19 @@
                 </span>
               </a>
             {%- when 'price' -%}
+              {%- liquid
+                assign sale_countdown_end = nil
+                if block.settings.show_sale_countdown and block.settings.sale_end_date != blank
+                  assign sale_countdown_end = block.settings.sale_end_date
+                endif
+              -%}
               <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                 {%- render 'price',
                   product: product,
                   use_variant: true,
                   show_badges: true,
-                  price_class: 'price--large'
+                  price_class: 'price--large',
+                  sale_countdown_end: sale_countdown_end
                 -%}
               </div>
               {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
@@ -884,7 +906,7 @@
                       <button
                         type="submit"
                         name="add"
-                        style="margin: 0px 0px 0px 20px; {% if block.settings.button_bg_color != blank %}background-color: {{ block.settings.button_bg_color }}; border-color: {{ block.settings.button_bg_color }};{% endif %}{% if block.settings.button_text_color != blank %} color: {{ block.settings.button_text_color }};{% endif %}"
+                        style="margin: 0px 0px 0px 10px; {% if block.settings.button_bg_color != blank %}background-color: {{ block.settings.button_bg_color }}; border-color: {{ block.settings.button_bg_color }};{% endif %}{% if block.settings.button_text_color != blank %} color: {{ block.settings.button_text_color }};{% endif %}"
                         class="product-form__submit hapny_button button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
                         {% if product.selected_or_first_available_variant.available == false %}
                           disabled
@@ -1273,7 +1295,21 @@
     {
       "type": "price",
       "name": "t:sections.main-product.blocks.price.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_sale_countdown",
+          "default": false,
+          "label": "Show sale countdown in badge"
+        },
+        {
+          "type": "text",
+          "id": "sale_end_date",
+          "label": "Sale end date",
+          "info": "Example: March 31, 2026 23:59:59. Only used when countdown is enabled."
+        }
+      ]
     },
     {
       "type": "quantity_selector",
