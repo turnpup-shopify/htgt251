@@ -1085,57 +1085,6 @@
         "section_background_color": "#ffffff"
       }
     },
-    "newsletter_QBWWCd": {
-      "type": "newsletter",
-      "blocks": {
-        "heading_gFnADM": {
-          "type": "heading",
-          "settings": {
-            "heading": "Join our Interior VIP Program for Exclusive Offers",
-            "heading_size": "22px"
-          }
-        },
-        "paragraph_fD8FBQ": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>Be the first to know about new collections, interior design advice, and exclusive promotions.</p>"
-          }
-        },
-        "email_form_mqcrMq": {
-          "type": "email_form",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "heading_gFnADM",
-        "paragraph_fD8FBQ",
-        "email_form_mqcrMq"
-      ],
-      "custom_css": [
-        ".rte > p:last-child {padding: 10px 0 10px;}",
-        "div,input {background-color: #c2c2cc;}"
-      ],
-      "settings": {
-        "color_scheme": "background-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52,
-        "padding_left": 40,
-        "padding_right": 40,
-        "mobile_padding_top": 28,
-        "mobile_padding_bottom": 32,
-        "mobile_padding_left": 0,
-        "mobile_padding_right": 0,
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "margin_left": 0,
-        "margin_right": 0,
-        "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_margin_left": 20,
-        "mobile_margin_right": 20
-      }
-    },
     "tp_pdp_products_in_collection_K8bNmF": {
       "type": "tp-pdp-products-in-collection",
       "name": "TP - PDP Other Products",
@@ -1263,7 +1212,6 @@
     "tp_image_rows_HL9zJE",
     "turnpup_multicolumn_JxhK7g",
     "tp_article_carousel_V6LRPf",
-    "newsletter_QBWWCd",
     "tp_pdp_products_in_collection_K8bNmF",
     "product-recommendations",
     "tp_related_results_by_tag_FpiHWc",
