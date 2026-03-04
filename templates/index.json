@@ -945,7 +945,7 @@
       "name": "Keyword cloud collect",
       "settings": {
         "menu": "cloud",
-        "bg_color": "#9ba6ac",
+        "bg_color": "#b8c2c8",
         "max_width": 1400,
         "row_gap": 0,
         "col_gap": 12,
@@ -1654,7 +1654,7 @@
         "desktop_quote_size": "18px",
         "mobile_quote_size": "18px",
         "hide_quote_on_mobile": false,
-        "module_background_color": "#7a858b",
+        "module_background_color": "#b8c2c8",
         "module_accent_color": "#000000",
         "quote_color": "#000000",
         "dots_unselected_color": "#ffffff",
@@ -1896,7 +1896,7 @@
         "16545648716a37a12c-2"
       ],
       "custom_css": [
-        "div,input {background-color: #7a858b; border: none;}",
+        "div,input {background-color: #B8C2C8; border: none;}",
         "h2 {font-family: \"Helvetica Neue\"; font-weight: 800; margin-bottom: 20px;}",
         "p {margin-bottom: 30px;}",
         ".field {border: 1px solid black;}"
