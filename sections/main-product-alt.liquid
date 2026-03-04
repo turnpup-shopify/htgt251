@@ -102,6 +102,35 @@
       font-size: 14px;
       line-height: 1.2;
     }
+
+    .product-form__buttons--inline-qty {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .product-form__buttons--inline-qty .quantity {
+      flex-shrink: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .product-form__buttons--inline-qty .quantity:after {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .product-form__buttons--inline-qty .quantity:before {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .product-form__buttons--inline-qty .product-form__submit {
+      width: auto;
+      flex: 1 1 auto;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
@@ -826,7 +855,32 @@
                       value="{{ product.selected_or_first_available_variant.id }}"
                       disabled
                     >
-                    <div class="product-form__buttons">
+                    <div class="product-form__buttons{% if block.settings.show_inline_quantity %} product-form__buttons--inline-qty{% endif %}">
+                      {%- if block.settings.show_inline_quantity -%}
+                        <quantity-input class="quantity">
+                          <button class="quantity__button no-js-hidden" name="minus" type="button">
+                            <span class="visually-hidden">
+                              {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+                            </span>
+                            {% render 'icon-minus' %}
+                          </button>
+                          <input
+                            class="quantity__input"
+                            type="number"
+                            name="quantity"
+                            id="Quantity-{{ section.id }}"
+                            min="1"
+                            value="1"
+                            form="{{ product_form_id }}"
+                          >
+                          <button class="quantity__button no-js-hidden" name="plus" type="button">
+                            <span class="visually-hidden">
+                              {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+                            </span>
+                            {% render 'icon-plus' %}
+                          </button>
+                        </quantity-input>
+                      {%- endif -%}
                       <button
                         type="submit"
                         name="add"
@@ -1259,6 +1313,13 @@
           "default": true,
           "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_inline_quantity",
+          "default": false,
+          "label": "Show quantity selector inline",
+          "info": "Displays quantity +/- controls beside the Add to Cart button. Remove the standalone Quantity Selector block if you enable this."
         }
       ]
     },
