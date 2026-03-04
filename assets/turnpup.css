@@ -679,19 +679,19 @@ body.tp-slide-cart-open {
   text-align: right;
 }
 /* Product Page / PDP */
-.product .price span, .price--on-sale .price-item--regular {
+.product-alt-container .price span, .price--on-sale .price-item--regular {
   font-size: 18px !important;
   font-weight: 700;
   line-height: 2.1;
 }
-.product .price .price__badge-sale span {
+.product-alt-container .price .price__badge-sale span {
   font-size: 12px !important;
   font-weight: 400;
 }
 .product__info-wrapper .product__info-container>*+* {
   margin: 0.6rem 0 1.3rem;
 }
-.product .price>* {
+.product-alt-container .price>* {
   vertical-align: middle;
 }
 .product__trust-text {
