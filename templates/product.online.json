@@ -45,7 +45,7 @@
             "show_sale_countdown": true,
             "countdown_badge_bg_color": "#f1ece7",
             "countdown_badge_text_color": "#121212",
-            "countdown_badge_border_color": "#121212"
+            "countdown_badge_border_color": "#f1ece7"
           }
         },
         "countdown_hyqeK8": {
@@ -91,6 +91,12 @@
             "show_inline_quantity": true,
             "button_bg_color": "#121212",
             "button_text_color": "#ffffff"
+          }
+        },
+        "trust_text_aFQgxV": {
+          "type": "trust_text",
+          "settings": {
+            "text": "30-day returns. Free US shipping."
           }
         },
         "collapsible_tab_QV88KF": {
@@ -198,6 +204,7 @@
         "6e3cb80f-7395-4806-8a51-8eb62abc629e",
         "quantity_selector",
         "buy_buttons",
+        "trust_text_aFQgxV",
         "collapsible_tab_QV88KF",
         "collapsible_tab_DAkg6R",
         "collapsible-row-1",
