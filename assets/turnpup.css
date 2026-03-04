@@ -680,12 +680,12 @@ body.tp-slide-cart-open {
 }
 /* Product Page / PDP */
 .product .price span, .price--on-sale .price-item--regular {
-  font-size: 18px;
+  font-size: 18px !important;
   font-weight: 700;
   line-height: 2.1;
 }
 .product .price .price__badge-sale span {
-  font-size: 14px !important;
+  font-size: 16px !important;
   font-weight: 400;
 }
 
