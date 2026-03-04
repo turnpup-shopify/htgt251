@@ -82,7 +82,9 @@
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": false,
-            "show_inline_quantity": true
+            "show_inline_quantity": true,
+            "button_bg_color": "#121212",
+            "button_text_color": "#ffffff"
           }
         },
         "collapsible_tab_QV88KF": {
