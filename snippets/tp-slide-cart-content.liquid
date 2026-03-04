@@ -56,7 +56,6 @@
   </div>
 {% endif %}
 
-
 {%- if cart == empty -%}
   <div class="tp-slide-cart__empty">
     <p class="tp-slide-cart__empty-title">{{ empty_state_title }}</p>
@@ -68,6 +67,7 @@
     method="post"
     id="TP-SlideCartForm"
     class="tp-slide-cart__form">
+
     <ul class="tp-slide-cart__items" role="list">
       {%- for item in cart.items -%}
         <li
@@ -75,6 +75,7 @@
           id="SlideCartItem-{{ forloop.index }}"
           data-line="{{ forloop.index }}"
           data-key="{{ item.key }}">
+
           <div class="tp-slide-cart__media">
             {%- if item.image -%}
               <a href="{{ item.url }}" class="tp-slide-cart__media-link">
@@ -87,9 +88,16 @@
               </a>
             {%- endif -%}
           </div>
+
           <div class="tp-slide-cart__details">
-            <div class="tp-slide-cart__title">
+            <div class="tp-slide-cart__title-row">
               <a href="{{ item.url }}" class="tp-slide-cart__product-name">{{ item.product.title | escape }}</a>
+              <div class="tp-slide-cart__item-price">
+                {%- if item.original_price != item.final_price -%}
+                  <s class="tp-slide-cart__price--compare">{{ item.original_price | money }}</s>
+                {%- endif -%}
+                <span class="tp-slide-cart__price--final">{{ item.final_price | money }}</span>
+              </div>
             </div>
 
             {%- if item.product.has_only_default_variant == false or item.properties.size > 0 or item.selling_plan_allocation -%}
@@ -97,7 +105,7 @@
                 {%- if item.product.has_only_default_variant == false -%}
                   {%- for option in item.options_with_values -%}
                     <div class="tp-slide-cart__meta-row">
-                      <dt class="tp-slide-cart__meta-label visually-hidden">{{ option.name }}</dt>
+                      <dt class="visually-hidden">{{ option.name }}</dt>
                       <dd class="tp-slide-cart__meta-value">{{ option.value }}</dd>
                     </div>
                   {%- endfor -%}
@@ -111,10 +119,7 @@
                         <dt class="tp-slide-cart__meta-label">{{ property.first }}:</dt>
                         <dd class="tp-slide-cart__meta-value">
                           {%- if property.last contains '/uploads/' -%}
-                            <a
-                              href="{{ property.last }}"
-                              target="_blank"
-                              rel="noopener">{{ property.last | split: '/' | last }}</a>
+                            <a href="{{ property.last }}" target="_blank" rel="noopener">{{ property.last | split: '/' | last }}</a>
                           {%- else -%}
                             {{ property.last }}
                           {%- endif -%}
@@ -126,70 +131,45 @@
 
                 {%- if item.selling_plan_allocation -%}
                   <div class="tp-slide-cart__meta-row">
-                    <dt class="tp-slide-cart__meta-label visually-hidden">{{ 'products.product.selling_plan' | t }}</dt>
+                    <dt class="visually-hidden">{{ 'products.product.selling_plan' | t }}</dt>
                     <dd class="tp-slide-cart__meta-value">{{ item.selling_plan_allocation.selling_plan.name }}</dd>
                   </div>
                 {%- endif -%}
               </dl>
             {%- endif -%}
 
-            <div class="tp-slide-cart__pricing">
-              <div class="tp-slide-cart__price">
-                {%- if item.original_price != item.final_price -%}
-                  <s class="tp-slide-cart__price--compare">{{ item.original_price | money }}</s>
-                  <span class="tp-slide-cart__price--final">{{ item.final_price | money }}</span>
-                {%- else -%}
-                  <span class="tp-slide-cart__price--final">{{ item.final_price | money }}</span>
-                {%- endif -%}
-              </div>
-
-              <div class="tp-slide-cart__quantity" data-line="{{ forloop.index }}">
-                <label class="visually-hidden" for="SlideCart-Quantity-{{ forloop.index }}">{{ 'products.product.quantity.label' | t }}</label>
-                <quantity-input class="quantity quantity--small" style="">
-                  <button
-                    class="quantity__button"
-                    name="minus"
-                    type="button">
-                    <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
-                    {% render 'icon-minus' %}
-                  </button>
-                  <input
-                    class="quantity__input"
-                    type="number"
-                    name="updates[]"
-                    value="{{ item.quantity }}"
-                    min="0"
-                    id="SlideCart-Quantity-{{ forloop.index }}"
-                    data-index="{{ forloop.index }}"
-                    aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}">
-                  <button
-                    class="quantity__button"
-                    name="plus"
-                    type="button">
-                    <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
-                    {% render 'icon-plus' %}
-                  </button>
-                </quantity-input>
-
-                <button
-                  type="button"
-                  class="tp-slide-cart__remove"
-                  data-remove
-                  data-line="{{ forloop.index }}"
-                  aria-label="{{ 'sections.cart.remove_title' | t: title: item.product.title }}">
-                  {% render 'icon-remove' %}
+            <div class="tp-slide-cart__qty-pill">
+              <button
+                type="button"
+                class="tp-slide-cart__remove tp-slide-cart__qty-remove"
+                data-remove
+                data-line="{{ forloop.index }}"
+                aria-label="{{ 'sections.cart.remove_title' | t: title: item.product.title }}">
+                {% render 'icon-remove' %}
+              </button>
+              <quantity-input class="quantity">
+                <button class="quantity__button" name="minus" type="button" aria-hidden="true" tabindex="-1">
+                  <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
+                  {% render 'icon-minus' %}
                 </button>
-              </div>
+                <input
+                  class="quantity__input"
+                  type="number"
+                  name="updates[]"
+                  value="{{ item.quantity }}"
+                  min="0"
+                  id="SlideCart-Quantity-{{ forloop.index }}"
+                  data-index="{{ forloop.index }}"
+                  aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}">
+                <button
+                  class="quantity__button"
+                  name="plus"
+                  type="button">
+                  <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
+                  {% render 'icon-plus' %}
+                </button>
+              </quantity-input>
             </div>
-
-            {% comment %} <div class="tp-slide-cart__line-price">
-                                                                                                                                                                                                                                                                                                                    {%- if item.original_line_price != item.final_line_price -%}
-                                                                                                                                                                                                                                                                                                                      <s class="tp-slide-cart__line-price--compare">{{ item.original_line_price | money }}</s>
-                                                                                                                                                                                                                                                                                                                      <span class="tp-slide-cart__line-price--final">{{ item.final_line_price | money }}</span>
-                                                                                                                                                                                                                                                                                                                    {%- else -%}
-                                                                                                                                                                                                                                                                                                                      <span class="tp-slide-cart__line-price--final">{{ item.final_line_price | money }}</span>
-                                                                                                                                                                                                                                                                                                                    {%- endif -%}
-                                                                                                                                                                                                                                                                        </div> {% endcomment %}
 
             {%- if item.discounts != blank -%}
               <ul class="tp-slide-cart__discounts" role="list">
@@ -270,9 +250,70 @@
       </div>
     {%- endif -%}
 
+    <div class="tp-slide-cart__clear-row">
+      <button
+        type="button"
+        class="tp-slide-cart__clear-btn"
+        onclick="fetch('/cart/clear.js',{method:'POST'}).then(()=>document.querySelector('tp-slide-cart').refresh())">
+        Clear All
+        {% render 'icon-remove' %}
+      </button>
+    </div>
+
+    {% if upsell_collection %}
+      {% assign upsell_rendered = 0 %}
+      {% capture upsell_cards %}
+        {% for upsell_product in upsell_collection.products %}
+          {% if upsell_product.available %}
+            {% assign upsell_rendered = upsell_rendered | plus: 1 %}
+            {% assign upsell_variant = upsell_product.selected_or_first_available_variant %}
+            <article class="tp-slide-cart__upsell-card">
+              {% if upsell_product.featured_image %}
+                {% assign upsell_image_ratio = upsell_product.featured_image.aspect_ratio | default: 1 %}
+                <a class="tp-slide-cart__upsell-img" href="{{ upsell_product.url }}">
+                  <img
+                    src="{{ upsell_product.featured_image | image_url: width: 160 }}"
+                    alt="{{ upsell_product.featured_image.alt | default: upsell_product.title | escape }}"
+                    loading="lazy"
+                    width="80"
+                    height="{{ 80 | divided_by: upsell_image_ratio | ceil }}">
+                </a>
+              {% endif %}
+              <div class="tp-slide-cart__upsell-info">
+                <a class="tp-slide-cart__upsell-title" href="{{ upsell_product.url }}">{{ upsell_product.title }}</a>
+                <div class="tp-slide-cart__upsell-price">
+                  <span>{{ upsell_variant.price | money }}</span>
+                  {% if upsell_variant.compare_at_price > upsell_variant.price %}
+                    <s class="tp-slide-cart__upsell-price-compare">{{ upsell_variant.compare_at_price | money }}</s>
+                  {% endif %}
+                </div>
+              </div>
+              <button
+                type="button"
+                class="tp-slide-cart__upsell-add"
+                data-upsell-add
+                data-variant-id="{{ upsell_variant.id }}"
+                data-product-title="{{ upsell_product.title | escape }}">
+                Add
+              </button>
+            </article>
+            {% if upsell_rendered >= upsell_products_limit %}{% break %}{% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endcapture %}
+      {% if upsell_rendered > 0 %}
+        <div class="tp-slide-cart__upsell" data-slide-cart-upsell>
+          {% if upsell_heading != blank %}
+            <p class="tp-slide-cart__upsell-heading">{{ upsell_heading }}</p>
+          {% endif %}
+          <div class="tp-slide-cart__upsell-track">
+            {{ upsell_cards }}
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
+
     <div class="tp-slide-cart__footer">
-
-
       {%- assign total_discount = cart.original_total_price | minus: cart.total_price -%}
       {%- if total_discount > 0 -%}
         <div class="tp-slide-cart__subtotal discount" role="presentation">
@@ -280,11 +321,6 @@
           <span>-{{ total_discount | money }}</span>
         </div>
       {%- endif -%}
-
-      <div class="tp-slide-cart__subtotal" role="presentation">
-        <span>{{ 'sections.cart.subtotal' | t }}</span>
-        <span data-slide-cart-subtotal>{{ cart.total_price | money }}</span>
-      </div>
 
       {%- if cart.cart_level_discount_applications != blank -%}
         <ul class="tp-slide-cart__discounts" role="list">
@@ -294,102 +330,55 @@
         </ul>
       {%- endif -%}
 
+      <details class="tp-slide-cart__promo">
+        <summary class="tp-slide-cart__promo-toggle">
+          Have a promo code?
+          <svg class="tp-slide-cart__promo-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="tp-slide-cart__discount-entry">
+          <div class="tp-slide-cart__discount-form" data-slide-cart-discount-form>
+            <label class="visually-hidden" for="SlideCart-Discount">Discount code</label>
+            <input
+              id="SlideCart-Discount"
+              class="tp-slide-cart__discount-input"
+              type="text"
+              name="discount"
+              placeholder="Discount code"
+              autocomplete="off"
+              inputmode="text">
+            <button class="tp-slide-cart__discount-apply" type="button">Apply</button>
+          </div>
+          <p class="tp-slide-cart__discount-status" data-slide-cart-discount-status aria-live="polite"></p>
+        </div>
+      </details>
+
+      <div class="tp-slide-cart__subtotal" role="presentation">
+        <span>{{ 'sections.cart.subtotal' | t }}</span>
+        <span data-slide-cart-subtotal>{{ cart.total_price | money }}</span>
+      </div>
+
       {% unless free_shipping_enabled %}
         <p class="tp-slide-cart__note">As a new customer you qualify for free shipping.</p>
       {% endunless %}
 
-      <div class="tp-slide-cart__discount-entry">
-        <div class="tp-slide-cart__discount-form" data-slide-cart-discount-form>
-          <label class="visually-hidden" for="SlideCart-Discount">Discount code</label>
-          <input
-            id="SlideCart-Discount"
-            class="tp-slide-cart__discount-input"
-            type="text"
-            name="discount"
-            placeholder="Discount code"
-            autocomplete="off"
-            inputmode="text">
-          <button class="tp-slide-cart__discount-apply" type="button">Apply</button>
-        </div>
-        <p class="tp-slide-cart__discount-status" data-slide-cart-discount-status aria-live="polite"></p>
-      </div>
-
       <div class="tp-slide-cart__actions">
-        <button class="hapny_button button button--primary tp-slide-cart__checkout" name="checkout">🔒 Secure Checkout</button>
+        <button class="hapny_button button button--primary tp-slide-cart__checkout" name="checkout">
+          Checkout &rarr;
+        </button>
         {% if slide_cart_checkout_note != blank %}
           <p class="tp-slide-cart__checkout-note">{{ slide_cart_checkout_note }}</p>
         {% endif %}
       </div>
     </div>
 
-    {% if upsell_collection %}
-      {% assign upsell_rendered = 0 %}
-      {% capture upsell_items %}
-        {% for upsell_product in upsell_collection.products %}
-          {% if upsell_product.available %}
-            {% assign upsell_rendered = upsell_rendered | plus: 1 %}
-            {% assign upsell_variant = upsell_product.selected_or_first_available_variant %}
-            <article class="tp-slide-cart__upsell-item">
-              {% if upsell_product.featured_image %}
-                {% assign upsell_image_ratio = upsell_product.featured_image.aspect_ratio | default: 1 %}
-                <a class="tp-slide-cart__upsell-media" href="{{ upsell_product.url }}">
-                  <img
-                    src="{{ upsell_product.featured_image | image_url: width: 180 }}"
-                    alt="{{ upsell_product.featured_image.alt | default: upsell_product.title | escape }}"
-                    loading="lazy"
-                    width="90"
-                    height="{{ 90 | divided_by: upsell_image_ratio | ceil }}">
-                </a>
-              {% endif %}
-              <div class="tp-slide-cart__upsell-details">
-                <a class="tp-slide-cart__upsell-title" href="{{ upsell_product.url }}">{{ upsell_product.title }}</a>
-                <div class="tp-slide-cart__upsell-price">
-                  <span class="tp-slide-cart__upsell-price-current">{{ upsell_variant.price | money }}</span>
-                  {% if upsell_variant.compare_at_price > upsell_variant.price %}
-                    <span class="tp-slide-cart__upsell-price-compare">{{ upsell_variant.compare_at_price | money }}</span>
-                  {% endif %}
-                </div>
-              </div>
-              <div class="tp-slide-cart__upsell-actions">
-                <button
-                  type="button"
-                  class="tp-slide-cart__upsell-add button button--secondary"
-                  data-upsell-add
-                  data-variant-id="{{ upsell_variant.id }}"
-                  data-product-title="{{ upsell_product.title | escape }}">
-                  {{ 'products.product.add_to_cart' | t }}
-                </button>
-              </div>
-            </article>
-            {% if upsell_rendered >= upsell_products_limit %}
-              {% break %}
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      {% endcapture %}
-      {% if upsell_rendered > 0 %}
-        <div class="tp-slide-cart__upsell" data-slide-cart-upsell>
-          {% if upsell_heading != blank %}
-            <p class="tp-slide-cart__upsell-heading">{{ upsell_heading }}</p>
-          {% endif %}
-          <div class="tp-slide-cart__upsell-items">
-            {{ upsell_items }}
-          </div>
-        </div>
-      {% endif %}
-    {% endif %}
   </form>
 {%- endif -%}
 
 <style>
   .quantity:after {
     box-shadow: 0 0 0 0px rgba(var(--color-foreground), var(--inputs-border-opacity));
-  }
-  .quantity__button {
-    flex-shrink: 1;
-  }
-  .quantity {
-    width: 70px;
   }
 
   /* GWP Zone */
