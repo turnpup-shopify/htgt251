@@ -42,7 +42,10 @@
         "price": {
           "type": "price",
           "settings": {
-            "show_sale_countdown": true
+            "show_sale_countdown": true,
+            "countdown_badge_bg_color": "#f1ece7",
+            "countdown_badge_text_color": "#121212",
+            "countdown_badge_border_color": "#121212"
           }
         },
         "countdown_hyqeK8": {
