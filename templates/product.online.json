@@ -271,6 +271,7 @@
         "e9fe64f5-f4d5-4e05-9451-2f14c9c11204",
         "c949fff9-0986-46c9-864c-609f3e6a4654"
       ],
+      "disabled": true,
       "custom_css": [
         "@media screen and (max-width: 700px) {.marquee {width: 800%; }}"
       ],
@@ -374,6 +375,7 @@
         },
         "carousel_block_EqeRPX": {
           "type": "carousel_block",
+          "disabled": true,
           "settings": {
             "cell_product": "",
             "cell_title": "Product Title",
