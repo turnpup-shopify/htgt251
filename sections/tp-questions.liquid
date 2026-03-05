@@ -1,7 +1,9 @@
+{% assign has_metaobject = false %}
 {% if section.settings.tp_metaobject != blank %}
-    <script> console.log("TRY THIS --> {{collection.metafields.custom.qa1.value}}");</script>
-    
-    {% assign tp-question = "Do you ship black cabinet hardware?" %}
+  {% assign has_metaobject = true %}
+{% endif %}
+
+{% if has_metaobject or section.blocks.size > 0 %}
     {% assign current_url = '' %}
     {% assign current_title = '' %}
       {% if template contains 'page' %}
@@ -20,7 +22,7 @@
         {% assign current_url = product.url %}
         {% assign current_title = product.title %}
       {% endif %}
-      
+
     <div class="tp-question-container">
         <div>
             <div class="section-header">
@@ -29,23 +31,45 @@
                 </div>
             </div>
         </div>
-        {% comment %} <p>{{ section.settings.tp_metaobject | json}}</p> {% endcomment %}
-        {% render 'tp-question' for section.settings.tp_metaobject as t %}
+
+        {% if has_metaobject %}
+            {% render 'tp-question' for section.settings.tp_metaobject as t %}
+        {% else %}
+            {% for block in section.blocks %}
+                {% if block.settings.question != blank and block.settings.answer != blank %}
+                    <div class="page-accordion--single" {{ block.shopify_attributes }}>
+                        <button class="turnpup_question" aria-expanded="false" js-accordion-header="">
+                            <h3 class="page-accordion__title">
+                                {{ block.settings.question }}
+                            </h3>
+                        </button>
+                        <div class="turnpup_answer" js-accordion-content="" aria-hidden="true" style="display: none;">
+                            <span style="display:block;margin-top:8px;">
+                                {{ block.settings.answer }}
+                            </span>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
-    <script type = "application/ld+json"
-    id = "thd-helmet__script--seoGeneratedContentFAQ"
-    data - th = "client"> 
-    {
-        "@context": "http://schema.org",
-        "@type": "FAQPage",
-        "name": "{{ current_title }}",
-        "url": "https://htgtfurniture.com{{ current_url }}",
-        "mainEntity": [{% render 'tp-question-schema' for section.settings.tp_metaobject as t %}]
-    }
-    </script>
+
+    {% if has_metaobject %}
+        <script type="application/ld+json"
+        id="thd-helmet__script--seoGeneratedContentFAQ">
+        {
+            "@context": "http://schema.org",
+            "@type": "FAQPage",
+            "name": "{{ current_title }}",
+            "url": "https://htgtfurniture.com{{ current_url }}",
+            "mainEntity": [{% render 'tp-question-schema' for section.settings.tp_metaobject as t %}]
+        }
+        </script>
+    {% endif %}
+
     <style>
         .tp-question {
-            background: {{ section.setting.background_color }}
+            background: {{ section.settings.background_color }}
         }
         .tp-question-container {
             margin-top: {{ section.settings.padding_top }}px;
@@ -61,9 +85,9 @@
                 margin-right: {{ section.settings.mobile_padding_right }}px;
             }
         }
-    </style> 
-    
-    {% endif %}
+    </style>
+
+{% endif %}
     
     {% schema %}
     {
