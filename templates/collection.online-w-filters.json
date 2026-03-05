@@ -150,6 +150,18 @@
     },
     "tp_questions_bcgh3e": {
       "type": "tp-questions",
+      "blocks": {
+        "question_dRTPG8": {
+          "type": "Question",
+          "settings": {
+            "question": "<p>How long will it take to get my order?</p>",
+            "answer": "<p>We have daily calls with our vendors and issue same day delivery requests to get your order processed as soon as possible. 90% of our orders receive within 2-4 business days.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_dRTPG8"
+      ],
       "settings": {
         "section_padding": true,
         "tp_metaobject": "{{ collection.metafields.custom.qa.value }}",
@@ -173,6 +185,7 @@
     },
     "1655249273615617be": {
       "type": "svg-benefits",
+      "disabled": true,
       "custom_css": [
         ".benefit_container {line-height: 1 !important;}"
       ],
@@ -707,8 +720,18 @@
         "color_scheme": "inverse",
         "background_color": "#ffffff",
         "text_color": "#000000",
-        "font_size_desktop": "30px",
-        "font_size_mobile": "20px"
+        "font_family": "'Helvetica Neue'",
+        "font_weight": "300",
+        "desktop_font_size": "30px",
+        "mobile_font_size": "20px",
+        "margin_top": "0",
+        "margin_right": "0",
+        "margin_bottom": "0",
+        "margin_left": "0",
+        "mobile_margin_top": "0",
+        "mobile_margin_right": "0",
+        "mobile_margin_bottom": "0",
+        "mobile_margin_left": "0"
       }
     }
   },
