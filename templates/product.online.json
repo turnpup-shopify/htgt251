@@ -311,6 +311,18 @@
     },
     "tp_questions_tYPppc": {
       "type": "tp-questions",
+      "blocks": {
+        "question_B3KMwB": {
+          "type": "Question",
+          "settings": {
+            "question": "<p>How do I likka the leffs?</p>",
+            "answer": "<p>PeePaws Lickaloo Spindrifter the 4th</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_B3KMwB"
+      ],
       "custom_css": [
         "h2,h3 {font-size: 15px;}"
       ],
