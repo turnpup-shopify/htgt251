@@ -309,6 +309,74 @@
         "mobile_space_between": 140
       }
     },
+    "tp_questions_tYPppc": {
+      "type": "tp-questions",
+      "custom_css": [
+        "h2,h3 {font-size: 15px;}"
+      ],
+      "settings": {
+        "section_padding": true,
+        "tp_metaobject": "{{ product.metafields.custom.qa.value }}",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_right": 40,
+        "padding_left": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "mobile_padding_right": 20,
+        "mobile_padding_left": 20,
+        "background_opacityy": 0,
+        "overall_width": "100%",
+        "overall_width_text": "80%",
+        "turnpup_bottom_border_color": "#f4b237",
+        "turnpup_container_margin_top_bottom": "60px",
+        "background_color": "#ffffff",
+        "background_opacity": "0.2",
+        "mobile_background_color": "#ffffff"
+      }
+    },
+    "tp_quiz_LYAkfE": {
+      "type": "tp-quiz",
+      "disabled": true,
+      "settings": {
+        "metaobject_quiz_ref": "accent-table-finder"
+      }
+    },
+    "featured_row_j4Ri8j": {
+      "type": "featured-row",
+      "custom_css": [],
+      "settings": {
+        "section_padding": false,
+        "border_top": "",
+        "border_bottom": "",
+        "image": "{{ product.metafields.custom.image_with_text_one.value.image.value }}",
+        "layout": "left",
+        "text_align": "left",
+        "title": "{{ product.metafields.custom.image_with_text_one.value.header.value }}",
+        "text": "<p>{{ product.metafields.custom.image_with_text_one.value.subheader | metafield_tag }}</p>",
+        "body_font_size": 13,
+        "mobile_body_font_size": 13,
+        "button_label": "{{ product.metafields.custom.image_with_text_one.value.button_text.value }}",
+        "button_link": "{{ product.metafields.custom.image_with_text_one.value.button_url.value }}"
+      }
+    },
+    "featured_row_TH4hPR": {
+      "type": "featured-row",
+      "settings": {
+        "section_padding": false,
+        "border_top": "",
+        "border_bottom": "",
+        "image": "{{ product.metafields.custom.image_with_text_two.value.image.value }}",
+        "layout": "right",
+        "text_align": "left",
+        "title": "{{ product.metafields.custom.image_with_text_two.value.header.value }}",
+        "text": "<p>{{ product.metafields.custom.image_with_text_two.value.subheader | metafield_tag }}</p>",
+        "body_font_size": 13,
+        "mobile_body_font_size": 14,
+        "button_label": "{{ product.metafields.custom.image_with_text_two.value.button_text.value }}",
+        "button_link": "{{ product.metafields.custom.image_with_text_two.value.button_url.value }}"
+      }
+    },
     "turnpup_prod_carousel_RTzjKP": {
       "type": "turnpup-prod-carousel",
       "blocks": {
@@ -489,74 +557,6 @@
         "section_text_color": "#000000",
         "overall_background_image_url": "",
         "section_background_color": "#ffffff"
-      }
-    },
-    "tp_questions_tYPppc": {
-      "type": "tp-questions",
-      "custom_css": [
-        "h2,h3 {font-size: 15px;}"
-      ],
-      "settings": {
-        "section_padding": true,
-        "tp_metaobject": "{{ product.metafields.custom.qa.value }}",
-        "padding_top": 40,
-        "padding_bottom": 40,
-        "padding_right": 40,
-        "padding_left": 40,
-        "mobile_padding_top": 40,
-        "mobile_padding_bottom": 40,
-        "mobile_padding_right": 20,
-        "mobile_padding_left": 20,
-        "background_opacityy": 0,
-        "overall_width": "100%",
-        "overall_width_text": "80%",
-        "turnpup_bottom_border_color": "#f4b237",
-        "turnpup_container_margin_top_bottom": "60px",
-        "background_color": "#ffffff",
-        "background_opacity": "0.2",
-        "mobile_background_color": "#ffffff"
-      }
-    },
-    "tp_quiz_LYAkfE": {
-      "type": "tp-quiz",
-      "disabled": true,
-      "settings": {
-        "metaobject_quiz_ref": "accent-table-finder"
-      }
-    },
-    "featured_row_j4Ri8j": {
-      "type": "featured-row",
-      "custom_css": [],
-      "settings": {
-        "section_padding": false,
-        "border_top": "",
-        "border_bottom": "",
-        "image": "{{ product.metafields.custom.image_with_text_one.value.image.value }}",
-        "layout": "left",
-        "text_align": "left",
-        "title": "{{ product.metafields.custom.image_with_text_one.value.header.value }}",
-        "text": "<p>{{ product.metafields.custom.image_with_text_one.value.subheader | metafield_tag }}</p>",
-        "body_font_size": 13,
-        "mobile_body_font_size": 13,
-        "button_label": "{{ product.metafields.custom.image_with_text_one.value.button_text.value }}",
-        "button_link": "{{ product.metafields.custom.image_with_text_one.value.button_url.value }}"
-      }
-    },
-    "featured_row_TH4hPR": {
-      "type": "featured-row",
-      "settings": {
-        "section_padding": false,
-        "border_top": "",
-        "border_bottom": "",
-        "image": "{{ product.metafields.custom.image_with_text_two.value.image.value }}",
-        "layout": "right",
-        "text_align": "left",
-        "title": "{{ product.metafields.custom.image_with_text_two.value.header.value }}",
-        "text": "<p>{{ product.metafields.custom.image_with_text_two.value.subheader | metafield_tag }}</p>",
-        "body_font_size": 13,
-        "mobile_body_font_size": 14,
-        "button_label": "{{ product.metafields.custom.image_with_text_two.value.button_text.value }}",
-        "button_link": "{{ product.metafields.custom.image_with_text_two.value.button_url.value }}"
       }
     },
     "turnpup_mock_reviews_4Dw3Kp": {
@@ -1228,11 +1228,11 @@
   "order": [
     "main",
     "turnpup_marquee_DGNi7J",
-    "turnpup_prod_carousel_RTzjKP",
     "tp_questions_tYPppc",
     "tp_quiz_LYAkfE",
     "featured_row_j4Ri8j",
     "featured_row_TH4hPR",
+    "turnpup_prod_carousel_RTzjKP",
     "turnpup_mock_reviews_4Dw3Kp",
     "flwr_one_long_sentence_Hz8tCw",
     "174329153483acb687",
