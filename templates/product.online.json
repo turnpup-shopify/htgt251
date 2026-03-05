@@ -312,6 +312,17 @@
     "turnpup_prod_carousel_RTzjKP": {
       "type": "turnpup-prod-carousel",
       "blocks": {
+        "carousel_block_jEtJw6": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/torigraceinteriors.jpg",
+            "cell_url": ""
+          }
+        },
         "carousel_block_YVEGKG": {
           "type": "carousel_block",
           "settings": {
@@ -403,6 +414,7 @@
         }
       },
       "block_order": [
+        "carousel_block_jEtJw6",
         "carousel_block_YVEGKG",
         "carousel_block_U9EMyB",
         "carousel_block_XhJcxn",
