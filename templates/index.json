@@ -843,101 +843,81 @@
         "section_background_color": "#ffffff"
       }
     },
-    "tp_article_carousel_wJhMAV": {
-      "type": "tp-article-carousel",
+    "temp_product_highlight_CXtT6X": {
+      "type": "temp-product-highlight",
       "blocks": {
-        "carousel_block_7LrrT4": {
-          "type": "carousel_block",
+        "product_card_86ymg4": {
+          "type": "product_card",
           "settings": {
-            "cell_product": "",
-            "cell_title": "Product Title",
-            "cell_subtitle": "Product Subtitle",
-            "button_text": "",
-            "carousel_image": "shopify://shop_images/organic-shaped-mirror-lifestyle-8.jpg",
-            "cell_url": "shopify://collections/mirrors"
+            "image": "shopify://shop_images/polished-nickel-mirror-lifestyle-rounded1.jpg",
+            "badge_text": "Bestseller",
+            "product_code": "DS-01",
+            "product_name": "Daily Synbiotic",
+            "button_text": "Shop Now",
+            "product_url": "",
+            "price_text": "Starting at $49.99 per month"
           }
         },
-        "carousel_block_TMDijp": {
-          "type": "carousel_block",
+        "product_card_X8Dhrp": {
+          "type": "product_card",
           "settings": {
-            "cell_product": "",
-            "cell_title": "Product Title",
-            "cell_subtitle": "Product Subtitle",
-            "button_text": "",
-            "cell_url": ""
+            "badge_text": "New",
+            "product_code": "DM-02",
+            "product_name": "Daily Multivitamin",
+            "button_text": "Shop Now",
+            "product_url": "",
+            "price_text": "Starting at $39.99 per month"
+          }
+        },
+        "product_card_WFNNPk": {
+          "type": "product_card",
+          "settings": {
+            "badge_text": "New",
+            "product_code": "AM-02",
+            "product_name": "Energy + Focus",
+            "button_text": "Shop Now",
+            "product_url": "",
+            "price_text": "Starting at $34.99 per month"
+          }
+        },
+        "product_card_a7X9g8": {
+          "type": "product_card",
+          "settings": {
+            "badge_text": "New",
+            "product_code": "PM-02",
+            "product_name": "Sleep + Restore",
+            "button_text": "Shop Now",
+            "product_url": "",
+            "price_text": "Starting at $34.99 per month"
           }
         }
       },
       "block_order": [
-        "carousel_block_7LrrT4",
-        "carousel_block_TMDijp"
+        "product_card_86ymg4",
+        "product_card_X8Dhrp",
+        "product_card_WFNNPk",
+        "product_card_a7X9g8"
       ],
       "disabled": true,
-      "custom_css": [],
+      "name": "Product Highlight",
       "settings": {
-        "input_metaobject": "",
-        "max_items": 6,
-        "enable_scroll": true,
-        "padding_top": 40,
-        "padding_bottom": 20,
-        "padding_right": 60,
-        "padding_left": 60,
-        "mobile_padding_top": 40,
-        "mobile_padding_bottom": 20,
-        "mobile_padding_right": 24,
-        "mobile_padding_left": 24,
-        "max_height_desktop": 80,
-        "mobile_max_height_desktop": 90,
-        "border_color": "#000000",
-        "border_width": 0,
-        "border_radius": 20,
-        "cell_title_color": "#000000",
-        "cell_subtitle_color": "#555555",
-        "cell_title_fontsize": "16px",
-        "cell_subtitle_fontsize": "16px",
-        "cell_title_fontfamily": "Arial",
-        "cell_subtitle_fontfamily": "Arial",
-        "cell_title_fontwegith": "300",
-        "cell_subtitle_fontweight": "300",
-        "arrow_icon_right": "",
-        "arrow_color": "#000000",
-        "swipe_on_mobile": false,
-        "image_width": "full",
-        "column_alignment": "left",
-        "column_gap": "0px",
-        "button_padding": "10px 20px",
-        "hero_button_font_family": "\"josefin-sans\", sans-serif;",
-        "hero_button_font_size": "18px",
-        "hero_button_font_weight": "400",
-        "button_border_radius": "0px",
-        "button_border_color": "#000000",
-        "button_background_color": "#ffffff",
-        "button_text_color": "#000000",
-        "button_border_color_hover": "#ffffff",
-        "button_background_color_hover": "#000000",
-        "button_text_color_hover": "#ffffff",
-        "button_label": "all",
-        "button_link": "",
-        "header": "Shop by Category",
-        "title_font_size": "18px",
-        "mobile_title_size": "24px",
-        "title_font_family": "\"josefin-sans\", sans-serif;",
-        "title_font_weight": "300",
-        "title_font_color": "#000000",
-        "section_title_padding": "0px",
-        "subtitle": "",
-        "subtitle_font_size": "20px",
-        "section_subtitle_padding": "0px",
-        "subtitle_font_family": "\"josefin-sans\", sans-serif;",
-        "subtitle_font_weight": "400",
-        "overall_titles_margin_top": 0,
-        "overall_titles_margin_bottom": 0,
-        "overall_titles_margin_right": 0,
-        "overall_titles_margin_left": 0,
-        "title_alignment": "left",
-        "section_text_color": "#000000",
-        "overall_background_image_url": "",
-        "section_background_color": "#ffffff"
+        "heading": "Whole body health starts in the gut.",
+        "description": "Formulations that provide fast-acting and sustained support using scientifically and clinically studied ingredients.",
+        "shop_all_label": "Shop all",
+        "shop_all_url": "",
+        "heading_font_family": "",
+        "body_font_family": "",
+        "background_color": "#FFFFFF",
+        "heading_color": "#2C3D50",
+        "body_color": "#737373",
+        "card_background_color": "#F2FBFF",
+        "badge_background_color": "#486CED",
+        "badge_text_color": "#FFFFFF",
+        "button_background_color": "#2C3D50",
+        "button_text_color": "#FFFFFF",
+        "price_text_color": "#737373",
+        "padding_top": 48,
+        "padding_bottom": 48
       }
     },
     "turnpup_keyword_cats_JBhy3a": {
@@ -2395,7 +2375,7 @@
     "turnpup_categories_D3b6BY",
     "tp_open_closed_JKkjRY",
     "tp_article_carousel_tUtyD6",
-    "tp_article_carousel_wJhMAV",
+    "temp_product_highlight_CXtT6X",
     "turnpup_keyword_cats_JBhy3a",
     "turnpup_marquee_9XfUfG",
     "turnpup_cat_cells_e4UbRR",
