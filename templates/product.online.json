@@ -312,16 +312,40 @@
     "tp_questions_tYPppc": {
       "type": "tp-questions",
       "blocks": {
-        "question_B3KMwB": {
+        "question_dRTPG8": {
           "type": "Question",
           "settings": {
-            "question": "<p>How do I likka the leffs?</p>",
-            "answer": "<p>PeePaws Lickaloo Spindrifter the 4th</p>"
+            "question": "<p>How long will it take to get my order?</p>",
+            "answer": "<p>We have daily calls with our vendors and issue same day delivery requests to get your order processed as soon as possible. 90% of our orders receive within 2-4 business days.</p>"
+          }
+        },
+        "question_CdXMfT": {
+          "type": "Question",
+          "settings": {
+            "question": "<p>Can I return something if it does not work in my space?</p>",
+            "answer": "<p>We want you to love what you bring home. If something does not work, contact us within 30 days of getting your order. We will walk you through your options. Items must be in their original state and packaging.</p>"
+          }
+        },
+        "question_9YdL8P": {
+          "type": "Question",
+          "settings": {
+            "question": "<p>Do you offer local pickup or delivery in Costa Mesa?</p>",
+            "answer": "<p>Yes. We are based in Costa Mesa, CA. Local pickup and white glove delivery may be available for some items. Get in touch with us and we will find the best way to get your piece to you.</p>"
+          }
+        },
+        "question_T6EUGA": {
+          "type": "Question",
+          "settings": {
+            "question": "<p>Is my payment information safe?</p>",
+            "answer": "<p>Yes. We use secure checkout to protect your data. Your payment info is never stored on our site. We have been in this business for over 20 years. Your trust means a lot to us.</p>"
           }
         }
       },
       "block_order": [
-        "question_B3KMwB"
+        "question_dRTPG8",
+        "question_CdXMfT",
+        "question_9YdL8P",
+        "question_T6EUGA"
       ],
       "custom_css": [
         "h2,h3 {font-size: 15px;}"
