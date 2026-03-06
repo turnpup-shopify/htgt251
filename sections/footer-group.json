@@ -14,6 +14,13 @@
     "rich_text_hJQYHM": {
       "type": "rich-text",
       "blocks": {
+        "heading_nPCyPL": {
+          "type": "heading",
+          "settings": {
+            "heading": "About Us",
+            "heading_size": "h1"
+          }
+        },
         "text_QMmtic": {
           "type": "text",
           "settings": {
@@ -22,11 +29,12 @@
         }
       },
       "block_order": [
+        "heading_nPCyPL",
         "text_QMmtic"
       ],
       "custom_css": [
-        "div {background: #331b25;}",
-        "p {text-align: left; font-weight: 500; color: white;}"
+        "div {background: #b8c2c8;}",
+        "p,a,h2 {text-align: left; font-weight: 500; color: black;}"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
@@ -90,12 +98,11 @@
         "newsletter_7FxXpW"
       ],
       "custom_css": [
-        "h2,h4,a,p {color: white;}"
+        "h2,h4,a,input,form,p,.phone,.footer_newsletter_user_input {color: black !important;}"
       ],
       "settings": {
-        "background_color": "#331b25",
+        "background_color": "#b8c2c8",
         "background_opacity": "1",
-        "footer_background_image": "shopify://shop_images/htgt-footer-burgundy.jpg",
         "show_payment_icons": false,
         "show_locale_selector": false,
         "show_currency_selector": false,
