@@ -14,6 +14,13 @@
     "rich_text_hJQYHM": {
       "type": "rich-text",
       "blocks": {
+        "heading_nPCyPL": {
+          "type": "heading",
+          "settings": {
+            "heading": "About Us",
+            "heading_size": "h1"
+          }
+        },
         "text_QMmtic": {
           "type": "text",
           "settings": {
@@ -22,11 +29,12 @@
         }
       },
       "block_order": [
+        "heading_nPCyPL",
         "text_QMmtic"
       ],
       "custom_css": [
         "div {background: #b8c2c8;}",
-        "p,a {text-align: left; font-weight: 500; color: black;}"
+        "p,a,h2 {text-align: left; font-weight: 500; color: black;}"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
