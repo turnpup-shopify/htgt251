@@ -1,0 +1,618 @@
+{%- doc -%}
+  Trust bar section — compact horizontal row of 3 value props with SVG icons.
+  Designed for HTGT Furniture: premium, minimal, coastal-transitional aesthetic.
+{%- enddoc -%}
+
+{% style %}
+  .trust-bar-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    padding-inline: {{ section.settings.padding_left_mobile }}px {{ section.settings.padding_right_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .trust-bar-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+      padding-inline: {{ section.settings.padding_left_desktop }}px {{ section.settings.padding_right_desktop }}px;
+    }
+  }
+
+  .trust-bar-{{ section.id }} .trust-bar__heading {
+    font-family: {{ section.settings.heading_font_family }}, sans-serif;
+    font-size: {{ section.settings.heading_font_size }}px;
+    font-weight: {{ section.settings.heading_font_weight }};
+    color: {{ section.settings.heading_font_color }};
+  }
+
+  .trust-bar-{{ section.id }} .trust-bar__subheading {
+    font-family: {{ section.settings.subheading_font_family }}, sans-serif;
+    font-size: {{ section.settings.subheading_font_size }}px;
+    font-weight: {{ section.settings.subheading_font_weight }};
+    color: {{ section.settings.subheading_font_color }};
+  }
+
+  .trust-bar-{{ section.id }} .trust-bar__item-title {
+    font-family: {{ section.settings.item_title_font_family }}, sans-serif;
+    font-size: {{ section.settings.item_title_font_size }}px;
+    font-weight: {{ section.settings.item_title_font_weight }};
+    color: {{ section.settings.item_title_font_color }};
+  }
+
+  .trust-bar-{{ section.id }} .trust-bar__item-text {
+    font-family: {{ section.settings.item_text_font_family }}, sans-serif;
+    font-size: {{ section.settings.item_text_font_size }}px;
+    font-weight: {{ section.settings.item_text_font_weight }};
+    color: {{ section.settings.item_text_font_color }};
+  }
+
+  .trust-bar-{{ section.id }} .trust-bar__icon svg {
+    color: {{ section.settings.icon_color }};
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+  }
+
+  .trust-bar-{{ section.id }} .trust-bar__divider {
+    background-color: {{ section.settings.divider_color }};
+  }
+{% endstyle %}
+
+<section class="trust-bar trust-bar-{{ section.id }}" aria-label="{{ 'sections.trust_bar.aria_label' | t }}">
+  <div class="trust-bar__container">
+
+    {%- if section.settings.show_header -%}
+      <div class="trust-bar__header">
+        {%- if section.settings.heading != blank -%}
+          <p class="trust-bar__heading">{{ section.settings.heading | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p class="trust-bar__subheading">{{ section.settings.subheading | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <ul class="trust-bar__list" role="list">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'trust_item' -%}
+          <li class="trust-bar__item" {{ block.shopify_attributes }}>
+
+            {%- if section.settings.show_dividers and forloop.index > 1 -%}
+              <span class="trust-bar__divider" aria-hidden="true"></span>
+            {%- endif -%}
+
+            <div class="trust-bar__item-inner">
+              {%- if block.settings.icon != 'none' -%}
+                <span class="trust-bar__icon" aria-hidden="true">
+                  {%- case block.settings.icon -%}
+                    {%- when 'shipping' -%}
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                      </svg>
+                    {%- when 'returns' -%}
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+                      </svg>
+                    {%- when 'quality' -%}
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                      </svg>
+                    {%- when 'star' -%}
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.601a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                      </svg>
+                    {%- when 'tag' -%}
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+                      </svg>
+                    {%- when 'home' -%}
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                      </svg>
+                    {%- when 'lock' -%}
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                      </svg>
+                  {%- endcase -%}
+                </span>
+              {%- endif -%}
+
+              <div class="trust-bar__item-content">
+                {%- if block.settings.title != blank -%}
+                  <p class="trust-bar__item-title">{{ block.settings.title | escape }}</p>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <p class="trust-bar__item-text">{{ block.settings.text | escape }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+  </div>
+</section>
+
+{% stylesheet %}
+  .trust-bar {
+    width: 100%;
+  }
+
+  .trust-bar__container {
+    max-width: var(--page-width, 1200px);
+    margin-inline: auto;
+  }
+
+  /* ── Optional header ─────────────────────────────────────────── */
+  .trust-bar__header {
+    margin-block-end: 2rem;
+  }
+
+  .trust-bar__heading {
+    margin: 0 0 0.25rem;
+    line-height: 1.2;
+  }
+
+  .trust-bar__subheading {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ── Items grid ──────────────────────────────────────────────── */
+  .trust-bar__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .trust-bar__list {
+      flex-direction: row;
+      align-items: center;
+      gap: 0;
+    }
+  }
+
+  /* ── Individual item ─────────────────────────────────────────── */
+  .trust-bar__item {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    position: relative;
+  }
+
+  .trust-bar__item-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    width: 100%;
+  }
+
+  /* ── Vertical dividers (desktop only) ───────────────────────── */
+  .trust-bar__divider {
+    display: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .trust-bar__divider {
+      display: block;
+      width: 1px;
+      height: 2.5rem;
+      flex-shrink: 0;
+      margin-inline-end: 2rem;
+      opacity: 0.3;
+    }
+  }
+
+  /* ── Icon ────────────────────────────────────────────────────── */
+  .trust-bar__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── Text ────────────────────────────────────────────────────── */
+  .trust-bar__item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-width: 0;
+  }
+
+  .trust-bar__item-title {
+    margin: 0;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+  }
+
+  .trust-bar__item-text {
+    margin: 0;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Trust bar",
+  "tag": "div",
+  "class": "trust-bar-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Show heading & subheading",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "placeholder": "Why shop with us?"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "placeholder": "We work to make every order exceptional."
+    },
+    {
+      "type": "header",
+      "content": "Heading font"
+    },
+    {
+      "type": "text",
+      "id": "heading_font_family",
+      "label": "Font family",
+      "default": "Georgia"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Font size (px)",
+      "min": 14,
+      "max": 48,
+      "step": 1,
+      "default": 22
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "heading_font_color",
+      "label": "Font color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "header",
+      "content": "Subheading font"
+    },
+    {
+      "type": "text",
+      "id": "subheading_font_family",
+      "label": "Font family",
+      "default": "Georgia"
+    },
+    {
+      "type": "range",
+      "id": "subheading_font_size",
+      "label": "Font size (px)",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "subheading_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "subheading_font_color",
+      "label": "Font color",
+      "default": "#555555"
+    },
+    {
+      "type": "header",
+      "content": "Item title font"
+    },
+    {
+      "type": "text",
+      "id": "item_title_font_family",
+      "label": "Font family",
+      "default": "Georgia"
+    },
+    {
+      "type": "range",
+      "id": "item_title_font_size",
+      "label": "Font size (px)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "item_title_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "item_title_font_color",
+      "label": "Font color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "header",
+      "content": "Item body font"
+    },
+    {
+      "type": "text",
+      "id": "item_text_font_family",
+      "label": "Font family",
+      "default": "Georgia"
+    },
+    {
+      "type": "range",
+      "id": "item_text_font_size",
+      "label": "Font size (px)",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "item_text_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "item_text_font_color",
+      "label": "Font color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Icons & dividers"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size (px)",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "default": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dividers",
+      "label": "Show dividers between items (desktop)",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#f5f2ed"
+    },
+    {
+      "type": "header",
+      "content": "Desktop padding (px)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "label": "Left",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "label": "Right",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile padding (px)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "label": "Left",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "label": "Right",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "shipping", "label": "Shipping truck" },
+            { "value": "returns", "label": "Returns arrow" },
+            { "value": "quality", "label": "Quality badge" },
+            { "value": "star", "label": "Star" },
+            { "value": "tag", "label": "Price tag" },
+            { "value": "home", "label": "Home" },
+            { "value": "lock", "label": "Lock / secure" }
+          ],
+          "default": "shipping"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "placeholder": "Free Shipping"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Supporting text",
+          "placeholder": "On every order, no minimums."
+        }
+      ]
+    } 
+  ],
+  "presets": [
+    {
+      "name": "Trust bar",
+      "category": "Social Proof",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "shipping",
+            "title": "Free Shipping",
+            "text": "Every order ships free. No minimums, ever."
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "returns",
+            "title": "30-Day Returns",
+            "text": "Not in love with it? Easy returns, no hassle."
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "quality",
+            "title": "Designer-Quality Value",
+            "text": "Curated pieces at below-market prices."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
