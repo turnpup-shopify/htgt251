@@ -131,7 +131,7 @@
         "privacy_text": "Privacy policy",
         "privacy_url": "shopify://policies/privacy-policy",
         "show_back_to_top": true,
-        "enable_reveal": false,
+        "enable_reveal": true,
         "brand_text": "Htgt Furniture",
         "brand_font_size": 14,
         "brand_font_size_mobile": 18,
