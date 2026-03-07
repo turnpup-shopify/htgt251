@@ -302,8 +302,11 @@
       if (h > 0) spacer.style.height = h + 'px';
     }
 
+    var footer = document.querySelector('.footer-cols--has-reveal') || document.querySelector('.footer-cols');
+
     function updateRevealVisibility() {
-      if (spacer.getBoundingClientRect().top < window.innerHeight) {
+      var ref = footer ? footer.getBoundingClientRect().bottom : spacer.getBoundingClientRect().top;
+      if (ref <= window.innerHeight) {
         reveal.classList.add('is-visible');
       } else {
         reveal.classList.remove('is-visible');
@@ -371,7 +374,13 @@
     padding-bottom: var(--padding-bottom, 48px);
   }
 
-  /* When reveal is enabled, columns need to cover the fixed reveal */
+  /* When reveal is enabled, the entire section wrapper must sit above the fixed reveal
+     in the root stacking context so the footer background masks it until scrolled away */
+  .footer-combined-section {
+    position: relative;
+    z-index: 2;
+  }
+
   .footer-cols--has-reveal {
     position: relative;
     z-index: 2;
