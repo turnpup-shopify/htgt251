@@ -1018,6 +1018,7 @@
         "template--21548699484434__13648ee8-4def-4c5e-b221-a6f262e62d34-column-2",
         "acee3b10-781e-4ada-b964-a40fae87dfe4"
       ],
+      "disabled": true,
       "custom_css": [
         "p {line-height: 1.1;}",
         "img {max-width: 150px;}"
@@ -1074,6 +1075,75 @@
         "section_background_color": "#f1ece7",
         "section_background_color_inner": "#f1ece7",
         "section_background_color_inner_opacity": 100
+      }
+    },
+    "tp_trust_bar_fGyp7m": {
+      "type": "tp-trust-bar",
+      "blocks": {
+        "trust_item_M9g8ed": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "shipping",
+            "title": "Free Shipping",
+            "text": "Every order ships free. No minimums, ever."
+          }
+        },
+        "trust_item_PhxjYM": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "returns",
+            "title": "30-Day Returns",
+            "text": "Not in love with it? Easy returns, no hassle."
+          }
+        },
+        "trust_item_WbpqPk": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "quality",
+            "title": "Designer-Quality Value",
+            "text": "Curated pieces at below-market prices."
+          }
+        }
+      },
+      "block_order": [
+        "trust_item_M9g8ed",
+        "trust_item_PhxjYM",
+        "trust_item_WbpqPk"
+      ],
+      "name": "Trust bar",
+      "settings": {
+        "show_header": false,
+        "heading": "",
+        "subheading": "",
+        "heading_font_family": "Georgia",
+        "heading_font_size": 22,
+        "heading_font_weight": "600",
+        "heading_font_color": "#1a1a1a",
+        "subheading_font_family": "Georgia",
+        "subheading_font_size": 15,
+        "subheading_font_weight": "400",
+        "subheading_font_color": "#555555",
+        "item_title_font_family": "Georgia",
+        "item_title_font_size": 14,
+        "item_title_font_weight": "600",
+        "item_title_font_color": "#1a1a1a",
+        "item_text_font_family": "Georgia",
+        "item_text_font_size": 13,
+        "item_text_font_weight": "400",
+        "item_text_font_color": "#666666",
+        "icon_color": "#1a1a1a",
+        "icon_size": 24,
+        "show_dividers": true,
+        "divider_color": "#1a1a1a",
+        "bg_color": "#f5f2ed",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_left_desktop": 40,
+        "padding_right_desktop": 40,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28,
+        "padding_left_mobile": 20,
+        "padding_right_mobile": 20
       }
     },
     "tp_article_carousel_V6LRPf": {
@@ -1273,6 +1343,7 @@
     "tp_auto_col_banners_tb99zR",
     "tp_image_rows_HL9zJE",
     "turnpup_multicolumn_JxhK7g",
+    "tp_trust_bar_fGyp7m",
     "tp_article_carousel_V6LRPf",
     "tp_pdp_products_in_collection_K8bNmF",
     "product-recommendations",
