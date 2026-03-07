@@ -323,6 +323,8 @@
 
     window.addEventListener('scroll', updateRevealVisibility, { passive: true });
     window.addEventListener('resize', setSpacer, { passive: true });
+    /* Re-measure after fonts load — brand text size depends on custom font metrics */
+    window.addEventListener('load', function() { setSpacer(); updateRevealVisibility(); });
 
     /* Promo code copy-to-clipboard */
     var promoBtn = reveal.querySelector('.footer-reveal__promo-btn');
@@ -591,12 +593,12 @@
      PEEKABOO REVEAL
      ============================================ */
 
-  /* Spacer: CSS fallback so page is scrollable even if JS measurement is delayed */
+  /* Spacer: 100vh CSS fallback ensures scrollability before JS measures the exact height */
   .footer-reveal__spacer {
     display: block;
     width: 100%;
     pointer-events: none;
-    min-height: calc({{ section.settings.brand_font_size }}vw * 0.85 + 200px);
+    min-height: 100vh;
   }
 
   .footer-reveal {
