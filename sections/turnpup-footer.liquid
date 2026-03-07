@@ -212,13 +212,11 @@
 
     {%- comment -%} Top Bar — promo code, back to top, socials {%- endcomment -%}
     <div class="footer-reveal__top-bar">
-      <div class="footer-reveal__top-left">
+      <div class="footer-reveal__top-promo">
         {% if section.settings.reveal_promo_label != blank %}
           <span class="footer-reveal__promo-label">{{ section.settings.reveal_promo_label }}</span>
         {% endif %}
-      </div>
-      {% if section.settings.reveal_promo_code != blank %}
-        <div class="footer-reveal__top-center">
+        {% if section.settings.reveal_promo_code != blank %}
           <button
             class="footer-reveal__promo-btn"
             type="button"
@@ -236,8 +234,8 @@
             </svg>
             <span class="footer-reveal__promo-feedback" style="display:none;">{{ section.settings.reveal_promo_copied_text | default: 'Copied!' }}</span>
           </button>
-        </div>
-      {% endif %}
+        {% endif %}
+      </div>
       <div class="footer-reveal__top-right-group">
         {% if section.settings.reveal_show_back_to_top %}
           <button class="footer-reveal__back-to-top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">
@@ -439,7 +437,8 @@
     gap: 4px;
   }
 
-  .footer-cols__nav-link {
+  .footer-cols__nav-link,
+  .section-{{ section.id }} .footer-cols__nav-link {
     font-family: var(--heading-font);
     font-size: 18px;
     font-weight: 600;
@@ -449,7 +448,8 @@
     line-height: 1.6;
   }
 
-  .footer-cols__nav-link:hover {
+  .footer-cols__nav-link:hover,
+  .section-{{ section.id }} .footer-cols__nav-link:hover {
     color: var(--footer-link-hover, #E4F5FF);
   }
 
@@ -631,17 +631,19 @@
     display: none;
   }
 
+  .footer-reveal__top-promo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: nowrap;
+  }
+
   .footer-reveal__promo-label {
     font-family: var(--body-font);
     font-size: 14px;
     font-weight: 400;
     color: var(--reveal-text, #FFFFFF);
     white-space: nowrap;
-  }
-
-  .footer-reveal__top-center {
-    flex: 1;
-    max-width: 320px;
   }
 
   /* ---- Promo Code Button ---- */
@@ -809,12 +811,6 @@
       gap: 16px;
     }
 
-    .footer-reveal__top-center {
-      order: 3;
-      max-width: 100%;
-      flex-basis: 100%;
-    }
-
     .footer-reveal__brand-text {
       font-size: calc(var(--brand-size, 14vw) * 1.1);
     }
@@ -889,10 +885,8 @@
       padding: 16px 0;
     }
 
-    .footer-reveal__top-center {
-      width: 100%;
-      max-width: 100%;
-      order: 2;
+    .footer-reveal__top-promo {
+      flex-wrap: wrap;
     }
 
     .footer-reveal__top-right-group {
