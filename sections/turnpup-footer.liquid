@@ -574,6 +574,16 @@
      PEEKABOO REVEAL
      ============================================ */
 
+  /* Every section above the footer must create a stacking context above the
+     fixed reveal (z-index: 0), otherwise the fixed element paints on top of
+     normal-flow content. Solid section backgrounds do the masking. */
+  {% if section.settings.enable_reveal %}
+  .shopify-section:not(.footer-combined-section) {
+    position: relative;
+    z-index: 1;
+  }
+  {% endif %}
+
   .footer-reveal {
     position: fixed;
     bottom: 0;
