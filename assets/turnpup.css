@@ -1137,9 +1137,8 @@ body .collection .grid>* {
   .turnpup_question:before, .turnpup_question:after {
   content: "";
     position: absolute;
-    top: 40%;
+    top: 50%;
     right: 0;
-    margin: 0 0 -8px;
     background: #000;
     border-radius: 0px;
   }
