@@ -1,0 +1,1490 @@
+{%- comment -%}
+  FOOTER COMBINED — Columns + Peekaboo Reveal
+  ─────────────────────────────────────────────
+  This section combines a full-featured columns footer (contact, links, newsletter)
+  with a peekaboo reveal underneath that shows a giant brand watermark on scroll.
+
+  HOW THE REVEAL WORKS:
+  1. The columns footer has position: relative, z-index: 2, and a solid bg.
+  2. The reveal section is position: fixed at the bottom with z-index: 0.
+  3. A spacer div ensures the page is tall enough to scroll and reveal it.
+  4. When enabled, other sections above also need solid backgrounds and z-index: 2.
+
+  THEME INTEGRATION NOTE (only needed when reveal is enabled):
+  Add this CSS to your theme's base styles:
+    .shopify-section:not(.footer-combined-section) {
+      position: relative;
+      z-index: 2;
+      background-color: var(--page-bg, #FFFFFF);
+    }
+{%- endcomment -%}
+
+{%- assign contact_blocks = section.blocks | where: "type", "contact" -%}
+{%- assign links_blocks = section.blocks | where: "type", "links" -%}
+{%- assign newsletter_blocks = section.blocks | where: "type", "newsletter" -%}
+
+<!-- ═══════════════════════════════════════════════
+     COLUMNS FOOTER — solid background, covers reveal
+     ═══════════════════════════════════════════════ -->
+<footer
+  class="footer-cols{% if section.settings.enable_reveal %} footer-cols--has-reveal{% endif %} section-{{ section.id }}"
+  style="
+    --padding-top: {{ section.settings.padding_top }}px;
+    --padding-bottom: {{ section.settings.padding_bottom }}px;
+    --padding-left: {{ section.settings.padding_left }}px;
+    --padding-right: {{ section.settings.padding_right }}px;
+    --padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --padding-left-mobile: {{ section.settings.padding_left_mobile }}px;
+    --padding-right-mobile: {{ section.settings.padding_right_mobile }}px;
+    --footer-bg: {{ section.settings.background_color }};
+    --footer-text: {{ section.settings.text_color }};
+    --footer-muted: {{ section.settings.muted_color }};
+    --footer-link-hover: {{ section.settings.link_hover_color }};
+    --footer-input-bg: {{ section.settings.input_background_color }};
+    --footer-input-border: {{ section.settings.input_border_color }};
+    --footer-input-text: {{ section.settings.input_text_color }};
+    --footer-divider: {{ section.settings.divider_color }};
+    --heading-font: {% if section.settings.heading_font_family != blank %}{{ section.settings.heading_font_family }}{% else %}var(--font-heading-family){% endif %}, sans-serif;
+    --body-font: {% if section.settings.body_font_family != blank %}{{ section.settings.body_font_family }}{% else %}var(--font-body-family){% endif %}, sans-serif;
+  "
+>
+  <div class="footer-cols__container">
+
+    {%- comment -%} Main Columns Grid {%- endcomment -%}
+    <div class="footer-cols__grid">
+
+      {%- comment -%} Contact Column(s) {%- endcomment -%}
+      {% for block in contact_blocks %}
+        <div class="footer-cols__column footer-cols__column--contact" {{ block.shopify_attributes }}>
+          {% if block.settings.column_label != blank %}
+            <p class="footer-cols__label">{{ block.settings.column_label }}</p>
+            <div class="footer-cols__divider"></div>
+          {% endif %}
+          <div class="footer-cols__contact-info">
+            {% if block.settings.company_name != blank %}
+              <p class="footer-cols__company">{{ block.settings.company_name }}</p>
+            {% endif %}
+            {% if block.settings.address != blank %}
+              <p class="footer-cols__address">{{ block.settings.address }}</p>
+            {% endif %}
+            {% if block.settings.email != blank %}
+              <a href="mailto:{{ block.settings.email }}" class="footer-cols__link footer-cols__email">{{ block.settings.email }}</a>
+            {% endif %}
+            {% if block.settings.phone != blank %}
+              <a href="tel:{{ block.settings.phone | remove: '.' | remove: '-' | remove: ' ' | remove: '(' | remove: ')' }}" class="footer-cols__link footer-cols__phone">{{ block.settings.phone }}</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+
+      {%- comment -%} Link Column(s) {%- endcomment -%}
+      {% for block in links_blocks %}
+        <div class="footer-cols__column footer-cols__column--links" {{ block.shopify_attributes }}>
+          {% if block.settings.column_label != blank %}
+            <p class="footer-cols__label">{{ block.settings.column_label }}</p>
+            <div class="footer-cols__divider"></div>
+          {% endif %}
+          <nav class="footer-cols__nav">
+            {% if block.settings.menu != blank %}
+              {% for link in linklists[block.settings.menu].links %}
+                <a href="{{ link.url }}" class="footer-cols__nav-link">{{ link.title }}</a>
+              {% endfor %}
+            {% endif %}
+            {%- comment -%} Fallback manual links {%- endcomment -%}
+            {% if block.settings.link_1_text != blank %}
+              <a href="{{ block.settings.link_1_url }}" class="footer-cols__nav-link">{{ block.settings.link_1_text }}</a>
+            {% endif %}
+            {% if block.settings.link_2_text != blank %}
+              <a href="{{ block.settings.link_2_url }}" class="footer-cols__nav-link">{{ block.settings.link_2_text }}</a>
+            {% endif %}
+            {% if block.settings.link_3_text != blank %}
+              <a href="{{ block.settings.link_3_url }}" class="footer-cols__nav-link">{{ block.settings.link_3_text }}</a>
+            {% endif %}
+            {% if block.settings.link_4_text != blank %}
+              <a href="{{ block.settings.link_4_url }}" class="footer-cols__nav-link">{{ block.settings.link_4_text }}</a>
+            {% endif %}
+            {% if block.settings.link_5_text != blank %}
+              <a href="{{ block.settings.link_5_url }}" class="footer-cols__nav-link">{{ block.settings.link_5_text }}</a>
+            {% endif %}
+            {% if block.settings.link_6_text != blank %}
+              <a href="{{ block.settings.link_6_url }}" class="footer-cols__nav-link">{{ block.settings.link_6_text }}</a>
+            {% endif %}
+          </nav>
+        </div>
+      {% endfor %}
+
+      {%- comment -%} Newsletter Column(s) {%- endcomment -%}
+      {% for block in newsletter_blocks %}
+        <div class="footer-cols__column footer-cols__column--newsletter" {{ block.shopify_attributes }}>
+          {% if block.settings.column_label != blank %}
+            <p class="footer-cols__label">{{ block.settings.column_label }}</p>
+            <div class="footer-cols__divider"></div>
+          {% endif %}
+          {% if block.settings.newsletter_heading != blank %}
+            <p class="footer-cols__newsletter-heading">{{ block.settings.newsletter_heading }}</p>
+          {% endif %}
+          {% form 'customer', id: 'footer-newsletter' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="footer-cols__input-wrapper">
+              <input
+                type="email"
+                name="contact[email]"
+                class="footer-cols__input"
+                placeholder="{{ block.settings.placeholder_text | default: 'Email here' }}"
+                required
+                autocomplete="email"
+              >
+              <button type="submit" class="footer-cols__submit" aria-label="Subscribe">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          {% endform %}
+          {% if block.settings.disclaimer != blank %}
+            <p class="footer-cols__disclaimer">{{ block.settings.disclaimer }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+    </div>
+
+    {%- comment -%} Bottom Bar {%- endcomment -%}
+    <div class="footer-cols__bottom">
+      <div class="footer-cols__bottom-left">
+        {% if section.settings.copyright_text != blank %}
+          <p class="footer-cols__copyright">{{ section.settings.copyright_text }}</p>
+        {% endif %}
+      </div>
+      <div class="footer-cols__bottom-center">
+        {% if section.settings.privacy_text != blank %}
+          <a href="{{ section.settings.privacy_url }}" class="footer-cols__bottom-link">{{ section.settings.privacy_text }}</a>
+        {% endif %}
+      </div>
+      <div class="footer-cols__bottom-right">
+        {% if section.settings.show_back_to_top %}
+          <button class="footer-cols__back-to-top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            Back to top
+          </button>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+{% if section.settings.enable_reveal %}
+<!-- ═══════════════════════════════════════════════
+     SPACER — keeps page tall enough to scroll past
+     ═══════════════════════════════════════════════ -->
+<div class="footer-reveal__spacer section-{{ section.id }}-spacer"></div>
+
+<!-- ═══════════════════════════════════════════════
+     PEEKABOO REVEAL — fixed behind everything
+     ═══════════════════════════════════════════════ -->
+<section
+  class="footer-reveal section-{{ section.id }}-reveal"
+  style="
+    --reveal-bg: {{ section.settings.reveal_background_color }};
+    --reveal-text: {{ section.settings.reveal_text_color }};
+    --reveal-muted: {{ section.settings.reveal_muted_color }};
+    --reveal-accent: {{ section.settings.reveal_accent_color }};
+    --reveal-divider: {{ section.settings.reveal_divider_color }};
+    --brand-size: {{ section.settings.brand_font_size }}vw;
+    --brand-size-mobile: {{ section.settings.brand_font_size_mobile }}vw;
+    --heading-font: {% if section.settings.heading_font_family != blank %}{{ section.settings.heading_font_family }}{% else %}var(--font-heading-family){% endif %}, sans-serif;
+    --body-font: {% if section.settings.body_font_family != blank %}{{ section.settings.body_font_family }}{% else %}var(--font-body-family){% endif %}, sans-serif;
+  "
+>
+  {%- if section.settings.reveal_bg_image_desktop != blank -%}
+    <img
+      src="{{ section.settings.reveal_bg_image_desktop | image_url: width: 1920 }}"
+      alt=""
+      class="footer-reveal__bg footer-reveal__bg--desktop"
+      loading="lazy"
+    >
+  {%- endif -%}
+  {%- if section.settings.reveal_bg_image_mobile != blank -%}
+    <img
+      src="{{ section.settings.reveal_bg_image_mobile | image_url: width: 800 }}"
+      alt=""
+      class="footer-reveal__bg footer-reveal__bg--mobile"
+      loading="lazy"
+    >
+  {%- endif -%}
+  <div class="footer-reveal__inner">
+
+    {%- comment -%} Top Bar — promo code, back to top, socials {%- endcomment -%}
+    <div class="footer-reveal__top-bar">
+      <div class="footer-reveal__top-left">
+        {% if section.settings.reveal_promo_label != blank %}
+          <span class="footer-reveal__promo-label">{{ section.settings.reveal_promo_label }}</span>
+        {% endif %}
+      </div>
+      {% if section.settings.reveal_promo_code != blank %}
+        <div class="footer-reveal__top-center">
+          <button
+            class="footer-reveal__promo-btn"
+            type="button"
+            data-code="{{ section.settings.reveal_promo_code }}"
+            data-copied-text="{{ section.settings.reveal_promo_copied_text | default: 'Copied!' }}"
+            aria-label="Copy promo code"
+          >
+            <span class="footer-reveal__promo-code">{{ section.settings.reveal_promo_code }}</span>
+            <svg class="footer-reveal__promo-icon footer-reveal__promo-icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <svg class="footer-reveal__promo-icon footer-reveal__promo-icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="footer-reveal__promo-feedback" style="display:none;">{{ section.settings.reveal_promo_copied_text | default: 'Copied!' }}</span>
+          </button>
+        </div>
+      {% endif %}
+      <div class="footer-reveal__top-right-group">
+        {% if section.settings.reveal_show_back_to_top %}
+          <button class="footer-reveal__back-to-top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            Back to top
+          </button>
+        {% endif %}
+        {% if section.settings.reveal_social_text != blank %}
+          <span class="footer-reveal__socials-text">{{ section.settings.reveal_social_text }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    {%- comment -%} Giant Brand Text {%- endcomment -%}
+    {% if section.settings.brand_text != blank %}
+      <div class="footer-reveal__brand">
+        <span class="footer-reveal__brand-text">{{ section.settings.brand_text }}</span>
+      </div>
+    {% endif %}
+
+    {%- comment -%} Bottom Bar — copyright, links, credit {%- endcomment -%}
+    <div class="footer-reveal__bottom-bar">
+      <div class="footer-reveal__bottom-left">
+        {% if section.settings.reveal_copyright_text != blank %}
+          <span class="footer-reveal__copyright">{{ section.settings.reveal_copyright_text }}</span>
+        {% endif %}
+      </div>
+      <div class="footer-reveal__bottom-center">
+        {% if section.settings.reveal_link_1_text != blank %}
+          <a href="{{ section.settings.reveal_link_1_url }}" class="footer-reveal__bottom-link">{{ section.settings.reveal_link_1_text }}</a>
+        {% endif %}
+        {% if section.settings.reveal_link_2_text != blank %}
+          <a href="{{ section.settings.reveal_link_2_url }}" class="footer-reveal__bottom-link">{{ section.settings.reveal_link_2_text }}</a>
+        {% endif %}
+      </div>
+      <div class="footer-reveal__bottom-right">
+        {% if section.settings.reveal_credit_text != blank %}
+          {% if section.settings.reveal_credit_url != blank %}
+            <a href="{{ section.settings.reveal_credit_url }}" class="footer-reveal__credit" target="_blank" rel="noopener">{{ section.settings.reveal_credit_text }}</a>
+          {% else %}
+            <span class="footer-reveal__credit">{{ section.settings.reveal_credit_text }}</span>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  (function() {
+    var reveal = document.querySelector('.section-{{ section.id }}-reveal');
+    var spacer = document.querySelector('.section-{{ section.id }}-spacer');
+    if (!reveal || !spacer) return;
+
+    function setSpacer() {
+      spacer.style.height = reveal.offsetHeight + 'px';
+    }
+
+    setSpacer();
+    window.addEventListener('resize', setSpacer);
+
+    if (typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(setSpacer).observe(reveal);
+    }
+
+    /* Promo code copy-to-clipboard */
+    var promoBtn = reveal.querySelector('.footer-reveal__promo-btn');
+    if (promoBtn) {
+      promoBtn.addEventListener('click', function() {
+        var code = promoBtn.getAttribute('data-code');
+        var codeEl = promoBtn.querySelector('.footer-reveal__promo-code');
+        var copyIcon = promoBtn.querySelector('.footer-reveal__promo-icon--copy');
+        var checkIcon = promoBtn.querySelector('.footer-reveal__promo-icon--check');
+        var feedback = promoBtn.querySelector('.footer-reveal__promo-feedback');
+
+        navigator.clipboard.writeText(code).then(function() {
+          if (copyIcon) copyIcon.style.display = 'none';
+          if (checkIcon) checkIcon.style.display = 'inline';
+          if (feedback) feedback.style.display = 'inline';
+          if (codeEl) codeEl.style.display = 'none';
+          promoBtn.classList.add('footer-reveal__promo-btn--copied');
+
+          setTimeout(function() {
+            if (copyIcon) copyIcon.style.display = '';
+            if (checkIcon) checkIcon.style.display = 'none';
+            if (feedback) feedback.style.display = 'none';
+            if (codeEl) codeEl.style.display = '';
+            promoBtn.classList.remove('footer-reveal__promo-btn--copied');
+          }, 2000);
+        });
+      });
+    }
+  })();
+</script>
+{% endif %}
+
+{% style %}
+  /* ============================================
+     COLUMNS FOOTER
+     ============================================ */
+
+  .footer-cols {
+    background-color: var(--footer-bg, #2C3D50);
+    padding-top: var(--padding-top, 64px);
+    padding-bottom: var(--padding-bottom, 48px);
+  }
+
+  /* When reveal is enabled, columns need to cover the fixed reveal */
+  .footer-cols--has-reveal {
+    position: relative;
+    z-index: 2;
+  }
+
+  .footer-cols__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: var(--padding-left, 32px);
+    padding-right: var(--padding-right, 32px);
+  }
+
+  /* ---- Column Grid ---- */
+  .footer-cols__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 80px;
+  }
+
+  .footer-cols__column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---- Column Label ---- */
+  .footer-cols__label {
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--footer-muted, rgba(255,255,255,0.5));
+    margin: 0 0 12px;
+  }
+
+  .footer-cols__divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--footer-divider, rgba(255,255,255,0.15));
+    margin-bottom: 24px;
+  }
+
+  /* ---- Contact Column ---- */
+  .footer-cols__contact-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-cols__company {
+    font-family: var(--heading-font);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--footer-text, #FFFFFF);
+    margin: 0 0 4px;
+    line-height: 1.4;
+  }
+
+  .footer-cols__address {
+    font-family: var(--body-font);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--footer-text, #FFFFFF);
+    margin: 0 0 16px;
+    line-height: 1.5;
+    white-space: pre-line;
+  }
+
+  .footer-cols__link {
+    font-family: var(--body-font);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--footer-text, #FFFFFF);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    margin: 0 0 4px;
+    line-height: 1.5;
+  }
+
+  .footer-cols__link:hover {
+    color: var(--footer-link-hover, #E4F5FF);
+  }
+
+  /* ---- Links Column ---- */
+  .footer-cols__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .footer-cols__nav-link {
+    font-family: var(--heading-font);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--footer-text, #FFFFFF);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    line-height: 1.6;
+  }
+
+  .footer-cols__nav-link:hover {
+    color: var(--footer-link-hover, #E4F5FF);
+  }
+
+  /* ---- Newsletter Column ---- */
+  .footer-cols__newsletter-heading {
+    font-family: var(--heading-font);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--footer-text, #FFFFFF);
+    margin: 0 0 20px;
+    line-height: 1.4;
+  }
+
+  .footer-cols__input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: var(--footer-input-bg, rgba(255,255,255,0.1));
+    border: 1px solid var(--footer-input-border, rgba(255,255,255,0.15));
+    border-radius: 0;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .footer-cols__input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 16px 20px;
+    font-family: var(--body-font);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--footer-input-text, #FFFFFF);
+  }
+
+  .footer-cols__input::placeholder {
+    color: var(--footer-muted, rgba(255,255,255,0.5));
+  }
+
+  .footer-cols__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    padding: 16px 20px;
+    color: var(--footer-text, #FFFFFF);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .footer-cols__submit:hover {
+    opacity: 0.7;
+  }
+
+  .footer-cols__disclaimer {
+    font-family: var(--body-font);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--footer-muted, rgba(255,255,255,0.5));
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .footer-cols__disclaimer a {
+    color: var(--footer-muted, rgba(255,255,255,0.5));
+    text-decoration: underline;
+    transition: color 0.2s ease;
+  }
+
+  .footer-cols__disclaimer a:hover {
+    color: var(--footer-text, #FFFFFF);
+  }
+
+  /* ---- Bottom Bar ---- */
+  .footer-cols__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid var(--footer-divider, rgba(255,255,255,0.15));
+  }
+
+  .footer-cols__copyright {
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--footer-text, #FFFFFF);
+    margin: 0;
+  }
+
+  .footer-cols__bottom-link {
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--footer-text, #FFFFFF);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-cols__bottom-link:hover {
+    color: var(--footer-link-hover, #E4F5FF);
+  }
+
+  .footer-cols__back-to-top {
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--footer-text, #FFFFFF);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+  }
+
+  .footer-cols__back-to-top:hover {
+    color: var(--footer-link-hover, #E4F5FF);
+  }
+
+  /* ============================================
+     PEEKABOO REVEAL
+     ============================================ */
+
+  .footer-reveal__spacer {
+    display: block;
+    width: 100%;
+    pointer-events: none;
+  }
+
+  .footer-reveal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    background-color: var(--reveal-bg, #000000);
+    overflow: hidden;
+  }
+
+  .footer-reveal__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---- Reveal Top Bar ---- */
+  .footer-reveal__top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--reveal-divider, rgba(255,255,255,0.12));
+  }
+
+  /* ---- Reveal Background Image ---- */
+  .footer-reveal__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .footer-reveal__bg--mobile {
+    display: none;
+  }
+
+  .footer-reveal__promo-label {
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--reveal-text, #FFFFFF);
+    white-space: nowrap;
+  }
+
+  .footer-reveal__top-center {
+    flex: 1;
+    max-width: 320px;
+  }
+
+  /* ---- Promo Code Button ---- */
+  .footer-reveal__promo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px dashed var(--reveal-divider, rgba(255,255,255,0.25));
+    padding: 8px 16px;
+    color: var(--reveal-text, #FFFFFF);
+    cursor: pointer;
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .footer-reveal__promo-btn:hover {
+    border-color: var(--reveal-text, #FFFFFF);
+    background-color: rgba(255,255,255,0.05);
+  }
+
+  .footer-reveal__promo-btn--copied {
+    border-color: #078942;
+    background-color: rgba(7,137,66,0.15);
+  }
+
+  .footer-reveal__promo-code {
+    text-transform: uppercase;
+  }
+
+  .footer-reveal__promo-icon {
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  .footer-reveal__promo-feedback {
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0;
+    opacity: 0.8;
+  }
+
+  .footer-reveal__top-right-group {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .footer-reveal__back-to-top {
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--reveal-muted, rgba(255,255,255,0.4));
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .footer-reveal__back-to-top:hover {
+    color: var(--reveal-text, #FFFFFF);
+  }
+
+  .footer-reveal__socials-text {
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--reveal-text, #FFFFFF);
+    white-space: nowrap;
+  }
+
+  /* ---- Giant Brand Text ---- */
+  .footer-reveal__brand {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    overflow: hidden;
+  }
+
+  .footer-reveal__brand-text {
+    font-family: var(--heading-font);
+    font-size: var(--brand-size, 14vw);
+    font-weight: 900;
+    color: var(--reveal-accent, rgba(255,255,255,0.15));
+    line-height: 0.85;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  /* ---- Reveal Bottom Bar ---- */
+  .footer-reveal__bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 16px 0;
+    border-top: 1px solid var(--reveal-divider, rgba(255,255,255,0.12));
+  }
+
+  .footer-reveal__copyright {
+    font-family: var(--body-font);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--reveal-muted, rgba(255,255,255,0.4));
+  }
+
+  .footer-reveal__bottom-center {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .footer-reveal__bottom-link {
+    font-family: var(--body-font);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--reveal-muted, rgba(255,255,255,0.4));
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-reveal__bottom-link:hover {
+    color: var(--reveal-text, #FFFFFF);
+  }
+
+  .footer-reveal__credit {
+    font-family: var(--body-font);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--reveal-muted, rgba(255,255,255,0.4));
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a.footer-reveal__credit:hover {
+    color: var(--reveal-text, #FFFFFF);
+  }
+
+  /* ============================================
+     Responsive — Tablet (MD): 768–991px
+     ============================================ */
+  @media screen and (max-width: 991px) {
+    /* Columns */
+    .footer-cols__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 32px;
+    }
+
+    .footer-cols__column--newsletter {
+      grid-column: span 2;
+    }
+
+    /* Reveal */
+    .footer-reveal__top-bar {
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-reveal__top-center {
+      order: 3;
+      max-width: 100%;
+      flex-basis: 100%;
+    }
+
+    .footer-reveal__brand-text {
+      font-size: calc(var(--brand-size, 14vw) * 1.1);
+    }
+  }
+
+  /* ============================================
+     Responsive — Mobile (SM): 0–767px
+     ============================================ */
+  @media screen and (max-width: 767px) {
+    /* Columns */
+    .footer-cols {
+      padding-top: var(--padding-top-mobile, 48px);
+      padding-bottom: var(--padding-bottom-mobile, 32px);
+    }
+
+    .footer-cols__container {
+      padding-left: var(--padding-left-mobile, 16px);
+      padding-right: var(--padding-right-mobile, 16px);
+    }
+
+    .footer-cols__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 24px;
+      margin-bottom: 48px;
+    }
+
+    .footer-cols__column--contact {
+      grid-column: span 2;
+    }
+
+    .footer-cols__column--newsletter {
+      grid-column: span 2;
+    }
+
+    .footer-cols__newsletter-heading {
+      font-size: 16px;
+    }
+
+    .footer-cols__nav-link {
+      font-size: 16px;
+    }
+
+    .footer-cols__bottom {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .footer-cols__bottom-right {
+      width: 100%;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--footer-divider, rgba(255,255,255,0.15));
+    }
+
+    /* Reveal */
+    .footer-reveal__inner {
+      padding: 0 16px;
+    }
+
+    .footer-reveal__bg--desktop {
+      display: none;
+    }
+
+    .footer-reveal__bg--mobile {
+      display: block;
+    }
+
+    .footer-reveal__top-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 0;
+    }
+
+    .footer-reveal__top-center {
+      width: 100%;
+      max-width: 100%;
+      order: 2;
+    }
+
+    .footer-reveal__top-right-group {
+      order: 3;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .footer-reveal__brand-text {
+      font-size: var(--brand-size-mobile, 18vw);
+    }
+
+    .footer-reveal__bottom-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 12px 0;
+    }
+
+    .footer-reveal__bottom-center {
+      gap: 16px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Footer Combined",
+  "tag": "section",
+  "class": "footer-combined-section",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "text",
+      "id": "heading_font_family",
+      "label": "Heading font family",
+      "info": "Leave blank to use theme default"
+    },
+    {
+      "type": "text",
+      "id": "body_font_family",
+      "label": "Body font family",
+      "info": "Leave blank to use theme default"
+    },
+    {
+      "type": "header",
+      "content": "Columns — Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#2C3D50"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Muted / label color",
+      "default": "#a0aab4"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover color",
+      "default": "#E4F5FF"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#4a5a6a"
+    },
+    {
+      "type": "color",
+      "id": "input_background_color",
+      "label": "Input background",
+      "default": "#3a4d5f"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input border",
+      "default": "#4a5a6a"
+    },
+    {
+      "type": "color",
+      "id": "input_text_color",
+      "label": "Input text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Columns — Bottom Bar"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "default": "© First Day 2025"
+    },
+    {
+      "type": "text",
+      "id": "privacy_text",
+      "label": "Privacy link text",
+      "default": "Privacy policy"
+    },
+    {
+      "type": "url",
+      "id": "privacy_url",
+      "label": "Privacy link URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_back_to_top",
+      "label": "Show \"Back to top\" button",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Reveal — Toggle"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_reveal",
+      "label": "Enable peekaboo reveal",
+      "default": true,
+      "info": "When enabled, a fixed section with giant brand text reveals behind the footer on scroll."
+    },
+    {
+      "type": "header",
+      "content": "Reveal — Brand Text"
+    },
+    {
+      "type": "text",
+      "id": "brand_text",
+      "label": "Brand text",
+      "default": "FIRST DAY",
+      "info": "Displayed as giant background text"
+    },
+    {
+      "type": "range",
+      "id": "brand_font_size",
+      "label": "Brand text size (desktop)",
+      "min": 6,
+      "max": 22,
+      "step": 1,
+      "unit": "vw",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "brand_font_size_mobile",
+      "label": "Brand text size (mobile)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "vw",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Reveal — Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "reveal_bg_image_desktop",
+      "label": "Background image (desktop)",
+      "info": "Covers the entire reveal area. Use a dark/moody image for best contrast."
+    },
+    {
+      "type": "image_picker",
+      "id": "reveal_bg_image_mobile",
+      "label": "Background image (mobile)",
+      "info": "If blank, the desktop image is used on all sizes."
+    },
+    {
+      "type": "header",
+      "content": "Reveal — Top Bar"
+    },
+    {
+      "type": "text",
+      "id": "reveal_promo_label",
+      "label": "Promo label",
+      "default": "Use code at checkout"
+    },
+    {
+      "type": "text",
+      "id": "reveal_promo_code",
+      "label": "Promo code",
+      "default": "FIRSTDAY20",
+      "info": "Displayed in the top bar. Visitors click to copy to clipboard."
+    },
+    {
+      "type": "text",
+      "id": "reveal_promo_copied_text",
+      "label": "Copied feedback text",
+      "default": "Copied!"
+    },
+    {
+      "type": "checkbox",
+      "id": "reveal_show_back_to_top",
+      "label": "Show \"Back to top\"",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "reveal_social_text",
+      "label": "Social links text",
+      "default": "Instagram, TikTok"
+    },
+    {
+      "type": "header",
+      "content": "Reveal — Bottom Bar"
+    },
+    {
+      "type": "text",
+      "id": "reveal_copyright_text",
+      "label": "Copyright text",
+      "default": "All rights reserved © First Day 2025"
+    },
+    {
+      "type": "text",
+      "id": "reveal_link_1_text",
+      "label": "Link 1 text",
+      "default": "Privacy policy"
+    },
+    {
+      "type": "url",
+      "id": "reveal_link_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "reveal_link_2_text",
+      "label": "Link 2 text",
+      "default": "Terms of services"
+    },
+    {
+      "type": "url",
+      "id": "reveal_link_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "reveal_credit_text",
+      "label": "Credit text",
+      "default": "Website by First Day"
+    },
+    {
+      "type": "url",
+      "id": "reveal_credit_url",
+      "label": "Credit URL"
+    },
+    {
+      "type": "header",
+      "content": "Reveal — Colors"
+    },
+    {
+      "type": "color",
+      "id": "reveal_background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "reveal_text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "reveal_muted_color",
+      "label": "Muted text color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "reveal_accent_color",
+      "label": "Brand text color",
+      "default": "#1a1a1a",
+      "info": "Color of the giant brand text — subtle by default"
+    },
+    {
+      "type": "color",
+      "id": "reveal_divider_color",
+      "label": "Divider color",
+      "default": "#222222"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "label": "Left margin",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "label": "Right margin",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "label": "Left margin (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "label": "Right margin (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "contact",
+      "name": "Contact Column",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "column_label",
+          "label": "Column label",
+          "default": "Contact"
+        },
+        {
+          "type": "text",
+          "id": "company_name",
+          "label": "Company name",
+          "default": "First Day"
+        },
+        {
+          "type": "textarea",
+          "id": "address",
+          "label": "Address",
+          "default": "123 Wellness Ave\nSuite 100\nMiami, FL 33101"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email",
+          "default": "hello@firstday.com"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone",
+          "default": "888.555.1234"
+        }
+      ]
+    },
+    {
+      "type": "links",
+      "name": "Link Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "column_label",
+          "label": "Column label",
+          "default": "Sitemap"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "info": "Select a navigation menu. Or use the manual links below."
+        },
+        {
+          "type": "header",
+          "content": "Manual Links (if no menu selected)"
+        },
+        {
+          "type": "text",
+          "id": "link_1_text",
+          "label": "Link 1 text"
+        },
+        {
+          "type": "url",
+          "id": "link_1_url",
+          "label": "Link 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_2_text",
+          "label": "Link 2 text"
+        },
+        {
+          "type": "url",
+          "id": "link_2_url",
+          "label": "Link 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_3_text",
+          "label": "Link 3 text"
+        },
+        {
+          "type": "url",
+          "id": "link_3_url",
+          "label": "Link 3 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_4_text",
+          "label": "Link 4 text"
+        },
+        {
+          "type": "url",
+          "id": "link_4_url",
+          "label": "Link 4 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_5_text",
+          "label": "Link 5 text"
+        },
+        {
+          "type": "url",
+          "id": "link_5_url",
+          "label": "Link 5 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_6_text",
+          "label": "Link 6 text"
+        },
+        {
+          "type": "url",
+          "id": "link_6_url",
+          "label": "Link 6 URL"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter Column",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "column_label",
+          "label": "Column label",
+          "default": "Updates"
+        },
+        {
+          "type": "text",
+          "id": "newsletter_heading",
+          "label": "Heading",
+          "default": "Get occasional updates on all things First Day."
+        },
+        {
+          "type": "text",
+          "id": "placeholder_text",
+          "label": "Input placeholder",
+          "default": "Email here"
+        },
+        {
+          "type": "textarea",
+          "id": "disclaimer",
+          "label": "Disclaimer text",
+          "default": "When you sign up for our newsletter you agree to our <a href=\"/policies/privacy-policy\">privacy policy</a> and will receive commercial emails.",
+          "info": "HTML links allowed"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer Combined",
+      "category": "Footer",
+      "settings": {
+        "background_color": "#2C3D50",
+        "text_color": "#FFFFFF",
+        "copyright_text": "© First Day 2025",
+        "enable_reveal": true,
+        "brand_text": "FIRST DAY",
+        "reveal_background_color": "#000000",
+        "reveal_accent_color": "#1a1a1a"
+      },
+      "blocks": [
+        {
+          "type": "contact",
+          "settings": {
+            "column_label": "Contact",
+            "company_name": "First Day",
+            "address": "123 Wellness Ave\nSuite 100\nMiami, FL 33101",
+            "email": "hello@firstday.com",
+            "phone": "888.555.1234"
+          }
+        },
+        {
+          "type": "links",
+          "settings": {
+            "column_label": "Sitemap",
+            "link_1_text": "Home",
+            "link_2_text": "Shop All",
+            "link_3_text": "Science",
+            "link_4_text": "Blog",
+            "link_5_text": "About",
+            "link_6_text": "Contact"
+          }
+        },
+        {
+          "type": "links",
+          "settings": {
+            "column_label": "Socials",
+            "link_1_text": "Instagram",
+            "link_2_text": "Facebook",
+            "link_3_text": "TikTok"
+          }
+        },
+        {
+          "type": "newsletter",
+          "settings": {
+            "column_label": "Updates",
+            "newsletter_heading": "Get occasional updates on all things First Day.",
+            "placeholder_text": "Email here",
+            "disclaimer": "When you sign up for our newsletter you agree to our <a href=\"/policies/privacy-policy\">privacy policy</a> and will receive commercial emails."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
