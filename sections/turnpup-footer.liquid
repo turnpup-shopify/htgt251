@@ -543,7 +543,8 @@
     margin: 0;
   }
 
-  .footer-cols__bottom-link {
+  .footer-cols__bottom-link,
+  .section-{{ section.id }} .footer-cols__bottom-link {
     font-family: var(--body-font);
     font-size: 14px;
     font-weight: 400;
@@ -552,7 +553,8 @@
     transition: color 0.2s ease;
   }
 
-  .footer-cols__bottom-link:hover {
+  .footer-cols__bottom-link:hover,
+  .section-{{ section.id }} .footer-cols__bottom-link:hover {
     color: var(--footer-link-hover, #E4F5FF);
   }
 
