@@ -138,21 +138,6 @@
     gap: 12px;
   }
 
-  .turnpup-mock-reviews .jdgm-rev__icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 6px;
-    background: #f0f0f0;
-    position: relative;
-  }
-
-  .turnpup-mock-reviews .jdgm-rev__icon::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='3.2'/><path d='M5 20c0-3.2 3.1-5.4 7-5.4s7 2.2 7 5.4'/></svg>") no-repeat center/22px 22px;
-  }
-
   .turnpup-mock-reviews .jdgm-rev__author {
     font-size: 18px;
     font-weight: 500;
@@ -246,8 +231,7 @@
                   <span class="jdgm-rev__timestamp">{{ block.settings.date }}</span>
                 </div>
                 <div class="jdgm-row-profile">
-                  <div class="jdgm-rev__icon"></div>
-                  <span class="jdgm-rev__author-wrapper">
+<span class="jdgm-rev__author-wrapper">
                     <span class="jdgm-rev__author">{{ block.settings.author | escape }}</span>
                   </span>
                 </div>
@@ -280,8 +264,7 @@
                 <span class="jdgm-rev__timestamp">12/14/2025</span>
               </div>
               <div class="jdgm-row-profile">
-                <div class="jdgm-rev__icon"></div>
-                <span class="jdgm-rev__author-wrapper">
+<span class="jdgm-rev__author-wrapper">
                   <span class="jdgm-rev__author">Blake</span>
                 </span>
               </div>
@@ -305,8 +288,7 @@
                 <span class="jdgm-rev__timestamp">03/25/2025</span>
               </div>
               <div class="jdgm-row-profile">
-                <div class="jdgm-rev__icon"></div>
-                <span class="jdgm-rev__author-wrapper">
+<span class="jdgm-rev__author-wrapper">
                   <span class="jdgm-rev__author">Paul T</span>
                 </span>
               </div>
@@ -329,8 +311,7 @@
                 <span class="jdgm-rev__timestamp">08/29/2022</span>
               </div>
               <div class="jdgm-row-profile">
-                <div class="jdgm-rev__icon"></div>
-                <span class="jdgm-rev__author-wrapper">
+<span class="jdgm-rev__author-wrapper">
                   <span class="jdgm-rev__author">Elliot O</span>
                 </span>
               </div>
@@ -353,8 +334,7 @@
                 <span class="jdgm-rev__timestamp">04/26/2022</span>
               </div>
               <div class="jdgm-row-profile">
-                <div class="jdgm-rev__icon"></div>
-                <span class="jdgm-rev__author-wrapper">
+<span class="jdgm-rev__author-wrapper">
                   <span class="jdgm-rev__author">Ryan Y</span>
                 </span>
               </div>
@@ -379,9 +359,9 @@
   if (!mockSection) return;
 
   function checkForRealReviews() {
-    var allRevs = document.querySelectorAll('.jdgm-rev');
-    for (var i = 0; i < allRevs.length; i++) {
-      if (!mockSection.contains(allRevs[i])) {
+    var appBlocks = document.querySelectorAll('.shopify-app-block');
+    for (var i = 0; i < appBlocks.length; i++) {
+      if (appBlocks[i].querySelectorAll('.jdgm-rev').length > 0) {
         mockSection.style.display = 'none';
         return true;
       }
