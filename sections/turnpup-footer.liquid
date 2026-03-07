@@ -176,12 +176,7 @@
 
 {% if section.settings.enable_reveal %}
 <!-- ═══════════════════════════════════════════════
-     SPACER — keeps page tall enough to scroll past
-     ═══════════════════════════════════════════════ -->
-<div class="footer-reveal__spacer section-{{ section.id }}-spacer"></div>
-
-<!-- ═══════════════════════════════════════════════
-     PEEKABOO REVEAL — fixed behind everything
+     PEEKABOO REVEAL — normal flow, sits below sticky footer
      ═══════════════════════════════════════════════ -->
 <section
   class="footer-reveal section-{{ section.id }}-reveal"
@@ -294,45 +289,18 @@
 <script>
   (function() {
     var reveal = document.querySelector('.section-{{ section.id }}-reveal');
-    var spacer = document.querySelector('.section-{{ section.id }}-spacer');
-    if (!reveal || !spacer) return;
-
-    function setSpacer() {
-      var h = reveal.offsetHeight;
-      if (h > 0) spacer.style.height = h + 'px';
-    }
-
-    var footer = document.querySelector('.footer-cols--has-reveal') || document.querySelector('.footer-cols');
+    if (!reveal) return;
 
     function updateRevealVisibility() {
-      var ref = footer ? footer.getBoundingClientRect().bottom : spacer.getBoundingClientRect().top;
-      if (ref <= window.innerHeight) {
+      if (reveal.getBoundingClientRect().top < window.innerHeight) {
         reveal.classList.add('is-visible');
       } else {
         reveal.classList.remove('is-visible');
       }
     }
 
-    function init() {
-      requestAnimationFrame(function() {
-        setSpacer();
-        updateRevealVisibility();
-      });
-    }
-
-    /* Defer until after load + a paint frame so offsetHeight is always accurate */
-    if (document.readyState === 'complete') {
-      init();
-    } else {
-      window.addEventListener('load', init);
-    }
-
-    window.addEventListener('resize', function() { setSpacer(); updateRevealVisibility(); }, { passive: true });
     window.addEventListener('scroll', updateRevealVisibility, { passive: true });
-
-    if (typeof ResizeObserver !== 'undefined') {
-      new ResizeObserver(function() { setSpacer(); updateRevealVisibility(); }).observe(reveal);
-    }
+    updateRevealVisibility();
 
     /* Promo code copy-to-clipboard */
     var promoBtn = reveal.querySelector('.footer-reveal__promo-btn');
@@ -376,15 +344,10 @@
     padding-bottom: var(--padding-bottom, 48px);
   }
 
-  /* When reveal is enabled, the entire section wrapper must sit above the fixed reveal
-     in the root stacking context so the footer background masks it until scrolled away */
-  .footer-combined-section {
-    position: relative;
-    z-index: 2;
-  }
-
+  /* Sticky footer sits at viewport bottom, reveal below it scrolls into view naturally */
   .footer-cols--has-reveal {
-    position: relative;
+    position: sticky;
+    bottom: 0;
     z-index: 2;
   }
 
@@ -606,28 +569,17 @@
      PEEKABOO REVEAL
      ============================================ */
 
-  .footer-reveal__spacer {
-    display: block;
-    width: 100%;
-    pointer-events: none;
-  }
-
   .footer-reveal {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     z-index: 0;
     background-color: var(--reveal-bg, #000000);
     overflow: hidden;
     opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.3s ease;
   }
 
   .footer-reveal.is-visible {
     opacity: 1;
-    pointer-events: auto;
   }
 
   .footer-reveal__inner {
