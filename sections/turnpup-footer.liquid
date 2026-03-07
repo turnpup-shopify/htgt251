@@ -578,7 +578,7 @@
      fixed reveal (z-index: 0), otherwise the fixed element paints on top of
      normal-flow content. Solid section backgrounds do the masking. */
   {% if section.settings.enable_reveal %}
-  .shopify-section:not(.footer-combined-section) {
+  .content-for-layout, .shopify-section:not(.footer-combined-section) {
     position: relative;
     z-index: 1;
     background-color: {{ section.settings.page_background_color }};
