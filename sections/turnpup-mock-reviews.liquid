@@ -358,6 +358,17 @@
   var mockSection = document.getElementById('mock-reviews');
   if (!mockSection) return;
 
+  function hideJudgeMeEmptyWidgets() {
+    var widgets = document.querySelectorAll('.jdgm-rev-widg[data-number-of-reviews="0"]');
+    for (var i = 0; i < widgets.length; i++) {
+      var el = widgets[i];
+      while (el && !el.classList.contains('shopify-app-block')) {
+        el = el.parentElement;
+      }
+      if (el) el.style.display = 'none';
+    }
+  }
+
   function checkForRealReviews() {
     var appBlocks = document.querySelectorAll('.shopify-app-block');
     for (var i = 0; i < appBlocks.length; i++) {
@@ -370,9 +381,12 @@
   }
 
   if (!checkForRealReviews()) {
+    hideJudgeMeEmptyWidgets();
     var observer = new MutationObserver(function () {
       if (checkForRealReviews()) {
         observer.disconnect();
+      } else {
+        hideJudgeMeEmptyWidgets();
       }
     });
     observer.observe(document.body, { childList: true, subtree: true });
