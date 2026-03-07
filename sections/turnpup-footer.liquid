@@ -308,6 +308,18 @@
       new ResizeObserver(setSpacer).observe(reveal);
     }
 
+    /* Show reveal only when user has scrolled past the footer into the spacer zone */
+    function updateRevealVisibility() {
+      if (spacer.getBoundingClientRect().top < window.innerHeight) {
+        reveal.classList.add('is-visible');
+      } else {
+        reveal.classList.remove('is-visible');
+      }
+    }
+
+    window.addEventListener('scroll', updateRevealVisibility, { passive: true });
+    updateRevealVisibility();
+
     /* Promo code copy-to-clipboard */
     var promoBtn = reveal.querySelector('.footer-reveal__promo-btn');
     if (promoBtn) {
@@ -588,6 +600,11 @@
     z-index: 0;
     background-color: var(--reveal-bg, #000000);
     overflow: hidden;
+    visibility: hidden;
+  }
+
+  .footer-reveal.is-visible {
+    visibility: visible;
   }
 
   .footer-reveal__inner {
