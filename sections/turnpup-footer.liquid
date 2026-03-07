@@ -314,11 +314,13 @@
     }
 
     function init() {
-      setSpacer();
-      updateRevealVisibility();
+      requestAnimationFrame(function() {
+        setSpacer();
+        updateRevealVisibility();
+      });
     }
 
-    /* Defer until layout is stable — offsetHeight on fixed elements can be 0 if read too early */
+    /* Defer until after load + a paint frame so offsetHeight is always accurate */
     if (document.readyState === 'complete') {
       init();
     } else {
@@ -618,11 +620,14 @@
     z-index: 0;
     background-color: var(--reveal-bg, #000000);
     overflow: hidden;
-    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
   }
 
   .footer-reveal.is-visible {
-    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .footer-reveal__inner {
