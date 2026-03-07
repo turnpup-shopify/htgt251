@@ -451,7 +451,34 @@
     </div>
   </div>
 </section>
-2
+
+<script>
+(function () {
+  var mockSection = document.getElementById('mock-reviews');
+  if (!mockSection) return;
+
+  function checkForRealReviews() {
+    var allRevs = document.querySelectorAll('.jdgm-rev');
+    for (var i = 0; i < allRevs.length; i++) {
+      if (!mockSection.contains(allRevs[i])) {
+        mockSection.style.display = 'none';
+        return true;
+      }
+    }
+    return false;
+  }
+
+  if (!checkForRealReviews()) {
+    var observer = new MutationObserver(function () {
+      if (checkForRealReviews()) {
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+})();
+</script>
+
 {% schema %}
 {
   "name": "Turnpup Mock Reviews",
