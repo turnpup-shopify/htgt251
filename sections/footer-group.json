@@ -32,6 +32,7 @@
         "heading_nPCyPL",
         "text_QMmtic"
       ],
+      "disabled": true,
       "custom_css": [
         "div {background: #b8c2c8;}",
         "p,a,h2 {text-align: left; font-weight: 500; color: black;}"
@@ -42,6 +43,124 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
+      }
+    },
+    "turnpup_footer_YX9Tqi": {
+      "type": "turnpup-footer",
+      "blocks": {
+        "contact_HzTjNb": {
+          "type": "contact",
+          "settings": {
+            "column_label": "Contact",
+            "company_name": "Htgt Furniture",
+            "address": "123 Wellness Ave\nSuite 100\nMiami, FL 33101",
+            "email": "info@htgtfurniture.com",
+            "phone": "949.515.9484"
+          }
+        },
+        "links_GPVPCm": {
+          "type": "links",
+          "settings": {
+            "column_label": "Sitemap",
+            "menu": "policies",
+            "link_1_text": "",
+            "link_1_url": "",
+            "link_2_text": "",
+            "link_2_url": "",
+            "link_3_text": "",
+            "link_3_url": "",
+            "link_4_text": "",
+            "link_4_url": "",
+            "link_5_text": "",
+            "link_5_url": "",
+            "link_6_text": "",
+            "link_6_url": ""
+          }
+        },
+        "links_NJgwUa": {
+          "type": "links",
+          "settings": {
+            "column_label": "Socials",
+            "menu": "footer-shop-menu",
+            "link_1_text": "",
+            "link_1_url": "",
+            "link_2_text": "",
+            "link_2_url": "",
+            "link_3_text": "",
+            "link_3_url": "",
+            "link_4_text": "",
+            "link_4_url": "",
+            "link_5_text": "",
+            "link_5_url": "",
+            "link_6_text": "",
+            "link_6_url": ""
+          }
+        },
+        "newsletter_m9WzMb": {
+          "type": "newsletter",
+          "settings": {
+            "column_label": "Updates",
+            "newsletter_heading": "Get occasional updates on all things Htgt Furniture.",
+            "placeholder_text": "Email here",
+            "disclaimer": "When you sign up for our newsletter you agree to our <a href=\"/policies/privacy-policy\">privacy policy</a> and will receive commercial emails."
+          }
+        }
+      },
+      "block_order": [
+        "contact_HzTjNb",
+        "links_GPVPCm",
+        "links_NJgwUa",
+        "newsletter_m9WzMb"
+      ],
+      "custom_css": [
+        "a {color: white;}"
+      ],
+      "name": "Footer Combined",
+      "settings": {
+        "heading_font_family": "",
+        "body_font_family": "",
+        "background_color": "#2c3d50",
+        "text_color": "#ffffff",
+        "muted_color": "#a0aab4",
+        "link_hover_color": "#E4F5FF",
+        "divider_color": "#4a5a6a",
+        "input_background_color": "#3a4d5f",
+        "input_border_color": "#4a5a6a",
+        "input_text_color": "#FFFFFF",
+        "copyright_text": "© Htgt Furniture 2026",
+        "privacy_text": "Privacy policy",
+        "privacy_url": "shopify://policies/privacy-policy",
+        "show_back_to_top": true,
+        "enable_reveal": true,
+        "brand_text": "Htgt Furniture",
+        "brand_font_size": 14,
+        "brand_font_size_mobile": 18,
+        "reveal_bg_image_desktop": "shopify://shop_images/augustine-wong-li0iC0rjvvg-unsplash.jpg",
+        "reveal_promo_label": "Use code at checkout",
+        "reveal_promo_code": "WELCOME_11",
+        "reveal_promo_copied_text": "Copied!",
+        "reveal_show_back_to_top": true,
+        "reveal_social_text": "Instagram, TikTok",
+        "reveal_copyright_text": "All rights reserved © Htgt Furniture 2025",
+        "reveal_link_1_text": "Privacy policy",
+        "reveal_link_1_url": "",
+        "reveal_link_2_text": "Terms of services",
+        "reveal_link_2_url": "",
+        "reveal_credit_text": "Website by Htgt Furniture",
+        "reveal_credit_url": "",
+        "reveal_background_color": "#000000",
+        "reveal_text_color": "#FFFFFF",
+        "reveal_muted_color": "#666666",
+        "reveal_accent_color": "#1a1a1a",
+        "reveal_divider_color": "#222222",
+        "padding_top": 64,
+        "padding_bottom": 48,
+        "padding_left": 32,
+        "padding_right": 32,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 32,
+        "padding_left_mobile": 16,
+        "padding_right_mobile": 16
       }
     },
     "footer": {
@@ -97,6 +216,7 @@
         "menu_EkBRnd",
         "newsletter_7FxXpW"
       ],
+      "disabled": true,
       "custom_css": [
         "h2,h4,a,input,form,p,.phone,.footer_newsletter_user_input {color: black !important;}"
       ],
@@ -122,6 +242,7 @@
   },
   "order": [
     "rich_text_hJQYHM",
+    "turnpup_footer_YX9Tqi",
     "footer"
   ]
 }
