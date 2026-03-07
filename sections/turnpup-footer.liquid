@@ -298,17 +298,10 @@
     if (!reveal || !spacer) return;
 
     function setSpacer() {
-      spacer.style.height = reveal.offsetHeight + 'px';
+      var h = reveal.offsetHeight;
+      if (h > 0) spacer.style.height = h + 'px';
     }
 
-    setSpacer();
-    window.addEventListener('resize', setSpacer);
-
-    if (typeof ResizeObserver !== 'undefined') {
-      new ResizeObserver(setSpacer).observe(reveal);
-    }
-
-    /* Show reveal only when user has scrolled past the footer into the spacer zone */
     function updateRevealVisibility() {
       if (spacer.getBoundingClientRect().top < window.innerHeight) {
         reveal.classList.add('is-visible');
@@ -317,8 +310,24 @@
       }
     }
 
+    function init() {
+      setSpacer();
+      updateRevealVisibility();
+    }
+
+    /* Defer until layout is stable — offsetHeight on fixed elements can be 0 if read too early */
+    if (document.readyState === 'complete') {
+      init();
+    } else {
+      window.addEventListener('load', init);
+    }
+
+    window.addEventListener('resize', function() { setSpacer(); updateRevealVisibility(); }, { passive: true });
     window.addEventListener('scroll', updateRevealVisibility, { passive: true });
-    updateRevealVisibility();
+
+    if (typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(function() { setSpacer(); updateRevealVisibility(); }).observe(reveal);
+    }
 
     /* Promo code copy-to-clipboard */
     var promoBtn = reveal.querySelector('.footer-reveal__promo-btn');
@@ -613,7 +622,6 @@
     padding: 0 32px;
     display: flex;
     flex-direction: column;
-    min-height: 100%;
     position: relative;
     z-index: 1;
   }
