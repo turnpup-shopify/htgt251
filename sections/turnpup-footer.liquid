@@ -581,6 +581,7 @@
   .shopify-section:not(.footer-combined-section) {
     position: relative;
     z-index: 1;
+    background-color: {{ section.settings.page_background_color }};
   }
   {% endif %}
 
@@ -1029,6 +1030,13 @@
       "label": "Enable peekaboo reveal",
       "default": true,
       "info": "When enabled, a fixed section with giant brand text reveals behind the footer on scroll."
+    },
+    {
+      "type": "color",
+      "id": "page_background_color",
+      "label": "Page background color",
+      "default": "#FFFFFF",
+      "info": "Applied to all sections above the footer to mask the fixed reveal when scrolled up."
     },
     {
       "type": "header",
