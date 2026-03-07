@@ -176,7 +176,12 @@
 
 {% if section.settings.enable_reveal %}
 <!-- ═══════════════════════════════════════════════
-     PEEKABOO REVEAL — normal flow, sits below sticky footer
+     SPACER — pushes page height so sticky footer can scroll away
+     ═══════════════════════════════════════════════ -->
+<div class="footer-reveal__spacer section-{{ section.id }}-spacer"></div>
+
+<!-- ═══════════════════════════════════════════════
+     PEEKABOO REVEAL — position:fixed for parallax, behind sticky footer
      ═══════════════════════════════════════════════ -->
 <section
   class="footer-reveal section-{{ section.id }}-reveal"
@@ -289,18 +294,35 @@
 <script>
   (function() {
     var reveal = document.querySelector('.section-{{ section.id }}-reveal');
-    if (!reveal) return;
+    var spacer = document.querySelector('.section-{{ section.id }}-spacer');
+    if (!reveal || !spacer) return;
+
+    function setSpacer() {
+      /* Measure the inner element — reliably laid out unlike the fixed outer */
+      var inner = reveal.querySelector('.footer-reveal__inner');
+      var h = inner ? inner.getBoundingClientRect().height : 0;
+      if (h > 0) spacer.style.height = h + 'px';
+    }
+
+    var footer = document.querySelector('.footer-cols--has-reveal');
 
     function updateRevealVisibility() {
-      if (reveal.getBoundingClientRect().top < window.innerHeight) {
+      var footerBottom = footer ? footer.getBoundingClientRect().bottom : window.innerHeight;
+      if (footerBottom <= window.innerHeight) {
         reveal.classList.add('is-visible');
       } else {
         reveal.classList.remove('is-visible');
       }
     }
 
+    /* Run after paint so getBoundingClientRect is accurate */
+    requestAnimationFrame(function() {
+      setSpacer();
+      updateRevealVisibility();
+    });
+
     window.addEventListener('scroll', updateRevealVisibility, { passive: true });
-    updateRevealVisibility();
+    window.addEventListener('resize', setSpacer, { passive: true });
 
     /* Promo code copy-to-clipboard */
     var promoBtn = reveal.querySelector('.footer-reveal__promo-btn');
@@ -569,8 +591,19 @@
      PEEKABOO REVEAL
      ============================================ */
 
+  /* Spacer: CSS fallback so page is scrollable even if JS measurement is delayed */
+  .footer-reveal__spacer {
+    display: block;
+    width: 100%;
+    pointer-events: none;
+    min-height: calc({{ section.settings.brand_font_size }}vw * 0.85 + 200px);
+  }
+
   .footer-reveal {
-    position: relative;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 0;
     background-color: var(--reveal-bg, #000000);
     overflow: hidden;
