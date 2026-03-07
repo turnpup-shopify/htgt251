@@ -176,11 +176,6 @@
 
 {% if section.settings.enable_reveal %}
 <!-- ═══════════════════════════════════════════════
-     SPACER — pushes page height so sticky footer can scroll away
-     ═══════════════════════════════════════════════ -->
-<div class="footer-reveal__spacer section-{{ section.id }}-spacer"></div>
-
-<!-- ═══════════════════════════════════════════════
      PEEKABOO REVEAL — position:fixed for parallax, behind sticky footer
      ═══════════════════════════════════════════════ -->
 <section
@@ -294,20 +289,18 @@
 <script>
   (function() {
     var reveal = document.querySelector('.section-{{ section.id }}-reveal');
-    var spacer = document.querySelector('.section-{{ section.id }}-spacer');
-    if (!reveal || !spacer) return;
+    var footer = document.querySelector('.footer-cols--has-reveal');
+    if (!reveal || !footer) return;
 
-    function setSpacer() {
+    function setMargin() {
       /* Measure the inner element — reliably laid out unlike the fixed outer */
       var inner = reveal.querySelector('.footer-reveal__inner');
       var h = inner ? inner.getBoundingClientRect().height : 0;
-      if (h > 0) spacer.style.height = h + 'px';
+      if (h > 0) footer.style.marginBottom = h + 'px';
     }
 
-    var footer = document.querySelector('.footer-cols--has-reveal');
-
     function updateRevealVisibility() {
-      var footerBottom = footer ? footer.getBoundingClientRect().bottom : window.innerHeight;
+      var footerBottom = footer.getBoundingClientRect().bottom;
       if (footerBottom <= window.innerHeight) {
         reveal.classList.add('is-visible');
       } else {
@@ -317,14 +310,14 @@
 
     /* Run after paint so getBoundingClientRect is accurate */
     requestAnimationFrame(function() {
-      setSpacer();
+      setMargin();
       updateRevealVisibility();
     });
 
     window.addEventListener('scroll', updateRevealVisibility, { passive: true });
-    window.addEventListener('resize', setSpacer, { passive: true });
+    window.addEventListener('resize', setMargin, { passive: true });
     /* Re-measure after fonts load — brand text size depends on custom font metrics */
-    window.addEventListener('load', function() { setSpacer(); updateRevealVisibility(); });
+    window.addEventListener('load', function() { setMargin(); updateRevealVisibility(); });
 
     /* Promo code copy-to-clipboard */
     var promoBtn = reveal.querySelector('.footer-reveal__promo-btn');
@@ -373,6 +366,7 @@
     position: sticky;
     bottom: 0;
     z-index: 2;
+    margin-bottom: 100vh; /* fallback until JS measures exact reveal height */
   }
 
   .footer-cols__container {
@@ -592,14 +586,6 @@
   /* ============================================
      PEEKABOO REVEAL
      ============================================ */
-
-  /* Spacer: 100vh CSS fallback ensures scrollability before JS measures the exact height */
-  .footer-reveal__spacer {
-    display: block;
-    width: 100%;
-    pointer-events: none;
-    min-height: 100vh;
-  }
 
   .footer-reveal {
     position: fixed;
