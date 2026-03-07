@@ -197,6 +197,10 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
 }
 
 /* Slide cart */
+#shopify-section-tp-slide-cart {
+  z-index: 200;
+}
+
 .tp-slide-cart {
   position: fixed;
   inset: 0;
