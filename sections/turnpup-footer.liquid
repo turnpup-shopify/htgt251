@@ -299,25 +299,12 @@
       if (h > 0) footer.style.marginBottom = h + 'px';
     }
 
-    function updateRevealVisibility() {
-      var footerBottom = footer.getBoundingClientRect().bottom;
-      if (footerBottom <= window.innerHeight) {
-        reveal.classList.add('is-visible');
-      } else {
-        reveal.classList.remove('is-visible');
-      }
-    }
-
     /* Run after paint so getBoundingClientRect is accurate */
-    requestAnimationFrame(function() {
-      setMargin();
-      updateRevealVisibility();
-    });
+    requestAnimationFrame(setMargin);
 
-    window.addEventListener('scroll', updateRevealVisibility, { passive: true });
     window.addEventListener('resize', setMargin, { passive: true });
     /* Re-measure after fonts load — brand text size depends on custom font metrics */
-    window.addEventListener('load', function() { setMargin(); updateRevealVisibility(); });
+    window.addEventListener('load', setMargin);
 
     /* Promo code copy-to-clipboard */
     var promoBtn = reveal.querySelector('.footer-reveal__promo-btn');
@@ -595,12 +582,6 @@
     z-index: 0;
     background-color: var(--reveal-bg, #000000);
     overflow: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .footer-reveal.is-visible {
-    opacity: 1;
   }
 
   .footer-reveal__inner {
