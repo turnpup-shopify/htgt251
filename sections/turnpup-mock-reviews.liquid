@@ -86,24 +86,6 @@
     display: none !important;
   }
 
-  .turnpup-mock-reviews .jdgm-widget-actions-wrapper {
-    width: 100%;
-    margin: {{ section.settings.write_review_button_margin_top }}px 0 4px;
-  }
-
-  .turnpup-mock-reviews .jdgm-write-rev-link {
-    display: block;
-    width: 100%;
-    padding: 14px 16px;
-    background: #000;
-    color: #fff;
-    font-weight: 700;
-    text-align: center;
-    text-transform: none;
-    letter-spacing: 0.2px;
-    text-decoration: none;
-  }
-
   .turnpup-mock-reviews .jdgm-histogram,
   .turnpup-mock-reviews .jdgm-form-wrapper,
   .turnpup-mock-reviews .jdgm-form-dynamic-wrapper,
@@ -113,43 +95,6 @@
   .turnpup-mock-reviews .jdgm-paginate,
   .turnpup-mock-reviews .jdgm-rev-widg__paginate-spinner-wrapper {
     display: none !important;
-  }
-
-  .turnpup-mock-reviews .jdgm-row-actions {
-    border-top: 1px solid #e5e5e5;
-    border-bottom: 1px solid #e5e5e5;
-    margin: 18px 0 8px;
-    padding: 16px 0;
-  }
-
-  .turnpup-mock-reviews .jdgm-rev-widg__sort-wrapper {
-    text-align: left;
-  }
-
-  .turnpup-mock-reviews .jdgm-sort-dropdown-wrapper {
-    position: relative;
-    display: inline-block;
-  }
-
-  .turnpup-mock-reviews .jdgm-sort-dropdown {
-    border: none;
-    background: transparent;
-    font-size: 16px;
-    font-weight: 500;
-    color: #111;
-    padding: 4px 28px 4px 0;
-    appearance: none;
-  }
-
-  .turnpup-mock-reviews .jdgm-sort-dropdown-arrow {
-    position: absolute;
-    right: 4px;
-    top: 50%;
-    width: 10px;
-    height: 6px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><path d='M1 1l4 4 4-4'/></svg>") no-repeat center/contain;
   }
 
   .turnpup-mock-reviews .jdgm-rev {
@@ -280,30 +225,6 @@
               Based on {{ review_count }} {% if review_count == 1 %}review{% else %}reviews{% endif %}
             </div>
           </div>
-        </div>
-        {%- if section.settings.write_review_text != blank -%}
-          <div class="jdgm-widget-actions-wrapper">
-            <a href="{{ section.settings.write_review_link | default: '#' }}" class="jdgm-write-rev-link" role="button" aria-expanded="false">
-              {{ section.settings.write_review_text }}
-            </a>
-          </div>
-        {%- endif -%}
-      </div>
-    </div>
-
-    <div class="jdgm-row-actions">
-      <div class="jdgm-rev-widg__sort-wrapper">
-        <div class="jdgm-sort-dropdown-wrapper">
-          <select class="jdgm-sort-dropdown" aria-label="Sort dropdown">
-            <option value="most-recent">Most Recent</option>
-            <option value="highest-rating">Highest Rating</option>
-            <option value="lowest-rating">Lowest Rating</option>
-            <option value="with-pictures">Only Pictures</option>
-            <option value="pictures-first">Pictures First</option>
-            <option value="videos-first">Videos First</option>
-            <option value="most-helpful">Most Helpful</option>
-          </select>
-          <span class="jdgm-sort-dropdown-arrow"></span>
         </div>
       </div>
     </div>
@@ -490,27 +411,6 @@
       "id": "heading",
       "label": "Heading",
       "default": "Customer Reviews"
-    },
-    {
-      "type": "text",
-      "id": "write_review_text",
-      "label": "Write review button text",
-      "default": "Write a review"
-    },
-    {
-      "type": "url",
-      "id": "write_review_link",
-      "label": "Write review button link"
-    },
-    {
-      "type": "range",
-      "id": "write_review_button_margin_top",
-      "min": 0,
-      "max": 80,
-      "step": 2,
-      "unit": "px",
-      "label": "Write review button top margin",
-      "default": 18
     },
     {
       "type": "header",
