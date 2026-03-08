@@ -173,6 +173,53 @@
       font-size: 16px;
     }
   }
+
+  /* Carousel dots — hidden on desktop */
+  .turnpup-mock-reviews .jdgm-rev-carousel-dots {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .turnpup-mock-reviews .jdgm-rev-carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .turnpup-mock-reviews .jdgm-rev-carousel-dot.is-active {
+    background: #111;
+  }
+
+  @media screen and (max-width: 749px) {
+    .turnpup-mock-reviews .jdgm-rev-widg__reviews {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .turnpup-mock-reviews .jdgm-rev-widg__reviews::-webkit-scrollbar {
+      display: none;
+    }
+
+    .turnpup-mock-reviews .jdgm-rev {
+      scroll-snap-align: start;
+      flex: 0 0 100%;
+      min-width: 100%;
+    }
+
+    .turnpup-mock-reviews .jdgm-rev-carousel-dots {
+      display: flex;
+    }
+  }
 {%- endstyle -%}
 <!-- CUSTOM SECTION PADDING - END -->
 
@@ -350,6 +397,7 @@
         {%- endif -%}
       </div>
     </div>
+    <div class="jdgm-rev-carousel-dots" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -390,6 +438,31 @@
       }
     });
     observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  // Swipe carousel dots (mobile only)
+  var reviewsEl = mockSection.querySelector('.jdgm-rev-widg__reviews');
+  var dotsEl = mockSection.querySelector('.jdgm-rev-carousel-dots');
+  if (reviewsEl && dotsEl) {
+    var reviews = Array.prototype.slice.call(reviewsEl.querySelectorAll('.jdgm-rev'));
+    reviews.forEach(function(_, i) {
+      var dot = document.createElement('button');
+      dot.className = 'jdgm-rev-carousel-dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('type', 'button');
+      dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
+      dot.addEventListener('click', function() {
+        reviewsEl.scrollTo({ left: i * reviewsEl.offsetWidth, behavior: 'smooth' });
+      });
+      dotsEl.appendChild(dot);
+    });
+
+    reviewsEl.addEventListener('scroll', function() {
+      var active = Math.round(reviewsEl.scrollLeft / (reviewsEl.offsetWidth || 1));
+      var dots = dotsEl.querySelectorAll('.jdgm-rev-carousel-dot');
+      for (var j = 0; j < dots.length; j++) {
+        dots[j].classList.toggle('is-active', j === active);
+      }
+    }, { passive: true });
   }
 })();
 </script>
