@@ -155,6 +155,22 @@
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
+
+    .product__back-in-stock {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 1.4rem;
+      margin: 0 0 1rem;
+    }
+
+    .product__back-in-stock-label {
+      color: rgba(var(--color-foreground), 0.6);
+    }
+
+    .product__back-in-stock-date {
+      font-weight: 600;
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
@@ -1076,6 +1092,21 @@
                   {{ block.settings.text }}
                 </p>
               {%- endif -%}
+            {%- when 'back_in_stock' -%}
+              {%- liquid
+                assign bis_metafield = product.metafields.custom.next_available_date
+                assign bis_fallback = block.settings.fallback_date
+              -%}
+              {%- if bis_metafield != blank or bis_fallback != blank -%}
+                <p class="product__back-in-stock" {{ block.shopify_attributes }}>
+                  <span class="product__back-in-stock-label">{{ block.settings.label | default: 'Back in stock:' }}</span>
+                  {%- if bis_metafield != blank -%}
+                    <span class="product__back-in-stock-date">{{ bis_metafield | date: "%B %d, %Y" }}</span>
+                  {%- else -%}
+                    <span class="product__back-in-stock-date">{{ bis_fallback }}</span>
+                  {%- endif -%}
+                </p>
+              {%- endif -%}
           {%- endcase -%}
         {%- endfor -%}
         <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -1830,6 +1861,25 @@
           "id": "text",
           "label": "Text",
           "placeholder": "30-day risk-free guarantee. Free US shipping."
+        }
+      ]
+    },
+    {
+      "type": "back_in_stock",
+      "name": "Back in Stock Date",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Back in stock:"
+        },
+        {
+          "type": "text",
+          "id": "fallback_date",
+          "label": "Fallback date",
+          "info": "Shown only when the product metafield custom.next_available_date is blank. Plain text, e.g. \"April 15, 2026\"."
         }
       ]
     }
