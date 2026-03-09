@@ -48,6 +48,13 @@
             "countdown_badge_border_color": "#f1ece7"
           }
         },
+        "back_in_stock_kRphzB": {
+          "type": "back_in_stock",
+          "settings": {
+            "label": "Back in stock:",
+            "fallback_date": ""
+          }
+        },
         "countdown_hyqeK8": {
           "type": "countdown",
           "disabled": true,
@@ -197,6 +204,7 @@
         "mock_reviews_link_ACaAeW",
         "judge_me_reviews_preview_badge_rGQ9HX",
         "price",
+        "back_in_stock_kRphzB",
         "countdown_hyqeK8",
         "variant_picker",
         "caption",
