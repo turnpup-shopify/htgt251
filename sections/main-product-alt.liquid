@@ -172,23 +172,36 @@
       font-weight: 600;
     }
 
-    .product-notify__trigger {
+    .product-notify__opener {
+      display: block;
       margin-top: 12px;
+    }
+
+    .product-notify__trigger {
+      margin: 0;
     }
 
     .product-notify-modal .product-popup-modal__content {
       max-width: 52rem;
     }
 
+    .product-notify-modal .product-popup-modal__content-info {
+      padding: 3.2rem 2.4rem 2.4rem;
+    }
+
     .product-notify-modal__subtext {
       color: rgba(var(--color-foreground), 0.65);
-      margin: 0.6rem 0 2rem;
+      margin: 0.6rem 0 0;
       font-size: 1.4rem;
       line-height: 1.5;
     }
 
+    .product-notify-modal__form {
+      margin-top: 2rem;
+    }
+
     .product-notify-modal__form .field {
-      margin-top: 1.6rem;
+      margin-top: 0;
     }
 
     .product-notify-modal__form .button {
@@ -1147,7 +1160,7 @@
                 >
                   <button
                     id="NotifyBtn-{{ block.id }}"
-                    class="button button--full-width button--secondary product-notify__trigger"
+                    class="hapny_button button button--full-width button--primary product-notify__trigger"
                     type="button"
                     aria-haspopup="dialog"
                   >
@@ -1269,16 +1282,21 @@
         aria-modal="true"
         class="product-popup-modal__content"
         tabindex="-1"
+        style="{% if block.settings.modal_bg_color != blank %}background-color: {{ block.settings.modal_bg_color }};{% endif %}"
       >
         <button
           id="ModalClose-{{ block.id }}"
           type="button"
           class="product-popup-modal__toggle"
           aria-label="{{ 'accessibility.close' | t }}"
+          style="{% if block.settings.modal_text_color != blank %}color: {{ block.settings.modal_text_color }};{% endif %}"
         >
           {% render 'icon-close' %}
         </button>
-        <div class="product-popup-modal__content-info">
+        <div
+          class="product-popup-modal__content-info"
+          style="{% if block.settings.modal_text_color != blank %}color: {{ block.settings.modal_text_color }};{% endif %}"
+        >
           {%- if block.settings.modal_heading != blank -%}
             <h2 class="h2" style="margin-bottom: 0;">{{ block.settings.modal_heading }}</h2>
           {%- endif -%}
@@ -1303,7 +1321,11 @@
                 {{ block.settings.email_placeholder | default: 'Your email address' }}
               </label>
             </div>
-            <button type="submit" class="button button--full-width button--primary">
+            <button
+              type="submit"
+              class="hapny_button button button--full-width button--primary"
+              style="{% if block.settings.modal_button_bg_color != blank %}background-color: {{ block.settings.modal_button_bg_color }}; border-color: {{ block.settings.modal_button_bg_color }};{% endif %}{% if block.settings.modal_button_text_color != blank %}color: {{ block.settings.modal_button_text_color }};{% endif %}"
+            >
               {{ block.settings.submit_label | default: 'Notify me' }}
             </button>
           {%- endform -%}
@@ -2071,6 +2093,31 @@
           "id": "success_message",
           "label": "Success message",
           "default": "You're on the list! We'll notify you when this item is back in stock."
+        },
+        {
+          "type": "header",
+          "content": "Pop-up styling"
+        },
+        {
+          "type": "color",
+          "id": "modal_bg_color",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "modal_text_color",
+          "label": "Text color"
+        },
+        {
+          "type": "color",
+          "id": "modal_button_bg_color",
+          "label": "Submit button background"
+        },
+        {
+          "type": "color",
+          "id": "modal_button_text_color",
+          "label": "Submit button text color"
         }
       ]
     }
