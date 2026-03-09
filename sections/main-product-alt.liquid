@@ -463,6 +463,35 @@
       >
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
+        {%- liquid
+          assign bis_preorder_available = false
+          assign bis_preorder_label = 'Pre-order'
+          assign bis_preorder_property_name = 'Estimated arrival'
+          assign bis_display_date = ''
+          if product.selected_or_first_available_variant.available == false
+            for b in section.blocks
+              if b.type == 'back_in_stock'
+                assign bis_date_check = product.metafields.custom.next_available_date
+                if bis_date_check != blank or b.settings.fallback_date != blank
+                  assign bis_preorder_available = true
+                  if bis_date_check != blank
+                    assign bis_display_date = bis_date_check | date: '%B %d, %Y'
+                  else
+                    assign bis_display_date = b.settings.fallback_date
+                  endif
+                  if b.settings.preorder_button_label != blank
+                    assign bis_preorder_label = b.settings.preorder_button_label
+                  endif
+                  if b.settings.preorder_property_name != blank
+                    assign bis_preorder_property_name = b.settings.preorder_property_name
+                  endif
+                endif
+                break
+              endif
+            endfor
+          endif
+        -%}
+
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when '@app' -%}
@@ -911,6 +940,9 @@
                       value="{{ product.selected_or_first_available_variant.id }}"
                       disabled
                     >
+                    {%- if bis_preorder_available -%}
+                      <input type="hidden" name="properties[{{ bis_preorder_property_name }}]" value="{{ bis_display_date }}">
+                    {%- endif -%}
                     <div class="product-form__buttons{% if block.settings.show_inline_quantity %} product-form__buttons--inline-qty{% endif %}" style="margin-top: 20px;">
                       {%- if block.settings.show_inline_quantity -%}
                         <quantity-input class="quantity" style="border: 1px solid black;">
@@ -942,13 +974,15 @@
                         name="add"
                         style="margin: 0px 0px 0px 10px; {% if block.settings.button_bg_color != blank %}background-color: {{ block.settings.button_bg_color }}; border-color: {{ block.settings.button_bg_color }};{% endif %}{% if block.settings.button_text_color != blank %} color: {{ block.settings.button_text_color }};{% endif %}"
                         class="product-form__submit hapny_button button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
-                        {% if product.selected_or_first_available_variant.available == false %}
+                        {% if product.selected_or_first_available_variant.available == false and bis_preorder_available == false %}
                           disabled
                         {% endif %}
                       >
                         <span>
                           {%- if product.selected_or_first_available_variant.available -%}
                             {{ 'products.product.add_to_cart' | t }}
+                          {%- elsif bis_preorder_available -%}
+                            {{ bis_preorder_label }}
                           {%- else -%}
                             {{ 'products.product.sold_out' | t }}
                           {%- endif -%}
@@ -1882,6 +1916,20 @@
           "id": "fallback_date",
           "label": "Fallback date",
           "info": "Shown only when the product metafield custom.next_available_date is blank. Plain text, e.g. \"April 15, 2026\"."
+        },
+        {
+          "type": "text",
+          "id": "preorder_button_label",
+          "label": "Pre-order button label",
+          "default": "Pre-order",
+          "info": "Text shown on the Add to Cart button when the product is sold out but has an available date."
+        },
+        {
+          "type": "text",
+          "id": "preorder_property_name",
+          "label": "Line item property name",
+          "default": "Estimated arrival",
+          "info": "The property name that appears on the order line item, e.g. \"Estimated arrival: April 15, 2026\"."
         }
       ]
     }
