@@ -171,6 +171,35 @@
     .product__back-in-stock-date {
       font-weight: 600;
     }
+
+    .product-notify__trigger {
+      margin-top: 12px;
+    }
+
+    .product-notify-modal .product-popup-modal__content {
+      max-width: 52rem;
+    }
+
+    .product-notify-modal__subtext {
+      color: rgba(var(--color-foreground), 0.65);
+      margin: 0.6rem 0 2rem;
+      font-size: 1.4rem;
+      line-height: 1.5;
+    }
+
+    .product-notify-modal__form .field {
+      margin-top: 1.6rem;
+    }
+
+    .product-notify-modal__form .button {
+      margin-top: 1.2rem;
+    }
+
+    .product-notify-modal__success {
+      margin-top: 1.6rem;
+      font-weight: 500;
+      font-size: 1.4rem;
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
@@ -1109,6 +1138,45 @@
                 </p>
               {%- endif -%}
               {%- endif -%}
+            {%- when 'notify_me' -%}
+              {%- if product.selected_or_first_available_variant.available == false -%}
+                <modal-opener
+                  class="product-notify__opener no-js-hidden"
+                  data-modal="#NotifyModal-{{ block.id }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <button
+                    id="NotifyBtn-{{ block.id }}"
+                    class="button button--full-width button--secondary product-notify__trigger"
+                    type="button"
+                    aria-haspopup="dialog"
+                  >
+                    {{ block.settings.button_label | default: 'Notify me when available' }}
+                  </button>
+                </modal-opener>
+              {%- endif -%}
+              <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  var opener = document.querySelector('[data-modal="#NotifyModal-{{ block.id }}"]');
+                  if (!opener) return;
+                  var submitBtn = document.querySelector('[data-section="{{ section.id }}"] .product-form__submit');
+                  if (!submitBtn) return;
+                  new MutationObserver(function() {
+                    opener.style.display = submitBtn.disabled ? '' : 'none';
+                    var skuInput = document.querySelector('#NotifyModal-{{ block.id }} .notify-sku-input');
+                    if (!skuInput) return;
+                    try {
+                      var picker = document.querySelector('[data-section="{{ section.id }}"] variant-radios, [data-section="{{ section.id }}"] variant-selects');
+                      if (!picker) return;
+                      var variants = JSON.parse(picker.querySelector('script[type="application/json"]').textContent);
+                      var params = new URLSearchParams(window.location.search);
+                      var vid = params.get('variant') || (document.querySelector('[data-section="{{ section.id }}"] input[name="id"]') || {}).value;
+                      var match = variants.find(function(v) { return String(v.id) === String(vid); });
+                      if (match) skuInput.value = match.sku || '';
+                    } catch(e) {}
+                  }).observe(submitBtn, { attributes: true, attributeFilter: ['disabled'] });
+                });
+              </script>
           {%- endcase -%}
         {%- endfor -%}
         <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -1187,6 +1255,79 @@
         <div class="product-popup-modal__content-info">
           <h1 class="h2">{{ block.settings.page.title }}</h1>
           {{ block.settings.page.content }}
+        </div>
+      </div>
+    </modal-dialog>
+  {%- endfor -%}
+
+  {%- assign notify_me_blocks = section.blocks | where: 'type', 'notify_me' -%}
+  {%- for block in notify_me_blocks -%}
+    <modal-dialog id="NotifyModal-{{ block.id }}" class="product-popup-modal product-notify-modal" {{ block.shopify_attributes }}>
+      <div
+        role="dialog"
+        aria-label="{{ block.settings.modal_heading | default: 'Get notified' }}"
+        aria-modal="true"
+        class="product-popup-modal__content"
+        tabindex="-1"
+      >
+        <button
+          id="ModalClose-{{ block.id }}"
+          type="button"
+          class="product-popup-modal__toggle"
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          {% render 'icon-close' %}
+        </button>
+        <div class="product-popup-modal__content-info">
+          {%- if block.settings.modal_heading != blank -%}
+            <h2 class="h2" style="margin-bottom: 0;">{{ block.settings.modal_heading }}</h2>
+          {%- endif -%}
+          {%- if block.settings.modal_subtext != blank -%}
+            <p class="product-notify-modal__subtext">{{ block.settings.modal_subtext }}</p>
+          {%- endif -%}
+          {%- form 'contact', id: 'NotifyForm-{{ block.id }}', class: 'product-notify-modal__form', novalidate: 'novalidate' -%}
+            <input type="hidden" name="contact[Product Title]" value="{{ product.title | escape }}">
+            <input type="hidden" name="contact[SKU]" class="notify-sku-input" value="{{ product.selected_or_first_available_variant.sku | escape }}">
+            <div class="field">
+              <input
+                type="email"
+                name="contact[email]"
+                id="NotifyEmail-{{ block.id }}"
+                class="field__input"
+                placeholder="{{ block.settings.email_placeholder | default: 'Your email address' }}"
+                autocomplete="email"
+                required
+              >
+              <label class="field__label" for="NotifyEmail-{{ block.id }}">
+                {{ block.settings.email_placeholder | default: 'Your email address' }}
+              </label>
+            </div>
+            <button type="submit" class="button button--full-width button--primary">
+              {{ block.settings.submit_label | default: 'Notify me' }}
+            </button>
+          {%- endform -%}
+          <p class="product-notify-modal__success" hidden>
+            {{ block.settings.success_message | default: "You're on the list! We'll notify you when this item is back in stock." }}
+          </p>
+          <script>
+            (function() {
+              var form = document.getElementById('NotifyForm-{{ block.id }}');
+              if (!form) return;
+              var success = form.parentElement.querySelector('.product-notify-modal__success');
+              form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (!form.querySelector('[type="email"]').validity.valid) return;
+                fetch('/contact', {
+                  method: 'POST',
+                  body: new URLSearchParams(new FormData(form)),
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                }).then(function() {
+                  form.hidden = true;
+                  if (success) success.hidden = false;
+                });
+              });
+            })();
+          </script>
         </div>
       </div>
     </modal-dialog>
@@ -1882,7 +2023,54 @@
           "id": "fallback_date",
           "label": "Fallback date",
           "info": "Shown only when the product metafield custom.next_available_date is blank. Plain text, e.g. \"April 15, 2026\"."
+        }
+      ]
+    },
+    {
+      "type": "notify_me",
+      "name": "Notify Me",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Shows a button below the sold out button. Submissions are sent to your store contact email with the customer's email, product title, and SKU."
         },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Notify me when available"
+        },
+        {
+          "type": "text",
+          "id": "modal_heading",
+          "label": "Modal heading",
+          "default": "Notify me when available"
+        },
+        {
+          "type": "text",
+          "id": "modal_subtext",
+          "label": "Modal subtext",
+          "placeholder": "Enter your email to be notified when this item is back in stock."
+        },
+        {
+          "type": "text",
+          "id": "email_placeholder",
+          "label": "Email field placeholder",
+          "default": "Your email address"
+        },
+        {
+          "type": "text",
+          "id": "submit_label",
+          "label": "Submit button label",
+          "default": "Notify me"
+        },
+        {
+          "type": "text",
+          "id": "success_message",
+          "label": "Success message",
+          "default": "You're on the list! We'll notify you when this item is back in stock."
+        }
       ]
     }
   ],
