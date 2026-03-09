@@ -1285,7 +1285,8 @@
           {%- if block.settings.modal_subtext != blank -%}
             <p class="product-notify-modal__subtext">{{ block.settings.modal_subtext }}</p>
           {%- endif -%}
-          {%- form 'contact', id: 'NotifyForm-{{ block.id }}', class: 'product-notify-modal__form', novalidate: 'novalidate' -%}
+          {%- assign nf_form_id = 'NotifyForm-' | append: block.id -%}
+          {%- form 'contact', id: nf_form_id, class: 'product-notify-modal__form' -%}
             <input type="hidden" name="contact[Product Title]" value="{{ product.title | escape }}">
             <input type="hidden" name="contact[SKU]" class="notify-sku-input" value="{{ product.selected_or_first_available_variant.sku | escape }}">
             <div class="field">
