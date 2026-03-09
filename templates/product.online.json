@@ -100,12 +100,6 @@
             "button_text_color": "#ffffff"
           }
         },
-        "trust_text_aFQgxV": {
-          "type": "trust_text",
-          "settings": {
-            "text": "30-day returns. Free US shipping."
-          }
-        },
         "notify_me_XXLHwE": {
           "type": "notify_me",
           "settings": {
@@ -115,10 +109,16 @@
             "email_placeholder": "Your email address",
             "submit_label": "Notify me",
             "success_message": "You're on the list! We'll notify you when this item is back in stock.",
-            "modal_bg_color": "#7289dc",
-            "modal_text_color": "",
+            "modal_bg_color": "#233269",
+            "modal_text_color": "#ffffff",
             "modal_button_bg_color": "",
             "modal_button_text_color": ""
+          }
+        },
+        "trust_text_aFQgxV": {
+          "type": "trust_text",
+          "settings": {
+            "text": "30-day returns. Free US shipping."
           }
         },
         "collapsible_tab_QV88KF": {
@@ -227,8 +227,8 @@
         "6e3cb80f-7395-4806-8a51-8eb62abc629e",
         "quantity_selector",
         "buy_buttons",
-        "trust_text_aFQgxV",
         "notify_me_XXLHwE",
+        "trust_text_aFQgxV",
         "collapsible_tab_QV88KF",
         "collapsible_tab_DAkg6R",
         "collapsible-row-1",
