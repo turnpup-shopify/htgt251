@@ -172,9 +172,22 @@
       font-weight: 600;
     }
 
+    .product-notify__btn-row {
+      margin-top: 12px;
+    }
+
+    .product-notify__qty-ghost {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
     .product-notify__opener {
       display: block;
-      margin-top: 12px;
+    }
+
+    .product-form__buttons--inline-qty .product-notify__opener {
+      flex: 1 1 auto;
+      min-width: 0;
     }
 
     .product-notify__trigger {
@@ -1152,30 +1165,35 @@
               {%- endif -%}
               {%- endif -%}
             {%- when 'notify_me' -%}
+              {%- assign buy_btn_block = section.blocks | where: 'type', 'buy_buttons' | first -%}
+              {%- assign show_inline_qty = buy_btn_block.settings.show_inline_quantity -%}
               {%- if product.selected_or_first_available_variant.available == false -%}
-                <modal-opener
-                  class="product-notify__opener no-js-hidden"
-                  data-modal="#NotifyModal-{{ block.id }}"
-                  {{ block.shopify_attributes }}
-                >
-                  <button
-                    id="NotifyBtn-{{ block.id }}"
-                    class="hapny_button button button--full-width button--primary product-notify__trigger"
-                    type="button"
-                    aria-haspopup="dialog"
+                <div class="product-form__buttons{% if show_inline_qty %} product-form__buttons--inline-qty{% endif %} product-notify__btn-row no-js-hidden" {{ block.shopify_attributes }}>
+                  {%- if show_inline_qty -%}
+                    <div class="quantity product-notify__qty-ghost" aria-hidden="true"></div>
+                  {%- endif -%}
+                  <modal-opener
+                    class="product-notify__opener"
+                    data-modal="#NotifyModal-{{ block.id }}"
                   >
-                    {{ block.settings.button_label | default: 'Notify me when available' }}
-                  </button>
-                </modal-opener>
+                    <button
+                      id="NotifyBtn-{{ block.id }}"
+                      class="hapny_button button button--full-width button--primary product-notify__trigger"
+                      type="button"
+                      aria-haspopup="dialog"
+                    >
+                      {{ block.settings.button_label | default: 'Notify me when available' }}
+                    </button>
+                  </modal-opener>
+                </div>
               {%- endif -%}
               <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                  var opener = document.querySelector('[data-modal="#NotifyModal-{{ block.id }}"]');
-                  if (!opener) return;
                   var submitBtn = document.querySelector('[data-section="{{ section.id }}"] .product-form__submit');
-                  if (!submitBtn) return;
+                  var row = document.querySelector('[data-section="{{ section.id }}"] .product-notify__btn-row');
+                  if (!submitBtn || !row) return;
                   new MutationObserver(function() {
-                    opener.style.display = submitBtn.disabled ? '' : 'none';
+                    row.style.display = submitBtn.disabled ? '' : 'none';
                     var skuInput = document.querySelector('#NotifyModal-{{ block.id }} .notify-sku-input');
                     if (!skuInput) return;
                     try {
