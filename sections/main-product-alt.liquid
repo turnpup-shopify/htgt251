@@ -1316,7 +1316,7 @@
           style="{% if block.settings.modal_text_color != blank %}color: {{ block.settings.modal_text_color }};{% endif %}"
         >
           {%- if block.settings.modal_heading != blank -%}
-            <h2 class="h2" style="margin-bottom: 0;">{{ block.settings.modal_heading }}</h2>
+            <h2 class="h2" style="margin-bottom: 0;{% if block.settings.modal_heading_color != blank %} color: {{ block.settings.modal_heading_color }};{% endif %}">{{ block.settings.modal_heading }}</h2>
           {%- endif -%}
           {%- if block.settings.modal_subtext != blank -%}
             <p class="product-notify-modal__subtext">{{ block.settings.modal_subtext }}</p>
@@ -2121,6 +2121,11 @@
           "id": "modal_bg_color",
           "label": "Background color",
           "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "modal_heading_color",
+          "label": "Heading color"
         },
         {
           "type": "color",
