@@ -106,6 +106,17 @@
             "text": "30-day returns. Free US shipping."
           }
         },
+        "notify_me_XXLHwE": {
+          "type": "notify_me",
+          "settings": {
+            "button_label": "Notify me when available",
+            "modal_heading": "Notify me when available",
+            "modal_subtext": "",
+            "email_placeholder": "Your email address",
+            "submit_label": "Notify me",
+            "success_message": "You're on the list! We'll notify you when this item is back in stock."
+          }
+        },
         "collapsible_tab_QV88KF": {
           "type": "collapsible_tab",
           "disabled": true,
@@ -213,6 +224,7 @@
         "quantity_selector",
         "buy_buttons",
         "trust_text_aFQgxV",
+        "notify_me_XXLHwE",
         "collapsible_tab_QV88KF",
         "collapsible_tab_DAkg6R",
         "collapsible-row-1",
