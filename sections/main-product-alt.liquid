@@ -1097,6 +1097,7 @@
                 assign bis_metafield = product.metafields.custom.next_available_date
                 assign bis_fallback = block.settings.fallback_date
               -%}
+              {%- if product.selected_or_first_available_variant.available == false -%}
               {%- if bis_metafield != blank or bis_fallback != blank -%}
                 <p class="product__back-in-stock" {{ block.shopify_attributes }}>
                   <span class="product__back-in-stock-label">{{ block.settings.label | default: 'Back in stock:' }}</span>
@@ -1106,6 +1107,7 @@
                     <span class="product__back-in-stock-date">{{ bis_fallback }}</span>
                   {%- endif -%}
                 </p>
+              {%- endif -%}
               {%- endif -%}
           {%- endcase -%}
         {%- endfor -%}
