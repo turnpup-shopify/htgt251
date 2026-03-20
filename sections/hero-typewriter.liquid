@@ -1,0 +1,712 @@
+{%- doc -%}
+  Full-bleed hero section with a typewriter-cycling underlined word in the headline.
+  Supports background image or video, a CTA button, and full typography/spacing controls.
+{%- enddoc -%}
+
+{%- liquid
+  assign text_align = section.settings.text_alignment
+  assign content_position = section.settings.content_position
+-%}
+
+{% style %}
+  .hero-typewriter-{{ section.id }} {
+    --hero-min-height-desktop: {{ section.settings.min_height_desktop }}px;
+    --hero-min-height-mobile: {{ section.settings.min_height_mobile }}px;
+    --hero-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    --hero-overlay-color: {{ section.settings.overlay_color }};
+
+    --hero-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hero-pr-desktop: {{ section.settings.padding_right_desktop }}px;
+    --hero-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --hero-pl-desktop: {{ section.settings.padding_left_desktop }}px;
+
+    --hero-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hero-pr-mobile: {{ section.settings.padding_right_mobile }}px;
+    --hero-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hero-pl-mobile: {{ section.settings.padding_left_mobile }}px;
+
+    --hero-heading-family: {{ section.settings.heading_font_family }}, sans-serif;
+    --hero-heading-size-desktop: {{ section.settings.heading_font_size_desktop }}px;
+    --hero-heading-size-mobile: {{ section.settings.heading_font_size_mobile }}px;
+    --hero-heading-weight: {{ section.settings.heading_font_weight }};
+    --hero-heading-color: {{ section.settings.heading_color }};
+
+    --hero-typed-color: {{ section.settings.typed_word_color }};
+    --hero-underline-color: {{ section.settings.underline_color }};
+    --hero-underline-thickness: {{ section.settings.underline_thickness }}px;
+    --hero-underline-offset: {{ section.settings.underline_offset }}px;
+
+    --hero-btn-bg: {{ section.settings.button_bg_color }};
+    --hero-btn-text: {{ section.settings.button_text_color }};
+    --hero-btn-border: {{ section.settings.button_border_color }};
+    --hero-btn-radius: {{ section.settings.button_border_radius }}px;
+    --hero-btn-padding-v: {{ section.settings.button_padding_vertical }}px;
+    --hero-btn-padding-h: {{ section.settings.button_padding_horizontal }}px;
+    --hero-btn-font-size: {{ section.settings.button_font_size }}px;
+    --hero-btn-font-weight: {{ section.settings.button_font_weight }};
+    --hero-btn-font-family: {{ section.settings.button_font_family }}, sans-serif;
+  }
+{% endstyle %}
+
+<section
+  class="hero-typewriter hero-typewriter-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+>
+  {%- comment -%} Background media {%- endcomment -%}
+  <div class="hero-typewriter__media">
+    {%- if section.settings.background_video != blank -%}
+      <video
+        class="hero-typewriter__video"
+        src="{{ section.settings.background_video }}"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+      ></video>
+    {%- elsif section.settings.background_image != blank -%}
+      {{
+        section.settings.background_image
+        | image_url: width: 2000
+        | image_tag:
+          class: 'hero-typewriter__image',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: '',
+          widths: '375, 750, 1100, 1500, 2000'
+      }}
+    {%- else -%}
+      <div class="hero-typewriter__placeholder"></div>
+    {%- endif -%}
+
+    {%- if section.settings.overlay_opacity > 0 -%}
+      <div class="hero-typewriter__overlay" aria-hidden="true"></div>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Content {%- endcomment -%}
+  <div class="hero-typewriter__inner hero-typewriter__inner--{{ content_position }} hero-typewriter__inner--{{ text_align }}">
+    {%- comment -%} Build word list from blocks {%- endcomment -%}
+    {%- assign typed_words = '' -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'typed_word' -%}
+        {%- if forloop.first -%}
+          {%- assign typed_words = block.settings.word -%}
+        {%- else -%}
+          {%- assign typed_words = typed_words | append: '||' | append: block.settings.word -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if section.settings.heading_before != blank or typed_words != blank or section.settings.heading_after != blank -%}
+      <h2 class="hero-typewriter__heading">
+        {%- if section.settings.heading_before != blank -%}
+          {{ section.settings.heading_before | newline_to_br }}
+        {%- endif -%}
+        {%- if typed_words != blank -%}
+          <hero-typewriter
+            data-words="{{ typed_words | escape }}"
+            data-type-speed="{{ section.settings.type_speed }}"
+            data-delete-speed="{{ section.settings.delete_speed }}"
+            data-pause-duration="{{ section.settings.pause_duration }}"
+            data-cursor="{{ section.settings.show_cursor }}"
+            aria-live="polite"
+          ><span class="hero-typewriter__typed-word" aria-hidden="true"><span class="hero-typewriter__typed-text"></span><span class="hero-typewriter__cursor" aria-hidden="true">|</span></span></hero-typewriter>
+        {%- endif -%}
+        {%- if section.settings.heading_after != blank -%}
+          <br>{{ section.settings.heading_after | newline_to_br }}
+        {%- endif -%}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.button_label != blank -%}
+      <a
+        href="{{ section.settings.button_link | default: '#' }}"
+        class="hero-typewriter__btn"
+      >
+        {{- section.settings.button_label | escape -}}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+.hero-typewriter {
+  position: relative;
+  display: flex;
+  min-height: var(--hero-min-height-mobile, 500px);
+  overflow: hidden;
+}
+
+@media screen and (min-width: 750px) {
+  .hero-typewriter {
+    min-height: var(--hero-min-height-desktop, 700px);
+  }
+}
+
+/* ── Media ── */
+.hero-typewriter__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-typewriter__image,
+.hero-typewriter__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-typewriter__placeholder {
+  position: absolute;
+  inset: 0;
+  background: #1a1a1a;
+}
+
+.hero-typewriter__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay-color, #000);
+  opacity: var(--hero-overlay-opacity, 0.3);
+}
+
+/* ── Inner / content ── */
+.hero-typewriter__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: var(--hero-pt-mobile, 48px) var(--hero-pr-mobile, 24px) var(--hero-pb-mobile, 48px) var(--hero-pl-mobile, 24px);
+}
+
+@media screen and (min-width: 750px) {
+  .hero-typewriter__inner {
+    padding: var(--hero-pt-desktop, 80px) var(--hero-pr-desktop, 48px) var(--hero-pb-desktop, 80px) var(--hero-pl-desktop, 48px);
+  }
+}
+
+/* Vertical positions */
+.hero-typewriter__inner--top    { justify-content: flex-start; }
+.hero-typewriter__inner--middle { justify-content: center; }
+.hero-typewriter__inner--bottom { justify-content: flex-end; }
+
+/* Text alignment */
+.hero-typewriter__inner--left   { align-items: flex-start; text-align: start; }
+.hero-typewriter__inner--center { align-items: center;     text-align: center; }
+.hero-typewriter__inner--right  { align-items: flex-end;   text-align: end; }
+
+/* ── Heading ── */
+.hero-typewriter__heading {
+  margin: 0 0 1.5rem;
+  font-family: var(--hero-heading-family, inherit);
+  font-size: var(--hero-heading-size-mobile, 32px);
+  font-weight: var(--hero-heading-weight, 700);
+  color: var(--hero-heading-color, #ffffff);
+  line-height: 1.15;
+  overflow-wrap: break-word;
+  max-width: 18em;
+}
+
+@media screen and (min-width: 750px) {
+  .hero-typewriter__heading {
+    font-size: var(--hero-heading-size-desktop, 48px);
+  }
+}
+
+/* ── Typed word ── */
+hero-typewriter {
+  display: inline;
+}
+
+.hero-typewriter__typed-word {
+  display: inline;
+  color: var(--hero-typed-color, inherit);
+  text-decoration-line: underline;
+  text-decoration-color: var(--hero-underline-color, currentColor);
+  text-decoration-thickness: var(--hero-underline-thickness, 2px);
+  text-underline-offset: var(--hero-underline-offset, 4px);
+  white-space: nowrap;
+}
+
+.hero-typewriter__cursor {
+  display: inline-block;
+  margin-inline-start: 1px;
+  opacity: 1;
+  animation: hero-cursor-blink 0.7s step-end infinite;
+  font-weight: 300;
+}
+
+.hero-typewriter__cursor[data-hidden="true"] {
+  display: none;
+}
+
+@keyframes hero-cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── Button ── */
+.hero-typewriter__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--hero-btn-padding-v, 14px) var(--hero-btn-padding-h, 40px);
+  background: var(--hero-btn-bg, transparent);
+  color: var(--hero-btn-text, #ffffff);
+  border: 2px solid var(--hero-btn-border, #ffffff);
+  border-radius: var(--hero-btn-radius, 40px);
+  font-family: var(--hero-btn-font-family, inherit);
+  font-size: var(--hero-btn-font-size, 15px);
+  font-weight: var(--hero-btn-font-weight, 500);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  min-width: 200px;
+}
+
+.hero-typewriter__btn:hover {
+  background: var(--hero-btn-text, #ffffff);
+  color: var(--hero-btn-bg, #000000);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-typewriter__cursor {
+    animation: none;
+    opacity: 0;
+  }
+}
+{% endstylesheet %}
+
+{% javascript %}
+class HeroTypewriter extends HTMLElement {
+  #words = [];
+  #currentIndex = 0;
+  #currentText = '';
+  #isDeleting = false;
+  #timer = null;
+  #typeSpeed = 80;
+  #deleteSpeed = 40;
+  #pauseDuration = 2000;
+
+  connectedCallback() {
+    const raw = this.dataset.words || '';
+    this.#words = raw.split('||').map(w => w.trim()).filter(Boolean);
+    if (!this.#words.length) return;
+
+    this.#typeSpeed    = parseInt(this.dataset.typeSpeed, 10)    || 80;
+    this.#deleteSpeed  = parseInt(this.dataset.deleteSpeed, 10)  || 40;
+    this.#pauseDuration = parseInt(this.dataset.pauseDuration, 10) || 2000;
+
+    const showCursor = this.dataset.cursor !== 'false';
+    const cursor = this.querySelector('.hero-typewriter__cursor');
+    if (cursor && !showCursor) cursor.dataset.hidden = 'true';
+
+    this.#textEl = this.querySelector('.hero-typewriter__typed-text');
+    if (!this.#textEl) return;
+
+    // Start with first word already "typed"
+    this.#currentText = this.#words[0];
+    this.#textEl.textContent = this.#currentText;
+    this.#timer = setTimeout(() => this.#tick(), this.#pauseDuration);
+  }
+
+  disconnectedCallback() {
+    clearTimeout(this.#timer);
+  }
+
+  #tick() {
+    const word = this.#words[this.#currentIndex];
+
+    if (this.#isDeleting) {
+      this.#currentText = word.substring(0, this.#currentText.length - 1);
+    } else {
+      this.#currentText = word.substring(0, this.#currentText.length + 1);
+    }
+
+    this.#textEl.textContent = this.#currentText;
+
+    let delay = this.#isDeleting ? this.#deleteSpeed : this.#typeSpeed;
+
+    if (!this.#isDeleting && this.#currentText === word) {
+      // Finished typing — pause then delete
+      delay = this.#pauseDuration;
+      this.#isDeleting = true;
+    } else if (this.#isDeleting && this.#currentText === '') {
+      // Finished deleting — move to next word
+      this.#isDeleting = false;
+      this.#currentIndex = (this.#currentIndex + 1) % this.#words.length;
+      delay = 300; // brief pause before typing next
+    }
+
+    this.#timer = setTimeout(() => this.#tick(), delay);
+  }
+}
+
+customElements.define('hero-typewriter', HeroTypewriter);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Hero — Typewriter",
+  "tag": "section",
+  "class": "hero-typewriter-section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "background_video",
+      "label": "Background video URL",
+      "info": "Hosted video URL (.mp4). Overrides image if set."
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "min_height_desktop",
+      "label": "Min height — desktop",
+      "min": 300,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "min_height_mobile",
+      "label": "Min height — mobile",
+      "min": 300,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 550
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content vertical position",
+      "options": [
+        { "value": "top",    "label": "Top" },
+        { "value": "middle", "label": "Middle" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "default": "middle"
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Desktop padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Top",
+      "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "label": "Right",
+      "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom",
+      "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "label": "Left",
+      "min": 0, "max": 200, "step": 4, "unit": "px", "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Mobile padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top",
+      "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "label": "Right",
+      "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom",
+      "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "label": "Left",
+      "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Headline — static text"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_before",
+      "label": "Text before typed word",
+      "default": "It's Not"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_after",
+      "label": "Text after typed word",
+      "default": "It's Dehydration."
+    },
+    {
+      "type": "header",
+      "content": "Headline — typography"
+    },
+    {
+      "type": "text",
+      "id": "heading_font_family",
+      "label": "Font family",
+      "default": "Inter"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_desktop",
+      "label": "Font size — desktop",
+      "min": 20, "max": 120, "step": 2, "unit": "px", "default": 52
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Font size — mobile",
+      "min": 16, "max": 80, "step": 2, "unit": "px", "default": 36
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra-bold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typed word — style"
+    },
+    {
+      "type": "color",
+      "id": "typed_word_color",
+      "label": "Typed word color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "underline_color",
+      "label": "Underline color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "underline_thickness",
+      "label": "Underline thickness",
+      "min": 1, "max": 8, "step": 1, "unit": "px", "default": 2
+    },
+    {
+      "type": "range",
+      "id": "underline_offset",
+      "label": "Underline offset",
+      "min": 0, "max": 12, "step": 1, "unit": "px", "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cursor",
+      "label": "Show typing cursor",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Typewriter speed"
+    },
+    {
+      "type": "range",
+      "id": "type_speed",
+      "label": "Type speed",
+      "info": "Milliseconds per character while typing",
+      "min": 20, "max": 200, "step": 10, "unit": "ms", "default": 80
+    },
+    {
+      "type": "range",
+      "id": "delete_speed",
+      "label": "Delete speed",
+      "info": "Milliseconds per character while deleting",
+      "min": 10, "max": 150, "step": 10, "unit": "ms", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "pause_duration",
+      "label": "Pause duration",
+      "info": "How long to pause on a completed word before deleting",
+      "min": 500, "max": 5000, "step": 250, "unit": "ms", "default": 2000
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Background color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0, "max": 60, "step": 2, "unit": "px", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Padding — vertical",
+      "min": 4, "max": 40, "step": 2, "unit": "px", "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Padding — horizontal",
+      "min": 8, "max": 80, "step": 4, "unit": "px", "default": 40
+    },
+    {
+      "type": "text",
+      "id": "button_font_family",
+      "label": "Font family",
+      "default": "Inter"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Font size",
+      "min": 10, "max": 28, "step": 1, "unit": "px", "default": 15
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-bold (600)" },
+        { "value": "700", "label": "Bold (700)" }
+      ],
+      "default": "500"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "typed_word",
+      "name": "Typed word",
+      "settings": [
+        {
+          "type": "text",
+          "id": "word",
+          "label": "Word or phrase",
+          "default": "a Headache"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero — Typewriter",
+      "category": "Temporary",
+      "blocks": [
+        { "type": "typed_word", "settings": { "word": "a Headache" } },
+        { "type": "typed_word", "settings": { "word": "a Slump" } },
+        { "type": "typed_word", "settings": { "word": "Fatigue" } },
+        { "type": "typed_word", "settings": { "word": "Brain Fog" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
