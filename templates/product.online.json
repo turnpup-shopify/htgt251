@@ -110,6 +110,7 @@
             "submit_label": "Notify me",
             "success_message": "You're on the list! We'll notify you when this item is back in stock.",
             "modal_bg_color": "#233269",
+            "modal_heading_color": "#ffffff",
             "modal_text_color": "#ffffff",
             "modal_button_bg_color": "",
             "modal_button_text_color": ""
