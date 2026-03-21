@@ -109,7 +109,8 @@
 
 :root,
 .color-background-1 {
-  --color-badge-background: var(--color-background);
+  /* --color-badge-background: var(--color-background); */
+  --color-badge-background: var( --badge-custom-backgroundd);
   --color-badge-border: var(--color-foreground);
   --alpha-badge-border: 0.1;
 }
@@ -118,7 +119,7 @@
 .color-inverse,
 .color-accent-1,
 .color-accent-2 {
-  --color-badge-background: var(--color-background);
+  --color-badge-background: var(--badge-custom-background);
   --color-badge-border: var(--color-background);
   --alpha-badge-border: 1;
 }
