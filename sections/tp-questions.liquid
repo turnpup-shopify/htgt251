@@ -39,7 +39,7 @@
                 {% if block.settings.question != blank and block.settings.answer != blank %}
                     <div class="page-accordion--single" {{ block.shopify_attributes }}>
                         <button class="turnpup_question" aria-expanded="false" js-accordion-header="">
-                            <h3 class="page-accordion__title" style="margin: 10px 0;">
+                            <h3 class="page-accordion__title">
                                 {{ block.settings.question }}
                             </h3>
                         </button>
@@ -76,6 +76,9 @@
             margin-bottom: {{ section.settings.padding_bottom }}px;
             margin-left: {{ section.settings.padding_left }}px;
             margin-right: {{ section.settings.padding_right }}px;
+        }
+        .page-accordion__title p {
+            margin: 10px 0px;
         }
         @media screen and (max-width: 700px) {
             .tp-question-container {
