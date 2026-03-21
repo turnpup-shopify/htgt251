@@ -294,6 +294,7 @@ class HeroTypewriter extends HTMLElement {
   #typeSpeed = 80;
   #deleteSpeed = 40;
   #pauseDuration = 2000;
+  #textEl = null;
 
   connectedCallback() {
     const raw = this.dataset.words || '';
