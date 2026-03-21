@@ -53,7 +53,7 @@
   }
 
   .hero-typewriter-{{ section.id }} .hero-typewriter__btn:hover {
-    color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_hover_text_color }};
   }
 {% endstyle %}
 
@@ -641,6 +641,12 @@ customElements.define('hero-typewriter', HeroTypewriter);
       "id": "button_text_color",
       "label": "Text color",
       "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Text color — hover",
+      "default": "#000000"
     },
     {
       "type": "color",
