@@ -46,6 +46,15 @@
     --hero-btn-font-weight: {{ section.settings.button_font_weight }};
     --hero-btn-font-family: {{ section.settings.button_font_family }}, sans-serif;
   }
+
+  .hero-typewriter-{{ section.id }} .hero-typewriter__btn,
+  .hero-typewriter-{{ section.id }} .hero-typewriter__btn:visited {
+    color: {{ section.settings.button_text_color }};
+  }
+
+  .hero-typewriter-{{ section.id }} .hero-typewriter__btn:hover {
+    color: {{ section.settings.button_bg_color }};
+  }
 {% endstyle %}
 
 <section
