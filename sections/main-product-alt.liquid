@@ -1215,7 +1215,7 @@
                 assign b3_icon = block.settings.badge_3_icon
                 assign b4_icon = block.settings.badge_4_icon
               -%}
-              <div class="trust-badges" {{ block.shopify_attributes }}>
+              <div class="trust-badges trust-badges--{{ block.id }}" {{ block.shopify_attributes }}>
                 <div class="trust-badges__icons">
                   {%- for i in (1..4) -%}
                     {%- liquid
@@ -1308,50 +1308,55 @@
                 })();
               </script>
 
-              <style>
-                .trust-badges {
+              {%- style -%}
+                .trust-badges--{{ block.id }} {
                   display: flex;
                   flex-direction: column;
-                  gap: 1.2rem;
-                  margin: 1.2rem 0;
+                  gap: {{ block.settings.delivery_gap }}px;
+                  margin-top: {{ block.settings.block_margin_top }}px;
+                  margin-bottom: {{ block.settings.block_margin_bottom }}px;
                 }
-                .trust-badges__icons {
+                .trust-badges--{{ block.id }} .trust-badges__icons {
                   display: grid;
                   grid-template-columns: repeat(4, 1fr);
-                  gap: 0.8rem;
+                  gap: {{ block.settings.badge_gap }}px;
                   text-align: center;
                 }
-                .trust-badges__item {
+                .trust-badges--{{ block.id }} .trust-badges__item {
                   display: flex;
                   flex-direction: column;
                   align-items: center;
-                  gap: 0.5rem;
+                  gap: {{ block.settings.icon_label_gap }}px;
                 }
-                .trust-badges__icon {
+                .trust-badges--{{ block.id }} .trust-badges__icon {
                   display: flex;
                   align-items: center;
                   justify-content: center;
                   color: rgb(var(--color-foreground));
                 }
-                .trust-badges__label {
-                  font-size: 1.1rem;
+                .trust-badges--{{ block.id }} .trust-badges__icon svg {
+                  width: {{ block.settings.icon_size }}px;
+                  height: {{ block.settings.icon_size }}px;
+                }
+                .trust-badges--{{ block.id }} .trust-badges__label {
+                  font-size: {{ block.settings.label_font_size }}px;
                   line-height: 1.3;
                   color: rgb(var(--color-foreground));
                 }
-                .trust-badges__delivery {
+                .trust-badges--{{ block.id }} .trust-badges__delivery {
                   border: 1px solid rgba(var(--color-foreground), 0.2);
                   border-radius: var(--inputs-radius, 4px);
-                  padding: 1rem 1.4rem;
-                  font-size: 1.3rem;
+                  padding: {{ block.settings.delivery_padding_v }}px {{ block.settings.delivery_padding_h }}px;
+                  font-size: {{ block.settings.delivery_font_size }}px;
                   color: rgb(var(--color-foreground));
                 }
                 @media screen and (max-width: 749px) {
-                  .trust-badges__icons {
+                  .trust-badges--{{ block.id }} .trust-badges__icons {
                     grid-template-columns: repeat(2, 1fr);
-                    gap: 1.2rem;
+                    gap: {{ block.settings.badge_gap_mobile }}px;
                   }
                 }
-              </style>
+              {%- endstyle -%}
           {%- endcase -%}
         {%- endfor -%}
         <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -2420,6 +2425,128 @@
           "id": "delivery_to_days",
           "label": "Latest delivery (days from today)",
           "default": 10
+        },
+        {
+          "type": "header",
+          "content": "Spacing"
+        },
+        {
+          "type": "range",
+          "id": "block_margin_top",
+          "label": "Block margin top",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "block_margin_bottom",
+          "label": "Block margin bottom",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "badge_gap",
+          "label": "Gap between badges (desktop)",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "badge_gap_mobile",
+          "label": "Gap between badges (mobile)",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "delivery_gap",
+          "label": "Gap between badges and delivery banner",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "header",
+          "content": "Icons & Labels"
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "label": "Icon size",
+          "min": 16,
+          "max": 48,
+          "step": 2,
+          "unit": "px",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "icon_label_gap",
+          "label": "Gap between icon and label",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 5
+        },
+        {
+          "type": "range",
+          "id": "label_font_size",
+          "label": "Label font size",
+          "min": 9,
+          "max": 16,
+          "step": 1,
+          "unit": "px",
+          "default": 11
+        },
+        {
+          "type": "header",
+          "content": "Delivery Banner"
+        },
+        {
+          "type": "range",
+          "id": "delivery_padding_v",
+          "label": "Banner padding top / bottom",
+          "min": 4,
+          "max": 24,
+          "step": 2,
+          "unit": "px",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "delivery_padding_h",
+          "label": "Banner padding left / right",
+          "min": 4,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "range",
+          "id": "delivery_font_size",
+          "label": "Banner font size",
+          "min": 10,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "default": 13
         }
       ]
     }
