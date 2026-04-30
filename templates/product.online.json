@@ -118,8 +118,26 @@
         },
         "trust_text_aFQgxV": {
           "type": "trust_text",
+          "disabled": true,
           "settings": {
             "text": "30-day returns. Free US shipping."
+          }
+        },
+        "trust_badges_yUK4rP": {
+          "type": "trust_badges",
+          "settings": {
+            "badge_1_icon": "box",
+            "badge_1_label": "Free Shipping Globally",
+            "badge_2_icon": "return",
+            "badge_2_label": "Free 30 Day Returns Worldwide",
+            "badge_3_icon": "plane",
+            "badge_3_label": "Duties & Customs Tax Included",
+            "badge_4_icon": "heart",
+            "badge_4_label": "24/7 Customer Support",
+            "show_delivery_date": true,
+            "delivery_label": "Estimated Delivery Date:",
+            "delivery_from_days": 5,
+            "delivery_to_days": 10
           }
         },
         "collapsible_tab_QV88KF": {
@@ -230,6 +248,7 @@
         "buy_buttons",
         "notify_me_XXLHwE",
         "trust_text_aFQgxV",
+        "trust_badges_yUK4rP",
         "collapsible_tab_QV88KF",
         "collapsible_tab_DAkg6R",
         "collapsible-row-1",
