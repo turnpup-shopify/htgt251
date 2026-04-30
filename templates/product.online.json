@@ -131,7 +131,7 @@
             "badge_2_icon": "return",
             "badge_2_label": "Free 30 Day Returns Worldwide",
             "badge_3_icon": "plane",
-            "badge_3_label": "Duties & Customs Tax Included",
+            "badge_3_label": "Premium Packaging",
             "badge_4_icon": "heart",
             "badge_4_label": "24/7 Customer Support",
             "show_delivery_date": true,
@@ -186,14 +186,14 @@
           "type": "dimensions",
           "settings": {
             "text": "<p>{{ product.metafields.pdp.dimensions | metafield_tag }}</p>",
-            "default_open": false
+            "default_open": true
           }
         },
         "collapsible-row-0": {
           "type": "collapsible_tab",
           "settings": {
             "heading": "Materials",
-            "default_open": false,
+            "default_open": true,
             "icon": "none",
             "content": "<p>{{ product.metafields.custom.materials | metafield_tag }}</p>",
             "page": ""
@@ -203,7 +203,7 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Care Instructions",
-            "default_open": false,
+            "default_open": true,
             "icon": "none",
             "content": "<p>{{ product.metafields.custom.care_instructions | metafield_tag }}</p>",
             "page": ""
