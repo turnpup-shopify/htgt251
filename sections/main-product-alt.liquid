@@ -1267,12 +1267,46 @@
                   {%- assign to_secs = block.settings.delivery_to_days | times: 86400 -%}
                   {%- assign from_ts = 'now' | date: '%s' | plus: from_secs -%}
                   {%- assign to_ts = 'now' | date: '%s' | plus: to_secs -%}
-                  <div class="trust-badges__delivery">
+                  <div class="trust-badges__delivery" id="trust-badges-delivery-{{ block.id }}">
                     <span class="trust-badges__delivery-label">{{ block.settings.delivery_label | default: 'Estimated Delivery Date:' }}</span>
                     <strong>{{ from_ts | date: "%b %d" }} to {{ to_ts | date: "%b %d" }}</strong>
                   </div>
                 {%- endif -%}
               </div>
+
+              <script>
+                (function() {
+                  var deliveryEl = document.getElementById('trust-badges-delivery-{{ block.id }}');
+                  if (!deliveryEl) return;
+
+                  function updateVisibility() {
+                    var section = document.querySelector('[data-section="{{ section.id }}"]');
+                    if (!section) return;
+                    var submitBtn = section.querySelector('.product-form__submit');
+                    var notifyRow = section.querySelector('.product-notify__btn-row');
+                    var notifyVisible = notifyRow && notifyRow.style.display !== 'none' && notifyRow.offsetParent !== null;
+                    var btnDisabled = !submitBtn || submitBtn.disabled;
+                    deliveryEl.style.display = (btnDisabled || notifyVisible) ? 'none' : '';
+                  }
+
+                  document.addEventListener('DOMContentLoaded', function() {
+                    updateVisibility();
+
+                    var section = document.querySelector('[data-section="{{ section.id }}"]');
+                    if (!section) return;
+
+                    var submitBtn = section.querySelector('.product-form__submit');
+                    if (submitBtn) {
+                      new MutationObserver(updateVisibility).observe(submitBtn, { attributes: true, attributeFilter: ['disabled'] });
+                    }
+
+                    var notifyRow = section.querySelector('.product-notify__btn-row');
+                    if (notifyRow) {
+                      new MutationObserver(updateVisibility).observe(notifyRow, { attributes: true, attributeFilter: ['style'] });
+                    }
+                  });
+                })();
+              </script>
 
               <style>
                 .trust-badges {
