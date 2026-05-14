@@ -274,6 +274,7 @@
       ],
       "custom_css": [
         ".product__info-wrapper .grid__item {margin: 0; padding-left: 0 !important;}",
+        ".trust-badges__icons .trust-badges__item:nth-of-type(2) {display: none;}",
         "@media screen and (max-width: 750px) {.grid__item {margin: 0px; padding: 0px; }}"
       ],
       "settings": {
