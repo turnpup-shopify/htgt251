@@ -137,7 +137,19 @@
             "show_delivery_date": true,
             "delivery_label": "Estimated Delivery Date:",
             "delivery_from_days": 5,
-            "delivery_to_days": 10
+            "delivery_to_days": 10,
+            "block_margin_top": 12,
+            "block_margin_bottom": 12,
+            "badge_gap": 8,
+            "badge_col_gap_mobile": 8,
+            "badge_row_gap_mobile": 16,
+            "delivery_gap": 12,
+            "icon_size": 28,
+            "icon_label_gap": 5,
+            "label_font_size": 11,
+            "delivery_padding_v": 10,
+            "delivery_padding_h": 14,
+            "delivery_font_size": 13
           }
         },
         "collapsible_tab_QV88KF": {
@@ -435,8 +447,8 @@
         "question_CdXMfT": {
           "type": "Question",
           "settings": {
-            "question": "<p>Can I return something if it does not work in my space?</p>",
-            "answer": "<p>We want you to love what you bring home. If something does not work, contact us within 30 days of getting your order. We will walk you through your options. Items must be in their original state and packaging.</p>"
+            "question": "<p>Can I return return an item?</p>",
+            "answer": "<p>We want you to love what you bring home. If something, contact us within 30 days of getting your order. We will walk you through your options. Items must be in their original state and packaging.</p>"
           }
         },
         "question_9YdL8P": {
