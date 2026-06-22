@@ -187,7 +187,7 @@
       assign gwp_variant_id_str = settings.gwp_variant_id | default: '' | strip
       assign gwp_threshold_dollars = settings.gwp_threshold | default: 0
     -%}
-    {%- if gwp_variant_id_str != '' and gwp_threshold_dollars > 0 -%}
+    {%- if settings.enable_gwp and gwp_variant_id_str != '' and gwp_threshold_dollars > 0 -%}
       {%- liquid
         assign gwp_variant_id = gwp_variant_id_str | plus: 0
         assign gwp_threshold_cents = gwp_threshold_dollars | times: 100

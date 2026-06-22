@@ -234,6 +234,13 @@
         "content": "Slide-out cart gift with purchase"
       },
       {
+        "type": "checkbox",
+        "id": "enable_gwp",
+        "label": "Enable gift with purchase",
+        "default": false,
+        "info": "Show or hide the gift with purchase section in the cart."
+      },
+      {
         "type": "text",
         "id": "gwp_variant_id",
         "label": "GWP variant ID",
