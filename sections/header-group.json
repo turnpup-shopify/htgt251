@@ -14,25 +14,35 @@
     "announcement_timer_mfte4E": {
       "type": "announcement-timer",
       "blocks": {
-        "item_anj6zi": {
+        "item_KLp9x9": {
           "type": "item",
           "settings": {
-            "text": "Free Mirror Gift with Purchase in Cart",
+            "text": "",
+            "url": ""
+          }
+        },
+        "item_anj6zi": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "text": "Free Mirror $199 value (detail in check out cart)",
             "url": ""
           }
         },
         "item_UAfhLb": {
           "type": "item",
           "settings": {
-            "text": "Fast $0 Shipping on Orders $50+",
+            "text": "Fast Shipping (3-5 days)",
             "url": ""
           }
         }
       },
       "block_order": [
+        "item_KLp9x9",
         "item_anj6zi",
         "item_UAfhLb"
       ],
+      "disabled": true,
       "custom_css": [
         ".ann-countdown {color: black !important;}",
         ".ann-countdown {background: #fdfbf9;}"

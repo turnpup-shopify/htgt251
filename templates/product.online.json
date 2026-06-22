@@ -127,9 +127,9 @@
           "type": "trust_badges",
           "settings": {
             "badge_1_icon": "box",
-            "badge_1_label": "Free Shipping Globally",
-            "badge_2_icon": "return",
-            "badge_2_label": "Free 30 Day Returns Worldwide",
+            "badge_1_label": "Free Shipping (USA Mainland)",
+            "badge_2_icon": "plane",
+            "badge_2_label": "Hassle Free 30 Day Returns*",
             "badge_3_icon": "plane",
             "badge_3_label": "Premium Packaging",
             "badge_4_icon": "heart",
@@ -137,7 +137,19 @@
             "show_delivery_date": true,
             "delivery_label": "Estimated Delivery Date:",
             "delivery_from_days": 5,
-            "delivery_to_days": 10
+            "delivery_to_days": 10,
+            "block_margin_top": 12,
+            "block_margin_bottom": 12,
+            "badge_gap": 8,
+            "badge_col_gap_mobile": 8,
+            "badge_row_gap_mobile": 16,
+            "delivery_gap": 12,
+            "icon_size": 28,
+            "icon_label_gap": 5,
+            "label_font_size": 11,
+            "delivery_padding_v": 10,
+            "delivery_padding_h": 14,
+            "delivery_font_size": 13
           }
         },
         "collapsible_tab_QV88KF": {
@@ -262,6 +274,7 @@
       ],
       "custom_css": [
         ".product__info-wrapper .grid__item {margin: 0; padding-left: 0 !important;}",
+        ".trust-badges__icons .trust-badges__item:nth-of-type(2) {display: none;}",
         "@media screen and (max-width: 750px) {.grid__item {margin: 0px; padding: 0px; }}"
       ],
       "settings": {
@@ -369,7 +382,7 @@
           "settings": {
             "icon": "returns",
             "title": "30-Day Returns",
-            "text": "Not in love with it? Easy returns, no hassle."
+            "text": "Free 30 day returns if item received is flawed, damaged or not as represented for all full-priced items."
           }
         },
         "trust_item_WbpqPk": {
@@ -435,8 +448,8 @@
         "question_CdXMfT": {
           "type": "Question",
           "settings": {
-            "question": "<p>Can I return something if it does not work in my space?</p>",
-            "answer": "<p>We want you to love what you bring home. If something does not work, contact us within 30 days of getting your order. We will walk you through your options. Items must be in their original state and packaging.</p>"
+            "question": "<p>Can I return return an item?</p>",
+            "answer": "<p>We want you to love what you bring home. If something, contact us within 30 days of getting your order. We will walk you through your options. Items must be in their original state and packaging.</p>"
           }
         },
         "question_9YdL8P": {
