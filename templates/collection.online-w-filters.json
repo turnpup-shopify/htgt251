@@ -105,7 +105,7 @@
         "enable_quick_add": false,
         "enable_price": true,
         "button_color": "#000000",
-        "enable_filtering": true,
+        "enable_filtering": false,
         "remove_OOS_products": false,
         "filter_type": "drawer",
         "enable_sorting": true,
