@@ -16,6 +16,7 @@
       "blocks": {
         "item_KLp9x9": {
           "type": "item",
+          "disabled": true,
           "settings": {
             "text": "",
             "url": ""
@@ -23,16 +24,15 @@
         },
         "item_anj6zi": {
           "type": "item",
-          "disabled": true,
           "settings": {
-            "text": "Free Mirror $199 value (detail in check out cart)",
+            "text": "🎁 Free Gift Mirror ($300 in value) 🪞",
             "url": ""
           }
         },
         "item_UAfhLb": {
           "type": "item",
           "settings": {
-            "text": "Fast Shipping (3-5 days)",
+            "text": "Fast Shipping (3-5 business days)",
             "url": ""
           }
         }
@@ -42,7 +42,6 @@
         "item_anj6zi",
         "item_UAfhLb"
       ],
-      "disabled": true,
       "custom_css": [
         ".ann-countdown {color: black !important;}",
         ".ann-countdown {background: #fdfbf9;}"

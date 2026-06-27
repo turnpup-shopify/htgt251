@@ -179,7 +179,7 @@
             "heading": "Free Shipping",
             "default_open": true,
             "icon": "none",
-            "content": "<p>Same day order processing! Free nationwide shipping with next day order fulfillment. Arrives in 2-5 days in most cases.</p>",
+            "content": "<p>Same day order processing! Free nationwide shipping. 90% of items shipp out within 2-5 business days. Bulky items (such as heavy or large furniture, mirrors, art, etc) ship out on contract Motor Freight. </p>",
             "page": ""
           }
         },
@@ -442,14 +442,14 @@
           "type": "Question",
           "settings": {
             "question": "<p>How long will it take to get my order?</p>",
-            "answer": "<p>We have daily calls with our vendors and issue same day delivery requests to get your order processed as soon as possible. 90% of our orders receive within 2-4 business days.</p>"
+            "answer": "<p>We have daily calls with our vendors and issue same day delivery requests to get your order processed as soon as possible. 90% of our orders ship out within 2-5 business days. Tracking #’s will be sent to you when your order is enroute. </p>"
           }
         },
         "question_CdXMfT": {
           "type": "Question",
           "settings": {
             "question": "<p>Can I return return an item?</p>",
-            "answer": "<p>We want you to love what you bring home. If something, contact us within 30 days of getting your order. We will walk you through your options. Items must be in their original state and packaging.</p>"
+            "answer": "<p>We want you to love what you bring home. If something is not as represented, damaged or flawed contact us within 10 days of delivery of your order. We will walk you through your options. Items must be in their original state and packaging. Please check cartons for damage before signing for motor freight items (furniture, large mirrors, art, heavy or bulky items. )</p>"
           }
         },
         "question_9YdL8P": {

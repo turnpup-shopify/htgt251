@@ -23,18 +23,19 @@
     "slide_cart_upsell_collection": "home-accessories",
     "enable_gwp": true,
     "gwp_variant_id": "44719752511695",
-    "gwp_threshold": 999,
+    "gwp_threshold": 900,
     "gwp_discount_code": "BOGOMIRROR",
-    "enable_popup": false,
+    "enable_popup": true,
     "enable_hapny_popup": false,
-    "show_popup_in_editor": false,
+    "show_popup_in_editor": true,
     "test_popup_success_state": false,
     "popup_excluded_handles": "pull\nknob\nhardware",
     "popup_image_desktop": "shopify://shop_images/travertine-drink-table-2.jpg",
     "popup_image_mobile": "shopify://shop_images/warehouse-drink-table-shoot-11.png",
-    "header_popup_message": "It's our new years sale. Want 15% on top of best possible markdowns?",
-    "popup_message": "Get access to markdowns typically reserved for interior designers when subscribing to emails.",
-    "custom_success_message": "Thanks for subscribing, you now have access to take full advantage of markdowns sitewide. Mark downs are shown as is with original price and a slash through. Use code \"htgt202615\" for an extra 15% off.",
+    "header_popup_message": "What's better than guaranteed lowest prices on designer furniiture?",
+    "popup_message": "A gift with purchase ($300 in value). Get access to this and markdowns typically reserved for interior designers when subscribing to emails.",
+    "popup_button_label": "Claim Now",
+    "custom_success_message": "Thanks for subscribing, you now have access to take full advantage of markdowns sitewide. Mark downs are shown as is with original price and a slash through. Use code \"welcome_11\" for an extra 11% off.",
     "popup_cta_color": "#331b25",
     "popup_close_color": "#121212",
     "popup_header_font_size": "20px",
@@ -493,14 +494,14 @@
         "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": false,
         "settings": {
+          "greeting_message": "🙋‍♂️ Hello — I'm Alice from California let me know if you have any questions on price, shipping, or availability!",
           "button_color": "#202a36",
           "secondary_color": "#ffffff",
           "ternary_color": "#6a6a6a",
           "button_icon": "chat_bubble",
           "button_text": "chat_with_us",
           "button_horizontal_position": "bottom_right",
-          "button_vertical_position": "lowest",
-          "greeting_message": "🙋‍♂️ Hello — I'm Alice from California let me know if you have any questions on price, shipping, or availability!"
+          "button_vertical_position": "lowest"
         }
       }
     }
