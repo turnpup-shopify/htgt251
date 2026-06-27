@@ -117,7 +117,7 @@
         assign sale_discount_percent = 0
         if card_product.compare_at_price > card_product.price and card_product.available
           assign sale_discount_amount = card_product.compare_at_price | minus: card_product.price
-          assign sale_discount_percent = sale_discount_amount | times: 100.0 | divided_by: card_product.compare_at_price | round: 2
+          assign sale_discount_percent = sale_discount_amount | times: 100.0 | divided_by: card_product.compare_at_price | round
         endif
       -%}
     
@@ -249,7 +249,7 @@
                 assign sale_discount_percent = 0
                 if card_product.compare_at_price > card_product.price and card_product.available
                   assign sale_discount_amount = card_product.compare_at_price | minus: card_product.price
-                  assign sale_discount_percent = sale_discount_amount | times: 100.0 | divided_by: card_product.compare_at_price | round: 2
+                  assign sale_discount_percent = sale_discount_amount | times: 100.0 | divided_by: card_product.compare_at_price | round
                 endif
               -%}
               <div class="card__badge {{ settings.badge_position }}">
