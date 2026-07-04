@@ -179,7 +179,7 @@
             "heading": "Free Shipping",
             "default_open": true,
             "icon": "none",
-            "content": "<p>Same day order processing! Free nationwide shipping. 90% of items shipp out within 2-5 business days. Bulky items (such as heavy or large furniture, mirrors, art, etc) ship out on contract Motor Freight. </p>",
+            "content": "<p>Same day order processing! Free nationwide shipping. 90% of items ship out within 3-5 business days. Bulky items,  heavy items, mirrors, art, etc ship out through courier freight with lift gates and may take a little longer. </p>",
             "page": ""
           }
         },
@@ -442,7 +442,7 @@
           "type": "Question",
           "settings": {
             "question": "<p>How long will it take to get my order?</p>",
-            "answer": "<p>We have daily calls with our vendors and issue same day delivery requests to get your order processed as soon as possible. 90% of our orders ship out within 2-5 business days. Tracking #’s will be sent to you when your order is enroute. </p>"
+            "answer": "<p>We have daily calls with our vendors and issue same day delivery requests to get your order processed as soon as possible. 90% of our orders ship out within 3-5 business days. Tracking # will be sent to you  your order is enroute. </p>"
           }
         },
         "question_CdXMfT": {
