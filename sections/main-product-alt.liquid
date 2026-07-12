@@ -259,8 +259,26 @@
         {% endif %}
         aria-label="{{ 'products.product.media.gallery_viewer' | t }}"
         data-desktop-layout="{{ section.settings.gallery_layout }}"
+        data-variant-images-first="{{ section.settings.variant_images_first }}"
       >
         <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
+        {%- if section.settings.variant_images_first -%}
+          {%- assign map_entries = '' -%}
+          {%- for variant in product.variants -%}
+            {%- assign mf_images = variant.metafields.custom.variant_images.value -%}
+            {%- if mf_images != blank -%}
+              {%- assign id_list = '' -%}
+              {%- for img in mf_images -%}
+                {%- assign file_id = img.id | split: '/' | last -%}
+                {%- unless forloop.first -%}{%- assign id_list = id_list | append: ',' -%}{%- endunless -%}
+                {%- assign id_list = id_list | append: '"' | append: section.id | append: '-' | append: file_id | append: '"' -%}
+              {%- endfor -%}
+              {%- unless map_entries == '' -%}{%- assign map_entries = map_entries | append: ',' -%}{%- endunless -%}
+              {%- assign map_entries = map_entries | append: '"' | append: variant.id | append: '":[' | append: id_list | append: ']' -%}
+            {%- endif -%}
+          {%- endfor -%}
+          <script class="variant-media-map" type="application/json">{ {{ map_entries }} }</script>
+        {%- endif -%}
         <slider-component id="GalleryViewer-{{ section.id }}" class="slider-mobile-gutter">
           <a class="skip-to-content-link button visually-hidden quick-add-hidden" href="#ProductInfo-{{ section.id }}">
             {{ 'accessibility.skip_to_product_info' | t }}
@@ -2634,6 +2652,12 @@
       "id": "hide_variants",
       "default": false,
       "label": "t:sections.main-product.settings.hide_variants.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "variant_images_first",
+      "default": false,
+      "label": "Show variant images first"
     },
     {
       "type": "checkbox",

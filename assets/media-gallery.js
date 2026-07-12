@@ -87,6 +87,35 @@ if (!customElements.get('media-gallery')) {
       if (deferredMedia) deferredMedia.loadContent(false);
     }
 
+    reorderVariantMedia(variantId) {
+      const mapScript = this.querySelector('script.variant-media-map');
+      if (!mapScript) return;
+
+      let mediaMap;
+      try { mediaMap = JSON.parse(mapScript.textContent); } catch(e) { return; }
+
+      const mediaIds = mediaMap[String(variantId)];
+      if (!mediaIds || !mediaIds.length) return;
+
+      const viewer = this.elements.viewer;
+      const activeEl = viewer.querySelector('.is-active[data-media-id]');
+      if (!activeEl) return;
+
+      const variantEls = mediaIds
+        .map(id => viewer.querySelector(`[data-media-id="${id}"]`))
+        .filter(el => el && el !== activeEl);
+      variantEls.reduce((ref, el) => { ref.after(el); return el; }, activeEl);
+
+      if (!this.elements.thumbnails) return;
+      const activeThumb = this.elements.thumbnails.querySelector(`[data-target="${activeEl.dataset.mediaId}"]`);
+      if (!activeThumb) return;
+
+      const variantThumbs = mediaIds
+        .map(id => this.elements.thumbnails.querySelector(`[data-target="${id}"]`))
+        .filter(el => el && el !== activeThumb);
+      variantThumbs.reduce((ref, el) => { ref.after(el); return el; }, activeThumb);
+    }
+
     preventStickyHeader() {
       this.stickyHeader = this.stickyHeader || document.querySelector('sticky-header');
       if (!this.stickyHeader) return;

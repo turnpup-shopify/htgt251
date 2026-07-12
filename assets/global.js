@@ -791,6 +791,10 @@ class VariantSelects extends HTMLElement {
     const mediaGallery = document.getElementById(`MediaGallery-${this.dataset.section}`);
     mediaGallery.setActiveMedia(`${this.dataset.section}-${this.currentVariant.featured_media.id}`, true);
 
+    if (mediaGallery.dataset.variantImagesFirst === 'true') {
+      mediaGallery.reorderVariantMedia(this.currentVariant.id);
+    }
+
     const modalContent = document.querySelector(`#ProductModal-${this.dataset.section} .product-media-modal__content`);
     if (!modalContent) return;
     const newMediaModal = modalContent.querySelector( `[data-media-id="${this.currentVariant.featured_media.id}"]`);

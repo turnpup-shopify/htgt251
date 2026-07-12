@@ -202,6 +202,7 @@
         "media_size": "large",
         "mobile_thumbnails": "hide",
         "hide_variants": true,
+        "variant_images_first": true,
         "enable_video_looping": false,
         "padding_top": 40,
         "padding_bottom": 20,
