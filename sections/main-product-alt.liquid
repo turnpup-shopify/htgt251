@@ -269,12 +269,21 @@
             {%- if mf_images != blank -%}
               {%- assign id_list = '' -%}
               {%- for img in mf_images -%}
-                {%- assign file_id = img.id | split: '/' | last -%}
-                {%- unless forloop.first -%}{%- assign id_list = id_list | append: ',' -%}{%- endunless -%}
-                {%- assign id_list = id_list | append: '"' | append: section.id | append: '-' | append: file_id | append: '"' -%}
+                {%- if img.image != blank -%}
+                  {%- assign img_src = img.image.src | split: '?' | first -%}
+                  {%- for media in product.media -%}
+                    {%- assign media_src = media.preview_image.src | split: '?' | first -%}
+                    {%- if media_src == img_src -%}
+                      {%- unless id_list == '' -%}{%- assign id_list = id_list | append: ',' -%}{%- endunless -%}
+                      {%- assign id_list = id_list | append: '"' | append: section.id | append: '-' | append: media.id | append: '"' -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endif -%}
               {%- endfor -%}
-              {%- unless map_entries == '' -%}{%- assign map_entries = map_entries | append: ',' -%}{%- endunless -%}
-              {%- assign map_entries = map_entries | append: '"' | append: variant.id | append: '":[' | append: id_list | append: ']' -%}
+              {%- if id_list != '' -%}
+                {%- unless map_entries == '' -%}{%- assign map_entries = map_entries | append: ',' -%}{%- endunless -%}
+                {%- assign map_entries = map_entries | append: '"' | append: variant.id | append: '":[' | append: id_list | append: ']' -%}
+              {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
           <script class="variant-media-map" type="application/json">{ {{ map_entries }} }</script>
