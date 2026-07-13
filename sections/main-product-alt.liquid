@@ -260,34 +260,9 @@
         aria-label="{{ 'products.product.media.gallery_viewer' | t }}"
         data-desktop-layout="{{ section.settings.gallery_layout }}"
         data-variant-images-first="{{ section.settings.variant_images_first }}"
+        data-initial-variant="{{ product.selected_or_first_available_variant.id }}"
       >
         <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
-        {%- if section.settings.variant_images_first -%}
-          {%- assign map_entries = '' -%}
-          {%- for variant in product.variants -%}
-            {%- assign mf_images = variant.metafields.custom.variant_images.value -%}
-            {%- if mf_images != blank -%}
-              {%- assign id_list = '' -%}
-              {%- for img in mf_images -%}
-                {%- if img.image != blank -%}
-                  {%- assign img_src = img.image.src | split: '?' | first -%}
-                  {%- for media in product.media -%}
-                    {%- assign media_src = media.preview_image.src | split: '?' | first -%}
-                    {%- if media_src == img_src -%}
-                      {%- unless id_list == '' -%}{%- assign id_list = id_list | append: ',' -%}{%- endunless -%}
-                      {%- assign id_list = id_list | append: '"' | append: section.id | append: '-' | append: media.id | append: '"' -%}
-                    {%- endif -%}
-                  {%- endfor -%}
-                {%- endif -%}
-              {%- endfor -%}
-              {%- if id_list != '' -%}
-                {%- unless map_entries == '' -%}{%- assign map_entries = map_entries | append: ',' -%}{%- endunless -%}
-                {%- assign map_entries = map_entries | append: '"' | append: variant.id | append: '":[' | append: id_list | append: ']' -%}
-              {%- endif -%}
-            {%- endif -%}
-          {%- endfor -%}
-          <script class="variant-media-map" type="application/json">{ {{ map_entries }} }</script>
-        {%- endif -%}
         <slider-component id="GalleryViewer-{{ section.id }}" class="slider-mobile-gutter">
           <a class="skip-to-content-link button visually-hidden quick-add-hidden" href="#ProductInfo-{{ section.id }}">
             {{ 'accessibility.skip_to_product_info' | t }}
@@ -351,6 +326,38 @@
                 </li>
               {%- endunless -%}
             {%- endfor -%}
+            {%- if section.settings.variant_images_first -%}
+              {%- for variant in product.variants -%}
+                {%- assign mf_images = variant.metafields.custom.variant_images.value -%}
+                {%- if mf_images != blank -%}
+                  {%- for img in mf_images -%}
+                    {%- assign mf_img = img.image -%}
+                    {%- if mf_img != blank -%}
+                      <li
+                        id="Slide-{{ section.id }}-mf{{ variant.id }}-{{ forloop.index }}"
+                        class="product__media-item grid__item slider__slide"
+                        data-media-id="{{ section.id }}-mf{{ variant.id }}-{{ forloop.index }}"
+                        data-variant-id="{{ variant.id }}"
+                        style="display: none;"
+                      >
+                        <div class="product__media global-media-settings global-media-settings--no-shadow">
+                          <img
+                            src="{{ mf_img | image_url: width: 1500 }}"
+                            srcset="{{ mf_img | image_url: width: 375 }} 375w, {{ mf_img | image_url: width: 750 }} 750w, {{ mf_img | image_url: width: 1100 }} 1100w, {{ mf_img | image_url: width: 1500 }} 1500w"
+                            sizes="(min-width: 990px) {{ media_width | times: 100 }}vw, (min-width: 750px) calc(100vw - 11.5rem), calc(100vw - 4rem)"
+                            alt="{{ mf_img.alt | default: product.title | escape }}"
+                            loading="lazy"
+                            width="{{ mf_img.width }}"
+                            height="{{ mf_img.height }}"
+                            class="motion-reduce"
+                          >
+                        </div>
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
           </ul>
           <div class="slider-buttons no-js-hidden quick-add-hidden{% if media_count < 2 or section.settings.mobile_thumbnails == 'show' %} small-hide{% endif %}">
             <button

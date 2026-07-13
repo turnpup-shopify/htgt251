@@ -8,6 +8,11 @@ if (!customElements.get('media-gallery')) {
         thumbnails: this.querySelector('[id^="GalleryThumbnails"]')
       }
       this.mql = window.matchMedia('(min-width: 750px)');
+
+      if (this.dataset.variantImagesFirst === 'true' && this.dataset.initialVariant) {
+        requestAnimationFrame(() => this.reorderVariantMedia(this.dataset.initialVariant));
+      }
+
       if (!this.elements.thumbnails) return;
 
       this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 500));
@@ -88,32 +93,24 @@ if (!customElements.get('media-gallery')) {
     }
 
     reorderVariantMedia(variantId) {
-      const mapScript = this.querySelector('script.variant-media-map');
-      if (!mapScript) return;
-
-      let mediaMap;
-      try { mediaMap = JSON.parse(mapScript.textContent); } catch(e) { return; }
-
-      const mediaIds = mediaMap[String(variantId)];
-      if (!mediaIds || !mediaIds.length) return;
-
+      const variantIdStr = String(variantId);
       const viewer = this.elements.viewer;
+
+      // Hide all metafield variant items
+      viewer.querySelectorAll('[data-variant-id]').forEach(el => { el.style.display = 'none'; });
+
       const activeEl = viewer.querySelector('.is-active[data-media-id]');
       if (!activeEl) return;
 
-      const variantEls = mediaIds
-        .map(id => viewer.querySelector(`[data-media-id="${id}"]`))
-        .filter(el => el && el !== activeEl);
-      variantEls.reduce((ref, el) => { ref.after(el); return el; }, activeEl);
+      // Find this variant's metafield items, show and position them after the active element
+      const variantEls = [...viewer.querySelectorAll(`[data-variant-id="${variantIdStr}"]`)];
+      if (!variantEls.length) return;
 
-      if (!this.elements.thumbnails) return;
-      const activeThumb = this.elements.thumbnails.querySelector(`[data-target="${activeEl.dataset.mediaId}"]`);
-      if (!activeThumb) return;
-
-      const variantThumbs = mediaIds
-        .map(id => this.elements.thumbnails.querySelector(`[data-target="${id}"]`))
-        .filter(el => el && el !== activeThumb);
-      variantThumbs.reduce((ref, el) => { ref.after(el); return el; }, activeThumb);
+      variantEls.reduce((ref, el) => {
+        el.style.display = '';
+        ref.after(el);
+        return el;
+      }, activeEl);
     }
 
     preventStickyHeader() {
