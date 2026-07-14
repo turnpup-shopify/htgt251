@@ -1,144 +1,143 @@
 {%- liquid
-  assign d_top = section.settings.padding_top_desktop
-  assign d_right = section.settings.padding_right_desktop
-  assign d_bottom = section.settings.padding_bottom_desktop
-  assign d_left = section.settings.padding_left_desktop
-  assign m_top = section.settings.padding_top_mobile
-  assign m_right = section.settings.padding_right_mobile
-  assign m_bottom = section.settings.padding_bottom_mobile
-  assign m_left = section.settings.padding_left_mobile
+  comment
+    Picks a calculator block by matching the article metafield custom.calculator_type
+    against each block's Calculator key. No match means the section does not render.
+  endcomment
+
+  assign active_key = article.metafields.custom.calculator_type.value
+
+  if active_key == blank
+    assign active_key = section.settings.fallback_key
+  endif
+
+  assign active_block = null
+
+  for block in section.blocks
+    if block.type == 'calculator' and block.settings.calculator_key == active_key
+      assign active_block = block
+      break
+    endif
+  endfor
 -%}
 
-<size-calculator
-  class="size-calculator"
-  id="SizeCalculator-{{ section.id }}"
-  data-mode="{{ section.settings.calc_mode }}"
-  data-multiplier="{{ section.settings.multiplier }}"
-  data-offset-min="{{ section.settings.offset_min }}"
-  data-offset-max="{{ section.settings.offset_max }}"
-  data-round-to="{{ section.settings.round_to }}"
-  data-input-min="{{ section.settings.input_min }}"
-  data-input-max="{{ section.settings.input_max }}"
-  data-unit="{{ section.settings.unit_label | escape }}"
-  data-result-prefix="{{ section.settings.result_prefix | escape }}"
-  data-result-suffix="{{ section.settings.result_suffix | escape }}"
-  data-error-range="{{ section.settings.error_range | escape }}"
-  data-error-empty="{{ section.settings.error_empty | escape }}"
-  style="
-    --sc-max-width: {{ section.settings.max_width }}px;
-    --sc-accent: {{ section.settings.accent_color }};
-    --sc-surface: {{ section.settings.surface_color }};
-    --sc-border: {{ section.settings.border_color }};
-    --sc-radius: {{ section.settings.corner_radius }}px;
-    --sc-heading-font-family: {{ section.settings.heading_font_family | default: 'inherit' }};
-    --sc-heading-font-size: {{ section.settings.heading_font_size }}px;
-    --sc-heading-font-weight: {{ section.settings.heading_font_weight }};
-    --sc-heading-color: {{ section.settings.heading_font_color }};
-    --sc-body-font-family: {{ section.settings.body_font_family | default: 'inherit' }};
-    --sc-body-font-size: {{ section.settings.body_font_size }}px;
-    --sc-body-font-weight: {{ section.settings.body_font_weight }};
-    --sc-body-color: {{ section.settings.body_font_color }};
-    --sc-result-font-family: {{ section.settings.result_font_family | default: 'inherit' }};
-    --sc-result-font-size: {{ section.settings.result_font_size }}px;
-    --sc-result-font-weight: {{ section.settings.result_font_weight }};
-    --sc-result-color: {{ section.settings.result_font_color }};
-    --sc-padding-block-start: {{ m_top }}px;
-    --sc-padding-inline-end: {{ m_right }}px;
-    --sc-padding-block-end: {{ m_bottom }}px;
-    --sc-padding-inline-start: {{ m_left }}px;
-    --sc-padding-block-start-lg: {{ d_top }}px;
-    --sc-padding-inline-end-lg: {{ d_right }}px;
-    --sc-padding-block-end-lg: {{ d_bottom }}px;
-    --sc-padding-inline-start-lg: {{ d_left }}px;
-  "
->
-  {%- if section.settings.calc_mode == 'ranges' -%}
-    {%- capture ranges_json -%}
-      [
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'range' -%}
-          {
-            "min": {{ block.settings.min_value | default: 0 }},
-            "max": {{ block.settings.max_value | default: 0 }},
-            "result": {{ block.settings.result_label | default: '' | json }},
-            "note": {{ block.settings.result_note | default: '' | json }},
-            "link": {{ block.settings.link_url | default: '' | json }},
-            "linkLabel": {{ block.settings.link_label | default: '' | json }}
-          }{%- unless forloop.last -%},{%- endunless -%}
-        {%- endif -%}
-      {%- endfor -%}
-      ]
-    {%- endcapture -%}
-    <script type="application/json" data-size-calculator-ranges>
-      {{ ranges_json }}
-    </script>
-  {%- endif -%}
+{%- if active_block != null -%}
+  {%- liquid
+    assign s = active_block.settings
+    assign d_top = section.settings.padding_top_desktop
+    assign d_right = section.settings.padding_right_desktop
+    assign d_bottom = section.settings.padding_bottom_desktop
+    assign d_left = section.settings.padding_left_desktop
+    assign m_top = section.settings.padding_top_mobile
+    assign m_right = section.settings.padding_right_mobile
+    assign m_bottom = section.settings.padding_bottom_mobile
+    assign m_left = section.settings.padding_left_mobile
+  -%}
 
-  <div class="size-calculator__inner">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="size-calculator__heading" id="SizeCalculatorHeading-{{ section.id }}">
-        {{ section.settings.heading | escape }}
-      </h2>
+  <size-calculator
+    class="size-calculator"
+    id="SizeCalculator-{{ section.id }}"
+    data-mode="{{ s.calc_mode }}"
+    data-multiplier="{{ s.multiplier }}"
+    data-offset-min="{{ s.offset_min }}"
+    data-offset-max="{{ s.offset_max }}"
+    data-round-to="{{ s.round_to }}"
+    data-input-min="{{ s.input_min }}"
+    data-input-max="{{ s.input_max }}"
+    data-result-prefix="{{ s.result_prefix | escape }}"
+    data-result-suffix="{{ s.result_suffix | escape }}"
+    data-error-empty="{{ s.error_empty | escape }}"
+    data-error-range="{{ s.error_range | escape }}"
+    {{ active_block.shopify_attributes }}
+    style="
+      --sc-max-width: {{ section.settings.max_width }}px;
+      --sc-accent: {{ section.settings.accent_color }};
+      --sc-surface: {{ section.settings.surface_color }};
+      --sc-border: {{ section.settings.border_color }};
+      --sc-radius: {{ section.settings.corner_radius }}px;
+      --sc-heading-font-family: {{ section.settings.heading_font_family | default: 'inherit' }};
+      --sc-heading-font-size: {{ section.settings.heading_font_size }}px;
+      --sc-heading-font-weight: {{ section.settings.heading_font_weight }};
+      --sc-heading-color: {{ section.settings.heading_font_color }};
+      --sc-body-font-family: {{ section.settings.body_font_family | default: 'inherit' }};
+      --sc-body-font-size: {{ section.settings.body_font_size }}px;
+      --sc-body-font-weight: {{ section.settings.body_font_weight }};
+      --sc-body-color: {{ section.settings.body_font_color }};
+      --sc-result-font-family: {{ section.settings.result_font_family | default: 'inherit' }};
+      --sc-result-font-size: {{ section.settings.result_font_size }}px;
+      --sc-result-font-weight: {{ section.settings.result_font_weight }};
+      --sc-result-color: {{ section.settings.result_font_color }};
+      --sc-padding-block-start: {{ m_top }}px;
+      --sc-padding-inline-end: {{ m_right }}px;
+      --sc-padding-block-end: {{ m_bottom }}px;
+      --sc-padding-inline-start: {{ m_left }}px;
+      --sc-padding-block-start-lg: {{ d_top }}px;
+      --sc-padding-inline-end-lg: {{ d_right }}px;
+      --sc-padding-block-end-lg: {{ d_bottom }}px;
+      --sc-padding-inline-start-lg: {{ d_left }}px;
+    "
+  >
+    {%- if s.calc_mode == 'ranges' and s.ranges_table != blank -%}
+      <script type="text/plain" data-size-calculator-ranges>{{ s.ranges_table | escape }}</script>
     {%- endif -%}
 
-    {%- if section.settings.intro != blank -%}
-      <div class="size-calculator__intro">{{ section.settings.intro }}</div>
-    {%- endif -%}
+    <div class="size-calculator__inner">
+      {%- if s.heading != blank -%}
+        <h2 class="size-calculator__heading">{{ s.heading | escape }}</h2>
+      {%- endif -%}
 
-    <div class="size-calculator__field">
-      <label class="size-calculator__label" for="SizeCalculatorInput-{{ section.id }}">
-        {{ section.settings.input_label | escape }}
-      </label>
+      {%- if s.intro != blank -%}
+        <div class="size-calculator__intro">{{ s.intro }}</div>
+      {%- endif -%}
 
-      <div class="size-calculator__controls">
-        <input
-          class="size-calculator__input"
-          type="number"
-          inputmode="decimal"
-          id="SizeCalculatorInput-{{ section.id }}"
-          name="size_calculator_input"
-          min="{{ section.settings.input_min }}"
-          max="{{ section.settings.input_max }}"
-          step="{{ section.settings.input_step }}"
-          placeholder="{{ section.settings.input_placeholder | escape }}"
-          aria-describedby="SizeCalculatorError-{{ section.id }}"
-          data-size-calculator-input
-        >
-        <button
-          class="size-calculator__button"
-          type="button"
-          data-size-calculator-submit
-        >
-          {{ section.settings.button_label | escape }}
-        </button>
+      <div class="size-calculator__field">
+        <label class="size-calculator__label" for="SizeCalculatorInput-{{ section.id }}">
+          {{ s.input_label | escape }}
+        </label>
+
+        <div class="size-calculator__controls">
+          <input
+            class="size-calculator__input"
+            type="number"
+            inputmode="decimal"
+            id="SizeCalculatorInput-{{ section.id }}"
+            name="size_calculator_input"
+            min="{{ s.input_min }}"
+            max="{{ s.input_max }}"
+            step="{{ s.input_step }}"
+            placeholder="{{ s.input_placeholder | escape }}"
+            aria-describedby="SizeCalculatorError-{{ section.id }}"
+            data-size-calculator-input
+          >
+          <button class="size-calculator__button" type="button" data-size-calculator-submit>
+            {{ s.button_label | escape }}
+          </button>
+        </div>
+
+        <p
+          class="size-calculator__error"
+          id="SizeCalculatorError-{{ section.id }}"
+          role="alert"
+          hidden
+          data-size-calculator-error
+        ></p>
       </div>
 
-      <p
-        class="size-calculator__error"
-        id="SizeCalculatorError-{{ section.id }}"
-        role="alert"
+      <output
+        class="size-calculator__result"
+        for="SizeCalculatorInput-{{ section.id }}"
+        aria-live="polite"
         hidden
-        data-size-calculator-error
-      ></p>
+        data-size-calculator-result
+      ></output>
+
+      {%- if s.fallback_note != blank -%}
+        <noscript>
+          <div class="size-calculator__intro">{{ s.fallback_note }}</div>
+        </noscript>
+      {%- endif -%}
     </div>
-
-    <output
-      class="size-calculator__result"
-      for="SizeCalculatorInput-{{ section.id }}"
-      aria-live="polite"
-      hidden
-      data-size-calculator-result
-    ></output>
-
-    {%- if section.settings.fallback_note != blank -%}
-      <noscript>
-        <p class="size-calculator__intro">{{ section.settings.fallback_note }}</p>
-      </noscript>
-    {%- endif -%}
-
-    {%- content_for 'blocks' -%}
-  </div>
-</size-calculator>
+  </size-calculator>
+{%- endif -%}
 
 {% stylesheet %}
   .size-calculator {
@@ -172,7 +171,7 @@
   .size-calculator__heading {
     margin-block: 0 0.5rem;
     font-family: var(--sc-heading-font-family, inherit);
-    font-size: var(--sc-heading-font-size, 24px);
+    font-size: var(--sc-heading-font-size, 26px);
     font-weight: var(--sc-heading-font-weight, 600);
     line-height: 1.2;
     color: var(--sc-heading-color, inherit);
@@ -278,7 +277,7 @@
   .size-calculator__result-value {
     display: block;
     font-family: var(--sc-result-font-family, inherit);
-    font-size: var(--sc-result-font-size, 28px);
+    font-size: var(--sc-result-font-size, 30px);
     font-weight: var(--sc-result-font-weight, 600);
     line-height: 1.2;
     color: var(--sc-result-color, inherit);
@@ -334,7 +333,7 @@
       this.#button = this.querySelector('[data-size-calculator-submit]');
       this.#result = this.querySelector('[data-size-calculator-result]');
       this.#error = this.querySelector('[data-size-calculator-error]');
-      this.#ranges = this.#readRanges();
+      this.#ranges = this.#parseRanges();
 
       this.#button?.addEventListener('click', this.#handleSubmit);
       this.#input?.addEventListener('keydown', this.#handleKeydown);
@@ -345,38 +344,38 @@
       this.#input?.removeEventListener('keydown', this.#handleKeydown);
     }
 
-    #readRanges() {
+    /*
+      Each line of the ranges table looks like this.
+      12-24 | 3 to 5 inch pull | The most common size. | /collections/pulls | Shop pulls
+      Only the first two parts are required.
+    */
+    #parseRanges() {
       const node = this.querySelector('[data-size-calculator-ranges]');
       if (!node) return [];
 
-      try {
-        const parsed = JSON.parse(node.textContent);
-        return Array.isArray(parsed) ? parsed : [];
-      } catch (error) {
-        console.error('Size calculator: bad range data', error);
-        return [];
-      }
+      return node.textContent
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line) => {
+          const parts = line.split('|').map((part) => part.trim());
+          const bounds = (parts[0] || '').split('-');
+
+          return {
+            min: Number(bounds[0]),
+            max: Number(bounds[1]),
+            result: parts[1] || '',
+            note: parts[2] || '',
+            link: parts[3] || '',
+            linkLabel: parts[4] || ''
+          };
+        })
+        .filter((range) => !Number.isNaN(range.min) && !Number.isNaN(range.max));
     }
-
-    #handleKeydown = (event) => {
-      if (event.key !== 'Enter') return;
-      event.preventDefault();
-      this.#calculate();
-    };
-
-    #handleSubmit = () => {
-      this.#calculate();
-    };
 
     #round(value) {
       const step = Number(this.dataset.roundTo) || 1;
-      const rounded = Math.round(value / step) * step;
-      return Number(rounded.toFixed(2));
-    }
-
-    #format(value) {
-      const unit = this.dataset.unit || '';
-      return unit ? `${value} ${unit}` : `${value}`;
+      return Number((Math.round(value / step) * step).toFixed(2));
     }
 
     #showError(message) {
@@ -399,23 +398,42 @@
 
       const prefix = this.dataset.resultPrefix || '';
       const suffix = this.dataset.resultSuffix || '';
-      const parts = [];
+      const headline = [prefix, value, suffix].filter(Boolean).join(' ');
 
-      parts.push(`<span class="size-calculator__result-value">${prefix} ${value} ${suffix}`.trim() + '</span>');
+      this.#result.replaceChildren();
+
+      const valueEl = document.createElement('span');
+      valueEl.className = 'size-calculator__result-value';
+      valueEl.textContent = headline;
+      this.#result.append(valueEl);
 
       if (note) {
-        parts.push(`<span class="size-calculator__result-note">${note}</span>`);
+        const noteEl = document.createElement('span');
+        noteEl.className = 'size-calculator__result-note';
+        noteEl.textContent = note;
+        this.#result.append(noteEl);
       }
 
       if (link && linkLabel) {
-        parts.push(
-          `<a class="size-calculator__result-link" href="${encodeURI(link)}">${linkLabel}</a>`
-        );
+        const linkEl = document.createElement('a');
+        linkEl.className = 'size-calculator__result-link';
+        linkEl.href = link;
+        linkEl.textContent = linkLabel;
+        this.#result.append(linkEl);
       }
 
-      this.#result.innerHTML = parts.join('');
       this.#result.hidden = false;
     }
+
+    #handleKeydown = (event) => {
+      if (event.key !== 'Enter') return;
+      event.preventDefault();
+      this.#calculate();
+    };
+
+    #handleSubmit = () => {
+      this.#calculate();
+    };
 
     #calculate() {
       const raw = this.#input?.value ?? '';
@@ -437,40 +455,23 @@
       this.#clearError();
 
       if (this.dataset.mode === 'ranges') {
-        this.#calculateFromRanges(value);
+        const match = this.#ranges.find((range) => value >= range.min && value <= range.max);
+
+        if (!match) {
+          this.#showError(this.dataset.errorRange || 'That number is out of range.');
+          return;
+        }
+
+        this.#render(match.result, match.note, match.link, match.linkLabel);
         return;
       }
 
-      this.#calculateFromFormula(value);
-    }
-
-    #calculateFromRanges(value) {
-      const match = this.#ranges.find(
-        (range) => value >= Number(range.min) && value <= Number(range.max)
-      );
-
-      if (!match) {
-        this.#showError(this.dataset.errorRange || 'That number is out of range.');
-        return;
-      }
-
-      this.#render(match.result, match.note, match.link, match.linkLabel);
-    }
-
-    #calculateFromFormula(value) {
       const multiplier = Number(this.dataset.multiplier) || 1;
-      const offsetMin = Number(this.dataset.offsetMin) || 0;
-      const offsetMax = Number(this.dataset.offsetMax) || 0;
+      const low = this.#round(value * multiplier + (Number(this.dataset.offsetMin) || 0));
+      const high = this.#round(value * multiplier + (Number(this.dataset.offsetMax) || 0));
+      const answer = low === high ? `${low}` : `${low} to ${high}`;
 
-      const low = this.#round(value * multiplier + offsetMin);
-      const high = this.#round(value * multiplier + offsetMax);
-
-      const output =
-        low === high
-          ? this.#format(low)
-          : `${low} to ${this.#format(high)}`;
-
-      this.#render(output, '', '', '');
+      this.#render(answer, '', '', '');
     }
   }
 
@@ -484,172 +485,21 @@
   "name": "Size calculator",
   "tag": "section",
   "class": "section-size-calculator",
-  "max_blocks": 20,
+  "max_blocks": 12,
+  "enabled_on": {
+    "templates": ["article"]
+  },
   "settings": [
     {
-      "type": "header",
-      "content": "Content"
+      "type": "paragraph",
+      "content": "Each block below is one calculator. The article decides which one shows. Set Calculator type on the article and match it to a Calculator key here. Articles with no Calculator type set will not show this section at all."
     },
     {
       "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Cabinet Hardware Size Calculator"
-    },
-    {
-      "type": "richtext",
-      "id": "intro",
-      "label": "Intro text",
-      "default": "<p>Enter your drawer width in inches to find the pull size that fits.</p>"
-    },
-    {
-      "type": "text",
-      "id": "input_label",
-      "label": "Input label",
-      "default": "Drawer width"
-    },
-    {
-      "type": "text",
-      "id": "input_placeholder",
-      "label": "Input placeholder",
-      "default": "Enter drawer width in inches"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button label",
-      "default": "Calculate"
-    },
-    {
-      "type": "richtext",
-      "id": "fallback_note",
-      "label": "No JavaScript fallback",
-      "info": "Shown only if scripts are blocked. Point people at the size chart.",
-      "default": "<p>Use the size chart above to find your pull size.</p>"
-    },
-    {
-      "type": "header",
-      "content": "Calculation"
-    },
-    {
-      "type": "select",
-      "id": "calc_mode",
-      "label": "How the result is worked out",
-      "options": [
-        {
-          "value": "formula",
-          "label": "Formula (multiply the input)"
-        },
-        {
-          "value": "ranges",
-          "label": "Ranges (look up a block)"
-        }
-      ],
-      "default": "formula",
-      "info": "Formula suits rules like one third of drawer width. Ranges suit custom charts."
-    },
-    {
-      "type": "number",
-      "id": "multiplier",
-      "label": "Multiplier",
-      "visible_if": "{{ section.settings.calc_mode == 'formula' }}",
-      "info": "0.33 for the 1/3 pull rule. 1 for a same size result.",
-      "default": 0.33
-    },
-    {
-      "type": "number",
-      "id": "offset_min",
-      "label": "Low end offset",
-      "visible_if": "{{ section.settings.calc_mode == 'formula' }}",
-      "info": "Added to the low end of the answer. Use a negative number to subtract.",
-      "default": 0
-    },
-    {
-      "type": "number",
-      "id": "offset_max",
-      "label": "High end offset",
-      "visible_if": "{{ section.settings.calc_mode == 'formula' }}",
-      "info": "Added to the high end of the answer. Set both offsets the same for a single number.",
-      "default": 1
-    },
-    {
-      "type": "select",
-      "id": "round_to",
-      "label": "Round the answer to",
-      "visible_if": "{{ section.settings.calc_mode == 'formula' }}",
-      "options": [
-        {
-          "value": "0.25",
-          "label": "Nearest quarter inch"
-        },
-        {
-          "value": "0.5",
-          "label": "Nearest half inch"
-        },
-        {
-          "value": "1",
-          "label": "Nearest inch"
-        },
-        {
-          "value": "2",
-          "label": "Nearest 2 inches"
-        }
-      ],
-      "default": "1"
-    },
-    {
-      "type": "text",
-      "id": "result_prefix",
-      "label": "Result prefix",
-      "default": "Use a"
-    },
-    {
-      "type": "text",
-      "id": "result_suffix",
-      "label": "Result suffix",
-      "visible_if": "{{ section.settings.calc_mode == 'formula' }}",
-      "default": "inch pull"
-    },
-    {
-      "type": "text",
-      "id": "unit_label",
-      "label": "Unit label",
-      "visible_if": "{{ section.settings.calc_mode == 'formula' }}",
+      "id": "fallback_key",
+      "label": "Fallback calculator key",
+      "info": "Used only when an article has no Calculator type set. Leave blank to hide the section on those articles.",
       "default": ""
-    },
-    {
-      "type": "header",
-      "content": "Input limits and errors"
-    },
-    {
-      "type": "number",
-      "id": "input_min",
-      "label": "Lowest number allowed",
-      "default": 4
-    },
-    {
-      "type": "number",
-      "id": "input_max",
-      "label": "Highest number allowed",
-      "default": 96
-    },
-    {
-      "type": "number",
-      "id": "input_step",
-      "label": "Input step",
-      "default": 1
-    },
-    {
-      "type": "text",
-      "id": "error_empty",
-      "label": "Empty input message",
-      "default": "Enter a width in inches."
-    },
-    {
-      "type": "text",
-      "id": "error_range",
-      "label": "Out of range message",
-      "default": "Enter a width between 4 and 96 inches."
     },
     {
       "type": "header",
@@ -902,59 +752,215 @@
   ],
   "blocks": [
     {
-      "type": "range",
-      "name": "Size range",
+      "type": "calculator",
+      "name": "Calculator",
       "settings": [
         {
-          "type": "paragraph",
-          "content": "Used only when the calculation mode is set to Ranges."
+          "type": "text",
+          "id": "calculator_key",
+          "label": "Calculator key",
+          "info": "Must match the article Calculator type value exactly. Example cabinet-hardware.",
+          "default": "cabinet-hardware"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Cabinet Hardware Size Calculator"
+        },
+        {
+          "type": "richtext",
+          "id": "intro",
+          "label": "Intro text",
+          "default": "<p>Enter your drawer width in inches to find the pull size that fits.</p>"
+        },
+        {
+          "type": "text",
+          "id": "input_label",
+          "label": "Input label",
+          "default": "Drawer width in inches"
+        },
+        {
+          "type": "text",
+          "id": "input_placeholder",
+          "label": "Input placeholder",
+          "default": "24"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Calculate"
+        },
+        {
+          "type": "richtext",
+          "id": "fallback_note",
+          "label": "No JavaScript fallback",
+          "default": "<p>Use the size chart above to find your pull size.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Math"
+        },
+        {
+          "type": "select",
+          "id": "calc_mode",
+          "label": "How the answer is worked out",
+          "options": [
+            { "value": "formula", "label": "Formula" },
+            { "value": "ranges", "label": "Ranges table" }
+          ],
+          "default": "formula"
         },
         {
           "type": "number",
-          "id": "min_value",
-          "label": "From",
-          "default": 12
+          "id": "multiplier",
+          "label": "Multiplier",
+          "visible_if": "{{ block.settings.calc_mode == 'formula' }}",
+          "info": "0.33 for the one third pull rule. 1 to start from the input itself.",
+          "default": 0.33
         },
         {
           "type": "number",
-          "id": "max_value",
-          "label": "To",
-          "default": 24
+          "id": "offset_min",
+          "label": "Low end offset",
+          "visible_if": "{{ block.settings.calc_mode == 'formula' }}",
+          "info": "Added to the low end. Use a negative number to subtract.",
+          "default": 0
+        },
+        {
+          "type": "number",
+          "id": "offset_max",
+          "label": "High end offset",
+          "visible_if": "{{ block.settings.calc_mode == 'formula' }}",
+          "info": "Set both offsets the same to return a single number instead of a range.",
+          "default": 1
+        },
+        {
+          "type": "select",
+          "id": "round_to",
+          "label": "Round the answer to",
+          "visible_if": "{{ block.settings.calc_mode == 'formula' }}",
+          "options": [
+            { "value": "0.25", "label": "Nearest quarter inch" },
+            { "value": "0.5", "label": "Nearest half inch" },
+            { "value": "1", "label": "Nearest inch" },
+            { "value": "2", "label": "Nearest 2 inches" }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "textarea",
+          "id": "ranges_table",
+          "label": "Ranges table",
+          "visible_if": "{{ block.settings.calc_mode == 'ranges' }}",
+          "info": "One line per range. Format is from-to | answer | note | link | link label. Note, link, and link label are optional.",
+          "default": "0-12 | 1 to 1.5 inch knob or 3 inch pull | Good for spice pull outs and slim trash bins.\n12-24 | 3 to 5 inch pull | The most common size. Leaves clean wood on both sides.\n24-30 | 6 to 9 inch pull, or two knobs | One long pull reads modern. Two knobs read classic.\n30-42 | 10 to 12 inch pull, or two 5 inch pulls | Heavy pot drawers need this."
+        },
+        {
+          "type": "header",
+          "content": "Answer wording"
         },
         {
           "type": "text",
-          "id": "result_label",
-          "label": "Answer",
-          "default": "3 to 5 inch pull"
+          "id": "result_prefix",
+          "label": "Answer prefix",
+          "default": "Use a"
         },
         {
           "type": "text",
-          "id": "result_note",
-          "label": "Supporting note",
-          "default": "The most common size. Leaves clean wood on both sides."
+          "id": "result_suffix",
+          "label": "Answer suffix",
+          "default": "inch pull"
         },
         {
-          "type": "url",
-          "id": "link_url",
-          "label": "Shop link"
+          "type": "header",
+          "content": "Input limits"
+        },
+        {
+          "type": "number",
+          "id": "input_min",
+          "label": "Lowest number allowed",
+          "default": 6
+        },
+        {
+          "type": "number",
+          "id": "input_max",
+          "label": "Highest number allowed",
+          "default": 48
+        },
+        {
+          "type": "number",
+          "id": "input_step",
+          "label": "Step",
+          "default": 1
         },
         {
           "type": "text",
-          "id": "link_label",
-          "label": "Shop link label",
-          "default": "Shop this size"
+          "id": "error_empty",
+          "label": "Empty input message",
+          "default": "Enter a width in inches."
+        },
+        {
+          "type": "text",
+          "id": "error_range",
+          "label": "Out of range message",
+          "default": "Enter a width between 6 and 48 inches."
         }
       ]
-    },
-    { "type": "@theme" },
-    { "type": "@app" }
+    }
   ],
   "presets": [
     {
       "name": "Size calculator",
-      "settings": {
-        "calc_mode": "formula"
-      }
+      "blocks": [
+        {
+          "type": "calculator",
+          "settings": {
+            "calculator_key": "cabinet-hardware",
+            "heading": "Cabinet Hardware Size Calculator",
+            "intro": "<p>Enter your drawer width in inches to find the pull size that fits.</p>",
+            "input_label": "Drawer width in inches",
+            "input_placeholder": "24",
+            "calc_mode": "formula",
+            "multiplier": 0.33,
+            "offset_min": 0,
+            "offset_max": 1,
+            "round_to": "1",
+            "result_prefix": "Use a",
+            "result_suffix": "inch pull",
+            "input_min": 6,
+            "input_max": 48,
+            "error_range": "Enter a width between 6 and 48 inches.",
+            "fallback_note": "<p>Use the size chart above to find your pull size.</p>"
+          }
+        },
+        {
+          "type": "calculator",
+          "settings": {
+            "calculator_key": "vanity-mirror",
+            "heading": "Vanity Mirror Size Calculator",
+            "intro": "<p>Enter your vanity width in inches to find the mirror width that fits.</p>",
+            "input_label": "Vanity width in inches",
+            "input_placeholder": "36",
+            "calc_mode": "formula",
+            "multiplier": 1,
+            "offset_min": -6,
+            "offset_max": -4,
+            "round_to": "1",
+            "result_prefix": "Look for a",
+            "result_suffix": "inch wide mirror",
+            "input_min": 18,
+            "input_max": 96,
+            "error_range": "Enter a width between 18 and 96 inches.",
+            "fallback_note": "<p>Use the size chart above to find your mirror width.</p>"
+          }
+        }
+      ]
     }
   ]
 }
