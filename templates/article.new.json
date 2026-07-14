@@ -84,10 +84,99 @@
         "turnpup_top_border_color": "#391212",
         "turnpup_bottom_border_color": "#391212"
       }
+    },
+    "tp_size_calculator_mH9tGH": {
+      "type": "tp-size-calculator",
+      "blocks": {
+        "calculator_gLhQiV": {
+          "type": "calculator",
+          "settings": {
+            "calculator_key": "cabinet-hardware",
+            "heading": "Cabinet Hardware Size Calculator",
+            "intro": "<p>Enter your drawer width in inches to find the pull size that fits.</p>",
+            "input_label": "Drawer width in inches",
+            "input_placeholder": "24",
+            "button_label": "Calculate",
+            "fallback_note": "<p>Use the size chart above to find your pull size.</p>",
+            "calc_mode": "formula",
+            "multiplier": 33,
+            "offset_min": 0,
+            "offset_max": 1,
+            "round_to": "1",
+            "ranges_table": "0-12 | 1 to 1.5 inch knob or 3 inch pull | Good for spice pull outs and slim trash bins.\n12-24 | 3 to 5 inch pull | The most common size. Leaves clean wood on both sides.\n24-30 | 6 to 9 inch pull, or two knobs | One long pull reads modern. Two knobs read classic.\n30-42 | 10 to 12 inch pull, or two 5 inch pulls | Heavy pot drawers need this.",
+            "result_prefix": "Use a",
+            "result_suffix": "inch pull",
+            "input_min": 6,
+            "input_max": 48,
+            "input_step": 1,
+            "error_empty": "Enter a width in inches.",
+            "error_range": "Enter a width between 6 and 48 inches."
+          }
+        },
+        "calculator_abR9jr": {
+          "type": "calculator",
+          "settings": {
+            "calculator_key": "vanity-mirror",
+            "heading": "Vanity Mirror Size Calculator",
+            "intro": "<p>Enter your vanity width in inches to find the mirror width that fits.</p>",
+            "input_label": "Vanity width in inches",
+            "input_placeholder": "36",
+            "button_label": "Calculate",
+            "fallback_note": "<p>Use the size chart above to find your mirror width.</p>",
+            "calc_mode": "formula",
+            "multiplier": 100,
+            "offset_min": -6,
+            "offset_max": -4,
+            "round_to": "1",
+            "ranges_table": "0-12 | 1 to 1.5 inch knob or 3 inch pull | Good for spice pull outs and slim trash bins.\n12-24 | 3 to 5 inch pull | The most common size. Leaves clean wood on both sides.\n24-30 | 6 to 9 inch pull, or two knobs | One long pull reads modern. Two knobs read classic.\n30-42 | 10 to 12 inch pull, or two 5 inch pulls | Heavy pot drawers need this.",
+            "result_prefix": "Look for a",
+            "result_suffix": "inch wide mirror",
+            "input_min": 18,
+            "input_max": 96,
+            "input_step": 1,
+            "error_empty": "Enter a width in inches.",
+            "error_range": "Enter a width between 18 and 96 inches."
+          }
+        }
+      },
+      "block_order": [
+        "calculator_gLhQiV",
+        "calculator_abR9jr"
+      ],
+      "name": "Size calculator",
+      "settings": {
+        "fallback_key": "",
+        "max_width": 720,
+        "corner_radius": 4,
+        "accent_color": "#111111",
+        "surface_color": "#f7f6f4",
+        "border_color": "#e2e0dc",
+        "heading_font_family": "",
+        "heading_font_size": 26,
+        "heading_font_weight": "600",
+        "heading_font_color": "#111111",
+        "body_font_family": "",
+        "body_font_size": 16,
+        "body_font_weight": "400",
+        "body_font_color": "#3d3d3d",
+        "result_font_family": "",
+        "result_font_size": 30,
+        "result_font_weight": "600",
+        "result_font_color": "#111111",
+        "padding_top_desktop": 40,
+        "padding_right_desktop": 24,
+        "padding_bottom_desktop": 40,
+        "padding_left_desktop": 24,
+        "padding_top_mobile": 24,
+        "padding_right_mobile": 16,
+        "padding_bottom_mobile": 24,
+        "padding_left_mobile": 16
+      }
     }
   },
   "order": [
     "main",
-    "tp_related_results_by_tag_Jm9rJH"
+    "tp_related_results_by_tag_Jm9rJH",
+    "tp_size_calculator_mH9tGH"
   ]
 }
