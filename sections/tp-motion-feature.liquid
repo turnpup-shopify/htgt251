@@ -51,6 +51,15 @@
     }
   }
 
+  {%- assign center_block = top_blocks[1] -%}
+  {%- if center_block != blank and center_block.settings.mobile_image != blank -%}
+    @media screen and (max-width: 749px) {
+      #MotionFeature-{{ section.id }} .mf-top__item--center {
+        aspect-ratio: {{ center_block.settings.mobile_image.aspect_ratio }};
+      }
+    }
+  {%- endif -%}
+
 {% endstyle %}
 
 <section
@@ -69,7 +78,23 @@
           class="mf-top__item{% if forloop.index == 2 %} mf-top__item--center{% endif %}"
           {{ block.shopify_attributes }}
         >
-          {%- if block.settings.image != blank -%}
+          {%- if block.settings.mobile_image != blank -%}
+            {%- assign _desktop = block.settings.image | default: block.settings.mobile_image -%}
+            <picture>
+              <source
+                media="(max-width: 749px)"
+                srcset="{{ block.settings.mobile_image | image_url: width: 800 }}"
+              >
+              <img
+                class="mf-top__img"
+                src="{{ _desktop | image_url: width: 900 }}"
+                alt="{{ _desktop.alt | default: block.settings.title | escape }}"
+                loading="lazy"
+                width="{{ _desktop.width }}"
+                height="{{ _desktop.height }}"
+              >
+            </picture>
+          {%- elsif block.settings.image != blank -%}
             {{ block.settings.image | image_url: width: 900
               | image_tag:
                 class: 'mf-top__img',
@@ -507,7 +532,13 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
+          "label": "Image (desktop)"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Image (mobile)",
+          "info": "If set, overrides the desktop image on mobile and adapts the panel's aspect ratio to match."
         },
         {
           "type": "text",
