@@ -40,9 +40,15 @@
   }
 
   #MotionFeature-{{ section.id }} .mf-item {
-    width: {{ section.settings.carousel_item_width }}px;
+    width: {{ section.settings.carousel_item_width_mobile }}px;
     aspect-ratio: {{ section.settings.carousel_aspect_ratio }};
     border-radius: {{ section.settings.item_radius }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #MotionFeature-{{ section.id }} .mf-item {
+      width: {{ section.settings.carousel_item_width }}px;
+    }
   }
 
 {% endstyle %}
@@ -404,12 +410,22 @@
     {
       "type": "range",
       "id": "carousel_item_width",
-      "label": "Item width",
+      "label": "Item width (desktop)",
       "min": 100,
       "max": 600,
       "step": 20,
       "unit": "px",
       "default": 300
+    },
+    {
+      "type": "range",
+      "id": "carousel_item_width_mobile",
+      "label": "Item width (mobile)",
+      "min": 60,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 160
     },
     {
       "type": "select",
