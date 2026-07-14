@@ -862,6 +862,7 @@
           "type": "top_item",
           "settings": {
             "image": "shopify://shop_images/marble-cb-straight-on-lifestyle-green.jpg",
+            "mobile_image": "shopify://shop_images/marble-cb-straight-on-lifestyle-green.png",
             "title": "",
             "subtext": "",
             "link": "",
@@ -970,6 +971,7 @@
         "top_aspect_ratio": "3 / 4",
         "carousel_speed": 30,
         "carousel_item_width": 300,
+        "carousel_item_width_mobile": 160,
         "carousel_aspect_ratio": "1 / 1",
         "carousel_gap": 8,
         "padding_top_desktop": 8,
