@@ -843,6 +843,141 @@
         "num_opacity": 1
       }
     },
+    "tp_motion_feature_PJPMQg": {
+      "type": "tp-motion-feature",
+      "blocks": {
+        "top_item_BWhpKL": {
+          "type": "top_item",
+          "settings": {
+            "image": "shopify://shop_images/white-wavy-mirror-bedroom_e6971e8e-00f8-4674-a080-4ee66e91a5d4.jpg",
+            "title": "",
+            "subtext": "",
+            "link": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "text_color": "#ffffff"
+          }
+        },
+        "top_item_RfEGY6": {
+          "type": "top_item",
+          "settings": {
+            "image": "shopify://shop_images/marble-cb-straight-on-lifestyle-green.jpg",
+            "title": "",
+            "subtext": "",
+            "link": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "text_color": "#ffffff"
+          }
+        },
+        "top_item_zxmaXm": {
+          "type": "top_item",
+          "settings": {
+            "image": "shopify://shop_images/50170-114484-10.jpg",
+            "title": "",
+            "subtext": "",
+            "link": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "text_color": "#ffffff"
+          }
+        },
+        "mid_item_3i6hJx": {
+          "type": "mid_item",
+          "settings": {
+            "image": "shopify://shop_images/gray-mid-century-accent-chair-4.jpg",
+            "title": "",
+            "link": ""
+          }
+        },
+        "mid_item_PTgyXA": {
+          "type": "mid_item",
+          "settings": {
+            "image": "shopify://shop_images/blue-swivel-chair.jpg",
+            "title": "",
+            "link": ""
+          }
+        },
+        "mid_item_R94xMC": {
+          "type": "mid_item",
+          "settings": {
+            "image": "shopify://shop_images/50329-365176-5.jpg",
+            "title": "",
+            "link": ""
+          }
+        },
+        "mid_item_9WHmn6": {
+          "type": "mid_item",
+          "settings": {
+            "image": "shopify://shop_images/accent-table-glass-antique-brass-4.jpg",
+            "title": "",
+            "link": ""
+          }
+        },
+        "bot_item_Xif9E8": {
+          "type": "bot_item",
+          "settings": {
+            "image": "shopify://shop_images/32305-80044-5.jpg",
+            "title": "",
+            "link": ""
+          }
+        },
+        "bot_item_NVcGbV": {
+          "type": "bot_item",
+          "settings": {
+            "image": "shopify://shop_images/53080-365688-8.jpg",
+            "title": "",
+            "link": ""
+          }
+        },
+        "bot_item_cbQiiT": {
+          "type": "bot_item",
+          "settings": {
+            "image": "shopify://shop_images/avagrayinteriors.jpg",
+            "title": "",
+            "link": ""
+          }
+        },
+        "bot_item_TGgka9": {
+          "type": "bot_item",
+          "settings": {
+            "image": "shopify://shop_images/art-deco-gold-mirror-scene-2.jpg",
+            "title": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "top_item_BWhpKL",
+        "top_item_RfEGY6",
+        "top_item_zxmaXm",
+        "mid_item_3i6hJx",
+        "mid_item_PTgyXA",
+        "mid_item_R94xMC",
+        "mid_item_9WHmn6",
+        "bot_item_Xif9E8",
+        "bot_item_NVcGbV",
+        "bot_item_cbQiiT",
+        "bot_item_TGgka9"
+      ],
+      "name": "Motion Feature",
+      "settings": {
+        "heading": "",
+        "bg_color": "#ffffff",
+        "row_gap": 8,
+        "top_gap": 8,
+        "item_radius": 6,
+        "top_aspect_ratio": "3 / 4",
+        "carousel_speed": 30,
+        "carousel_item_width": 300,
+        "carousel_aspect_ratio": "1 / 1",
+        "carousel_gap": 8,
+        "padding_top_desktop": 8,
+        "padding_bottom_desktop": 0,
+        "padding_top_mobile": 8,
+        "padding_bottom_mobile": 0
+      }
+    },
     "turnpup_marquee_9XfUfG": {
       "type": "turnpup-marquee",
       "blocks": {
@@ -889,6 +1024,7 @@
         "logo_wy9wDg",
         "logo_tyHLtk"
       ],
+      "disabled": true,
       "custom_css": [
         ".flwr-pr-marquee-container {border-bottom: none; border-top: none;}"
       ],
@@ -2241,22 +2377,6 @@
         "turnpup_top_border_color": "rgba(0,0,0,0)",
         "turnpup_bottom_border_color": "rgba(0,0,0,0)"
       }
-    },
-    "1770080626182e75e8": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_medals_33pX84": {
-          "type": "shopify://apps/judge-me-reviews/blocks/medals/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_medals_33pX84"
-      ],
-      "disabled": true,
-      "settings": {
-        "include_margins": true
-      }
     }
   },
   "order": [
@@ -2267,14 +2387,15 @@
     "tp_article_carousel_tUtyD6",
     "temp_product_highlight_CXtT6X",
     "turnpup_keyword_cats_JBhy3a",
+    "tp_motion_feature_PJPMQg",
     "turnpup_marquee_9XfUfG",
     "turnpup_cat_cells_e4UbRR",
     "at_scrolling_66baeL",
-    "turnpup_prod_carousel_bqLw89",
     "turnpup_multicolumn_DKf67w",
     "16516195897b496f4a",
-    "tp_article_carousel_QCQJ8h",
+    "turnpup_prod_carousel_bqLw89",
     "a032cb44-914b-4040-a3fb-26c1afaab22a",
+    "tp_article_carousel_QCQJ8h",
     "tp_article_carousel_9D4EcP",
     "tp_article_carousel_3zAebT",
     "tp_article_carousel_PX9FTh",
@@ -2283,7 +2404,6 @@
     "turnpup_multicolumn_eLrkcN",
     "tp_shop_the_look_bk6TxL",
     "turnpup_content_8jhGYD",
-    "tp_seo_footer_DKVaJt",
-    "1770080626182e75e8"
+    "tp_seo_footer_DKVaJt"
   ]
 }
