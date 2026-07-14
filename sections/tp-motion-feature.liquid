@@ -45,14 +45,6 @@
     border-radius: {{ section.settings.item_radius }}px;
   }
 
-  @media screen and (max-width: 749px) {
-    #MotionFeature-{{ section.id }} .mf-track--mid .mf-item {
-      width: auto;
-    }
-    #MotionFeature-{{ section.id }} .mf-track--bot .mf-item {
-      width: 28vw;
-    }
-  }
 {% endstyle %}
 
 <section
@@ -118,7 +110,7 @@
       <div class="mf-track__inner mf-track__inner--forward">
         {%- for i in (1..2) -%}
           {%- for block in mid_blocks -%}
-            <div class="mf-item{% if i == 2 %} mf-item--clone{% endif %}"{% if i == 1 %} {{ block.shopify_attributes }}{% endif %}>
+            <div class="mf-item"{% if i == 1 %} {{ block.shopify_attributes }}{% endif %}>
               {%- if block.settings.image != blank -%}
                 {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" tabindex="-1" aria-hidden="true">{%- endif -%}
                 {{ block.settings.image | image_url: width: 600
@@ -146,7 +138,7 @@
       <div class="mf-track__inner mf-track__inner--reverse">
         {%- for i in (1..2) -%}
           {%- for block in bot_blocks -%}
-            <div class="mf-item{% if i == 2 %} mf-item--clone{% endif %}"{% if i == 1 %} {{ block.shopify_attributes }}{% endif %}>
+            <div class="mf-item"{% if i == 1 %} {{ block.shopify_attributes }}{% endif %}>
               {%- if block.settings.image != blank -%}
                 {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" tabindex="-1" aria-hidden="true">{%- endif -%}
                 {{ block.settings.image | image_url: width: 600
@@ -321,61 +313,12 @@
 
   /* ── Mobile ────────────────────────────────────────── */
   @media screen and (max-width: 749px) {
-    /* Top: centre panel only, full width */
     .mf-top {
       grid-template-columns: 1fr;
     }
 
     .mf-top__item:not(.mf-top__item--center) {
       display: none;
-    }
-
-    /* Hide all cloned (duplicated) carousel items */
-    .mf-item--clone {
-      display: none;
-    }
-
-    /* Middle: static 3-column grid */
-    .mf-track--mid {
-      display: block;
-      overflow: visible;
-    }
-
-    .mf-track--mid .mf-track__inner {
-      animation: none;
-      transform: none;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      width: 100%;
-    }
-
-    .mf-track--mid .mf-item {
-      aspect-ratio: 1 / 1;
-    }
-
-    /* Bottom: swipeable peek carousel */
-    .mf-track--bot {
-      display: block;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-    }
-
-    .mf-track--bot::-webkit-scrollbar {
-      display: none;
-    }
-
-    .mf-track--bot .mf-track__inner {
-      animation: none;
-      transform: none;
-      display: flex;
-      width: max-content;
-    }
-
-    .mf-track--bot .mf-item {
-      scroll-snap-align: start;
-      aspect-ratio: 3 / 4;
     }
   }
 {% endstylesheet %}
