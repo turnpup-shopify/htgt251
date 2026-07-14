@@ -1,4 +1,4 @@
-{%- liquid
+{%- liquid 
   comment
     Picks a calculator block by matching the article metafield custom.calculator_type
     against each block's Calculator key. No match means the section does not render.
@@ -466,7 +466,7 @@
         return;
       }
 
-      const multiplier = Number(this.dataset.multiplier) || 1;
+      const multiplier = (Number(this.dataset.multiplier) || 100) / 100;
       const low = this.#round(value * multiplier + (Number(this.dataset.offsetMin) || 0));
       const high = this.#round(value * multiplier + (Number(this.dataset.offsetMax) || 0));
       const answer = low === high ? `${low}` : `${low} to ${high}`;
@@ -498,8 +498,7 @@
       "type": "text",
       "id": "fallback_key",
       "label": "Fallback calculator key",
-      "info": "Used only when an article has no Calculator type set. Leave blank to hide the section on those articles.",
-      "default": ""
+      "info": "Used only when an article has no Calculator type set. Leave blank to hide the section on those articles."
     },
     {
       "type": "header",
@@ -551,8 +550,7 @@
       "type": "text",
       "id": "heading_font_family",
       "label": "Font family",
-      "info": "Leave blank to inherit the theme font. Or enter a stack such as Georgia, serif.",
-      "default": ""
+      "info": "Leave blank to inherit the theme font. Or enter a stack such as Georgia, serif."
     },
     {
       "type": "range",
@@ -590,8 +588,7 @@
     {
       "type": "text",
       "id": "body_font_family",
-      "label": "Font family",
-      "default": ""
+      "label": "Font family"
     },
     {
       "type": "range",
@@ -629,8 +626,7 @@
     {
       "type": "text",
       "id": "result_font_family",
-      "label": "Font family",
-      "default": ""
+      "label": "Font family"
     },
     {
       "type": "range",
@@ -819,10 +815,10 @@
         {
           "type": "number",
           "id": "multiplier",
-          "label": "Multiplier",
+          "label": "Multiplier (1–100)",
           "visible_if": "{{ block.settings.calc_mode == 'formula' }}",
-          "info": "0.33 for the one third pull rule. 1 to start from the input itself.",
-          "default": 0.33
+          "info": "Enter a whole number 1–100. 33 = one-third rule, 100 = use the input as-is.",
+          "default": 33
         },
         {
           "type": "number",
@@ -927,7 +923,7 @@
             "input_label": "Drawer width in inches",
             "input_placeholder": "24",
             "calc_mode": "formula",
-            "multiplier": 0.33,
+            "multiplier": 33,
             "offset_min": 0,
             "offset_max": 1,
             "round_to": "1",
@@ -948,7 +944,7 @@
             "input_label": "Vanity width in inches",
             "input_placeholder": "36",
             "calc_mode": "formula",
-            "multiplier": 1,
+            "multiplier": 100,
             "offset_min": -6,
             "offset_max": -4,
             "round_to": "1",
