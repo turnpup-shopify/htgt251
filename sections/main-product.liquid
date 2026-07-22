@@ -40,6 +40,16 @@
           <a class="skip-to-content-link button visually-hidden quick-add-hidden" href="#ProductInfo-{{ section.id }}">
             {{ "accessibility.skip_to_product_info" | t }}
           </a>
+          {%- if section.settings.discount_banner_text != blank -%}
+            {%- render 'pdp-discount-banner',
+              banner_text: section.settings.discount_banner_text,
+              bg_color: section.settings.discount_banner_bg_color,
+              text_color: section.settings.discount_banner_text_color,
+              font_size_desktop: section.settings.discount_banner_font_size_desktop,
+              font_size_mobile: section.settings.discount_banner_font_size_mobile,
+              section_id: section.id
+            -%}
+          {%- endif -%}
           <ul id="Slider-Gallery-{{ section.id }}" class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile" role="list">
             {%- liquid
               assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src'
@@ -1205,6 +1215,48 @@
       "unit": "px",
       "label": "Mobile Padding Bottom",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Discount Banner"
+    },
+    {
+      "type": "text",
+      "id": "discount_banner_text",
+      "label": "Discount message",
+      "info": "Leave empty to hide the banner entirely"
+    },
+    {
+      "type": "color",
+      "id": "discount_banner_bg_color",
+      "label": "Banner background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "discount_banner_text_color",
+      "label": "Banner text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "discount_banner_font_size_desktop",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size — desktop",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "discount_banner_font_size_mobile",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size — mobile",
+      "default": 13
     }
   ]
 }

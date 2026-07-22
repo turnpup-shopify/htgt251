@@ -1,0 +1,88 @@
+{% comment %}
+  Renders an animated discount banner overlaid on the PDP main image.
+  Expands left-to-right, then types the message one character at a time.
+
+  Accepts:
+  - banner_text: {String} Discount message
+  - bg_color: {Color} Banner background color
+  - text_color: {Color} Banner text color
+  - font_size_desktop: {Number} Font size in px for desktop (≥750px)
+  - font_size_mobile: {Number} Font size in px for mobile
+  - section_id: {String} Section ID for scoping styles and JS
+{% endcomment %}
+
+<div
+  class="pdp-discount-banner"
+  id="PdpDiscountBanner-{{ section_id }}"
+  data-text="{{ banner_text | escape }}"
+  role="status"
+  aria-label="{{ banner_text | escape }}"
+>
+  <span class="pdp-discount-banner__text" aria-hidden="true"></span>
+</div>
+
+<style>
+  #GalleryViewer-{{ section_id }} {
+    position: relative;
+  }
+
+  .pdp-discount-banner {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    z-index: 10;
+    width: 0;
+    overflow: hidden;
+    background-color: {{ bg_color }};
+    white-space: nowrap;
+    pointer-events: none;
+    animation: pdpBannerExpand 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .pdp-discount-banner__text {
+    display: block;
+    padding: 7px 14px;
+    color: {{ text_color }};
+    font-size: {{ font_size_mobile }}px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    min-height: 1em;
+  }
+
+  @media screen and (min-width: 750px) {
+    .pdp-discount-banner__text {
+      font-size: {{ font_size_desktop }}px;
+    }
+  }
+
+  @keyframes pdpBannerExpand {
+    from { width: 0; }
+    to   { width: 100%; }
+  }
+</style>
+
+<script>
+  (function () {
+    var banner = document.getElementById('PdpDiscountBanner-{{ section_id }}');
+    if (!banner) return;
+
+    var textEl  = banner.querySelector('.pdp-discount-banner__text');
+    var message = banner.dataset.text || '';
+    var delay   = 45; // ms between characters
+
+    function typeMessage() {
+      var i = 0;
+      function next() {
+        if (i < message.length) {
+          textEl.textContent += message.charAt(i);
+          i++;
+          setTimeout(next, delay);
+        }
+      }
+      next();
+    }
+
+    banner.addEventListener('animationend', typeMessage, { once: true });
+  })();
+</script>
