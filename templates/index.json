@@ -865,7 +865,7 @@
             "mobile_image": "shopify://shop_images/marble-cb-straight-on-lifestyle-green.png",
             "title": "",
             "subtext": "",
-            "link": "",
+            "link": "shopify://products/marble-cone-knob",
             "overlay_color": "#000000",
             "overlay_opacity": 0,
             "text_color": "#ffffff"
