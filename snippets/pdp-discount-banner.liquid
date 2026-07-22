@@ -1,14 +1,15 @@
 {% comment %}
-  Renders an animated discount banner overlaid on the PDP main image.
+  Renders an animated discount banner above the PDP product carousel.
   Expands left-to-right, then types the message one character at a time.
+  Text wrapped in [BRACKETS] is bolded and gets an inline copy-to-clipboard button.
 
   Accepts:
-  - banner_text: {String} Discount message
+  - banner_text: {String} Discount message — wrap promo code like [SAVE20]
   - bg_color: {Color} Banner background color
   - text_color: {Color} Banner text color
   - font_size_desktop: {Number} Font size in px for desktop (≥750px)
   - font_size_mobile: {Number} Font size in px for mobile
-  - section_id: {String} Section ID for scoping styles and JS
+  - section_id: {String} Section ID for scoping JS
 {% endcomment %}
 
 <div
@@ -22,20 +23,12 @@
 </div>
 
 <style>
-  #GalleryViewer-{{ section_id }} {
-    position: relative;
-  }
-
   .pdp-discount-banner {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    z-index: 10;
+    display: block;
     width: 0;
     overflow: hidden;
     background-color: {{ bg_color }};
     white-space: nowrap;
-    pointer-events: none;
     animation: pdpBannerExpand 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
@@ -56,6 +49,66 @@
     }
   }
 
+  .pdp-discount-banner__code {
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .pdp-discount-banner__copy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin-left: 7px;
+    padding: 2px 6px;
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    color: inherit;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: opacity 0.15s;
+    line-height: 1;
+  }
+
+  .pdp-discount-banner__copy:hover {
+    opacity: 1;
+  }
+
+  .pdp-discount-banner__copy svg {
+    width: 11px;
+    height: 11px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .pdp-banner-toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    background: rgba(20, 20, 20, 0.88);
+    color: #fff;
+    padding: 9px 18px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .pdp-banner-toast--visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
   @keyframes pdpBannerExpand {
     from { width: 0; }
     to   { width: 100%; }
@@ -69,18 +122,118 @@
 
     var textEl  = banner.querySelector('.pdp-discount-banner__text');
     var message = banner.dataset.text || '';
-    var delay   = 45; // ms between characters
+    var delay   = 45; // ms per character
 
-    function typeMessage() {
+    // Detect optional [PROMOCODE] in the message
+    var match = message.match(/^([\s\S]*?)\[([^\]]+)\]([\s\S]*)$/);
+
+    /* ── typewriter ─────────────────────────────────────────────── */
+    function typeChars(str, el, done) {
       var i = 0;
-      function next() {
-        if (i < message.length) {
-          textEl.textContent += message.charAt(i);
-          i++;
+      (function next() {
+        if (i < str.length) {
+          el.appendChild(document.createTextNode(str.charAt(i++)));
           setTimeout(next, delay);
+        } else {
+          done();
         }
+      })();
+    }
+
+    /* ── toast ──────────────────────────────────────────────────── */
+    function showToast(msg) {
+      var toast = document.createElement('div');
+      toast.className = 'pdp-banner-toast';
+      toast.textContent = msg;
+      document.body.appendChild(toast);
+      // double rAF to ensure transition fires
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          toast.classList.add('pdp-banner-toast--visible');
+        });
+      });
+      setTimeout(function () {
+        toast.classList.remove('pdp-banner-toast--visible');
+        setTimeout(function () { toast.remove(); }, 300);
+      }, 2200);
+    }
+
+    /* ── copy ───────────────────────────────────────────────────── */
+    function copyCode(code) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code)
+          .then(function () { showToast('Copied!'); })
+          .catch(function () { fallbackCopy(code); });
+      } else {
+        fallbackCopy(code);
       }
-      next();
+    }
+
+    function fallbackCopy(code) {
+      var ta = document.createElement('textarea');
+      ta.value = code;
+      ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('Copied!');
+      } catch (e) {
+        showToast('Press Ctrl+C to copy');
+      }
+      document.body.removeChild(ta);
+    }
+
+    /* ── copy button ────────────────────────────────────────────── */
+    function makeCopyButton(code) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'pdp-discount-banner__copy';
+      btn.setAttribute('aria-label', 'Copy promo code ' + code);
+      // clipboard icon (two overlapping rectangles)
+      btn.innerHTML =
+        '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+          '<rect x="9" y="9" width="13" height="13" rx="2"/>' +
+          '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>' +
+        '</svg>';
+      btn.addEventListener('click', function () { copyCode(code); });
+      return btn;
+    }
+
+    /* ── sequenced typing ───────────────────────────────────────── */
+    function typeMessage() {
+      if (!match) {
+        // No promo code — plain typewriter
+        typeChars(message, textEl, function () {});
+        return;
+      }
+
+      var before = match[1];
+      var code   = match[2];
+      var after  = match[3];
+
+      // 1. Type pre-code text into a span
+      var preSpan = document.createElement('span');
+      textEl.appendChild(preSpan);
+
+      typeChars(before, preSpan, function () {
+
+        // 2. Type code into <strong>
+        var strong = document.createElement('strong');
+        strong.className = 'pdp-discount-banner__code';
+        textEl.appendChild(strong);
+
+        typeChars(code, strong, function () {
+
+          // 3. Inject copy button
+          textEl.appendChild(makeCopyButton(code));
+
+          // 4. Type remaining text into a span
+          var postSpan = document.createElement('span');
+          textEl.appendChild(postSpan);
+          typeChars(after, postSpan, function () {});
+        });
+      });
     }
 
     banner.addEventListener('animationend', typeMessage, { once: true });

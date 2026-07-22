@@ -263,20 +263,20 @@
         data-initial-variant="{{ product.selected_or_first_available_variant.id }}"
       >
         <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
+        {%- if section.settings.discount_banner_text != blank -%}
+          {%- render 'pdp-discount-banner',
+            banner_text: section.settings.discount_banner_text,
+            bg_color: section.settings.discount_banner_bg_color,
+            text_color: section.settings.discount_banner_text_color,
+            font_size_desktop: section.settings.discount_banner_font_size_desktop,
+            font_size_mobile: section.settings.discount_banner_font_size_mobile,
+            section_id: section.id
+          -%}
+        {%- endif -%}
         <slider-component id="GalleryViewer-{{ section.id }}" class="slider-mobile-gutter">
           <a class="skip-to-content-link button visually-hidden quick-add-hidden" href="#ProductInfo-{{ section.id }}">
             {{ 'accessibility.skip_to_product_info' | t }}
           </a>
-          {%- if section.settings.discount_banner_text != blank -%}
-            {%- render 'pdp-discount-banner',
-              banner_text: section.settings.discount_banner_text,
-              bg_color: section.settings.discount_banner_bg_color,
-              text_color: section.settings.discount_banner_text_color,
-              font_size_desktop: section.settings.discount_banner_font_size_desktop,
-              font_size_mobile: section.settings.discount_banner_font_size_mobile,
-              section_id: section.id
-            -%}
-          {%- endif -%}
           <ul
             id="Slider-Gallery-{{ section.id }}"
             class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile"
