@@ -852,7 +852,7 @@
             "image": "shopify://shop_images/white-wavy-mirror-bedroom_e6971e8e-00f8-4674-a080-4ee66e91a5d4.jpg",
             "title": "",
             "subtext": "",
-            "link": "",
+            "link": "shopify://products/white-wavy-mirror",
             "overlay_color": "#000000",
             "overlay_opacity": 0,
             "text_color": "#ffffff"
@@ -877,7 +877,7 @@
             "image": "shopify://shop_images/50170-114484-10.jpg",
             "title": "",
             "subtext": "",
-            "link": "",
+            "link": "shopify://products/camerlin-coffee-table-2-cartons",
             "overlay_color": "#000000",
             "overlay_opacity": 0,
             "text_color": "#ffffff"
@@ -904,7 +904,7 @@
           "settings": {
             "image": "shopify://shop_images/50329-365176-5.jpg",
             "title": "",
-            "link": ""
+            "link": "shopify://collections/coffee-tables-round"
           }
         },
         "mid_item_9WHmn6": {
@@ -912,7 +912,7 @@
           "settings": {
             "image": "shopify://shop_images/accent-table-glass-antique-brass-4.jpg",
             "title": "",
-            "link": ""
+            "link": "shopify://collections/concrete-table-lamps"
           }
         },
         "bot_item_Xif9E8": {
