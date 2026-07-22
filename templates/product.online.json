@@ -12,14 +12,6 @@
     "main": {
       "type": "main-product-alt",
       "blocks": {
-        "vendor": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
-          }
-        },
         "breadcrumb_yfxxfH": {
           "type": "breadcrumb",
           "settings": {}
@@ -33,11 +25,6 @@
           "settings": {
             "review_count": 4
           }
-        },
-        "judge_me_reviews_preview_badge_rGQ9HX": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
-          "settings": {}
         },
         "price": {
           "type": "price",
@@ -55,41 +42,11 @@
             "fallback_date": ""
           }
         },
-        "countdown_hyqeK8": {
-          "type": "countdown",
-          "disabled": true,
-          "settings": {}
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
             "picker_type": "button"
           }
-        },
-        "caption": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "{{ product.metafields.descriptors.subtitle.value }}",
-            "text_style": "subtitle"
-          }
-        },
-        "description": {
-          "type": "description",
-          "disabled": true,
-          "settings": {}
-        },
-        "6e3cb80f-7395-4806-8a51-8eb62abc629e": {
-          "type": "custom_item_number",
-          "disabled": true,
-          "settings": {
-            "show_custom_item_number": true
-          }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "disabled": true,
-          "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
@@ -114,13 +71,6 @@
             "modal_text_color": "#ffffff",
             "modal_button_bg_color": "",
             "modal_button_text_color": ""
-          }
-        },
-        "trust_text_aFQgxV": {
-          "type": "trust_text",
-          "disabled": true,
-          "settings": {
-            "text": "30-day returns. Free US shipping."
           }
         },
         "trust_badges_yUK4rP": {
@@ -152,17 +102,6 @@
             "delivery_font_size": 13
           }
         },
-        "collapsible_tab_QV88KF": {
-          "type": "collapsible_tab",
-          "disabled": true,
-          "settings": {
-            "heading": "Offers",
-            "default_open": true,
-            "icon": "none",
-            "content": "{{ product.metafields.custom.offers | metafield_tag }}",
-            "page": ""
-          }
-        },
         "collapsible_tab_DAkg6R": {
           "type": "collapsible_tab",
           "settings": {
@@ -180,17 +119,6 @@
             "default_open": true,
             "icon": "none",
             "content": "<p>Same day order processing! Free nationwide shipping. 90% of items ship out within 3-5 business days. Bulky items,  heavy items, mirrors, art, etc ship out through courier freight with lift gates and may take a little longer. </p>",
-            "page": ""
-          }
-        },
-        "collapsible-row-2": {
-          "type": "collapsible_tab",
-          "disabled": true,
-          "settings": {
-            "heading": "Dimensions",
-            "default_open": true,
-            "icon": "none",
-            "content": "<p>{{ product.metafields.pdp.dimensions | metafield_tag }}</p>",
             "page": ""
           }
         },
@@ -231,45 +159,27 @@
             "page": ""
           }
         },
-        "share": {
-          "type": "share",
-          "disabled": true,
-          "settings": {
-            "share_label": "Share"
-          }
-        },
         "upsell_yJXGBT": {
           "type": "upsell",
           "settings": {}
         }
       },
       "block_order": [
-        "vendor",
         "breadcrumb_yfxxfH",
         "title",
         "mock_reviews_link_ACaAeW",
-        "judge_me_reviews_preview_badge_rGQ9HX",
         "price",
         "back_in_stock_kRphzB",
-        "countdown_hyqeK8",
         "variant_picker",
-        "caption",
-        "description",
-        "6e3cb80f-7395-4806-8a51-8eb62abc629e",
-        "quantity_selector",
         "buy_buttons",
         "notify_me_XXLHwE",
-        "trust_text_aFQgxV",
         "trust_badges_yUK4rP",
-        "collapsible_tab_QV88KF",
         "collapsible_tab_DAkg6R",
         "collapsible-row-1",
-        "collapsible-row-2",
         "dimensions_q4tmAx",
         "collapsible-row-0",
         "collapsible-row-3",
         "collapsible_tab_HMYJVH",
-        "share",
         "upsell_yJXGBT"
       ],
       "custom_css": [
