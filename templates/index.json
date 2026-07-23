@@ -919,7 +919,7 @@
           "type": "mid_item",
           "settings": {
             "image": "shopify://shop_images/cloud-ulpb-lifestyle.jpg",
-            "title": "",
+            "title": "Cloud Cabinet Pull",
             "link": "shopify://products/cloud-pull"
           }
         },
@@ -1404,6 +1404,17 @@
     "turnpup_prod_carousel_bqLw89": {
       "type": "turnpup-prod-carousel",
       "blocks": {
+        "carousel_block_m9iN3j": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/htgt-ugc-stool-lizmearns_f3f85f47-8bc3-4a69-a91f-fac907343fdb.jpg",
+            "cell_url": "shopify://products/wood-entryway-stool"
+          }
+        },
         "carousel_block_YVEGKG": {
           "type": "carousel_block",
           "settings": {
@@ -1494,6 +1505,7 @@
         }
       },
       "block_order": [
+        "carousel_block_m9iN3j",
         "carousel_block_YVEGKG",
         "carousel_block_U9EMyB",
         "carousel_block_XhJcxn",
