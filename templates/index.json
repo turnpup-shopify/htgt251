@@ -915,6 +915,14 @@
             "link": "shopify://collections/concrete-table-lamps"
           }
         },
+        "mid_item_XecHpy": {
+          "type": "mid_item",
+          "settings": {
+            "image": "shopify://shop_images/cloud-ulpb-lifestyle.jpg",
+            "title": "",
+            "link": "shopify://products/cloud-pull"
+          }
+        },
         "bot_item_Xif9E8": {
           "type": "bot_item",
           "settings": {
@@ -956,6 +964,7 @@
         "mid_item_PTgyXA",
         "mid_item_R94xMC",
         "mid_item_9WHmn6",
+        "mid_item_XecHpy",
         "bot_item_Xif9E8",
         "bot_item_NVcGbV",
         "bot_item_cbQiiT",
