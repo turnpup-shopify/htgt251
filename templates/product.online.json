@@ -199,7 +199,7 @@
         "padding_bottom": 20,
         "mobile_padding_top": 0,
         "mobile_padding_bottom": 0,
-        "discount_banner_text": "$100 off 2+ More Stools with code 100OFF2STOOLS",
+        "discount_banner_text": "{{ product.metafields.custom.item_discount_messaging.value }}",
         "discount_banner_bg_color": "#000000",
         "discount_banner_text_color": "#ffffff",
         "discount_banner_font_size_desktop": 16,
