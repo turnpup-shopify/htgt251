@@ -30,7 +30,8 @@
   endif
 -%}
 
-{%- if product.vendor != 'Uttermost' and product.vendor != 'Hapny Home' and product.vendor != 'Inspire Hardware' and product.vendor != 'Forge Hardware Studio' and product.vendor != 'Wooj Design' %}
+{%- assign _vendor = product.vendor | strip | downcase -%}
+{%- if _vendor != 'uttermost' and _vendor != 'hapny home' and _vendor != 'inspire hardware' and _vendor != 'forge hardware studio' and _vendor != 'wooj design' %}
   <div class="price">
     <div class="price__container">
       <div class="price__regular" style="font-size: 14px !important;">
