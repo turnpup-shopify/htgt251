@@ -24,12 +24,21 @@
 
 <style>
   .pdp-discount-banner {
+    --banner-full-width: 100%;
     display: block;
     width: 0;
     overflow: hidden;
     background-color: {{ bg_color }};
     white-space: nowrap;
     animation: pdpBannerExpand 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @media screen and (max-width: 749px) {
+    .pdp-discount-banner {
+      --banner-full-width: calc(100% + 3rem);
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+    }
   }
 
   .pdp-discount-banner__text {
@@ -111,7 +120,7 @@
 
   @keyframes pdpBannerExpand {
     from { width: 0; }
-    to   { width: 100%; }
+    to   { width: var(--banner-full-width); }
   }
 </style>
 
