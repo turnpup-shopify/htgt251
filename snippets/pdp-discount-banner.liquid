@@ -63,6 +63,12 @@
     letter-spacing: 0.06em;
   }
 
+  .pdp-discount-banner__timer {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
   .pdp-discount-banner__copy {
     display: inline-flex;
     align-items: center;
@@ -209,11 +215,39 @@
       return btn;
     }
 
+    /* ── end-of-day countdown ──────────────────────────────────── */
+    function startEndOfDayTimer() {
+      textEl.appendChild(document.createTextNode('\u00a0\u00b7\u00a0'));
+
+      var timerEl = document.createElement('span');
+      timerEl.className = 'pdp-discount-banner__timer';
+      textEl.appendChild(timerEl);
+
+      function tick() {
+        var now = Date.now();
+        var eod = new Date();
+        eod.setHours(23, 59, 59, 999);
+        var diff = Math.max(0, eod.getTime() - now);
+        var h = Math.floor(diff / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        timerEl.textContent =
+          (h < 10 ? '0' : '') + h + ':' +
+          (m < 10 ? '0' : '') + m + ':' +
+          (s < 10 ? '0' : '') + s;
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    }
+
     /* ── sequenced typing ───────────────────────────────────────── */
     function typeMessage() {
       if (!match) {
         // No promo code — plain typewriter
-        typeChars(message, textEl, function () {});
+        typeChars(message, textEl, function () {
+          startEndOfDayTimer();
+        });
         return;
       }
 
@@ -240,7 +274,9 @@
           // 4. Type remaining text into a span
           var postSpan = document.createElement('span');
           textEl.appendChild(postSpan);
-          typeChars(after, postSpan, function () {});
+          typeChars(after, postSpan, function () {
+            startEndOfDayTimer();
+          });
         });
       });
     }
