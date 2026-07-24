@@ -823,6 +823,10 @@ body.tp-slide-cart-open {
   text-align: right;
 }
 /* Product Page / PDP */
+.product__title {
+  margin: 0px !important;
+}
+
 .product-alt-container .price span, .product-alt-container .price--on-sale .price-item--regular {
   font-size: 18px !important;
   font-weight: 700;

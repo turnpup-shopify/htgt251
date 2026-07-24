@@ -31,7 +31,11 @@
 -%}
 
 {%- assign _vendor = product.vendor | strip | downcase -%}
-{%- if _vendor != 'uttermost' and _vendor != 'hapny home' and _vendor != 'inspire hardware' and _vendor != 'forge hardware studio' and _vendor != 'wooj design' %}
+{%- assign _price_excluded = false -%}
+{%- if _vendor == 'uttermost' or _vendor == 'hapny home' or _vendor == 'inspire hardware' or _vendor == 'forge hardware studio' or product.tags contains 'Wooj Design' -%}
+  {%- assign _price_excluded = true -%}
+{%- endif -%}
+{%- if _price_excluded == false %}
   <div class="price">
     <div class="price__container">
       <div class="price__regular" style="font-size: 14px !important;">
