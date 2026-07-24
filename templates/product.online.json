@@ -510,6 +510,36 @@
         "metaobject_quiz_ref": "accent-table-finder"
       }
     },
+    "tp_image_rows_HL9zJE": {
+      "type": "tp-image-rows",
+      "name": "TP Image Rows",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_right": 0,
+        "padding_left": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_padding_right": 0,
+        "mobile_padding_left": 0,
+        "image_gallery": "{{ product.metafields.custom.tp_image_rows.value }}",
+        "image_gallery_header": "",
+        "open_close_button": "",
+        "open_close_button_color": "",
+        "image_grid_header": "",
+        "keyword_to_remove": "",
+        "header_font_family": "'p22-mackinac-pro', serif;",
+        "header_font_size": "30px",
+        "header_font_weight": "400",
+        "header_font_color": "#3c64b1",
+        "image_grid_subheader": "",
+        "subheader_font_family": "'p22-mackinac-pro', serif;",
+        "subheader_font_size": "30px",
+        "subheader_font_weight": "400",
+        "subheader_font_color": "#3c64b1",
+        "header_alignment": "center"
+      }
+    },
     "featured_row_j4Ri8j": {
       "type": "featured-row",
       "custom_css": [],
@@ -957,36 +987,6 @@
         "button_text_family": ""
       }
     },
-    "tp_image_rows_HL9zJE": {
-      "type": "tp-image-rows",
-      "name": "TP Image Rows",
-      "settings": {
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_right": 0,
-        "padding_left": 0,
-        "mobile_padding_top": 0,
-        "mobile_padding_bottom": 0,
-        "mobile_padding_right": 0,
-        "mobile_padding_left": 0,
-        "image_gallery": "{{ product.metafields.custom.tp_image_rows.value }}",
-        "image_gallery_header": "",
-        "open_close_button": "",
-        "open_close_button_color": "",
-        "image_grid_header": "",
-        "keyword_to_remove": "",
-        "header_font_family": "'p22-mackinac-pro', serif;",
-        "header_font_size": "30px",
-        "header_font_weight": "400",
-        "header_font_color": "#3c64b1",
-        "image_grid_subheader": "",
-        "subheader_font_family": "'p22-mackinac-pro', serif;",
-        "subheader_font_size": "30px",
-        "subheader_font_weight": "400",
-        "subheader_font_color": "#3c64b1",
-        "header_alignment": "center"
-      }
-    },
     "turnpup_multicolumn_JxhK7g": {
       "type": "turnpup-multicolumn",
       "blocks": {
@@ -1404,6 +1404,7 @@
     "main",
     "turnpup_marquee_DGNi7J",
     "tp_trust_bar_fGyp7m",
+    "tp_image_rows_HL9zJE",
     "tp_questions_tYPppc",
     "tp_quiz_LYAkfE",
     "featured_row_j4Ri8j",
@@ -1413,7 +1414,6 @@
     "174329153483acb687",
     "flwr_one_long_sentence_Hz8tCw",
     "tp_auto_col_banners_tb99zR",
-    "tp_image_rows_HL9zJE",
     "turnpup_multicolumn_JxhK7g",
     "tp_article_carousel_V6LRPf",
     "tp_pdp_products_in_collection_K8bNmF",
