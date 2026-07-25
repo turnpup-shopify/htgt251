@@ -2016,6 +2016,29 @@
     ]
   },
   {
+    "name": "2026 Styling",
+    "settings": [
+      {
+        "type": "header",
+        "content": "PDP Elevated Card"
+      },
+      {
+        "type": "color",
+        "id": "pdp_card_accent_color",
+        "label": "Accent Color",
+        "default": "#b5572a",
+        "info": "Used for the Add to Cart button background and badge icons"
+      },
+      {
+        "type": "text",
+        "id": "pdp_card_cta_font",
+        "label": "CTA Button Font Family",
+        "default": "Fraunces, Georgia, serif",
+        "info": "CSS font-family value for the Add to Cart button. Include fallbacks (e.g. 'Fraunces, Georgia, serif')."
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.currency_format.name",
     "settings": [
       {

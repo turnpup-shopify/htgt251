@@ -979,110 +979,255 @@
                 </a>
               {% endif %}
             {%- when 'buy_buttons' -%}
-              <div {{ block.shopify_attributes }}>
-                <product-form class="product-form">
-                  <div class="product-form__error-message-wrapper" role="alert" hidden>
-                    <svg
-                      aria-hidden="true"
-                      focusable="false"
-                      role="presentation"
-                      class="icon icon-error"
-                      viewBox="0 0 13 13"
-                    >
-                      <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
-                      <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
-                      <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
-                      <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
-                    </svg>
-                    <span class="product-form__error-message"></span>
-                  </div>
+              {%- assign _accent  = settings.pdp_card_accent_color | default: '#b5572a' -%}
+              {%- assign _ctafont = settings.pdp_card_cta_font | default: 'Fraunces, Georgia, serif' -%}
+              {%- if block.settings.button_bg_color != blank -%}
+                {%- assign _accent = block.settings.button_bg_color -%}
+              {%- endif -%}
+              {%- assign _btncolor = block.settings.button_text_color | default: '#ffffff' -%}
 
-                  {%- form 'product',
-                    product,
-                    id: product_form_id,
-                    class: 'form',
-                    novalidate: 'novalidate',
-                    data-type: 'add-to-cart-form'
-                  -%}
-                    <input
-                      type="hidden"
-                      name="id"
-                      value="{{ product.selected_or_first_available_variant.id }}"
-                      disabled
-                    >
-                    <div class="product-form__buttons{% if block.settings.show_inline_quantity %} product-form__buttons--inline-qty{% endif %}" style="margin-top: 20px;">
-                      {%- if block.settings.show_inline_quantity -%}
-                        <quantity-input class="quantity" style="border: 1px solid black;">
-                          <button class="quantity__button no-js-hidden" name="minus" type="button">
-                            <span class="visually-hidden">
-                              {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
-                            </span>
-                            {% render 'icon-minus' %}
-                          </button>
-                          <input
-                            class="quantity__input"
-                            type="number"
-                            name="quantity"
-                            id="Quantity-{{ section.id }}"
-                            min="1"
-                            value="1"
-                            form="{{ product_form_id }}"
-                          >
-                          <button class="quantity__button no-js-hidden" name="plus" type="button">
-                            <span class="visually-hidden">
-                              {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
-                            </span>
-                            {% render 'icon-plus' %}
-                          </button>
-                        </quantity-input>
-                      {%- endif -%}
-                      <button
-                        type="submit"
-                        name="add"
-                        style="margin: 0px 0px 0px 10px; {% if block.settings.button_bg_color != blank %}background-color: {{ block.settings.button_bg_color }}; border-color: {{ block.settings.button_bg_color }};{% endif %}{% if block.settings.button_text_color != blank %} color: {{ block.settings.button_text_color }};{% endif %}"
-                        class="product-form__submit hapny_button button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
-                        {% if product.selected_or_first_available_variant.available == false %}
-                          disabled
-                        {% endif %}
-                      >
-                        <span>
-                          {%- if product.selected_or_first_available_variant.available -%}
-                            {{ 'products.product.add_to_cart' | t }}
-                          {%- else -%}
-                            {{ 'products.product.sold_out' | t }}
-                          {%- endif -%}
-                        </span>
-                        <div class="loading-overlay__spinner hidden">
-                          <svg
-                            aria-hidden="true"
-                            focusable="false"
-                            role="presentation"
-                            class="spinner"
-                            viewBox="0 0 66 66"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                          </svg>
-                        </div>
-                      </button>
-                      {%- if block.settings.show_dynamic_checkout -%}
-                        {{ form | payment_button }}
-                      {%- endif -%}
+              <link rel="preconnect" href="https://fonts.googleapis.com">
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+              <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Fraunces:wght@300;400;500&display=swap">
+
+              <style>
+                .pdp-atc-card {
+                  --card-accent: {{ _accent }};
+                  --card-cta-font: {{ _ctafont }};
+                  --card-btn-color: {{ _btncolor }};
+                  background: #fff;
+                  border-radius: 24px;
+                  border: 1px solid oklch(0.92 0.008 60);
+                  box-shadow:
+                    0 1px 3px oklch(0.2 0 0 / 0.05),
+                    0 20px 40px oklch(0.2 0 0 / 0.08);
+                  padding: 30px 26px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 22px;
+                }
+                .pdp-atc-card .product-form,
+                .pdp-atc-card .product-form .form { margin: 0; }
+                .pdp-atc-card .product-form__error-message-wrapper { margin-bottom: 0; }
+
+                .pdp-atc-card__actions {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                }
+
+                .pdp-atc-card__stepper {
+                  display: inline-flex;
+                  align-items: center;
+                  border: 1.5px solid oklch(0.9 0.008 60);
+                  border-radius: 100px;
+                  padding: 2px 6px;
+                  flex-shrink: 0;
+                }
+
+                .pdp-atc-card__stepper-btn {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 34px;
+                  height: 34px;
+                  background: transparent;
+                  border: none;
+                  cursor: pointer;
+                  color: oklch(0.3 0.01 60);
+                  padding: 0;
+                  border-radius: 100px;
+                  transition: opacity 0.15s;
+                }
+                .pdp-atc-card__stepper-btn:hover { opacity: 0.55; }
+                .pdp-atc-card__stepper-btn svg { display: block; }
+
+                .pdp-atc-card__stepper-count {
+                  width: 26px;
+                  text-align: center;
+                  border: none;
+                  background: transparent;
+                  font-size: 15px;
+                  font-weight: 600;
+                  color: oklch(0.25 0.01 60);
+                  padding: 0;
+                  line-height: 1;
+                  -moz-appearance: textfield;
+                  appearance: textfield;
+                  font-family: inherit;
+                }
+                .pdp-atc-card__stepper-count::-webkit-inner-spin-button,
+                .pdp-atc-card__stepper-count::-webkit-outer-spin-button {
+                  -webkit-appearance: none;
+                  margin: 0;
+                }
+
+                .pdp-atc-card__btn {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 8px;
+                  flex: 1;
+                  width: 100%;
+                  height: 38px;
+                  background: var(--card-accent);
+                  border: none;
+                  border-radius: 100px;
+                  color: var(--card-btn-color);
+                  font-family: var(--card-cta-font);
+                  font-size: 15px;
+                  font-weight: 500;
+                  letter-spacing: 0.01em;
+                  cursor: pointer;
+                  padding: 0 20px;
+                  transition: opacity 0.15s;
+                }
+                .pdp-atc-card__btn:hover:not([disabled]) { opacity: 0.88; }
+                .pdp-atc-card__btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+
+                .pdp-atc-card__divider {
+                  height: 1px;
+                  background: oklch(0.92 0.008 60);
+                }
+
+                .pdp-atc-card__badges {
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: 20px 14px;
+                }
+
+                .pdp-atc-card__badge {
+                  display: flex;
+                  align-items: flex-start;
+                  gap: 10px;
+                }
+
+                .pdp-atc-card__badge-icon {
+                  width: 20px;
+                  height: 20px;
+                  flex-shrink: 0;
+                  color: var(--card-accent);
+                  margin-top: 1px;
+                }
+
+                .pdp-atc-card__badge span {
+                  font-size: 12px;
+                  font-weight: 500;
+                  color: oklch(0.3 0.01 60);
+                  line-height: 1.4;
+                  font-family: Archivo, sans-serif;
+                }
+              </style>
+
+              <div {{ block.shopify_attributes }}>
+                <div class="pdp-atc-card">
+                  <product-form class="product-form">
+                    <div class="product-form__error-message-wrapper" role="alert" hidden>
+                      <svg aria-hidden="true" focusable="false" class="icon icon-error" viewBox="0 0 13 13">
+                        <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                        <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                      </svg>
+                      <span class="product-form__error-message"></span>
                     </div>
-                  {%- endform -%}
-                </product-form>
+
+                    {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+                      <div class="pdp-atc-card__actions">
+                        {%- if block.settings.show_inline_quantity -%}
+                          <quantity-input class="pdp-atc-card__stepper">
+                            <button type="button" name="minus" class="pdp-atc-card__stepper-btn"
+                              aria-label="{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}">
+                              <svg viewBox="0 0 16 16" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+                                <line x1="3" y1="8" x2="13" y2="8"/>
+                              </svg>
+                            </button>
+                            <input
+                              type="number"
+                              name="quantity"
+                              id="Quantity-{{ section.id }}"
+                              min="1"
+                              value="1"
+                              class="pdp-atc-card__stepper-count"
+                              aria-label="{{ 'products.product.quantity.label' | t }}"
+                              form="{{ product_form_id }}"
+                            >
+                            <button type="button" name="plus" class="pdp-atc-card__stepper-btn"
+                              aria-label="{{ 'products.product.quantity.increase' | t: product: product.title | escape }}">
+                              <svg viewBox="0 0 16 16" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+                                <line x1="8" y1="3" x2="8" y2="13"/>
+                                <line x1="3" y1="8" x2="13" y2="8"/>
+                              </svg>
+                            </button>
+                          </quantity-input>
+                        {%- endif -%}
+                        <button
+                          type="submit"
+                          name="add"
+                          class="pdp-atc-card__btn"
+                          {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+                        >
+                          <span>
+                            {%- if product.selected_or_first_available_variant.available -%}
+                              {{ 'products.product.add_to_cart' | t }}
+                            {%- else -%}
+                              {{ 'products.product.sold_out' | t }}
+                            {%- endif -%}
+                          </span>
+                          <div class="loading-overlay__spinner hidden">
+                            <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                              <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                            </svg>
+                          </div>
+                        </button>
+                        {%- if block.settings.show_dynamic_checkout -%}
+                          {{ form | payment_button }}
+                        {%- endif -%}
+                      </div>
+                    {%- endform -%}
+                  </product-form>
+
+                  <div class="pdp-atc-card__divider" role="separator"></div>
+
+                  <div class="pdp-atc-card__badges">
+                    <div class="pdp-atc-card__badge">
+                      <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                        <line x1="12" y1="22.08" x2="12" y2="12"/>
+                      </svg>
+                      <span>{{- block.settings.badge_1_line1 | default: 'Free shipping' -}}<br>{{- block.settings.badge_1_line2 | default: 'on orders $99+' -}}</span>
+                    </div>
+                    <div class="pdp-atc-card__badge">
+                      <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      </svg>
+                      <span>{{- block.settings.badge_2_line1 | default: 'Easy returns' -}}<br>{{- block.settings.badge_2_line2 | default: '30-day guarantee' -}}</span>
+                    </div>
+                    <div class="pdp-atc-card__badge">
+                      <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
+                        <line x1="16" y1="8" x2="2" y2="22"/>
+                        <line x1="17" y1="15" x2="9" y2="15"/>
+                      </svg>
+                      <span>{{- block.settings.badge_3_line1 | default: 'Eco packaging' -}}<br>{{- block.settings.badge_3_line2 | default: 'sustainably made' -}}</span>
+                    </div>
+                    <div class="pdp-atc-card__badge">
+                      <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                      </svg>
+                      <span>{{- block.settings.badge_4_line1 | default: 'Expert support' -}}<br>{{- block.settings.badge_4_line2 | default: '7 days a week' -}}</span>
+                    </div>
+                  </div>
+                </div>
 
                 {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
 
                 {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities
                   | where: 'pick_up_enabled', true
                 -%}
-
                 <pickup-availability
                   class="product__pickup-availabilities no-js-hidden quick-add-hidden"
-                  {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %}
-                    available
-                  {% endif %}
+                  {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %}available{% endif %}
                   data-root-url="{{ routes.root_url }}"
                   data-variant-id="{{ product.selected_or_first_available_variant.id }}"
                   data-has-only-default-variant="{{ product.has_only_default_variant }}"
@@ -1102,6 +1247,13 @@
               </div>
 
               <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
+            {%- when 'elevated_card' -%}
+              {%- render 'pdp-elevated-card',
+                product: product,
+                product_form_id: product_form_id,
+                section_id: section.id,
+                block: block
+              -%}
             {%- when 'countdown' -%}
               {%- if settings.timer_stat_date != ''
                 and product.selected_or_first_available_variant.compare_at_price > 0
@@ -1816,6 +1968,145 @@
           "type": "color",
           "id": "button_text_color",
           "label": "Button text color"
+        },
+        {
+          "type": "header",
+          "content": "Badge 1 — Shipping"
+        },
+        {
+          "type": "text",
+          "id": "badge_1_line1",
+          "label": "Line 1",
+          "default": "Free shipping"
+        },
+        {
+          "type": "text",
+          "id": "badge_1_line2",
+          "label": "Line 2",
+          "default": "on orders $99+"
+        },
+        {
+          "type": "header",
+          "content": "Badge 2 — Returns"
+        },
+        {
+          "type": "text",
+          "id": "badge_2_line1",
+          "label": "Line 1",
+          "default": "Easy returns"
+        },
+        {
+          "type": "text",
+          "id": "badge_2_line2",
+          "label": "Line 2",
+          "default": "30-day guarantee"
+        },
+        {
+          "type": "header",
+          "content": "Badge 3 — Packaging"
+        },
+        {
+          "type": "text",
+          "id": "badge_3_line1",
+          "label": "Line 1",
+          "default": "Eco packaging"
+        },
+        {
+          "type": "text",
+          "id": "badge_3_line2",
+          "label": "Line 2",
+          "default": "sustainably made"
+        },
+        {
+          "type": "header",
+          "content": "Badge 4 — Support"
+        },
+        {
+          "type": "text",
+          "id": "badge_4_line1",
+          "label": "Line 1",
+          "default": "Expert support"
+        },
+        {
+          "type": "text",
+          "id": "badge_4_line2",
+          "label": "Line 2",
+          "default": "7 days a week"
+        }
+      ]
+    },
+    {
+      "type": "elevated_card",
+      "name": "Elevated Card (2026)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Replaces the Quantity Selector and Buy Buttons blocks — remove those before adding this."
+        },
+        {
+          "type": "header",
+          "content": "Badge 1 — Shipping"
+        },
+        {
+          "type": "text",
+          "id": "badge_1_line1",
+          "label": "Line 1",
+          "default": "Free shipping"
+        },
+        {
+          "type": "text",
+          "id": "badge_1_line2",
+          "label": "Line 2",
+          "default": "on orders $99+"
+        },
+        {
+          "type": "header",
+          "content": "Badge 2 — Returns"
+        },
+        {
+          "type": "text",
+          "id": "badge_2_line1",
+          "label": "Line 1",
+          "default": "Easy returns"
+        },
+        {
+          "type": "text",
+          "id": "badge_2_line2",
+          "label": "Line 2",
+          "default": "30-day guarantee"
+        },
+        {
+          "type": "header",
+          "content": "Badge 3 — Packaging"
+        },
+        {
+          "type": "text",
+          "id": "badge_3_line1",
+          "label": "Line 1",
+          "default": "Eco packaging"
+        },
+        {
+          "type": "text",
+          "id": "badge_3_line2",
+          "label": "Line 2",
+          "default": "sustainably made"
+        },
+        {
+          "type": "header",
+          "content": "Badge 4 — Support"
+        },
+        {
+          "type": "text",
+          "id": "badge_4_line1",
+          "label": "Line 1",
+          "default": "Expert support"
+        },
+        {
+          "type": "text",
+          "id": "badge_4_line2",
+          "label": "Line 2",
+          "default": "7 days a week"
         }
       ]
     },
