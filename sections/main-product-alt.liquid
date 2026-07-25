@@ -980,7 +980,7 @@
                 </a>
               {% endif %}
             {%- when 'buy_buttons' -%}            
-              {%- assign _btncolor =_accent | default: '#ffffff' -%}
+              {%- assign _btncolor = block.settings.button_text_color | default: '#ffffff' -%}
 
               <link rel="preconnect" href="https://fonts.googleapis.com">
               <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
