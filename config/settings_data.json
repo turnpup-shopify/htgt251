@@ -186,6 +186,7 @@
     "badge_image_two": "shopify://shop_images/purple_badge.png",
     "badge_image_three": "shopify://shop_images/blue_badge.png",
     "pdp_card_accent_color": "#8C5F45",
+    "sale_badge_color": "#262214",
     "currency_code_enabled": false,
     "sections": {
       "announcement-bar": {
