@@ -24,35 +24,9 @@
 <noscript>{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}</noscript>
 
 <style>
-  .menu-drawer__menu.has-submenu .menu-drawer__menu.list-menu::before { 
-    content: "";
-    position: absolute;
-    top: 4px;
-    bottom: 4px;
-    left: 45px;
-    width: 2px;
-    background: #888;
-  }
-  .menu-drawer__menu.has-submenu ul .menu-drawer__menu-item, 
-  .menu-drawer__menu.has-submenu ul button,
-  .menu-drawer__menu.has-submenu .menu-drawer__close-button { 
-    margin-left: 35px;
-    font-size: 14px;
-  }
+  /* ── Functional: overflow containment ──────────────────── */
   .menu-drawer__inner-container {
     overflow-x: hidden;
-  }
-  .menu-drawer__close-button {
-    width: auto !important;
-  }
-  .menu-drawer__inner-submenu {
-    overflow-x: hidden !important;
-  }
-  .menu-drawer__menu-item--active, .menu-drawer__menu-item:focus, .menu-drawer__close-button:focus, .menu-drawer__menu-item:hover, .menu-drawer__close-button:hover {
-    background-color: transparent !important;
-  }
-  .no-js details[open]>.menu-drawer, .js details[open].menu-opening>.menu-drawer, details[open].menu-opening>.menu-drawer__submenu {
-    overflow-x: hidden !important;
   }
   .menu-drawer__inner-submenu {
     overflow-x: hidden !important;
@@ -63,10 +37,84 @@
   .menu-drawer__submenu.has-submenu {
     overflow-x: hidden !important;
   }
+  .no-js details[open]>.menu-drawer, .js details[open].menu-opening>.menu-drawer, details[open].menu-opening>.menu-drawer__submenu {
+    overflow-x: hidden !important;
+  }
+
+  /* ── Remove gray hover/active backgrounds ───────────────── */
+  .menu-drawer__menu-item--active, .menu-drawer__menu-item:focus, .menu-drawer__close-button:focus, .menu-drawer__menu-item:hover, .menu-drawer__close-button:hover {
+    background-color: transparent !important;
+  }
+
+  /* ── Remove old vertical bar + 35px indent ──────────────── */
+  .menu-drawer__menu.has-submenu .menu-drawer__menu.list-menu::before {
+    display: none;
+  }
+  .menu-drawer__menu.has-submenu ul .menu-drawer__menu-item,
+  .menu-drawer__menu.has-submenu ul button,
+  .menu-drawer__menu.has-submenu .menu-drawer__close-button {
+    margin-left: 0;
+    font-size: 14px;
+  }
+
+  /* ── Level 1: top nav items ─────────────────────────────── */
+  .menu-drawer__menu.has-submenu > li > a.menu-drawer__menu-item,
+  .menu-drawer__menu.has-submenu > li > details > summary.menu-drawer__menu-item {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #111;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  /* ── Back button: styled like a section heading ─────────── */
+  .menu-drawer__close-button {
+    width: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    color: #555 !important;
+    padding-top: 16px !important;
+    padding-bottom: 14px !important;
+    margin-left: 0 !important;
+    border-bottom: 1.5px solid #e2e2e2 !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* ── Level 2: "column heading" drill-in items ───────────── */
+  .menu-drawer__submenu .menu-drawer__menu > li > a.menu-drawer__menu-item,
+  .menu-drawer__submenu .menu-drawer__menu > li > details > summary.menu-drawer__menu-item {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.015em !important;
+    color: #111 !important;
+    padding-top: 13px !important;
+    padding-bottom: 13px !important;
+    border-bottom: 1px solid #f2f2f2 !important;
+    margin-left: 0 !important;
+  }
+
+  /* ── Level 3: deepest item links ────────────────────────── */
+  .menu-drawer__submenu .menu-drawer__submenu .menu-drawer__menu > li > a.menu-drawer__menu-item {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #555 !important;
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+    border-bottom: 1px solid #f5f5f5 !important;
+    margin-left: 0 !important;
+  }
+
   header-menu .link {
     font-size: 12px;
   }
-  
+
 </style>
 
 
