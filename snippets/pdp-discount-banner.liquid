@@ -38,6 +38,7 @@
       --banner-full-width: calc(100% + 3rem);
       margin-left: -1.5rem;
       margin-right: -1.5rem;
+      white-space: normal;
     }
   }
 
@@ -50,6 +51,12 @@
     letter-spacing: 0.03em;
     white-space: nowrap;
     min-height: 1em;
+  }
+
+  @media screen and (max-width: 749px) {
+    .pdp-discount-banner__text {
+      white-space: normal;
+    }
   }
 
   @media screen and (min-width: 750px) {
@@ -67,6 +74,7 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.05em;
     font-weight: 600;
+    font-size: 11px;
   }
 
   .pdp-discount-banner__copy {
@@ -102,9 +110,9 @@
 
   .pdp-banner-toast {
     position: fixed;
-    bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%) translateY(6px);
+    top: 0;
+    left: 0;
+    transform: translateX(-50%) translateY(-4px);
     background: rgba(20, 20, 20, 0.88);
     color: #fff;
     padding: 9px 18px;
@@ -156,11 +164,18 @@
     }
 
     /* ── toast ──────────────────────────────────────────────────── */
-    function showToast(msg) {
+    function showToast(msg, anchorEl) {
       var toast = document.createElement('div');
       toast.className = 'pdp-banner-toast';
       toast.textContent = msg;
       document.body.appendChild(toast);
+
+      if (anchorEl) {
+        var rect = anchorEl.getBoundingClientRect();
+        toast.style.left = (rect.left + rect.width / 2) + 'px';
+        toast.style.top  = (rect.bottom + 40) + 'px';
+      }
+
       // double rAF to ensure transition fires
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
@@ -174,17 +189,17 @@
     }
 
     /* ── copy ───────────────────────────────────────────────────── */
-    function copyCode(code) {
+    function copyCode(code, btn) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(code)
-          .then(function () { showToast('Copied!'); })
-          .catch(function () { fallbackCopy(code); });
+          .then(function () { showToast('Copied!', btn); })
+          .catch(function () { fallbackCopy(code, btn); });
       } else {
-        fallbackCopy(code);
+        fallbackCopy(code, btn);
       }
     }
 
-    function fallbackCopy(code) {
+    function fallbackCopy(code, btn) {
       var ta = document.createElement('textarea');
       ta.value = code;
       ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0';
@@ -192,9 +207,9 @@
       ta.select();
       try {
         document.execCommand('copy');
-        showToast('Copied!');
+        showToast('Copied!', btn);
       } catch (e) {
-        showToast('Press Ctrl+C to copy');
+        showToast('Press Ctrl+C to copy', btn);
       }
       document.body.removeChild(ta);
     }
@@ -211,7 +226,7 @@
           '<rect x="9" y="9" width="13" height="13" rx="2"/>' +
           '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>' +
         '</svg>';
-      btn.addEventListener('click', function () { copyCode(code); });
+      btn.addEventListener('click', function () { copyCode(code, btn); });
       return btn;
     }
 
@@ -232,6 +247,7 @@
         var m = Math.floor((diff % 3600000) / 60000);
         var s = Math.floor((diff % 60000) / 1000);
         timerEl.textContent =
+          'ENDS IN: ' +
           (h < 10 ? '0' : '') + h + ':' +
           (m < 10 ? '0' : '') + m + ':' +
           (s < 10 ? '0' : '') + s;
