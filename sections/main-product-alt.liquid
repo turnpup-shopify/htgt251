@@ -979,11 +979,8 @@
                   <button class="flwr_multicolumn_hero_button inverse">BROWSE ALL PRODUCTS</button>
                 </a>
               {% endif %}
-            {%- when 'buy_buttons' -%}
-              {%- if block.settings.button_bg_color != blank -%}
-                {%- assign _accent = block.settings.button_bg_color -%}
-              {%- endif -%}
-              {%- assign _btncolor = block.settings.button_text_color | default: '#ffffff' -%}
+            {%- when 'buy_buttons' -%}            
+              {%- assign _btncolor =_accent | default: '#ffffff' -%}
 
               <link rel="preconnect" href="https://fonts.googleapis.com">
               <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
