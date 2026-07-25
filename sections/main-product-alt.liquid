@@ -578,7 +578,7 @@
               {%- render 'breadcrumb' -%}
             {%- when 'title' -%}
               <div class="product__title" {{ block.shopify_attributes }}>
-                <h1>
+                <h1 style="{% if block.settings.title_font_family != blank %}font-family: {{ block.settings.title_font_family }};{% endif %}{% if block.settings.title_font_weight != blank %}font-weight: {{ block.settings.title_font_weight }};{% endif %}">
                   {%- if product.metafields.custom.seo_title != blank -%}
                     {{ product.metafields.custom.seo_title }}
                   {%- else -%}
@@ -1854,7 +1854,22 @@
     {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title_font_family",
+          "label": "Font family",
+          "info": "CSS font-family value, e.g. 'Fraunces, Georgia, serif'"
+        },
+        {
+          "type": "text",
+          "id": "title_font_weight",
+          "label": "Font weight",
+          "info": "e.g. 400, 500, 600, 700",
+          "default": "600"
+        }
+      ]
     },
     {
       "type": "breadcrumb",

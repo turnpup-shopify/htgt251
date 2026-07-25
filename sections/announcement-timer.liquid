@@ -61,10 +61,10 @@
                   {% if b.preview_image != blank %}
                   data-preview="{{ b.preview_image | image_url: width: 480 }}"
                   {% endif %}>
-                  {{ b.text | escape }}
+                  {{ b.text }}
                 </a>
               {% else %}
-                <span class="ann-text">{{ b.text | escape }}</span>
+                <span class="ann-text">{{ b.text }}</span>
               {% endif %}
             </div>
             {% if section.settings.separator_text != blank and forloop.index != marquee_items.size %}
@@ -144,6 +144,7 @@
   .ann-text {
     display: inline-flex;
     align-items: center;
+    white-space: pre-wrap;
     line-height: var(--line-height);
     font-size: var(--am-font-size);
     font-weight: var(--am-font-weight);
