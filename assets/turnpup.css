@@ -267,18 +267,28 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
 .tp-slide-cart__close {
   background: none;
   border: none;
-  padding: 0.4rem;
+  padding: 0.8rem;
   cursor: pointer;
   display: grid;
   place-items: center;
   color: inherit;
-  transition: color 120ms ease-in-out;
+  opacity: 0.55;
+  transition: opacity 120ms ease-in-out;
+  /* minimum 44px touch target */
+  min-width: 44px;
+  min-height: 44px;
+  margin: -0.8rem -0.8rem -0.8rem 0;
+}
+.tp-slide-cart__close svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 .popup-content .close-popup:hover {
   color: #fff;
 }
 .tp-slide-cart__close:hover {
-  color: #fff;
+  opacity: 1;
 }
 
 .tp-slide-cart__content {
