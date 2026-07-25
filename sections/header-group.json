@@ -49,7 +49,7 @@
       "name": "Announcement Timer",
       "settings": {
         "bg_color": "#262214",
-        "text_color": "#FFFFFF",
+        "text_color": "#ffffff",
         "font_size": 12,
         "font_family": "Helvetica Neue",
         "font_weight": "400",
@@ -84,6 +84,7 @@
         "menu_type_desktop": "mega",
         "show_line_separator": true,
         "enable_sticky_header": true,
+        "header_bg_color": "#F2E9D8",
         "margin_bottom": 0
       }
     }
