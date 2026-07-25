@@ -756,19 +756,30 @@
 </script>
 {% comment %} flwr - START {% endcomment %}
 <script>
-  let items = document.querySelector(".header__inline-menu").querySelectorAll("details.top_lvl_dropdown");
-  items.forEach(item => {
-    item.addEventListener("mouseover", () => {
-      item.setAttribute("open", true);
-      item.querySelector("ul").addEventListener("mouseleave", () => {
+  (function () {
+    var items = document.querySelector(".header__inline-menu").querySelectorAll("details.top_lvl_dropdown");
+
+    items.forEach(function (item) {
+      item.addEventListener("mouseover", function () {
+        // close every other open dropdown first
+        items.forEach(function (other) {
+          if (other !== item) other.removeAttribute("open");
+        });
+        item.setAttribute("open", true);
+      });
+
+      item.addEventListener("mouseleave", function () {
         item.removeAttribute("open");
       });
-    item.addEventListener("mouseleave", () => {
-      item.removeAttribute("open");
+
+      var ul = item.querySelector("ul");
+      if (ul) {
+        ul.addEventListener("mouseleave", function () {
+          item.removeAttribute("open");
+        });
+      }
     });
-  });
-  
-  });
+  })();
 </script>
 {% comment %} flwr - END {% endcomment %}
 {%- if request.page_type == 'index' -%}
