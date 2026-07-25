@@ -1,4 +1,5 @@
-<style>
+{%- assign _accent  = settings.pdp_card_accent_color | default: '#b5572a' -%}
+{%- assign _ctafont = settings.pdp_card_cta_font | default: 'Fraunces, Georgia, serif' -%}<style>
   @media screen and (min-width: 700px) {
       .product--stacked .product__media-item {
       /* max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2); */
@@ -979,8 +980,6 @@
                 </a>
               {% endif %}
             {%- when 'buy_buttons' -%}
-              {%- assign _accent  = settings.pdp_card_accent_color | default: '#b5572a' -%}
-              {%- assign _ctafont = settings.pdp_card_cta_font | default: 'Fraunces, Georgia, serif' -%}
               {%- if block.settings.button_bg_color != blank -%}
                 {%- assign _accent = block.settings.button_bg_color -%}
               {%- endif -%}
