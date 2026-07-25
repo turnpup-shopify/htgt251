@@ -106,9 +106,9 @@
   .pdp-banner-toast {
     position: fixed;
     top: 0;
-    left: 0;
+    left: 50%;
     transform: translateX(-50%) translateY(-4px);
-    background: rgba(20, 20, 20, 0.88);
+    background: #2a9d5c;
     color: #fff;
     padding: 9px 18px;
     border-radius: 5px;
@@ -167,8 +167,7 @@
 
       if (anchorEl) {
         var rect = anchorEl.getBoundingClientRect();
-        toast.style.left = (rect.left + rect.width / 2) + 'px';
-        toast.style.top  = (rect.bottom + 40) + 'px';
+        toast.style.top = (rect.bottom + 40) + 'px';
       }
 
       // double rAF to ensure transition fires
