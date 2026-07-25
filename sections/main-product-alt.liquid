@@ -995,9 +995,11 @@
                   color: var(--card-btn-color);
                   border-radius: 24px;
                   border: 1px solid oklch(0.92 0.008 60);
+                  {%- if block.settings.show_card_shadow != false -%}
                   box-shadow:
                     0 1px 3px oklch(0.2 0 0 / 0.05),
                     0 20px 40px oklch(0.2 0 0 / 0.08);
+                  {%- endif -%}
                   padding: 18px 18px;
                   display: flex;
                   flex-direction: column;
@@ -1093,6 +1095,8 @@
                   display: grid;
                   grid-template-columns: 1fr 1fr;
                   gap: 12px 10px;
+                  margin-top: 16px;
+                  max-width: 400px;
                 }
 
                 .pdp-atc-card__badge {
@@ -1184,38 +1188,36 @@
                       </div>
                     {%- endform -%}
                   </product-form>
+                </div>
 
-                  <div class="pdp-atc-card__divider" role="separator"></div>
-
-                  <div class="pdp-atc-card__badges">
-                    <div class="pdp-atc-card__badge">
-                      <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                        <line x1="12" y1="22.08" x2="12" y2="12"/>
-                      </svg>
-                      <span>{{- block.settings.badge_1_line1 | default: 'Free shipping' -}}<br>{{- block.settings.badge_1_line2 | default: 'on orders $99+' -}}</span>
-                    </div>
-                    <div class="pdp-atc-card__badge">
-                      <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                      </svg>
-                      <span>{{- block.settings.badge_2_line1 | default: 'Easy returns' -}}<br>{{- block.settings.badge_2_line2 | default: '30-day guarantee' -}}</span>
-                    </div>
-                    <div class="pdp-atc-card__badge">
-                      <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
-                        <line x1="16" y1="8" x2="2" y2="22"/>
-                        <line x1="17" y1="15" x2="9" y2="15"/>
-                      </svg>
-                      <span>{{- block.settings.badge_3_line1 | default: 'Eco packaging' -}}<br>{{- block.settings.badge_3_line2 | default: 'sustainably made' -}}</span>
-                    </div>
-                    <div class="pdp-atc-card__badge">
-                      <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                      </svg>
-                      <span>{{- block.settings.badge_4_line1 | default: 'Expert support' -}}<br>{{- block.settings.badge_4_line2 | default: '7 days a week' -}}</span>
-                    </div>
+                <div class="pdp-atc-card__badges">
+                  <div class="pdp-atc-card__badge">
+                    <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                      <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                    <span>{{- block.settings.badge_1_line1 | default: 'Free shipping' -}}<br>{{- block.settings.badge_1_line2 | default: 'on orders $99+' -}}</span>
+                  </div>
+                  <div class="pdp-atc-card__badge">
+                    <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <span>{{- block.settings.badge_2_line1 | default: 'Easy returns' -}}<br>{{- block.settings.badge_2_line2 | default: '30-day guarantee' -}}</span>
+                  </div>
+                  <div class="pdp-atc-card__badge">
+                    <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
+                      <line x1="16" y1="8" x2="2" y2="22"/>
+                      <line x1="17" y1="15" x2="9" y2="15"/>
+                    </svg>
+                    <span>{{- block.settings.badge_3_line1 | default: 'Eco packaging' -}}<br>{{- block.settings.badge_3_line2 | default: 'sustainably made' -}}</span>
+                  </div>
+                  <div class="pdp-atc-card__badge">
+                    <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span>{{- block.settings.badge_4_line1 | default: 'Expert support' -}}<br>{{- block.settings.badge_4_line2 | default: '7 days a week' -}}</span>
                   </div>
                 </div>
 
@@ -1968,6 +1970,16 @@
           "default": false,
           "label": "Show quantity selector inline",
           "info": "Displays +/- quantity controls beside the button. Remove the standalone Quantity Selector block if you enable this."
+        },
+        {
+          "type": "header",
+          "content": "Card appearance"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_card_shadow",
+          "default": true,
+          "label": "Show card drop shadow"
         },
         {
           "type": "header",
