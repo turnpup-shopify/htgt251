@@ -1,7 +1,7 @@
-{% comment %} {%- if section.settings.menu_type_desktop == 'mega' -%}
+{%- if section.settings.menu_type_desktop == 'mega' -%}
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
   <noscript>{{ 'component-mega-menu.css' | asset_url | stylesheet_tag }}</noscript>
-{%- endif -%} {% endcomment %}
+{%- endif -%}
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -757,24 +757,42 @@
 {% comment %} flwr - START {% endcomment %}
 <script>
   (function () {
-    var items = document.querySelector(".header__inline-menu").querySelectorAll("details.top_lvl_dropdown");
+    var container = document.querySelector(".header__inline-menu");
+    if (!container) return;
+
+    var items = container.querySelectorAll(
+      "details.top_lvl_dropdown, details.mega-menu"
+    );
+    if (!items.length) return;
 
     items.forEach(function (item) {
-      item.addEventListener("mouseover", function () {
+      var closeTimer = null;
+
+      function openItem() {
+        clearTimeout(closeTimer);
         // close every other open dropdown first
         items.forEach(function (other) {
           if (other !== item) other.removeAttribute("open");
         });
         item.setAttribute("open", true);
-      });
+      }
 
-      item.addEventListener("mouseleave", function () {
-        item.removeAttribute("open");
-      });
+      function scheduleClose() {
+        closeTimer = setTimeout(function () {
+          item.removeAttribute("open");
+        }, 120);
+      }
 
-      var ul = item.querySelector("ul");
-      if (ul) {
-        ul.addEventListener("mouseleave", function () {
+      item.addEventListener("mouseenter", openItem);
+      item.addEventListener("mouseleave", scheduleClose);
+
+      // Keep open while hovering the panel (mega or dropdown list)
+      var panel = item.querySelector(".mega-menu__content") || item.querySelector("ul.header__submenu");
+      if (panel) {
+        panel.addEventListener("mouseenter", function () {
+          clearTimeout(closeTimer);
+        });
+        panel.addEventListener("mouseleave", function () {
           item.removeAttribute("open");
         });
       }
