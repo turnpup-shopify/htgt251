@@ -96,7 +96,7 @@
           "settings": {
             "show_dynamic_checkout": false,
             "show_inline_quantity": true,
-            "button_bg_color": "#121212",
+            "button_bg_color": "#8C5F45",
             "button_text_color": "#ffffff",
             "badge_1_line1": "Free shipping",
             "badge_1_line2": "on orders $99+",
@@ -299,7 +299,7 @@
         "mobile_padding_top": 0,
         "mobile_padding_bottom": 0,
         "discount_banner_text": "{{ product.metafields.custom.item_discount_messaging.value }}",
-        "discount_banner_bg_color": "#8C5F45",
+        "discount_banner_bg_color": "#262214",
         "discount_banner_text_color": "#ffffff",
         "discount_banner_font_size_desktop": 16,
         "discount_banner_font_size_mobile": 13
