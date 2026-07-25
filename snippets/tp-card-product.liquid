@@ -265,7 +265,7 @@
                   <span
                     id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                     class="badge badge--bottom-left"
-                    style="background-color:#22c55e;color:#fff;border-radius:9999px;"
+                    style="background-color:{{ settings.sale_badge_color | default: '#22c55e' }};color:{{ settings.sale_badge_text_color | default: '#ffffff' }};border-radius:9999px;"
                   >
                     {%- if show_sale_percentage and sale_discount_percent > 0 -%}
                       -{{ sale_discount_percent }}% off
@@ -770,7 +770,7 @@
                 <span
                   id="Badge-{{ section_id }}-{{ card_product.id }}"
                   class="badge badge--bottom-left"
-                  style="background-color:#22c55e;color:#fff;border-radius:9999px;"
+                  style="background-color:{{ settings.sale_badge_color | default: '#22c55e' }};color:{{ settings.sale_badge_text_color | default: '#ffffff' }};border-radius:9999px;"
                 >
                   {%- if show_sale_percentage and sale_discount_percent > 0 -%}
                     -{{ sale_discount_percent }}% off

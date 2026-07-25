@@ -2035,6 +2035,23 @@
         "label": "CTA Button Font Family",
         "default": "Fraunces, Georgia, serif",
         "info": "CSS font-family value for the Add to Cart button. Include fallbacks (e.g. 'Fraunces, Georgia, serif')."
+      },
+      {
+        "type": "header",
+        "content": "Product Card Badges"
+      },
+      {
+        "type": "color",
+        "id": "sale_badge_color",
+        "label": "Sale badge background",
+        "default": "#22c55e",
+        "info": "Background color of the sale / discount badge on collection grids."
+      },
+      {
+        "type": "color",
+        "id": "sale_badge_text_color",
+        "label": "Sale badge text color",
+        "default": "#ffffff"
       }
     ]
   },
