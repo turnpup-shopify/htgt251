@@ -26,7 +26,10 @@
         },
         "title": {
           "type": "title",
-          "settings": {}
+          "settings": {
+            "title_font_family": "comfortaa_n3_preview, Comfortaa, sans-serif",
+            "title_font_weight": "300"
+          }
         },
         "mock_reviews_link_ACaAeW": {
           "type": "mock_reviews_link",
@@ -96,7 +99,8 @@
           "settings": {
             "show_dynamic_checkout": false,
             "show_inline_quantity": true,
-            "button_bg_color": "#8C5F45",
+            "show_card_shadow": true,
+            "button_bg_color": "#8c5f45",
             "button_text_color": "#ffffff",
             "badge_1_line1": "Free shipping",
             "badge_1_line2": "on orders $99+",
@@ -439,7 +443,7 @@
         "icon_size": 24,
         "show_dividers": true,
         "divider_color": "#1a1a1a",
-        "bg_color": "#F2E9D8",
+        "bg_color": "#f2e9d8",
         "padding_top_desktop": 40,
         "padding_bottom_desktop": 40,
         "padding_left_desktop": 40,
