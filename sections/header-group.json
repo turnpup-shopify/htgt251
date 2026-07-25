@@ -25,14 +25,14 @@
         "item_anj6zi": {
           "type": "item",
           "settings": {
-            "text": "🎁 FREE Gift Mirror ($300 in value) 🎁",
+            "text": "FREE GIFT ($300 in value)",
             "url": ""
           }
         },
         "item_UAfhLb": {
           "type": "item",
           "settings": {
-            "text": "JUST IN: New Summer Arrivals",
+            "text": "🚛   Free Shipping to Mainland US   📦",
             "url": ""
           }
         }
@@ -49,7 +49,7 @@
       "name": "Announcement Timer",
       "settings": {
         "bg_color": "#262214",
-        "text_color": "#F2E9D8",
+        "text_color": "#f2e9d8",
         "font_size": 12,
         "font_family": "Helvetica Neue",
         "font_weight": "400",
