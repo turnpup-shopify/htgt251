@@ -97,7 +97,15 @@
             "show_dynamic_checkout": false,
             "show_inline_quantity": true,
             "button_bg_color": "#121212",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#ffffff",
+            "badge_1_line1": "Free shipping",
+            "badge_1_line2": "on orders $99+",
+            "badge_2_line1": "Easy returns",
+            "badge_2_line2": "30-day guarantee",
+            "badge_3_line1": "Eco packaging",
+            "badge_3_line2": "sustainably made",
+            "badge_4_line1": "Expert support",
+            "badge_4_line2": "7 days a week"
           }
         },
         "notify_me_XXLHwE": {
@@ -125,6 +133,7 @@
         },
         "trust_badges_yUK4rP": {
           "type": "trust_badges",
+          "disabled": true,
           "settings": {
             "badge_1_icon": "box",
             "badge_1_label": "Free Shipping (USA Mainland)",
@@ -441,6 +450,36 @@
         "padding_right_mobile": 20
       }
     },
+    "tp_image_rows_HL9zJE": {
+      "type": "tp-image-rows",
+      "name": "TP Image Rows",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_right": 0,
+        "padding_left": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_padding_right": 0,
+        "mobile_padding_left": 0,
+        "image_gallery": "{{ product.metafields.custom.tp_image_rows.value }}",
+        "image_gallery_header": "",
+        "open_close_button": "",
+        "open_close_button_color": "",
+        "image_grid_header": "",
+        "keyword_to_remove": "",
+        "header_font_family": "'p22-mackinac-pro', serif;",
+        "header_font_size": "30px",
+        "header_font_weight": "400",
+        "header_font_color": "#3c64b1",
+        "image_grid_subheader": "",
+        "subheader_font_family": "'p22-mackinac-pro', serif;",
+        "subheader_font_size": "30px",
+        "subheader_font_weight": "400",
+        "subheader_font_color": "#3c64b1",
+        "header_alignment": "center"
+      }
+    },
     "tp_questions_tYPppc": {
       "type": "tp-questions",
       "blocks": {
@@ -508,36 +547,6 @@
       "disabled": true,
       "settings": {
         "metaobject_quiz_ref": "accent-table-finder"
-      }
-    },
-    "tp_image_rows_HL9zJE": {
-      "type": "tp-image-rows",
-      "name": "TP Image Rows",
-      "settings": {
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_right": 0,
-        "padding_left": 0,
-        "mobile_padding_top": 0,
-        "mobile_padding_bottom": 0,
-        "mobile_padding_right": 0,
-        "mobile_padding_left": 0,
-        "image_gallery": "{{ product.metafields.custom.tp_image_rows.value }}",
-        "image_gallery_header": "",
-        "open_close_button": "",
-        "open_close_button_color": "",
-        "image_grid_header": "",
-        "keyword_to_remove": "",
-        "header_font_family": "'p22-mackinac-pro', serif;",
-        "header_font_size": "30px",
-        "header_font_weight": "400",
-        "header_font_color": "#3c64b1",
-        "image_grid_subheader": "",
-        "subheader_font_family": "'p22-mackinac-pro', serif;",
-        "subheader_font_size": "30px",
-        "subheader_font_weight": "400",
-        "subheader_font_color": "#3c64b1",
-        "header_alignment": "center"
       }
     },
     "featured_row_j4Ri8j": {
