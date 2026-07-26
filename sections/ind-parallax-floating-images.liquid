@@ -1,0 +1,451 @@
+{% comment %}
+  ind-parallax-floating-images
+  ─────────────────────────────────────────────────────────────────────────────
+  Collage of floating images over a full-bleed background.
+  • Background: slow parallax (appears nearly fixed)
+  • Each floating image: independent, faster parallax speed
+  • All positions are authorable per block (desktop + mobile separately)
+  ─────────────────────────────────────────────────────────────────────────────
+{% endcomment %}
+
+<style>
+  /* ── Section wrapper ──────────────────────────────────────── */
+  #ind-pfi-{{ section.id }} {
+    position: relative;
+    overflow: hidden;
+    height: {{ section.settings.section_height | default: 720 }}px;
+    background-color: {{ section.settings.bg_color | default: '#1a1a1a' }};
+  }
+
+  @media screen and (max-width: 749px) {
+    #ind-pfi-{{ section.id }} {
+      height: {{ section.settings.section_height_mobile | default: 560 }}px;
+    }
+  }
+
+  /* ── Background layer ─────────────────────────────────────── */
+  /* Extra 40% height (20% top + 20% bottom) gives the slow bg
+     room to move without revealing the section background colour */
+  #ind-pfi-{{ section.id }} .pfi__bg {
+    position: absolute;
+    top: -20%;
+    left: 0;
+    right: 0;
+    height: 140%;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  #ind-pfi-{{ section.id }} .pfi__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: {{ section.settings.bg_position | default: 'center center' }};
+    display: block;
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  /* Optional dark overlay on background */
+  #ind-pfi-{{ section.id }} .pfi__bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: {{ section.settings.overlay_color | default: '#000000' }};
+    opacity: {{ section.settings.overlay_opacity | default: 0 | divided_by: 100.0 }};
+    pointer-events: none;
+  }
+
+  /* ── Floating image cards ─────────────────────────────────── */
+  #ind-pfi-{{ section.id }} .pfi__float {
+    position: absolute;
+    line-height: 0;
+    will-change: transform;
+  }
+
+  #ind-pfi-{{ section.id }} .pfi__float img {
+    width: 100%;
+    height: auto;
+    display: block;
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  /* ── Per-block positioning ────────────────────────────────── */
+  {%- for block in section.blocks -%}
+    #ind-pfi-{{ section.id }} .pfi__float--{{ block.id }} {
+      left: {{ block.settings.left_desktop | default: 10 }}%;
+      top: {{ block.settings.top_desktop | default: 10 }}%;
+      width: {{ block.settings.width_desktop | default: 280 }}px;
+      z-index: {{ block.settings.z_index | default: 2 }};
+    }
+    @media screen and (max-width: 749px) {
+      #ind-pfi-{{ section.id }} .pfi__float--{{ block.id }} {
+        left: {{ block.settings.left_mobile | default: 5 }}%;
+        top: {{ block.settings.top_mobile | default: 5 }}%;
+        width: {{ block.settings.width_mobile | default: 200 }}px;
+      }
+    }
+  {%- endfor -%}
+</style>
+
+<div
+  id="ind-pfi-{{ section.id }}"
+  data-bg-speed="{{ section.settings.bg_parallax_speed | default: 8 }}"
+>
+  {%- if section.settings.bg_image != blank -%}
+    <div class="pfi__bg" data-pfi-bg>
+      <img
+        src="{{ section.settings.bg_image | image_url: width: 2400 }}"
+        alt=""
+        role="presentation"
+        loading="lazy"
+        draggable="false"
+      >
+      {%- if section.settings.overlay_opacity > 0 -%}
+        <div class="pfi__bg-overlay" aria-hidden="true"></div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- for block in section.blocks -%}
+    {%- if block.settings.image != blank -%}
+      {%- assign img_src_w = block.settings.width_desktop | default: 280 | times: 2 | at_most: 1800 -%}
+      <div
+        class="pfi__float pfi__float--{{ block.id }}"
+        data-pfi-speed="{{ block.settings.speed | default: 40 }}"
+        {{ block.shopify_attributes }}
+      >
+        <img
+          src="{{ block.settings.image | image_url: width: img_src_w }}"
+          alt="{{ block.settings.image.alt | default: '' | escape }}"
+          loading="lazy"
+          draggable="false"
+        >
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+<script>
+  (function () {
+    'use strict';
+
+    var el = document.getElementById('ind-pfi-{{ section.id }}');
+    if (!el) return;
+
+    var bgEl    = el.querySelector('[data-pfi-bg]');
+    var floats  = el.querySelectorAll('[data-pfi-speed]');
+    // bgSpeed: setting 0–30 → 0.00–0.30 fraction of offset
+    var bgSpeed = parseFloat(el.dataset.bgSpeed) / 100;
+    var raf     = null;
+
+    /* ── Core update ───────────────────────────────────────── */
+    function update() {
+      raf = null;
+      var rect  = el.getBoundingClientRect();
+      var viewH = window.innerHeight;
+
+      // offset > 0  →  section center is below viewport center (entering)
+      // offset = 0  →  section perfectly centred
+      // offset < 0  →  section center is above viewport centre (exiting)
+      //
+      // translateY( offset * speed ):
+      //   Small speed (bg)   → barely moves relative to section → appears near-fixed
+      //   Large speed (imgs) → moves a lot relative to section  → appears fast
+      var offset = (rect.top + rect.height * 0.5) - viewH * 0.5;
+
+      if (bgEl) {
+        bgEl.style.transform = 'translateY(' + (offset * bgSpeed).toFixed(1) + 'px)';
+      }
+
+      for (var i = 0; i < floats.length; i++) {
+        var speed = parseFloat(floats[i].dataset.pfiSpeed) / 100;
+        floats[i].style.transform = 'translateY(' + (offset * speed).toFixed(1) + 'px)';
+      }
+    }
+
+    function onScroll() {
+      if (raf) return;
+      raf = requestAnimationFrame(update);
+    }
+
+    function onResize() {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    }
+
+    /* ── Only animate while section is in (or near) the viewport ── */
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          update();
+          window.addEventListener('scroll', onScroll, { passive: true });
+        } else {
+          window.removeEventListener('scroll', onScroll);
+        }
+      }, { rootMargin: '200px 0px' });
+      observer.observe(el);
+    } else {
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    window.addEventListener('resize', onResize, { passive: true });
+
+    // Initial paint
+    update();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Parallax Floating Images",
+  "class": "ind-parallax-floating-images",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "bg_position",
+      "label": "Image focus point",
+      "options": [
+        { "value": "top left",      "label": "Top left" },
+        { "value": "top center",    "label": "Top center" },
+        { "value": "top right",     "label": "Top right" },
+        { "value": "center left",   "label": "Middle left" },
+        { "value": "center center", "label": "Middle center" },
+        { "value": "center right",  "label": "Middle right" },
+        { "value": "bottom left",   "label": "Bottom left" },
+        { "value": "bottom center", "label": "Bottom center" },
+        { "value": "bottom right",  "label": "Bottom right" }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fallback background color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "bg_parallax_speed",
+      "label": "Background parallax speed",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 8,
+      "info": "0 = scrolls with page. Keep low (5–10) for the near-fixed look."
+    },
+    {
+      "type": "header",
+      "content": "Background overlay"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "default": 0,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Section height"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Desktop height (px)",
+      "min": 400,
+      "max": 1200,
+      "step": 20,
+      "default": 720
+    },
+    {
+      "type": "range",
+      "id": "section_height_mobile",
+      "label": "Mobile height (px)",
+      "min": 300,
+      "max": 900,
+      "step": 20,
+      "default": 560
+    }
+  ],
+  "blocks": [
+    {
+      "type": "float_image",
+      "name": "Floating Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Desktop position"
+        },
+        {
+          "type": "range",
+          "id": "left_desktop",
+          "label": "Left (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 10,
+          "info": "Distance from the left edge of the section."
+        },
+        {
+          "type": "range",
+          "id": "top_desktop",
+          "label": "Top (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 10,
+          "info": "Distance from the top of the section before parallax is applied."
+        },
+        {
+          "type": "range",
+          "id": "width_desktop",
+          "label": "Width (px)",
+          "min": 100,
+          "max": 900,
+          "step": 10,
+          "default": 280
+        },
+        {
+          "type": "header",
+          "content": "Mobile position"
+        },
+        {
+          "type": "range",
+          "id": "left_mobile",
+          "label": "Left (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "range",
+          "id": "top_mobile",
+          "label": "Top (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "range",
+          "id": "width_mobile",
+          "label": "Width (px)",
+          "min": 80,
+          "max": 500,
+          "step": 10,
+          "default": 200
+        },
+        {
+          "type": "header",
+          "content": "Parallax"
+        },
+        {
+          "type": "range",
+          "id": "speed",
+          "label": "Speed",
+          "min": 0,
+          "max": 150,
+          "step": 5,
+          "default": 40,
+          "info": "How fast this image moves relative to the background. 40–80 = strong depth. 100+ = very fast."
+        },
+        {
+          "type": "range",
+          "id": "z_index",
+          "label": "Layer depth",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 2,
+          "info": "Higher numbers appear in front of other images."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Parallax Floating Images",
+      "blocks": [
+        {
+          "type": "float_image",
+          "settings": {
+            "left_desktop": 8,
+            "top_desktop": 15,
+            "width_desktop": 310,
+            "left_mobile": 3,
+            "top_mobile": 5,
+            "width_mobile": 220,
+            "speed": 55,
+            "z_index": 3
+          }
+        },
+        {
+          "type": "float_image",
+          "settings": {
+            "left_desktop": 60,
+            "top_desktop": 4,
+            "width_desktop": 330,
+            "left_mobile": 42,
+            "top_mobile": 32,
+            "width_mobile": 195,
+            "speed": 30,
+            "z_index": 2
+          }
+        },
+        {
+          "type": "float_image",
+          "settings": {
+            "left_desktop": 27,
+            "top_desktop": 52,
+            "width_desktop": 265,
+            "left_mobile": 2,
+            "top_mobile": 55,
+            "width_mobile": 185,
+            "speed": 70,
+            "z_index": 4
+          }
+        },
+        {
+          "type": "float_image",
+          "settings": {
+            "left_desktop": 72,
+            "top_desktop": 36,
+            "width_desktop": 290,
+            "left_mobile": 40,
+            "top_mobile": 62,
+            "width_mobile": 175,
+            "speed": 45,
+            "z_index": 3
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
