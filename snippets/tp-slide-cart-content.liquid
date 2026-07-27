@@ -141,7 +141,7 @@
             <div class="tp-slide-cart__qty-pill">
               <quantity-input class="quantity">
                 <button class="quantity__button" name="minus" type="button" aria-label="{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}">
-                  {% render 'icon-minus' %}
+                  <span aria-hidden="true">−</span>
                 </button>
                 <input
                   class="quantity__input"
@@ -156,7 +156,7 @@
                   tabindex="-1">
                 <span class="quantity__display">{{ item.quantity }}</span>
                 <button class="quantity__button" name="plus" type="button" aria-label="{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}">
-                  {% render 'icon-plus' %}
+                  <span aria-hidden="true">+</span>
                 </button>
               </quantity-input>
             </div>
