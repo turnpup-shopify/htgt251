@@ -198,8 +198,7 @@
                         {{ 'products.product.quantity.label' | t }}
                       </label>
                       <quantity-input class="quantity">
-                        <button class="quantity__button no-js-hidden" name="minus" type="button">
-                          <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
+                        <button class="quantity__button no-js-hidden" name="minus" type="button" aria-label="{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}">
                           {% render 'icon-minus' %}
                         </button>
                         <input class="quantity__input"
@@ -210,9 +209,11 @@
                           aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
                           id="Quantity-{{ item.index | plus: 1 }}"
                           data-index="{{ item.index | plus: 1 }}"
+                          style="display:none"
+                          tabindex="-1"
                         >
-                        <button class="quantity__button no-js-hidden" name="plus" type="button">
-                          <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
+                        <span class="quantity__display">{{ item.quantity }}</span>
+                        <button class="quantity__button no-js-hidden" name="plus" type="button" aria-label="{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}">
                           {% render 'icon-plus' %}
                         </button>
                       </quantity-input>

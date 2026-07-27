@@ -148,8 +148,7 @@
                 {% render 'icon-remove' %}
               </button>
               <quantity-input class="quantity">
-                <button class="quantity__button" name="minus" type="button" aria-hidden="true" tabindex="-1">
-                  <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
+                <button class="quantity__button" name="minus" type="button" aria-label="{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}">
                   {% render 'icon-minus' %}
                 </button>
                 <input
@@ -160,12 +159,11 @@
                   min="0"
                   id="SlideCart-Quantity-{{ forloop.index }}"
                   data-index="{{ forloop.index }}"
-                  aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}">
-                <button
-                  class="quantity__button"
-                  name="plus"
-                  type="button">
-                  <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
+                  aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                  style="display:none"
+                  tabindex="-1">
+                <span class="quantity__display">{{ item.quantity }}</span>
+                <button class="quantity__button" name="plus" type="button" aria-label="{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}">
                   {% render 'icon-plus' %}
                 </button>
               </quantity-input>
