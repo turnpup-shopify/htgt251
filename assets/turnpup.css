@@ -476,10 +476,6 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
   color: rgba(0, 0, 0, 1);
 }
 
-/* hide the minus button — trash button handles removal */
-.tp-slide-cart__qty-pill .quantity__button[name="minus"] {
-  display: none;
-}
 
 .tp-slide-cart__discounts {
   list-style: none;
