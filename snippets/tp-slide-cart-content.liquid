@@ -139,14 +139,6 @@
             {%- endif -%}
 
             <div class="tp-slide-cart__qty-pill">
-              <button
-                type="button"
-                class="tp-slide-cart__remove tp-slide-cart__qty-remove"
-                data-remove
-                data-line="{{ forloop.index }}"
-                aria-label="{{ 'sections.cart.remove_title' | t: title: item.product.title }}">
-                {% render 'icon-remove' %}
-              </button>
               <quantity-input class="quantity">
                 <button class="quantity__button" name="minus" type="button" aria-label="{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}">
                   {% render 'icon-minus' %}
