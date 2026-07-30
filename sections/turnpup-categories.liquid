@@ -99,8 +99,12 @@
             {% endunless %}
           }
           .turnpup-categories .title-wrapper-with-link {
-            margin-bottom: 14px !important;
-          }   
+            margin-bottom: 18px !important;
+          }
+          .turnpup-categories-inner .title {
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+          }
           #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info {
             max-width: {{ block.settings.text_max_width }};
             margin: 0 auto;
@@ -210,13 +214,28 @@
         position: absolute;
         width: 100%;
         height: 100%;
+        {% if section.settings.overlay_gradient %}
+        background: linear-gradient(to top, rgba(0,0,0,0.55), transparent 50%);
+        {% else %}
         background-color: transparent;
+        {% endif %}
         left: 0%;
         top: 0%;
         margin: 0;
         padding: 0;
         z-index: 2;
     }
+    {% if section.settings.text_position == 'bottom-left' %}
+    .tp-grid .tp-text-container {
+        position: absolute;
+        bottom: 14px;
+        left: 16px;
+        margin: 0;
+        padding: 0;
+        z-index: 3;
+        width: calc(100% - 32px);
+    }
+    {% else %}
     .tp-grid .tp-text-container {
         position: absolute;
         transform: translate(-50%, -50%);
@@ -225,13 +244,15 @@
         margin: 0;
         padding: 0 10px;
         z-index: 3;
-        width: calc(100% - 20px);      
+        width: calc(100% - 20px);
     }
+    {% endif %}
     .tp-grid .tp-text-container h3, .tp-grid .tp-text-container .rte {
         position: relative;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        letter-spacing: 0.03em;
     }
     .turnpup-categories-inner {
         background: transparent url('{{ section.settings.overall_background_image_url }}') no-repeat center center/cover; 
@@ -246,8 +267,16 @@
     .tp-grid-item {
         width: 100%;
         height: 100%;
+        {% if section.settings.tile_aspect_ratio == '4:3' %}
+        padding-bottom: 75%;
+        {% else %}
         padding-bottom: 100%;
+        {% endif %}
         position: relative;
+        {% if section.settings.tile_border_radius != blank and section.settings.tile_border_radius != '0px' %}
+        border-radius: {{ section.settings.tile_border_radius }};
+        overflow: hidden;
+        {% endif %}
     }
     .tp-media {
         width: 100%;
@@ -781,9 +810,47 @@
       },
       {
         "type": "color",
-        "id": "section_background_color",     
+        "id": "section_background_color",
         "default": "#ffffff",
         "label": "Background Color"
+      },
+      {
+        "type": "header",
+        "content": "Tile Image Design"
+      },
+      {
+        "type": "checkbox",
+        "id": "overlay_gradient",
+        "label": "Dark gradient overlay on tiles",
+        "default": false,
+        "info": "Adds a bottom-to-top dark gradient over each tile image."
+      },
+      {
+        "type": "select",
+        "id": "text_position",
+        "label": "Tile label position",
+        "options": [
+          { "value": "center", "label": "Center" },
+          { "value": "bottom-left", "label": "Bottom left" }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "select",
+        "id": "tile_aspect_ratio",
+        "label": "Tile aspect ratio",
+        "options": [
+          { "value": "1:1", "label": "1:1 (Square)" },
+          { "value": "4:3", "label": "4:3 (Landscape)" }
+        ],
+        "default": "1:1"
+      },
+      {
+        "type": "text",
+        "id": "tile_border_radius",
+        "label": "Tile border radius",
+        "default": "0px",
+        "info": "E.g. 6px for rounded corners."
       }
   ],
   "blocks": [

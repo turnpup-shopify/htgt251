@@ -81,6 +81,12 @@
 
 </style>
 
+{% if section.settings.page_background_color != blank %}
+<style>
+  body { background-color: {{ section.settings.page_background_color }}; }
+</style>
+{% endif %}
+
 {% schema %}
 {
   "name": "COLLECTION HEADER",
@@ -336,6 +342,12 @@
       "id": "mobile_font_size",
       "label": "Mobile Font Size",
       "default": "12px"
+    },
+    {
+      "type": "text",
+      "id": "page_background_color",
+      "label": "Page Background Color",
+      "info": "E.g. #F7F4EF. Leave blank to use the theme default."
     }
   ],
   "blocks": [

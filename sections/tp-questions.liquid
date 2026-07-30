@@ -27,7 +27,7 @@
         <div>
             <div class="section-header">
                 <div class="section-header-title">
-                    <h2 class="turnpup_header">Questions &amp; Answers</h2>
+                    <h2 class="turnpup_header">{{ section.settings.section_heading | default: 'Common questions' }}</h2>
                 </div>
             </div>
         </div>
@@ -38,12 +38,13 @@
             {% for block in section.blocks %}
                 {% if block.settings.question != blank and block.settings.answer != blank %}
                     <div class="page-accordion--single" {{ block.shopify_attributes }}>
-                        <button class="turnpup_question" aria-expanded="false" js-accordion-header="">
+                        <button class="turnpup_question" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" js-accordion-header="">
                             <h3 class="page-accordion__title">
                                 {{ block.settings.question }}
                             </h3>
+                            <span class="tp-faq-icon" aria-hidden="true"></span>
                         </button>
-                        <div class="turnpup_answer" js-accordion-content="" aria-hidden="true" style="display: none;">
+                        <div class="turnpup_answer" js-accordion-content="" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"{% unless forloop.first %} style="display: none;"{% endunless %}>
                             <span style="display:block;margin-top:8px;">
                                 {{ block.settings.answer }}
                             </span>
@@ -76,9 +77,61 @@
             margin-bottom: {{ section.settings.padding_bottom }}px;
             margin-left: {{ section.settings.padding_left }}px;
             margin-right: {{ section.settings.padding_right }}px;
+            max-width: 760px;
+            border-top: 1px solid #DCD7CE;
+            padding-top: 56px;
+            box-sizing: border-box;
+        }
+        .turnpup_header {
+            font-family: 'Archivo', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0 0 24px;
+            color: #2B2723;
+        }
+        .page-accordion--single {
+            border-bottom: 1px solid #DCD7CE;
+        }
+        .turnpup_question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            padding: 18px 0;
+            cursor: pointer;
+            text-align: left;
+        }
+        .page-accordion__title {
+            margin: 0;
         }
         .page-accordion__title p {
-            margin: 10px 0px;
+            font-family: 'Archivo', sans-serif;
+            font-size: 15.5px;
+            font-weight: 600;
+            color: #2B2723;
+            margin: 0;
+        }
+        .tp-faq-icon {
+            font-size: 20px;
+            font-weight: 400;
+            color: #736C64;
+            flex-shrink: 0;
+            margin-left: 12px;
+            line-height: 1;
+        }
+        .tp-faq-icon::before { content: '+'; }
+        .turnpup_question[aria-expanded="true"] .tp-faq-icon::before { content: '\2212'; }
+        .turnpup_answer {
+            font-size: 14.5px;
+            line-height: 1.6;
+            color: #736C64;
+            max-width: 640px;
+            padding-bottom: 20px;
+        }
+        .turnpup_answer p {
+            margin: 0;
         }
         @media screen and (max-width: 700px) {
             .tp-question-container {
@@ -102,6 +155,12 @@
           "id": "section_padding",
           "label": "Show spacing around section",
           "default": true
+        },
+        {
+          "type": "text",
+          "id": "section_heading",
+          "label": "Section Heading",
+          "default": "Common questions"
         },
         {
             "type": "metaobject_list",

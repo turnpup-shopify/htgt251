@@ -42,7 +42,8 @@
         "mobile_marginbottom": 30,
         "alignment": "left",
         "turnpup_bottom_border_color": "rgba(0,0,0,0)",
-        "mobile_font_size": "12px"
+        "mobile_font_size": "12px",
+        "page_background_color": "#F7F4EF"
       }
     },
     "tp_subnav_3LrT9N": {
@@ -154,29 +155,29 @@
         "question_dRTPG8": {
           "type": "Question",
           "settings": {
-            "question": "<p>How long will it take to get my order?</p>",
-            "answer": "<p>We have daily calls with our vendors and issue same day delivery requests to get your order processed as soon as possible. 90% of our orders receive within 2-4 business days.</p>"
+            "question": "<p>Where do square mirrors work best?</p>",
+            "answer": "<p>In clean, modern rooms — an entryway, a bathroom, or over a console. The even shape feels calm and lines up neatly with square furniture and straight walls.</p>"
           }
         },
         "question_CdXMfT": {
           "type": "Question",
           "settings": {
-            "question": "<p>Can I return something if it does not work in my space?</p>",
-            "answer": "<p>We want you to love what you bring home. If something does not work, contact us within 30 days of getting your order. We will walk you through your options. Items must be in their original state and packaging.</p>"
+            "question": "<p>Can I hang square mirrors in a set?</p>",
+            "answer": "<p>Yes. A matched pair or small grid builds a simple gallery look over a bed or console. Keep spacing even between each mirror for an intentional feel.</p>"
           }
         },
         "question_9YdL8P": {
           "type": "Question",
           "settings": {
-            "question": "<p>Do you offer local pickup or delivery in Costa Mesa?</p>",
-            "answer": "<p>Yes. We are based in Costa Mesa, CA. Local pickup and white glove delivery may be available for some items. Get in touch with us and we will find the best way to get your piece to you.</p>"
+            "question": "<p>What finishes are available?</p>",
+            "answer": "<p>Gold, black, silver, and a few warm wood frames. Gold reads warm and refined; black is bold and graphic — match the frame to nearby hardware or lighting.</p>"
           }
         },
         "question_T6EUGA": {
           "type": "Question",
           "settings": {
-            "question": "<p>Is my payment information safe?</p>",
-            "answer": "<p>Yes. We use secure checkout to protect your data. Your payment info is never stored on our site. We have been in this business for over 20 years. Your trust means a lot to us.</p>"
+            "question": "<p>What size should I get?</p>",
+            "answer": "<p>For a solo mirror over a console, aim for about two-thirds the width of the furniture. For a set, leave 6–8\" above the piece so the arrangement reads as one grouping.</p>"
           }
         }
       },
@@ -188,23 +189,24 @@
       ],
       "settings": {
         "section_padding": true,
+        "section_heading": "Common questions",
         "tp_metaobject": "{{ collection.metafields.custom.qa.value }}",
-        "padding_top": 28,
+        "padding_top": 88,
         "padding_bottom": 28,
         "padding_right": 40,
         "padding_left": 40,
-        "mobile_padding_top": 20,
+        "mobile_padding_top": 60,
         "mobile_padding_bottom": 20,
         "mobile_padding_right": 20,
         "mobile_padding_left": 20,
         "background_opacityy": 0,
         "overall_width": "100%",
-        "overall_width_text": "80%",
-        "turnpup_bottom_border_color": "#f4b237",
+        "overall_width_text": "760px",
+        "turnpup_bottom_border_color": "#DCD7CE",
         "turnpup_container_margin_top_bottom": "60px",
-        "background_color": "#ffffff",
-        "background_opacity": "0.2",
-        "mobile_background_color": "#ffffff"
+        "background_color": "#F7F4EF",
+        "background_opacity": "1",
+        "mobile_background_color": "#F7F4EF"
       }
     },
     "1655249273615617be": {
@@ -244,11 +246,11 @@
           "settings": {
             "image": "shopify://shop_images/black-metal-wall-art-4.jpg",
             "image_link": "shopify://collections/benches-ottomans-stools",
-            "image_border_radius": "100%",
+            "image_border_radius": "0px",
             "title": "BENCHES",
-            "title_font_size": "22px",
-            "title_font_size_mobile": "14px",
-            "title_font_family": "'Helvetica Neue'",
+            "title_font_size": "14px",
+            "title_font_size_mobile": "12px",
+            "title_font_family": "'Archivo', sans-serif",
             "title_font_color": "#ffffff",
             "title_line_height": "1.0",
             "title_font_weight": "600",
@@ -296,11 +298,11 @@
           "settings": {
             "image": "shopify://shop_images/industrial-window-pane-floor-mirror.jpg",
             "image_link": "shopify://collections/mirrors",
-            "image_border_radius": "100%",
+            "image_border_radius": "0px",
             "title": "MIRRORS",
-            "title_font_size": "22px",
-            "title_font_size_mobile": "14px",
-            "title_font_family": "'Helvetica Neue'",
+            "title_font_size": "14px",
+            "title_font_size_mobile": "12px",
+            "title_font_family": "'Archivo', sans-serif",
             "title_font_color": "#ffffff",
             "title_line_height": "1.0",
             "title_font_weight": "600",
@@ -348,11 +350,11 @@
           "settings": {
             "image": "shopify://shop_images/carved-wood-side-table-2.jpg",
             "image_link": "shopify://collections/accent-tables",
-            "image_border_radius": "100%",
+            "image_border_radius": "0px",
             "title": "TABLES",
-            "title_font_size": "22px",
-            "title_font_size_mobile": "14px",
-            "title_font_family": "'Helvetica Neue'",
+            "title_font_size": "14px",
+            "title_font_size_mobile": "12px",
+            "title_font_family": "'Archivo', sans-serif",
             "title_font_color": "#ffffff",
             "title_line_height": "1.0",
             "title_font_weight": "600",
@@ -400,11 +402,11 @@
           "settings": {
             "image": "shopify://shop_images/two-tone-knobs-pulls.jpg",
             "image_link": "",
-            "image_border_radius": "100%",
+            "image_border_radius": "0px",
             "title": "HARDWARE",
-            "title_font_size": "22px",
-            "title_font_size_mobile": "14px",
-            "title_font_family": "'Helvetica Neue'",
+            "title_font_size": "14px",
+            "title_font_size_mobile": "12px",
+            "title_font_family": "'Archivo', sans-serif",
             "title_font_color": "#ffffff",
             "title_line_height": "1.0",
             "title_font_weight": "600",
@@ -470,13 +472,13 @@
         "swipe_on_mobile": false,
         "desktop_image_width": "100px",
         "mobile_image_width": "100px",
-        "image_width": "half",
+        "image_width": "full",
         "column_alignment": "center",
-        "column_gap": "5%",
-        "mobile_column_gap": "20px",
+        "column_gap": "18px",
+        "mobile_column_gap": "10px",
         "mobile_columns": "2",
         "button_padding": "10px 20px",
-        "hero_button_font_family": "'Helvetica Neue'",
+        "hero_button_font_family": "'Archivo', sans-serif",
         "hero_button_font_size": "18px",
         "hero_button_font_weight": "400",
         "button_border_radius": "0px",
@@ -489,19 +491,23 @@
         "button_label": "",
         "button_link": "",
         "title": "Shop by Category",
-        "title_font_size": "24px",
-        "mobile_title_font_size": "24px",
-        "title_font_family": "'Helvetica Neue'",
+        "title_font_size": "13px",
+        "mobile_title_font_size": "13px",
+        "title_font_family": "'Archivo', sans-serif",
         "section_title_font_weight": "600",
         "section_title_padding": "0px",
         "sub_title": "",
         "subtitle_font_size": "24px",
         "section_subtitle_padding": "0 0 10px",
-        "subtitle_font_family": "'Helvetica Neue'",
+        "subtitle_font_family": "'Archivo', sans-serif",
         "title_alignment": "left",
-        "section_text_color": "#ffffff",
+        "section_text_color": "#736C64",
         "overall_background_image_url": "",
-        "section_background_color": "#8C5F45"
+        "section_background_color": "#F7F4EF",
+        "overlay_gradient": true,
+        "text_position": "bottom-left",
+        "tile_aspect_ratio": "4:3",
+        "tile_border_radius": "6px"
       }
     },
     "tp_auto_col_banners_Lwfkg9": {
