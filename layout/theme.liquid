@@ -283,6 +283,16 @@
   --mobile_product_title_size: {{ settings.mobile_pdp_product_size }};
   --desktop_pdp_desc_size: {{ settings.desktop_pdp_desc_size }};
   --mobile_pdp_desc_size: {{ settings.mobile_pdp_desc_size }};
+
+  --color-section-background: {{ settings.section_background_color | default: 'transparent' }};
+}
+
+.content-for-layout,
+.shopify-section:not(.footer-combined-section),
+.collection,
+.featured-collection,
+.simple-collection {
+  background-color: var(--color-section-background);
 }
 
 *,

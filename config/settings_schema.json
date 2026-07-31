@@ -15,6 +15,17 @@
         "content": "Custom Settings"
       },
       {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "section_background_color",
+        "label": "Section / Page Background Color",
+        "default": "#FFFFFF",
+        "info": "Applies to .content-for-layout, all sections (except footer), and collection wrappers. Set to #F7F4EF for warm stone."
+      },
+      {
         "type": "color",
         "id": "button_primary_hero_color",
         "default": "#334FB4",

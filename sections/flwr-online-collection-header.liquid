@@ -83,7 +83,14 @@
 
 {% if section.settings.page_background_color != blank %}
 <style>
-  body { background-color: {{ section.settings.page_background_color }}; }
+  body,
+  .content-for-layout,
+  .shopify-section:not(.footer-combined-section),
+  .collection,
+  .featured-collection,
+  .simple-collection {
+    background-color: {{ section.settings.page_background_color }};
+  }
 </style>
 {% endif %}
 

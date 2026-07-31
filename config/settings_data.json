@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "section_background_color": "#F7F4EF",
     "button_primary_hero_color": "#121212",
     "button_secondary_hero_color": "#fa6d12",
     "button_padding": "10px 20px",
