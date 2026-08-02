@@ -105,29 +105,29 @@
     height: 100%;
     object-fit: cover;
   }
-  /* Shop scene pill — wide centred bar */
+  /* Shop scene pill — wide bar pinned to top of image */
   .tp-scene-{{ section.id }} .tp-scene__pill {
     position: absolute;
-    top: 50%;
+    top: 14px;
     left: 14px;
     right: 14px;
-    transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    padding: 12px 14px;
+    gap: 10px;
+    padding: 9px 12px;
     border: 0;
     cursor: pointer;
     border-radius: {{ section.settings.pill_border_radius }}px;
     background: {{ section.settings.pill_background_color | color_modify: 'alpha', 0.72 }};
     color: {{ section.settings.pill_text_color }};
     font-family: {{ section.settings.body_font_family }};
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     line-height: 1;
+    white-space: nowrap;
     transition: background 0.2s ease;
   }
   .tp-scene-{{ section.id }} .tp-scene__pill:hover {
@@ -147,9 +147,9 @@
     flex-shrink: 0;
   }
   .tp-scene-{{ section.id }} .tp-scene__thumb {
-    width: 40px;
-    height: 40px;
-    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
     overflow: hidden;
     background: #fff;
     box-shadow: 0 1px 4px rgba(0,0,0,0.12);

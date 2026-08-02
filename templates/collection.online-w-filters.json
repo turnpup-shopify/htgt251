@@ -160,7 +160,15 @@
         "columns_desktop": "3",
         "mobile_layout": "carousel",
         "image_ratio": "portrait_34",
-        "thumb_count": 3
+        "thumb_count": 3,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_left": 40,
+        "padding_right": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "mobile_padding_left": 20,
+        "mobile_padding_right": 20
       }
     },
     "featured_row_Aqr9fj": {
