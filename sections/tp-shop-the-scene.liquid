@@ -105,39 +105,46 @@
     height: 100%;
     object-fit: cover;
   }
-  /* Shop scene pill (top-left) */
+  /* Shop scene pill — wide centred bar */
   .tp-scene-{{ section.id }} .tp-scene__pill {
     position: absolute;
-    top: 14px;
+    top: 50%;
     left: 14px;
-    display: inline-flex;
+    right: 14px;
+    transform: translateY(-50%);
+    display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 9px 14px;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
     border: 0;
     cursor: pointer;
     border-radius: {{ section.settings.pill_border_radius }}px;
-    background: {{ section.settings.pill_background_color }};
+    background: {{ section.settings.pill_background_color | color_modify: 'alpha', 0.72 }};
     color: {{ section.settings.pill_text_color }};
     font-family: {{ section.settings.body_font_family }};
     font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     line-height: 1;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: background 0.2s ease;
   }
   .tp-scene-{{ section.id }} .tp-scene__pill:hover {
-    background: {{ section.settings.pill_background_color_hover }};
+    background: {{ section.settings.pill_background_color_hover | color_modify: 'alpha', 0.88 }};
     color: {{ section.settings.pill_text_color_hover }};
   }
+  .tp-scene-{{ section.id }} .tp-scene__pill-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
   .tp-scene-{{ section.id }} .tp-scene__pill svg { width: 15px; height: 15px; }
-  /* Thumbnail strip (top-right) */
+  /* Thumbnail strip — inside pill */
   .tp-scene-{{ section.id }} .tp-scene__thumbs {
-    position: absolute;
-    top: 14px;
-    right: 14px;
     display: flex;
     gap: 6px;
+    flex-shrink: 0;
   }
   .tp-scene-{{ section.id }} .tp-scene__thumb {
     width: 40px;
@@ -300,19 +307,20 @@
               aria-haspopup="dialog"
               aria-expanded="false"
               aria-controls="{{ drawer_id }}">
-              <span>{{ section.settings.scene_button_label }} ({{ product_count }})</span>
-              {%- render 'icon-arrow' -%}
+              <span class="tp-scene__pill-left">
+                <span>{{ section.settings.scene_button_label }} ({{ product_count }})</span>
+                {%- render 'icon-arrow' -%}
+              </span>
+              <div class="tp-scene__thumbs" aria-hidden="true">
+                {%- for product in products limit: thumb_count -%}
+                  <span class="tp-scene__thumb">
+                    {%- if product.featured_media != blank -%}
+                      {{ product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: product.title | escape }}
+                    {%- endif -%}
+                  </span>
+                {%- endfor -%}
+              </div>
             </button>
-
-            <div class="tp-scene__thumbs" aria-hidden="true">
-              {%- for product in products limit: thumb_count -%}
-                <span class="tp-scene__thumb">
-                  {%- if product.featured_media != blank -%}
-                    {{ product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: product.title | escape }}
-                  {%- endif -%}
-                </span>
-              {%- endfor -%}
-            </div>
           {%- endif -%}
         </div>
 
@@ -575,7 +583,7 @@
       "max": 40,
       "step": 2,
       "unit": "px",
-      "default": 30
+      "default": 6
     },
     {
       "type": "header",
