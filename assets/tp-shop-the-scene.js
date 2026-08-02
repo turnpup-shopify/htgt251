@@ -20,18 +20,21 @@
   class TPShopSceneDrawer extends HTMLElement {
     constructor() {
       super();
-      this.overlay = this.querySelector('.tp-scene-drawer__overlay');
-      this.panel = this.querySelector('.tp-scene-drawer__panel');
-      this.closeButtons = this.querySelectorAll('[data-scene-drawer-close]');
       this.activeTrigger = null;
       this.boundHandleEscape = this.handleEscape.bind(this);
     }
 
     connectedCallback() {
+      // Query children here (not in constructor) — children are guaranteed
+      // to be available once the element is connected to the DOM.
+      this.overlay = this.querySelector('.tp-scene-drawer__overlay');
+      this.panel = this.querySelector('.tp-scene-drawer__panel');
+      this.closeButtons = this.querySelectorAll('[data-scene-drawer-close]');
+
       this.setAttribute('aria-hidden', 'true');
       if (this.panel) this.panel.setAttribute('aria-hidden', 'true');
-      this.closeButtons.forEach((button) =>
-        button.addEventListener('click', () => this.close())
+      this.closeButtons.forEach((btn) =>
+        btn.addEventListener('click', () => this.close())
       );
       if (this.overlay) {
         this.overlay.addEventListener('click', () => this.close());
