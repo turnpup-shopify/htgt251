@@ -281,10 +281,6 @@
         assign products = block.settings.scene_products
         assign product_count = products.count
         assign drawer_id = 'SceneDrawer-' | append: section.id | append: '-' | append: block.id
-        assign card_quick_add = ''
-        if section.settings.enable_quick_add
-          assign card_quick_add = 'standard'
-        endif
       -%}
       <div class="tp-scene__card" {{ block.shopify_attributes }}>
         <div class="tp-scene__media">
@@ -342,46 +338,57 @@
           {%- endif -%}
         </div>
       </div>
-
-      {%- comment -%} One slide-out drawer per card {%- endcomment -%}
-      {%- if product_count > 0 -%}
-        <tp-shop-scene-drawer id="{{ drawer_id }}" class="tp-scene-drawer">
-          <div class="tp-scene-drawer__overlay" data-scene-drawer-close></div>
-          <aside
-            class="tp-scene-drawer__panel"
-            role="dialog"
-            aria-modal="true"
-            aria-label="{{ section.settings.scene_button_label }} {{ block.settings.room_name | escape }}"
-            tabindex="-1">
-            <header class="tp-scene-drawer__header">
-              <h2 class="tp-scene-drawer__heading">{{ section.settings.scene_button_label }} ({{ product_count }})</h2>
-              <button type="button" class="tp-scene-drawer__close" data-scene-drawer-close aria-label="{{ 'accessibility.close' | t }}">
-                {%- render 'icon-close' -%}
-              </button>
-            </header>
-            <div class="tp-scene-drawer__content">
-              <ul class="tp-scene-drawer__grid">
-                {%- for product in products -%}
-                  <li class="grid__item">
-                    {%- render 'tp-card-product',
-                      card_product: product,
-                      media_aspect_ratio: 'square',
-                      show_secondary_image: true,
-                      show_vendor: false,
-                      show_rating: false,
-                      lazy_load: true,
-                      quick_add: card_quick_add,
-                      show_price: true,
-                      section_id: section.id -%}
-                  </li>
-                {%- endfor -%}
-              </ul>
-            </div>
-          </aside>
-        </tp-shop-scene-drawer>
-      {%- endif -%}
     {%- endfor -%}
   </div>
+
+  {%- comment -%} Drawers rendered outside the grid so position:fixed escapes the overflow:auto scroll container {%- endcomment -%}
+  {%- for block in section.blocks -%}
+    {%- liquid
+      assign products = block.settings.scene_products
+      assign product_count = products.count
+      assign drawer_id = 'SceneDrawer-' | append: section.id | append: '-' | append: block.id
+      assign card_quick_add = ''
+      if section.settings.enable_quick_add
+        assign card_quick_add = 'standard'
+      endif
+    -%}
+    {%- if product_count > 0 -%}
+      <tp-shop-scene-drawer id="{{ drawer_id }}" class="tp-scene-drawer">
+        <div class="tp-scene-drawer__overlay" data-scene-drawer-close></div>
+        <aside
+          class="tp-scene-drawer__panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="{{ section.settings.scene_button_label }} {{ block.settings.room_name | escape }}"
+          tabindex="-1">
+          <header class="tp-scene-drawer__header">
+            <h2 class="tp-scene-drawer__heading">{{ section.settings.scene_button_label }} ({{ product_count }})</h2>
+            <button type="button" class="tp-scene-drawer__close" data-scene-drawer-close aria-label="{{ 'accessibility.close' | t }}">
+              {%- render 'icon-close' -%}
+            </button>
+          </header>
+          <div class="tp-scene-drawer__content">
+            <ul class="tp-scene-drawer__grid">
+              {%- for product in products -%}
+                <li class="grid__item">
+                  {%- render 'tp-card-product',
+                    card_product: product,
+                    media_aspect_ratio: 'square',
+                    show_secondary_image: true,
+                    show_vendor: false,
+                    show_rating: false,
+                    lazy_load: true,
+                    quick_add: card_quick_add,
+                    show_price: true,
+                    section_id: section.id -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </aside>
+      </tp-shop-scene-drawer>
+    {%- endif -%}
+  {%- endfor -%}
 </div>
 
 {% schema %}
