@@ -14,9 +14,7 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-rte.css' | asset_url | stylesheet_tag }}
-{%- if section.settings.enable_quick_add -%}
-  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
-{%- endif -%}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'tp-shop-the-scene.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
@@ -347,10 +345,7 @@
       assign products = block.settings.scene_products
       assign product_count = products.count
       assign drawer_id = 'SceneDrawer-' | append: section.id | append: '-' | append: block.id
-      assign card_quick_add = ''
-      if section.settings.enable_quick_add
-        assign card_quick_add = 'standard'
-      endif
+      assign card_quick_add = 'standard'
     -%}
     {%- if product_count > 0 -%}
       <tp-shop-scene-drawer id="{{ drawer_id }}" class="tp-scene-drawer">
