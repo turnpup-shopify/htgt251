@@ -115,6 +115,54 @@
         "padding_bottom": 36
       }
     },
+    "tp_shop_the_scene_9Kd2Xm": {
+      "type": "tp-shop-the-scene",
+      "blocks": {
+        "scene_bedroom": {
+          "type": "scene",
+          "settings": {
+            "room_name": "Bedroom",
+            "instagram_handle": "",
+            "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables, sideboards, homeware and more for the bedroom.</p>",
+            "shop_link_label": "Shop Bedroom",
+            "shop_link": ""
+          }
+        },
+        "scene_study": {
+          "type": "scene",
+          "settings": {
+            "room_name": "Study",
+            "instagram_handle": "",
+            "description": "<p>Whether dedicated room or zoned corner, our desks, chairs, lighting, accessories and more will help you create a stylish and comfortable space that's conducive to productivity.</p>",
+            "shop_link_label": "Shop Study",
+            "shop_link": ""
+          }
+        },
+        "scene_hallway": {
+          "type": "scene",
+          "settings": {
+            "room_name": "Hallway",
+            "instagram_handle": "",
+            "description": "<p>Whether grand or narrow, our consoles, rugs, lighting, artwork and more will help your hallway make a great first impression while enabling you to express your unique sense of style.</p>",
+            "shop_link_label": "Shop Hallway",
+            "shop_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "scene_bedroom",
+        "scene_study",
+        "scene_hallway"
+      ],
+      "settings": {
+        "title": "",
+        "subheading": "",
+        "columns_desktop": "3",
+        "mobile_layout": "carousel",
+        "image_ratio": "portrait_34",
+        "thumb_count": 3
+      }
+    },
     "featured_row_Aqr9fj": {
       "type": "featured-row",
       "settings": {
@@ -770,6 +818,7 @@
     "tp_subnav_3LrT9N",
     "product-grid",
     "tp_main_collection_product_grid_RNL8xJ",
+    "tp_shop_the_scene_9Kd2Xm",
     "featured_row_Aqr9fj",
     "featured_row_dKgcB9",
     "tp_questions_bcgh3e",

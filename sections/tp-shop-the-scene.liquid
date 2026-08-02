@@ -1,0 +1,767 @@
+{% comment %}
+  TP Shop the Scene
+  ------------------------------------------------------------
+  A grid of room / scene cards. Each card shows a staged photo with a
+  "Shop scene (N)" pill and a strip of product thumbnails. Clicking the
+  pill opens a right-side slide-out drawer listing the staged products
+  (rendered with the theme's tp-card-product component).
+
+  - Desktop: 2-4 column grid.
+  - Mobile: peek-carousel (scroll-snap) or stacked.
+  - Each card has an optional Instagram @handle shown above the room name.
+{% endcomment %}
+
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.enable_quick_add -%}
+  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+<script src="{{ 'tp-shop-the-scene.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign thumb_count = section.settings.thumb_count
+  assign card_ratio = 0.75
+  case section.settings.image_ratio
+    when 'portrait_45'
+      assign card_ratio = 0.8
+    when 'square'
+      assign card_ratio = 1
+    when 'landscape'
+      assign card_ratio = 1.333
+    else
+      assign card_ratio = 0.75
+  endcase
+  assign overlay_rgb = section.settings.drawer_overlay_color | default: '#000000' | color_to_rgb | replace: 'rgb(', '' | replace: ')', ''
+-%}
+
+{%- style -%}
+  .tp-scene-{{ section.id }} {
+    background-color: {{ section.settings.section_background_color }};
+    padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_left }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_right }}px;
+    color: {{ section.settings.text_color }};
+  }
+  @media screen and (min-width: 750px) {
+    .tp-scene-{{ section.id }} {
+      padding: {{ section.settings.padding_top }}px {{ section.settings.padding_left }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_right }}px;
+    }
+  }
+  .tp-scene-{{ section.id }} .tp-scene__title {
+    font-family: {{ section.settings.title_font_family }};
+    font-weight: {{ section.settings.title_font_weight }};
+    font-size: {{ section.settings.mobile_title_size }};
+    color: {{ section.settings.text_color }};
+    margin: 0 0 6px;
+  }
+  .tp-scene-{{ section.id }} .tp-scene__subheading {
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 15px;
+    margin: 0 0 24px;
+    max-width: 640px;
+  }
+  @media screen and (min-width: 750px) {
+    .tp-scene-{{ section.id }} .tp-scene__title { font-size: {{ section.settings.title_font_size }}; }
+  }
+  .tp-scene-{{ section.id }} .tp-scene__grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: {{ section.settings.column_gap }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .tp-scene-{{ section.id }} .tp-scene__grid {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
+    }
+  }
+  {%- if section.settings.mobile_layout == 'carousel' -%}
+    @media screen and (max-width: 749px) {
+      .tp-scene-{{ section.id }} .tp-scene__grid {
+        grid-auto-flow: column;
+        grid-auto-columns: 78%;
+        grid-template-columns: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        margin: 0 -{{ section.settings.mobile_padding_left }}px;
+        padding: 0 {{ section.settings.mobile_padding_left }}px;
+      }
+      .tp-scene-{{ section.id }} .tp-scene__grid::-webkit-scrollbar { display: none; }
+      .tp-scene-{{ section.id }} .tp-scene__card { scroll-snap-align: start; }
+    }
+  {%- endif -%}
+  .tp-scene-{{ section.id }} .tp-scene__media {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-bottom: {{ 1 | divided_by: card_ratio | times: 100 }}%;
+    overflow: hidden;
+    border-radius: {{ section.settings.image_border_radius }}px;
+    background: #efece7;
+  }
+  .tp-scene-{{ section.id }} .tp-scene__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Shop scene pill (top-left) */
+  .tp-scene-{{ section.id }} .tp-scene__pill {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border: 0;
+    cursor: pointer;
+    border-radius: {{ section.settings.pill_border_radius }}px;
+    background: {{ section.settings.pill_background_color }};
+    color: {{ section.settings.pill_text_color }};
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .tp-scene-{{ section.id }} .tp-scene__pill:hover {
+    background: {{ section.settings.pill_background_color_hover }};
+    color: {{ section.settings.pill_text_color_hover }};
+  }
+  .tp-scene-{{ section.id }} .tp-scene__pill svg { width: 15px; height: 15px; }
+  /* Thumbnail strip (top-right) */
+  .tp-scene-{{ section.id }} .tp-scene__thumbs {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    gap: 6px;
+  }
+  .tp-scene-{{ section.id }} .tp-scene__thumb {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  }
+  .tp-scene-{{ section.id }} .tp-scene__thumb img { width: 100%; height: 100%; object-fit: cover; }
+  /* Text block */
+  .tp-scene-{{ section.id }} .tp-scene__body { padding: 16px 2px 0; }
+  .tp-scene-{{ section.id }} .tp-scene__handle {
+    display: block;
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: none;
+    color: {{ section.settings.handle_color }};
+    margin: 0 0 4px;
+  }
+  .tp-scene-{{ section.id }} .tp-scene__room {
+    font-family: {{ section.settings.room_font_family }};
+    font-weight: {{ section.settings.room_font_weight }};
+    font-size: {{ section.settings.room_font_size }};
+    color: {{ section.settings.text_color }};
+    margin: 0 0 10px;
+    line-height: 1.1;
+  }
+  .tp-scene-{{ section.id }} .tp-scene__desc {
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 15px;
+    line-height: 1.5;
+    color: {{ section.settings.text_color }};
+    margin: 0 0 14px;
+  }
+  .tp-scene-{{ section.id }} .tp-scene__desc p { margin: 0 0 10px; }
+  .tp-scene-{{ section.id }} .tp-scene__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: {{ section.settings.text_color }};
+    text-decoration: none;
+  }
+  .tp-scene-{{ section.id }} .tp-scene__link svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
+  .tp-scene-{{ section.id }} .tp-scene__link:hover svg { transform: translateX(4px); }
+
+  /* ---- Slide-out drawer ---- */
+  .tp-scene-drawer {
+    --tp-scene-overlay-rgb: {{ overlay_rgb }};
+    --tp-scene-overlay-opacity: {{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }};
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .tp-scene-drawer.is-open { visibility: visible; pointer-events: auto; }
+  .tp-scene-drawer__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(var(--tp-scene-overlay-rgb), var(--tp-scene-overlay-opacity));
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .tp-scene-drawer.is-open .tp-scene-drawer__overlay { opacity: 1; }
+  .tp-scene-drawer__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 460px;
+    max-width: 92vw;
+    background: {{ section.settings.drawer_background_color }};
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -8px 0 30px rgba(0,0,0,0.14);
+  }
+  .tp-scene-drawer.is-open .tp-scene-drawer__panel { transform: translateX(0); }
+  .tp-scene-drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 22px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    flex: 0 0 auto;
+  }
+  .tp-scene-drawer__heading {
+    font-family: {{ section.settings.room_font_family }};
+    font-weight: {{ section.settings.room_font_weight }};
+    font-size: 22px;
+    margin: 0;
+    color: {{ section.settings.drawer_text_color }};
+  }
+  .tp-scene-drawer__close {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 6px;
+    line-height: 0;
+    color: {{ section.settings.drawer_text_color }};
+  }
+  .tp-scene-drawer__close svg { width: 22px; height: 22px; }
+  .tp-scene-drawer__content { flex: 1 1 auto; overflow-y: auto; padding: 18px; -webkit-overflow-scrolling: touch; }
+  .tp-scene-drawer__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tp-scene-drawer__grid .grid__item { margin: 0; max-width: none; }
+  body.tp-scene-drawer-open { overflow: hidden; }
+{%- endstyle -%}
+
+<div class="tp-scene-{{ section.id }} tp-shop-the-scene">
+  {%- if section.settings.title != blank -%}
+    <h2 class="tp-scene__title">{{ section.settings.title }}</h2>
+  {%- endif -%}
+  {%- if section.settings.subheading != blank -%}
+    <p class="tp-scene__subheading">{{ section.settings.subheading }}</p>
+  {%- endif -%}
+
+  <div class="tp-scene__grid">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign products = block.settings.scene_products
+        assign product_count = products.count
+        assign drawer_id = 'SceneDrawer-' | append: section.id | append: '-' | append: block.id
+        assign card_quick_add = ''
+        if section.settings.enable_quick_add
+          assign card_quick_add = 'standard'
+        endif
+      -%}
+      <div class="tp-scene__card" {{ block.shopify_attributes }}>
+        <div class="tp-scene__media">
+          {%- if block.settings.scene_image != blank -%}
+            {{ block.settings.scene_image | image_url: width: 900 | image_tag:
+              loading: 'lazy',
+              widths: '450, 660, 900, 1200',
+              sizes: '(min-width: 750px) 33vw, 90vw',
+              alt: block.settings.room_name | default: block.settings.scene_image.alt | escape }}
+          {%- else -%}
+            {{ 'collection-1' | placeholder_svg_tag: 'tp-scene__placeholder' }}
+          {%- endif -%}
+
+          {%- if product_count > 0 -%}
+            <button
+              type="button"
+              class="tp-scene__pill"
+              data-scene-drawer-open="#{{ drawer_id }}"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+              aria-controls="{{ drawer_id }}">
+              <span>{{ section.settings.scene_button_label }} ({{ product_count }})</span>
+              {%- render 'icon-arrow' -%}
+            </button>
+
+            <div class="tp-scene__thumbs" aria-hidden="true">
+              {%- for product in products limit: thumb_count -%}
+                <span class="tp-scene__thumb">
+                  {%- if product.featured_media != blank -%}
+                    {{ product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: product.title | escape }}
+                  {%- endif -%}
+                </span>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="tp-scene__body">
+          {%- if block.settings.instagram_handle != blank -%}
+            {%- assign handle = block.settings.instagram_handle | remove: '@' -%}
+            <span class="tp-scene__handle">@{{ handle }}</span>
+          {%- endif -%}
+          {%- if block.settings.room_name != blank -%}
+            <h3 class="tp-scene__room">{{ block.settings.room_name }}</h3>
+          {%- endif -%}
+          {%- if block.settings.description != blank -%}
+            <div class="tp-scene__desc rte">{{ block.settings.description }}</div>
+          {%- endif -%}
+          {%- if block.settings.shop_link != blank and block.settings.shop_link_label != blank -%}
+            <a class="tp-scene__link" href="{{ block.settings.shop_link }}">
+              <span>{{ block.settings.shop_link_label }}</span>
+              {%- render 'icon-arrow' -%}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- comment -%} One slide-out drawer per card {%- endcomment -%}
+      {%- if product_count > 0 -%}
+        <tp-shop-scene-drawer id="{{ drawer_id }}" class="tp-scene-drawer">
+          <div class="tp-scene-drawer__overlay" data-scene-drawer-close></div>
+          <aside
+            class="tp-scene-drawer__panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="{{ section.settings.scene_button_label }} {{ block.settings.room_name | escape }}"
+            tabindex="-1">
+            <header class="tp-scene-drawer__header">
+              <h2 class="tp-scene-drawer__heading">{{ section.settings.scene_button_label }} ({{ product_count }})</h2>
+              <button type="button" class="tp-scene-drawer__close" data-scene-drawer-close aria-label="{{ 'accessibility.close' | t }}">
+                {%- render 'icon-close' -%}
+              </button>
+            </header>
+            <div class="tp-scene-drawer__content">
+              <ul class="tp-scene-drawer__grid">
+                {%- for product in products -%}
+                  <li class="grid__item">
+                    {%- render 'tp-card-product',
+                      card_product: product,
+                      media_aspect_ratio: 'square',
+                      show_secondary_image: true,
+                      show_vendor: false,
+                      show_rating: false,
+                      lazy_load: true,
+                      quick_add: card_quick_add,
+                      show_price: true,
+                      section_id: section.id -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          </aside>
+        </tp-shop-scene-drawer>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TP Shop the Scene",
+  "class": "tp-shop-the-scene-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "title_font_size",
+      "label": "Title font size (desktop)",
+      "default": "32px"
+    },
+    {
+      "type": "text",
+      "id": "mobile_title_size",
+      "label": "Title font size (mobile)",
+      "default": "24px"
+    },
+    {
+      "type": "text",
+      "id": "title_font_family",
+      "label": "Title font family",
+      "default": "'josefin-sans', sans-serif"
+    },
+    {
+      "type": "text",
+      "id": "title_font_weight",
+      "label": "Title font weight",
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile layout",
+      "options": [
+        { "value": "carousel", "label": "Peek carousel" },
+        { "value": "stacked", "label": "Stacked" }
+      ],
+      "default": "carousel"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Card image ratio",
+      "options": [
+        { "value": "portrait_34", "label": "Portrait 3:4" },
+        { "value": "portrait_45", "label": "Portrait 4:5" },
+        { "value": "square", "label": "Square 1:1" },
+        { "value": "landscape", "label": "Landscape 4:3" }
+      ],
+      "default": "portrait_34"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Card image corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Gap between cards",
+      "min": 8,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "thumb_count",
+      "label": "Thumbnails shown in pill",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Colors & fonts"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background",
+      "default": "#f7f4ef"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "handle_color",
+      "label": "Instagram handle color",
+      "default": "#8a8378"
+    },
+    {
+      "type": "text",
+      "id": "room_font_family",
+      "label": "Room name font family",
+      "default": "'josefin-sans', sans-serif"
+    },
+    {
+      "type": "text",
+      "id": "room_font_size",
+      "label": "Room name font size",
+      "default": "26px"
+    },
+    {
+      "type": "text",
+      "id": "room_font_weight",
+      "label": "Room name font weight",
+      "default": "500"
+    },
+    {
+      "type": "text",
+      "id": "body_font_family",
+      "label": "Body font family",
+      "default": "'Karla', sans-serif"
+    },
+    {
+      "type": "header",
+      "content": "Shop scene pill"
+    },
+    {
+      "type": "text",
+      "id": "scene_button_label",
+      "label": "Pill / drawer label",
+      "default": "Shop scene",
+      "info": "The product count is appended automatically, e.g. \"Shop scene (6)\"."
+    },
+    {
+      "type": "color",
+      "id": "pill_background_color",
+      "label": "Pill background",
+      "default": "#3a352c"
+    },
+    {
+      "type": "color",
+      "id": "pill_text_color",
+      "label": "Pill text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pill_background_color_hover",
+      "label": "Pill background (hover)",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "pill_text_color_hover",
+      "label": "Pill text (hover)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "pill_border_radius",
+      "label": "Pill corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Shop scene drawer"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "label": "Enable quick add on drawer product cards",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "drawer_background_color",
+      "label": "Drawer background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "drawer_text_color",
+      "label": "Drawer heading color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "drawer_overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "drawer_overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "default": 45
+    },
+    {
+      "type": "header",
+      "content": "Section padding (desktop)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "label": "Padding left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "label": "Padding right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Section padding (mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "label": "Padding left",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_right",
+      "label": "Padding right",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "scene",
+      "name": "Scene",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "scene_image",
+          "label": "Scene image"
+        },
+        {
+          "type": "text",
+          "id": "instagram_handle",
+          "label": "Instagram handle",
+          "info": "Optional. Shown as @handle above the room name. The @ is added automatically."
+        },
+        {
+          "type": "text",
+          "id": "room_name",
+          "label": "Room name",
+          "default": "Bedroom"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>"
+        },
+        {
+          "type": "text",
+          "id": "shop_link_label",
+          "label": "Shop link label",
+          "default": "Shop Bedroom"
+        },
+        {
+          "type": "url",
+          "id": "shop_link",
+          "label": "Shop link"
+        },
+        {
+          "type": "product_list",
+          "id": "scene_products",
+          "label": "Scene products",
+          "info": "Products staged in this scene. Drives the count, thumbnails, and the Shop scene drawer.",
+          "limit": 20
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TP Shop the Scene",
+      "blocks": [
+        { "type": "scene" },
+        { "type": "scene" },
+        { "type": "scene" }
+      ]
+    }
+  ]
+}
+{% endschema %}
