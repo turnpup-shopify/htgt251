@@ -11,13 +11,192 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 76,
         "padding_bottom": 28
       }
+    },
+    "tp_shop_the_look_T6gpdU": {
+      "type": "tp-shop-the-look",
+      "disabled": true,
+      "name": "TP - Shop the Look Carousel",
+      "settings": {
+        "blog_handle": "",
+        "article_tag": "",
+        "interior_style_tag": "industrial,coastal,modern",
+        "color_tag": "black, gray, orange, white, blue, navy",
+        "padding_top": 20,
+        "padding_bottom": 40,
+        "padding_right": 60,
+        "padding_left": 60,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 24,
+        "mobile_padding_right": 24,
+        "mobile_padding_left": 24,
+        "max_height_desktop": 80,
+        "mobile_max_height_desktop": 90,
+        "article_tag_other": "",
+        "border_color": "#000000",
+        "border_width": 0,
+        "border_radius": 20,
+        "cell_title_color": "#000000",
+        "cell_subtitle_color": "#555555",
+        "cell_title_fontsize": "16px",
+        "cell_subtitle_fontsize": "16px",
+        "cell_title_fontfamily": "Arial",
+        "cell_subtitle_fontfamily": "Arial",
+        "cell_title_fontwegith": "700",
+        "cell_subtitle_fontweight": "400",
+        "arrow_icon_right": "",
+        "arrow_color": "#000000",
+        "swipe_on_mobile": false,
+        "image_width": "full",
+        "column_alignment": "left",
+        "column_gap": "0px",
+        "button_padding": "10px 20px",
+        "hero_button_font_family": "'Helvetica Neue'",
+        "hero_button_font_size": "18px",
+        "hero_button_font_weight": "400",
+        "button_border_radius": "0px",
+        "button_border_color": "#000000",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "button_border_color_hover": "#ffffff",
+        "button_background_color_hover": "#000000",
+        "button_text_color_hover": "#ffffff",
+        "button_label": "all",
+        "button_link": "",
+        "header": "",
+        "title_font_size": "40px",
+        "mobile_title_size": "24px",
+        "title_font_family": "'Helvetica Neue'",
+        "title_font_weight": "600",
+        "title_font_color": "#000000",
+        "section_title_padding": "0px",
+        "subtitle": "",
+        "subtitle_font_size": "20px",
+        "section_subtitle_padding": "0px",
+        "subtitle_font_family": "'Helvetica Neue'",
+        "subtitle_font_weight": "700",
+        "overall_titles_margin_top": 0,
+        "overall_titles_margin_bottom": 0,
+        "overall_titles_margin_right": 0,
+        "overall_titles_margin_left": 0,
+        "title_alignment": "left",
+        "section_text_color": "#000000",
+        "overall_background_image_url": "",
+        "section_background_color": "#ffffff"
+      }
+    },
+    "tp_shop_the_scene_xxzfAB": {
+      "type": "tp-shop-the-scene",
+      "blocks": {
+        "scene_BUfBRA": {
+          "type": "scene",
+          "settings": {
+            "scene_image": "shopify://shop_images/08392-387135-6.jpg",
+            "instagram_handle": "@joannagaunes",
+            "room_name": "Entryway",
+            "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>",
+            "shop_link_label": "Shop This Entryway",
+            "shop_link": "shopify://collections/entryway-decor",
+            "scene_products": [
+              "60-inch-round-mirror",
+              "abril-rechargable-accent-lamp",
+              "imelda-console-table"
+            ]
+          }
+        },
+        "scene_YPfXDM": {
+          "type": "scene",
+          "settings": {
+            "scene_image": "shopify://shop_images/cordless-brass-table-lamp-lifestyle-4.jpg",
+            "instagram_handle": "",
+            "room_name": "Bedroom",
+            "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>",
+            "shop_link_label": "Shop Bedroom",
+            "shop_link": "",
+            "scene_products": []
+          }
+        },
+        "scene_RPiMET": {
+          "type": "scene",
+          "settings": {
+            "scene_image": "shopify://shop_images/23898-106059-15.jpg",
+            "instagram_handle": "",
+            "room_name": "Bedroom",
+            "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>",
+            "shop_link_label": "Shop Bedroom",
+            "shop_link": "",
+            "scene_products": []
+          }
+        },
+        "scene_3mPqY4": {
+          "type": "scene",
+          "settings": {
+            "scene_image": "shopify://shop_images/midcentury-modern-stool.jpg",
+            "instagram_handle": "",
+            "room_name": "Bedroom",
+            "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>",
+            "shop_link_label": "Shop Bedroom",
+            "shop_link": "",
+            "scene_products": []
+          }
+        }
+      },
+      "block_order": [
+        "scene_BUfBRA",
+        "scene_YPfXDM",
+        "scene_RPiMET",
+        "scene_3mPqY4"
+      ],
+      "name": "TP Shop the Scene",
+      "settings": {
+        "title": "",
+        "subheading": "",
+        "title_font_size": "32px",
+        "mobile_title_size": "24px",
+        "title_font_family": "'josefin-sans', sans-serif",
+        "title_font_weight": "600",
+        "columns_desktop": "4",
+        "mobile_layout": "carousel",
+        "image_ratio": "square",
+        "image_border_radius": 0,
+        "column_gap": 28,
+        "thumb_count": 3,
+        "section_background_color": "#f7f4ef",
+        "text_color": "#121212",
+        "handle_color": "#8a8378",
+        "room_font_family": "'josefin-sans', sans-serif",
+        "room_font_size": "26px",
+        "room_font_weight": "500",
+        "body_font_family": "'Karla', sans-serif",
+        "scene_button_label": "Shop scene",
+        "pill_background_color": "#3a352c",
+        "pill_text_color": "#ffffff",
+        "pill_background_color_hover": "#000000",
+        "pill_text_color_hover": "#ffffff",
+        "pill_border_radius": 30,
+        "enable_quick_add": false,
+        "drawer_background_color": "#ffffff",
+        "drawer_text_color": "#121212",
+        "drawer_overlay_color": "#000000",
+        "drawer_overlay_opacity": 45,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_left": 40,
+        "padding_right": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "mobile_padding_left": 20,
+        "mobile_padding_right": 20
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "tp_shop_the_look_T6gpdU",
+    "tp_shop_the_scene_xxzfAB"
   ]
 }
