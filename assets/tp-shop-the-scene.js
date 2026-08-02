@@ -25,8 +25,16 @@
     }
 
     connectedCallback() {
+      // Teleport to <body> so position:fixed escapes any ancestor stacking
+      // context or overflow container created by Shopify section wrappers.
+      // connectedCallback fires again after the move; the guard stops re-entry.
+      if (this.parentElement !== document.body) {
+        document.body.appendChild(this);
+        return;
+      }
+
       // Query children here (not in constructor) — children are guaranteed
-      // to be available once the element is connected to the DOM.
+      // to be in the DOM once the element is connected.
       this.overlay = this.querySelector('.tp-scene-drawer__overlay');
       this.panel = this.querySelector('.tp-scene-drawer__panel');
       this.closeButtons = this.querySelectorAll('[data-scene-drawer-close]');
