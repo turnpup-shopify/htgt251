@@ -199,11 +199,9 @@
 
   /* ---- Slide-out drawer ---- */
   .tp-scene-drawer {
-    --tp-scene-overlay-rgb: {{ overlay_rgb }};
-    --tp-scene-overlay-opacity: {{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }};
     position: fixed;
     inset: 0;
-    z-index: 100;
+    z-index: 300;
     visibility: hidden;
     pointer-events: none;
   }
@@ -211,9 +209,10 @@
   .tp-scene-drawer__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(var(--tp-scene-overlay-rgb), var(--tp-scene-overlay-opacity));
+    background: rgba({{ overlay_rgb }}, {{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }});
     opacity: 0;
     transition: opacity 0.35s ease;
+    cursor: pointer;
   }
   .tp-scene-drawer.is-open .tp-scene-drawer__overlay { opacity: 1; }
   .tp-scene-drawer__panel {
