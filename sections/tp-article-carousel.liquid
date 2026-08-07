@@ -46,18 +46,28 @@
     color: {{ section.settings.section_text_color }};
   }{%- endstyle -%}
 {% comment %} {% render 'tp-prod-carousel-block', input_collection: article.metafields.custom.collection, input_type: "collection" %} {% endcomment %}
-{% assign metaobject_id = section.settings.input_metaobject %}
-{% assign my_metaobject = shop.metaobjects.tp_carousel[metaobject_id] %}
-{%- if my_metaobject.collection_handle != blank %}
-  {%- assign use_collection = collections[my_metaobject.collection_handle] -%}
-  {%- assign input_max_defaulted = section.settings.max_items | default: 6 -%}
+{%- assign input_max_defaulted = section.settings.max_items | default: 6 -%}
+{%- if section.settings.input_product_list != blank and section.settings.input_product_list.size > 0 -%}
   {% render 'tp-prod-carousel-block'
-    , input_products: use_collection.products
+    , input_products: section.settings.input_product_list
     , input_type: "products"
-    , input_title: my_metaobject.title
-    , input_shop_all_text: "shop all"
-    , input_shop_all_link: use_collection.url
+    , input_title: section.settings.product_list_title
+    , input_shop_all_text: section.settings.product_list_shop_all_text
+    , input_shop_all_link: section.settings.product_list_shop_all_link
     , input_max: input_max_defaulted %}
+{%- else -%}
+  {% assign metaobject_id = section.settings.input_metaobject %}
+  {% assign my_metaobject = shop.metaobjects.tp_carousel[metaobject_id] %}
+  {%- if my_metaobject.collection_handle != blank %}
+    {%- assign use_collection = collections[my_metaobject.collection_handle] -%}
+    {% render 'tp-prod-carousel-block'
+      , input_products: use_collection.products
+      , input_type: "products"
+      , input_title: my_metaobject.title
+      , input_shop_all_text: "shop all"
+      , input_shop_all_link: use_collection.url
+      , input_max: input_max_defaulted %}
+  {%- endif -%}
 {%- endif -%}
 <style>
   .custom-carousel-slider-container {
@@ -261,6 +271,33 @@
         "id": "input_metaobject",
         "label": "input metaobject",
         "metaobject_type": "tp_carousel"
+      },
+      {
+        "type": "header",
+        "content": "Product List (Dynamic Source)",
+        "info": "Pick products manually or connect a dynamic source. When populated, this overrides the metaobject collection above."
+      },
+      {
+        "type": "product_list",
+        "id": "input_product_list",
+        "label": "Products"
+      },
+      {
+        "type": "text",
+        "id": "product_list_title",
+        "label": "Product List Title",
+        "info": "Title shown above the carousel when using the product list."
+      },
+      {
+        "type": "text",
+        "id": "product_list_shop_all_text",
+        "label": "Product List \"Shop All\" Text",
+        "info": "Leave blank to hide."
+      },
+      {
+        "type": "url",
+        "id": "product_list_shop_all_link",
+        "label": "Product List \"Shop All\" Link"
       },
       {
         "type": "range",

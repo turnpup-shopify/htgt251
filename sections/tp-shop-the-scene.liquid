@@ -80,8 +80,6 @@
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        margin: 0 -{{ section.settings.mobile_padding_left }}px;
-        padding: 0 {{ section.settings.mobile_padding_left }}px;
       }
       .tp-scene-{{ section.id }} .tp-scene__grid::-webkit-scrollbar { display: none; }
       .tp-scene-{{ section.id }} .tp-scene__card { scroll-snap-align: start; }
@@ -263,6 +261,33 @@
   }
   .tp-scene-drawer__grid .grid__item { margin: 0; max-width: none; width: 100%; min-width: 0; flex: none; }
   body.tp-scene-drawer-open { overflow: hidden; }
+  /* Drawer ATC button */
+  .tp-scene-drawer__atc-form { margin: 8px 0 0; }
+  .tp-scene-drawer__atc-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    background: {{ section.settings.pill_background_color }};
+    color: {{ section.settings.pill_text_color }};
+    border: 1px solid {{ section.settings.pill_background_color }};
+    border-radius: 4px;
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1.2;
+    box-sizing: border-box;
+  }
+  .tp-scene-drawer__atc-btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+  .tp-scene-drawer__atc-btn--options {
+    background: transparent;
+    color: {{ section.settings.drawer_text_color }};
+    border-color: {{ section.settings.drawer_text_color }};
+  }
 {%- endstyle -%}
 
 <div class="tp-scene-{{ section.id }} tp-shop-the-scene">
@@ -345,7 +370,6 @@
       assign products = block.settings.scene_products
       assign product_count = products.count
       assign drawer_id = 'SceneDrawer-' | append: section.id | append: '-' | append: block.id
-      assign card_quick_add = 'standard'
     -%}
     {%- if product_count > 0 -%}
       <tp-shop-scene-drawer id="{{ drawer_id }}" class="tp-scene-drawer">
@@ -373,9 +397,21 @@
                     show_vendor: false,
                     show_rating: false,
                     lazy_load: true,
-                    quick_add: card_quick_add,
                     show_price: true,
                     section_id: section.id -%}
+                  {%- assign atc_form_id = 'SceneATC-' | append: product.id | append: '-' | append: section.id -%}
+                  {%- if product.available -%}
+                    {%- if product.has_only_default_variant -%}
+                      {%- form 'product', product, id: atc_form_id, class: 'tp-scene-drawer__atc-form' -%}
+                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                        <button type="submit" name="add" class="tp-scene-drawer__atc-btn">Add to cart</button>
+                      {%- endform -%}
+                    {%- else -%}
+                      <a href="{{ product.url }}" class="tp-scene-drawer__atc-btn tp-scene-drawer__atc-btn--options">Choose options</a>
+                    {%- endif -%}
+                  {%- else -%}
+                    <button type="button" class="tp-scene-drawer__atc-btn" disabled>Sold out</button>
+                  {%- endif -%}
                 </li>
               {%- endfor -%}
             </ul>
