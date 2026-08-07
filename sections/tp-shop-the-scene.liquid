@@ -194,23 +194,29 @@
   .tp-scene-{{ section.id }} .tp-scene__link:hover svg { transform: translateX(4px); }
 
   /* ---- Slide-out drawer ---- */
-  .tp-scene-drawer {
+  tp-shop-scene-drawer.tp-scene-drawer {
+    display: block;
     position: fixed;
     inset: 0;
+    width: 100%;
+    height: 100%;
     z-index: 300;
     visibility: hidden;
     pointer-events: none;
   }
-  .tp-scene-drawer.is-open { visibility: visible; pointer-events: auto; }
+  tp-shop-scene-drawer.tp-scene-drawer.is-open { visibility: visible; pointer-events: auto; }
   .tp-scene-drawer__overlay {
     position: absolute;
     inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
     background: rgba({{ overlay_rgb }}, {{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }});
     opacity: 0;
     transition: opacity 0.35s ease;
     cursor: pointer;
   }
-  .tp-scene-drawer.is-open .tp-scene-drawer__overlay { opacity: 1; }
+  tp-shop-scene-drawer.is-open .tp-scene-drawer__overlay { opacity: 1; }
   .tp-scene-drawer__panel {
     position: absolute;
     top: 0;
@@ -218,6 +224,7 @@
     height: 100%;
     width: 460px;
     max-width: 92vw;
+    z-index: 2;
     background: {{ section.settings.drawer_background_color }};
     display: flex;
     flex-direction: column;
