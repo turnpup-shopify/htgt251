@@ -54,7 +54,8 @@
     , input_title: section.settings.product_list_title
     , input_shop_all_text: section.settings.product_list_shop_all_text
     , input_shop_all_link: section.settings.product_list_shop_all_link
-    , input_max: input_max_defaulted %}
+    , input_max: input_max_defaulted
+    , input_show_price: section.settings.show_price %}
 {%- else -%}
   {% assign metaobject_id = section.settings.input_metaobject %}
   {% assign my_metaobject = shop.metaobjects.tp_carousel[metaobject_id] %}
@@ -66,7 +67,8 @@
       , input_title: my_metaobject.title
       , input_shop_all_text: "shop all"
       , input_shop_all_link: use_collection.url
-      , input_max: input_max_defaulted %}
+      , input_max: input_max_defaulted
+      , input_show_price: section.settings.show_price %}
   {%- endif -%}
 {%- endif -%}
 <style>
@@ -298,6 +300,12 @@
         "type": "url",
         "id": "product_list_shop_all_link",
         "label": "Product List \"Shop All\" Link"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_price",
+        "label": "Show Price",
+        "default": false
       },
       {
         "type": "range",

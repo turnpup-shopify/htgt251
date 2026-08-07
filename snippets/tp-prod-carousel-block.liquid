@@ -45,7 +45,9 @@
               <p class="cellTitle">
                 {{ tp_product.title }}
               </p>
-            {% comment %} <p class="cellSubtitle"> {{ block.settings.cell_subtitle }} </p>  {% endcomment %}
+              {% if input_show_price %}
+                <p class="cellSubtitle">{{ tp_product.price | money }}</p>
+              {% endif %}
             {% elsif block.settings.cell_title != "" %}
               <p class="cellTitle">
                 {{ block.settings.cell_title }}
