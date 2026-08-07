@@ -594,7 +594,11 @@
         "title_alignment": "left",
         "section_text_color": "#000000",
         "overall_background_image_url": "",
-        "section_background_color": "#e6ecef"
+        "section_background_color": "#F7F4EF",
+        "overlay_gradient": false,
+        "text_position": "center",
+        "tile_aspect_ratio": "1:1",
+        "tile_border_radius": "0px"
       }
     },
     "tp_open_closed_JKkjRY": {
@@ -666,6 +670,7 @@
       "block_order": [
         "carousel_block_dmi8A9"
       ],
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "input_metaobject": "new-arrivals",
@@ -733,81 +738,106 @@
         "section_background_color": "#ffffff"
       }
     },
-    "temp_product_highlight_CXtT6X": {
-      "type": "temp-product-highlight",
+    "tp_shop_the_scene_R39bi8": {
+      "type": "tp-shop-the-scene",
       "blocks": {
-        "product_card_86ymg4": {
-          "type": "product_card",
+        "scene_NiHerz": {
+          "type": "scene",
+          "source": "{{ metaobjects.room[\"modern-living-room-1\"] }}",
           "settings": {
-            "image": "shopify://shop_images/polished-nickel-mirror-lifestyle-rounded1.jpg",
-            "badge_text": "Bestseller",
-            "product_code": "DS-01",
-            "product_name": "Daily Synbiotic",
-            "button_text": "Shop Now",
-            "product_url": "",
-            "price_text": "Starting at $49.99 per month"
+            "scene_image": "{{ metaobjects.room[\"modern-living-room-1\"].image.value }}",
+            "instagram_handle": "{{ metaobjects.room[\"modern-living-room-1\"].instagram_handle.value }}",
+            "room_name": "{{ metaobjects.room[\"modern-living-room-1\"].room_name.value }}",
+            "description": "{{ metaobjects.room[\"modern-living-room-1\"].description | metafield_tag }}",
+            "shop_link_label": "{{ metaobjects.room[\"modern-living-room-1\"].shop_link_label.value }}",
+            "shop_link": "{{ metaobjects.room[\"modern-living-room-1\"].system.url }}",
+            "scene_products": "{{ metaobjects.room[\"modern-living-room-1\"].products.value }}"
           }
         },
-        "product_card_X8Dhrp": {
-          "type": "product_card",
+        "scene_XBHXeV": {
+          "type": "scene",
+          "source": "{{ metaobjects.room[\"modern-living-room-1\"] }}",
           "settings": {
-            "badge_text": "New",
-            "product_code": "DM-02",
-            "product_name": "Daily Multivitamin",
-            "button_text": "Shop Now",
-            "product_url": "",
-            "price_text": "Starting at $39.99 per month"
+            "scene_image": "{{ metaobjects.room[\"modern-living-room-1\"].image.value }}",
+            "instagram_handle": "{{ metaobjects.room[\"modern-living-room-1\"].instagram_handle.value }}",
+            "room_name": "{{ metaobjects.room[\"modern-living-room-1\"].room_name.value }}",
+            "description": "{{ metaobjects.room[\"modern-living-room-1\"].description | metafield_tag }}",
+            "shop_link_label": "{{ metaobjects.room[\"modern-living-room-1\"].shop_link_label.value }}",
+            "shop_link": "{{ metaobjects.room[\"modern-living-room-1\"].system.url }}",
+            "scene_products": "{{ metaobjects.room[\"modern-living-room-1\"].products.value }}"
           }
         },
-        "product_card_WFNNPk": {
-          "type": "product_card",
+        "scene_JA4m94": {
+          "type": "scene",
           "settings": {
-            "badge_text": "New",
-            "product_code": "AM-02",
-            "product_name": "Energy + Focus",
-            "button_text": "Shop Now",
-            "product_url": "",
-            "price_text": "Starting at $34.99 per month"
+            "scene_image": "shopify://shop_images/23898-106059-15.jpg",
+            "instagram_handle": "",
+            "room_name": "Bedroom",
+            "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>",
+            "shop_link_label": "Shop Bedroom",
+            "shop_link": "",
+            "scene_products": []
           }
         },
-        "product_card_a7X9g8": {
-          "type": "product_card",
+        "scene_8LdWYX": {
+          "type": "scene",
           "settings": {
-            "badge_text": "New",
-            "product_code": "PM-02",
-            "product_name": "Sleep + Restore",
-            "button_text": "Shop Now",
-            "product_url": "",
-            "price_text": "Starting at $34.99 per month"
+            "scene_image": "shopify://shop_images/midcentury-modern-stool.jpg",
+            "instagram_handle": "",
+            "room_name": "Bedroom",
+            "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>",
+            "shop_link_label": "Shop Bedroom",
+            "shop_link": "",
+            "scene_products": []
           }
         }
       },
       "block_order": [
-        "product_card_86ymg4",
-        "product_card_X8Dhrp",
-        "product_card_WFNNPk",
-        "product_card_a7X9g8"
+        "scene_NiHerz",
+        "scene_XBHXeV",
+        "scene_JA4m94",
+        "scene_8LdWYX"
       ],
-      "disabled": true,
-      "name": "Product Highlight",
+      "name": "TP Shop the Scene",
       "settings": {
-        "heading": "Whole body health starts in the gut.",
-        "description": "Formulations that provide fast-acting and sustained support using scientifically and clinically studied ingredients.",
-        "shop_all_label": "Shop all",
-        "shop_all_url": "",
-        "heading_font_family": "",
-        "body_font_family": "",
-        "background_color": "#ffffff",
-        "heading_color": "#2c3d50",
-        "body_color": "#737373",
-        "card_background_color": "#f2fbff",
-        "badge_background_color": "#486ced",
-        "badge_text_color": "#ffffff",
-        "button_background_color": "#2c3d50",
-        "button_text_color": "#ffffff",
-        "price_text_color": "#737373",
-        "padding_top": 48,
-        "padding_bottom": 48
+        "title": "",
+        "subheading": "",
+        "title_font_size": "32px",
+        "mobile_title_size": "24px",
+        "title_font_family": "'josefin-sans', sans-serif",
+        "title_font_weight": "600",
+        "columns_desktop": "4",
+        "mobile_layout": "carousel",
+        "image_ratio": "square",
+        "image_border_radius": 0,
+        "column_gap": 28,
+        "thumb_count": 3,
+        "section_background_color": "#f7f4ef",
+        "text_color": "#121212",
+        "handle_color": "#8a8378",
+        "room_font_family": "'josefin-sans', sans-serif",
+        "room_font_size": "26px",
+        "room_font_weight": "500",
+        "body_font_family": "'Karla', sans-serif",
+        "scene_button_label": "Shop scene",
+        "pill_background_color": "#3a352c",
+        "pill_text_color": "#ffffff",
+        "pill_background_color_hover": "#000000",
+        "pill_text_color_hover": "#ffffff",
+        "pill_border_radius": 30,
+        "enable_quick_add": false,
+        "drawer_background_color": "#ffffff",
+        "drawer_text_color": "#121212",
+        "drawer_overlay_color": "#000000",
+        "drawer_overlay_opacity": 45,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_left": 40,
+        "padding_right": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "mobile_padding_left": 20,
+        "mobile_padding_right": 20
       }
     },
     "turnpup_keyword_cats_JBhy3a": {
@@ -2420,7 +2450,7 @@
     "turnpup_categories_D3b6BY",
     "tp_open_closed_JKkjRY",
     "tp_article_carousel_tUtyD6",
-    "temp_product_highlight_CXtT6X",
+    "tp_shop_the_scene_R39bi8",
     "turnpup_keyword_cats_JBhy3a",
     "tp_motion_feature_PJPMQg",
     "turnpup_marquee_9XfUfG",
