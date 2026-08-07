@@ -741,62 +741,22 @@
     "tp_shop_the_scene_R39bi8": {
       "type": "tp-shop-the-scene",
       "blocks": {
-        "scene_NiHerz": {
+        "scene_99MpGb": {
           "type": "scene",
-          "source": "{{ metaobjects.room[\"modern-living-room-1\"] }}",
+          "repeater": "{{ metaobjects.list_of_rooms[\"new-rooms\"].list_of_rooms.value }}",
           "settings": {
-            "scene_image": "{{ metaobjects.room[\"modern-living-room-1\"].image.value }}",
-            "instagram_handle": "{{ metaobjects.room[\"modern-living-room-1\"].instagram_handle.value }}",
-            "room_name": "{{ metaobjects.room[\"modern-living-room-1\"].room_name.value }}",
-            "description": "{{ metaobjects.room[\"modern-living-room-1\"].description | metafield_tag }}",
-            "shop_link_label": "{{ metaobjects.room[\"modern-living-room-1\"].shop_link_label.value }}",
-            "shop_link": "{{ metaobjects.room[\"modern-living-room-1\"].system.url }}",
-            "scene_products": "{{ metaobjects.room[\"modern-living-room-1\"].products.value }}"
-          }
-        },
-        "scene_XBHXeV": {
-          "type": "scene",
-          "source": "{{ metaobjects.room[\"modern-living-room-1\"] }}",
-          "settings": {
-            "scene_image": "{{ metaobjects.room[\"modern-living-room-1\"].image.value }}",
-            "instagram_handle": "{{ metaobjects.room[\"modern-living-room-1\"].instagram_handle.value }}",
-            "room_name": "{{ metaobjects.room[\"modern-living-room-1\"].room_name.value }}",
-            "description": "{{ metaobjects.room[\"modern-living-room-1\"].description | metafield_tag }}",
-            "shop_link_label": "{{ metaobjects.room[\"modern-living-room-1\"].shop_link_label.value }}",
-            "shop_link": "{{ metaobjects.room[\"modern-living-room-1\"].system.url }}",
-            "scene_products": "{{ metaobjects.room[\"modern-living-room-1\"].products.value }}"
-          }
-        },
-        "scene_JA4m94": {
-          "type": "scene",
-          "settings": {
-            "scene_image": "shopify://shop_images/23898-106059-15.jpg",
-            "instagram_handle": "",
-            "room_name": "Bedroom",
-            "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>",
-            "shop_link_label": "Shop Bedroom",
-            "shop_link": "",
-            "scene_products": []
-          }
-        },
-        "scene_8LdWYX": {
-          "type": "scene",
-          "settings": {
-            "scene_image": "shopify://shop_images/midcentury-modern-stool.jpg",
-            "instagram_handle": "",
-            "room_name": "Bedroom",
-            "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>",
-            "shop_link_label": "Shop Bedroom",
-            "shop_link": "",
-            "scene_products": []
+            "scene_image": "{{ block.repeater.image.value }}",
+            "instagram_handle": "{{ block.repeater.instagram_handle.value }}",
+            "room_name": "{{ block.repeater.room_name.value }}",
+            "description": "{{ block.repeater.description | metafield_tag }}",
+            "shop_link_label": "{{ block.repeater.shop_link_label.value }}",
+            "shop_link": "{{ block.repeater.system.url }}",
+            "scene_products": "{{ block.repeater.products.value }}"
           }
         }
       },
       "block_order": [
-        "scene_NiHerz",
-        "scene_XBHXeV",
-        "scene_JA4m94",
-        "scene_8LdWYX"
+        "scene_99MpGb"
       ],
       "name": "TP Shop the Scene",
       "settings": {
