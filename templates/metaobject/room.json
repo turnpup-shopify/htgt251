@@ -249,7 +249,7 @@
         "product_list_title": "Shop The {{ metaobject.room_name.value }}",
         "product_list_shop_all_text": "",
         "product_list_shop_all_link": "",
-        "max_items": 6,
+        "max_items": 3,
         "enable_scroll": true,
         "padding_top": 40,
         "padding_bottom": 40,
