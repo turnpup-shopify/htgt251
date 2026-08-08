@@ -314,7 +314,7 @@
               aria-expanded="false"
               aria-controls="{{ drawer_id }}">
               <span class="tp-scene__pill-left">
-                <span>SHOP THE LOOK ({{ product_count }})</span>
+                <span>{{ section.settings.scene_button_label }} ({{ product_count }})</span>
                 {%- render 'icon-arrow' -%}
               </span>
               <div class="tp-scene__thumbs" aria-hidden="true">
@@ -341,9 +341,9 @@
           {%- if block.settings.description != blank -%}
             <div class="tp-scene__desc rte">{{ block.settings.description }}</div>
           {%- endif -%}
-          {%- if block.settings.shop_link != blank and block.settings.shop_link_label != blank -%}
+          {%- if block.settings.shop_link != blank -%}
             <a class="tp-scene__link" href="{{ block.settings.shop_link }}">
-              <span>{{ block.settings.shop_link_label }}</span>
+              <span>SHOP THE LOOK</span>
               {%- render 'icon-arrow' -%}
             </a>
           {%- endif -%}
@@ -372,10 +372,10 @@
           class="tp-scene-drawer__panel"
           role="dialog"
           aria-modal="true"
-          aria-label="SHOP THE LOOK {{ block.settings.room_name | escape }}"
+          aria-label="{{ section.settings.scene_button_label }} {{ block.settings.room_name | escape }}"
           tabindex="-1">
           <header class="tp-scene-drawer__header">
-            <h2 class="tp-scene-drawer__heading">SHOP THE LOOK ({{ product_count }})</h2>
+            <h2 class="tp-scene-drawer__heading">{{ section.settings.scene_button_label }} ({{ product_count }})</h2>
             <button type="button" class="tp-scene-drawer__close" data-scene-drawer-close aria-label="{{ 'accessibility.close' | t }}">
               {%- render 'icon-close' -%}
             </button>
