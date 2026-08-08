@@ -206,17 +206,14 @@
   }
   tp-shop-scene-drawer.tp-scene-drawer.is-open { visibility: visible; pointer-events: auto; }
   .tp-scene-drawer__overlay {
-    position: absolute;
+    position: fixed;
     inset: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
     background: rgba({{ overlay_rgb }}, {{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }});
-    opacity: 0;
-    transition: opacity 0.35s ease;
     cursor: pointer;
   }
-  tp-shop-scene-drawer.is-open .tp-scene-drawer__overlay { opacity: 1; }
   .tp-scene-drawer__panel {
     position: absolute;
     top: 0;
@@ -385,7 +382,7 @@
     {%- if product_count > 0 -%}
       <tp-shop-scene-drawer id="{{ drawer_id }}" class="tp-scene-drawer">
         <div class="tp-scene-drawer__overlay" data-scene-drawer-close
-          style="position:fixed;inset:0;width:100%;height:100%;background:rgba(0,0,0,{{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }});opacity:0;transition:opacity .35s ease;cursor:pointer;"></div>
+          style="position:fixed;inset:0;width:100%;height:100%;background:rgba(0,0,0,{{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }});cursor:pointer;"></div>
         <aside
           class="tp-scene-drawer__panel"
           role="dialog"
