@@ -193,19 +193,7 @@
   .tp-scene-{{ section.id }} .tp-scene__link svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
   .tp-scene-{{ section.id }} .tp-scene__link:hover svg { transform: translateX(4px); }
 
-  /* ---- Slide-out drawer ---- */
-  tp-shop-scene-drawer.tp-scene-drawer {
-    display: block;
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 300;
-    visibility: hidden;
-    pointer-events: none;
-  }
-  tp-shop-scene-drawer.tp-scene-drawer.is-open { visibility: visible; pointer-events: auto; }
-  /* overlay is created dynamically by tp-shop-the-scene.js */
+  /* drawer container + overlay styles are in the inline <style> inside the drawer element */
   .tp-scene-drawer__panel {
     position: absolute;
     top: 0;
@@ -374,8 +362,10 @@
     {%- if product_count > 0 -%}
       <tp-shop-scene-drawer id="{{ drawer_id }}" class="tp-scene-drawer">
         <style>
-          tp-shop-scene-drawer{display:block;position:fixed;inset:0;width:100%;height:100%;z-index:9999;visibility:hidden;pointer-events:none}
-          tp-shop-scene-drawer.is-open{visibility:visible;pointer-events:auto}
+          tp-shop-scene-drawer{display:block!important;position:fixed!important;inset:0!important;width:100%!important;height:100%!important;z-index:9999!important;pointer-events:none!important}
+          tp-shop-scene-drawer.is-open{pointer-events:auto!important}
+          tp-shop-scene-drawer .tp-scene-drawer__overlay{display:none!important}
+          tp-shop-scene-drawer.is-open .tp-scene-drawer__overlay{display:block!important}
         </style>
         <div class="tp-scene-drawer__overlay" data-scene-drawer-close style="position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:1;background:rgba(0,0,0,{{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }});cursor:pointer;"></div>
         <aside style="z-index:2;"
