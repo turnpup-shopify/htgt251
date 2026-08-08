@@ -39,6 +39,16 @@
       this.panel = this.querySelector('.tp-scene-drawer__panel');
       this.closeButtons = this.querySelectorAll('[data-scene-drawer-close]');
 
+      // Set initial hidden state via JS to avoid reliance on external CSS
+      this.style.position = 'fixed';
+      this.style.inset = '0';
+      this.style.width = '100%';
+      this.style.height = '100%';
+      this.style.zIndex = '300';
+      this.style.display = 'block';
+      this.style.visibility = 'hidden';
+      this.style.pointerEvents = 'none';
+
       this.setAttribute('aria-hidden', 'true');
       if (this.panel) this.panel.setAttribute('aria-hidden', 'true');
       this.closeButtons.forEach((btn) =>
@@ -53,10 +63,13 @@
       if (this.classList.contains('is-open')) return;
       if (trigger) this.activeTrigger = trigger;
 
+      this.style.visibility = 'visible';
+      this.style.pointerEvents = 'auto';
       this.classList.add('is-open');
       document.body.classList.add('tp-scene-drawer-open');
       this.setAttribute('aria-hidden', 'false');
       if (this.panel) this.panel.setAttribute('aria-hidden', 'false');
+      if (this.overlay) this.overlay.style.opacity = '1';
 
       if (this.activeTrigger) {
         this.activeTrigger.setAttribute('aria-expanded', 'true');
@@ -73,10 +86,20 @@
     close() {
       if (!this.classList.contains('is-open')) return;
 
+      if (this.overlay) this.overlay.style.opacity = '0';
       this.classList.remove('is-open');
       document.body.classList.remove('tp-scene-drawer-open');
       this.setAttribute('aria-hidden', 'true');
       if (this.panel) this.panel.setAttribute('aria-hidden', 'true');
+
+      // Hide the drawer after the overlay transition finishes
+      const self = this;
+      setTimeout(function () {
+        if (!self.classList.contains('is-open')) {
+          self.style.visibility = 'hidden';
+          self.style.pointerEvents = 'none';
+        }
+      }, 350);
 
       document.removeEventListener('keyup', this.boundHandleEscape);
 
