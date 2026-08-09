@@ -2226,6 +2226,7 @@
     },
     "tp_transparent_carousel_4KfbUn": {
       "type": "tp-transparent-carousel",
+      "disabled": true,
       "name": "Transparent Carousel",
       "settings": {
         "title": "",
