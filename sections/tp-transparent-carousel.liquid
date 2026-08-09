@@ -34,62 +34,60 @@
     <h2 class="tp-float-carousel__title">{{ section.settings.title | escape }}</h2>
   {%- endif -%}
 
-  <!-- DEBUG: remove after testing -->
-  <div style="background:#ffc;padding:12px;margin:0 40px 12px;font-size:13px;font-family:monospace;border:2px solid #cc0;">
-    Collection: {{ source_collection.title | default: 'NONE' }} |
-    Product count: {{ source_collection.products_count | default: 0 }} |
-    {%- for product in source_collection.products limit: 3 -%}
-      <br>Product: {{ product.title }} | Meta: {{ product.metafields.custom.transparent_image | default: 'EMPTY' }} | Value: {{ product.metafields.custom.transparent_image.value | default: 'EMPTY' }}
-    {%- endfor -%}
-  </div>
-  <!-- END DEBUG -->
-
-  <div class="tp-float-carousel__wrapper">
+<div class="tp-float-carousel__wrapper">
     <div class="tp-float-carousel__track" id="tp-track-{{ section.id }}">
       {%- assign item_index = 0 -%}
       {%- assign speeds = '0.03,0.06,0.04,0.05,0.02' | split: ',' -%}
+      {%- assign scan_limit = source_collection.products_count | at_most: 500 -%}
+      {%- assign batch_count = scan_limit | divided_by: 50 -%}
 
-      {%- for product in source_collection.products limit: max_items -%}
-        {%- assign tp_meta = product.metafields.custom.transparent_image -%}
-        {%- if tp_meta != blank -%}
-          {%- assign speed_index = item_index | modulo: speeds.size -%}
-          {%- assign speed = speeds[speed_index] -%}
+      {%- for batch in (0..batch_count) -%}
+        {%- if item_index >= max_items -%}{%- break -%}{%- endif -%}
+        {%- assign batch_offset = batch | times: 50 -%}
 
-          {%- comment -%} Handle both file_reference and url/text metafield types {%- endcomment -%}
-          {%- if tp_meta.value != blank -%}
-            {%- assign tp_img_url = tp_meta.value | image_url: width: 800 -%}
-          {%- else -%}
-            {%- assign tp_img_url = tp_meta | image_url: width: 800 -%}
+        {%- for product in source_collection.products limit: 50 offset: batch_offset -%}
+          {%- if item_index >= max_items -%}{%- break -%}{%- endif -%}
+          {%- assign tp_meta = product.metafields.custom.transparent_image -%}
+          {%- if tp_meta != blank -%}
+            {%- assign speed_index = item_index | modulo: speeds.size -%}
+            {%- assign speed = speeds[speed_index] -%}
+
+            {%- if tp_meta.value != blank -%}
+              {%- assign tp_img_url = tp_meta.value | image_url: width: 800 -%}
+            {%- else -%}
+              {%- assign tp_img_url = tp_meta | image_url: width: 800 -%}
+            {%- endif -%}
+
+            <a
+              class="tp-float-carousel__item"
+              href="{{ product.url }}"
+              data-parallax-speed="{{ speed }}"
+              style="min-width: calc({{ item_width_pct }}% - 16px);"
+            >
+              <div class="tp-float-carousel__image-wrap">
+                <img
+                  src="{{ tp_img_url }}"
+                  alt="{{ product.title | escape }}"
+                  loading="lazy"
+                  width="800"
+                  height="800"
+                >
+              </div>
+
+              {%- if section.settings.show_title -%}
+                <p class="tp-float-carousel__product-title">{{ product.title | escape }}</p>
+              {%- endif -%}
+
+              {%- if section.settings.show_price -%}
+                <p class="tp-float-carousel__product-price">{{ product.price | money }}</p>
+              {%- endif -%}
+            </a>
+
+            {%- assign item_index = item_index | plus: 1 -%}
           {%- endif -%}
-
-          <a
-            class="tp-float-carousel__item"
-            href="{{ product.url }}"
-            data-parallax-speed="{{ speed }}"
-            style="min-width: calc({{ item_width_pct }}% - 16px);"
-          >
-            <div class="tp-float-carousel__image-wrap">
-              <img
-                src="{{ tp_img_url }}"
-                alt="{{ product.title | escape }}"
-                loading="lazy"
-                width="800"
-                height="800"
-              >
-            </div>
-
-            {%- if section.settings.show_title -%}
-              <p class="tp-float-carousel__product-title">{{ product.title | escape }}</p>
-            {%- endif -%}
-
-            {%- if section.settings.show_price -%}
-              <p class="tp-float-carousel__product-price">{{ product.price | money }}</p>
-            {%- endif -%}
-          </a>
-
-          {%- assign item_index = item_index | plus: 1 -%}
-        {%- endif -%}
+        {%- endfor -%}
       {%- endfor -%}
+
       {%- if item_index == 0 -%}
         <p style="padding: 40px; text-align: center; opacity: 0.5; width: 100%;">No products found with a transparent_image metafield in this collection.</p>
       {%- endif -%}
@@ -330,7 +328,7 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection",
-      "info": "Leave blank to use the All collection"
+      "info": "Pick a collection containing products with the transparent_image metafield. 'All' only scans the first page of products."
     },
     {
       "type": "range",
