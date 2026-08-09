@@ -34,6 +34,16 @@
     <h2 class="tp-float-carousel__title">{{ section.settings.title | escape }}</h2>
   {%- endif -%}
 
+  <!-- DEBUG: remove after testing -->
+  <div style="background:#ffc;padding:12px;margin:0 40px 12px;font-size:13px;font-family:monospace;border:2px solid #cc0;">
+    Collection: {{ source_collection.title | default: 'NONE' }} |
+    Product count: {{ source_collection.products_count | default: 0 }} |
+    {%- for product in source_collection.products limit: 3 -%}
+      <br>Product: {{ product.title }} | Meta: {{ product.metafields.custom.transparent_image | default: 'EMPTY' }} | Value: {{ product.metafields.custom.transparent_image.value | default: 'EMPTY' }}
+    {%- endfor -%}
+  </div>
+  <!-- END DEBUG -->
+
   <div class="tp-float-carousel__wrapper">
     <div class="tp-float-carousel__track" id="tp-track-{{ section.id }}">
       {%- assign item_index = 0 -%}
