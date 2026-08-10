@@ -79,6 +79,7 @@
               <div class="tpf-slip">
                 <div class="tpf-window">
                   {%- if frame_image != blank -%}
+                    {%- assign frame_alt = frame_image.alt | default: product.title | escape -%}
                     {{
                       frame_image
                       | image_url: width: 800
@@ -86,7 +87,7 @@
                         loading: 'lazy',
                         widths: '300, 400, 600, 800, 1000',
                         sizes: '(min-width: 750px) 25vw, 90vw',
-                        alt: frame_image.alt | default: product.title | escape,
+                        alt: frame_alt,
                         class: 'tpf-photo'
                     }}
                   {%- else -%}
