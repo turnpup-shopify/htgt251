@@ -1,0 +1,544 @@
+{%- liquid
+  assign items_per_row = section.settings.items_per_row
+  assign mobile_items_per_row = section.settings.mobile_items_per_row
+  assign default_style = section.settings.frame_style
+-%}
+
+{%- style -%}
+  .tpf-{{ section.id }} {
+    --tpf-gap: {{ section.settings.gap_mobile }}px;
+    --tpf-aspect: {{ section.settings.image_ratio }};
+  }
+  .tpf-{{ section.id }} .tpf-grid {
+    grid-template-columns: repeat({{ mobile_items_per_row }}, minmax(0, 1fr));
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tpf-{{ section.id }} {
+      --tpf-gap: {{ section.settings.gap }}px;
+    }
+    .tpf-{{ section.id }} .tpf-grid {
+      grid-template-columns: repeat({{ items_per_row }}, minmax(0, 1fr));
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  class="tpf tpf-{{ section.id }} section-{{ section.id }}-padding"
+  style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};"
+>
+  {%- if section.settings.title != blank -%}
+    <h2 class="tpf__title">{{ section.settings.title | escape }}</h2>
+  {%- endif -%}
+
+  <div class="tpf-grid">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign product = block.settings.product
+
+        assign frame_image = block.settings.image
+        if frame_image == blank and product != blank
+          assign frame_image = product.featured_image
+        endif
+
+        assign frame_link = ''
+        if product != blank and section.settings.link_products
+          assign frame_link = product.url
+        elsif block.settings.link != blank
+          assign frame_link = block.settings.link
+        endif
+
+        assign style = block.settings.frame_style
+        if style == 'inherit' or style == blank
+          assign style = default_style
+        endif
+
+        assign no_glass = false
+        if style == 'walnut-floater' or style == 'natural-oak'
+          assign no_glass = true
+        endif
+      -%}
+
+      {%- capture frame_inner -%}
+        <div class="tpf-frame tpf-frame--{{ style }}{% if no_glass %} tpf-frame--no-glass{% endif %}">
+          <div class="tpf-molding">
+            <span class="tpf-corner tpf-corner--tl"></span>
+            <span class="tpf-corner tpf-corner--tr"></span>
+            <span class="tpf-corner tpf-corner--bl"></span>
+            <span class="tpf-corner tpf-corner--br"></span>
+            <div class="tpf-inner">
+              <div class="tpf-slip">
+                <div class="tpf-window">
+                  {%- if frame_image != blank -%}
+                    {{
+                      frame_image
+                      | image_url: width: 800
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '300, 400, 600, 800, 1000',
+                        sizes: '(min-width: 750px) 25vw, 90vw',
+                        alt: frame_image.alt | default: product.title | escape,
+                        class: 'tpf-photo'
+                    }}
+                  {%- else -%}
+                    <div class="tpf-photo tpf-photo--placeholder">
+                      {{ 'image' | placeholder_svg_tag: 'tpf-placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                  {%- unless no_glass -%}<span class="tpf-glass"></span>{%- endunless -%}
+                  {%- if no_glass -%}<span class="tpf-canvas-tex"></span>{%- endif -%}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endcapture -%}
+
+      <div class="tpf-cell" {{ block.shopify_attributes }}>
+        {%- if frame_link != blank -%}
+          <a class="tpf-cell__link" href="{{ frame_link }}">{{ frame_inner }}</a>
+        {%- else -%}
+          {{ frame_inner }}
+        {%- endif -%}
+
+        {%- if section.settings.show_title or section.settings.show_price -%}
+          <div class="tpf-caption">
+            {%- if section.settings.show_title -%}
+              {%- if product != blank -%}
+                <span class="tpf-caption__title">{{ product.title | escape }}</span>
+              {%- elsif block.settings.caption != blank -%}
+                <span class="tpf-caption__title">{{ block.settings.caption | escape }}</span>
+              {%- endif -%}
+            {%- endif -%}
+            {%- if section.settings.show_price and product != blank -%}
+              <span class="tpf-caption__price">{{ product.price | money }}</span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- else -%}
+      <p class="tpf-empty">Add product blocks to display framed images.</p>
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+  .tpf { position: relative; }
+
+  .tpf__title {
+    text-align: center;
+    margin: 0 0 24px;
+    font-size: 28px;
+    line-height: 1.2;
+    color: inherit;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tpf__title { font-size: 36px; margin-bottom: 32px; }
+  }
+
+  .tpf-grid {
+    display: grid;
+    gap: var(--tpf-gap);
+    padding: 0 16px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tpf-grid { padding: 0 40px; }
+  }
+
+  .tpf-cell { display: flex; flex-direction: column; }
+  .tpf-cell__link { display: block; text-decoration: none; color: inherit; }
+
+  .tpf-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    opacity: 0.5;
+  }
+
+  /* ---- caption ---- */
+  .tpf-caption {
+    text-align: center;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .tpf-caption__title { font-size: 14px; font-weight: 600; }
+  .tpf-caption__price { font-size: 13px; opacity: 0.75; }
+
+  /* ============ FRAME (proportional, percentage-based) ============ */
+  .tpf-frame {
+    /* defaults; each style class overrides */
+    --molding: 6%;
+    --inner: 8%;
+    --slip: 2%;
+    --m-hi: #7d5636; --m-1: #6a4629; --m-2: #543319; --m-3: #3c230f; --m-4: #2a1809;
+    --inner-bg: linear-gradient(135deg, #f7f3ea, #e9e2d2);
+    --inner-shadow: inset 3px 3px 7px rgba(0,0,0,.16);
+    --slip-bg: linear-gradient(135deg, #efe7d4, #b8ac90);
+    --slip-shadow: inset 1px 1px 1px rgba(255,255,255,.5), inset -1px -1px 2px rgba(0,0,0,.4);
+    position: relative;
+  }
+
+  .tpf-molding {
+    position: relative;
+    padding: var(--molding);
+    border-radius: 3px;
+    background: var(--molding-bg, linear-gradient(135deg, var(--m-hi), var(--m-1) 30%, var(--m-2) 62%, var(--m-3)));
+    box-shadow:
+      inset 0 2px 2px rgba(255,255,255,.28),
+      inset 0 -3px 4px rgba(0,0,0,.5),
+      inset 2px 0 3px rgba(255,255,255,.14),
+      inset -3px 0 5px rgba(0,0,0,.45),
+      0 3px 6px rgba(0,0,0,.22),
+      0 18px 30px rgba(0,0,0,.28);
+  }
+
+  .tpf-inner {
+    position: relative;
+    padding: var(--inner);
+    background: var(--inner-bg);
+    box-shadow: var(--inner-shadow);
+  }
+
+  .tpf-slip {
+    position: relative;
+    padding: var(--slip);
+    background: var(--slip-bg);
+    box-shadow: var(--slip-shadow);
+  }
+
+  .tpf-window {
+    position: relative;
+    aspect-ratio: var(--tpf-aspect);
+    overflow: hidden;
+    background: #cfc9bd;
+    box-shadow: inset 0 0 18px rgba(0,0,0,.28);
+  }
+  .tpf-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .tpf-photo--placeholder { display: flex; align-items: center; justify-content: center; background: #d8d2c6; }
+  .tpf-placeholder-svg { width: 40%; height: 40%; opacity: .35; }
+
+  /* glass sheen + vignette */
+  .tpf-glass { position: absolute; inset: 0; pointer-events: none; }
+  .tpf-glass::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(122deg,
+      rgba(255,255,255,.30) 0%, rgba(255,255,255,.05) 16%,
+      rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+      rgba(255,255,255,.06) 84%, rgba(255,255,255,.20) 100%);
+    mix-blend-mode: screen;
+  }
+  .tpf-glass::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 50px rgba(0,0,0,.22); }
+
+  /* canvas linen texture (floater / wood) */
+  .tpf-canvas-tex {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg,  rgba(60,45,20,.10) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(60,45,20,.10) 0 1px, transparent 1px 3px);
+    mix-blend-mode: multiply; opacity: .5;
+  }
+
+  /* corner rosettes (only shown on gilt) */
+  .tpf-corner { position: absolute; width: var(--molding); aspect-ratio: 1; border-radius: 50%; pointer-events: none; z-index: 2; display: none;
+    background: radial-gradient(circle at 38% 34%, var(--m-hi) 0 20%, var(--m-1) 38%, var(--m-3) 68%, var(--m-4) 100%);
+    box-shadow: 0 1px 2px rgba(0,0,0,.5), inset 0 -2px 3px rgba(0,0,0,.5), inset 1px 1px 2px rgba(255,255,255,.6); }
+  .tpf-corner--tl { top: 2%; left: 2%; }
+  .tpf-corner--tr { top: 2%; right: 2%; }
+  .tpf-corner--bl { bottom: 2%; left: 2%; }
+  .tpf-corner--br { bottom: 2%; right: 2%; }
+
+  /* ---- STYLE: Walnut Floater ---- */
+  .tpf-frame--walnut-floater {
+    --molding: 7%;
+    --inner: 7%;
+    --slip: 3%;
+    --m-hi: #7d5636; --m-1: #6a4629; --m-2: #543319; --m-3: #3c230f; --m-4: #2a1809;
+    --molding-bg:
+      repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 1px, transparent 1px 4px, rgba(255,255,255,.018) 4px 5px, transparent 5px 11px),
+      repeating-linear-gradient(90.6deg, rgba(30,15,4,.13) 0 7px, rgba(120,70,25,.04) 7px 18px, rgba(25,12,3,.10) 18px 31px),
+      linear-gradient(135deg, #7d5636 0%, #6a4629 30%, #543319 62%, #3c230f 100%);
+    --inner-bg:
+      repeating-linear-gradient(88deg, rgba(20,10,3,.5) 0 4px, rgba(60,35,14,.3) 4px 9px),
+      linear-gradient(135deg, #3c230f, #2a1809);
+    --inner-shadow: inset 6px 8px 12px rgba(0,0,0,.7), inset -3px -3px 8px rgba(0,0,0,.5);
+    --slip-bg: linear-gradient(135deg, #efe7d4 0%, #d9cfb8 40%, #b8ac90 100%);
+    --slip-shadow: 5px 8px 13px rgba(0,0,0,.5), inset 1px 1px 1px rgba(255,255,255,.5), inset -2px -2px 3px rgba(0,0,0,.25);
+  }
+
+  /* ---- STYLE: Gilt Ornate ---- */
+  .tpf-frame--gilt {
+    --molding: 9%;
+    --inner: 8%;
+    --slip: 2%;
+    --m-hi: #fff6d2; --m-1: #f4dd8b; --m-2: #d8ad46; --m-3: #a97c22; --m-4: #6f4d11;
+    --molding-bg: conic-gradient(from 302deg at 50% 50%, #a97c22, #f4dd8b, #fff6d2, #d8ad46, #6f4d11, #f4dd8b, #d8ad46, #6f4d11, #a97c22);
+    --inner-bg: linear-gradient(135deg, #f7f3ea, #e9e2d2);
+    --inner-shadow: inset 3px 3px 7px rgba(0,0,0,.16);
+    --slip-bg: conic-gradient(from 302deg at 50% 50%, #a97c22, #f4dd8b, #fff6d2, #d8ad46, #6f4d11, #a97c22);
+    --slip-shadow: inset 1px 1px 1px rgba(255,255,255,.6), inset -1px -1px 2px rgba(0,0,0,.5);
+  }
+  .tpf-frame--gilt .tpf-corner { display: block; }
+
+  /* ---- STYLE: Matte Black Box ---- */
+  .tpf-frame--black-box {
+    --molding: 5%;
+    --inner: 0%;
+    --slip: 0%;
+    --molding-bg: linear-gradient(135deg, #3b3b3d, #141416 70%, #050506);
+    --inner-bg: transparent;
+    --inner-shadow: none;
+    --slip-bg: transparent;
+    --slip-shadow: none;
+  }
+
+  /* ---- STYLE: Gallery White ---- */
+  .tpf-frame--white-gallery {
+    --molding: 4%;
+    --inner: 12%;
+    --slip: 0%;
+    --molding-bg: linear-gradient(135deg, #ffffff, #f0eee8 60%, #d3cdbf);
+    --inner-bg: linear-gradient(135deg, #ffffff, #f4f1ea);
+    --inner-shadow: inset 2px 2px 6px rgba(0,0,0,.12);
+    --slip-bg: transparent;
+    --slip-shadow: none;
+  }
+
+  /* ---- STYLE: Natural Oak ---- */
+  .tpf-frame--natural-oak {
+    --molding: 6%;
+    --inner: 10%;
+    --slip: 0%;
+    --m-hi: #e7c79a; --m-1: #d9b483; --m-2: #c69a63; --m-3: #a67c45; --m-4: #7c5a2e;
+    --molding-bg:
+      repeating-linear-gradient(90deg, rgba(0,0,0,.04) 0 1px, transparent 1px 4px, rgba(255,255,255,.03) 4px 5px, transparent 5px 12px),
+      repeating-linear-gradient(90.6deg, rgba(90,60,20,.10) 0 8px, rgba(180,140,80,.05) 8px 18px, rgba(80,55,20,.08) 18px 30px),
+      linear-gradient(135deg, #e7c79a 0%, #d9b483 32%, #c69a63 66%, #a67c45 100%);
+    --inner-bg: linear-gradient(135deg, #f7f4ec, #eae2d2);
+    --inner-shadow: inset 2px 2px 6px rgba(0,0,0,.12);
+    --slip-bg: transparent;
+    --slip-shadow: none;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Framed Gallery",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "frame_style",
+      "label": "Frame style",
+      "default": "walnut-floater",
+      "options": [
+        { "value": "walnut-floater", "label": "Walnut floater" },
+        { "value": "gilt", "label": "Gilt ornate" },
+        { "value": "black-box", "label": "Matte black box" },
+        { "value": "white-gallery", "label": "Gallery white" },
+        { "value": "natural-oak", "label": "Natural oak" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image shape",
+      "default": "4 / 5",
+      "options": [
+        { "value": "4 / 5", "label": "Portrait" },
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "5 / 4", "label": "Landscape" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "items_per_row",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "Frames per row (desktop)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_items_per_row",
+      "min": 1,
+      "max": 2,
+      "step": 1,
+      "default": 1,
+      "label": "Frames per row (mobile)"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_products",
+      "label": "Link frames to products",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Caption"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show product title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show price",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between frames (desktop)",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between frames (mobile)",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#e7e1d6"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#2a2620"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop bottom padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile top padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile bottom padding",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "frame",
+      "name": "Framed product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "select",
+          "id": "frame_style",
+          "label": "Frame style override",
+          "info": "Use the section's style, or pick a different frame for this product.",
+          "default": "inherit",
+          "options": [
+            { "value": "inherit", "label": "Use section style" },
+            { "value": "walnut-floater", "label": "Walnut floater" },
+            { "value": "gilt", "label": "Gilt ornate" },
+            { "value": "black-box", "label": "Matte black box" },
+            { "value": "white-gallery", "label": "Gallery white" },
+            { "value": "natural-oak", "label": "Natural oak" }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Framed Gallery",
+      "blocks": [
+        { "type": "frame" },
+        { "type": "frame" },
+        { "type": "frame" },
+        { "type": "frame" }
+      ]
+    }
+  ]
+}
+{% endschema %}
