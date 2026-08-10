@@ -8,7 +8,7 @@
   assign max_items = section.settings.max_items
   assign parallax_intensity = section.settings.parallax_intensity | times: 0.01
   assign items_per_row = section.settings.items_per_row
-  assign item_width_pct = 100.0 | divided_by: items_per_row
+  assign mobile_items_per_row = section.settings.mobile_items_per_row
 -%}
 
 {%- style -%}
@@ -34,87 +34,44 @@
     <h2 class="tp-float-carousel__title">{{ section.settings.title | escape }}</h2>
   {%- endif -%}
 
-<div class="tp-float-carousel__wrapper">
-    <div class="tp-float-carousel__track" id="tp-track-{{ section.id }}">
-      {%- assign item_index = 0 -%}
-      {%- assign speeds = '0.03,0.06,0.04,0.05,0.02' | split: ',' -%}
-      {%- assign scan_limit = source_collection.products_count | at_most: 500 -%}
-      {%- assign batch_count = scan_limit | divided_by: 50 -%}
+  <div class="tp-float-carousel__grid" id="tp-grid-{{ section.id }}">
+    {%- assign item_index = 0 -%}
+    {%- assign speeds = '0.03,0.06,0.04,0.05,0.02' | split: ',' -%}
+    {%- assign scan_limit = source_collection.products_count | at_most: 500 -%}
+    {%- assign batch_count = scan_limit | divided_by: 50 -%}
 
-      {%- for batch in (0..batch_count) -%}
+    {%- for batch in (0..batch_count) -%}
+      {%- if item_index >= max_items -%}{%- break -%}{%- endif -%}
+      {%- assign batch_offset = batch | times: 50 -%}
+
+      {%- for product in source_collection.products limit: 50 offset: batch_offset -%}
         {%- if item_index >= max_items -%}{%- break -%}{%- endif -%}
-        {%- assign batch_offset = batch | times: 50 -%}
+        {%- assign tp_meta = product.metafields.custom.transparent_image -%}
+        {%- if tp_meta != blank -%}
+          {%- assign speed_index = item_index | modulo: speeds.size -%}
+          {%- assign speed = speeds[speed_index] -%}
 
-        {%- for product in source_collection.products limit: 50 offset: batch_offset -%}
-          {%- if item_index >= max_items -%}{%- break -%}{%- endif -%}
-          {%- assign tp_meta = product.metafields.custom.transparent_image -%}
-          {%- if tp_meta != blank -%}
-            {%- assign speed_index = item_index | modulo: speeds.size -%}
-            {%- assign speed = speeds[speed_index] -%}
-
-            {%- if tp_meta.value != blank -%}
-              {%- assign tp_img_url = tp_meta.value | image_url: width: 800 -%}
-            {%- else -%}
-              {%- assign tp_img_url = tp_meta | image_url: width: 800 -%}
-            {%- endif -%}
-
-            <a
-              class="tp-float-carousel__item"
-              href="{{ product.url }}"
-              data-parallax-speed="{{ speed }}"
-              style="min-width: calc({{ item_width_pct }}% - 16px);"
-            >
-              <div class="tp-float-carousel__image-wrap">
-                <img
-                  src="{{ tp_img_url }}"
-                  alt="{{ product.title | escape }}"
-                  loading="lazy"
-                  width="800"
-                  height="800"
-                >
-              </div>
-
-              {%- if section.settings.show_title -%}
-                <p class="tp-float-carousel__product-title">{{ product.title | escape }}</p>
-              {%- endif -%}
-
-              {%- if section.settings.show_price -%}
-                <p class="tp-float-carousel__product-price">{{ product.price | money }}</p>
-              {%- endif -%}
-
-            </a>
-
-            {%- assign item_index = item_index | plus: 1 -%}
+          {%- if tp_meta.value != blank -%}
+            {%- assign tp_img_url = tp_meta.value | image_url: width: 400 -%}
+          {%- else -%}
+            {%- assign tp_img_url = tp_meta | image_url: width: 400 -%}
           {%- endif -%}
-        {%- endfor -%}
+
+          <a class="tp-float-carousel__item" href="{{ product.url }}" data-parallax-speed="{{ speed }}">
+            <img
+              src="{{ tp_img_url }}"
+              alt="{{ product.title | escape }}"
+              loading="lazy"
+            >
+          </a>
+
+          {%- assign item_index = item_index | plus: 1 -%}
+        {%- endif -%}
       {%- endfor -%}
+    {%- endfor -%}
 
-      {%- if item_index == 0 -%}
-        <p style="padding: 40px; text-align: center; opacity: 0.5; width: 100%;">No products found with a transparent_image metafield in this collection.</p>
-      {%- endif -%}
-    </div>
-
-    {%- if item_index > 0 -%}
-    <button
-      type="button"
-      class="tp-float-carousel__arrow tp-float-carousel__arrow--prev"
-      aria-label="Previous"
-      aria-controls="tp-track-{{ section.id }}"
-    >
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-    <button
-      type="button"
-      class="tp-float-carousel__arrow tp-float-carousel__arrow--next"
-      aria-label="Next"
-      aria-controls="tp-track-{{ section.id }}"
-    >
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
+    {%- if item_index == 0 -%}
+      <p style="padding: 40px; text-align: center; opacity: 0.5; width: 100%; grid-column: 1 / -1;">No products found with a transparent_image metafield in this collection.</p>
     {%- endif -%}
   </div>
 </div>
@@ -127,7 +84,7 @@
 
   .tp-float-carousel__title {
     text-align: center;
-    margin: 0 0 24px;
+    margin: 0 0 16px;
     font-size: 28px;
     line-height: 1.2;
     color: inherit;
@@ -136,118 +93,36 @@
   @media screen and (min-width: 750px) {
     .tp-float-carousel__title {
       font-size: 36px;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
   }
 
-  .tp-float-carousel__wrapper {
-    position: relative;
-    padding: 0 40px;
+  .tp-float-carousel__grid {
+    display: grid;
+    grid-template-columns: repeat({{ mobile_items_per_row }}, 1fr);
+    gap: 8px;
+    padding: 0 12px;
   }
 
-  @media screen and (max-width: 749px) {
-    .tp-float-carousel__wrapper {
-      padding: 0 12px;
+  @media screen and (min-width: 750px) {
+    .tp-float-carousel__grid {
+      grid-template-columns: repeat({{ items_per_row }}, 1fr);
+      gap: 12px;
+      padding: 0 40px;
     }
-  }
-
-  .tp-float-carousel__track {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 16px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding: 20px 0;
-  }
-
-  .tp-float-carousel__track::-webkit-scrollbar {
-    display: none;
   }
 
   .tp-float-carousel__item {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    text-decoration: none;
-    color: inherit;
-    text-align: center;
+    display: block;
     will-change: transform;
     transition: transform 0.1s linear;
   }
 
-  @media screen and (max-width: 749px) {
-    .tp-float-carousel__item {
-      min-width: 60% !important;
-    }
-  }
-
-  .tp-float-carousel__image-wrap {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .tp-float-carousel__image-wrap img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
+  .tp-float-carousel__item img {
+    width: 100%;
     height: auto;
     object-fit: contain;
-    mix-blend-mode: multiply;
-  }
-
-  .tp-float-carousel__product-title {
-    margin: 8px 0 4px;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.3;
-  }
-
-  .tp-float-carousel__product-price {
-    margin: 0;
-    font-size: 14px;
-    opacity: 0.8;
-  }
-
-  /* Arrow buttons */
-  .tp-float-carousel__arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-    color: #000;
-  }
-
-  .tp-float-carousel__arrow:hover {
-    opacity: 0.7;
-  }
-
-  .tp-float-carousel__arrow--prev {
-    left: 0;
-  }
-
-  .tp-float-carousel__arrow--next {
-    right: 0;
-  }
-
-  @media screen and (max-width: 749px) {
-    .tp-float-carousel__arrow {
-      display: none;
-    }
+    display: block;
   }
 </style>
 
@@ -255,28 +130,24 @@
   (function () {
     var sectionId = {{ section.id | json }};
     var intensity = {{ parallax_intensity }};
-    var section = document.querySelector('[data-parallax-section="' + sectionId + '"]');
-    if (!section) return;
+    var el = document.querySelector('[data-parallax-section="' + sectionId + '"]');
+    if (!el) return;
 
-    var track = section.querySelector('.tp-float-carousel__track');
-    var items = section.querySelectorAll('.tp-float-carousel__item');
-    var prevBtn = section.querySelector('.tp-float-carousel__arrow--prev');
-    var nextBtn = section.querySelector('.tp-float-carousel__arrow--next');
+    var items = el.querySelectorAll('.tp-float-carousel__item');
     var active = false;
     var ticking = false;
 
-    /* ---- Parallax ---- */
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         active = entry.isIntersecting;
       });
     }, { threshold: 0 });
 
-    observer.observe(section);
+    observer.observe(el);
 
     function applyParallax() {
       if (!active) return;
-      var rect = section.getBoundingClientRect();
+      var rect = el.getBoundingClientRect();
       var scrollOffset = window.innerHeight - rect.top;
 
       items.forEach(function (item) {
@@ -295,22 +166,6 @@
         ticking = true;
       }
     }, { passive: true });
-
-    /* ---- Arrow navigation ---- */
-    if (prevBtn && nextBtn && track) {
-      var scrollAmount = function () {
-        var firstItem = track.querySelector('.tp-float-carousel__item');
-        return firstItem ? firstItem.offsetWidth + 16 : 300;
-      };
-
-      prevBtn.addEventListener('click', function () {
-        track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-      });
-
-      nextBtn.addEventListener('click', function () {
-        track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-      });
-    }
   })();
 </script>
 
@@ -343,23 +198,20 @@
     {
       "type": "range",
       "id": "items_per_row",
-      "min": 2,
-      "max": 6,
+      "min": 3,
+      "max": 10,
       "step": 1,
-      "default": 4,
-      "label": "Items per view (desktop)"
+      "default": 6,
+      "label": "Items per row (desktop)"
     },
     {
-      "type": "checkbox",
-      "id": "show_title",
-      "default": true,
-      "label": "Show product title"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_price",
-      "default": true,
-      "label": "Show product price"
+      "type": "range",
+      "id": "mobile_items_per_row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3,
+      "label": "Items per row (mobile)"
     },
     {
       "type": "header",
