@@ -2229,7 +2229,7 @@
       "name": "Transparent Carousel",
       "settings": {
         "title": "",
-        "collection": "all-products-available-online",
+        "collection": "transparent",
         "max_items": 20,
         "items_per_row": 4,
         "show_title": true,
