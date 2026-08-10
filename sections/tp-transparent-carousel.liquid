@@ -82,9 +82,6 @@
                 <p class="tp-float-carousel__product-price">{{ product.price | money }}</p>
               {%- endif -%}
 
-              {%- if section.settings.show_description and product.description != blank -%}
-                <p class="tp-float-carousel__product-desc">{{ product.description | strip_html | truncatewords: 20 }}</p>
-              {%- endif -%}
             </a>
 
             {%- assign item_index = item_index | plus: 1 -%}
@@ -214,17 +211,6 @@
     margin: 0;
     font-size: 14px;
     opacity: 0.8;
-  }
-
-  .tp-float-carousel__product-desc {
-    margin: 6px 0 0;
-    font-size: 13px;
-    line-height: 1.4;
-    opacity: 0.65;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   /* Arrow buttons */
@@ -374,12 +360,6 @@
       "id": "show_price",
       "default": true,
       "label": "Show product price"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_description",
-      "default": false,
-      "label": "Show product description"
     },
     {
       "type": "header",

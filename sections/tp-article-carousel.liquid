@@ -55,7 +55,8 @@
     , input_shop_all_text: section.settings.product_list_shop_all_text
     , input_shop_all_link: section.settings.product_list_shop_all_link
     , input_max: input_max_defaulted
-    , input_show_price: section.settings.show_price %}
+    , input_show_price: section.settings.show_price
+    , input_show_description: section.settings.show_description %}
 {%- else -%}
   {% assign metaobject_id = section.settings.input_metaobject %}
   {% assign my_metaobject = shop.metaobjects.tp_carousel[metaobject_id] %}
@@ -68,7 +69,8 @@
       , input_shop_all_text: "shop all"
       , input_shop_all_link: use_collection.url
       , input_max: input_max_defaulted
-      , input_show_price: section.settings.show_price %}
+      , input_show_price: section.settings.show_price
+      , input_show_description: section.settings.show_description %}
   {%- endif -%}
 {%- endif -%}
 <style>
@@ -191,6 +193,18 @@
   margin: 0 0 0.5em;
   line-height: 1.2;
 }
+.cellDescription {
+  font-size: 13px;
+  font-family: 'Helvetica Neue';
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0.25em 0 0.5em;
+  opacity: 0.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 .carousel-arrows {
   position: absolute;
   z-index: 1;
@@ -306,6 +320,13 @@
         "id": "show_price",
         "label": "Show Price",
         "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_description",
+        "label": "Show Description",
+        "default": false,
+        "info": "Shows up to 3 lines of the product description."
       },
       {
         "type": "range",

@@ -48,6 +48,9 @@
               {% if input_show_price %}
                 <p class="cellSubtitle">{{ tp_product.price | money }}</p>
               {% endif %}
+              {% if input_show_description and tp_product.description != blank %}
+                <p class="cellDescription">{{ tp_product.description | strip_html | truncatewords: 20 }}</p>
+              {% endif %}
             {% elsif block.settings.cell_title != "" %}
               <p class="cellTitle">
                 {{ block.settings.cell_title }}
