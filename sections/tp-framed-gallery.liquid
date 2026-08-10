@@ -63,7 +63,7 @@
         endif
 
         assign no_glass = false
-        if style == 'walnut-floater' or style == 'natural-oak'
+        if style == 'walnut-floater' or style == 'natural-oak' or style == 'organic-circle'
           assign no_glass = true
         endif
       -%}
@@ -342,6 +342,31 @@
     --slip-shadow: none;
   }
 
+  /* ---- STYLE: Organic Circle ---- */
+  .tpf-frame--organic-circle {
+    --molding: 0%;
+    --inner: 0%;
+    --slip: 0%;
+    --molding-bg: transparent;
+    --inner-bg: transparent;
+    --inner-shadow: none;
+    --slip-bg: transparent;
+    --slip-shadow: none;
+  }
+  .tpf-frame--organic-circle .tpf-molding {
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 4%;
+  }
+  .tpf-frame--organic-circle .tpf-window {
+    border-radius: 48% 52% 45% 55% / 55% 42% 58% 45%;
+    box-shadow:
+      0 4px 16px rgba(0,0,0,.18),
+      0 12px 32px rgba(0,0,0,.12);
+  }
+  .tpf-frame--organic-circle .tpf-canvas-tex { display: none; }
+
   /* ---- STYLE: Natural Oak ---- */
   .tpf-frame--natural-oak {
     --molding: 6%;
@@ -381,7 +406,8 @@
         { "value": "gilt", "label": "Gilt ornate" },
         { "value": "black-box", "label": "Matte black box" },
         { "value": "white-gallery", "label": "Gallery white" },
-        { "value": "natural-oak", "label": "Natural oak" }
+        { "value": "natural-oak", "label": "Natural oak" },
+        { "value": "organic-circle", "label": "Organic circle" }
       ]
     },
     {
@@ -560,7 +586,8 @@
             { "value": "gilt", "label": "Gilt ornate" },
             { "value": "black-box", "label": "Matte black box" },
             { "value": "white-gallery", "label": "Gallery white" },
-            { "value": "natural-oak", "label": "Natural oak" }
+            { "value": "natural-oak", "label": "Natural oak" },
+            { "value": "organic-circle", "label": "Organic circle" }
           ]
         }
       ]
