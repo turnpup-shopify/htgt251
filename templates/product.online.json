@@ -527,6 +527,7 @@
       ],
       "settings": {
         "section_padding": true,
+        "section_heading": "Common questions",
         "tp_metaobject": "{{ product.metafields.custom.qa.value }}",
         "padding_top": 40,
         "padding_bottom": 40,
@@ -779,7 +780,7 @@
         "title_alignment": "left",
         "section_text_color": "#000000",
         "overall_background_image_url": "",
-        "section_background_color": "#ffffff"
+        "section_background_color": "rgba(0,0,0,0)"
       }
     },
     "turnpup_mock_reviews_4Dw3Kp": {
@@ -1237,6 +1238,12 @@
       ],
       "settings": {
         "input_metaobject": "{{ product.metafields.custom.similar_products.value }}",
+        "input_product_list": [],
+        "product_list_title": "",
+        "product_list_shop_all_text": "",
+        "product_list_shop_all_link": "",
+        "show_price": false,
+        "show_description": false,
         "max_items": 6,
         "enable_scroll": true,
         "padding_top": 40,
@@ -1298,7 +1305,7 @@
         "title_alignment": "left",
         "section_text_color": "#000000",
         "overall_background_image_url": "",
-        "section_background_color": "#ffffff"
+        "section_background_color": "rgba(0,0,0,0)"
       }
     },
     "tp_pdp_products_in_collection_K8bNmF": {
