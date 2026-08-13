@@ -18,7 +18,7 @@
             "image_border_radius": "0px",
             "desktopMarginTopBottom": "150px 60px",
             "mobileMarginTopBottom": "0 20px 10px",
-            "title": "Explore Items In The Room",
+            "title": "Explore {{ metaobject.room_name.value }}",
             "title_h": "h1",
             "title_font_size": "36px",
             "title_font_size_mobile": "28px",
@@ -246,7 +246,7 @@
       "settings": {
         "input_metaobject": "",
         "input_product_list": "{{ metaobject.products.value }}",
-        "product_list_title": "Shop The {{ metaobject.room_name.value }}",
+        "product_list_title": "Shop The Look",
         "product_list_shop_all_text": "",
         "product_list_shop_all_link": "",
         "show_price": true,
