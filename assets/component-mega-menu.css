@@ -82,11 +82,12 @@ sticky-header,
 }
 
 .mega-menu__link--level-2 .icon-arrow {
-  width: 13px;
+  width: 16px;
   height: auto;
   flex-shrink: 0;
-  opacity: 0.5;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  opacity: .5;
+  transition: transform .2s ease, opacity .2s ease;
+  padding-left: 4px;
 }
 
 .mega-menu__link--level-2:hover,
