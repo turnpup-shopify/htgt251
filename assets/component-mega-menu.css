@@ -67,7 +67,7 @@ sticky-header,
 .mega-menu__link--level-2 {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -82,7 +82,7 @@ sticky-header,
 }
 
 .mega-menu__link--level-2 .icon-arrow {
-  width: 10px;
+  width: 13px;
   height: auto;
   flex-shrink: 0;
   opacity: 0.5;
