@@ -65,7 +65,9 @@ sticky-header,
 
 /* ── Level 2 — column heading ──────────────────────────── */
 .mega-menu__link--level-2 {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -79,10 +81,29 @@ sticky-header,
   flex-shrink: 0;
 }
 
+.mega-menu__link--level-2::after {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-right: 1.5px solid currentColor;
+  border-top: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  opacity: 0.55;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
 .mega-menu__link--level-2:hover,
 .mega-menu__link--level-2:focus {
   color: #555;
   text-decoration: none;
+}
+
+.mega-menu__link--level-2:hover::after,
+.mega-menu__link--level-2:focus::after {
+  opacity: 1;
+  transform: rotate(45deg) translate(1px, -1px);
 }
 
 .mega-menu__link--level-2.mega-menu__link--active {
