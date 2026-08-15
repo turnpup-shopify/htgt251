@@ -268,6 +268,20 @@
     color: {{ section.settings.drawer_text_color }};
     border-color: {{ section.settings.drawer_text_color }};
   }
+  .tp-scene-{{ section.id }} .tp-scene__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: {{ section.settings.text_color }};
+    text-decoration: none;
+  }
+  .tp-scene-{{ section.id }} .tp-scene__link svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
+  .tp-scene-{{ section.id }} .tp-scene__link:hover svg { transform: translateX(4px); }
 {%- endstyle -%}
 
 <div class="tp-scene-{{ section.id }} tp-shop-the-scene">
@@ -332,7 +346,13 @@
               <h3 class="tp-scene__room">{{ room.room_name.value }}</h3>
             {%- endif -%}
             {%- if room.description.value != blank -%}
-              <div class="tp-scene__desc rte">{{ room.description.value }}</div>
+              <div class="tp-scene__desc rte">{{ room.description | metafield_tag }}</div>
+            {%- endif -%}
+            {%- if section.settings.show_room_link and room.url != blank -%}
+              <a class="tp-scene__link" href="{{ room.url }}">
+                <span>Shop the look</span>
+                {%- render 'icon-arrow' -%}
+              </a>
             {%- endif -%}
           </div>
         </div>
@@ -680,6 +700,13 @@
       "id": "body_font_family",
       "label": "Body font family",
       "default": "'Karla', sans-serif"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_room_link",
+      "label": "Show 'Shop the look' link",
+      "default": true,
+      "info": "Links each card to its room page. Only applies when cards are populated from product metafields."
     },
     {
       "type": "header",
