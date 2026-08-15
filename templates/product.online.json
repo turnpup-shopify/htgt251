@@ -599,7 +599,7 @@
             "scene_image": "{{ block.repeater.image.value }}",
             "instagram_handle": "{{ block.repeater.instagram_handle.value }}",
             "room_name": "{{ block.repeater.room_name.value }}",
-            "description": "{{ block.repeater.description | metafield_tag }}",
+            "description": "<p>{{ block.repeater.description | metafield_tag }}</p>",
             "shop_link_label": "{{ block.repeater.shop_link_label.value }}",
             "shop_link": "{{ block.repeater.system.url }}",
             "scene_products": "{{ block.repeater.products.value }}"
