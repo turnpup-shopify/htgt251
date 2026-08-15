@@ -43,8 +43,11 @@
     assign tp_scene_count = section.blocks.size
   endif
   assign tp_use_split = false
-  if tp_scene_count <= 2
+  assign tp_use_featured = false
+  if tp_scene_count == 2
     assign tp_use_split = true
+  elsif tp_scene_count == 1
+    assign tp_use_featured = true
   endif
 -%}
 
@@ -293,11 +296,34 @@
   .tp-scene-{{ section.id }} .tp-scene__link:hover svg { transform: translateX(4px); }
   /* Drawer price — match card title weight and color */
   .tp-scene-{{ section.id }} .tp-scene-drawer__grid .price {
+    font-size: 1.2rem;
     font-weight: 500;
     color: {{ section.settings.drawer_text_color }} !important;
   }
+  /* Featured layout — 1 card */
+  @media screen and (min-width: 750px) {
+    .tp-scene-{{ section.id }}.tp-scene--featured .tp-scene__card {
+      display: flex;
+      align-items: flex-start;
+      gap: 48px;
+    }
+    .tp-scene-{{ section.id }}.tp-scene--featured .tp-scene__media {
+      flex: 0 0 56%;
+    }
+    .tp-scene-{{ section.id }}.tp-scene--featured .tp-scene__body {
+      flex: 1;
+      padding-top: 16px;
+    }
+    .tp-scene-{{ section.id }}.tp-scene--featured .tp-scene__room {
+      font-size: 26px;
+      margin-bottom: 12px;
+    }
+    .tp-scene-{{ section.id }}.tp-scene--featured .tp-scene__desc {
+      margin-bottom: 20px;
+    }
+  }
   /* Heading gap — normal layout only */
-  .tp-scene-{{ section.id }}:not(.tp-scene--split) .tp-scene__grid {
+  .tp-scene-{{ section.id }}:not(.tp-scene--split):not(.tp-scene--featured) .tp-scene__grid {
     margin-top: {{ section.settings.heading_gap }}px;
   }
   /* Split layout — 1 or 2 cards */
@@ -325,7 +351,7 @@
   }
 {%- endstyle -%}
 
-<div class="tp-scene-{{ section.id }} tp-shop-the-scene{% if tp_use_split %} tp-scene--split{% endif %}">
+<div class="tp-scene-{{ section.id }} tp-shop-the-scene{% if tp_use_split %} tp-scene--split{% elsif tp_use_featured %} tp-scene--featured{% endif %}">
   {%- if section.settings.title != blank or section.settings.subheading != blank -%}
     <div class="tp-scene__header">
       {%- if section.settings.title != blank -%}
