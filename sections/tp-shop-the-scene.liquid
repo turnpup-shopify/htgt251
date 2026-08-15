@@ -32,6 +32,12 @@
   endcase
   assign overlay_rgb = section.settings.drawer_overlay_color | default: '#000000' | color_to_rgb | replace: 'rgb(', '' | replace: ')', ''
 -%}
+{%- liquid
+  assign tp_scene_rooms = nil
+  if product != blank
+    assign tp_scene_rooms = product.metafields.custom.rooms.value
+  endif
+-%}
 
 {%- style -%}
   .tp-scene-{{ section.id }} {
@@ -178,20 +184,6 @@
     margin: 0 0 14px;
   }
   .tp-scene-{{ section.id }} .tp-scene__desc p { margin: 0 0 10px; }
-  .tp-scene-{{ section.id }} .tp-scene__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: {{ section.settings.body_font_family }};
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: {{ section.settings.text_color }};
-    text-decoration: none;
-  }
-  .tp-scene-{{ section.id }} .tp-scene__link svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
-  .tp-scene-{{ section.id }} .tp-scene__link:hover svg { transform: translateX(4px); }
 
   /* drawer container + overlay styles are in the inline <style> inside the drawer element */
   .tp-scene-drawer__panel {
@@ -287,133 +279,251 @@
   {%- endif -%}
 
   <div class="tp-scene__grid">
+    {%- if tp_scene_rooms != blank -%}
+      {%- for room in tp_scene_rooms -%}
+        {%- liquid
+          assign tp_room_products = room.products.value
+          assign product_count = tp_room_products.size
+          assign drawer_id = 'SceneDrawer-' | append: section.id | append: '-dyn' | append: forloop.index
+        -%}
+        <div class="tp-scene__card">
+          <div class="tp-scene__media">
+            {%- if room.image.value != blank -%}
+              {{ room.image.value | image_url: width: 900 | image_tag:
+                loading: 'lazy',
+                widths: '450, 660, 900, 1200',
+                sizes: '(min-width: 750px) 33vw, 90vw',
+                alt: room.room_name.value | escape }}
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'tp-scene__placeholder' }}
+            {%- endif -%}
+
+            {%- if product_count > 0 -%}
+              <button
+                type="button"
+                class="tp-scene__pill"
+                data-scene-drawer-open="#{{ drawer_id }}"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                aria-controls="{{ drawer_id }}">
+                <span class="tp-scene__pill-left">
+                  <span>{{ section.settings.scene_button_label }} ({{ product_count }})</span>
+                  {%- render 'icon-arrow' -%}
+                </span>
+                <div class="tp-scene__thumbs" aria-hidden="true">
+                  {%- for tp_thumb in tp_room_products limit: thumb_count -%}
+                    <span class="tp-scene__thumb">
+                      {%- if tp_thumb.featured_media != blank -%}
+                        {{ tp_thumb.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: tp_thumb.title | escape }}
+                      {%- endif -%}
+                    </span>
+                  {%- endfor -%}
+                </div>
+              </button>
+            {%- endif -%}
+          </div>
+
+          <div class="tp-scene__body">
+            {%- if room.instagram_handle.value != blank -%}
+              {%- assign tp_handle = room.instagram_handle.value | remove: '@' -%}
+              <span class="tp-scene__handle">@{{ tp_handle }}</span>
+            {%- endif -%}
+            {%- if room.room_name.value != blank -%}
+              <h3 class="tp-scene__room">{{ room.room_name.value }}</h3>
+            {%- endif -%}
+            {%- if room.description.value != blank -%}
+              <div class="tp-scene__desc rte">{{ room.description.value }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign products = block.settings.scene_products
+          assign product_count = products.count
+          assign drawer_id = 'SceneDrawer-' | append: section.id | append: '-' | append: block.id
+        -%}
+        <div class="tp-scene__card" {{ block.shopify_attributes }}>
+          <div class="tp-scene__media">
+            {%- if block.settings.scene_image != blank -%}
+              {{ block.settings.scene_image | image_url: width: 900 | image_tag:
+                loading: 'lazy',
+                widths: '450, 660, 900, 1200',
+                sizes: '(min-width: 750px) 33vw, 90vw',
+                alt: block.settings.room_name | default: block.settings.scene_image.alt | escape }}
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'tp-scene__placeholder' }}
+            {%- endif -%}
+
+            {%- if product_count > 0 -%}
+              <button
+                type="button"
+                class="tp-scene__pill"
+                data-scene-drawer-open="#{{ drawer_id }}"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                aria-controls="{{ drawer_id }}">
+                <span class="tp-scene__pill-left">
+                  <span>{{ section.settings.scene_button_label }} ({{ product_count }})</span>
+                  {%- render 'icon-arrow' -%}
+                </span>
+                <div class="tp-scene__thumbs" aria-hidden="true">
+                  {%- for product in products limit: thumb_count -%}
+                    <span class="tp-scene__thumb">
+                      {%- if product.featured_media != blank -%}
+                        {{ product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: product.title | escape }}
+                      {%- endif -%}
+                    </span>
+                  {%- endfor -%}
+                </div>
+              </button>
+            {%- endif -%}
+          </div>
+
+          <div class="tp-scene__body">
+            {%- if block.settings.instagram_handle != blank -%}
+              {%- assign handle = block.settings.instagram_handle | remove: '@' -%}
+              <span class="tp-scene__handle">@{{ handle }}</span>
+            {%- endif -%}
+            {%- if block.settings.room_name != blank -%}
+              <h3 class="tp-scene__room">{{ block.settings.room_name }}</h3>
+            {%- endif -%}
+            {%- if block.settings.description != blank -%}
+              <div class="tp-scene__desc rte">{{ block.settings.description }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Drawers rendered outside the grid so position:fixed escapes the overflow:auto scroll container {%- endcomment -%}
+  {%- if tp_scene_rooms != blank -%}
+    {%- for room in tp_scene_rooms -%}
+      {%- liquid
+        assign tp_room_products = room.products.value
+        assign product_count = tp_room_products.size
+        assign drawer_id = 'SceneDrawer-' | append: section.id | append: '-dyn' | append: forloop.index
+      -%}
+      {%- if product_count > 0 -%}
+        <tp-shop-scene-drawer id="{{ drawer_id }}" class="tp-scene-drawer">
+          <style>
+            tp-shop-scene-drawer{display:block!important;position:fixed!important;inset:0!important;width:100%!important;height:100%!important;z-index:9999!important;pointer-events:none!important}
+            tp-shop-scene-drawer.is-open{pointer-events:auto!important}
+            tp-shop-scene-drawer .tp-scene-drawer__overlay{display:none!important}
+            tp-shop-scene-drawer.is-open .tp-scene-drawer__overlay{display:block!important}
+          </style>
+          <div class="tp-scene-drawer__overlay" data-scene-drawer-close style="position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:1;background:rgba(0,0,0,{{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }});cursor:pointer;"></div>
+          <aside style="z-index:2;"
+            class="tp-scene-drawer__panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="{{ section.settings.scene_button_label }} {{ room.room_name.value | escape }}"
+            tabindex="-1">
+            <header class="tp-scene-drawer__header">
+              <h2 class="tp-scene-drawer__heading">{{ section.settings.scene_button_label }} ({{ product_count }})</h2>
+              <button type="button" class="tp-scene-drawer__close" data-scene-drawer-close aria-label="{{ 'accessibility.close' | t }}">
+                {%- render 'icon-close' -%}
+              </button>
+            </header>
+            <div class="tp-scene-drawer__content">
+              <ul class="tp-scene-drawer__grid">
+                {%- for tp_item in tp_room_products -%}
+                  <li class="grid__item">
+                    {%- render 'tp-card-product',
+                      card_product: tp_item,
+                      media_aspect_ratio: 'square',
+                      show_secondary_image: true,
+                      show_vendor: false,
+                      show_rating: false,
+                      lazy_load: true,
+                      show_price: true,
+                      section_id: section.id -%}
+                    {%- assign atc_form_id = 'SceneATC-' | append: tp_item.id | append: '-' | append: section.id -%}
+                    {%- if tp_item.available -%}
+                      {%- if tp_item.has_only_default_variant -%}
+                        {%- form 'product', tp_item, id: atc_form_id, class: 'tp-scene-drawer__atc-form' -%}
+                          <input type="hidden" name="id" value="{{ tp_item.selected_or_first_available_variant.id }}">
+                          <button type="submit" name="add" class="tp-scene-drawer__atc-btn">Add to cart</button>
+                        {%- endform -%}
+                      {%- else -%}
+                        <a href="{{ tp_item.url }}" class="tp-scene-drawer__atc-btn tp-scene-drawer__atc-btn--options">Choose options</a>
+                      {%- endif -%}
+                    {%- else -%}
+                      <button type="button" class="tp-scene-drawer__atc-btn" disabled>Sold out</button>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          </aside>
+        </tp-shop-scene-drawer>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- else -%}
     {%- for block in section.blocks -%}
       {%- liquid
         assign products = block.settings.scene_products
         assign product_count = products.count
         assign drawer_id = 'SceneDrawer-' | append: section.id | append: '-' | append: block.id
       -%}
-      <div class="tp-scene__card" {{ block.shopify_attributes }}>
-        <div class="tp-scene__media">
-          {%- if block.settings.scene_image != blank -%}
-            {{ block.settings.scene_image | image_url: width: 900 | image_tag:
-              loading: 'lazy',
-              widths: '450, 660, 900, 1200',
-              sizes: '(min-width: 750px) 33vw, 90vw',
-              alt: block.settings.room_name | default: block.settings.scene_image.alt | escape }}
-          {%- else -%}
-            {{ 'collection-1' | placeholder_svg_tag: 'tp-scene__placeholder' }}
-          {%- endif -%}
-
-          {%- if product_count > 0 -%}
-            <button
-              type="button"
-              class="tp-scene__pill"
-              data-scene-drawer-open="#{{ drawer_id }}"
-              aria-haspopup="dialog"
-              aria-expanded="false"
-              aria-controls="{{ drawer_id }}">
-              <span class="tp-scene__pill-left">
-                <span>{{ section.settings.scene_button_label }} ({{ product_count }})</span>
-                {%- render 'icon-arrow' -%}
-              </span>
-              <div class="tp-scene__thumbs" aria-hidden="true">
-                {%- for product in products limit: thumb_count -%}
-                  <span class="tp-scene__thumb">
-                    {%- if product.featured_media != blank -%}
-                      {{ product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: product.title | escape }}
-                    {%- endif -%}
-                  </span>
-                {%- endfor -%}
-              </div>
-            </button>
-          {%- endif -%}
-        </div>
-
-        <div class="tp-scene__body">
-          {%- if block.settings.instagram_handle != blank -%}
-            {%- assign handle = block.settings.instagram_handle | remove: '@' -%}
-            <span class="tp-scene__handle">@{{ handle }}</span>
-          {%- endif -%}
-          {%- if block.settings.room_name != blank -%}
-            <h3 class="tp-scene__room">{{ block.settings.room_name }}</h3>
-          {%- endif -%}
-          {%- if block.settings.description != blank -%}
-            <div class="tp-scene__desc rte">{{ block.settings.description }}</div>
-          {%- endif -%}
-          {%- if block.settings.shop_link != blank -%}
-            <a class="tp-scene__link" href="{{ block.settings.shop_link }}">
-              <span>SHOP THE LOOK</span>
-              {%- render 'icon-arrow' -%}
-            </a>
-          {%- endif -%}
-        </div>
-      </div>
-    {%- endfor -%}
-  </div>
-
-  {%- comment -%} Drawers rendered outside the grid so position:fixed escapes the overflow:auto scroll container {%- endcomment -%}
-  {%- for block in section.blocks -%}
-    {%- liquid
-      assign products = block.settings.scene_products
-      assign product_count = products.count
-      assign drawer_id = 'SceneDrawer-' | append: section.id | append: '-' | append: block.id
-    -%}
-    {%- if product_count > 0 -%}
-      <tp-shop-scene-drawer id="{{ drawer_id }}" class="tp-scene-drawer">
-        <style>
-          tp-shop-scene-drawer{display:block!important;position:fixed!important;inset:0!important;width:100%!important;height:100%!important;z-index:9999!important;pointer-events:none!important}
-          tp-shop-scene-drawer.is-open{pointer-events:auto!important}
-          tp-shop-scene-drawer .tp-scene-drawer__overlay{display:none!important}
-          tp-shop-scene-drawer.is-open .tp-scene-drawer__overlay{display:block!important}
-        </style>
-        <div class="tp-scene-drawer__overlay" data-scene-drawer-close style="position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:1;background:rgba(0,0,0,{{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }});cursor:pointer;"></div>
-        <aside style="z-index:2;"
-          class="tp-scene-drawer__panel"
-          role="dialog"
-          aria-modal="true"
-          aria-label="{{ section.settings.scene_button_label }} {{ block.settings.room_name | escape }}"
-          tabindex="-1">
-          <header class="tp-scene-drawer__header">
-            <h2 class="tp-scene-drawer__heading">{{ section.settings.scene_button_label }} ({{ product_count }})</h2>
-            <button type="button" class="tp-scene-drawer__close" data-scene-drawer-close aria-label="{{ 'accessibility.close' | t }}">
-              {%- render 'icon-close' -%}
-            </button>
-          </header>
-          <div class="tp-scene-drawer__content">
-            <ul class="tp-scene-drawer__grid">
-              {%- for product in products -%}
-                <li class="grid__item">
-                  {%- render 'tp-card-product',
-                    card_product: product,
-                    media_aspect_ratio: 'square',
-                    show_secondary_image: true,
-                    show_vendor: false,
-                    show_rating: false,
-                    lazy_load: true,
-                    show_price: true,
-                    section_id: section.id -%}
-                  {%- assign atc_form_id = 'SceneATC-' | append: product.id | append: '-' | append: section.id -%}
-                  {%- if product.available -%}
-                    {%- if product.has_only_default_variant -%}
-                      {%- form 'product', product, id: atc_form_id, class: 'tp-scene-drawer__atc-form' -%}
-                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                        <button type="submit" name="add" class="tp-scene-drawer__atc-btn">Add to cart</button>
-                      {%- endform -%}
+      {%- if product_count > 0 -%}
+        <tp-shop-scene-drawer id="{{ drawer_id }}" class="tp-scene-drawer">
+          <style>
+            tp-shop-scene-drawer{display:block!important;position:fixed!important;inset:0!important;width:100%!important;height:100%!important;z-index:9999!important;pointer-events:none!important}
+            tp-shop-scene-drawer.is-open{pointer-events:auto!important}
+            tp-shop-scene-drawer .tp-scene-drawer__overlay{display:none!important}
+            tp-shop-scene-drawer.is-open .tp-scene-drawer__overlay{display:block!important}
+          </style>
+          <div class="tp-scene-drawer__overlay" data-scene-drawer-close style="position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:1;background:rgba(0,0,0,{{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }});cursor:pointer;"></div>
+          <aside style="z-index:2;"
+            class="tp-scene-drawer__panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="{{ section.settings.scene_button_label }} {{ block.settings.room_name | escape }}"
+            tabindex="-1">
+            <header class="tp-scene-drawer__header">
+              <h2 class="tp-scene-drawer__heading">{{ section.settings.scene_button_label }} ({{ product_count }})</h2>
+              <button type="button" class="tp-scene-drawer__close" data-scene-drawer-close aria-label="{{ 'accessibility.close' | t }}">
+                {%- render 'icon-close' -%}
+              </button>
+            </header>
+            <div class="tp-scene-drawer__content">
+              <ul class="tp-scene-drawer__grid">
+                {%- for product in products -%}
+                  <li class="grid__item">
+                    {%- render 'tp-card-product',
+                      card_product: product,
+                      media_aspect_ratio: 'square',
+                      show_secondary_image: true,
+                      show_vendor: false,
+                      show_rating: false,
+                      lazy_load: true,
+                      show_price: true,
+                      section_id: section.id -%}
+                    {%- assign atc_form_id = 'SceneATC-' | append: product.id | append: '-' | append: section.id -%}
+                    {%- if product.available -%}
+                      {%- if product.has_only_default_variant -%}
+                        {%- form 'product', product, id: atc_form_id, class: 'tp-scene-drawer__atc-form' -%}
+                          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                          <button type="submit" name="add" class="tp-scene-drawer__atc-btn">Add to cart</button>
+                        {%- endform -%}
+                      {%- else -%}
+                        <a href="{{ product.url }}" class="tp-scene-drawer__atc-btn tp-scene-drawer__atc-btn--options">Choose options</a>
+                      {%- endif -%}
                     {%- else -%}
-                      <a href="{{ product.url }}" class="tp-scene-drawer__atc-btn tp-scene-drawer__atc-btn--options">Choose options</a>
+                      <button type="button" class="tp-scene-drawer__atc-btn" disabled>Sold out</button>
                     {%- endif -%}
-                  {%- else -%}
-                    <button type="button" class="tp-scene-drawer__atc-btn" disabled>Sold out</button>
-                  {%- endif -%}
-                </li>
-              {%- endfor -%}
-            </ul>
-          </div>
-        </aside>
-      </tp-shop-scene-drawer>
-    {%- endif -%}
-  {%- endfor -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          </aside>
+        </tp-shop-scene-drawer>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
 </div>
 
 {% schema %}
@@ -770,17 +880,6 @@
           "id": "description",
           "label": "Description",
           "default": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>"
-        },
-        {
-          "type": "text",
-          "id": "shop_link_label",
-          "label": "Shop link label",
-          "default": "Shop Bedroom"
-        },
-        {
-          "type": "url",
-          "id": "shop_link",
-          "label": "Shop link"
         },
         {
           "type": "product_list",
