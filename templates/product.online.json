@@ -589,6 +589,68 @@
         "button_link": "{{ product.metafields.custom.image_with_text_two.value.button_url.value }}"
       }
     },
+    "tp_shop_the_scene_BreMVh": {
+      "type": "tp-shop-the-scene",
+      "blocks": {
+        "scene_keXJBD": {
+          "type": "scene",
+          "repeater": "{{ metaobjects.list_of_rooms[\"new-rooms\"].list_of_rooms.value }}",
+          "settings": {
+            "scene_image": "{{ block.repeater.image.value }}",
+            "instagram_handle": "{{ block.repeater.instagram_handle.value }}",
+            "room_name": "{{ block.repeater.room_name.value }}",
+            "description": "{{ block.repeater.description | metafield_tag }}",
+            "shop_link_label": "{{ block.repeater.shop_link_label.value }}",
+            "shop_link": "{{ block.repeater.system.url }}",
+            "scene_products": "{{ block.repeater.products.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "scene_keXJBD"
+      ],
+      "name": "TP Shop the Scene",
+      "settings": {
+        "title": "More Decorating  Inspiration",
+        "subheading": "",
+        "title_font_size": "32px",
+        "mobile_title_size": "24px",
+        "title_font_family": "'josefin-sans', sans-serif",
+        "title_font_weight": "600",
+        "columns_desktop": "4",
+        "mobile_layout": "carousel",
+        "image_ratio": "square",
+        "image_border_radius": 0,
+        "column_gap": 28,
+        "thumb_count": 3,
+        "section_background_color": "#f7f4ef",
+        "text_color": "#121212",
+        "handle_color": "#8a8378",
+        "room_font_family": "'josefin-sans', sans-serif",
+        "room_font_size": "26px",
+        "room_font_weight": "500",
+        "body_font_family": "'Karla', sans-serif",
+        "scene_button_label": "Shop scene",
+        "pill_background_color": "#3a352c",
+        "pill_text_color": "#ffffff",
+        "pill_background_color_hover": "#000000",
+        "pill_text_color_hover": "#ffffff",
+        "pill_border_radius": 30,
+        "enable_quick_add": false,
+        "drawer_background_color": "#ffffff",
+        "drawer_text_color": "#121212",
+        "drawer_overlay_color": "#000000",
+        "drawer_overlay_opacity": 45,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_left": 40,
+        "padding_right": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "mobile_padding_left": 20,
+        "mobile_padding_right": 20
+      }
+    },
     "turnpup_prod_carousel_RTzjKP": {
       "type": "turnpup-prod-carousel",
       "blocks": {
@@ -1429,6 +1491,7 @@
     "tp_quiz_LYAkfE",
     "featured_row_j4Ri8j",
     "featured_row_TH4hPR",
+    "tp_shop_the_scene_BreMVh",
     "turnpup_prod_carousel_RTzjKP",
     "turnpup_mock_reviews_4Dw3Kp",
     "174329153483acb687",
