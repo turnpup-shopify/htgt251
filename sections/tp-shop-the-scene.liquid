@@ -37,6 +37,15 @@
   if product != blank
     assign tp_scene_rooms = product.metafields.custom.rooms.value
   endif
+  if tp_scene_rooms != blank
+    assign tp_scene_count = tp_scene_rooms.size
+  else
+    assign tp_scene_count = section.blocks.size
+  endif
+  assign tp_use_split = false
+  if tp_scene_count <= 2
+    assign tp_use_split = true
+  endif
 -%}
 
 {%- style -%}
@@ -282,14 +291,50 @@
   }
   .tp-scene-{{ section.id }} .tp-scene__link svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
   .tp-scene-{{ section.id }} .tp-scene__link:hover svg { transform: translateX(4px); }
+  /* Drawer price — match card title weight and color */
+  .tp-scene-{{ section.id }} .tp-scene-drawer__grid .price {
+    font-weight: 500;
+    color: {{ section.settings.drawer_text_color }} !important;
+  }
+  /* Heading gap — normal layout only */
+  .tp-scene-{{ section.id }}:not(.tp-scene--split) .tp-scene__grid {
+    margin-top: {{ section.settings.heading_gap }}px;
+  }
+  /* Split layout — 1 or 2 cards */
+  @media screen and (min-width: 750px) {
+    .tp-scene-{{ section.id }}.tp-scene--split {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+    .tp-scene-{{ section.id }}.tp-scene--split .tp-scene__header {
+      flex: 0 0 36%;
+      max-width: 36%;
+    }
+    .tp-scene-{{ section.id }}.tp-scene--split .tp-scene__subheading {
+      margin-bottom: 0;
+    }
+    .tp-scene-{{ section.id }}.tp-scene--split .tp-scene__title {
+      margin-bottom: 12px;
+    }
+    .tp-scene-{{ section.id }}.tp-scene--split .tp-scene__grid {
+      flex: 1;
+      min-width: 0;
+      margin-top: 0;
+    }
+  }
 {%- endstyle -%}
 
-<div class="tp-scene-{{ section.id }} tp-shop-the-scene">
-  {%- if section.settings.title != blank -%}
-    <h2 class="tp-scene__title">{{ section.settings.title }}</h2>
-  {%- endif -%}
-  {%- if section.settings.subheading != blank -%}
-    <p class="tp-scene__subheading">{{ section.settings.subheading }}</p>
+<div class="tp-scene-{{ section.id }} tp-shop-the-scene{% if tp_use_split %} tp-scene--split{% endif %}">
+  {%- if section.settings.title != blank or section.settings.subheading != blank -%}
+    <div class="tp-scene__header">
+      {%- if section.settings.title != blank -%}
+        <h2 class="tp-scene__title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="tp-scene__subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
   {%- endif -%}
 
   <div class="tp-scene__grid">
@@ -564,6 +609,16 @@
       "type": "text",
       "id": "subheading",
       "label": "Subheading"
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "Gap between heading and cards",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
     },
     {
       "type": "text",
