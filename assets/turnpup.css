@@ -143,6 +143,7 @@ body h1, body h2, body h3, body h4, body h5, body .h0, body .h1, body .h2, body 
 
 .card__heading.h5 {
   font-family: var(--body-font-family);
+  margin-bottom: 0;
 }
 
 @media only screen and (min-width: 750px) {

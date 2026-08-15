@@ -19,17 +19,7 @@
 
 {%- liquid
   assign thumb_count = section.settings.thumb_count
-  assign card_ratio = 0.75
-  case section.settings.image_ratio
-    when 'portrait_45'
-      assign card_ratio = 0.8
-    when 'square'
-      assign card_ratio = 1
-    when 'landscape'
-      assign card_ratio = 1.333
-    else
-      assign card_ratio = 0.75
-  endcase
+  assign card_ratio = 1
   assign overlay_rgb = section.settings.drawer_overlay_color | default: '#000000' | color_to_rgb | replace: 'rgb(', '' | replace: ')', ''
 -%}
 {%- liquid
@@ -296,6 +286,7 @@
   .tp-scene-{{ section.id }} .tp-scene__link:hover svg { transform: translateX(4px); }
   /* Drawer price — match card title weight and color */
   .tp-scene-{{ section.id }} .tp-scene-drawer__grid .price {
+    font-family: 'Alegreya Sans', sans-serif;
     font-size: 1.2rem;
     font-weight: 500;
     color: {{ section.settings.drawer_text_color }} !important;
