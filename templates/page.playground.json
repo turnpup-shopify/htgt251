@@ -99,8 +99,6 @@
             "instagram_handle": "@joannagaunes",
             "room_name": "Entryway",
             "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>",
-            "shop_link_label": "Shop This Entryway",
-            "shop_link": "shopify://collections/entryway-decor",
             "scene_products": [
               "60-inch-round-mirror",
               "abril-rechargable-accent-lamp",
@@ -115,8 +113,6 @@
             "instagram_handle": "",
             "room_name": "Bedroom",
             "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>",
-            "shop_link_label": "Shop Bedroom",
-            "shop_link": "",
             "scene_products": []
           }
         },
@@ -127,8 +123,6 @@
             "instagram_handle": "",
             "room_name": "Bedroom",
             "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>",
-            "shop_link_label": "Shop Bedroom",
-            "shop_link": "",
             "scene_products": []
           }
         },
@@ -139,8 +133,6 @@
             "instagram_handle": "",
             "room_name": "Bedroom",
             "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables and more.</p>",
-            "shop_link_label": "Shop Bedroom",
-            "shop_link": "",
             "scene_products": []
           }
         }
@@ -155,6 +147,7 @@
       "settings": {
         "title": "",
         "subheading": "",
+        "heading_gap": 32,
         "title_font_size": "32px",
         "mobile_title_size": "24px",
         "title_font_family": "'josefin-sans', sans-serif",
@@ -172,6 +165,7 @@
         "room_font_size": "26px",
         "room_font_weight": "500",
         "body_font_family": "'Karla', sans-serif",
+        "show_room_link": true,
         "scene_button_label": "Shop scene",
         "pill_background_color": "#3a352c",
         "pill_text_color": "#ffffff",
@@ -192,11 +186,208 @@
         "mobile_padding_left": 20,
         "mobile_padding_right": 20
       }
+    },
+    "at_hero_spiral_collage_PdLgBG": {
+      "type": "at-hero-spiral-collage",
+      "blocks": {
+        "tile_xbPcCk": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/transparent-wood-stool-image-main.png",
+            "position_x": 4,
+            "position_y": 8,
+            "rotation": -15,
+            "rotation_drift": 4,
+            "tile_size": 80,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_THmRNE": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/transparent-brass-rectangular-mirror.png",
+            "position_x": 22,
+            "position_y": 3,
+            "rotation": 8,
+            "rotation_drift": 3,
+            "tile_size": 64,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_Xx83jW": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/transparent-coastal-entry-bench-aqua.png",
+            "position_x": 68,
+            "position_y": 5,
+            "rotation": -10,
+            "rotation_drift": 5,
+            "tile_size": 72,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_r4xN6K": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/transparent-c-side-table-wood.png",
+            "position_x": 85,
+            "position_y": 12,
+            "rotation": 18,
+            "rotation_drift": 2,
+            "tile_size": 60,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_HNj7Ud": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/transparent-white-drum-table.png",
+            "position_x": 2,
+            "position_y": 42,
+            "rotation": 6,
+            "rotation_drift": 4,
+            "tile_size": 68,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_nyqWfF": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/transparent-modern-grey-side-table.png",
+            "position_x": 88,
+            "position_y": 38,
+            "rotation": -14,
+            "rotation_drift": 3,
+            "tile_size": 76,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_X6w9j4": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/transparent-accent-stool-metal-balls.png",
+            "position_x": 8,
+            "position_y": 72,
+            "rotation": 20,
+            "rotation_drift": 5,
+            "tile_size": 72,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_tzy8qG": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/transparent-white-marble-accent-table.png",
+            "position_x": 28,
+            "position_y": 80,
+            "rotation": -8,
+            "rotation_drift": 2,
+            "tile_size": 56,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_7x6MPV": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/transparent-coastal-ottoman.png",
+            "position_x": 60,
+            "position_y": 78,
+            "rotation": 10,
+            "rotation_drift": 4,
+            "tile_size": 80,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_6kzWEM": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/transparent-side-table-wood-drum.png",
+            "position_x": 82,
+            "position_y": 70,
+            "rotation": -22,
+            "rotation_drift": 3,
+            "tile_size": 64,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_nBri3T": {
+          "type": "tile",
+          "settings": {
+            "position_x": 44,
+            "position_y": 2,
+            "rotation": 12,
+            "rotation_drift": 2,
+            "tile_size": 56,
+            "border_radius": "4px",
+            "link": ""
+          }
+        },
+        "tile_XfVRV7": {
+          "type": "tile",
+          "settings": {
+            "position_x": 50,
+            "position_y": 84,
+            "rotation": -6,
+            "rotation_drift": 4,
+            "tile_size": 68,
+            "border_radius": "4px",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "tile_xbPcCk",
+        "tile_THmRNE",
+        "tile_Xx83jW",
+        "tile_r4xN6K",
+        "tile_HNj7Ud",
+        "tile_nyqWfF",
+        "tile_X6w9j4",
+        "tile_tzy8qG",
+        "tile_7x6MPV",
+        "tile_6kzWEM",
+        "tile_nBri3T",
+        "tile_XfVRV7"
+      ],
+      "name": "Hero Spiral Collage",
+      "settings": {
+        "section_height": 100,
+        "section_height_mobile": 80,
+        "mobile_scale": 65,
+        "background_color": "#ffffff",
+        "heading": "Portfolio",
+        "heading_font_size": "100px",
+        "heading_font_size_mobile": "56px",
+        "heading_font_family": "'Helvetica Neue', sans-serif",
+        "heading_font_weight": "400",
+        "heading_color": "#000000",
+        "eyebrow": "digital design",
+        "eyebrow_font_size": "13px",
+        "eyebrow_font_size_mobile": "11px",
+        "eyebrow_font_family": "'Helvetica Neue', sans-serif",
+        "eyebrow_font_weight": "400",
+        "eyebrow_letter_spacing": "0.1em",
+        "eyebrow_color": "#666666",
+        "text_alignment": "center",
+        "enable_animation": true,
+        "animation_duration": 9
+      }
     }
   },
   "order": [
     "main",
     "tp_shop_the_look_T6gpdU",
-    "tp_shop_the_scene_xxzfAB"
+    "tp_shop_the_scene_xxzfAB",
+    "at_hero_spiral_collage_PdLgBG"
   ]
 }
