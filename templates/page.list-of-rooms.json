@@ -1,0 +1,69 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 76,
+        "padding_bottom": 28
+      }
+    },
+    "tp_rooms_index_a4M8jN": {
+      "type": "tp-rooms-index",
+      "name": "TP Rooms Index",
+      "settings": {
+        "title": "",
+        "subheading": "",
+        "heading_gap": 32,
+        "per_page": 20,
+        "columns_desktop": "3",
+        "column_gap": 24,
+        "image_border_radius": 0,
+        "section_background_color": "#f7f4ef",
+        "text_color": "#121212",
+        "handle_color": "#8a8378",
+        "title_font_family": "'josefin-sans', sans-serif",
+        "title_font_size": "32px",
+        "mobile_title_size": "24px",
+        "title_font_weight": "600",
+        "room_font_family": "'josefin-sans', sans-serif",
+        "room_font_size": "26px",
+        "room_font_weight": "500",
+        "body_font_family": "'Karla', sans-serif",
+        "scene_button_label": "Shop scene",
+        "thumb_count": 3,
+        "pill_background_color": "#3a352c",
+        "pill_text_color": "#ffffff",
+        "pill_background_color_hover": "#000000",
+        "pill_text_color_hover": "#ffffff",
+        "pill_border_radius": 6,
+        "show_room_link": true,
+        "drawer_background_color": "#ffffff",
+        "drawer_text_color": "#121212",
+        "drawer_overlay_color": "#000000",
+        "drawer_overlay_opacity": 40,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_left": 40,
+        "padding_right": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "mobile_padding_left": 20,
+        "mobile_padding_right": 20
+      }
+    }
+  },
+  "order": [
+    "main",
+    "tp_rooms_index_a4M8jN"
+  ]
+}
