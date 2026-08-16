@@ -1,0 +1,749 @@
+{% comment %}
+  TP Rooms Index
+  ---------------------------------------------------------------
+  Paginated grid of all room metaobjects (shop.metaobjects.room).
+  Reuses the tp-shop-scene-drawer custom element and JS from
+  tp-shop-the-scene.js. Cards match the Shop the Scene style.
+{% endcomment %}
+
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'tp-shop-the-scene.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign thumb_count = section.settings.thumb_count
+-%}
+
+{%- style -%}
+  .tp-rooms-{{ section.id }} {
+    background-color: {{ section.settings.section_background_color }};
+    padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_left }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_right }}px;
+    color: {{ section.settings.text_color }};
+  }
+  @media screen and (min-width: 750px) {
+    .tp-rooms-{{ section.id }} {
+      padding: {{ section.settings.padding_top }}px {{ section.settings.padding_left }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_right }}px;
+    }
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__title {
+    font-family: {{ section.settings.title_font_family }};
+    font-weight: {{ section.settings.title_font_weight }};
+    font-size: {{ section.settings.mobile_title_size }};
+    color: {{ section.settings.text_color }};
+    margin: 0 0 6px;
+  }
+  @media screen and (min-width: 750px) {
+    .tp-rooms-{{ section.id }} .tp-rooms__title { font-size: {{ section.settings.title_font_size }}; }
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__subheading {
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 15px;
+    margin: 0 0 {{ section.settings.heading_gap }}px;
+    max-width: 640px;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__title:last-child {
+    margin-bottom: {{ section.settings.heading_gap }}px;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: {{ section.settings.column_gap }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .tp-rooms-{{ section.id }} .tp-rooms__grid {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
+    }
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__media {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+    border-radius: {{ section.settings.image_border_radius }}px;
+    background: #efece7;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__media > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__pill {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 12px;
+    border: 0;
+    cursor: pointer;
+    border-radius: {{ section.settings.pill_border_radius }}px;
+    background: {{ section.settings.pill_background_color | color_modify: 'alpha', 0.72 }};
+    color: {{ section.settings.pill_text_color }};
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__pill:hover {
+    background: {{ section.settings.pill_background_color_hover | color_modify: 'alpha', 0.88 }};
+    color: {{ section.settings.pill_text_color_hover }};
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__pill-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__pill svg { width: 15px; height: 15px; }
+  .tp-rooms-{{ section.id }} .tp-rooms__thumbs { display: flex; gap: 6px; flex-shrink: 0; }
+  .tp-rooms-{{ section.id }} .tp-rooms__thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .tp-rooms-{{ section.id }} .tp-rooms__body { padding: 16px 2px 0; }
+  .tp-rooms-{{ section.id }} .tp-rooms__handle {
+    display: block;
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: {{ section.settings.handle_color }};
+    margin: 0 0 4px;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__room {
+    font-family: {{ section.settings.room_font_family }};
+    font-weight: {{ section.settings.room_font_weight }};
+    font-size: {{ section.settings.room_font_size }};
+    color: {{ section.settings.text_color }};
+    margin: 0 0 10px;
+    line-height: 1.1;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__desc {
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 15px;
+    line-height: 1.5;
+    color: {{ section.settings.text_color }};
+    margin: 0 0 14px;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__desc p { margin: 0 0 10px; }
+  .tp-rooms-{{ section.id }} .tp-rooms__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: {{ section.settings.text_color }};
+    text-decoration: none;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__link svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
+  .tp-rooms-{{ section.id }} .tp-rooms__link:hover svg { transform: translateX(4px); }
+  /* Drawer */
+  .tp-rooms-{{ section.id }} .tp-scene-drawer__panel {
+    background: {{ section.settings.drawer_background_color }};
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__drawer-heading {
+    font-family: {{ section.settings.room_font_family }};
+    font-weight: {{ section.settings.room_font_weight }};
+    font-size: 22px;
+    margin: 0;
+    color: {{ section.settings.drawer_text_color }};
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__drawer-close {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 6px;
+    line-height: 0;
+    color: {{ section.settings.drawer_text_color }};
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__drawer-close svg { width: 22px; height: 22px; }
+  .tp-rooms-{{ section.id }} .tp-rooms__drawer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 14px;
+    margin: 0;
+    padding: 0 0 18px;
+    list-style: none;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__drawer-grid .grid__item {
+    margin: 0; max-width: none; width: 100%; min-width: 0; flex: none; display: flex; flex-direction: column;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__drawer-grid .grid__item .card-wrapper { height: auto; flex: 1 1 auto; }
+  .tp-rooms-{{ section.id }} .tp-rooms__atc-form { margin: 8px 0 0; }
+  .tp-rooms-{{ section.id }} .tp-rooms__atc-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    background: {{ section.settings.pill_background_color }};
+    color: {{ section.settings.pill_text_color }};
+    border: 1px solid {{ section.settings.pill_background_color }};
+    border-radius: 4px;
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1.2;
+    box-sizing: border-box;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__atc-btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+  .tp-rooms-{{ section.id }} .tp-rooms__atc-btn--options {
+    background: transparent;
+    color: {{ section.settings.drawer_text_color }};
+    border-color: {{ section.settings.drawer_text_color }};
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__drawer-grid .price {
+    font-family: 'Alegreya Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: {{ section.settings.drawer_text_color }} !important;
+  }
+  /* Drawer custom element */
+  tp-shop-scene-drawer {
+    display: block;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+  }
+  tp-shop-scene-drawer.is-open { pointer-events: auto; }
+  tp-shop-scene-drawer .tp-scene-drawer__overlay { display: none; }
+  tp-shop-scene-drawer.is-open .tp-scene-drawer__overlay { display: block; }
+  /* Pagination */
+  .tp-rooms-{{ section.id }} .tp-rooms__pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__pagination .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__pagination a,
+  .tp-rooms-{{ section.id }} .tp-rooms__pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    font-family: {{ section.settings.body_font_family }};
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    color: {{ section.settings.text_color }};
+    border: 1px solid rgba(0,0,0,0.16);
+    border-radius: 4px;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__pagination a:hover {
+    background: {{ section.settings.pill_background_color }};
+    color: {{ section.settings.pill_text_color }};
+    border-color: transparent;
+  }
+  .tp-rooms-{{ section.id }} .tp-rooms__pagination .current {
+    background: {{ section.settings.pill_background_color }};
+    color: {{ section.settings.pill_text_color }};
+    border-color: transparent;
+    font-weight: 600;
+  }
+{%- endstyle -%}
+
+{%- paginate shop.metaobjects.room.values by section.settings.per_page -%}
+<div class="tp-rooms-{{ section.id }} tp-rooms-index">
+  {%- if section.settings.title != blank -%}
+    <h2 class="tp-rooms__title">{{ section.settings.title }}</h2>
+  {%- endif -%}
+  {%- if section.settings.subheading != blank -%}
+    <p class="tp-rooms__subheading">{{ section.settings.subheading }}</p>
+  {%- endif -%}
+
+  <div class="tp-rooms__grid">
+    {%- for room in shop.metaobjects.room.values -%}
+      {%- liquid
+        assign tp_room_products = room.products.value
+        assign product_count = tp_room_products.size
+        assign drawer_id = 'RoomDrawer-' | append: section.id | append: '-' | append: room.system.handle
+      -%}
+      <div class="tp-rooms__card">
+        <div class="tp-rooms__media">
+          {%- if room.image.value != blank -%}
+            {{ room.image.value | image_url: width: 900 | image_tag:
+              loading: 'lazy',
+              widths: '450, 660, 900',
+              sizes: '(min-width: 750px) 33vw, 90vw',
+              alt: room.room_name.value | escape }}
+          {%- else -%}
+            {{ 'collection-1' | placeholder_svg_tag: 'tp-rooms__placeholder' }}
+          {%- endif -%}
+
+          {%- if product_count > 0 -%}
+            <button
+              type="button"
+              class="tp-rooms__pill"
+              data-scene-drawer-open="#{{ drawer_id }}"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+              aria-controls="{{ drawer_id }}">
+              <span class="tp-rooms__pill-left">
+                <span>{{ section.settings.scene_button_label }} ({{ product_count }})</span>
+                {%- render 'icon-arrow' -%}
+              </span>
+              <div class="tp-rooms__thumbs" aria-hidden="true">
+                {%- for tp_thumb in tp_room_products limit: thumb_count -%}
+                  <span class="tp-rooms__thumb">
+                    {%- if tp_thumb.featured_media != blank -%}
+                      {{ tp_thumb.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: tp_thumb.title | escape }}
+                    {%- endif -%}
+                  </span>
+                {%- endfor -%}
+              </div>
+            </button>
+          {%- endif -%}
+        </div>
+
+        <div class="tp-rooms__body">
+          {%- if room.instagram_handle.value != blank -%}
+            {%- assign tp_handle = room.instagram_handle.value | remove: '@' -%}
+            <span class="tp-rooms__handle">@{{ tp_handle }}</span>
+          {%- endif -%}
+          {%- if room.room_name.value != blank -%}
+            <h3 class="tp-rooms__room">{{ room.room_name.value }}</h3>
+          {%- endif -%}
+          {%- if room.description.value != blank -%}
+            <div class="tp-rooms__desc rte">{{ room.description | metafield_tag }}</div>
+          {%- endif -%}
+          {%- if section.settings.show_room_link and room.url != blank -%}
+            <a class="tp-rooms__link" href="{{ room.url }}">
+              <span>Shop the look</span>
+              {%- render 'icon-arrow' -%}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- if paginate.pages > 1 -%}
+    <div class="tp-rooms__pagination">
+      {{ paginate | default_pagination }}
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Drawers — rendered outside the grid so position:fixed escapes overflow {%- endcomment -%}
+  {%- for room in shop.metaobjects.room.values -%}
+    {%- liquid
+      assign tp_room_products = room.products.value
+      assign product_count = tp_room_products.size
+      assign drawer_id = 'RoomDrawer-' | append: section.id | append: '-' | append: room.system.handle
+    -%}
+    {%- if product_count > 0 -%}
+      <tp-shop-scene-drawer id="{{ drawer_id }}" class="tp-scene-drawer">
+        <div class="tp-scene-drawer__overlay" data-scene-drawer-close style="position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:1;background:rgba(0,0,0,{{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }});cursor:pointer;"></div>
+        <aside style="position:absolute;top:0;right:0;height:100%;width:460px;max-width:92vw;z-index:2;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);box-shadow:-8px 0 30px rgba(0,0,0,0.14);"
+          class="tp-scene-drawer__panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="{{ section.settings.scene_button_label }} {{ room.room_name.value | escape }}"
+          tabindex="-1">
+          <header style="display:flex;align-items:center;justify-content:space-between;padding:22px 22px 16px;border-bottom:1px solid rgba(0,0,0,0.08);flex:0 0 auto;">
+            <h2 class="tp-rooms__drawer-heading">{{ section.settings.scene_button_label }} ({{ product_count }})</h2>
+            <button type="button" class="tp-rooms__drawer-close" data-scene-drawer-close aria-label="{{ 'accessibility.close' | t }}">
+              {%- render 'icon-close' -%}
+            </button>
+          </header>
+          <div style="flex:1 1 auto;overflow-y:auto;padding:18px;padding-bottom:0;-webkit-overflow-scrolling:touch;">
+            <ul class="tp-rooms__drawer-grid">
+              {%- for tp_item in tp_room_products -%}
+                <li class="grid__item">
+                  {%- render 'tp-card-product',
+                    card_product: tp_item,
+                    media_aspect_ratio: 'square',
+                    show_secondary_image: true,
+                    show_vendor: false,
+                    show_rating: false,
+                    lazy_load: true,
+                    show_price: true,
+                    section_id: section.id -%}
+                  {%- assign atc_form_id = 'RoomATC-' | append: tp_item.id | append: '-' | append: section.id -%}
+                  {%- if tp_item.available -%}
+                    {%- if tp_item.has_only_default_variant -%}
+                      {%- form 'product', tp_item, id: atc_form_id, class: 'tp-rooms__atc-form' -%}
+                        <input type="hidden" name="id" value="{{ tp_item.selected_or_first_available_variant.id }}">
+                        <button type="submit" name="add" class="tp-rooms__atc-btn">Add to cart</button>
+                      {%- endform -%}
+                    {%- else -%}
+                      <a href="{{ tp_item.url }}" class="tp-rooms__atc-btn tp-rooms__atc-btn--options">Choose options</a>
+                    {%- endif -%}
+                  {%- else -%}
+                    <button type="button" class="tp-rooms__atc-btn" disabled>Sold out</button>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </aside>
+      </tp-shop-scene-drawer>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "TP Rooms Index",
+  "class": "tp-rooms-index-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "Gap between heading and grid",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "per_page",
+      "label": "Rooms per page",
+      "min": 4,
+      "max": 40,
+      "step": 4,
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Gap between cards",
+      "min": 8,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Colors and fonts"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background",
+      "default": "#f7f4ef"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "handle_color",
+      "label": "Instagram handle color",
+      "default": "#8a8378"
+    },
+    {
+      "type": "text",
+      "id": "title_font_family",
+      "label": "Section title font family",
+      "default": "'josefin-sans', sans-serif"
+    },
+    {
+      "type": "text",
+      "id": "title_font_size",
+      "label": "Section title font size (desktop)",
+      "default": "32px"
+    },
+    {
+      "type": "text",
+      "id": "mobile_title_size",
+      "label": "Section title font size (mobile)",
+      "default": "24px"
+    },
+    {
+      "type": "text",
+      "id": "title_font_weight",
+      "label": "Section title font weight",
+      "default": "600"
+    },
+    {
+      "type": "text",
+      "id": "room_font_family",
+      "label": "Room name font family",
+      "default": "'josefin-sans', sans-serif"
+    },
+    {
+      "type": "text",
+      "id": "room_font_size",
+      "label": "Room name font size",
+      "default": "26px"
+    },
+    {
+      "type": "text",
+      "id": "room_font_weight",
+      "label": "Room name font weight",
+      "default": "500"
+    },
+    {
+      "type": "text",
+      "id": "body_font_family",
+      "label": "Body font family",
+      "default": "'Karla', sans-serif"
+    },
+    {
+      "type": "header",
+      "content": "Shop scene pill"
+    },
+    {
+      "type": "text",
+      "id": "scene_button_label",
+      "label": "Pill label",
+      "default": "Shop scene",
+      "info": "Product count is appended automatically."
+    },
+    {
+      "type": "range",
+      "id": "thumb_count",
+      "label": "Thumbnails in pill",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "color",
+      "id": "pill_background_color",
+      "label": "Pill background",
+      "default": "#3a352c"
+    },
+    {
+      "type": "color",
+      "id": "pill_text_color",
+      "label": "Pill text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pill_background_color_hover",
+      "label": "Pill background (hover)",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "pill_text_color_hover",
+      "label": "Pill text (hover)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "pill_border_radius",
+      "label": "Pill corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "checkbox",
+      "id": "show_room_link",
+      "label": "Show 'Shop the look' link",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Drawer"
+    },
+    {
+      "type": "color",
+      "id": "drawer_background_color",
+      "label": "Drawer background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "drawer_text_color",
+      "label": "Drawer heading color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "drawer_overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "drawer_overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Section padding (desktop)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "label": "Padding left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "label": "Padding right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Section padding (mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "label": "Padding left",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_right",
+      "label": "Padding right",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "TP Rooms Index"
+    }
+  ]
+}
+{% endschema %}
