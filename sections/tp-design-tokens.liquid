@@ -1,0 +1,402 @@
+{%- comment -%}
+  tp-design-tokens.liquid
+  Developer reference section. Add it to any page to see all global CSS
+  custom properties and their live values. Remove from templates before launch.
+{%- endcomment -%}
+
+{%- style -%}
+  .tp-dt {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    font-family: monospace;
+    color: #111;
+  }
+  .tp-dt__title {
+    font-size: 22px;
+    font-family: monospace;
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .tp-dt__subtitle {
+    font-size: 13px;
+    color: #888;
+    margin: 0 0 56px;
+  }
+  .tp-dt__section {
+    margin-bottom: 56px;
+  }
+  .tp-dt__section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #aaa;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 10px;
+    margin: 0 0 20px;
+  }
+  .tp-dt-row {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 8px 32px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .tp-dt-row:last-child {
+    border-bottom: none;
+  }
+  .tp-dt__var {
+    font-size: 12px;
+    color: #9b59b6;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .tp-dt__val {
+    font-size: 11px;
+    color: #999;
+    display: block;
+  }
+  .tp-dt__preview-font {
+    line-height: 1.15;
+    color: #111;
+  }
+  .tp-dt-colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .tp-dt-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 80px;
+  }
+  .tp-dt-chip__swatch {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .tp-dt-chip__label {
+    font-size: 9px;
+    text-align: center;
+    color: #666;
+    word-break: break-all;
+    line-height: 1.3;
+  }
+  .tp-dt-chip__var {
+    font-size: 9px;
+    color: #9b59b6;
+    text-align: center;
+    word-break: break-all;
+    line-height: 1.3;
+  }
+  .tp-dt__warning {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 6px;
+    padding: 16px 20px;
+    font-size: 12px;
+    color: #5a4a00;
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+  .tp-dt__warning strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  code {
+    display: inline-block;
+    background: rgba(0,0,0,0.05);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+{%- endstyle -%}
+
+<div class="tp-dt">
+
+  <h1 class="tp-dt__title">Design Tokens — Live Reference</h1>
+  <p class="tp-dt__subtitle">
+    All values are live from your current theme settings (Settings > Typography, Colors, etc.).
+    This section is a developer tool only.
+  </p>
+
+  {%- comment -%}────────────────────────────────────────────────
+    FONTS
+  ────────────────────────────────────────────────{%- endcomment -%}
+  <div class="tp-dt__section">
+    <h2 class="tp-dt__section-label">Fonts</h2>
+
+    <div class="tp-dt-row">
+      <div>
+        <span class="tp-dt__var">--font-heading-family</span>
+        <span class="tp-dt__val">{{ settings.type_header_font }}</span>
+        <span class="tp-dt__val">also: --header-font-family</span>
+      </div>
+      <div class="tp-dt__preview-font" style="font-family: var(--font-heading-family); font-weight: var(--header-font-weight); font-size: 40px;">
+        Aa Bb Cc 123
+      </div>
+    </div>
+
+    <div class="tp-dt-row">
+      <div>
+        <span class="tp-dt__var">--header-font-weight</span>
+        <span class="tp-dt__val">{{ settings.type_header_weight }}</span>
+      </div>
+      <div class="tp-dt__preview-font" style="font-family: var(--font-heading-family); font-weight: var(--header-font-weight); font-size: 22px;">
+        The quick brown fox jumps
+      </div>
+    </div>
+
+    <div class="tp-dt-row">
+      <div>
+        <span class="tp-dt__var">--font-body-family</span>
+        <span class="tp-dt__val">{{ settings.type_body_font }}</span>
+        <span class="tp-dt__val">also: --body-font-family</span>
+      </div>
+      <div class="tp-dt__preview-font" style="font-family: var(--font-body-family); font-size: 18px; line-height: 1.5;">
+        The quick brown fox jumps over the lazy dog.<br>
+        <span style="font-size: 14px; color: #555;">A beautiful Sunday morning with soft light and open windows.</span>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%}────────────────────────────────────────────────
+    GLOBAL TYPE SIZE TOKENS
+  ────────────────────────────────────────────────{%- endcomment -%}
+  <div class="tp-dt__section">
+    <h2 class="tp-dt__section-label">Global Type Size Tokens</h2>
+
+    <div class="tp-dt-row">
+      <div>
+        <span class="tp-dt__var">--product-card-desktop-title-size</span>
+        <span class="tp-dt__val">{{ settings.card_desktop_title_size }}</span>
+      </div>
+      <div style="font-family: var(--font-heading-family); font-size: var(--product-card-desktop-title-size);">Product Card Title</div>
+    </div>
+
+    <div class="tp-dt-row">
+      <div>
+        <span class="tp-dt__var">--product-card-mobile-title-size</span>
+        <span class="tp-dt__val">{{ settings.card_mobile_title_size }}</span>
+      </div>
+      <div style="font-family: var(--font-heading-family); font-size: var(--product-card-mobile-title-size);">Product Card Title (mobile)</div>
+    </div>
+
+    <div class="tp-dt-row">
+      <div>
+        <span class="tp-dt__var">--desktop_product_title_size</span>
+        <span class="tp-dt__val">{{ settings.pdp_product_title_size }}</span>
+      </div>
+      <div style="font-family: var(--font-heading-family); font-size: var(--desktop_product_title_size);">PDP Product Title</div>
+    </div>
+
+    <div class="tp-dt-row">
+      <div>
+        <span class="tp-dt__var">--mobile_product_title_size</span>
+        <span class="tp-dt__val">{{ settings.mobile_pdp_product_size }}</span>
+      </div>
+      <div style="font-family: var(--font-heading-family); font-size: var(--mobile_product_title_size);">PDP Title (mobile)</div>
+    </div>
+
+    <div class="tp-dt-row">
+      <div>
+        <span class="tp-dt__var">--desktop_pdp_desc_size</span>
+        <span class="tp-dt__val">{{ settings.desktop_pdp_desc_size }}</span>
+      </div>
+      <div style="font-family: var(--font-body-family); font-size: var(--desktop_pdp_desc_size);">PDP description body text at desktop size</div>
+    </div>
+
+    <div class="tp-dt-row">
+      <div>
+        <span class="tp-dt__var">--hero_button_font_size</span>
+        <span class="tp-dt__val">{{ settings.hero_button_font_size }}</span>
+      </div>
+      <div style="font-family: var(--font-body-family); font-size: var(--hero_button_font_size); font-weight: var(--hero_button_font_weight);">Button Label Text</div>
+    </div>
+
+    <div class="tp-dt__warning">
+      <strong>No global tokens for hero/section headings or body copy sizes.</strong>
+      Every section currently hardcodes these independently. To reference the heading or body
+      font in a new section's CSS, use <code>var(--font-heading-family)</code> and
+      <code>var(--font-body-family)</code> — but there is no global size token to inherit.
+      You must still add a per-section size setting or hardcode a value.
+    </div>
+  </div>
+
+  {%- comment -%}────────────────────────────────────────────────
+    BRAND COLORS
+  ────────────────────────────────────────────────{%- endcomment -%}
+  <div class="tp-dt__section">
+    <h2 class="tp-dt__section-label">Brand Colors (hex, direct)</h2>
+    <div class="tp-dt-colors">
+
+      <div class="tp-dt-chip">
+        <div class="tp-dt-chip__swatch" style="background: {{ settings.colors_accent_1 }};"></div>
+        <div class="tp-dt-chip__var">--color-base-accent-1</div>
+        <div class="tp-dt-chip__label">{{ settings.colors_accent_1 }}</div>
+      </div>
+
+      <div class="tp-dt-chip">
+        <div class="tp-dt-chip__swatch" style="background: {{ settings.colors_accent_2 }};"></div>
+        <div class="tp-dt-chip__var">--color-base-accent-2</div>
+        <div class="tp-dt-chip__label">{{ settings.colors_accent_2 }}</div>
+      </div>
+
+      <div class="tp-dt-chip">
+        <div class="tp-dt-chip__swatch" style="background: {{ settings.colors_text }};"></div>
+        <div class="tp-dt-chip__var">--color-base-text</div>
+        <div class="tp-dt-chip__label">{{ settings.colors_text }}</div>
+      </div>
+
+      <div class="tp-dt-chip">
+        <div class="tp-dt-chip__swatch" style="background: {{ settings.colors_background_1 }};"></div>
+        <div class="tp-dt-chip__var">--color-base-background-1</div>
+        <div class="tp-dt-chip__label">{{ settings.colors_background_1 }}</div>
+      </div>
+
+      <div class="tp-dt-chip">
+        <div class="tp-dt-chip__swatch" style="background: {{ settings.colors_background_2 }};"></div>
+        <div class="tp-dt-chip__var">--color-base-background-2</div>
+        <div class="tp-dt-chip__label">{{ settings.colors_background_2 }}</div>
+      </div>
+
+      <div class="tp-dt-chip">
+        <div class="tp-dt-chip__swatch" style="background: {{ settings.section_background_color }};"></div>
+        <div class="tp-dt-chip__var">--color-section-background</div>
+        <div class="tp-dt-chip__label">{{ settings.section_background_color }}</div>
+      </div>
+
+      <div class="tp-dt-chip">
+        <div class="tp-dt-chip__swatch" style="background: {{ settings.button_primary_hero_color }};"></div>
+        <div class="tp-dt-chip__var">--custom-button-color-primary</div>
+        <div class="tp-dt-chip__label">{{ settings.button_primary_hero_color }}</div>
+      </div>
+
+      <div class="tp-dt-chip">
+        <div class="tp-dt-chip__swatch" style="background: {{ settings.button_secondary_hero_color }};"></div>
+        <div class="tp-dt-chip__var">--custom-button-color-secondary</div>
+        <div class="tp-dt-chip__label">{{ settings.button_secondary_hero_color }}</div>
+      </div>
+
+      {%- if settings.hapny_red != blank -%}
+        <div class="tp-dt-chip">
+          <div class="tp-dt-chip__swatch" style="background: {{ settings.hapny_red }};"></div>
+          <div class="tp-dt-chip__var">--hapny-red / --main-red</div>
+          <div class="tp-dt-chip__label">{{ settings.hapny_red }}</div>
+        </div>
+      {%- endif -%}
+
+      {%- if settings.hapny_yellow != blank -%}
+        <div class="tp-dt-chip">
+          <div class="tp-dt-chip__swatch" style="background: {{ settings.hapny_yellow }};"></div>
+          <div class="tp-dt-chip__var">--hapny-yellow / --main-yellow</div>
+          <div class="tp-dt-chip__label">{{ settings.hapny_yellow }}</div>
+        </div>
+      {%- endif -%}
+
+      {%- if settings.hapny_blue != blank -%}
+        <div class="tp-dt-chip">
+          <div class="tp-dt-chip__swatch" style="background: {{ settings.hapny_blue }};"></div>
+          <div class="tp-dt-chip__var">--hapny-blue / --main-blue</div>
+          <div class="tp-dt-chip__label">{{ settings.hapny_blue }}</div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div style="margin-top: 16px; font-size: 12px; color: #888; line-height: 1.7;">
+      Note: <code>--color-base-*</code> variables are stored as RGB triplets, not hex.<br>
+      To use them in CSS: <code>rgba(var(--color-base-accent-1), 1)</code> not <code>var(--color-base-accent-1)</code>.<br>
+      The hex values shown above are for reference. To use colors directly: <code>{{ settings.colors_accent_1 }}</code> or via the rgb tokens.
+    </div>
+  </div>
+
+  {%- comment -%}────────────────────────────────────────────────
+    LAYOUT / SPACING TOKENS
+  ────────────────────────────────────────────────{%- endcomment -%}
+  <div class="tp-dt__section">
+    <h2 class="tp-dt__section-label">Layout Tokens</h2>
+
+    <div class="tp-dt-row">
+      <div>
+        <span class="tp-dt__var">--page-width</span>
+        <span class="tp-dt__val">{{ settings.page_width | divided_by: 10 }}rem ({{ settings.page_width }}px)</span>
+      </div>
+      <div style="font-size: 13px; color: #555;">Max content width for <code>.page-width</code> containers</div>
+    </div>
+
+    <div class="tp-dt-row">
+      <div>
+        <span class="tp-dt__var">--spacing-sections-desktop</span>
+        <span class="tp-dt__val">{{ settings.spacing_sections }}px</span>
+      </div>
+      <div style="font-size: 13px; color: #555;">Gap between sections on desktop</div>
+    </div>
+
+    <div class="tp-dt-row">
+      <div>
+        <span class="tp-dt__var">--font-body-scale</span>
+        <span class="tp-dt__val">{{ settings.body_scale | divided_by: 100.0 }} ({{ settings.body_scale }}%)</span>
+      </div>
+      <div style="font-size: 13px; color: #555;"><code>html { font-size: calc(var(--font-body-scale) * 62.5%) }</code> → 1rem = {{ settings.body_scale | times: 0.625 }}px</div>
+    </div>
+  </div>
+
+  {%- comment -%}────────────────────────────────────────────────
+    QUICK COPY REFERENCE
+  ────────────────────────────────────────────────{%- endcomment -%}
+  <div class="tp-dt__section">
+    <h2 class="tp-dt__section-label">Quick Copy — CSS Variables Cheatsheet</h2>
+    <pre style="background: #f8f8f8; border: 1px solid #e8e8e8; border-radius: 6px; padding: 20px; font-size: 11px; line-height: 1.9; overflow-x: auto; white-space: pre-wrap;">/* ── FONTS ─────────────────────────────── */
+font-family: var(--font-heading-family);      /* {{ settings.type_header_font }} */
+font-family: var(--font-body-family);         /* {{ settings.type_body_font }} */
+font-weight: var(--header-font-weight);       /* {{ settings.type_header_weight }} */
+
+/* ── COLORS (use with rgba() wrapper) ───── */
+color: rgba(var(--color-base-text), 1);            /* {{ settings.colors_text }} */
+background: rgba(var(--color-base-background-1), 1); /* {{ settings.colors_background_1 }} */
+background: rgba(var(--color-base-background-2), 1); /* {{ settings.colors_background_2 }} */
+color: rgba(var(--color-base-accent-1), 1);        /* {{ settings.colors_accent_1 }} */
+color: rgba(var(--color-base-accent-2), 1);        /* {{ settings.colors_accent_2 }} */
+
+/* ── COLORS (direct hex from settings) ───── */
+background: {{ settings.section_background_color }};    /* --color-section-background */
+color: {{ settings.button_primary_hero_color }};         /* --custom-button-color-primary */
+color: {{ settings.button_secondary_hero_color }};       /* --custom-button-color-secondary */
+{% if settings.hapny_red != blank %}color: {{ settings.hapny_red }};                          /* --hapny-red */{% endif %}
+{% if settings.hapny_yellow != blank %}color: {{ settings.hapny_yellow }};                    /* --hapny-yellow */{% endif %}
+{% if settings.hapny_blue != blank %}color: {{ settings.hapny_blue }};                        /* --hapny-blue */{% endif %}
+
+/* ── TYPE SIZES (global tokens that exist) ── */
+font-size: var(--product-card-desktop-title-size);  /* {{ settings.card_desktop_title_size }} */
+font-size: var(--desktop_product_title_size);        /* {{ settings.pdp_product_title_size }} */
+font-size: var(--hero_button_font_size);             /* {{ settings.hero_button_font_size }} */
+
+/* ── LAYOUT ─────────────────────────────── */
+max-width: var(--page-width);                 /* {{ settings.page_width | divided_by: 10 }}rem */
+</pre>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "TP Design Tokens",
+  "tag": "section",
+  "class": "tp-design-tokens",
+  "settings": [],
+  "presets": [
+    {
+      "name": "TP Design Tokens",
+      "category": "Dev Tools"
+    }
+  ]
+}
+{% endschema %}
