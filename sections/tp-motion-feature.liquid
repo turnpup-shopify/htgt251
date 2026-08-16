@@ -357,7 +357,6 @@
 {% schema %}
 {
   "name": "Motion Feature",
-  "category": "Content",
   "tag": "section",
   "class": "motion-feature-section",
   "settings": [
@@ -411,11 +410,26 @@
       "id": "top_aspect_ratio",
       "label": "Top panel proportions",
       "options": [
-        { "value": "1 / 1", "label": "Square (1:1)" },
-        { "value": "2 / 3", "label": "Tall portrait (2:3)" },
-        { "value": "3 / 4", "label": "Portrait (3:4)" },
-        { "value": "4 / 3", "label": "Landscape (4:3)" },
-        { "value": "16 / 9", "label": "Widescreen (16:9)" }
+        {
+          "value": "1 / 1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "2 / 3",
+          "label": "Tall portrait (2:3)"
+        },
+        {
+          "value": "3 / 4",
+          "label": "Portrait (3:4)"
+        },
+        {
+          "value": "4 / 3",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "16 / 9",
+          "label": "Widescreen (16:9)"
+        }
       ],
       "default": "3 / 4"
     },
@@ -458,10 +472,22 @@
       "id": "carousel_aspect_ratio",
       "label": "Item proportions",
       "options": [
-        { "value": "1 / 1", "label": "Square (1:1)" },
-        { "value": "3 / 4", "label": "Portrait (3:4)" },
-        { "value": "4 / 3", "label": "Landscape (4:3)" },
-        { "value": "16 / 9", "label": "Widescreen (16:9)" }
+        {
+          "value": "1 / 1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "3 / 4",
+          "label": "Portrait (3:4)"
+        },
+        {
+          "value": "4 / 3",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "16 / 9",
+          "label": "Widescreen (16:9)"
+        }
       ],
       "default": "4 / 3"
     },
@@ -625,18 +651,41 @@
   "presets": [
     {
       "name": "Motion Feature",
+      "category": "Content",
       "blocks": [
-        { "type": "top_item" },
-        { "type": "top_item" },
-        { "type": "top_item" },
-        { "type": "mid_item" },
-        { "type": "mid_item" },
-        { "type": "mid_item" },
-        { "type": "mid_item" },
-        { "type": "bot_item" },
-        { "type": "bot_item" },
-        { "type": "bot_item" },
-        { "type": "bot_item" }
+        {
+          "type": "top_item"
+        },
+        {
+          "type": "top_item"
+        },
+        {
+          "type": "top_item"
+        },
+        {
+          "type": "mid_item"
+        },
+        {
+          "type": "mid_item"
+        },
+        {
+          "type": "mid_item"
+        },
+        {
+          "type": "mid_item"
+        },
+        {
+          "type": "bot_item"
+        },
+        {
+          "type": "bot_item"
+        },
+        {
+          "type": "bot_item"
+        },
+        {
+          "type": "bot_item"
+        }
       ]
     }
   ]

@@ -281,38 +281,37 @@ section.custom-brand-carousel-container {
 }
 </style>
   {% schema %}
-      {
-      "name": "Custom Brand Carousel",
-      "category": "Product Discovery",
-      "class": "flwr-custom-brand-carousel",
-      "settings": [            
-      {
-          "type": "header",
-          "content": "Card Setting"
-      },
-      {
-          "type": "color",
-          "id": "header_subheader_color",
-          "label": "Card Header & Subheader Color",
-          "default": "#000000"
-      },
-      {
-          "type": "color",
-          "id": "accent_color",
-          "label": "Accent Color",
-          "default": "#99aff2"
-      },
-      {
-          "type": "color",
-          "id": "accent_color_two",
-          "label": "Accent Color",
-          "default": "#0C2A4A"
-      },
-      {
-          "type": "header",
-          "content": "Module Global Settings"
-      },
-      {
+{
+  "name": "Custom Brand Carousel",
+  "class": "flwr-custom-brand-carousel",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Card Setting"
+    },
+    {
+      "type": "color",
+      "id": "header_subheader_color",
+      "label": "Card Header & Subheader Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#99aff2"
+    },
+    {
+      "type": "color",
+      "id": "accent_color_two",
+      "label": "Accent Color",
+      "default": "#0C2A4A"
+    },
+    {
+      "type": "header",
+      "content": "Module Global Settings"
+    },
+    {
       "type": "range",
       "id": "padding_top",
       "min": 0,
@@ -321,8 +320,8 @@ section.custom-brand-carousel-container {
       "unit": "px",
       "label": "Section Padding Top",
       "default": 0
-      },
-      {
+    },
+    {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
@@ -331,8 +330,8 @@ section.custom-brand-carousel-container {
       "unit": "px",
       "label": "Section Padding Buttom",
       "default": 0
-      },
-      {
+    },
+    {
       "type": "range",
       "id": "padding_right",
       "min": 0,
@@ -341,8 +340,8 @@ section.custom-brand-carousel-container {
       "unit": "px",
       "label": "Section Padding Right",
       "default": 0
-      },
-      {
+    },
+    {
       "type": "range",
       "id": "padding_left",
       "min": 0,
@@ -351,8 +350,8 @@ section.custom-brand-carousel-container {
       "unit": "px",
       "label": "section Padding Left",
       "default": 0
-      },
-      {
+    },
+    {
       "type": "range",
       "id": "max_height_desktop",
       "min": 0,
@@ -362,345 +361,346 @@ section.custom-brand-carousel-container {
       "label": "Max Height of Module on Desktop",
       "default": 80,
       "info": "Max height of module as a % of vertical height"
-      },
-      {
-          "type": "range",
-          "id": "mobile_max_height_desktop",
-          "min": 0,
-          "max": 100,
-          "step": 2,
-          "unit": "%",
-          "label": "Max Height of Module on Mobile",
-          "default": 90,
-          "info": "Mobile: Max height of module as a % of vertical height"
-      },
-      {
+    },
+    {
+      "type": "range",
+      "id": "mobile_max_height_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "label": "Max Height of Module on Mobile",
+      "default": 90,
+      "info": "Mobile: Max height of module as a % of vertical height"
+    },
+    {
       "type": "header",
       "content": "Other Unused Settings",
       "info": "Most of these are neve used"
-      },    
-      {
+    },
+    {
       "type": "checkbox",
       "id": "enabled_border",
       "label": "Enable Border?"
-      },
-      {
+    },
+    {
       "type": "checkbox",
       "id": "swipe_on_mobile",
       "default": false,
       "label": "Swipe on Mobile"
-      },    
-      {
-        "type": "header",
-        "content": "Column Content Settings",
-        "info": "Control the information with in the columns"
-      },
-      {
-        "type": "select",
-        "id": "image_width",
-        "options": [
-          {
-            "value": "third",
-            "label": "third width"
-          },
-          {
-            "value": "half",
-            "label": "half of width"
-          },
-          {
-            "value": "full",
-            "label": "full width"
-          }
-        ],
-        "default": "full",
-        "label": "width of image"
-      },
-      {
-        "type": "select",
-        "id": "column_alignment",
-        "options": [
-          {
-            "value": "left",
-            "label": "Align Column Content Left"
-          },
-          {
-            "value": "center",
-            "label": "Align Column Content Center"
-          }
-        ],
-        "default": "left",
-        "label": "Column Content Alignment"
-      },
-      {
-        "type": "text",
-        "id": "column_gap",     
-        "label": "Column Gap Pixels",
-        "default": "0px"
-      }, 
-      {
-        "type": "header",
-        "content": "Overall Module Button Settings",
-        "info": "Live below the column content"
-      },
-      {
-          "type": "text",
-          "id": "button_padding",
-          "label": "Button Padding",
-          "default": "10px 20px"
-      },
-      {
-          "type": "text",
-          "id": "hero_button_font_family",
-          "label": "Button Font Family",
-          "default": "'Helvetica Neue'"
+    },
+    {
+      "type": "header",
+      "content": "Column Content Settings",
+      "info": "Control the information with in the columns"
+    },
+    {
+      "type": "select",
+      "id": "image_width",
+      "options": [
+        {
+          "value": "third",
+          "label": "third width"
         },
         {
-          "type": "text",
-          "id": "hero_button_font_size",
-          "label": "Button Font Size",
-          "default": "18px"
-        }, 
-        {
-          "type": "text",
-          "id": "hero_button_font_weight",
-          "label": "Button Font Weight",
-          "default": "400"
-        },        
-        {
-            "type": "text",
-            "id": "button_border_radius",
-            "label": "Button Border Radius",
-            "default": "0px",
-            "info": "0px would be square corners, 4px would be slightly rounded, 20px would be a lot more rounded."
+          "value": "half",
+          "label": "half of width"
         },
         {
-          "type": "color",
-          "id": "button_border_color",
-          "label": "Button Border",
-          "default": "#000000"
-        },
-        {
-          "type": "color",
-          "id": "button_background_color",
-          "label": "Button Background Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "button_text_color",
-          "label": "Button Text Color",
-          "default": "#000000"
-        },
-        {
-          "type": "color",
-          "id": "button_border_color_hover",
-          "label": "HOVER: Button Border/Text Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "button_background_color_hover",
-          "label": "HOVER: Button Background Color",
-          "default": "#000000"
-        },
-      {
-          "type": "color",
-          "id": "button_text_color_hover",
-          "label": "HOVER: Button Text Color",
-          "default": "#ffffff"
-      },
-      {
-          "type": "header",
-          "content": "Optional Button - Below Main Column Content",
-          "info": "Live below the column content"
-      },
-      {
-          "type": "text",
-          "id": "button_label",
-          "label": "Button Text"
-      },
-      {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button Link"
-      },
-      {
-          "type": "header",
-          "content": "Optional Title/Subtitle - Above Main Content",
-          "info": "This section is for the title that is the overall title across all columns. "
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "text",
-          "id": "title_font_size",
-          "default": "56px",
-          "label": "Title Font Size"
-        },
-        {
-          "type": "text",
-          "id": "title_font_family",
-          "default": "'Helvetica Neue'",
-          "label": "Title Font Family"
-        },
-        {
-          "type": "text",
-          "id": "section_title_font_weight",
-          "default": "400",
-          "label": "Title Font Weight"
-        },
-        {
-          "type": "text",
-          "id": "section_title_padding",
-          "default": "0px",
-          "label": "Title Padding"
-        },
-        {
-          "type": "header",
-          "content": "Sub-Header for Module",
-          "info": "This section is for the substitle (under the title) that is the overall title across all columns. "
-        },
-        {
-          "type": "text",
-          "id": "sub_title",
-          "label": "Subtitle Text"
-        },
-        {
-          "type": "text",
-          "id": "subtitle_font_size",
-          "default": "20px",
-          "label": "Subtitle Font Size"
-        },
-        {
-          "type": "text",
-          "id": "section_subtitle_padding",
-          "default": "0px",
-          "label": "Subtitle Padding"
-        },
-        {
-          "type": "text",
-          "id": "subtitle_font_family",
-          "default": "'Helvetica Neue'",
-          "label": "Subtitle Font Family"
-        },
-        {
-          "type": "text",
-          "id": "subtitle_font_weight",
-          "default": "700",
-          "label": "Subtitle Font Weight"
-        },
-        {
-          "type": "header",
-          "content": "Overall Title and Subtitle Text Settings"
-        },
-        {
-        "type": "range",
-        "id": "overall_titles_margin_top",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Title Margin Top",
-        "default": 0
-        },
-        {
-        "type": "range",
-        "id": "overall_titles_margin_bottom",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Title Margin Buttom",
-        "default": 0
-        },
-        {
-        "type": "range",
-        "id": "overall_titles_margin_right",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Title Margin Right",
-        "default": 0
-        },
-        {
-        "type": "range",
-        "id": "overall_titles_margin_left",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Title Margin Left",
-        "default": 0
-        },
-        {
-          "type": "select",
-          "id": "title_alignment",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left Aligned"
-            },
-            {
-              "value": "center",
-              "label": "Center Aligned"
-            },
-            {
-              "value": "right",
-              "label": "Right Aligned"
-            }
-          ],
-          "default": "left",
-          "label": "Alignment"
-        },
-        {
-          "type": "color",
-          "id": "section_text_color",     
-          "default": "#000000",
-          "label": "Text Color"
-        },
-        {
-          "type": "header",
-          "content": "Whole Module Background Settings"
-        },
-        {
-          "type": "text",
-          "id": "overall_background_image_url",
-          "label": "Overall Background Image URL"
-        },
-        {
-          "type": "color",
-          "id": "section_background_color",     
-          "default": "#ffffff",
-          "label": "Background Color"
+          "value": "full",
+          "label": "full width"
         }
-    ],
-    "blocks": [        
+      ],
+      "default": "full",
+      "label": "width of image"
+    },
+    {
+      "type": "select",
+      "id": "column_alignment",
+      "options": [
         {
-            "type": "carousel_card",
-            "name": "carousel_card",
-            "settings": [                
-                {
-                    "type": "header",
-                    "content": "Card",
-                    "info": "Settings for the card."
-                },
-                {
-                    "type": "article",
-                    "id": "brand",
-                    "label": "Brand"
-                }
-            ]
+          "value": "left",
+          "label": "Align Column Content Left"
+        },
+        {
+          "value": "center",
+          "label": "Align Column Content Center"
         }
-    ],
-    "presets": [
-      {
-        "name": "custom-brand-carousel"
-      }
-    ]
-  }
-  {% endschema %}
+      ],
+      "default": "left",
+      "label": "Column Content Alignment"
+    },
+    {
+      "type": "text",
+      "id": "column_gap",
+      "label": "Column Gap Pixels",
+      "default": "0px"
+    },
+    {
+      "type": "header",
+      "content": "Overall Module Button Settings",
+      "info": "Live below the column content"
+    },
+    {
+      "type": "text",
+      "id": "button_padding",
+      "label": "Button Padding",
+      "default": "10px 20px"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_font_family",
+      "label": "Button Font Family",
+      "default": "'Helvetica Neue'"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_font_size",
+      "label": "Button Font Size",
+      "default": "18px"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_font_weight",
+      "label": "Button Font Weight",
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "button_border_radius",
+      "label": "Button Border Radius",
+      "default": "0px",
+      "info": "0px would be square corners, 4px would be slightly rounded, 20px would be a lot more rounded."
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color_hover",
+      "label": "HOVER: Button Border/Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color_hover",
+      "label": "HOVER: Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color_hover",
+      "label": "HOVER: Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Optional Button - Below Main Column Content",
+      "info": "Live below the column content"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Optional Title/Subtitle - Above Main Content",
+      "info": "This section is for the title that is the overall title across all columns. "
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title_font_size",
+      "default": "56px",
+      "label": "Title Font Size"
+    },
+    {
+      "type": "text",
+      "id": "title_font_family",
+      "default": "'Helvetica Neue'",
+      "label": "Title Font Family"
+    },
+    {
+      "type": "text",
+      "id": "section_title_font_weight",
+      "default": "400",
+      "label": "Title Font Weight"
+    },
+    {
+      "type": "text",
+      "id": "section_title_padding",
+      "default": "0px",
+      "label": "Title Padding"
+    },
+    {
+      "type": "header",
+      "content": "Sub-Header for Module",
+      "info": "This section is for the substitle (under the title) that is the overall title across all columns. "
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subtitle Text"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_font_size",
+      "default": "20px",
+      "label": "Subtitle Font Size"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle_padding",
+      "default": "0px",
+      "label": "Subtitle Padding"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_font_family",
+      "default": "'Helvetica Neue'",
+      "label": "Subtitle Font Family"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_font_weight",
+      "default": "700",
+      "label": "Subtitle Font Weight"
+    },
+    {
+      "type": "header",
+      "content": "Overall Title and Subtitle Text Settings"
+    },
+    {
+      "type": "range",
+      "id": "overall_titles_margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Title Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "overall_titles_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Title Margin Buttom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "overall_titles_margin_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Title Margin Right",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "overall_titles_margin_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Title Margin Left",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left Aligned"
+        },
+        {
+          "value": "center",
+          "label": "Center Aligned"
+        },
+        {
+          "value": "right",
+          "label": "Right Aligned"
+        }
+      ],
+      "default": "left",
+      "label": "Alignment"
+    },
+    {
+      "type": "color",
+      "id": "section_text_color",
+      "default": "#000000",
+      "label": "Text Color"
+    },
+    {
+      "type": "header",
+      "content": "Whole Module Background Settings"
+    },
+    {
+      "type": "text",
+      "id": "overall_background_image_url",
+      "label": "Overall Background Image URL"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "default": "#ffffff",
+      "label": "Background Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "carousel_card",
+      "name": "carousel_card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Card",
+          "info": "Settings for the card."
+        },
+        {
+          "type": "article",
+          "id": "brand",
+          "label": "Brand"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom-brand-carousel",
+      "category": "Product Discovery"
+    }
+  ]
+}
+{% endschema %}
   

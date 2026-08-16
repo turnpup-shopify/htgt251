@@ -339,525 +339,605 @@
 </style>
 
 {% schema %}
-  {
-    "name": "TP Shop the Look Carousel",
-    "category": "Rooms & Inspiration",
-    "class": "turnpup-STL-carousel",
-    "settings": [
-      {
-        "type": "blog",
-        "id": "blog_handle",
-        "label": "Blog Source"
-      },
-      {
-        "type": "text",
-        "id": "article_tag",
-        "label": "Article Tag to Filter"
-      },
-      {
-        "type": "text",
-        "id": "interior_style_tag",
-        "label": "Interior Style Tag",
-        "default": "industrial,coastal,modern"
-      },
-      {
-        "type": "text",
-        "id": "color_tag",
-        "label": "Color Tag",
-        "default": "black, gray, orange, white, blue, navy"
-      }, {
-        "type": "header",
-        "content": "Module Global Settings"
-      }, {
-        "type": "range",
-        "id": "padding_top",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Padding Top",
-        "default": 20
-      }, {
-        "type": "range",
-        "id": "padding_bottom",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Padding Buttom",
-        "default": 40
-      }, {
-        "type": "range",
-        "id": "padding_right",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Padding Right",
-        "default": 60
-      }, {
-        "type": "range",
-        "id": "padding_left",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "section Padding Left",
-        "default": 60
-      }, {
-        "type": "range",
-        "id": "mobile_padding_top",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Mobile Section Padding Top",
-        "default": 24
-      }, {
-        "type": "range",
-        "id": "mobile_padding_bottom",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Mobile Section Padding Buttom",
-        "default": 24
-      }, {
-        "type": "range",
-        "id": "mobile_padding_right",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Mobile Section Padding Right",
-        "default": 24
-      }, {
-        "type": "range",
-        "id": "mobile_padding_left",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Mobile section Padding Left",
-        "default": 24
-      }, {
-        "type": "range",
-        "id": "max_height_desktop",
-        "min": 0,
-        "max": 100,
-        "step": 2,
-        "unit": "%",
-        "label": "Max Height of Module on Desktop",
-        "default": 80,
-        "info": "Max height of module as a % of vertical height"
-      }, {
-        "type": "range",
-        "id": "mobile_max_height_desktop",
-        "min": 0,
-        "max": 100,
-        "step": 2,
-        "unit": "%",
-        "label": "Max Height of Module on Mobile",
-        "default": 90,
-        "info": "Mobile: Max height of module as a % of vertical height"
-      }, {
-        "type": "text",
-        "id": "article_tag_other",
-        "label": "Article Tag to Filter"
-      }, {
-        "type": "header",
-        "content": "Other Unused Settings",
-        "info": "Most of these are neve used"
-      }, {
-        "type": "header",
-        "content": "Carousel Cell Settings"
-      }, {
-        "type": "color",
-        "id": "border_color",
-        "label": "Border Color",
-        "default": "#000000"
-      }, {
-        "type": "range",
-        "id": "border_width",
-        "label": "Border Width",
-        "min": 0,
-        "max": 10,
-        "step": 1,
-        "unit": "px",
-        "default": 0
-      }, {
-        "type": "range",
-        "id": "border_radius",
-        "label": "Border Radius",
-        "min": 0,
-        "max": 100,
-        "step": 5,
-        "unit": "px",
-        "default": 20
-      }, {
-        "type": "color",
-        "id": "cell_title_color",
-        "label": "Cell Title Color",
-        "default": "#000000"
-      }, {
-        "type": "color",
-        "id": "cell_subtitle_color",
-        "label": "Cell Subtitle Color",
-        "default": "#555555"
-      }, {
-        "type": "text",
-        "id": "cell_title_fontsize",
-        "label": "Cell Title Font Size",
-        "default": "16px"
-      }, {
-        "type": "text",
-        "id": "cell_subtitle_fontsize",
-        "label": "Cell Subtitle Font Size",
-        "default": "16px"
-      }, {
-        "type": "text",
-        "id": "cell_title_fontfamily",
-        "label": "Cell Title Font Family",
-        "default": "Arial"
-      }, {
-        "type": "text",
-        "id": "cell_subtitle_fontfamily",
-        "label": "Cell Subtitle Font Family",
-        "default": "Arial"
-      }, {
-        "type": "text",
-        "id": "cell_title_fontwegith",
-        "label": "Cell Title Font Weight",
-        "default": "700"
-      }, {
-        "type": "text",
-        "id": "cell_subtitle_fontweight",
-        "label": "Cell Subtitle Font Weight",
-        "default": "400"
-      }, {
-        "type": "html",
-        "id": "arrow_icon_right",
-        "label": "SVG for Arrow Icon Right"
-      }, {
-        "type": "color",
-        "id": "arrow_color",
-        "label": "Arrow Color",
-        "default": "#000000"
-      }, {
-        "type": "checkbox",
-        "id": "swipe_on_mobile",
-        "default": false,
-        "label": "Swipe on Mobile"
-      }, {
-        "type": "header",
-        "content": "Column Content Settings",
-        "info": "Control the information with in the columns"
-      }, {
-        "type": "select",
-        "id": "image_width",
-        "options": [
-          {
-            "value": "third",
-            "label": "third width"
-          }, {
-            "value": "half",
-            "label": "half of width"
-          }, {
-            "value": "full",
-            "label": "full width"
-          }
-        ],
-        "default": "full",
-        "label": "width of image"
-      }, {
-        "type": "select",
-        "id": "column_alignment",
-        "options": [
-          {
-            "value": "left",
-            "label": "Align Column Content Left"
-          }, {
-            "value": "center",
-            "label": "Align Column Content Center"
-          }
-        ],
-        "default": "left",
-        "label": "Column Content Alignment"
-      }, {
-        "type": "text",
-        "id": "column_gap",
-        "label": "Column Gap Pixels",
-        "default": "0px"
-      }, {
-        "type": "header",
-        "content": "Overall Module Button Settings",
-        "info": "Live below the column content"
-      }, {
-        "type": "text",
-        "id": "button_padding",
-        "label": "Button Padding",
-        "default": "10px 20px"
-      }, {
-        "type": "text",
-        "id": "hero_button_font_family",
-        "label": "Button Font Family",
-        "default": "'Helvetica Neue'"
-      }, {
-        "type": "text",
-        "id": "hero_button_font_size",
-        "label": "Button Font Size",
-        "default": "18px"
-      }, {
-        "type": "text",
-        "id": "hero_button_font_weight",
-        "label": "Button Font Weight",
-        "default": "400"
-      }, {
-        "type": "text",
-        "id": "button_border_radius",
-        "label": "Button Border Radius",
-        "default": "0px",
-        "info": "0px would be square corners, 4px would be slightly rounded, 20px would be a lot more rounded."
-      }, {
-        "type": "color",
-        "id": "button_border_color",
-        "label": "Button Border",
-        "default": "#000000"
-      }, {
-        "type": "color",
-        "id": "button_background_color",
-        "label": "Button Background Color",
-        "default": "#ffffff"
-      }, {
-        "type": "color",
-        "id": "button_text_color",
-        "label": "Button Text Color",
-        "default": "#000000"
-      }, {
-        "type": "color",
-        "id": "button_border_color_hover",
-        "label": "HOVER: Button Border/Text Color",
-        "default": "#ffffff"
-      }, {
-        "type": "color",
-        "id": "button_background_color_hover",
-        "label": "HOVER: Button Background Color",
-        "default": "#000000"
-      }, {
-        "type": "color",
-        "id": "button_text_color_hover",
-        "label": "HOVER: Button Text Color",
-        "default": "#ffffff"
-      }, {
-        "type": "header",
-        "content": "Optional Button - Below Main Column Content",
-        "info": "Live below the column content"
-      }, {
-        "type": "text",
-        "id": "button_label",
-        "label": "Button Text",
-        "default": "all"
-      }, {
-        "type": "url",
-        "id": "button_link",
-        "label": "Button Link"
-      }, {
-        "type": "header",
-        "content": "Optional Title/Subtitle - Above Main Content",
-        "info": "This section is for the title that is the overall title across all columns. "
-      }, {
-        "type": "text",
-        "id": "header",
-        "label": "Title"
-      }, {
-        "type": "text",
-        "id": "title_font_size",
-        "default": "40px",
-        "label": "Title Font Size"
-      }, {
-        "type": "text",
-        "id": "mobile_title_size",
-        "default": "24px",
-        "label": "Mobile Title Size"
-      }, {
-        "type": "text",
-        "id": "title_font_family",
-        "default": "'Helvetica Neue'",
-        "label": "Title Font Family"
-      }, {
-        "type": "text",
-        "id": "title_font_weight",
-        "default": "600",
-        "label": "Title Font Weight"
-      }, {
-        "type": "color",
-        "id": "title_font_color",
-        "default": "#000000",
-        "label": "Title Font Color"
-      }, {
-        "type": "text",
-        "id": "section_title_padding",
-        "default": "0px",
-        "label": "Title Padding"
-      }, {
-        "type": "header",
-        "content": "Sub-Header for Module",
-        "info": "This section is for the substitle (under the title) that is the overall title across all columns. "
-      }, {
-        "type": "text",
-        "id": "subtitle",
-        "label": "Subtitle Text"
-      }, {
-        "type": "text",
-        "id": "subtitle_font_size",
-        "default": "20px",
-        "label": "Subtitle Font Size"
-      }, {
-        "type": "text",
-        "id": "section_subtitle_padding",
-        "default": "0px",
-        "label": "Subtitle Padding"
-      }, {
-        "type": "text",
-        "id": "subtitle_font_family",
-        "default": "'Helvetica Neue'",
-        "label": "Subtitle Font Family"
-      }, {
-        "type": "text",
-        "id": "subtitle_font_weight",
-        "default": "700",
-        "label": "Subtitle Font Weight"
-      }, {
-        "type": "header",
-        "content": "Overall Title and Subtitle Text Settings"
-      }, {
-        "type": "range",
-        "id": "overall_titles_margin_top",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Title Margin Top",
-        "default": 0
-      }, {
-        "type": "range",
-        "id": "overall_titles_margin_bottom",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Title Margin Buttom",
-        "default": 0
-      }, {
-        "type": "range",
-        "id": "overall_titles_margin_right",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Title Margin Right",
-        "default": 0
-      }, {
-        "type": "range",
-        "id": "overall_titles_margin_left",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Title Margin Left",
-        "default": 0
-      }, {
-        "type": "select",
-        "id": "title_alignment",
-        "options": [
-          {
-            "value": "left",
-            "label": "Left Aligned"
-          }, {
-            "value": "center",
-            "label": "Center Aligned"
-          }, {
-            "value": "right",
-            "label": "Right Aligned"
-          }
-        ],
-        "default": "left",
-        "label": "Alignment"
-      }, {
-        "type": "color",
-        "id": "section_text_color",
-        "default": "#000000",
-        "label": "Text Color"
-      }, {
-        "type": "header",
-        "content": "Whole Module Background Settings"
-      }, {
-        "type": "text",
-        "id": "overall_background_image_url",
-        "label": "Overall Background Image URL"
-      }, {
-        "type": "color",
-        "id": "section_background_color",
-        "default": "#ffffff",
-        "label": "Background Color"
-      }
-    ],
-    "blocks": [
-      {
-        "type": "carousel_block",
-        "name": "Carousel Block",
-        "settings": [
-          {
-            "type": "header",
-            "content": "Button Section",
-            "info": "Settings for the button."
-          },
-          {
-            "type": "product",
-            "id": "cell_product",
-            "label": "Product"
-          },
-          {
-            "type": "text",
-            "id": "cell_title",
-            "label": "Cell Title",
-            "info": "Cell Title",
-            "default": "Product Title"
-          },
-          {
-            "type": "text",
-            "id": "cell_subtitle",
-            "label": "Cell Subtitle",
-            "info": "Cell Subtitle",
-            "default": "Product Subtitle"
-          }, {
-            "type": "text",
-            "id": "button_text",
-            "label": "Button Text",
-            "info": "Button Text"
-          }, {
-            "type": "image_picker",
-            "id": "carousel_image",
-            "label": "Carousel Image",
-            "info": "Carousel Image"
-          }, {
-            "type": "image_picker",
-            "id": "rollover_carousel_image",
-            "label": "Rollover Carousel Image",
-            "info": "On hover this image will show."
-          }, {
-            "type": "url",
-            "id": "cell_url",
-            "label": "Cell URL",
-            "info": "Link user will go to when clicked."
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "TP - Shop the Look Carousel"
-      }
-    ]
-  }
+{
+  "name": "TP Shop the Look Carousel",
+  "class": "turnpup-STL-carousel",
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog_handle",
+      "label": "Blog Source"
+    },
+    {
+      "type": "text",
+      "id": "article_tag",
+      "label": "Article Tag to Filter"
+    },
+    {
+      "type": "text",
+      "id": "interior_style_tag",
+      "label": "Interior Style Tag",
+      "default": "industrial,coastal,modern"
+    },
+    {
+      "type": "text",
+      "id": "color_tag",
+      "label": "Color Tag",
+      "default": "black, gray, orange, white, blue, navy"
+    },
+    {
+      "type": "header",
+      "content": "Module Global Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Buttom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Right",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "section Padding Left",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Section Padding Top",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Section Padding Buttom",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Section Padding Right",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile section Padding Left",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "max_height_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "label": "Max Height of Module on Desktop",
+      "default": 80,
+      "info": "Max height of module as a % of vertical height"
+    },
+    {
+      "type": "range",
+      "id": "mobile_max_height_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "label": "Max Height of Module on Mobile",
+      "default": 90,
+      "info": "Mobile: Max height of module as a % of vertical height"
+    },
+    {
+      "type": "text",
+      "id": "article_tag_other",
+      "label": "Article Tag to Filter"
+    },
+    {
+      "type": "header",
+      "content": "Other Unused Settings",
+      "info": "Most of these are neve used"
+    },
+    {
+      "type": "header",
+      "content": "Carousel Cell Settings"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border Width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "cell_title_color",
+      "label": "Cell Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "cell_subtitle_color",
+      "label": "Cell Subtitle Color",
+      "default": "#555555"
+    },
+    {
+      "type": "text",
+      "id": "cell_title_fontsize",
+      "label": "Cell Title Font Size",
+      "default": "16px"
+    },
+    {
+      "type": "text",
+      "id": "cell_subtitle_fontsize",
+      "label": "Cell Subtitle Font Size",
+      "default": "16px"
+    },
+    {
+      "type": "text",
+      "id": "cell_title_fontfamily",
+      "label": "Cell Title Font Family",
+      "default": "Arial"
+    },
+    {
+      "type": "text",
+      "id": "cell_subtitle_fontfamily",
+      "label": "Cell Subtitle Font Family",
+      "default": "Arial"
+    },
+    {
+      "type": "text",
+      "id": "cell_title_fontwegith",
+      "label": "Cell Title Font Weight",
+      "default": "700"
+    },
+    {
+      "type": "text",
+      "id": "cell_subtitle_fontweight",
+      "label": "Cell Subtitle Font Weight",
+      "default": "400"
+    },
+    {
+      "type": "html",
+      "id": "arrow_icon_right",
+      "label": "SVG for Arrow Icon Right"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow Color",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "swipe_on_mobile",
+      "default": false,
+      "label": "Swipe on Mobile"
+    },
+    {
+      "type": "header",
+      "content": "Column Content Settings",
+      "info": "Control the information with in the columns"
+    },
+    {
+      "type": "select",
+      "id": "image_width",
+      "options": [
+        {
+          "value": "third",
+          "label": "third width"
+        },
+        {
+          "value": "half",
+          "label": "half of width"
+        },
+        {
+          "value": "full",
+          "label": "full width"
+        }
+      ],
+      "default": "full",
+      "label": "width of image"
+    },
+    {
+      "type": "select",
+      "id": "column_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Align Column Content Left"
+        },
+        {
+          "value": "center",
+          "label": "Align Column Content Center"
+        }
+      ],
+      "default": "left",
+      "label": "Column Content Alignment"
+    },
+    {
+      "type": "text",
+      "id": "column_gap",
+      "label": "Column Gap Pixels",
+      "default": "0px"
+    },
+    {
+      "type": "header",
+      "content": "Overall Module Button Settings",
+      "info": "Live below the column content"
+    },
+    {
+      "type": "text",
+      "id": "button_padding",
+      "label": "Button Padding",
+      "default": "10px 20px"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_font_family",
+      "label": "Button Font Family",
+      "default": "'Helvetica Neue'"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_font_size",
+      "label": "Button Font Size",
+      "default": "18px"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_font_weight",
+      "label": "Button Font Weight",
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "button_border_radius",
+      "label": "Button Border Radius",
+      "default": "0px",
+      "info": "0px would be square corners, 4px would be slightly rounded, 20px would be a lot more rounded."
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color_hover",
+      "label": "HOVER: Button Border/Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color_hover",
+      "label": "HOVER: Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color_hover",
+      "label": "HOVER: Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Optional Button - Below Main Column Content",
+      "info": "Live below the column content"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Text",
+      "default": "all"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Optional Title/Subtitle - Above Main Content",
+      "info": "This section is for the title that is the overall title across all columns. "
+    },
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title_font_size",
+      "default": "40px",
+      "label": "Title Font Size"
+    },
+    {
+      "type": "text",
+      "id": "mobile_title_size",
+      "default": "24px",
+      "label": "Mobile Title Size"
+    },
+    {
+      "type": "text",
+      "id": "title_font_family",
+      "default": "'Helvetica Neue'",
+      "label": "Title Font Family"
+    },
+    {
+      "type": "text",
+      "id": "title_font_weight",
+      "default": "600",
+      "label": "Title Font Weight"
+    },
+    {
+      "type": "color",
+      "id": "title_font_color",
+      "default": "#000000",
+      "label": "Title Font Color"
+    },
+    {
+      "type": "text",
+      "id": "section_title_padding",
+      "default": "0px",
+      "label": "Title Padding"
+    },
+    {
+      "type": "header",
+      "content": "Sub-Header for Module",
+      "info": "This section is for the substitle (under the title) that is the overall title across all columns. "
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle Text"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_font_size",
+      "default": "20px",
+      "label": "Subtitle Font Size"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle_padding",
+      "default": "0px",
+      "label": "Subtitle Padding"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_font_family",
+      "default": "'Helvetica Neue'",
+      "label": "Subtitle Font Family"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_font_weight",
+      "default": "700",
+      "label": "Subtitle Font Weight"
+    },
+    {
+      "type": "header",
+      "content": "Overall Title and Subtitle Text Settings"
+    },
+    {
+      "type": "range",
+      "id": "overall_titles_margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Title Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "overall_titles_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Title Margin Buttom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "overall_titles_margin_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Title Margin Right",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "overall_titles_margin_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Title Margin Left",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left Aligned"
+        },
+        {
+          "value": "center",
+          "label": "Center Aligned"
+        },
+        {
+          "value": "right",
+          "label": "Right Aligned"
+        }
+      ],
+      "default": "left",
+      "label": "Alignment"
+    },
+    {
+      "type": "color",
+      "id": "section_text_color",
+      "default": "#000000",
+      "label": "Text Color"
+    },
+    {
+      "type": "header",
+      "content": "Whole Module Background Settings"
+    },
+    {
+      "type": "text",
+      "id": "overall_background_image_url",
+      "label": "Overall Background Image URL"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "default": "#ffffff",
+      "label": "Background Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "carousel_block",
+      "name": "Carousel Block",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Button Section",
+          "info": "Settings for the button."
+        },
+        {
+          "type": "product",
+          "id": "cell_product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "cell_title",
+          "label": "Cell Title",
+          "info": "Cell Title",
+          "default": "Product Title"
+        },
+        {
+          "type": "text",
+          "id": "cell_subtitle",
+          "label": "Cell Subtitle",
+          "info": "Cell Subtitle",
+          "default": "Product Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "info": "Button Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "carousel_image",
+          "label": "Carousel Image",
+          "info": "Carousel Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "rollover_carousel_image",
+          "label": "Rollover Carousel Image",
+          "info": "On hover this image will show."
+        },
+        {
+          "type": "url",
+          "id": "cell_url",
+          "label": "Cell URL",
+          "info": "Link user will go to when clicked."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TP - Shop the Look Carousel",
+      "category": "Rooms & Inspiration"
+    }
+  ]
+}
 {% endschema %}

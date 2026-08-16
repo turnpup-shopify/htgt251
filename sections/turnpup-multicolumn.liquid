@@ -538,156 +538,155 @@
 {% endif %}
 
 {% schema %}
+{
+  "name": "Turnpup - MultiColumn",
+  "class": "flwr-multicolumn-outer",
+  "settings": [
     {
-    "name": "Turnpup - MultiColumn",
-    "category": "Content",
-    "class": "flwr-multicolumn-outer",
-    "settings": [            
-    {
-        "type": "header",
-        "content": "Module Global Settings"
+      "type": "header",
+      "content": "Module Global Settings"
     },
     {
-    "type": "range",
-    "id": "padding_top",
-    "min": 0,
-    "max": 100,
-    "step": 4,
-    "unit": "px",
-    "label": "Section Padding Top",
-    "default": 0
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 0
     },
     {
-    "type": "range",
-    "id": "padding_bottom",
-    "min": 0,
-    "max": 100,
-    "step": 4,
-    "unit": "px",
-    "label": "Section Padding Buttom",
-    "default": 0
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Buttom",
+      "default": 0
     },
     {
-    "type": "range",
-    "id": "padding_right",
-    "min": 0,
-    "max": 100,
-    "step": 4,
-    "unit": "px",
-    "label": "Section Padding Right",
-    "default": 0
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Right",
+      "default": 0
     },
     {
-    "type": "range",
-    "id": "padding_left",
-    "min": 0,
-    "max": 100,
-    "step": 4,
-    "unit": "px",
-    "label": "section Padding Left",
-    "default": 0
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "section Padding Left",
+      "default": 0
     },
     {
-    "type": "range",
-    "id": "mobile_padding_top",
-    "min": 0,
-    "max": 100,
-    "step": 4,
-    "unit": "px",
-    "label": "Mobile Section Padding Top",
-    "default": 0
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Section Padding Top",
+      "default": 0
     },
     {
-    "type": "range",
-    "id": "mobile_padding_bottom",
-    "min": 0,
-    "max": 100,
-    "step": 4,
-    "unit": "px",
-    "label": "Mobile Section Padding Buttom",
-    "default": 0
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Section Padding Buttom",
+      "default": 0
     },
     {
-    "type": "range",
-    "id": "mobile_padding_right",
-    "min": 0,
-    "max": 100,
-    "step": 4,
-    "unit": "px",
-    "label": "Mobile Section Padding Right",
-    "default": 0
+      "type": "range",
+      "id": "mobile_padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Section Padding Right",
+      "default": 0
     },
     {
-    "type": "range",
-    "id": "mobile_padding_left",
-    "min": 0,
-    "max": 100,
-    "step": 4,
-    "unit": "px",
-    "label": "Mobile section Padding Left",
-    "default": 0
+      "type": "range",
+      "id": "mobile_padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile section Padding Left",
+      "default": 0
     },
     {
-    "type": "range",
-    "id": "max_height_desktop",
-    "min": 0,
-    "max": 100,
-    "step": 2,
-    "unit": "%",
-    "label": "Max Height of Module on Desktop",
-    "default": 80,
-    "info": "Max height of module as a % of vertical height"
+      "type": "range",
+      "id": "max_height_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "label": "Max Height of Module on Desktop",
+      "default": 80,
+      "info": "Max height of module as a % of vertical height"
     },
     {
-        "type": "range",
-        "id": "mobile_max_height_desktop",
-        "min": 0,
-        "max": 100,
-        "step": 2,
-        "unit": "%",
-        "label": "Max Height of Module on Mobile",
-        "default": 90,
-        "info": "Mobile: Max height of module as a % of vertical height"
+      "type": "range",
+      "id": "mobile_max_height_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "label": "Max Height of Module on Mobile",
+      "default": 90,
+      "info": "Mobile: Max height of module as a % of vertical height"
     },
     {
-    "type": "header",
-    "content": "Other Unused Settings",
-    "info": "Most of these are neve used"
-    },    
-    {
-    "type": "checkbox",
-    "id": "enabled_border",
-    "label": "Enable Border?"
+      "type": "header",
+      "content": "Other Unused Settings",
+      "info": "Most of these are neve used"
     },
     {
-    "type": "checkbox",
-    "id": "swipe_on_mobile",
-    "default": false,
-    "label": "Swipe on Mobile"
-    }, 
-    {
-    "type": "checkbox",
-    "id": "enable_url_param_image_swap",
-    "label": "Enable image override via URL parameter?",
-    "default": false,
-    "info": "When enabled, appending '?multicolumn_product=<product-handle>' to the page URL swaps the primary column image with that product's second image."
+      "type": "checkbox",
+      "id": "enabled_border",
+      "label": "Enable Border?"
     },
     {
-    "type": "text",
-    "id": "url_param_image_key",
-    "label": "URL parameter key",
-    "default": "multicolumn_product",
-    "info": "Optional. Set the query parameter name that carries the product handle for the image override."
+      "type": "checkbox",
+      "id": "swipe_on_mobile",
+      "default": false,
+      "label": "Swipe on Mobile"
     },
     {
-    "type": "range",
-    "id": "mobile_columns",
-    "min": 1,
-    "max": 4,
-    "step": 1,
-    "label": "Mobile Columns",
-    "default": 1
-    },   
+      "type": "checkbox",
+      "id": "enable_url_param_image_swap",
+      "label": "Enable image override via URL parameter?",
+      "default": false,
+      "info": "When enabled, appending '?multicolumn_product=<product-handle>' to the page URL swaps the primary column image with that product's second image."
+    },
+    {
+      "type": "text",
+      "id": "url_param_image_key",
+      "label": "URL parameter key",
+      "default": "multicolumn_product",
+      "info": "Optional. Set the query parameter name that carries the product handle for the image override."
+    },
+    {
+      "type": "range",
+      "id": "mobile_columns",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Mobile Columns",
+      "default": 1
+    },
     {
       "type": "header",
       "content": "Column Content Settings",
@@ -695,13 +694,13 @@
     },
     {
       "type": "text",
-      "id": "desktop_image_width",     
+      "id": "desktop_image_width",
       "label": "Desktop Image Width",
       "default": "200px"
     },
     {
       "type": "text",
-      "id": "mobile_image_width",     
+      "id": "mobile_image_width",
       "label": "Mobile Image Width",
       "default": "200px"
     },
@@ -763,261 +762,261 @@
     },
     {
       "type": "text",
-      "id": "column_gap",     
+      "id": "column_gap",
       "label": "Column Gap Pixels",
       "default": "0px"
-    }, 
+    },
     {
       "type": "header",
       "content": "Overall Module Button Settings",
       "info": "Live below the column content"
     },
     {
-        "type": "text",
-        "id": "button_padding",
-        "label": "Button Padding",
-        "default": "10px 20px"
+      "type": "text",
+      "id": "button_padding",
+      "label": "Button Padding",
+      "default": "10px 20px"
     },
     {
-        "type": "text",
-        "id": "hero_button_font_family",
-        "label": "Button Font Family",
-        "default": "'Helvetica Neue'"
-      },
-      {
-        "type": "text",
-        "id": "hero_button_font_size",
-        "label": "Button Font Size",
-        "default": "18px"
-      }, 
-      {
-        "type": "text",
-        "id": "hero_button_font_weight",
-        "label": "Button Font Weight",
-        "default": "400"
-      },        
-      {
-          "type": "text",
-          "id": "button_border_radius",
-          "label": "Button Border Radius",
-          "default": "0px",
-          "info": "0px would be square corners, 4px would be slightly rounded, 20px would be a lot more rounded."
-      },
-      {
-        "type": "color",
-        "id": "button_border_color",
-        "label": "Button Border",
-        "default": "#000000"
-      },
-      {
-        "type": "color",
-        "id": "button_background_color",
-        "label": "Button Background Color",
-        "default": "#ffffff"
-      },
-      {
-        "type": "color",
-        "id": "button_text_color",
-        "label": "Button Text Color",
-        "default": "#000000"
-      },
-      {
-        "type": "color",
-        "id": "button_border_color_hover",
-        "label": "HOVER: Button Border/Text Color",
-        "default": "#ffffff"
-      },
-      {
-        "type": "color",
-        "id": "button_background_color_hover",
-        "label": "HOVER: Button Background Color",
-        "default": "#000000"
-      },
-    {
-        "type": "color",
-        "id": "button_text_color_hover",
-        "label": "HOVER: Button Text Color",
-        "default": "#ffffff"
+      "type": "text",
+      "id": "hero_button_font_family",
+      "label": "Button Font Family",
+      "default": "'Helvetica Neue'"
     },
     {
-        "type": "header",
-        "content": "Optional Button - Below Main Column Content",
-        "info": "Live below the column content"
+      "type": "text",
+      "id": "hero_button_font_size",
+      "label": "Button Font Size",
+      "default": "18px"
     },
     {
-        "type": "text",
-        "id": "button_label",
-        "label": "Button Text"
+      "type": "text",
+      "id": "hero_button_font_weight",
+      "label": "Button Font Weight",
+      "default": "400"
     },
     {
-        "type": "url",
-        "id": "button_link",
-        "label": "Button Link"
+      "type": "text",
+      "id": "button_border_radius",
+      "label": "Button Border Radius",
+      "default": "0px",
+      "info": "0px would be square corners, 4px would be slightly rounded, 20px would be a lot more rounded."
     },
     {
-        "type": "header",
-        "content": "Optional Title/Subtitle - Above Main Content",
-        "info": "This section is for the title that is the overall title across all columns. "
-      },
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title"
-      },
-      {
-        "type": "select",
-        "id": "title_h",
-        "options": [
-          {
-            "value": "h3",
-            "label": "h3"
-          },
-          {
-            "value": "h2",
-            "label": "h2"
-          },
-          {
-            "value": "h1",
-            "label": "h1"
-          }
-        ],
-        "default": "h2",
-        "label": "Title h1 / h2 / h3 / p"
-      },
-      {
-        "type": "text",
-        "id": "title_font_size",
-        "default": "56px",
-        "label": "Title Font Size"
-      },
-      {
-        "type": "text",
-        "id": "mobile_title_font_size",
-        "default": "24px",
-        "label": "Mobile Title Font Size"
-      },
-      {
-        "type": "text",
-        "id": "title_font_family",
-        "default": "'Helvetica Neue'",
-        "label": "Title Font Family"
-      },
-      {
-        "type": "text",
-        "id": "section_title_font_weight",
-        "default": "400",
-        "label": "Title Font Weight"
-      },
-      {
-        "type": "text",
-        "id": "section_title_padding",
-        "default": "0px",
-        "label": "Title Padding"
-      },
-      {
-        "type": "header",
-        "content": "Sub-Header for Module",
-        "info": "This section is for the substitle (under the title) that is the overall title across all columns. "
-      },
-      {
-        "type": "text",
-        "id": "sub_title",
-        "label": "Subtitle Text"
-      },
-      {
-        "type": "text",
-        "id": "subtitle_font_size",
-        "default": "20px",
-        "label": "Subtitle Font Size"
-      },
-      {
-        "type": "text",
-        "id": "section_subtitle_padding",
-        "default": "0px",
-        "label": "Subtitle Padding"
-      },
-      {
-        "type": "text",
-        "id": "subtitle_font_family",
-        "default": "'Helvetica Neue'",
-        "label": "Subtitle Font Family"
-      },
-      {
-        "type": "header",
-        "content": "Overall Title and Subtitle Text Settings"
-      },
-      {
-        "type": "select",
-        "id": "title_alignment",
-        "options": [
-          {
-            "value": "left",
-            "label": "Left Aligned"
-          },
-          {
-            "value": "center",
-            "label": "Center Aligned"
-          },
-          {
-            "value": "right",
-            "label": "Right Aligned"
-          }
-        ],
-        "default": "left",
-        "label": "Alignment"
-      },
-      {
-        "type": "color",
-        "id": "section_text_color",     
-        "default": "#000000",
-        "label": "Text Color"
-      },
-      {
-        "type": "header",
-        "content": "Whole Module Background Settings"
-      },
-      {
-        "type": "image_picker",
-        "id": "overall_background_image",
-        "label": "Overall Background Image"
-      },
-      {
-        "type": "text",
-        "id": "overall_background_image_url",
-        "label": "(Optional) Background Image URL fallback"
-      },
-      {
-        "type": "color",
-        "id": "section_background_color",     
-        "default": "#ffffff",
-        "label": "Background Color"
-      },
-      {
-        "type": "color",
-        "id": "section_background_color_inner",     
-        "default": "#ffffff",
-        "label": "Background Color Inner"
-      },
-      {
-        "type": "range",
-        "id": "section_background_color_inner_opacity",
-        "min": 0,
-        "max": 100,
-        "step": 1,
-        "unit": "%",
-        "label": "Background Color Inner Opacity",
-        "default": 100
-      }
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color_hover",
+      "label": "HOVER: Button Border/Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color_hover",
+      "label": "HOVER: Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color_hover",
+      "label": "HOVER: Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Optional Button - Below Main Column Content",
+      "info": "Live below the column content"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Optional Title/Subtitle - Above Main Content",
+      "info": "This section is for the title that is the overall title across all columns. "
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_h",
+      "options": [
+        {
+          "value": "h3",
+          "label": "h3"
+        },
+        {
+          "value": "h2",
+          "label": "h2"
+        },
+        {
+          "value": "h1",
+          "label": "h1"
+        }
+      ],
+      "default": "h2",
+      "label": "Title h1 / h2 / h3 / p"
+    },
+    {
+      "type": "text",
+      "id": "title_font_size",
+      "default": "56px",
+      "label": "Title Font Size"
+    },
+    {
+      "type": "text",
+      "id": "mobile_title_font_size",
+      "default": "24px",
+      "label": "Mobile Title Font Size"
+    },
+    {
+      "type": "text",
+      "id": "title_font_family",
+      "default": "'Helvetica Neue'",
+      "label": "Title Font Family"
+    },
+    {
+      "type": "text",
+      "id": "section_title_font_weight",
+      "default": "400",
+      "label": "Title Font Weight"
+    },
+    {
+      "type": "text",
+      "id": "section_title_padding",
+      "default": "0px",
+      "label": "Title Padding"
+    },
+    {
+      "type": "header",
+      "content": "Sub-Header for Module",
+      "info": "This section is for the substitle (under the title) that is the overall title across all columns. "
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subtitle Text"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_font_size",
+      "default": "20px",
+      "label": "Subtitle Font Size"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle_padding",
+      "default": "0px",
+      "label": "Subtitle Padding"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_font_family",
+      "default": "'Helvetica Neue'",
+      "label": "Subtitle Font Family"
+    },
+    {
+      "type": "header",
+      "content": "Overall Title and Subtitle Text Settings"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left Aligned"
+        },
+        {
+          "value": "center",
+          "label": "Center Aligned"
+        },
+        {
+          "value": "right",
+          "label": "Right Aligned"
+        }
+      ],
+      "default": "left",
+      "label": "Alignment"
+    },
+    {
+      "type": "color",
+      "id": "section_text_color",
+      "default": "#000000",
+      "label": "Text Color"
+    },
+    {
+      "type": "header",
+      "content": "Whole Module Background Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "overall_background_image",
+      "label": "Overall Background Image"
+    },
+    {
+      "type": "text",
+      "id": "overall_background_image_url",
+      "label": "(Optional) Background Image URL fallback"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "default": "#ffffff",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color_inner",
+      "default": "#ffffff",
+      "label": "Background Color Inner"
+    },
+    {
+      "type": "range",
+      "id": "section_background_color_inner_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Background Color Inner Opacity",
+      "default": 100
+    }
   ],
   "blocks": [
     {
       "type": "column",
       "name": "Column",
-      "settings": [                
+      "settings": [
         {
-            "type": "header",
-            "content": "Image Section",
-            "info": "Settings for the image in the column."
+          "type": "header",
+          "content": "Image Section",
+          "info": "Settings for the image in the column."
         },
         {
           "type": "image_picker",
@@ -1064,25 +1063,25 @@
           "label": "Column Title Text"
         },
         {
-        "type": "select",
-        "id": "title_h",
-        "options": [
-          {
-            "value": "h3",
-            "label": "h3"
-          },
-          {
-            "value": "h2",
-            "label": "h2"
-          },
-          {
-            "value": "h1",
-            "label": "h1"
-          }
-        ],
-        "default": "h2",
-        "label": "Title h1 / h2 / h3 / p"
-      },
+          "type": "select",
+          "id": "title_h",
+          "options": [
+            {
+              "value": "h3",
+              "label": "h3"
+            },
+            {
+              "value": "h2",
+              "label": "h2"
+            },
+            {
+              "value": "h1",
+              "label": "h1"
+            }
+          ],
+          "default": "h2",
+          "label": "Title h1 / h2 / h3 / p"
+        },
         {
           "type": "text",
           "id": "title_font_size",
@@ -1120,10 +1119,10 @@
           "label": "Title Font Weight"
         },
         {
-            "type": "text",
-            "id": "title_margin_top",
-            "default": "8px",
-            "label": "Title Margin Top"
+          "type": "text",
+          "id": "title_margin_top",
+          "default": "8px",
+          "label": "Title Margin Top"
         },
         {
           "type": "header",
@@ -1173,10 +1172,10 @@
           "label": "Text Font Weight"
         },
         {
-            "type": "text",
-            "id": "subtitle_margin_top",
-            "default": "8px",
-            "label": "Sub-Title Margin Top"
+          "type": "text",
+          "id": "subtitle_margin_top",
+          "default": "8px",
+          "label": "Sub-Title Margin Top"
         },
         {
           "type": "header",
@@ -1214,79 +1213,79 @@
           "label": "Description Font Color"
         },
         {
-            "type": "text",
-            "id": "description_line_height",
-            "default": "1.3",
-            "label": "Description Line Height"
+          "type": "text",
+          "id": "description_line_height",
+          "default": "1.3",
+          "label": "Description Line Height"
         },
         {
-            "type": "text",
-            "id": "description_font_weight",
-            "default": "600",
-            "label": "Description Font Weight"
+          "type": "text",
+          "id": "description_font_weight",
+          "default": "600",
+          "label": "Description Font Weight"
         },
         {
-            "type": "text",
-            "id": "description_margin_top",
-            "default": "0px",
-            "label": "Description Margin Top"
+          "type": "text",
+          "id": "description_margin_top",
+          "default": "0px",
+          "label": "Description Margin Top"
         },
         {
-            "type": "text",
-            "id": "description_margin_bottom",
-            "default": "0px",
-            "label": "Description Margin Bottom"
-        },        
-        {
-            "type": "header",
-            "content": "Buttons",
-            "info": "Settings for the optional buttons at the bottom."
+          "type": "text",
+          "id": "description_margin_bottom",
+          "default": "0px",
+          "label": "Description Margin Bottom"
         },
         {
-            "type": "text",
-            "id": "link_label",
-            "label": "Button Text"
+          "type": "header",
+          "content": "Buttons",
+          "info": "Settings for the optional buttons at the bottom."
         },
         {
-            "type": "url",
-            "id": "link",
-            "label": "Button Link"
+          "type": "text",
+          "id": "link_label",
+          "label": "Button Text"
         },
         {
-            "type": "checkbox",
-            "id": "is_hero_button",
-            "label": "Is Hero Button?"
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
         },
         {
-            "type": "text",
-            "id": "link_label_two",
-            "label": "Button Text Two"
+          "type": "checkbox",
+          "id": "is_hero_button",
+          "label": "Is Hero Button?"
         },
         {
-            "type": "url",
-            "id": "link_two",
-            "label": "Button Link Two"
+          "type": "text",
+          "id": "link_label_two",
+          "label": "Button Text Two"
         },
         {
-            "type": "checkbox",
-            "id": "is_hero_button_two",
-            "label": "Is Hero Button?"
+          "type": "url",
+          "id": "link_two",
+          "label": "Button Link Two"
         },
         {
-            "type": "checkbox",
-            "id": "button_is_white_border_two",
-            "label": "Make second button inverse",
-            "info": "Check to make the second button the inverse color scheme as the first button (if hero)."
-        },         
+          "type": "checkbox",
+          "id": "is_hero_button_two",
+          "label": "Is Hero Button?"
+        },
         {
-            "type": "range",
-            "id": "space_between_buttons",
-            "min": 0,
-            "max": 20,
-            "step": 2,
-            "unit": "px",
-            "label": "Space Between Buttons",
-            "default": 8
+          "type": "checkbox",
+          "id": "button_is_white_border_two",
+          "label": "Make second button inverse",
+          "info": "Check to make the second button the inverse color scheme as the first button (if hero)."
+        },
+        {
+          "type": "range",
+          "id": "space_between_buttons",
+          "min": 0,
+          "max": 20,
+          "step": 2,
+          "unit": "px",
+          "label": "Space Between Buttons",
+          "default": 8
         },
         {
           "type": "link_list",
@@ -1299,7 +1298,7 @@
           "label": "Vertically Center Align?",
           "default": false,
           "info": "don't use: this might need to be deleted"
-        },                        
+        },
         {
           "type": "header",
           "content": "Overall Column Settings",
@@ -1324,18 +1323,18 @@
           "info": "leave blank unless you are trying to make first column smaller"
         },
         {
-            "type": "text",
-            "id": "text_max_width",
-            "default": "80%",
-            "label": "Max width of text content within column",
-            "info": "If this is 80% it means there will be 10% spacing on left and 10% on right."
-        },                
+          "type": "text",
+          "id": "text_max_width",
+          "default": "80%",
+          "label": "Max width of text content within column",
+          "info": "If this is 80% it means there will be 10% spacing on left and 10% on right."
+        },
         {
           "type": "checkbox",
           "id": "hide_on_mobile",
           "default": false,
           "label": "Hide this column on Mobile?"
-        },   
+        },
         {
           "type": "text",
           "id": "mobile_order",
@@ -1343,7 +1342,7 @@
         },
         {
           "type": "text",
-          "id": "margin_bottom_container",          
+          "id": "margin_bottom_container",
           "label": "Mobile Margin Bottom Container"
         },
         {
@@ -1362,6 +1361,7 @@
   "presets": [
     {
       "name": "Turnpup - MultiColumn",
+      "category": "Content",
       "blocks": [
         {
           "type": "column"

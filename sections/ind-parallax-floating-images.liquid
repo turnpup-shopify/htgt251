@@ -199,7 +199,6 @@
 {% schema %}
 {
   "name": "Parallax Floating Images",
-  "category": "Rooms & Inspiration",
   "class": "ind-parallax-floating-images",
   "max_blocks": 8,
   "settings": [
@@ -217,15 +216,42 @@
       "id": "bg_position",
       "label": "Image focus point",
       "options": [
-        { "value": "top left",      "label": "Top left" },
-        { "value": "top center",    "label": "Top center" },
-        { "value": "top right",     "label": "Top right" },
-        { "value": "center left",   "label": "Middle left" },
-        { "value": "center center", "label": "Middle center" },
-        { "value": "center right",  "label": "Middle right" },
-        { "value": "bottom left",   "label": "Bottom left" },
-        { "value": "bottom center", "label": "Bottom center" },
-        { "value": "bottom right",  "label": "Bottom right" }
+        {
+          "value": "top left",
+          "label": "Top left"
+        },
+        {
+          "value": "top center",
+          "label": "Top center"
+        },
+        {
+          "value": "top right",
+          "label": "Top right"
+        },
+        {
+          "value": "center left",
+          "label": "Middle left"
+        },
+        {
+          "value": "center center",
+          "label": "Middle center"
+        },
+        {
+          "value": "center right",
+          "label": "Middle right"
+        },
+        {
+          "value": "bottom left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom center",
+          "label": "Bottom center"
+        },
+        {
+          "value": "bottom right",
+          "label": "Bottom right"
+        }
       ],
       "default": "center center"
     },
@@ -392,6 +418,7 @@
   "presets": [
     {
       "name": "Parallax Floating Images",
+      "category": "Rooms & Inspiration",
       "blocks": [
         {
           "type": "float_image",

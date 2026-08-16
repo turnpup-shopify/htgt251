@@ -385,16 +385,15 @@
   </style>
   
   {% schema %}
-      {
-      "name": "CUSTOM HERO",
-      "category": "Hero",
-      "class": "flwr-custom-hero",
-      "settings": [            
-      {
-          "type": "header",
-          "content": "Module Global Settings"
-      },
-      {
+{
+  "name": "CUSTOM HERO",
+  "class": "flwr-custom-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Module Global Settings"
+    },
+    {
       "type": "range",
       "id": "padding_top",
       "min": 0,
@@ -403,8 +402,8 @@
       "unit": "px",
       "label": "Section Padding Top",
       "default": 0
-      },
-      {
+    },
+    {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
@@ -413,8 +412,8 @@
       "unit": "px",
       "label": "Section Padding Buttom",
       "default": 0
-      },
-      {
+    },
+    {
       "type": "range",
       "id": "padding_right",
       "min": 0,
@@ -423,8 +422,8 @@
       "unit": "px",
       "label": "Section Padding Right",
       "default": 0
-      },
-      {
+    },
+    {
       "type": "range",
       "id": "padding_left",
       "min": 0,
@@ -433,8 +432,8 @@
       "unit": "px",
       "label": "section Padding Left",
       "default": 0
-      },
-      {
+    },
+    {
       "type": "range",
       "id": "max_height_desktop",
       "min": 0,
@@ -444,183 +443,332 @@
       "label": "Max Height of Module on Desktop",
       "default": 80,
       "info": "Max height of module as a % of vertical height"
-      },
-      {
-          "type": "range",
-          "id": "mobile_max_height_desktop",
-          "min": 0,
-          "max": 100,
-          "step": 2,
-          "unit": "%",
-          "label": "Max Height of Module on Mobile",
-          "default": 90,
-          "info": "Mobile: Max height of module as a % of vertical height"
-      },
-      {
+    },
+    {
+      "type": "range",
+      "id": "mobile_max_height_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "label": "Max Height of Module on Mobile",
+      "default": 90,
+      "info": "Mobile: Max height of module as a % of vertical height"
+    },
+    {
       "type": "header",
       "content": "Other Unused Settings",
       "info": "Most of these are neve used"
-      },    
-      {
+    },
+    {
       "type": "checkbox",
       "id": "enabled_border",
       "label": "Enable Border?"
-      },
-      {
+    },
+    {
       "type": "checkbox",
       "id": "swipe_on_mobile",
       "default": false,
       "label": "Swipe on Mobile"
-      },    
-      {
-        "type": "header",
-        "content": "Column Content Settings",
-        "info": "Control the information with in the columns"
-      },
-      {
-        "type": "select",
-        "id": "image_width",
-        "options": [
-          {
-            "value": "third",
-            "label": "third width"
-          },
-          {
-            "value": "half",
-            "label": "half of width"
-          },
-          {
-            "value": "full",
-            "label": "full width"
-          }
-        ],
-        "default": "full",
-        "label": "width of image"
-      },
-      {
-        "type": "select",
-        "id": "column_alignment",
-        "options": [
-          {
-            "value": "left",
-            "label": "Align Column Content Left"
-          },
-          {
-            "value": "center",
-            "label": "Align Column Content Center"
-          }
-        ],
-        "default": "left",
-        "label": "Column Content Alignment"
-      },
-      {
-        "type": "text",
-        "id": "column_gap",     
-        "label": "Column Gap Pixels",
-        "default": "0px"
-      }, 
-      {
-        "type": "header",
-        "content": "Overall Module Button Settings",
-        "info": "Live below the column content"
-      },
-      {
-          "type": "text",
-          "id": "button_padding",
-          "label": "Button Padding",
-          "default": "10px 20px"
-      },
-      {
-          "type": "text",
-          "id": "hero_button_font_family",
-          "label": "Button Font Family",
-          "default": "'Helvetica Neue'"
+    },
+    {
+      "type": "header",
+      "content": "Column Content Settings",
+      "info": "Control the information with in the columns"
+    },
+    {
+      "type": "select",
+      "id": "image_width",
+      "options": [
+        {
+          "value": "third",
+          "label": "third width"
         },
         {
-          "type": "text",
-          "id": "hero_button_font_size",
-          "label": "Button Font Size",
-          "default": "18px"
-        }, 
-        {
-          "type": "text",
-          "id": "hero_button_font_weight",
-          "label": "Button Font Weight",
-          "default": "400"
-        },        
-        {
-            "type": "text",
-            "id": "button_border_radius",
-            "label": "Button Border Radius",
-            "default": "0px",
-            "info": "0px would be square corners, 4px would be slightly rounded, 20px would be a lot more rounded."
+          "value": "half",
+          "label": "half of width"
         },
         {
-          "type": "color",
-          "id": "button_border_color",
-          "label": "Button Border",
-          "default": "#000000"
+          "value": "full",
+          "label": "full width"
+        }
+      ],
+      "default": "full",
+      "label": "width of image"
+    },
+    {
+      "type": "select",
+      "id": "column_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Align Column Content Left"
         },
         {
-          "type": "color",
-          "id": "button_background_color",
-          "label": "Button Background Color",
-          "default": "#ffffff"
+          "value": "center",
+          "label": "Align Column Content Center"
+        }
+      ],
+      "default": "left",
+      "label": "Column Content Alignment"
+    },
+    {
+      "type": "text",
+      "id": "column_gap",
+      "label": "Column Gap Pixels",
+      "default": "0px"
+    },
+    {
+      "type": "header",
+      "content": "Overall Module Button Settings",
+      "info": "Live below the column content"
+    },
+    {
+      "type": "text",
+      "id": "button_padding",
+      "label": "Button Padding",
+      "default": "10px 20px"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_font_family",
+      "label": "Button Font Family",
+      "default": "'Helvetica Neue'"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_font_size",
+      "label": "Button Font Size",
+      "default": "18px"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_font_weight",
+      "label": "Button Font Weight",
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "button_border_radius",
+      "label": "Button Border Radius",
+      "default": "0px",
+      "info": "0px would be square corners, 4px would be slightly rounded, 20px would be a lot more rounded."
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color_hover",
+      "label": "HOVER: Button Border/Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color_hover",
+      "label": "HOVER: Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color_hover",
+      "label": "HOVER: Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Optional Button - Below Main Column Content",
+      "info": "Live below the column content"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Optional Title/Subtitle - Above Main Content",
+      "info": "This section is for the title that is the overall title across all columns. "
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title_font_size",
+      "default": "56px",
+      "label": "Title Font Size"
+    },
+    {
+      "type": "text",
+      "id": "title_font_family",
+      "default": "'Helvetica Neue'",
+      "label": "Title Font Family"
+    },
+    {
+      "type": "text",
+      "id": "section_title_font_weight",
+      "default": "400",
+      "label": "Title Font Weight"
+    },
+    {
+      "type": "text",
+      "id": "section_title_padding",
+      "default": "0px",
+      "label": "Title Padding"
+    },
+    {
+      "type": "header",
+      "content": "Sub-Header for Module",
+      "info": "This section is for the substitle (under the title) that is the overall title across all columns. "
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subtitle Text"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_font_size",
+      "default": "20px",
+      "label": "Subtitle Font Size"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle_padding",
+      "default": "0px",
+      "label": "Subtitle Padding"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_font_family",
+      "default": "'Helvetica Neue'",
+      "label": "Subtitle Font Family"
+    },
+    {
+      "type": "header",
+      "content": "Overall Title and Subtitle Text Settings"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left Aligned"
         },
         {
-          "type": "color",
-          "id": "button_text_color",
-          "label": "Button Text Color",
-          "default": "#000000"
+          "value": "center",
+          "label": "Center Aligned"
         },
         {
-          "type": "color",
-          "id": "button_border_color_hover",
-          "label": "HOVER: Button Border/Text Color",
-          "default": "#ffffff"
-        },
+          "value": "right",
+          "label": "Right Aligned"
+        }
+      ],
+      "default": "left",
+      "label": "Alignment"
+    },
+    {
+      "type": "color",
+      "id": "section_text_color",
+      "default": "#000000",
+      "label": "Text Color"
+    },
+    {
+      "type": "header",
+      "content": "Whole Module Background Settings"
+    },
+    {
+      "type": "text",
+      "id": "overall_background_image_url",
+      "label": "Overall Background Image URL"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "default": "#ffffff",
+      "label": "Background Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "settings": [
         {
-          "type": "color",
-          "id": "button_background_color_hover",
-          "label": "HOVER: Button Background Color",
-          "default": "#000000"
-        },
-      {
-          "type": "color",
-          "id": "button_text_color_hover",
-          "label": "HOVER: Button Text Color",
-          "default": "#ffffff"
-      },
-      {
           "type": "header",
-          "content": "Optional Button - Below Main Column Content",
-          "info": "Live below the column content"
-      },
-      {
+          "content": "Image Section",
+          "info": "Settings for the image in the column."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Column Image Picker",
+          "info": "(Optional) - add an image if you want column to have an image. Leave blank for a text only column."
+        },
+        {
           "type": "text",
-          "id": "button_label",
-          "label": "Button Text"
-      },
-      {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button Link"
-      },
-      {
+          "id": "image_border_radius",
+          "label": "Image Border Radius",
+          "info": "Full this in if you want to have rounded borders on the image",
+          "default": "0px"
+        },
+        {
+          "type": "range",
+          "id": "image_border_padding",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Image Border Radius",
+          "info": "Use this to put spacing between image and side borders of column",
+          "default": 0
+        },
+        {
           "type": "header",
-          "content": "Optional Title/Subtitle - Above Main Content",
-          "info": "This section is for the title that is the overall title across all columns. "
+          "content": "Title",
+          "info": "Settings for the Title section."
         },
         {
           "type": "text",
           "id": "title",
-          "label": "Title"
+          "default": "Column",
+          "label": "Column Title Text"
         },
         {
           "type": "text",
           "id": "title_font_size",
-          "default": "56px",
+          "default": "22px",
           "label": "Title Font Size"
+        },
+        {
+          "type": "text",
+          "id": "title_font_size_mobile",
+          "default": "14px",
+          "label": "Mobile Title Font Size"
         },
         {
           "type": "text",
@@ -629,436 +777,288 @@
           "label": "Title Font Family"
         },
         {
+          "type": "color",
+          "id": "title_font_color",
+          "default": "#000000",
+          "label": "Title Font Color"
+        },
+        {
           "type": "text",
-          "id": "section_title_font_weight",
-          "default": "400",
+          "id": "title_line_height",
+          "label": "Title Line Height",
+          "default": "1.0"
+        },
+        {
+          "type": "text",
+          "id": "title_font_weight",
+          "default": "600",
           "label": "Title Font Weight"
         },
         {
-          "type": "text",
-          "id": "section_title_padding",
-          "default": "0px",
-          "label": "Title Padding"
+          "type": "range",
+          "id": "title_margin_top",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Title Margin Top",
+          "default": 0
         },
         {
           "type": "header",
-          "content": "Sub-Header for Module",
-          "info": "This section is for the substitle (under the title) that is the overall title across all columns. "
+          "content": "Subtitle",
+          "info": "Settings for the subtitle section."
         },
         {
           "type": "text",
-          "id": "sub_title",
-          "label": "Subtitle Text"
+          "id": "text",
+          "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+          "label": "Subtitle"
         },
         {
           "type": "text",
-          "id": "subtitle_font_size",
-          "default": "20px",
-          "label": "Subtitle Font Size"
+          "id": "text_font_size",
+          "default": "30px",
+          "label": "Text Font Size"
         },
         {
           "type": "text",
-          "id": "section_subtitle_padding",
-          "default": "0px",
-          "label": "Subtitle Padding"
+          "id": "text_font_size_mobile",
+          "default": "16px",
+          "label": "Mobile Text Font Size"
         },
         {
           "type": "text",
-          "id": "subtitle_font_family",
+          "id": "text_font_family",
           "default": "'Helvetica Neue'",
-          "label": "Subtitle Font Family"
-        },
-        {
-          "type": "header",
-          "content": "Overall Title and Subtitle Text Settings"
-        },
-        {
-          "type": "select",
-          "id": "title_alignment",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left Aligned"
-            },
-            {
-              "value": "center",
-              "label": "Center Aligned"
-            },
-            {
-              "value": "right",
-              "label": "Right Aligned"
-            }
-          ],
-          "default": "left",
-          "label": "Alignment"
+          "label": "Text Font Family"
         },
         {
           "type": "color",
-          "id": "section_text_color",     
+          "id": "text_font_color",
           "default": "#000000",
-          "label": "Text Color"
-        },
-        {
-          "type": "header",
-          "content": "Whole Module Background Settings"
+          "label": "Text Font Color"
         },
         {
           "type": "text",
-          "id": "overall_background_image_url",
-          "label": "Overall Background Image URL"
+          "id": "text_line_height",
+          "default": "1.3",
+          "label": "Text Line Height"
+        },
+        {
+          "type": "text",
+          "id": "text_font_weight",
+          "default": "600",
+          "label": "Text Font Weight"
+        },
+        {
+          "type": "range",
+          "id": "subtitle_margin_top",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Sub-Title Margin Top",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Description",
+          "info": "Settings for the description section. This is the optional third text section."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "default": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "description_font_size",
+          "default": "30px",
+          "label": "Description Font Size"
+        },
+        {
+          "type": "text",
+          "id": "description_font_size_mobile",
+          "default": "14px",
+          "label": "Mobile Description Font Size"
+        },
+        {
+          "type": "text",
+          "id": "description_font_family",
+          "default": "'Helvetica Neue'",
+          "label": "Description Font Family"
         },
         {
           "type": "color",
-          "id": "section_background_color",     
-          "default": "#ffffff",
-          "label": "Background Color"
+          "id": "description_font_color",
+          "default": "#000000",
+          "label": "Description Font Color"
+        },
+        {
+          "type": "text",
+          "id": "description_line_height",
+          "default": "1.3",
+          "label": "Description Line Height"
+        },
+        {
+          "type": "text",
+          "id": "description_font_weight",
+          "default": "600",
+          "label": "Description Font Weight"
+        },
+        {
+          "type": "range",
+          "id": "description_margin_top",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Description Margin Top",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "description_margin_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Description Margin Bottom",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Buttons",
+          "info": "Settings for the optional buttons at the bottom."
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_hero_button",
+          "label": "Is Hero Button?"
+        },
+        {
+          "type": "text",
+          "id": "link_label_two",
+          "label": "Button Text Two"
+        },
+        {
+          "type": "url",
+          "id": "link_two",
+          "label": "Button Link Two"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_hero_button_two",
+          "label": "Is Hero Button?"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_is_white_border_two",
+          "label": "Make second button inverse",
+          "info": "Check to make the second button the inverse color scheme as the first button (if hero)."
+        },
+        {
+          "type": "range",
+          "id": "space_between_buttons",
+          "min": 0,
+          "max": 20,
+          "step": 2,
+          "unit": "px",
+          "label": "Space Between Buttons",
+          "default": 8
+        },
+        {
+          "type": "checkbox",
+          "id": "vertically_align_center",
+          "label": "Vertically Center Align?",
+          "default": false,
+          "info": "don't use: this might need to be deleted"
+        },
+        {
+          "type": "header",
+          "content": "Overall Column Settings",
+          "info": "Settings that apply to the whole column. "
+        },
+        {
+          "type": "text",
+          "id": "top_margin_column",
+          "label": "Top Margin of Column (e.g. 10%)",
+          "info": "This pushes content up or down "
+        },
+        {
+          "type": "text",
+          "id": "top_margin_column_mobile",
+          "label": "Mobile: Top Margin of Column (e.g. 10%)",
+          "info": "This pushes content up or down "
+        },
+        {
+          "type": "text",
+          "id": "width",
+          "label": "Width of Column (e.g. 20%)",
+          "info": "leave blank unless you are trying to make first column smaller"
+        },
+        {
+          "type": "text",
+          "id": "text_max_width",
+          "default": "80%",
+          "label": "Max width of text content within column",
+          "info": "If this is 80% it means there will be 10% spacing on left and 10% on right."
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_on_mobile",
+          "default": false,
+          "label": "Hide this column on Mobile?"
+        },
+        {
+          "type": "text",
+          "id": "mobile_order",
+          "label": "Order Shows on Mobile"
+        },
+        {
+          "type": "text",
+          "id": "margin_bottom_container",
+          "label": "Mobile Margin Bottom Container"
+        },
+        {
+          "type": "checkbox",
+          "id": "remove_top_padding",
+          "label": "Check to Remove Top Padding"
+        },
+        {
+          "type": "checkbox",
+          "id": "remove_bottom_padding",
+          "label": "Check to Remove Bottom Padding"
         }
-    ],
-    "blocks": [
-      {
-        "type": "column",
-        "name": "Column",
-        "settings": [                
-          {
-              "type": "header",
-              "content": "Image Section",
-              "info": "Settings for the image in the column."
-          },
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Column Image Picker",
-            "info": "(Optional) - add an image if you want column to have an image. Leave blank for a text only column."
-          },
-          {
-            "type": "text",
-            "id": "image_border_radius",
-            "label": "Image Border Radius",
-            "info": "Full this in if you want to have rounded borders on the image",
-            "default": "0px"
-          },
-          {
-              "type": "range",
-              "id": "image_border_padding",
-              "min": 0,
-              "max": 100,
-              "step": 2,
-              "unit": "px",
-              "label": "Image Border Radius",
-              "info": "Use this to put spacing between image and side borders of column",
-              "default": 0
-          },
-          {
-            "type": "header",
-            "content": "Title",
-            "info": "Settings for the Title section."
-          },
-          {
-            "type": "text",
-            "id": "title",
-            "default": "Column",
-            "label": "Column Title Text"
-          },
-          {
-            "type": "text",
-            "id": "title_font_size",
-            "default": "22px",
-            "label": "Title Font Size"
-          },
-          {
-            "type": "text",
-            "id": "title_font_size_mobile",
-            "default": "14px",
-            "label": "Mobile Title Font Size"
-          },
-          {
-            "type": "text",
-            "id": "title_font_family",
-            "default": "'Helvetica Neue'",
-            "label": "Title Font Family"
-          },
-          {
-            "type": "color",
-            "id": "title_font_color",
-            "default": "#000000",
-            "label": "Title Font Color"
-          },
-          {
-            "type": "text",
-            "id": "title_line_height",
-            "label": "Title Line Height",
-            "default": "1.0"
-          },
-          {
-            "type": "text",
-            "id": "title_font_weight",
-            "default": "600",
-            "label": "Title Font Weight"
-          },
-          {
-              "type": "range",
-              "id": "title_margin_top",
-              "min": 0,
-              "max": 100,
-              "step": 2,
-              "unit": "px",
-              "label": "Title Margin Top",
-              "default": 0
-          },
-          {
-            "type": "header",
-            "content": "Subtitle",
-            "info": "Settings for the subtitle section."
-          },
-          {
-            "type": "text",
-            "id": "text",
-            "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "label": "Subtitle"
-          },
-          {
-            "type": "text",
-            "id": "text_font_size",
-            "default": "30px",
-            "label": "Text Font Size"
-          },
-          {
-            "type": "text",
-            "id": "text_font_size_mobile",
-            "default": "16px",
-            "label": "Mobile Text Font Size"
-          },
-          {
-            "type": "text",
-            "id": "text_font_family",
-            "default": "'Helvetica Neue'",
-            "label": "Text Font Family"
-          },
-          {
-            "type": "color",
-            "id": "text_font_color",
-            "default": "#000000",
-            "label": "Text Font Color"
-          },
-          {
-            "type": "text",
-            "id": "text_line_height",
-            "default": "1.3",
-            "label": "Text Line Height"
-          },
-          {
-            "type": "text",
-            "id": "text_font_weight",
-            "default": "600",
-            "label": "Text Font Weight"
-          },        
-          {
-              "type": "range",
-              "id": "subtitle_margin_top",
-              "min": 0,
-              "max": 100,
-              "step": 2,
-              "unit": "px",
-              "label": "Sub-Title Margin Top",
-              "default": 0
-          },
-          {
-            "type": "header",
-            "content": "Description",
-            "info": "Settings for the description section. This is the optional third text section."
-          },
-          {
-            "type": "textarea",
-            "id": "description",
-            "default": "description",
-            "label": "Description"
-          },
-          {
-            "type": "text",
-            "id": "description_font_size",
-            "default": "30px",
-            "label": "Description Font Size"
-          },
-          {
-            "type": "text",
-            "id": "description_font_size_mobile",
-            "default": "14px",
-            "label": "Mobile Description Font Size"
-          },
-          {
-            "type": "text",
-            "id": "description_font_family",
-            "default": "'Helvetica Neue'",
-            "label": "Description Font Family"
-          },
-          {
-            "type": "color",
-            "id": "description_font_color",
-            "default": "#000000",
-            "label": "Description Font Color"
-          },
-          {
-              "type": "text",
-              "id": "description_line_height",
-              "default": "1.3",
-              "label": "Description Line Height"
-          },
-          {
-              "type": "text",
-              "id": "description_font_weight",
-              "default": "600",
-              "label": "Description Font Weight"
-          },        
-          {
-              "type": "range",
-              "id": "description_margin_top",
-              "min": 0,
-              "max": 100,
-              "step": 2,
-              "unit": "px",
-              "label": "Description Margin Top",
-              "default": 0
-          },
-          {
-              "type": "range",
-              "id": "description_margin_bottom",
-              "min": 0,
-              "max": 100,
-              "step": 2,
-              "unit": "px",
-              "label": "Description Margin Bottom",
-              "default": 0
-          },               
-          {
-              "type": "header",
-              "content": "Buttons",
-              "info": "Settings for the optional buttons at the bottom."
-          },
-          {
-              "type": "text",
-              "id": "link_label",
-              "label": "Button Text"
-          },
-          {
-              "type": "url",
-              "id": "link",
-              "label": "Button Link"
-          },
-          {
-              "type": "checkbox",
-              "id": "is_hero_button",
-              "label": "Is Hero Button?"
-          },
-          {
-              "type": "text",
-              "id": "link_label_two",
-              "label": "Button Text Two"
-          },
-          {
-              "type": "url",
-              "id": "link_two",
-              "label": "Button Link Two"
-          },
-          {
-              "type": "checkbox",
-              "id": "is_hero_button_two",
-              "label": "Is Hero Button?"
-          },
-          {
-              "type": "checkbox",
-              "id": "button_is_white_border_two",
-              "label": "Make second button inverse",
-              "info": "Check to make the second button the inverse color scheme as the first button (if hero)."
-          },         
-          {
-              "type": "range",
-              "id": "space_between_buttons",
-              "min": 0,
-              "max": 20,
-              "step": 2,
-              "unit": "px",
-              "label": "Space Between Buttons",
-              "default": 8
-          },        
-          {
-            "type": "checkbox",
-            "id": "vertically_align_center",
-            "label": "Vertically Center Align?",
-            "default": false,
-            "info": "don't use: this might need to be deleted"
-          },                        
-          {
-            "type": "header",
-            "content": "Overall Column Settings",
-            "info": "Settings that apply to the whole column. "
-          },
-          {
-            "type": "text",
-            "id": "top_margin_column",
-            "label": "Top Margin of Column (e.g. 10%)",
-            "info": "This pushes content up or down "
-          },
-          {
-            "type": "text",
-            "id": "top_margin_column_mobile",
-            "label": "Mobile: Top Margin of Column (e.g. 10%)",
-            "info": "This pushes content up or down "
-          },
-          {
-            "type": "text",
-            "id": "width",
-            "label": "Width of Column (e.g. 20%)",
-            "info": "leave blank unless you are trying to make first column smaller"
-          },
-          {
-              "type": "text",
-              "id": "text_max_width",
-              "default": "80%",
-              "label": "Max width of text content within column",
-              "info": "If this is 80% it means there will be 10% spacing on left and 10% on right."
-          },                
-          {
-            "type": "checkbox",
-            "id": "hide_on_mobile",
-            "default": false,
-            "label": "Hide this column on Mobile?"
-          },   
-          {
-            "type": "text",
-            "id": "mobile_order",
-            "label": "Order Shows on Mobile"
-          },
-          {
-            "type": "text",
-            "id": "margin_bottom_container",          
-            "label": "Mobile Margin Bottom Container"
-          },
-          {
-            "type": "checkbox",
-            "id": "remove_top_padding",
-            "label": "Check to Remove Top Padding"
-          },
-          {
-            "type": "checkbox",
-            "id": "remove_bottom_padding",
-            "label": "Check to Remove Bottom Padding"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "custom-hero",
-        "blocks": [
-          {
-            "type": "column"
-          },
-          {
-            "type": "column"
-          }
-        ]
-      }
-    ]
-  }
-  {% endschema %}
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom-hero",
+      "category": "Hero",
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
   
