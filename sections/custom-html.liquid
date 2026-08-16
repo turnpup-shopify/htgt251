@@ -10,28 +10,27 @@
 </style>
 
 {% schema %}
-  {
-    "name": "Custom HTML",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title"
-      },
-      {
-        "type":"textarea",
-        "id": "custom_html",
-        "label": "HTML"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Custom HTML",
-        "category": "Custom",
-        "settings": {
-
-        }
-      }
-    ]
-  }
+{
+  "name": "Custom HTML",
+  "category": "Utility",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_html",
+      "label": "HTML"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom HTML",
+      "category": "Utility",
+      "settings": {}
+    }
+  ]
+}
 {% endschema %}

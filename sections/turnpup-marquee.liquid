@@ -1,173 +1,172 @@
 {% schema %}
-  {
-    "name": "Marquee - turnpup",
-    "class": "turnpup-marquee",
-    "settings": [
-  		{
-        "type": "header",
-        "content": "Module",
-        "info": "Options for the overall module"
-      },
-      {
+{
+  "name": "Marquee - turnpup",
+  "category": "Announcements",
+  "class": "turnpup-marquee",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Module",
+      "info": "Options for the overall module"
+    },
+    {
       "type": "text",
       "id": "container_width",
       "label": "Module Width",
       "default": "65%"
-      },
-      {
-        "type": "range",
-        "id": "container_top_margin",
-        "min": 0,
-        "max": 200,
-        "step": 10,
-        "unit": "px",
-        "label": "Spacing at top of Module.",
-        "default": 20
-      },
-      {
-        "type": "range",
-        "id": "container_bottom_margin",
-        "min": 0,
-        "max": 200,
-        "step": 10,
-        "unit": "px",
-        "label": "Spacing at bottom of Module.",
-        "default": 20
-      },
-      {
-	      "type": "header",
-	      "content": "Colors",
-	      "info": "Color options for the module"
-	    },
-	    {
-			"type": "color",
-			"id": "module_background_color",
-			"label": "Module Background Color",
-			"default": "#0c2a4a"
-      },
-      {
-        "type": "color",
-        "id": "header_text_color",
-        "label": "Header Text Color",
-        "default": "#B4ECFF"
-      },
-      {
-        "type": "header",
-        "content": "Header Text",
-        "info": "The text that shows above the carousel of logos"
-      },
-      {
-        "type": "text",
-        "id": "header_text",
-        "label": "Header Text",
-        "default": "As raved about in:"
-      },
-      {
-        "type": "text",
-        "id": "header_font_size",
-        "label": "Header Desktop Text Size",
-        "default": "40px"
-      },
-      {
-        "type": "text",
-        "id": "header_mobile_font_size",
-        "label": "Header Mobile Text Size",
-        "default": "22px"
-      },
-      {
-        "type": "font_picker",
-        "id": "header_font_family",
-        "label": "Header Text Size",
-        "default": "assistant_n4"
-      },
-      {
-        "type": "text",
-        "id": "header_font_weight",
-        "label": "Header Font Weight",
-        "default": "800"
-      },
-      {
-        "type": "header",
-        "content": "Logos",
-        "info": "This section has settings for the logos"
-      },
-      {
-        "type": "range",
-        "id": "marquee_speed_seconds",
-        "min": 2,
-        "max": 60,
-        "step": 1,
-        "unit": "s",
-        "label": "Marquee Speed (seconds per loop)",
-        "default": 10
-      },
-			{
-				"type": "text",
-				"id": "desktop_logo_height",
-				"label": "Desktop Logo Height (e.g. 80px)",
-				"default": "50px"
-			},
-			{
-				"type": "text",
-				"id": "mobile_logo_height",
-				"label": "Mobile Logo Height (e.g. 30px)",
-				"default": "30px"
-			},
-      {
-        "type": "range",
-        "id": "desktop_space_between",
-        "min": 0,
-        "max": 200,
-        "step": 10,
-        "unit": "px",
-        "label": "Desktop Space Between Logos",
-        "default": 20
-      },
-      {
-        "type": "range",
-        "id": "mobile_space_between",
-        "min": 0,
-        "max": 200,
-        "step": 10,
-        "unit": "px",
-        "label": "Mobile Space Between Logos",
-        "default": 20
-      }
-		],
-		"blocks": [
-			{
-				"name": "Logo",
-				"type": "logo",
-				"settings": [
-					{
-						"type": "header",
-						"content": "Logo",
-						"info": "_"
-					},
-					{
-						"type": "image_picker",
-						"id": "logo",
-						"label": "Logo"				
-					},
-					{
-						"type": "text",
-						"id": "link_to_article",
-						"label": "Link to Article",
-            "default": "https://flwrmarket.com"				
-					}
-				]
-			}
-	    ],
-		"presets": [
-		  {
-		    "name": "FLWR PR Marquee",
-		    "category": "Custom",
-		    "blocks": [
-
-		    ]
-      }
-    ]
-  }
+    },
+    {
+      "type": "range",
+      "id": "container_top_margin",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Spacing at top of Module.",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "container_bottom_margin",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Spacing at bottom of Module.",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Color options for the module"
+    },
+    {
+      "type": "color",
+      "id": "module_background_color",
+      "label": "Module Background Color",
+      "default": "#0c2a4a"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Header Text Color",
+      "default": "#B4ECFF"
+    },
+    {
+      "type": "header",
+      "content": "Header Text",
+      "info": "The text that shows above the carousel of logos"
+    },
+    {
+      "type": "text",
+      "id": "header_text",
+      "label": "Header Text",
+      "default": "As raved about in:"
+    },
+    {
+      "type": "text",
+      "id": "header_font_size",
+      "label": "Header Desktop Text Size",
+      "default": "40px"
+    },
+    {
+      "type": "text",
+      "id": "header_mobile_font_size",
+      "label": "Header Mobile Text Size",
+      "default": "22px"
+    },
+    {
+      "type": "font_picker",
+      "id": "header_font_family",
+      "label": "Header Text Size",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "text",
+      "id": "header_font_weight",
+      "label": "Header Font Weight",
+      "default": "800"
+    },
+    {
+      "type": "header",
+      "content": "Logos",
+      "info": "This section has settings for the logos"
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed_seconds",
+      "min": 2,
+      "max": 60,
+      "step": 1,
+      "unit": "s",
+      "label": "Marquee Speed (seconds per loop)",
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "desktop_logo_height",
+      "label": "Desktop Logo Height (e.g. 80px)",
+      "default": "50px"
+    },
+    {
+      "type": "text",
+      "id": "mobile_logo_height",
+      "label": "Mobile Logo Height (e.g. 30px)",
+      "default": "30px"
+    },
+    {
+      "type": "range",
+      "id": "desktop_space_between",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop Space Between Logos",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_space_between",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Space Between Logos",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Logo",
+      "type": "logo",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Logo",
+          "info": "_"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "link_to_article",
+          "label": "Link to Article",
+          "default": "https://flwrmarket.com"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FLWR PR Marquee",
+      "category": "Announcements",
+      "blocks": []
+    }
+  ]
+}
 {% endschema %}
 
 <div class="flwr-pr-marquee-container">

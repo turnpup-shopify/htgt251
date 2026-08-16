@@ -1,244 +1,275 @@
 {% schema %}
-    { 
-      "name": "turnpup-gallery",
-      "class": "turnpup-gallery",
-      "settings": [
-        { 
-          "type": "text",
-          "id": "image_grid_header",
-          "label": "Image Grid Header",
-          "default": "Image Grid Header"
-        }, 
-        { 
-          "type": "text",
-          "id": "header_font_family",
-          "label": "Header Font Family",
-          "default": "'p22-mackinac-pro', serif;"
-        },
-        { 
-          "type": "text",
-          "id": "header_font_size",
-          "label": "Header Font Size",
-          "default": "30px"
-        },
-        { 
-          "type": "text",
-          "id": "header_font_weight",
-          "label": "Header Font Weight",
-          "default": "400"
-        },
-        { 
-          "type": "color",
-          "id": "header_font_color",
-          "label": "Header Font Color",
-          "default": "#3C64B1"
-        },   
-        { 
-          "type": "text",
-          "id": "image_grid_subheader",
-          "label": "Image Grid subheader",
-          "default": "Image Grid subheader"
-        }, 
-        { 
-          "type": "text",
-          "id": "subheader_font_family",
-          "label": "subheader Font Family",
-          "default": "'p22-mackinac-pro', serif;"
-        },
-        { 
-          "type": "text",
-          "id": "subheader_font_size",
-          "label": "subheader Font Size",
-          "default": "30px"
-        },
-        { 
-          "type": "text",
-          "id": "subheader_font_weight",
-          "label": "subheader Font Weight",
-          "default": "400"
-        },
-        { 
-          "type": "color",
-          "id": "subheader_font_color",
-          "label": "subheader Font Color",
-          "default": "#3C64B1"
-        },             
+{
+  "name": "turnpup-gallery",
+  "category": "Rooms & Inspiration",
+  "class": "turnpup-gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "image_grid_header",
+      "label": "Image Grid Header",
+      "default": "Image Grid Header"
+    },
+    {
+      "type": "text",
+      "id": "header_font_family",
+      "label": "Header Font Family",
+      "default": "'p22-mackinac-pro', serif;"
+    },
+    {
+      "type": "text",
+      "id": "header_font_size",
+      "label": "Header Font Size",
+      "default": "30px"
+    },
+    {
+      "type": "text",
+      "id": "header_font_weight",
+      "label": "Header Font Weight",
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "header_font_color",
+      "label": "Header Font Color",
+      "default": "#3C64B1"
+    },
+    {
+      "type": "text",
+      "id": "image_grid_subheader",
+      "label": "Image Grid subheader",
+      "default": "Image Grid subheader"
+    },
+    {
+      "type": "text",
+      "id": "subheader_font_family",
+      "label": "subheader Font Family",
+      "default": "'p22-mackinac-pro', serif;"
+    },
+    {
+      "type": "text",
+      "id": "subheader_font_size",
+      "label": "subheader Font Size",
+      "default": "30px"
+    },
+    {
+      "type": "text",
+      "id": "subheader_font_weight",
+      "label": "subheader Font Weight",
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "subheader_font_color",
+      "label": "subheader Font Color",
+      "default": "#3C64B1"
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header Alignment",
+      "options": [
         {
-            "type": "select",
-            "id": "header_alignment",
-            "label": "Header Alignment",
-            "options": [
-                {
-                    "value": "left",
-                    "label": "Left"
-                },
-                {
-                    "value": "center",
-                    "label": "Center"
-                },
-                {
-                    "value": "right",
-                    "label": "Right"
-                }
-            ],
-        "default": "center"
+          "value": "left",
+          "label": "Left"
         },
         {
-            "type": "select",
-            "id": "aspect_ratio",
-            "label": "Aspect Ratio",
-            "default": "100%",
-            "options": [
-                {"value": "100%", "label": "1:1"},
-                {"value": "75%", "label": "4:3"},
-                {"value": "66.66%", "label": "3:2"},
-                {"value": "62.5%", "label": "8:5"},
-                {"value": "56.25%", "label": "16:9"},        
-                {"value": "200%", "label": "2:1"},
-                {"value": "177.78%", "label": "9:16"},
-                {"value": "133.33%", "label": "3:4"},
-                {"value": "125%", "label": "5:4"}
-            ]
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
         }
       ],
-      "blocks": [
-      {
-        "name": "CAROUSEL ONE",
-        "type": "carousel_one",
-        "settings": [          
-            {
-                "type": "text",
-                "id": "grid_name",
-                "label": "Grid Name"
-            },
-            {
-                "type": "image_picker",
-                "id": "grid_image_1",
-                "label": "Grid Image 1"
-            },
-            {
-                "type": "url",
-                "id": "link_1",
-                "label": "Button Link 1"
-            },
-            {
-                "type": "image_picker",
-                "id": "grid_image_2",
-                "label": "Image 2"
-            },
-            {
-                "type": "url",
-                "id": "link_2",
-                "label": "Button Link 2"
-            },
-            {
-                "type": "image_picker",
-                "id": "grid_image_3",
-                "label": "Image 3"
-            },
-            {
-                "type": "url",
-                "id": "link_3",
-                "label": "Button Link 3"
-            },
-            {
-                "type": "image_picker",
-                "id": "grid_image_4",
-                "label": "Image 4"
-            },
-            {
-                "type": "url",
-                "id": "link_4",
-                "label": "Button Link 4"
-            },
-            {
-                "type": "image_picker",
-                "id": "grid_image_5",
-                "label": "Grid Image 5"
-            },
-            {
-                "type": "url",
-                "id": "link_5",
-                "label": "Button Link 5"
-            },
-            {
-                "type": "image_picker",
-                "id": "grid_image_6",
-                "label": "Image 6"
-            },
-            {
-                "type": "url",
-                "id": "link_6",
-                "label": "Button Link 6"
-            },
-            {
-                "type": "image_picker",
-                "id": "grid_image_7",
-                "label": "Image 7"
-            },
-            {
-                "type": "url",
-                "id": "link_7",
-                "label": "Button Link 7"
-            },
-            {
-                "type": "image_picker",
-                "id": "grid_image_8",
-                "label": "Image 8"
-            },
-            {
-                "type": "url",
-                "id": "link_8",
-                "label": "Button Link 8"
-            },
-            {
-                "type": "image_picker",
-                "id": "grid_image_9",
-                "label": "Grid Image 9"
-            },
-            {
-                "type": "url",
-                "id": "link_9",
-                "label": "Button Link 9"
-            },
-            {
-                "type": "image_picker",
-                "id": "grid_image_10",
-                "label": "Image 10"
-            },
-            {
-                "type": "url",
-                "id": "link_10",
-                "label": "Button Link 10"
-            },
-            {
-                "type": "image_picker",
-                "id": "grid_image_11",
-                "label": "Image 11"
-            },
-            {
-                "type": "url",
-                "id": "link_11",
-                "label": "Button Link 11"
-            },
-            {
-                "type": "image_picker",
-                "id": "grid_image_12",
-                "label": "Image "
-            },
-            {
-                "type": "url",
-                "id": "link_12",
-                "label": "Button Link 12"
-            }              
-        ]
-      }],
-      "presets": [{
-        "name": "turnpup-gallery",
-        "category": "Text"
-      }]
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Aspect Ratio",
+      "default": "100%",
+      "options": [
+        {
+          "value": "100%",
+          "label": "1:1"
+        },
+        {
+          "value": "75%",
+          "label": "4:3"
+        },
+        {
+          "value": "66.66%",
+          "label": "3:2"
+        },
+        {
+          "value": "62.5%",
+          "label": "8:5"
+        },
+        {
+          "value": "56.25%",
+          "label": "16:9"
+        },
+        {
+          "value": "200%",
+          "label": "2:1"
+        },
+        {
+          "value": "177.78%",
+          "label": "9:16"
+        },
+        {
+          "value": "133.33%",
+          "label": "3:4"
+        },
+        {
+          "value": "125%",
+          "label": "5:4"
+        }
+      ]
     }
-  {% endschema %}
+  ],
+  "blocks": [
+    {
+      "name": "CAROUSEL ONE",
+      "type": "carousel_one",
+      "settings": [
+        {
+          "type": "text",
+          "id": "grid_name",
+          "label": "Grid Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image_1",
+          "label": "Grid Image 1"
+        },
+        {
+          "type": "url",
+          "id": "link_1",
+          "label": "Button Link 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "Button Link 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image_3",
+          "label": "Image 3"
+        },
+        {
+          "type": "url",
+          "id": "link_3",
+          "label": "Button Link 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image_4",
+          "label": "Image 4"
+        },
+        {
+          "type": "url",
+          "id": "link_4",
+          "label": "Button Link 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image_5",
+          "label": "Grid Image 5"
+        },
+        {
+          "type": "url",
+          "id": "link_5",
+          "label": "Button Link 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image_6",
+          "label": "Image 6"
+        },
+        {
+          "type": "url",
+          "id": "link_6",
+          "label": "Button Link 6"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image_7",
+          "label": "Image 7"
+        },
+        {
+          "type": "url",
+          "id": "link_7",
+          "label": "Button Link 7"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image_8",
+          "label": "Image 8"
+        },
+        {
+          "type": "url",
+          "id": "link_8",
+          "label": "Button Link 8"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image_9",
+          "label": "Grid Image 9"
+        },
+        {
+          "type": "url",
+          "id": "link_9",
+          "label": "Button Link 9"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image_10",
+          "label": "Image 10"
+        },
+        {
+          "type": "url",
+          "id": "link_10",
+          "label": "Button Link 10"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image_11",
+          "label": "Image 11"
+        },
+        {
+          "type": "url",
+          "id": "link_11",
+          "label": "Button Link 11"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image_12",
+          "label": "Image "
+        },
+        {
+          "type": "url",
+          "id": "link_12",
+          "label": "Button Link 12"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "turnpup-gallery",
+      "category": "Rooms & Inspiration"
+    }
+  ]
+}
+{% endschema %}
   
   <div class="page_a_container">    
     <section class="playground-page">  

@@ -65,174 +65,175 @@
     {% endif %}
     
     {% schema %}
+{
+  "name": "TP - Question",
+  "category": "FAQ & Tools",
+  "class": "tp-question",
+  "settings": [
     {
-      "name": "TP - Question",
-      "class": "tp-question",
+      "type": "checkbox",
+      "id": "section_padding",
+      "label": "Show spacing around section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Buttom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Right",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "section Padding Left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Section Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Section Padding Buttom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Section Padding Right",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile section Padding Left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "background_opacityy",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "label": "Background Opacity",
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "overall_width",
+      "label": "Overall Width",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "overall_width_text",
+      "label": "Overall Width for Text",
+      "default": "80%"
+    },
+    {
+      "type": "color",
+      "id": "turnpup_bottom_border_color",
+      "label": "Bottom Border Color",
+      "default": "#F4B237"
+    },
+    {
+      "type": "text",
+      "id": "turnpup_container_margin_top_bottom",
+      "label": "Container Margin Top Bottom",
+      "default": "60px"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "background_opacity",
+      "label": "Background Opacity",
+      "default": "0.2"
+    },
+    {
+      "type": "color",
+      "id": "mobile_background_color",
+      "label": "Mobile Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Question",
+      "type": "Question",
       "settings": [
         {
-          "type": "checkbox",
-          "id": "section_padding",
-          "label": "Show spacing around section",
-          "default": true
+          "type": "richtext",
+          "id": "question",
+          "label": "Question",
+          "default": "<p>How do I likka the leffs?</p>"
         },
         {
-        "type": "range",
-        "id": "padding_top",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Padding Top",
-        "default": 0
-        },
-        {
-        "type": "range",
-        "id": "padding_bottom",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Padding Buttom",
-        "default": 0
-        },
-        {
-        "type": "range",
-        "id": "padding_right",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Section Padding Right",
-        "default": 0
-        },
-        {
-        "type": "range",
-        "id": "padding_left",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "section Padding Left",
-        "default": 0
-        },
-        {
-        "type": "range",
-        "id": "mobile_padding_top",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Mobile Section Padding Top",
-        "default": 0
-        },
-        {
-        "type": "range",
-        "id": "mobile_padding_bottom",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Mobile Section Padding Buttom",
-        "default": 0
-        },
-        {
-        "type": "range",
-        "id": "mobile_padding_right",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Mobile Section Padding Right",
-        "default": 0
-        },
-        {
-        "type": "range",
-        "id": "mobile_padding_left",
-        "min": 0,
-        "max": 100,
-        "step": 4,
-        "unit": "px",
-        "label": "Mobile section Padding Left",
-        "default": 0
-        },
-        {
-          "type": "range",
-          "id": "background_opacityy",
-          "min": 0,
-          "max": 100,
-          "step": 10,
-          "label": "Background Opacity",
-          "unit": "%",
-          "default": 0
-        },
-        {
-          "type": "text",
-          "id": "overall_width",
-          "label": "Overall Width",
-          "default": "100%"
-        },   
-        {
-          "type": "text",
-          "id": "overall_width_text",
-          "label": "Overall Width for Text",
-          "default": "80%"
-        },
-        {
-          "type": "color",
-          "id": "turnpup_bottom_border_color",
-          "label": "Bottom Border Color",
-          "default": "#F4B237"
-        },
-        {
-          "type": "text",
-          "id": "turnpup_container_margin_top_bottom",
-          "label": "Container Margin Top Bottom",
-          "default": "60px"
-        },
-        {
-          "type": "color",
-          "id": "background_color",
-          "label": "Background Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "text",
-          "id": "background_opacity",
-          "label": "Background Opacity",
-          "default": "0.2"
-        },
-        {
-          "type": "color",
-          "id": "mobile_background_color",
-          "label": "Mobile Background Color",
-          "default": "#ffffff"
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>PeePaws Lickaloo Spindrifter the 4th</p>"
         }
-      ],
-        "blocks": [
-            {
-                "name": "Question",
-                "type": "Question",
-                "settings": [
-                    {
-                        "type": "richtext",
-                        "id": "question",
-                        "label": "Question",
-                        "default": "<p>How do I likka the leffs?</p>"
-                    },
-                    {
-                        "type": "richtext",
-                        "id": "answer",
-                        "label": "Answer",
-                        "default": "<p>PeePaws Lickaloo Spindrifter the 4th</p>"
-                    }
-                ]
-            }
-        ],
-        "presets": [
-            {
-                "name": "TP - Question",
-                "category": "Image"
-            }
-        ]
+      ]
     }
-    {% endschema %}
+  ],
+  "presets": [
+    {
+      "name": "TP - Question",
+      "category": "FAQ & Tools"
+    }
+  ]
+}
+{% endschema %}

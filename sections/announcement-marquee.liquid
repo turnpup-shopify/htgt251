@@ -235,132 +235,146 @@
 </script>
 
 {% schema %}
-  {
-    "name": "Announcement Marquee",
-    "settings": [
-      {
-        "type": "color",
-        "id": "bg_color",
-        "label": "Background color",
-        "default": "#E9F0E6"
-      },
-      {
-        "type": "color",
-        "id": "text_color",
-        "label": "Text color",
-        "default": "#1A1A1A"
-      },
-      {
-        "type": "range",
-        "id": "font_size",
-        "label": "Font size",
-        "min": 10,
-        "max": 24,
-        "step": 1,
-        "unit": "px",
-        "default": 12
-      },
-      {
-        "type": "text",
-        "id": "font_family",
-        "label": "Font family (exact CSS name)",
-        "default": "Helvetica Neue"
-      }, {
-        "type": "select",
-        "id": "font_weight",
-        "label": "Font weight",
-        "options": [
-          {
-            "value": "400",
-            "label": "400 Regular"
-          }, {
-            "value": "500",
-            "label": "500 Medium"
-          }, {
-            "value": "600",
-            "label": "600 SemiBold"
-          }, {
-            "value": "700",
-            "label": "700 Bold"
-          }
-        ],
-        "default": "600"
-      }, {
-        "type": "select",
-        "id": "text_decoration",
-        "label": "Text decoration",
-        "options": [
-          {
-            "value": "none",
-            "label": "None"
-          }, {
-            "value": "underline",
-            "label": "Underline"
-          }
-        ],
-        "default": "none"
-      }, {
-        "type": "checkbox",
-        "id": "uppercase",
-        "label": "Uppercase text",
-        "default": true
-      }, {
-        "type": "range",
-        "id": "item_gap",
-        "label": "Spacing between items",
-        "min": 4,
-        "max": 80,
-        "step": 2,
-        "unit": "px",
-        "default": 24
-      }, {
-        "type": "text",
-        "id": "separator_text",
-        "label": "Separator between items (leave blank to hide)",
-        "default": "|"
-      }, {
-        "type": "range",
-        "id": "speed",
-        "label": "Scroll duration (lower = faster)",
-        "min": 10,
-        "max": 80,
-        "step": 2,
-        "unit": "s",
-        "default": 40
-      }, {
-        "type": "checkbox",
-        "id": "pause_on_hover",
-        "label": "Pause marquee on hover",
-        "default": true
-      }
-    ],
-    "blocks": [
-      {
-        "type": "item",
-        "name": "Announcement item",
-        "settings": [
-          {
-            "type": "text",
-            "id": "text",
-            "label": "Text",
-            "default": "FREE SHIPPING OVER $75"
-          }, {
-            "type": "url",
-            "id": "url",
-            "label": "Link"
-          }, {
-            "type": "image_picker",
-            "id": "preview_image",
-            "label": "Hover preview image (optional)"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Announcement Marquee",
-        "category": "Header"
-      }
-    ]
-  }
+{
+  "name": "Announcement Marquee",
+  "category": "Announcements",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#E9F0E6"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "font_family",
+      "label": "Font family (exact CSS name)",
+      "default": "Helvetica Neue"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "400 Regular"
+        },
+        {
+          "value": "500",
+          "label": "500 Medium"
+        },
+        {
+          "value": "600",
+          "label": "600 SemiBold"
+        },
+        {
+          "value": "700",
+          "label": "700 Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "text_decoration",
+      "label": "Text decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "checkbox",
+      "id": "uppercase",
+      "label": "Uppercase text",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Spacing between items",
+      "min": 4,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "text",
+      "id": "separator_text",
+      "label": "Separator between items (leave blank to hide)",
+      "default": "|"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll duration (lower = faster)",
+      "min": 10,
+      "max": 80,
+      "step": 2,
+      "unit": "s",
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause marquee on hover",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Announcement item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "FREE SHIPPING OVER $75"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "preview_image",
+          "label": "Hover preview image (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Marquee",
+      "category": "Announcements"
+    }
+  ]
+}
 {% endschema %}

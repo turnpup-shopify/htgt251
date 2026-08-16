@@ -116,266 +116,301 @@
 </section>
 
 {% schema %}
-  {
-    "name": "Keyword cloud: collect",
-    "settings": [
-      {
-        "type": "link_list",
-        "id": "menu",
-        "label": "Link list (collections only)"
-      },
-
-      {
-        "type": "header",
-        "content": "Background"
-      },
-      {
-        "type": "image_picker",
-        "id": "bg_image",
-        "label": "Background image"
-      },
-      {
-        "type": "color",
-        "id": "bg_color",
-        "label": "Background color",
-        "default": "#F8EFE6"
-      }, {
-        "type": "header",
-        "content": "Layout"
-      }, {
-        "type": "range",
-        "id": "max_width",
-        "label": "Max width",
-        "min": 720,
-        "max": 1920,
-        "step": 20,
-        "default": 1400
-      }, {
-        "type": "range",
-        "id": "row_gap",
-        "label": "Row gap",
-        "min": 0,
-        "max": 64,
-        "step": 1,
-        "default": 18
-      }, {
-        "type": "range",
-        "id": "col_gap",
-        "label": "Column gap",
-        "min": 0,
-        "max": 64,
-        "step": 1,
-        "default": 28
-      }, {
-        "type": "checkbox",
-        "id": "show_counts",
-        "label": "Show product counts",
-        "default": true
-      }, {
-        "type": "checkbox",
-        "id": "uppercase",
-        "label": "Uppercase titles",
-        "default": true
-      }, {
-        "type": "header",
-        "content": "Padding desktop"
-      }, {
-        "type": "range",
-        "id": "pad_t_d",
-        "label": "Top",
-        "min": 0,
-        "max": 200,
-        "step": 2,
-        "default": 48
-      }, {
-        "type": "range",
-        "id": "pad_r_d",
-        "label": "Right",
-        "min": 0,
-        "max": 200,
-        "step": 2,
-        "default": 24
-      }, {
-        "type": "range",
-        "id": "pad_b_d",
-        "label": "Bottom",
-        "min": 0,
-        "max": 200,
-        "step": 2,
-        "default": 48
-      }, {
-        "type": "range",
-        "id": "pad_l_d",
-        "label": "Left",
-        "min": 0,
-        "max": 200,
-        "step": 2,
-        "default": 24
-      }, {
-        "type": "header",
-        "content": "Padding mobile (≤700px)"
-      }, {
-        "type": "range",
-        "id": "pad_t_m",
-        "label": "Top",
-        "min": 0,
-        "max": 200,
-        "step": 2,
-        "default": 32
-      }, {
-        "type": "range",
-        "id": "pad_r_m",
-        "label": "Right",
-        "min": 0,
-        "max": 200,
-        "step": 2,
-        "default": 16
-      }, {
-        "type": "range",
-        "id": "pad_b_m",
-        "label": "Bottom",
-        "min": 0,
-        "max": 200,
-        "step": 2,
-        "default": 32
-      }, {
-        "type": "range",
-        "id": "pad_l_m",
-        "label": "Left",
-        "min": 0,
-        "max": 200,
-        "step": 2,
-        "default": 16
-      }, {
-        "type": "header",
-        "content": "Title typography"
-      }, {
-        "type": "text",
-        "id": "ttl_font",
-        "label": "Font family",
-        "default": "Helvetica Neue"
-      }, {
-        "type": "select",
-        "id": "ttl_weight",
-        "label": "Font weight",
-        "default": "700",
-        "options": [
-          {
-            "value": "300",
-            "label": "300"
-          },
-          {
-            "value": "400",
-            "label": "400"
-          },
-          {
-            "value": "500",
-            "label": "500"
-          },
-          {
-            "value": "600",
-            "label": "600"
-          }, {
-            "value": "700",
-            "label": "700"
-          }, {
-            "value": "800",
-            "label": "800"
-          }
-        ]
-      }, {
-        "type": "range",
-        "id": "ttl_size_d",
-        "label": "Font size desktop (px)",
-        "min": 16,
-        "max": 120,
-        "step": 4,
-        "default": 72
-      }, {
-        "type": "range",
-        "id": "ttl_size_m",
-        "label": "Font size mobile (px)",
-        "min": 12,
-        "max": 72,
-        "step": 1,
-        "default": 40
-      }, {
-        "type": "color",
-        "id": "ttl_color",
-        "label": "Color",
-        "default": "#111111"
-      }, {
-        "type": "range",
-        "id": "ttl_tracking",
-        "label": "Letter spacing (em)",
-        "min": -0.5,
-        "max": 1,
-        "step": 0.1,
-        "default": 0
-      }, {
-        "type": "header",
-        "content": "Number typography"
-      }, {
-        "type": "text",
-        "id": "num_font",
-        "label": "Font family",
-        "default": "Helvetica Neue"
-      }, {
-        "type": "select",
-        "id": "num_weight",
-        "label": "Font weight",
-        "default": "400",
-        "options": [
-          {
-            "value": "300",
-            "label": "300"
-          }, {
-            "value": "400",
-            "label": "400"
-          }, {
-            "value": "500",
-            "label": "500"
-          }, {
-            "value": "600",
-            "label": "600"
-          }
-        ]
-      }, {
-        "type": "range",
-        "id": "num_size_d",
-        "label": "Font size desktop (px)",
-        "min": 8,
-        "max": 48,
-        "step": 1,
-        "default": 22
-      }, {
-        "type": "range",
-        "id": "num_size_m",
-        "label": "Font size mobile (px)",
-        "min": 8,
-        "max": 32,
-        "step": 1,
-        "default": 16
-      }, {
-        "type": "color",
-        "id": "num_color",
-        "label": "Color",
-        "default": "#CFC8BF"
-      }, {
-        "type": "range",
-        "id": "num_opacity",
-        "label": "Opacity",
-        "min": 0,
-        "max": 1,
-        "step": 0.1,
-        "default": 0.8
-      }
-    ],
-    "presets": [
-      {
-        "name": "Keyword cloud collect",
-        "category": "Collection"
-      }
-    ]
-  }
+{
+  "name": "Keyword cloud: collect",
+  "category": "Categories",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Link list (collections only)"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#F8EFE6"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max width",
+      "min": 720,
+      "max": 1920,
+      "step": 20,
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "label": "Row gap",
+      "min": 0,
+      "max": 64,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "col_gap",
+      "label": "Column gap",
+      "min": 0,
+      "max": 64,
+      "step": 1,
+      "default": 28
+    },
+    {
+      "type": "checkbox",
+      "id": "show_counts",
+      "label": "Show product counts",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "uppercase",
+      "label": "Uppercase titles",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Padding desktop"
+    },
+    {
+      "type": "range",
+      "id": "pad_t_d",
+      "label": "Top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "pad_r_d",
+      "label": "Right",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "pad_b_d",
+      "label": "Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "pad_l_d",
+      "label": "Left",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Padding mobile (≤700px)"
+    },
+    {
+      "type": "range",
+      "id": "pad_t_m",
+      "label": "Top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "pad_r_m",
+      "label": "Right",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "pad_b_m",
+      "label": "Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "pad_l_m",
+      "label": "Left",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Title typography"
+    },
+    {
+      "type": "text",
+      "id": "ttl_font",
+      "label": "Font family",
+      "default": "Helvetica Neue"
+    },
+    {
+      "type": "select",
+      "id": "ttl_weight",
+      "label": "Font weight",
+      "default": "700",
+      "options": [
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "ttl_size_d",
+      "label": "Font size desktop (px)",
+      "min": 16,
+      "max": 120,
+      "step": 4,
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "ttl_size_m",
+      "label": "Font size mobile (px)",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "ttl_color",
+      "label": "Color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "ttl_tracking",
+      "label": "Letter spacing (em)",
+      "min": -0.5,
+      "max": 1,
+      "step": 0.1,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Number typography"
+    },
+    {
+      "type": "text",
+      "id": "num_font",
+      "label": "Font family",
+      "default": "Helvetica Neue"
+    },
+    {
+      "type": "select",
+      "id": "num_weight",
+      "label": "Font weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "num_size_d",
+      "label": "Font size desktop (px)",
+      "min": 8,
+      "max": 48,
+      "step": 1,
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "num_size_m",
+      "label": "Font size mobile (px)",
+      "min": 8,
+      "max": 32,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "num_color",
+      "label": "Color",
+      "default": "#CFC8BF"
+    },
+    {
+      "type": "range",
+      "id": "num_opacity",
+      "label": "Opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Keyword cloud collect",
+      "category": "Categories"
+    }
+  ]
+}
 {% endschema %}

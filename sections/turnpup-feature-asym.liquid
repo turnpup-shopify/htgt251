@@ -156,8 +156,9 @@
 {% schema %}
 {
   "name": "TPFA - Feature Asym",
+  "category": "Content",
   "class": "turnpup-feature-asym-outerContainer",
-  "settings": [ 
+  "settings": [
     {
       "type": "range",
       "id": "module_height",
@@ -167,7 +168,7 @@
       "step": 10,
       "default": 500
     },
-     {
+    {
       "type": "range",
       "id": "module_height_mobile",
       "label": "Module Height Mobile",
@@ -193,7 +194,7 @@
       "max": 100,
       "step": 5,
       "default": 40
-    },  
+    },
     {
       "type": "range",
       "id": "module_margin_bottom",
@@ -202,7 +203,7 @@
       "max": 100,
       "step": 5,
       "default": 40
-    },  
+    },
     {
       "type": "range",
       "id": "module_margin_left",
@@ -211,13 +212,13 @@
       "max": 100,
       "step": 5,
       "default": 40
-    }, 
+    },
     {
       "type": "checkbox",
       "id": "fade_in",
       "label": "Allow to Animate In?",
       "default": false
-    },    
+    },
     {
       "type": "color",
       "id": "module_background_color",
@@ -264,27 +265,27 @@
       "type": "header",
       "content": "Image",
       "info": "Settings for the image."
-    }, 
-    {
-        "type": "video",
-        "id": "desktop_video",
-        "label": "Desktop Video"
     },
     {
-        "type": "video",
-        "id": "mobile_video",
-        "label": "Mobile Video"
+      "type": "video",
+      "id": "desktop_video",
+      "label": "Desktop Video"
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile Video"
     },
     {
       "type": "image_picker",
       "id": "image",
       "label": "Image"
-    }, 
+    },
     {
       "type": "image_picker",
       "id": "mobile_image",
       "label": "Mobile Image"
-    },    
+    },
     {
       "type": "text",
       "id": "image_padding",
@@ -418,7 +419,7 @@
       "id": "text_margin_left",
       "label": "Margin Left for Text Container",
       "default": "50px;"
-    },   
+    },
     {
       "type": "text",
       "id": "header_text",
@@ -447,8 +448,8 @@
       "id": "label_font_family_header",
       "label": "Font Family Header",
       "default": "'Poppins', Light"
-    }, 
- 	{
+    },
+    {
       "type": "text",
       "id": "header_size",
       "label": "Heading Font Size (e.g. 40px)",
@@ -471,7 +472,7 @@
       "id": "subheader_text",
       "label": "Subheader Text"
     },
-	{
+    {
       "type": "text",
       "id": "turnpup_mobile_title_size",
       "label": "Mobile: Heading Font Size (e.g. 24px)",
@@ -489,7 +490,7 @@
       "label": "Text Color",
       "default": "#000000"
     },
-	{
+    {
       "type": "text",
       "id": "turnpup_desc_size",
       "label": "Description Font Size (e.g. 40px)",
@@ -517,7 +518,7 @@
       "type": "header",
       "content": "Button",
       "info": "."
-    },  
+    },
     {
       "type": "text",
       "id": "button_label",
@@ -532,31 +533,31 @@
       "type": "checkbox",
       "id": "is_hero_button",
       "label": "3D Hero Button?"
-    },    
+    },
     {
       "type": "color",
       "id": "bottom_background_color",
       "label": "Bottom Button Background Color",
-       "default": "#28499c" 
-    },    
+      "default": "#28499c"
+    },
     {
       "type": "color",
       "id": "middle_background_color",
       "label": "Middle Button Background Color",
-       "default": "#ea5e33" 
+      "default": "#ea5e33"
     },
     {
       "type": "color",
       "id": "top_background_color",
       "label": "Top Button Background Color",
-       "default": "#f4b237" 
+      "default": "#f4b237"
     }
   ],
   "blocks": [
-        {
-          "type": "page",
-          "name": "Page",
-          "settings": [
+    {
+      "type": "page",
+      "name": "Page",
+      "settings": [
         {
           "type": "page",
           "id": "page",
@@ -596,58 +597,58 @@
           "label": "Image Caption"
         },
         {
-            "type": "range",
-            "id": "image_horizontal_position",
-            "label": "Image Horizontal Position",
-            "min": 1,
-            "max": 20,
-            "step": 1,
-            "default": 1
+          "type": "range",
+          "id": "image_horizontal_position",
+          "label": "Image Horizontal Position",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "default": 1
         },
         {
-            "type": "range",
-            "id": "image_horizontal_size",
-            "label": "Image Horizontal Size",
-            "min": 1,
-            "max": 20,
-            "step": 1,
-            "default": 1
+          "type": "range",
+          "id": "image_horizontal_size",
+          "label": "Image Horizontal Size",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "default": 1
         },
         {
-            "type": "range",
-            "id": "image_vertical_position",
-            "label": "Image Vertical Position",
-            "min": 1,
-            "max": 20,
-            "step": 1,
-            "default": 1
+          "type": "range",
+          "id": "image_vertical_position",
+          "label": "Image Vertical Position",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "default": 1
         },
         {
-            "type": "range",
-            "id": "image_vertical_size",
-            "label": "Image Vetical Size",
-            "min": 1,
-            "max": 20,
-            "step": 1,
-            "default": 1
+          "type": "range",
+          "id": "image_vertical_size",
+          "label": "Image Vetical Size",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "default": 1
         },
         {
-            "type": "range",
-            "id": "zindex",
-            "label": "Depth Layer",
-            "min": 1,
-            "max": 10,
-            "step": 1,
-            "default": 1
+          "type": "range",
+          "id": "zindex",
+          "label": "Depth Layer",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 1
         },
         {
-            "type": "range",
-            "id": "image_opacity",
-            "label": "Image Opacity",
-            "min": 1,
-            "max": 10,
-            "step": 1,
-            "default": 1
+          "type": "range",
+          "id": "image_opacity",
+          "label": "Image Opacity",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 1
         },
         {
           "type": "checkbox",
@@ -671,7 +672,10 @@
           "id": "video_url",
           "type": "video_url",
           "label": "Video URL",
-          "accept": ["youtube", "vimeo"],
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
           "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
         },
         {
@@ -801,7 +805,7 @@
           "type": "text",
           "id": "button_font_size",
           "label": "Button Font Size",
-		  "default": "18px"
+          "default": "18px"
         },
         {
           "type": "text",
@@ -860,24 +864,24 @@
           "type": "checkbox",
           "id": "is_hero_button",
           "label": "3D Hero Button?"
-        },    
+        },
         {
           "type": "color",
           "id": "bottom_background_color",
           "label": "Bottom Button Background Color",
-           "default": "#28499c" 
-        },    
+          "default": "#28499c"
+        },
         {
           "type": "color",
           "id": "middle_background_color",
           "label": "Middle Button Background Color",
-           "default": "#ea5e33" 
+          "default": "#ea5e33"
         },
         {
           "type": "color",
           "id": "top_background_color",
           "label": "Top Button Background Color",
-           "default": "#f4b237" 
+          "default": "#f4b237"
         },
         {
           "type": "color",
@@ -892,14 +896,14 @@
           "default": "#ffffff"
         },
         {
-          "type":"range",
-          "id":"button_border_width",
-          "min":0,
-          "max":5,
-          "step":1,
-          "unit":"px",
-          "label":"Button Border Width",
-          "default":1
+          "type": "range",
+          "id": "button_border_width",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "unit": "px",
+          "label": "Button Border Width",
+          "default": 1
         },
         {
           "type": "checkbox",
@@ -913,7 +917,7 @@
           "label": "Is Second Mobile Button?",
           "default": true
         },
-        { 
+        {
           "type": "header",
           "content": "Second Button",
           "info": "hi"
@@ -927,7 +931,7 @@
           "type": "text",
           "id": "second_button_font_size",
           "label": "Button Font Size",
-		  "default": "18px"
+          "default": "18px"
         },
         {
           "type": "text",
@@ -986,24 +990,24 @@
           "type": "checkbox",
           "id": "second_is_hero_button",
           "label": "3D Hero Button?"
-        },    
+        },
         {
           "type": "color",
           "id": "second_bottom_background_color",
           "label": "Bottom Button Background Color",
-           "default": "#28499c" 
-        },    
+          "default": "#28499c"
+        },
         {
           "type": "color",
           "id": "second_middle_background_color",
           "label": "Middle Button Background Color",
-           "default": "#ea5e33" 
+          "default": "#ea5e33"
         },
         {
           "type": "color",
           "id": "second_top_background_color",
           "label": "Top Button Background Color",
-           "default": "#f4b237" 
+          "default": "#f4b237"
         },
         {
           "type": "color",
@@ -1018,14 +1022,14 @@
           "default": "#ffffff"
         },
         {
-          "type":"range",
-          "id":"second_button_border_width",
-          "min":0,
-          "max":5,
-          "step":1,
-          "unit":"px",
-          "label":"Button Border Width",
-          "default":1
+          "type": "range",
+          "id": "second_button_border_width",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "unit": "px",
+          "label": "Button Border Width",
+          "default": 1
         },
         {
           "type": "checkbox",
@@ -1062,7 +1066,7 @@
   "presets": [
     {
       "name": "TPFA - Feature Asym",
-      "category": "Image"
+      "category": "Content"
     }
   ]
 }
