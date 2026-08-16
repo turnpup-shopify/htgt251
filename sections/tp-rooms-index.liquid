@@ -153,18 +153,31 @@
   }
   .tp-rooms-{{ section.id }} .tp-rooms__link svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
   .tp-rooms-{{ section.id }} .tp-rooms__link:hover svg { transform: translateX(4px); }
-  /* Drawer */
-  .tp-rooms-{{ section.id }} .tp-scene-drawer__panel {
-    background: {{ section.settings.drawer_background_color }};
+  /* ── Drawer — all rules global; JS moves tp-shop-scene-drawer to document.body ── */
+  .tp-scene-drawer__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 460px;
+    max-width: 92vw;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -8px 0 30px rgba(0, 0, 0, 0.14);
   }
-  .tp-rooms-{{ section.id }} .tp-rooms__drawer-heading {
+  .tp-scene-drawer.is-open .tp-scene-drawer__panel { transform: translateX(0); }
+  body.tp-scene-drawer-open { overflow: hidden; }
+  .tp-rooms__drawer-heading {
     font-family: {{ section.settings.room_font_family }};
     font-weight: {{ section.settings.room_font_weight }};
     font-size: 22px;
     margin: 0;
     color: {{ section.settings.drawer_text_color }};
   }
-  .tp-rooms-{{ section.id }} .tp-rooms__drawer-close {
+  .tp-rooms__drawer-close {
     background: none;
     border: 0;
     cursor: pointer;
@@ -172,8 +185,8 @@
     line-height: 0;
     color: {{ section.settings.drawer_text_color }};
   }
-  .tp-rooms-{{ section.id }} .tp-rooms__drawer-close svg { width: 22px; height: 22px; }
-  .tp-rooms-{{ section.id }} .tp-rooms__drawer-grid {
+  .tp-rooms__drawer-close svg { width: 22px; height: 22px; }
+  .tp-rooms__drawer-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px 14px;
@@ -181,12 +194,10 @@
     padding: 0 0 18px;
     list-style: none;
   }
-  .tp-rooms-{{ section.id }} .tp-rooms__drawer-grid .grid__item {
-    margin: 0; max-width: none; width: 100%; min-width: 0; flex: none; display: flex; flex-direction: column;
-  }
-  .tp-rooms-{{ section.id }} .tp-rooms__drawer-grid .grid__item .card-wrapper { height: auto; flex: 1 1 auto; }
-  .tp-rooms-{{ section.id }} .tp-rooms__atc-form { margin: 8px 0 0; }
-  .tp-rooms-{{ section.id }} .tp-rooms__atc-btn {
+  .tp-rooms__drawer-grid .grid__item { margin: 0; max-width: none; width: 100%; min-width: 0; flex: none; display: flex; flex-direction: column; }
+  .tp-rooms__drawer-grid .grid__item .card-wrapper { height: auto; flex: 1 1 auto; }
+  .tp-rooms__atc-form { margin: 8px 0 0; }
+  .tp-rooms__atc-btn {
     display: block;
     width: 100%;
     padding: 10px 12px;
@@ -205,13 +216,13 @@
     line-height: 1.2;
     box-sizing: border-box;
   }
-  .tp-rooms-{{ section.id }} .tp-rooms__atc-btn[disabled] { opacity: 0.45; cursor: not-allowed; }
-  .tp-rooms-{{ section.id }} .tp-rooms__atc-btn--options {
+  .tp-rooms__atc-btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+  .tp-rooms__atc-btn--options {
     background: transparent;
     color: {{ section.settings.drawer_text_color }};
     border-color: {{ section.settings.drawer_text_color }};
   }
-  .tp-rooms-{{ section.id }} .tp-rooms__drawer-grid .price {
+  .tp-rooms__drawer-grid .price {
     font-family: 'Alegreya Sans', sans-serif;
     font-size: 1.2rem;
     font-weight: 500;
@@ -367,7 +378,7 @@
     {%- if product_count > 0 -%}
       <tp-shop-scene-drawer id="{{ drawer_id }}" class="tp-scene-drawer">
         <div class="tp-scene-drawer__overlay" data-scene-drawer-close style="position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:1;background:rgba(0,0,0,{{ section.settings.drawer_overlay_opacity | divided_by: 100.0 }});cursor:pointer;"></div>
-        <aside style="position:absolute;top:0;right:0;height:100%;width:460px;max-width:92vw;z-index:2;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);box-shadow:-8px 0 30px rgba(0,0,0,0.14);"
+        <aside style="background: {{ section.settings.drawer_background_color }}; z-index: 2;"
           class="tp-scene-drawer__panel"
           role="dialog"
           aria-modal="true"
