@@ -293,6 +293,9 @@
   }
   /* Featured layout — 1 card */
   @media screen and (min-width: 750px) {
+    .tp-scene-{{ section.id }}.tp-scene--featured .tp-scene__grid {
+      grid-template-columns: 1fr;
+    }
     .tp-scene-{{ section.id }}.tp-scene--featured .tp-scene__card {
       display: flex;
       align-items: flex-start;
@@ -300,6 +303,8 @@
     }
     .tp-scene-{{ section.id }}.tp-scene--featured .tp-scene__media {
       flex: 0 0 56%;
+      padding-bottom: 0;
+      aspect-ratio: 1 / 1;
     }
     .tp-scene-{{ section.id }}.tp-scene--featured .tp-scene__body {
       flex: 1;
