@@ -40,7 +40,7 @@
   <div class="section-{{ section.id }}-padding isolate">
     {% unless section.settings.title == blank %}
       <div class="title-wrapper-with-link title-wrapper--no-top-margin{% if section.settings.title == blank %} title-wrapper-with-link--no-heading{% endif %}">
-        <h2 class="title" style="font-family: {{ section.settings.title_font_family }}; font-size: {{ section.settings.title_font_size }}; color: {{ section.settings.section_text_color }}; margin-bottom: 8px; width: 100%; text-align:{{section.settings.title_alignment}}; padding: {{ section.settings.section_title_padding }}; font-weight: {{ section.settings.section_title_font_weight }}; ">
+        <h2 class="title" style="font-family: {{ section.settings.title_font_family }}; font-size: {{ section.settings.title_font_size }}; color: {{ section.settings.section_text_color }}; margin-bottom: {{ section.settings.header_subheader_gap | default: '8px' }}; width: 100%; text-align:{{section.settings.title_alignment}}; padding: {{ section.settings.section_title_padding }}; font-weight: {{ section.settings.section_title_font_weight }}; ">
           {{ section.settings.title | escape }}
         </h2>
         <p style="font-family: {{ section.settings.subtitle_font_family }}; font-size: {{ section.settings.subtitle_font_size }}; color: {{ section.settings.section_text_color }}; width: 100%; margin: 0 auto; text-align: {{section.settings.title_alignment}}; padding: {{ section.settings.section_subtitle_padding }};">
@@ -912,6 +912,13 @@
       "id": "section_title_padding",
       "default": "0px",
       "label": "Title Padding"
+    },
+    {
+      "type": "text",
+      "id": "header_subheader_gap",
+      "default": "8px",
+      "label": "Space Between Header and Subheader",
+      "info": "e.g. 0px, 8px, 16px"
     },
     {
       "type": "header",

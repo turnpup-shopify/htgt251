@@ -38,13 +38,13 @@
             {% for block in section.blocks %}
                 {% if block.settings.question != blank and block.settings.answer != blank %}
                     <div class="page-accordion--single" {{ block.shopify_attributes }}>
-                        <button class="turnpup_question" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" js-accordion-header="">
+                        <button class="turnpup_question" aria-expanded="false" js-accordion-header="">
                             <h3 class="page-accordion__title">
                                 {{ block.settings.question }}
                             </h3>
                             <span class="tp-faq-icon" aria-hidden="true"></span>
                         </button>
-                        <div class="turnpup_answer" js-accordion-content="" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"{% unless forloop.first %} style="display: none;"{% endunless %}>
+                        <div class="turnpup_answer" js-accordion-content="" aria-hidden="true" style="display: none;">
                             <span style="display:block;margin-top:8px;">
                                 {{ block.settings.answer }}
                             </span>
