@@ -43,7 +43,7 @@
         <h2 class="title" style="font-family: {{ section.settings.title_font_family }}; font-size: {{ section.settings.title_font_size }}; color: {{ section.settings.section_text_color }}; margin-bottom: {{ section.settings.header_subheader_gap | default: '8px' }}; width: 100%; text-align:{{section.settings.title_alignment}}; padding: {{ section.settings.section_title_padding }}; font-weight: {{ section.settings.section_title_font_weight }}; ">
           {{ section.settings.title | escape }}
         </h2>
-        <p style="font-family: {{ section.settings.subtitle_font_family }}; font-size: {{ section.settings.subtitle_font_size }}; color: {{ section.settings.section_text_color }}; width: 100%; margin: 0 auto; text-align: {{section.settings.title_alignment}}; padding: {{ section.settings.section_subtitle_padding }};">
+        <p style="font-family: {{ section.settings.subtitle_font_family }}; font-size: {{ section.settings.subtitle_font_size }}; color: {{ section.settings.section_text_color }}; width: 100%; margin: {{ section.settings.section_subtitle_margin_top | default: '0px' }} auto 0; text-align: {{section.settings.title_alignment}}; padding: {{ section.settings.section_subtitle_padding }};">
           {{ section.settings.sub_title }}
         </p>
         {%- if section.settings.button_label != blank and section.settings.swipe_on_mobile -%}
@@ -941,6 +941,13 @@
       "id": "section_subtitle_padding",
       "default": "0px",
       "label": "Subtitle Padding"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle_margin_top",
+      "default": "0px",
+      "label": "Subtitle Margin Top",
+      "info": "e.g. 0px, 8px, 16px"
     },
     {
       "type": "text",
