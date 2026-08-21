@@ -121,31 +121,28 @@
         "scene_bedroom": {
           "type": "scene",
           "settings": {
-            "room_name": "Bedroom",
             "instagram_handle": "",
+            "room_name": "Bedroom",
             "description": "<p>Carve out a space that's conducive to rest and relaxation with stylish beds, headboards, tables, sideboards, homeware and more for the bedroom.</p>",
-            "shop_link_label": "Shop Bedroom",
-            "shop_link": ""
+            "scene_products": []
           }
         },
         "scene_study": {
           "type": "scene",
           "settings": {
-            "room_name": "Study",
             "instagram_handle": "",
+            "room_name": "Study",
             "description": "<p>Whether dedicated room or zoned corner, our desks, chairs, lighting, accessories and more will help you create a stylish and comfortable space that's conducive to productivity.</p>",
-            "shop_link_label": "Shop Study",
-            "shop_link": ""
+            "scene_products": []
           }
         },
         "scene_hallway": {
           "type": "scene",
           "settings": {
-            "room_name": "Hallway",
             "instagram_handle": "",
+            "room_name": "Hallway",
             "description": "<p>Whether grand or narrow, our consoles, rugs, lighting, artwork and more will help your hallway make a great first impression while enabling you to express your unique sense of style.</p>",
-            "shop_link_label": "Shop Hallway",
-            "shop_link": ""
+            "scene_products": []
           }
         }
       },
@@ -154,13 +151,40 @@
         "scene_study",
         "scene_hallway"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "subheading": "",
+        "heading_gap": 32,
+        "title_font_size": "32px",
+        "mobile_title_size": "24px",
+        "title_font_family": "'josefin-sans', sans-serif",
+        "title_font_weight": "600",
         "columns_desktop": "3",
         "mobile_layout": "carousel",
         "image_ratio": "portrait_34",
+        "image_border_radius": 0,
+        "column_gap": 28,
         "thumb_count": 3,
+        "section_background_color": "#f7f4ef",
+        "text_color": "#121212",
+        "handle_color": "#8a8378",
+        "room_font_family": "'josefin-sans', sans-serif",
+        "room_font_size": "26px",
+        "room_font_weight": "500",
+        "body_font_family": "'Karla', sans-serif",
+        "show_room_link": true,
+        "scene_button_label": "Shop scene",
+        "pill_background_color": "#3a352c",
+        "pill_text_color": "#ffffff",
+        "pill_background_color_hover": "#000000",
+        "pill_text_color_hover": "#ffffff",
+        "pill_border_radius": 6,
+        "enable_quick_add": false,
+        "drawer_background_color": "#ffffff",
+        "drawer_text_color": "#121212",
+        "drawer_overlay_color": "#000000",
+        "drawer_overlay_opacity": 40,
         "padding_top": 64,
         "padding_bottom": 64,
         "padding_left": 40,
