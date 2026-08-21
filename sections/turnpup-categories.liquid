@@ -48,9 +48,9 @@
         -%}
         {%- for block in section.blocks -%}
           <div class="block-{{block.id}} tp-grid-item {% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}" id="Slide-{{ section.id }}-{{ forloop.index }}" {{ block.shopify_attributes }}>
+            {% if block.settings.image_link != blank %}<a style="display: block;" href="{{block.settings.image_link}}" class="tp-grid-item-link">{% endif %}
             {%- if block.settings.image != blank -%}
-                <a style="display: block;" href="{{block.settings.image_link}}">
-                <div class="tp-media">                
+                <div class="tp-media">
                 <img
                     class="multicolumn-card__image"
                     srcset="{%- if block.settings.image.width >= 275 -%}{{ block.settings.image | img_url: '275x' }} 275w,{%- endif -%}
@@ -68,20 +68,20 @@
                 </div>
                 <div class="overlay">
                 </div>
-                </a>                
             {%- endif -%}
             <div class="tp-text-container">
                 {%- if block.settings.title != blank -%}
                     <h3>
                         {{ block.settings.title }}
                     </h3>
-                {%- endif -%}  
+                {%- endif -%}
                 {%- if block.settings.text != blank -%}
                     <div class="rte text">
                     {{ block.settings.text }}
                     </div>
                 {%- endif -%}
             </div>
+            {% if block.settings.image_link != blank %}</a>{% endif %}
           </div>
         
         <style>  
@@ -247,6 +247,13 @@
         width: calc(100% - 20px);
     }
     {% endif %}
+    .tp-grid .tp-grid-item-link {
+        position: absolute;
+        inset: 0;
+        display: block;
+        color: inherit;
+        text-decoration: none;
+    }
     .tp-grid .tp-text-container h3, .tp-grid .tp-text-container .rte {
         position: relative;
         overflow: hidden;
