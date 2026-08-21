@@ -1,5 +1,5 @@
 {% assign image = section.settings.image %}
-<div class="one-long-sentence" data-section-id="{{ section.id }}" data-section-type="custom-content-section">
+<div class="one-long-sentence" id="section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="custom-content-section">
   <div>
     <div class="one_long_sentence_wrapper module">
       <div style="display:inline-block;vertical-align:middle;" class="custom__item-{{ block.type }} {% if block.settings.full_width %}custom__item-full_width{% endif %}" {{ block.shopify_attributes }}>
@@ -17,69 +17,75 @@
     </div>
   </div>
 </div>
-<style>
+{%- style -%}
   {% assign float_opacity = section.settings.background_opacity | plus: 0 %}
   .section-collection-header {
-      padding-top: {{ section.settings.mobile_padding_top }}px;
-      padding-right: {{ section.settings.mobile_padding_right }}px;
-      padding-left: {{ section.settings.mobile_padding_left }}px;
-      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
-    }
+    padding-top: {{ section.settings.mobile_padding_top }}px;
+    padding-right: {{ section.settings.mobile_padding_right }}px;
+    padding-left: {{ section.settings.mobile_padding_left }}px;
+    padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+  }
 
-    @media screen and (min-width: 700px) {
-      .section-collection-header {
-        padding-top: {{ section.settings.padding_top }}px;
-        padding-right: {{ section.settings.padding_right }}px;
-        padding-left: {{ section.settings.padding_left }}px;
-        padding-bottom: {{ section.settings.padding_bottom }}px;
-      }
+  @media screen and (min-width: 700px) {
+    .section-collection-header {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-right: {{ section.settings.padding_right }}px;
+      padding-left: {{ section.settings.padding_left }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
-  .one-long-sentence-subtitle {
+  }
+
+  #section-{{ section.id }} .one-long-sentence-subtitle {
     font-family: {{ section.settings.subtitle_font_family }};
     font-size: {{ section.settings.subtitle_font_size}};
     color: {{ section.settings.subtitle_font_color}};
     font-weight: {{ section.settings.subtitle_font_weight }};
   }
-  .one-long-sentence h1 {
-    margin: 0 0 10px 0px; 
+
+  #section-{{ section.id }} h1 {
+    margin: 0 0 10px 0px;
     font-family: {{ section.settings.title_font_family }};
     font-size: {{ section.settings.title_font_size}};
     color: {{ section.settings.title_font_color}};
     font-weight: {{ section.settings.title_font_weight }};
   }
-  .one-long-sentence p {
-    margin: 0 0 0 0; 
+
+  #section-{{ section.id }} p {
+    margin: 0 0 0 0;
   }
-  .one-long-sentence {
+
+  #section-{{ section.id }} {
     background-repeat: no-repeat;
-    background-size: cover;  
+    background-size: cover;
     background-color: {{ section.settings.background_color | color_modify: 'alpha', float_opacity }};
     border-bottom: 1px solid {{section.settings.turnpup_bottom_border_color}};
     overflow-x: hidden;
     {%- if section.settings.image != null -%} background-image: url('{{section.settings.image | img_url }}'); {%- endif -%}
   }
-  .one_long_sentence_wrapper {
+
+  #section-{{ section.id }} .one_long_sentence_wrapper {
     text-align: {{ section.settings.alignment }};
     max-width:{{ section.settings.max_width }}%;
     margin: {{ section.settings.margintop | divided_by: 2 }}px auto {{ section.settings.marginbottom | divided_by: 2 }}px;
   }
-  .block_container_one_sentence {
-	float: left; 
+
+  #section-{{ section.id }} .block_container_one_sentence {
+    float: left;
   }
+
   @media only screen and (max-width: 700px) {
-    .one_long_sentence_wrapper { 
+    #section-{{ section.id }} .one_long_sentence_wrapper {
       max-width:{{ section.settings.mobile_max_width }}%;
       margin: {{ section.settings.mobile_margintop | divided_by: 2 }}px auto {{ section.settings.mobile_marginbottom | divided_by: 2 }}px;
     }
-    .one-long-sentence-subtitle {
+    #section-{{ section.id }} .one-long-sentence-subtitle {
       font-size: {{ section.settings.subtitle_font_size_mobile}};
     }
-    .one-long-sentence h1 {  
-      font-size: {{ section.settings.title_font_size_mobile}};      
+    #section-{{ section.id }} h1 {
+      font-size: {{ section.settings.title_font_size_mobile}};
     }
   }
-
-</style>
+{%- endstyle -%}
 
 {% if section.settings.page_background_color != blank %}
 <style>
