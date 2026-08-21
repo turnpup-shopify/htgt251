@@ -9,24 +9,10 @@ Shopify theme for htgtfurniture.com.com. Read `AGENTS.md` for commands
 | Branch | Meaning |
 |---|---|
 | `main` | **LIVE.** Two-way synced by the Shopify GitHub integration (`Update from Shopify for theme firstday-shopify-theme-sync/production` commits land here). Currently checked out. |
-| `dev` | `shopify-theme-deploy-dev.yml` pushes to a fixed dev theme. |
-
-`.gitattributes` sets `*.json merge=ours` because the theme editor owns production JSON.
-Each clone needs `git config merge.ours.driver true` once. `guard-prod-json.yml` fails any
-PR into `prod-theme` that modifies or deletes an existing `.json` (new `.json` files are
-allowed; an `allow-json` label overrides).
 
 ---
 
 ## Tooling
-
-- No build step. No Tailwind, no Vite, no bundler. `package.json` is Shopify CLI + `dotenv-cli` + Prettier only.
-- `.prettierrc` → `@shopify/prettier-plugin-liquid`, `tabWidth: 2`, double quotes.
-- **No Theme Check config exists** (`.theme-check.yml` is absent) and no linter runs in CI.
-  Theme Check does still run in-editor via the Shopify Liquid extension, on its default
-  rule set, so you will see warnings the repo never agreed to. Treat them as advice.
-- No automated tests. Validate with `npm run devonly` across viewports.
-- `.shopifyignore` keeps `AGENTS.md` and `docs/**` out of theme push/pull.
 
 ---
 
@@ -77,10 +63,7 @@ schema setting instead.
 ## CSS architecture
 
 **Naming: BEM, inconsistently applied.** Be Yours core is clean BEM
-(`.grid__item`, `.grid--3-col`, `.card__content`). Newer sections keep block/element but
-prefix per section: `.v1-hero-coupon__title`, `.v1-hero-image-wrap-mobile--full`.
-There is also a small utility layer: `.visually-hidden`, `.hidden`, `.small-hide`,
-`.medium-hide`, `.large-up-hide`, `.focus-none`, `.center`.
+tbd
 
 **Where tokens live — three layers, in load order from `layout/theme.liquid:219`:**
 
