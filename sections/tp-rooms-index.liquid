@@ -63,6 +63,9 @@
     border-radius: {{ section.settings.image_border_radius }}px;
     background: #efece7;
   }
+  .tp-rooms-{{ section.id }} .tp-rooms__media[data-scene-drawer-open] {
+    cursor: pointer;
+  }
   .tp-rooms-{{ section.id }} .tp-rooms__media > img {
     position: absolute;
     inset: 0;
@@ -270,6 +273,7 @@
     font-weight: 500;
     text-decoration: none;
     color: {{ section.settings.text_color }};
+    background: transparent;
     border: 1px solid rgba(0,0,0,0.16);
     border-radius: 4px;
     transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
@@ -304,7 +308,7 @@
         assign drawer_id = 'RoomDrawer-' | append: section.id | append: '-' | append: room.system.handle
       -%}
       <div class="tp-rooms__card">
-        <div class="tp-rooms__media">
+        <div class="tp-rooms__media"{% if product_count > 0 %} data-scene-drawer-open="#{{ drawer_id }}"{% endif %}>
           {%- if room.image.value != blank -%}
             {{ room.image.value | image_url: width: 900 | image_tag:
               loading: 'lazy',

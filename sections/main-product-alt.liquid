@@ -227,6 +227,52 @@
       font-weight: 500;
       font-size: 1.4rem;
     }
+
+    /* Desktop two-column: product info left + buybox card right */
+    @media screen and (min-width: 990px) {
+      #ProductInfo-{{ section.id }} {
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        column-gap: 24px;
+        align-items: start;
+      }
+      #ProductInfo-{{ section.id }}.product__info-container--sticky {
+        position: static;
+      }
+      #ProductInfo-{{ section.id }} .pdp-buybox-col {
+        grid-column: 2;
+        grid-row: 1 / span 50;
+        position: sticky;
+        top: 20px;
+        align-self: start;
+        background: #fff;
+        border-radius: 24px;
+        border: 1px solid oklch(0.92 0.008 60);
+        box-shadow:
+          0 1px 3px oklch(0.2 0 0 / 0.05),
+          0 20px 40px oklch(0.2 0 0 / 0.08);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      #ProductInfo-{{ section.id }} .pdp-buybox-col .pdp-atc-card {
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        min-width: unset;
+        max-width: unset;
+      }
+      #ProductInfo-{{ section.id }} .pdp-buybox-col .pdp-atc-card__badges {
+        max-width: unset;
+      }
+    }
+    @media screen and (max-width: 989px) {
+      #ProductInfo-{{ section.id }} .pdp-buybox-col {
+        display: contents;
+      }
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
@@ -563,7 +609,22 @@
       >
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
+        {%- assign _buybox_open = false -%}
         {%- for block in section.blocks -%}
+          {%- liquid
+            assign _is_buybox = false
+            case block.type
+              when 'price', 'variant_picker', 'quantity_selector', 'buy_buttons', 'elevated_card', 'countdown', 'trust_text', 'back_in_stock', 'notify_me', 'trust_badges'
+                assign _is_buybox = true
+            endcase
+          -%}
+          {%- if _is_buybox and _buybox_open == false -%}
+            <div class="pdp-buybox-col">
+            {%- assign _buybox_open = true -%}
+          {%- elsif _is_buybox == false and _buybox_open -%}
+            </div>
+            {%- assign _buybox_open = false -%}
+          {%- endif -%}
           {%- case block.type -%}
             {%- when '@app' -%}
               {% render block %}
@@ -1555,6 +1616,7 @@
               {%- endstyle -%}
           {%- endcase -%}
         {%- endfor -%}
+        {%- if _buybox_open -%}</div>{%- endif -%}
         <a href="{{ product.url }}" class="link product__view-details animate-arrow">
           {{ 'products.product.view_full_details' | t }}
           {% render 'icon-arrow' %}

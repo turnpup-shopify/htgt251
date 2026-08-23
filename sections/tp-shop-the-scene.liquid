@@ -102,6 +102,9 @@
     border-radius: {{ section.settings.image_border_radius }}px;
     background: #efece7;
   }
+  .tp-scene-{{ section.id }} .tp-scene__media[data-scene-drawer-open] {
+    cursor: pointer;
+  }
   .tp-scene-{{ section.id }} .tp-scene__media > img {
     position: absolute;
     inset: 0;
@@ -369,7 +372,7 @@
           assign drawer_id = 'SceneDrawer-' | append: section.id | append: '-dyn' | append: forloop.index
         -%}
         <div class="tp-scene__card">
-          <div class="tp-scene__media">
+          <div class="tp-scene__media"{% if product_count > 0 %} data-scene-drawer-open="#{{ drawer_id }}"{% endif %}>
             {%- if room.image.value != blank -%}
               {{ room.image.value | image_url: width: 900 | image_tag:
                 loading: 'lazy',
@@ -433,7 +436,7 @@
           assign drawer_id = 'SceneDrawer-' | append: section.id | append: '-' | append: block.id
         -%}
         <div class="tp-scene__card" {{ block.shopify_attributes }}>
-          <div class="tp-scene__media">
+          <div class="tp-scene__media"{% if product_count > 0 %} data-scene-drawer-open="#{{ drawer_id }}"{% endif %}>
             {%- if block.settings.scene_image != blank -%}
               {{ block.settings.scene_image | image_url: width: 900 | image_tag:
                 loading: 'lazy',
