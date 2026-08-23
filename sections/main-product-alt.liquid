@@ -228,11 +228,36 @@
       font-size: 1.4rem;
     }
 
-    /* Desktop two-column: product info left + buybox card right */
+    /* Buybox card — shared styles (mobile + desktop) */
+    #ProductInfo-{{ section.id }} .pdp-buybox-col {
+      background: #fff;
+      border-radius: 24px;
+      border: 1px solid oklch(0.92 0.008 60);
+      box-shadow:
+        0 1px 3px oklch(0.2 0 0 / 0.05),
+        0 20px 40px oklch(0.2 0 0 / 0.08);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    #ProductInfo-{{ section.id }} .pdp-buybox-col .pdp-atc-card {
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0;
+      min-width: unset;
+      max-width: unset;
+    }
+    #ProductInfo-{{ section.id }} .pdp-buybox-col .pdp-atc-card__badges {
+      max-width: unset;
+    }
+
+    /* Desktop two-column: product info left + buybox card right (50/50) */
     @media screen and (min-width: 990px) {
       #ProductInfo-{{ section.id }} {
         display: grid;
-        grid-template-columns: 1fr 380px;
+        grid-template-columns: 1fr 1fr;
         column-gap: 24px;
         align-items: start;
       }
@@ -245,32 +270,6 @@
         position: sticky;
         top: 20px;
         align-self: start;
-        background: #fff;
-        border-radius: 24px;
-        border: 1px solid oklch(0.92 0.008 60);
-        box-shadow:
-          0 1px 3px oklch(0.2 0 0 / 0.05),
-          0 20px 40px oklch(0.2 0 0 / 0.08);
-        padding: 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
-      #ProductInfo-{{ section.id }} .pdp-buybox-col .pdp-atc-card {
-        border: none;
-        box-shadow: none;
-        border-radius: 0;
-        padding: 0;
-        min-width: unset;
-        max-width: unset;
-      }
-      #ProductInfo-{{ section.id }} .pdp-buybox-col .pdp-atc-card__badges {
-        max-width: unset;
-      }
-    }
-    @media screen and (max-width: 989px) {
-      #ProductInfo-{{ section.id }} .pdp-buybox-col {
-        display: contents;
       }
     }
   {%- endstyle -%}
