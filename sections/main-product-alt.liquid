@@ -272,8 +272,15 @@
         align-self: start;
         border-radius: 0;
       }
+      #ProductInfo-{{ section.id }} .accordion__content.rte,
+      #ProductInfo-{{ section.id }} .product__description.rte {
+        font-size: {{ section.settings.description_font_size_desktop }}px;
+      }
+      #ProductInfo-{{ section.id }} .pdp-buybox-col {
+        font-size: {{ section.settings.buybox_font_size_desktop }}px;
+      }
       #ProductInfo-{{ section.id }} .pdp-buybox-col .price--large {
-        font-size: 2.4rem;
+        font-size: {{ section.settings.buybox_price_font_size_desktop }}px;
       }
     }
   {%- endstyle -%}
@@ -3116,6 +3123,40 @@
       "unit": "px",
       "label": "Mobile Padding Bottom",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Font Sizes — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size_desktop",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "buybox_font_size_desktop",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Buybox general font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "buybox_price_font_size_desktop",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Buybox price font size",
+      "default": 24
     },
     {
       "type": "header",
