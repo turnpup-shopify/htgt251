@@ -620,18 +620,28 @@
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
         {%- assign _buybox_open = false -%}
+        {%- assign _remaining_buybox = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            case block.type
+              when 'price', 'variant_picker', 'quantity_selector', 'buy_buttons', 'elevated_card', 'countdown', 'trust_text', 'back_in_stock', 'notify_me', 'trust_badges'
+                assign _remaining_buybox = _remaining_buybox | plus: 1
+            endcase
+          -%}
+        {%- endfor -%}
         {%- for block in section.blocks -%}
           {%- liquid
             assign _is_buybox = false
             case block.type
               when 'price', 'variant_picker', 'quantity_selector', 'buy_buttons', 'elevated_card', 'countdown', 'trust_text', 'back_in_stock', 'notify_me', 'trust_badges'
                 assign _is_buybox = true
+                assign _remaining_buybox = _remaining_buybox | minus: 1
             endcase
           -%}
           {%- if _is_buybox and _buybox_open == false -%}
             <div class="pdp-buybox-col">
             {%- assign _buybox_open = true -%}
-          {%- elsif _is_buybox == false and _buybox_open -%}
+          {%- elsif _is_buybox == false and _buybox_open and _remaining_buybox == 0 -%}
             </div>
             {%- assign _buybox_open = false -%}
           {%- endif -%}
