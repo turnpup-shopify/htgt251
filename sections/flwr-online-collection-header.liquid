@@ -57,7 +57,7 @@
   #section-{{ section.id }} {
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: {{ section.settings.background_color | color_modify: 'alpha', float_opacity }};
+    background-color: {{ section.settings.background_color }};
     border-bottom: 1px solid {{section.settings.turnpup_bottom_border_color}};
     overflow-x: hidden;
     {%- if section.settings.image != null -%} background-image: url('{{section.settings.image | img_url }}'); {%- endif -%}
