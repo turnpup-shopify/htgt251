@@ -32,7 +32,7 @@
         "subtitle_font_weight": "700",
         "subtitle_font_family": "'Karla'",
         "subtitle_font_color": "#555555",
-        "background_color": "#ffffff",
+        "background_color": "rgba(0,0,0,0)",
         "background_opacity": "0.2",
         "max_width": 100,
         "mobile_max_width": 90,
