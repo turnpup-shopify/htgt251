@@ -32,7 +32,7 @@
         "subtitle_font_weight": "700",
         "subtitle_font_family": "'Karla'",
         "subtitle_font_color": "#555555",
-        "background_color": "#ffffff",
+        "background_color": "rgba(0,0,0,0)",
         "background_opacity": "0.2",
         "max_width": 100,
         "mobile_max_width": 90,
@@ -42,7 +42,8 @@
         "mobile_marginbottom": 30,
         "alignment": "left",
         "turnpup_bottom_border_color": "rgba(0,0,0,0)",
-        "mobile_font_size": "12px"
+        "mobile_font_size": "12px",
+        "page_background_color": ""
       }
     },
     "tp_subnav_3LrT9N": {
@@ -152,6 +153,7 @@
       "type": "tp-questions",
       "settings": {
         "section_padding": true,
+        "section_heading": "Common questions",
         "tp_metaobject": "{{ collection.metafields.custom.qa.value }}",
         "padding_top": 28,
         "padding_bottom": 28,
@@ -461,7 +463,11 @@
         "title_alignment": "left",
         "section_text_color": "#ffffff",
         "overall_background_image_url": "",
-        "section_background_color": "#331b25"
+        "section_background_color": "#331b25",
+        "overlay_gradient": false,
+        "text_position": "center",
+        "tile_aspect_ratio": "1:1",
+        "tile_border_radius": "0px"
       }
     },
     "tp_auto_col_banners_Lwfkg9": {
@@ -579,8 +585,18 @@
         "color_scheme": "inverse",
         "background_color": "#ffffff",
         "text_color": "#000000",
-        "font_size_desktop": "30px",
-        "font_size_mobile": "20px"
+        "font_family": "'Helvetica Neue'",
+        "font_weight": "300",
+        "desktop_font_size": "30px",
+        "mobile_font_size": "20px",
+        "margin_top": "0",
+        "margin_right": "0",
+        "margin_bottom": "0",
+        "margin_left": "0",
+        "mobile_margin_top": "0",
+        "mobile_margin_right": "0",
+        "mobile_margin_bottom": "0",
+        "mobile_margin_left": "0"
       }
     },
     "image_with_text_AqzXDB": {
