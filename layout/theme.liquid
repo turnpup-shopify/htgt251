@@ -416,7 +416,7 @@ body {
 
   {%- assign hapny_product_page = false -%}
   {%- if request.page_type == 'product' and product and product.vendor -%}
-    {%- if product.vendor | strip | downcase == 'hapny home' -%}
+    {%- if product.vendor -%}
       {%- assign hapny_product_page = true -%}
     {%- endif -%}
   {%- endif -%}
@@ -443,7 +443,7 @@ body {
     {%- elsif settings.enable_popup -%}
       {%- assign render_popup = true -%}
     {%- endif -%}
-    {%- if render_popup or (form.posted_successfully? and not hapny_product_page) -%}
+    {%- assign __not_render_popup__ = false -%}{%- unless render_popup -%}{%- assign __not_render_popup__ = true -%}{%- endunless -%}{%- if __not_render_popup__ and form.posted_successfully? -%}{{ 'Liquid error (layout/theme line 446): Unknown operator hapny_product_page' }}{%- elsif render_popup or form.posted_successfully? -%}
       {% render 'tp-popup' %}
     {%- endif -%}
 
@@ -507,4 +507,25 @@ body {
   {% else %}
     <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
   {% endif %}
-{%- endif -%}</body></html>
+{%- endif -%}</body></html>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+The template contained unknown operators that previously caused errors
+when loaded by end users. These have been replaced with valid syntax
+that maintains the same behavior.
+
+---
+Changes:
+- from: "{%- if product.vendor | strip | downcase == 'hapny home' -%}"
+  to: "{%- if product.vendor -%}"
+  position: 20490..20515
+- from: "{%- if render_popup or (form.posted_successfully? and not hapny_product_page)
+    -%}"
+  to: "{%- assign __not_render_popup__ = false -%}{%- unless render_popup -%}{%- assign
+    __not_render_popup__ = true -%}{%- endunless -%}{%- if __not_render_popup__ and
+    form.posted_successfully? -%}{{ 'Liquid error (layout/theme line 446): Unknown
+    operator hapny_product_page' }}{%- elsif render_popup or form.posted_successfully?
+    -%}"
+  position: 21185..21511
+{%- endcomment -%}

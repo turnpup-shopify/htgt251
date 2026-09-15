@@ -10,7 +10,7 @@
         <div class="page-width page-width">
           {% render block %}
         </div>
-      {%- when 'featured_image' - %}
+      {%- when 'featured_image' %}
         {%- if article.image -%}
           <div class="article-template__hero-container" {{ block.shopify_attributes }}>
             <div
@@ -37,7 +37,7 @@
           </div>
         {%- endif -%}
 
-      {%- when 'title' - %}
+      {%- when 'title' %}
         <header class="page-width page-width-" {{ block.shopify_attributes }}>
           <h1 class="article-template__title" itemprop="headline">{{ article.title | escape }}</h1>
           {%- if block.settings.blog_show_date -%}
@@ -57,7 +57,7 @@
 
         <div class="table-of-contents page-width" style="margin-top: 20px;{% if article.metafields.custom.hide_table_of_contents %}display:none;{% endif %}"></div>
 
-      {%- when 'content' - %}
+      {%- when 'content' %}
         <div
           class="article-template__content page-width page-width rte blog-container"
           itemprop="articleBody"
@@ -679,3 +679,19 @@
     ]
   }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- when 'featured_image' - %}"
+  to: "{%- when 'featured_image' %}"
+  position: 338..366
+- from: "{%- when 'title' - %}"
+  to: "{%- when 'title' %}"
+  position: 2103..2122
+- from: "{%- when 'content' - %}"
+  to: "{%- when 'content' %}"
+  position: 3239..3260
+{% endcomment %}
