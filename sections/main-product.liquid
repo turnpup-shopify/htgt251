@@ -500,13 +500,7 @@
             <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
           {%- when 'countdown' -%}
             {%- if settings.timer_stat_date != "" and product.selected_or_first_available_variant.compare_at_price > 0 -%}
-              {% render 'countdown-timer', 
-                start_date: settings.timer_start_date,
-                end_date: settings.timer_end_date,
-                block_id: "pdp",
-                timer_label_color: "#EEE",
-                timer_label_text_color: "black";
-              %}
+              {% render 'countdown-timer', start_date: settings.timer_start_date, end_date: settings.timer_end_date, block_id: "pdp", timer_label_color: "#EEE", timer_label_text_color: "black" %}
             {%- endif -%}
           {%- when 'rating' -%}
             {%- if product.metafields.reviews.rating.value != blank -%}
@@ -1209,3 +1203,18 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'countdown-timer', \n                start_date: settings.timer_start_date,\n
+    \               end_date: settings.timer_end_date,\n                block_id:
+    \"pdp\",\n                timer_label_color: \"#EEE\",\n                timer_label_text_color:
+    \"black\";\n              %}"
+  to: '{% render ''countdown-timer'', start_date: settings.timer_start_date, end_date:
+    settings.timer_end_date, block_id: "pdp", timer_label_color: "#EEE", timer_label_text_color:
+    "black" %}'
+  position: 34569..34750
+{% endcomment %}

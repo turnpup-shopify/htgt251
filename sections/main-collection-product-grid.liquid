@@ -163,19 +163,7 @@
                     style="--animation-order: {{ forloop.index }};"
                   {% endif %}
                 >
-                  {% render 'tp-card-product',
-                    card_product: product,
-                    media_aspect_ratio: section.settings.image_ratio,
-                    image_shape: section.settings.image_shape,
-                    show_secondary_image: section.settings.show_secondary_image,
-                    show_vendor: section.settings.show_vendor,
-                    show_rating: section.settings.show_rating,
-                    lazy_load: lazy_load,
-                    skip_styles: skip_card_product_styles,
-                    quick_add: section.settings.quick_add,
-                    section_id: section.id,
-                    reverse_image: section.settings.reverse_plp_images |  default: false,
-                  %}
+                  {% render 'tp-card-product', card_product: product, media_aspect_ratio: section.settings.image_ratio, image_shape: section.settings.image_shape, show_secondary_image: section.settings.show_secondary_image, show_vendor: section.settings.show_vendor, show_rating: section.settings.show_rating, lazy_load: lazy_load, skip_styles: skip_card_product_styles, quick_add: section.settings.quick_add, section_id: section.id, reverse_image: section.settings.reverse_plp_images, default: false %}
                 </li>
                 {%- assign skip_card_product_styles = true -%}
               {%- endfor -%}
@@ -420,3 +408,31 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'tp-card-product',
+                        card_product: product,
+                        media_aspect_ratio: section.settings.image_ratio,
+                        image_shape: section.settings.image_shape,
+                        show_secondary_image: section.settings.show_secondary_image,
+                        show_vendor: section.settings.show_vendor,
+                        show_rating: section.settings.show_rating,
+                        lazy_load: lazy_load,
+                        skip_styles: skip_card_product_styles,
+                        quick_add: section.settings.quick_add,
+                        section_id: section.id,
+                        reverse_image: section.settings.reverse_plp_images |  default: false,
+                      %}
+  to: "{% render 'tp-card-product', card_product: product, media_aspect_ratio: section.settings.image_ratio,
+    image_shape: section.settings.image_shape, show_secondary_image: section.settings.show_secondary_image,
+    show_vendor: section.settings.show_vendor, show_rating: section.settings.show_rating,
+    lazy_load: lazy_load, skip_styles: skip_card_product_styles, quick_add: section.settings.quick_add,
+    section_id: section.id, reverse_image: section.settings.reverse_plp_images, default:
+    false %}"
+  position: 7382..7867
+{% endcomment %}
