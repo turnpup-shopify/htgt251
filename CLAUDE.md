@@ -373,6 +373,34 @@ design to 340.
 `sections/fd-problem-signs.liquid` still trips rule 3 on `wave_height`
 (min 8, max 120, step 2, default 33).
 
+### Strip captured snippet output before comparing it
+
+When a snippet acts as a helper that returns a value, capture it and run it
+through `| strip` before any comparison:
+
+```liquid
+{%- liquid
+  capture fd_hide_fs
+    render 'fd-hide-free-shipping', product: product, text: fd_fs_text
+  endcapture
+  assign fd_hide_fs = fd_hide_fs | strip
+-%}
+{%- unless fd_hide_fs == 'true' -%} ... {%- endunless -%}
+```
+
+On the live store the captured output arrives as a line break followed by
+`true`, not `true`, even with `{%- -%}` whitespace control inside the snippet.
+An exact `== 'true'` never matches and the condition silently does nothing.
+
+This shipped broken once. The Motor Freight free shipping hide (PR #2) deployed
+correctly but never hid anything, because every check compared against `true`
+exactly. Theme Check had no way to catch it, and the PR was merged without a
+preview, so it reached the live site broken. PR #3 added the `| strip`.
+
+**Preview before merging to `main`.** `main` syncs straight to the live theme.
+Push to an unpublished theme first (`shopify theme push --unpublished`), load
+the page with `?preview_theme_id=<id>` and check the output.
+
 ## Copy voice for customer facing text
 
 - No hyphens, dashes, semicolons, or colons.
