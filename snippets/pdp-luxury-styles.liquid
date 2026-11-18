@@ -136,6 +136,23 @@
     {{ r }} .thumbnail-list:has(> :nth-child(5)) > .thumbnail-list__item {
       flex-basis: calc((100% - var(--pdp-thumb-gap) * 4) / 4.5);
     }
+
+    /* The gallery is already full bleed here, so the slider snaps to the
+       screen edge and the discount banner drops its negative side margins. */
+    {{ r }} .product__media-list {
+      scroll-padding-left: 0;
+    }
+
+    {{ r }} .pdp-discount-banner {
+      --banner-full-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    {{ r }} .pdp-discount-banner__text {
+      padding: 10px var(--pdp-gutter);
+      line-height: 1.45;
+    }
   }
 
   /* Tablet and desktop rail. Thumbnails run down the left of the main image
