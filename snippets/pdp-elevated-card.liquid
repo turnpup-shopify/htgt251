@@ -234,6 +234,13 @@
 
   <div class="pdp-elevated-card__badges">
 
+    {%- liquid
+      assign fd_fs_text = block.settings.badge_1_line1 | default: 'Free shipping'
+      capture fd_hide_fs_badge
+        render 'fd-hide-free-shipping', product: product, text: fd_fs_text
+      endcapture
+    -%}
+    {%- unless fd_hide_fs_badge == 'true' -%}
     <div class="pdp-elevated-card__badge">
       <svg class="pdp-elevated-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
@@ -245,6 +252,7 @@
         {{- block.settings.badge_1_line2 | default: 'on orders $99+' -}}
       </span>
     </div>
+    {%- endunless -%}
 
     <div class="pdp-elevated-card__badge">
       <svg class="pdp-elevated-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

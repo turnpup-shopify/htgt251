@@ -9,6 +9,20 @@
   if free_shipping_threshold > 0
     assign free_shipping_enabled = true
   endif
+
+  assign fd_cart_has_motor_freight = false
+  for item in cart.items
+    capture fd_hide_fs_item
+      render 'fd-hide-free-shipping', product: item.product
+    endcapture
+    if fd_hide_fs_item == 'true'
+      assign fd_cart_has_motor_freight = true
+      break
+    endif
+  endfor
+  if fd_cart_has_motor_freight
+    assign free_shipping_enabled = false
+  endif
 %}
 {% liquid
   assign slide_cart_checkout_note = settings.slide_cart_checkout_note | to_s | strip
@@ -349,7 +363,7 @@
         <span data-slide-cart-subtotal>{{ cart.total_price | money }}</span>
       </div>
 
-      {% unless free_shipping_enabled %}
+      {% unless free_shipping_enabled or fd_cart_has_motor_freight %}
         <p class="tp-slide-cart__note">As a new customer you qualify for free shipping.</p>
       {% endunless %}
 
