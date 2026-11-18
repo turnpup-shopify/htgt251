@@ -48,10 +48,64 @@
       }
   }
 </style>
+{%- liquid
+  assign pdp_lux = false
+  if section.settings.visual_style == 'luxury'
+    assign pdp_lux = true
+  endif
+-%}
 <section
   id="MainProduct-{{ section.id }}"
-  class="page-width product-alt-container section-{{ section.id }}-padding"
+  class="{% if pdp_lux %}pdp-lux{% else %}page-width product-alt-container{% endif %} section-{{ section.id }}-padding"
   data-section="{{ section.id }}"
+  {%- if pdp_lux %}
+    style="
+      --pdp-bg: {{ section.settings.lux_bg_color }};
+      --pdp-ink: {{ section.settings.lux_ink_color }};
+      --pdp-muted: {{ section.settings.lux_muted_color }};
+      --pdp-brass: {{ section.settings.lux_brass_color }};
+      --pdp-savings: {{ section.settings.lux_savings_color }};
+      --pdp-rule: {{ section.settings.lux_rule_color }};
+      --pdp-media-bg: {{ section.settings.lux_media_bg_color }};
+      --pdp-timer-bg: {{ section.settings.lux_timer_bg_color }};
+      --pdp-timer-border: {{ section.settings.lux_timer_border_color }};
+      --pdp-accent: {{ section.settings.lux_accent_color }};
+      --pdp-on-accent: {{ section.settings.lux_on_accent_color }};
+      --pdp-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+      --pdp-padding-right-desktop: {{ section.settings.padding_right_desktop }}px;
+      --pdp-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+      --pdp-padding-left-desktop: {{ section.settings.padding_left_desktop }}px;
+      --pdp-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+      --pdp-padding-right-mobile: {{ section.settings.padding_right_mobile }}px;
+      --pdp-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+      --pdp-padding-left-mobile: {{ section.settings.padding_left_mobile }}px;
+      --pdp-title-font-family: {{ section.settings.title_font_family }};
+      --pdp-title-font-size-desktop: {{ section.settings.title_font_size_desktop }}px;
+      --pdp-title-font-size-mobile: {{ section.settings.title_font_size_mobile }}px;
+      --pdp-title-font-weight: {{ section.settings.title_font_weight }};
+      --pdp-title-font-color: {{ section.settings.title_font_color }};
+      --pdp-subtitle-font-family: {{ section.settings.subtitle_font_family }};
+      --pdp-subtitle-font-size-desktop: {{ section.settings.subtitle_font_size_desktop }}px;
+      --pdp-subtitle-font-size-mobile: {{ section.settings.subtitle_font_size_mobile }}px;
+      --pdp-subtitle-font-weight: {{ section.settings.subtitle_font_weight }};
+      --pdp-subtitle-font-color: {{ section.settings.subtitle_font_color }};
+      --pdp-price-font-family: {{ section.settings.price_font_family }};
+      --pdp-price-font-size-desktop: {{ section.settings.price_font_size_desktop }}px;
+      --pdp-price-font-size-mobile: {{ section.settings.price_font_size_mobile }}px;
+      --pdp-price-font-weight: {{ section.settings.price_font_weight }};
+      --pdp-price-font-color: {{ section.settings.price_font_color }};
+      --pdp-body-font-family: {{ section.settings.body_font_family }};
+      --pdp-body-font-size-desktop: {{ section.settings.body_font_size_desktop }}px;
+      --pdp-body-font-size-mobile: {{ section.settings.body_font_size_mobile }}px;
+      --pdp-body-font-weight: {{ section.settings.body_font_weight }};
+      --pdp-body-font-color: {{ section.settings.body_font_color }};
+      --pdp-label-font-family: {{ section.settings.label_font_family }};
+      --pdp-label-font-size-desktop: {{ section.settings.label_font_size_desktop }}px;
+      --pdp-label-font-size-mobile: {{ section.settings.label_font_size_mobile }}px;
+      --pdp-label-font-weight: {{ section.settings.label_font_weight }};
+      --pdp-label-font-color: {{ section.settings.label_font_color }};
+    "
+  {%- endif -%}
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
@@ -61,6 +115,13 @@
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {%- if pdp_lux -%}
+    {%- if section.settings.load_google_fonts -%}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap">
+    {%- endif -%}
+  {%- endif -%}
 
   {%- style -%}
     .section-{{ section.id }}-padding {
@@ -284,6 +345,9 @@
       }
     }
   {%- endstyle -%}
+  {%- if pdp_lux -%}
+    {%- render 'pdp-luxury-styles', section_id: section.id -%}
+  {%- endif -%}
 
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
@@ -306,8 +370,8 @@
     >
   {%- endif -%}
 
-  <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.gallery_layout }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-    <div class="grid__item product__media-wrapper">
+  <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.gallery_layout }} {% if pdp_lux %}pdp-lux__layout{% else %}grid grid--1-col{% endif %} {% if product.media.size > 0 %}{% unless pdp_lux %}grid--2-col-tablet{% endunless %}{% else %}product--no-media{% endif %}">
+    <div class="{% unless pdp_lux %}grid__item {% endunless %}product__media-wrapper">
       <media-gallery
         id="MediaGallery-{{ section.id }}"
         role="region"
@@ -336,7 +400,7 @@
           </a>
           <ul
             id="Slider-Gallery-{{ section.id }}"
-            class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile"
+            class="product__media-list contains-media{% unless pdp_lux %} grid grid--peek{% endunless %} list-unstyled slider slider--mobile"
             role="list"
           >
             {%- liquid
@@ -612,7 +676,7 @@
         {%- endif -%}
       </media-gallery>
     </div>
-    <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}">
+    <div class="product__info-wrapper{% unless pdp_lux %} grid__item{% endunless %}{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}">
       <div
         id="ProductInfo-{{ section.id }}"
         class="product__info-container{% if section.settings.enable_sticky_info %} product__info-container--sticky{% endif %}"
@@ -667,17 +731,66 @@
               >
                 {{- block.settings.text -}}
               </p>
+            {%- when 'eyebrow' -%}
+              {%- liquid
+                assign eyebrow_text = block.settings.fallback_text
+                assign eyebrow_styles = product.metafields.custom.design_style.value
+                if eyebrow_styles != blank
+                  assign eyebrow_text = eyebrow_styles | slice: 0, block.settings.max_styles | join: '  ·  '
+                endif
+              -%}
+              {%- if eyebrow_text != blank -%}
+                <p class="product__eyebrow" {{ block.shopify_attributes }}>{{ eyebrow_text | escape }}</p>
+              {%- endif -%}
+            {%- when 'short_description' -%}
+              {%- liquid
+                assign short_description = product.metafields.custom.pdp_short_description.value
+                if short_description == blank
+                  assign short_description = product.description | split: '</p>' | first | strip_html | strip
+                endif
+              -%}
+              {%- if short_description != blank -%}
+                <p class="product__short-description" {{ block.shopify_attributes }}>{{ short_description }}</p>
+              {%- endif -%}
+            {%- when 'expert_link' -%}
+              {%- if block.settings.text != blank -%}
+                <a
+                  class="product__expert-link"
+                  href="{{ block.settings.link | default: routes.root_url }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {{- block.settings.text | escape -}}
+                </a>
+              {%- endif -%}
             {%- when 'breadcrumb' -%}
               {%- render 'breadcrumb' -%}
             {%- when 'title' -%}
+              {%- liquid
+                if product.metafields.custom.seo_title != blank
+                  assign product_heading = product.metafields.custom.seo_title
+                else
+                  assign product_heading = product.title | escape
+                endif
+                assign product_subtitle = ''
+                if block.settings.split_subtitle
+                  assign full_heading = product_heading
+                  if full_heading contains ' - '
+                    assign product_heading = full_heading | split: ' - ' | first
+                    assign heading_prefix = product_heading | append: ' - '
+                    assign product_subtitle = full_heading | remove_first: heading_prefix | downcase
+                  endif
+                  if product.metafields.custom.pdp_subtitle != blank
+                    assign product_subtitle = product.metafields.custom.pdp_subtitle.value | escape
+                  endif
+                endif
+              -%}
               <div class="product__title" {{ block.shopify_attributes }}>
                 <h1 style="{% if block.settings.title_font_family != blank %}font-family: {{ block.settings.title_font_family }};{% endif %}{% if block.settings.title_font_weight != blank %}font-weight: {{ block.settings.title_font_weight }};{% endif %}">
-                  {%- if product.metafields.custom.seo_title != blank -%}
-                    {{ product.metafields.custom.seo_title }}
-                  {%- else -%}
-                    {{ product.title | escape }}
-                  {%- endif -%}
+                  {{- product_heading -}}
                 </h1>
+                {%- if product_subtitle != blank -%}
+                  <p class="product__subtitle">{{ product_subtitle }}</p>
+                {%- endif -%}
               </div>
             {%- when 'mock_reviews_link' -%}
               {%- liquid
@@ -701,6 +814,9 @@
                   <span class="product__mock-review-star">★</span>
                 </span>
                 <span class="product__mock-review-count">
+                  {%- if block.settings.show_rating_value and product.metafields.reviews.rating.value != blank -%}
+                    {{ product.metafields.reviews.rating.value.rating | round: 1 }}  ·  
+                  {%- endif %}
                   {{ displayed_review_count }}
                   {% if displayed_review_count == 1 %}review{% else %}reviews{% endif %}
                 </span>
@@ -727,9 +843,14 @@
                   sale_countdown_end: sale_countdown_end,
                   countdown_bg: countdown_bg,
                   countdown_text: countdown_text,
-                  countdown_border: countdown_border
+                  countdown_border: countdown_border,
+                  show_savings: block.settings.show_savings,
+                  countdown_style: block.settings.countdown_style
                 -%}
               </div>
+              {%- if block.settings.countdown_style == 'band' -%}
+                <script src="{{ 'pdp-sale-countdown.js' | asset_url }}" defer="defer"></script>
+              {%- endif -%}
               {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
                 <div class="product__tax caption rte">
                   {%- if shop.taxes_included -%}
@@ -1364,7 +1485,11 @@
                 {% render 'countdown-timer', start_date: settings.timer_start_date, end_date: settings.timer_end_date, block_id: "pdp", timer_label_color: "#EEE", timer_label_text_color: "black" %}
               {%- endif -%}
             {%- when 'dimensions' -%}
-              {%- if block.settings.text != '' -%}
+              {%- if block.settings.text != '' and block.settings.display_style == 'row' -%}
+                <div class="product__dimensions-row quick-add-hidden" {{ block.shopify_attributes }}>
+                  {%- render 'dimensions', dimensions: block.settings.text, layout: 'row' -%}
+                </div>
+              {%- elsif block.settings.text != '' -%}
                 <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
@@ -1515,15 +1640,19 @@
                         when 1
                           assign tb_icon = b1_icon
                           assign tb_label = block.settings.badge_1_label
+                          assign tb_subline = block.settings.badge_1_subline
                         when 2
                           assign tb_icon = b2_icon
                           assign tb_label = block.settings.badge_2_label
+                          assign tb_subline = block.settings.badge_2_subline
                         when 3
                           assign tb_icon = b3_icon
                           assign tb_label = block.settings.badge_3_label
+                          assign tb_subline = block.settings.badge_3_subline
                         when 4
                           assign tb_icon = b4_icon
                           assign tb_label = block.settings.badge_4_label
+                          assign tb_subline = block.settings.badge_4_subline
                       endcase
                       assign fd_fs_text = tb_label | append: ''
                       capture fd_hide_fs_badge
@@ -1546,6 +1675,8 @@
                               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2a.5.5 0 0 0-.3.8l1.7 1.7a1 1 0 0 0 .8.3L8 8l-4 4 1 2 4-1-1 4 2 1 4-4-.2 4.2a1 1 0 0 0 .3.8l1.7 1.7a.5.5 0 0 0 .8-.3Z"/></svg>
                             {%- when 'heart' -%}
                               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                            {%- when 'headset' -%}
+                              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18v-5a8 8 0 0 1 16 0v5"/><rect x="3" y="14" width="4" height="6" rx="1"/><rect x="17" y="14" width="4" height="6" rx="1"/></svg>
                             {%- when 'shield' -%}
                               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/></svg>
                             {%- when 'truck' -%}
@@ -1557,6 +1688,9 @@
                           {%- endcase -%}
                         </span>
                         <span class="trust-badges__label">{{ tb_label }}</span>
+                        {%- if tb_subline != blank -%}
+                          <span class="trust-badges__subline">{{ tb_subline }}</span>
+                        {%- endif -%}
                       </div>
                     {%- endif -%}
                   {%- endfor -%}
@@ -1958,6 +2092,61 @@
       ]
     },
     {
+      "type": "eyebrow",
+      "name": "Eyebrow",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Shows the product's design styles from the custom.design_style metafield."
+        },
+        {
+          "type": "range",
+          "id": "max_styles",
+          "label": "Styles to show",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "text",
+          "id": "fallback_text",
+          "label": "Fallback text",
+          "info": "Used when the product has no design style"
+        }
+      ]
+    },
+    {
+      "type": "short_description",
+      "name": "Short description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Shows the custom.pdp_short_description metafield, or the first paragraph of the product description."
+        }
+      ]
+    },
+    {
+      "type": "expert_link",
+      "name": "Expert link",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Questions? Talk to a design expert"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
       "limit": 1,
@@ -1974,6 +2163,13 @@
           "label": "Font weight",
           "info": "e.g. 400, 500, 600, 700",
           "default": "600"
+        },
+        {
+          "type": "checkbox",
+          "id": "split_subtitle",
+          "label": "Split subtitle",
+          "default": false,
+          "info": "Moves the part after the first \" - \" into an italic subtitle. A custom.pdp_subtitle metafield replaces it."
         }
       ]
     },
@@ -1992,6 +2188,12 @@
           "id": "review_count",
           "label": "Review count",
           "default": 4 
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating_value",
+          "label": "Show rating value",
+          "default": false
         }
       ]
     },
@@ -2025,6 +2227,32 @@
           "type": "color",
           "id": "countdown_badge_border_color",
           "label": "Border color"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "select",
+          "id": "countdown_style",
+          "label": "Countdown style",
+          "options": [
+            {
+              "value": "badge",
+              "label": "Badge"
+            },
+            {
+              "value": "band",
+              "label": "Ticking band"
+            }
+          ],
+          "default": "badge"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_savings",
+          "label": "Show savings",
+          "default": false
         }
       ]
     },
@@ -2623,6 +2851,22 @@
           "id": "default_open",
           "label": "Default Open?",
           "default": false
+        },
+        {
+          "type": "select",
+          "id": "display_style",
+          "label": "Display style",
+          "options": [
+            {
+              "value": "accordion",
+              "label": "Accordion"
+            },
+            {
+              "value": "row",
+              "label": "Row"
+            }
+          ],
+          "default": "accordion"
         }
       ]
     },
@@ -2777,7 +3021,8 @@
             { "value": "heart", "label": "Heart" },
             { "value": "shield", "label": "Shield" },
             { "value": "truck", "label": "Truck" },
-            { "value": "star", "label": "Star" }
+            { "value": "star", "label": "Star" },
+            { "value": "headset", "label": "Headset" }
           ],
           "default": "box"
         },
@@ -2786,6 +3031,12 @@
           "id": "badge_1_label",
           "label": "Label",
           "default": "Free Shipping Globally"
+        },
+        {
+          "type": "text",
+          "id": "badge_1_subline",
+          "label": "Subline",
+          "info": "Shown under the label on desktop"
         },
         {
           "type": "header",
@@ -2802,7 +3053,8 @@
             { "value": "heart", "label": "Heart" },
             { "value": "shield", "label": "Shield" },
             { "value": "truck", "label": "Truck" },
-            { "value": "star", "label": "Star" }
+            { "value": "star", "label": "Star" },
+            { "value": "headset", "label": "Headset" }
           ],
           "default": "return"
         },
@@ -2811,6 +3063,12 @@
           "id": "badge_2_label",
           "label": "Label",
           "default": "Free 30 Day Returns Worldwide"
+        },
+        {
+          "type": "text",
+          "id": "badge_2_subline",
+          "label": "Subline",
+          "info": "Shown under the label on desktop"
         },
         {
           "type": "header",
@@ -2827,7 +3085,8 @@
             { "value": "heart", "label": "Heart" },
             { "value": "shield", "label": "Shield" },
             { "value": "truck", "label": "Truck" },
-            { "value": "star", "label": "Star" }
+            { "value": "star", "label": "Star" },
+            { "value": "headset", "label": "Headset" }
           ],
           "default": "plane"
         },
@@ -2836,6 +3095,12 @@
           "id": "badge_3_label",
           "label": "Label",
           "default": "Duties & Customs Tax Included"
+        },
+        {
+          "type": "text",
+          "id": "badge_3_subline",
+          "label": "Subline",
+          "info": "Shown under the label on desktop"
         },
         {
           "type": "header",
@@ -2852,7 +3117,8 @@
             { "value": "heart", "label": "Heart" },
             { "value": "shield", "label": "Shield" },
             { "value": "truck", "label": "Truck" },
-            { "value": "star", "label": "Star" }
+            { "value": "star", "label": "Star" },
+            { "value": "headset", "label": "Headset" }
           ],
           "default": "heart"
         },
@@ -2861,6 +3127,12 @@
           "id": "badge_4_label",
           "label": "Label",
           "default": "24/7 Customer Support"
+        },
+        {
+          "type": "text",
+          "id": "badge_4_subline",
+          "label": "Subline",
+          "info": "Shown under the label on desktop"
         },
         {
           "type": "header",
@@ -3026,6 +3298,23 @@
     }
   ],
   "settings": [
+    {
+      "type": "select",
+      "id": "visual_style",
+      "label": "Visual style",
+      "options": [
+        {
+          "value": "classic",
+          "label": "Classic"
+        },
+        {
+          "value": "luxury",
+          "label": "Luxury"
+        }
+      ],
+      "default": "classic",
+      "info": "Luxury restyles the gallery and buy box. Every block keeps working the same way."
+    },
     {
       "type": "checkbox",
       "id": "enable_sticky_info",
@@ -3231,6 +3520,455 @@
       "unit": "px",
       "label": "Font size — mobile",
       "default": 13
+    },
+    {
+      "type": "header",
+      "content": "Luxury layout",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "load_google_fonts",
+      "label": "Load Cormorant Garamond and Jost",
+      "default": true,
+      "info": "Turn off if the theme already loads these fonts.",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "header",
+      "content": "Luxury colors",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "lux_bg_color",
+      "label": "Background",
+      "default": "#F4EFE7",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "lux_ink_color",
+      "label": "Ink",
+      "default": "#2B2520",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "lux_muted_color",
+      "label": "Muted text",
+      "default": "#6B6158",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "lux_brass_color",
+      "label": "Brass accent",
+      "default": "#6A4F2A",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "lux_savings_color",
+      "label": "Savings text",
+      "default": "#6E4A35",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "lux_rule_color",
+      "label": "Divider lines",
+      "default": "#DCD2C4",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "lux_media_bg_color",
+      "label": "Image placeholder",
+      "default": "#EAE3D8",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "lux_timer_bg_color",
+      "label": "Countdown background",
+      "default": "#EDE5D7",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "lux_timer_border_color",
+      "label": "Countdown border",
+      "default": "#D6C7AE",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "lux_accent_color",
+      "label": "Add to cart button",
+      "default": "#3A2A20",
+      "info": "Alternates #6E4A35, #2F3A36, #1F1E1C",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "lux_on_accent_color",
+      "label": "Add to cart text",
+      "default": "#F8F4EE",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "header",
+      "content": "Luxury typography title",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "text",
+      "id": "title_font_family",
+      "label": "Font family",
+      "default": "'Cormorant Garamond', Georgia, serif",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_desktop",
+      "label": "Font size desktop",
+      "min": 24,
+      "max": 72,
+      "step": 1,
+      "default": 46,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "label": "Font size mobile",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "default": 36,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "title_font_weight",
+      "label": "Font weight",
+      "min": 300,
+      "max": 600,
+      "step": 100,
+      "default": 400,
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "title_font_color",
+      "label": "Font color",
+      "default": "#2B2520",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "header",
+      "content": "Luxury typography subtitle",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_font_family",
+      "label": "Font family",
+      "default": "'Cormorant Garamond', Georgia, serif",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size_desktop",
+      "label": "Font size desktop",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 21,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size_mobile",
+      "label": "Font size mobile",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 19,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_weight",
+      "label": "Font weight",
+      "min": 300,
+      "max": 600,
+      "step": 100,
+      "default": 400,
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_font_color",
+      "label": "Font color",
+      "default": "#5A5047",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "header",
+      "content": "Luxury typography price",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "text",
+      "id": "price_font_family",
+      "label": "Font family",
+      "default": "'Cormorant Garamond', Georgia, serif",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "price_font_size_desktop",
+      "label": "Font size desktop",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "default": 34,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "price_font_size_mobile",
+      "label": "Font size mobile",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "default": 30,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "price_font_weight",
+      "label": "Font weight",
+      "min": 300,
+      "max": 600,
+      "step": 100,
+      "default": 500,
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "price_font_color",
+      "label": "Font color",
+      "default": "#2B2520",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "header",
+      "content": "Luxury typography body",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "text",
+      "id": "body_font_family",
+      "label": "Font family",
+      "default": "Jost, system-ui, sans-serif",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "body_font_size_desktop",
+      "label": "Font size desktop",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "body_font_size_mobile",
+      "label": "Font size mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 15,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "body_font_weight",
+      "label": "Font weight",
+      "min": 300,
+      "max": 600,
+      "step": 100,
+      "default": 300,
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "body_font_color",
+      "label": "Font color",
+      "default": "#3E3731",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "header",
+      "content": "Luxury typography labels",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "text",
+      "id": "label_font_family",
+      "label": "Font family",
+      "default": "Jost, system-ui, sans-serif",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "label_font_size_desktop",
+      "label": "Font size desktop",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "default": 11,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "label_font_size_mobile",
+      "label": "Font size mobile",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "default": 10,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "label_font_weight",
+      "label": "Font weight",
+      "min": 300,
+      "max": 600,
+      "step": 100,
+      "default": 400,
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "color",
+      "id": "label_font_color",
+      "label": "Font color",
+      "default": "#6A4F2A",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "header",
+      "content": "Luxury spacing desktop",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 40,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "label": "Padding right",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 40,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 96,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "label": "Padding left",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 40,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "header",
+      "content": "Luxury spacing mobile",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 0,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "label": "Padding right",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 0,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 56,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "label": "Padding left",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 0,
+      "unit": "px",
+      "visible_if": "{{ section.settings.visual_style == 'luxury' }}"
     }
   ]
 }

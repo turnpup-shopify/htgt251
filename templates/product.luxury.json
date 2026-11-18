@@ -1,0 +1,1440 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product-alt",
+      "blocks": {
+        "breadcrumb": {
+          "type": "breadcrumb",
+          "settings": {}
+        },
+        "eyebrow": {
+          "type": "eyebrow",
+          "settings": {
+            "max_styles": 2,
+            "fallback_text": ""
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_font_family": "",
+            "title_font_weight": "",
+            "split_subtitle": true
+          }
+        },
+        "mock_reviews_link": {
+          "type": "mock_reviews_link",
+          "settings": {
+            "review_count": 4,
+            "show_rating_value": true
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_sale_countdown": true,
+            "countdown_badge_bg_color": "#f1ece7",
+            "countdown_badge_text_color": "#121212",
+            "countdown_badge_border_color": "#f1ece7",
+            "countdown_style": "band",
+            "show_savings": true
+          }
+        },
+        "back_in_stock": {
+          "type": "back_in_stock",
+          "settings": {
+            "label": "Back in stock:",
+            "fallback_date": ""
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "short_description": {
+          "type": "short_description",
+          "settings": {}
+        },
+        "dimensions": {
+          "type": "dimensions",
+          "settings": {
+            "text": "<p>{{ product.metafields.pdp.dimensions | metafield_tag }}</p>",
+            "default_open": true,
+            "display_style": "row"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_inline_quantity": true,
+            "show_card_shadow": false,
+            "button_bg_color": "#8c5f45",
+            "button_text_color": "#ffffff",
+            "badge_1_line1": "Free shipping",
+            "badge_1_line2": "on orders $99+",
+            "badge_2_line1": "Easy returns",
+            "badge_2_line2": "30-day guarantee",
+            "badge_3_line1": "Eco packaging",
+            "badge_3_line2": "sustainably made",
+            "badge_4_line1": "Expert support",
+            "badge_4_line2": "7 days a week"
+          }
+        },
+        "notify_me": {
+          "type": "notify_me",
+          "settings": {
+            "button_label": "Notify me when available",
+            "modal_heading": "Notify me when available",
+            "modal_subtext": "",
+            "email_placeholder": "Your email address",
+            "submit_label": "Notify me",
+            "success_message": "You're on the list! We'll notify you when this item is back in stock.",
+            "modal_bg_color": "#233269",
+            "modal_heading_color": "#ffffff",
+            "modal_text_color": "#ffffff",
+            "modal_button_bg_color": "",
+            "modal_button_text_color": ""
+          }
+        },
+        "shipping_line": {
+          "type": "trust_text",
+          "settings": {
+            "text": "Ships free in 3 to 6 business days"
+          }
+        },
+        "trust_badges": {
+          "type": "trust_badges",
+          "settings": {
+            "badge_1_icon": "box",
+            "badge_1_label": "Free shipping",
+            "badge_2_icon": "return",
+            "badge_2_label": "30 day returns",
+            "badge_3_icon": "headset",
+            "badge_3_label": "Design experts",
+            "badge_4_icon": "heart",
+            "badge_4_label": "",
+            "show_delivery_date": false,
+            "delivery_label": "Estimated Delivery Date:",
+            "delivery_from_days": 5,
+            "delivery_to_days": 10,
+            "block_margin_top": 0,
+            "block_margin_bottom": 0,
+            "badge_gap": 8,
+            "badge_col_gap_mobile": 8,
+            "badge_row_gap_mobile": 16,
+            "delivery_gap": 12,
+            "icon_size": 28,
+            "icon_label_gap": 5,
+            "label_font_size": 11,
+            "delivery_padding_v": 10,
+            "delivery_padding_h": 14,
+            "delivery_font_size": 13,
+            "badge_1_subline": "Nationwide",
+            "badge_2_subline": "Easy and simple",
+            "badge_3_subline": "7 days a week",
+            "badge_4_subline": ""
+          }
+        },
+        "materials": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Materials and craft",
+            "default_open": true,
+            "icon": "none",
+            "content": "<p>{{ product.metafields.custom.materials | metafield_tag }}</p>",
+            "page": ""
+          }
+        },
+        "care": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Care",
+            "default_open": false,
+            "icon": "none",
+            "content": "<p>{{ product.metafields.custom.care_instructions | metafield_tag }}</p>",
+            "page": ""
+          }
+        },
+        "design_styles": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Design styles",
+            "default_open": false,
+            "icon": "none",
+            "content": "{{ product.metafields.custom.design_style | metafield_tag }}",
+            "page": ""
+          }
+        },
+        "shipping_returns": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping and returns",
+            "default_open": false,
+            "icon": "none",
+            "content": "<p>Same day order processing! Free nationwide shipping. 90% of items ship out within 3-6 business days. Bulky items,  heavy items, mirrors, art, etc ship out through courier freight with lift gates and may take a little longer. </p>",
+            "page": ""
+          }
+        },
+        "description": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Description",
+            "default_open": false,
+            "icon": "none",
+            "content": "",
+            "page": ""
+          }
+        },
+        "upsell": {
+          "type": "upsell",
+          "settings": {}
+        },
+        "expert_link": {
+          "type": "expert_link",
+          "settings": {
+            "text": "Questions? Talk to a design expert",
+            "link": "shopify://pages/contact-us"
+          }
+        }
+      },
+      "block_order": [
+        "breadcrumb",
+        "eyebrow",
+        "title",
+        "mock_reviews_link",
+        "price",
+        "back_in_stock",
+        "variant_picker",
+        "short_description",
+        "dimensions",
+        "buy_buttons",
+        "notify_me",
+        "shipping_line",
+        "trust_badges",
+        "materials",
+        "care",
+        "design_styles",
+        "shipping_returns",
+        "description",
+        "upsell",
+        "expert_link"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "gallery_layout": "thumbnail",
+        "media_size": "large",
+        "mobile_thumbnails": "show",
+        "hide_variants": true,
+        "variant_images_first": false,
+        "enable_video_looping": false,
+        "padding_top": 40,
+        "padding_bottom": 20,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "discount_banner_text": "{{ product.metafields.custom.item_discount_messaging.value }}",
+        "discount_banner_bg_color": "#262214",
+        "discount_banner_text_color": "#ffffff",
+        "discount_banner_font_size_desktop": 16,
+        "discount_banner_font_size_mobile": 13,
+        "visual_style": "luxury"
+      }
+    },
+    "turnpup_marquee_DGNi7J": {
+      "type": "turnpup-marquee",
+      "blocks": {
+        "22824aa8-dbb1-49da-961c-19db9adcf4b5": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/BOH.png",
+            "link_to_article": ""
+          }
+        },
+        "085f4f76-5850-4976-aaf9-042b88e8a31a": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/dwell.png",
+            "link_to_article": "https://www.hunker.com/13774986/cpgd-direct-to-consumer-brands"
+          }
+        },
+        "15fd7fb7-cbde-4bf8-9f57-5e220409d103": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/HGTC_Black.png",
+            "link_to_article": ""
+          }
+        },
+        "ce6ee1e1-2427-460b-a4a6-d958f358ca0b": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/interior_design.png",
+            "link_to_article": ""
+          }
+        },
+        "e9fe64f5-f4d5-4e05-9451-2f14c9c11204": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Hunker.png",
+            "link_to_article": ""
+          }
+        },
+        "c949fff9-0986-46c9-864c-609f3e6a4654": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/apartment_therapy_allblack.png",
+            "link_to_article": ""
+          }
+        }
+      },
+      "block_order": [
+        "22824aa8-dbb1-49da-961c-19db9adcf4b5",
+        "085f4f76-5850-4976-aaf9-042b88e8a31a",
+        "15fd7fb7-cbde-4bf8-9f57-5e220409d103",
+        "ce6ee1e1-2427-460b-a4a6-d958f358ca0b",
+        "e9fe64f5-f4d5-4e05-9451-2f14c9c11204",
+        "c949fff9-0986-46c9-864c-609f3e6a4654"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media screen and (max-width: 700px) {.marquee {width: 800%; }}"
+      ],
+      "settings": {
+        "container_width": "65%",
+        "container_top_margin": 30,
+        "container_bottom_margin": 30,
+        "module_background_color": "#f1ece7",
+        "header_text_color": "#000000",
+        "header_text": "",
+        "header_font_size": "40px",
+        "header_mobile_font_size": "22px",
+        "header_font_family": "assistant_n4",
+        "header_font_weight": "800",
+        "marquee_speed_seconds": 28,
+        "desktop_logo_height": "30px",
+        "mobile_logo_height": "30px",
+        "desktop_space_between": 170,
+        "mobile_space_between": 140
+      }
+    },
+    "tp_trust_bar_fGyp7m": {
+      "type": "tp-trust-bar",
+      "blocks": {
+        "trust_item_M9g8ed": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "shipping",
+            "title": "Free Shipping",
+            "text": "All orders over $50+ ship free."
+          }
+        },
+        "trust_item_PhxjYM": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "returns",
+            "title": "30-Day Returns",
+            "text": "Free 30 day returns if item received is flawed, damaged or not as represented for all full-priced items."
+          }
+        },
+        "trust_item_WbpqPk": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "quality",
+            "title": "Designer-Quality Value",
+            "text": "Curated pieces at below-market prices."
+          }
+        }
+      },
+      "block_order": [
+        "trust_item_M9g8ed",
+        "trust_item_PhxjYM",
+        "trust_item_WbpqPk"
+      ],
+      "name": "Trust bar",
+      "settings": {
+        "show_header": false,
+        "heading": "",
+        "subheading": "",
+        "heading_font_family": "Georgia",
+        "heading_font_size": 22,
+        "heading_font_weight": "600",
+        "heading_font_color": "#1a1a1a",
+        "subheading_font_family": "Georgia",
+        "subheading_font_size": 15,
+        "subheading_font_weight": "400",
+        "subheading_font_color": "#555555",
+        "item_title_font_family": "Georgia",
+        "item_title_font_size": 14,
+        "item_title_font_weight": "600",
+        "item_title_font_color": "#1a1a1a",
+        "item_text_font_family": "Georgia",
+        "item_text_font_size": 13,
+        "item_text_font_weight": "400",
+        "item_text_font_color": "#666666",
+        "icon_color": "#1a1a1a",
+        "icon_size": 24,
+        "show_dividers": true,
+        "divider_color": "#1a1a1a",
+        "bg_color": "#f2e9d8",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_left_desktop": 40,
+        "padding_right_desktop": 40,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28,
+        "padding_left_mobile": 20,
+        "padding_right_mobile": 20
+      }
+    },
+    "tp_image_rows_HL9zJE": {
+      "type": "tp-image-rows",
+      "name": "TP Image Rows",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_right": 0,
+        "padding_left": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_padding_right": 0,
+        "mobile_padding_left": 0,
+        "image_gallery": "{{ product.metafields.custom.tp_image_rows.value }}",
+        "image_gallery_header": "",
+        "open_close_button": "",
+        "open_close_button_color": "",
+        "image_grid_header": "",
+        "keyword_to_remove": "",
+        "header_font_family": "'p22-mackinac-pro', serif;",
+        "header_font_size": "30px",
+        "header_font_weight": "400",
+        "header_font_color": "#3c64b1",
+        "image_grid_subheader": "",
+        "subheader_font_family": "'p22-mackinac-pro', serif;",
+        "subheader_font_size": "30px",
+        "subheader_font_weight": "400",
+        "subheader_font_color": "#3c64b1",
+        "header_alignment": "center"
+      }
+    },
+    "tp_questions_tYPppc": {
+      "type": "tp-questions",
+      "blocks": {
+        "question_dRTPG8": {
+          "type": "Question",
+          "settings": {
+            "question": "<p>How long will it take to get my order?</p>",
+            "answer": "<p>We have daily calls with our vendors and issue same day delivery requests to get your order processed as soon as possible. 90% of our orders ship out within 3-5 business days. Tracking # will be sent to you  your order is enroute. </p>"
+          }
+        },
+        "question_CdXMfT": {
+          "type": "Question",
+          "settings": {
+            "question": "<p>Can I return return an item?</p>",
+            "answer": "<p>We want you to love what you bring home. If something is not as represented, damaged or flawed contact us within 10 days of delivery of your order. We will walk you through your options. Items must be in their original state and packaging. Please check cartons for damage before signing for motor freight items (furniture, large mirrors, art, heavy or bulky items. )</p>"
+          }
+        },
+        "question_9YdL8P": {
+          "type": "Question",
+          "settings": {
+            "question": "<p>Do you offer local pickup or delivery in Costa Mesa?</p>",
+            "answer": "<p>Yes. We are based in Costa Mesa, CA. Local pickup and white glove delivery may be available for some items. Get in touch with us and we will find the best way to get your piece to you.</p>"
+          }
+        },
+        "question_T6EUGA": {
+          "type": "Question",
+          "settings": {
+            "question": "<p>Is my payment information safe?</p>",
+            "answer": "<p>Yes. We use secure checkout to protect your data. Your payment info is never stored on our site. We have been in this business for over 20 years. Your trust means a lot to us.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_dRTPG8",
+        "question_CdXMfT",
+        "question_9YdL8P",
+        "question_T6EUGA"
+      ],
+      "custom_css": [
+        "h2,h3 {font-size: 15px;}"
+      ],
+      "settings": {
+        "section_padding": true,
+        "section_heading": "Common questions",
+        "tp_metaobject": "{{ product.metafields.custom.qa.value }}",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_right": 40,
+        "padding_left": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "mobile_padding_right": 20,
+        "mobile_padding_left": 20,
+        "background_opacityy": 0,
+        "overall_width": "100%",
+        "overall_width_text": "80%",
+        "turnpup_bottom_border_color": "#f4b237",
+        "turnpup_container_margin_top_bottom": "60px",
+        "background_color": "#ffffff",
+        "background_opacity": "0.2",
+        "mobile_background_color": "#ffffff"
+      }
+    },
+    "tp_quiz_LYAkfE": {
+      "type": "tp-quiz",
+      "disabled": true,
+      "settings": {
+        "metaobject_quiz_ref": "accent-table-finder"
+      }
+    },
+    "featured_row_j4Ri8j": {
+      "type": "featured-row",
+      "custom_css": [],
+      "settings": {
+        "section_padding": false,
+        "border_top": "",
+        "border_bottom": "",
+        "image": "{{ product.metafields.custom.image_with_text_one.value.image.value }}",
+        "layout": "left",
+        "text_align": "left",
+        "title": "{{ product.metafields.custom.image_with_text_one.value.header.value }}",
+        "text": "<p>{{ product.metafields.custom.image_with_text_one.value.subheader | metafield_tag }}</p>",
+        "body_font_size": 13,
+        "mobile_body_font_size": 13,
+        "button_label": "{{ product.metafields.custom.image_with_text_one.value.button_text.value }}",
+        "button_link": "{{ product.metafields.custom.image_with_text_one.value.button_url.value }}"
+      }
+    },
+    "featured_row_TH4hPR": {
+      "type": "featured-row",
+      "settings": {
+        "section_padding": false,
+        "border_top": "",
+        "border_bottom": "",
+        "image": "{{ product.metafields.custom.image_with_text_two.value.image.value }}",
+        "layout": "right",
+        "text_align": "left",
+        "title": "{{ product.metafields.custom.image_with_text_two.value.header.value }}",
+        "text": "<p>{{ product.metafields.custom.image_with_text_two.value.subheader | metafield_tag }}</p>",
+        "body_font_size": 13,
+        "mobile_body_font_size": 14,
+        "button_label": "{{ product.metafields.custom.image_with_text_two.value.button_text.value }}",
+        "button_link": "{{ product.metafields.custom.image_with_text_two.value.button_url.value }}"
+      }
+    },
+    "tp_shop_the_scene_BreMVh": {
+      "type": "tp-shop-the-scene",
+      "blocks": {
+        "scene_keXJBD": {
+          "type": "scene",
+          "repeater": "{{ metaobjects.list_of_rooms[\"new-rooms\"].list_of_rooms.value }}",
+          "settings": {
+            "scene_image": "{{ block.repeater.image.value }}",
+            "instagram_handle": "{{ block.repeater.instagram_handle.value }}",
+            "room_name": "{{ block.repeater.room_name.value }}",
+            "description": "<p>{{ block.repeater.description | metafield_tag }}</p>",
+            "scene_products": "{{ block.repeater.products.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "scene_keXJBD"
+      ],
+      "name": "TP Shop the Scene",
+      "settings": {
+        "title": "More Decorating  Inspiration",
+        "subheading": "See how real rooms come together. Shop the pieces that make it happen.",
+        "heading_gap": 32,
+        "title_font_size": "32px",
+        "mobile_title_size": "24px",
+        "title_font_family": "'josefin-sans', sans-serif",
+        "title_font_weight": "600",
+        "columns_desktop": "4",
+        "mobile_layout": "carousel",
+        "image_ratio": "square",
+        "image_border_radius": 0,
+        "column_gap": 28,
+        "thumb_count": 3,
+        "section_background_color": "#f7f4ef",
+        "text_color": "#121212",
+        "handle_color": "#8a8378",
+        "room_font_family": "'josefin-sans', sans-serif",
+        "room_font_size": "26px",
+        "room_font_weight": "500",
+        "body_font_family": "'Karla', sans-serif",
+        "show_room_link": true,
+        "scene_button_label": "Shop scene",
+        "pill_background_color": "#3a352c",
+        "pill_text_color": "#ffffff",
+        "pill_background_color_hover": "#000000",
+        "pill_text_color_hover": "#ffffff",
+        "pill_border_radius": 30,
+        "enable_quick_add": false,
+        "drawer_background_color": "#ffffff",
+        "drawer_text_color": "#121212",
+        "drawer_overlay_color": "#000000",
+        "drawer_overlay_opacity": 45,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_left": 40,
+        "padding_right": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "mobile_padding_left": 20,
+        "mobile_padding_right": 20
+      }
+    },
+    "turnpup_prod_carousel_RTzjKP": {
+      "type": "turnpup-prod-carousel",
+      "blocks": {
+        "carousel_block_jEtJw6": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/htgt-ugc-stool-lizmearns_f3f85f47-8bc3-4a69-a91f-fac907343fdb.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_e8dmc3": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/torigraceinteriors.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_YVEGKG": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/ivy_blu_design.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_U9EMyB": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/avagrayinteriors.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_XhJcxn": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/mhousedevelopment.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_mwzaK3": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/spaces_by_katie.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_VPaRJw": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/katiewoodinteriors.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_aBHiKa": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/ashley_whited_designer.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_Dy6jpc": {
+          "type": "carousel_block",
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/acloreinteriors.jpg",
+            "cell_url": ""
+          }
+        },
+        "carousel_block_EqeRPX": {
+          "type": "carousel_block",
+          "disabled": true,
+          "settings": {
+            "cell_product": "",
+            "cell_title": "Product Title",
+            "cell_subtitle": "Product Subtitle",
+            "button_text": "",
+            "carousel_image": "shopify://shop_images/ashley_whited_designer.jpg",
+            "cell_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "carousel_block_jEtJw6",
+        "carousel_block_e8dmc3",
+        "carousel_block_YVEGKG",
+        "carousel_block_U9EMyB",
+        "carousel_block_XhJcxn",
+        "carousel_block_mwzaK3",
+        "carousel_block_VPaRJw",
+        "carousel_block_aBHiKa",
+        "carousel_block_Dy6jpc",
+        "carousel_block_EqeRPX"
+      ],
+      "custom_css": [
+        "p {font-family: Helvetica;}"
+      ],
+      "name": "TPPC - Product Carousel",
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_right": 40,
+        "padding_left": 40,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 24,
+        "mobile_padding_right": 24,
+        "mobile_padding_left": 24,
+        "max_height_desktop": 100,
+        "mobile_max_height_desktop": 90,
+        "border_color": "#000000",
+        "border_width": 0,
+        "border_radius": 0,
+        "cell_title_color": "#000000",
+        "cell_subtitle_color": "#555555",
+        "cell_title_fontsize": "16px",
+        "cell_subtitle_fontsize": "16px",
+        "cell_title_fontfamily": "Arial",
+        "cell_subtitle_fontfamily": "Arial",
+        "cell_title_fontwegith": "700",
+        "cell_subtitle_fontweight": "400",
+        "arrow_icon_right": "",
+        "arrow_color": "#000000",
+        "swipe_on_mobile": false,
+        "image_width": "full",
+        "column_alignment": "left",
+        "column_gap": "0px",
+        "button_padding": "10px 20px",
+        "hero_button_font_family": "'Helvetica Neue'",
+        "hero_button_font_size": "18px",
+        "hero_button_font_weight": "400",
+        "button_border_radius": "0px",
+        "button_border_color": "#000000",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "button_border_color_hover": "#ffffff",
+        "button_background_color_hover": "#000000",
+        "button_text_color_hover": "#ffffff",
+        "button_label": "",
+        "button_link": "",
+        "header": "Designers and Customers Who Trust Our Products",
+        "title_font_size": "40px",
+        "mobile_title_size": "24px",
+        "title_font_family": "'Helvetica Neue'",
+        "title_font_weight": "600",
+        "title_font_color": "#000000",
+        "section_title_padding": "0px",
+        "subtitle": "",
+        "subtitle_font_size": "20px",
+        "section_subtitle_padding": "0px",
+        "subtitle_font_family": "'Helvetica Neue'",
+        "subtitle_font_weight": "700",
+        "overall_titles_margin_top": 0,
+        "overall_titles_margin_bottom": 0,
+        "overall_titles_margin_right": 0,
+        "overall_titles_margin_left": 0,
+        "title_alignment": "left",
+        "section_text_color": "#000000",
+        "overall_background_image_url": "",
+        "section_background_color": "rgba(0,0,0,0)"
+      }
+    },
+    "turnpup_mock_reviews_4Dw3Kp": {
+      "type": "turnpup-mock-reviews",
+      "blocks": {
+        "review_MDKEib": {
+          "type": "review",
+          "settings": {
+            "author": "Glen Gloss",
+            "rating": 5,
+            "date": "01/14/2026",
+            "title": "Very nice gold decorator rings",
+            "body": "The original set came with one gold and one silver. HTGT Furniture quickly sent a new set to remedy the problem."
+          }
+        },
+        "review_KXWKqw": {
+          "type": "review",
+          "settings": {
+            "author": "Julie H",
+            "rating": 5,
+            "date": "11/02/2025",
+            "title": "Twist Cabinet Pulls",
+            "body": "I love the new handles - they look great, come in several sizes and have a nice heavy weight to them. In the end, I bought all 4 sizes and everything looks great on the cabinets!"
+          }
+        },
+        "review_hLenaB": {
+          "type": "review",
+          "settings": {
+            "author": "Mary Gonzales",
+            "rating": 5,
+            "date": "12/14/2025",
+            "title": "Boucle bed bench",
+            "body": "Beautiful.. looks perfect in my bedroom."
+          }
+        },
+        "review_AHzBYP": {
+          "type": "review",
+          "settings": {
+            "author": "Blake",
+            "rating": 5,
+            "date": "02/02/2025",
+            "title": "Metal Accent Stool",
+            "body": "They are high quality and look very cool"
+          }
+        }
+      },
+      "block_order": [
+        "review_MDKEib",
+        "review_KXWKqw",
+        "review_hLenaB",
+        "review_AHzBYP"
+      ],
+      "name": "Turnpup Mock Reviews",
+      "settings": {
+        "heading": "Customer Reviews",
+        "padding_top": 40,
+        "padding_right": 0,
+        "padding_left": 0,
+        "padding_bottom": 40,
+        "mobile_padding_top": 32,
+        "mobile_padding_right": 20,
+        "mobile_padding_left": 20,
+        "mobile_padding_bottom": 32
+      }
+    },
+    "174329153483acb687": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_verified_badge_yR3tjG": {
+          "type": "shopify://apps/judge-me-reviews/blocks/verified_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "judge_me_reviews_review_widget_wGiQnm": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": true,
+            "empty_state": "other_products_reviews"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_verified_badge_yR3tjG",
+        "judge_me_reviews_review_widget_wGiQnm"
+      ],
+      "custom_css": [
+        ".jdgm-rev-widg {margin: 0;}"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "flwr_one_long_sentence_Hz8tCw": {
+      "type": "flwr-one-long-sentence",
+      "blocks": {
+        "text_kqKjXF": {
+          "type": "text",
+          "settings": {
+            "block_text": "Reviews",
+            "heading_size": "h1",
+            "block_font_size": "30px",
+            "mobile_block_font_size": "30px",
+            "block_font_color": "#000000",
+            "font_family_text": "'Josefin-Sans' sans-serif",
+            "font_weight_text": "600",
+            "line_height_text": "1.2",
+            "letter_spacing": "3px",
+            "text_width": "100%",
+            "mobile_text_width": "100%",
+            "text_padding_left": "0px",
+            "text_padding_bottom": "0px",
+            "is_own_line": false,
+            "text_has_wavy_animation": false,
+            "wavy_animation_color": "rgba(0,0,0,0)",
+            "underline_animation": false,
+            "underline_animation_color": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "text_kqKjXF"
+      ],
+      "disabled": true,
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 20,
+        "padding_right": 100,
+        "padding_left": 100,
+        "mobile_padding_top": 28,
+        "mobile_padding_bottom": 16,
+        "mobile_padding_right": 24,
+        "mobile_padding_left": 24,
+        "subtitle": "",
+        "subtitle_font_size": "30px",
+        "subtitle_font_weight": "600",
+        "subtitle_font_family": "'Josefin-Sans' sans-serif",
+        "subtitle_font_color": "#555555",
+        "background_color": "#f5f5f5",
+        "background_opacity": "1",
+        "max_width": 100,
+        "mobile_max_width": 100,
+        "use_page_width": false,
+        "margintop": 60,
+        "marginbottom": 0,
+        "alignment": "left",
+        "mobile_alignment": "center",
+        "turnpup_bottom_border_color": "rgba(0,0,0,0)",
+        "mobile_font_size": "12px"
+      }
+    },
+    "tp_auto_col_banners_tb99zR": {
+      "type": "tp-auto-col-banners",
+      "settings": {
+        "tp_image_height": "100vH",
+        "tp_mobile_image_height": "20vH",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_right": 0,
+        "padding_left": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_padding_right": 0,
+        "mobile_padding_left": 0,
+        "background_opacityy": 0,
+        "overall_width": "100%",
+        "overall_width_text": "80%",
+        "turnpup_bottom_border_color": "#f4b237",
+        "turnpup_container_margin_top_bottom": "60px",
+        "background_color": "#ffffff",
+        "background_opacity": "0.2",
+        "mobile_background_color": "#ffffff",
+        "section_padding": true,
+        "image_padding": "0px",
+        "image_margin": "0px 3% 0px 0px",
+        "image_height": 90,
+        "mobile_image_height": 90,
+        "image_border_color": "#28499c",
+        "image_border_width": "10px",
+        "image_border_radius": "0px",
+        "layout": "left",
+        "text_align": "left",
+        "mobile_text_align": "center",
+        "turnpup_container_text_cta_margin_top": "60px",
+        "turnpup_container_text_cta_margin_bottom": "60px",
+        "turnpup_mobile_container_text_cta_margin_top": "60px",
+        "turnpup_mobile_container_text_cta_margin_bottom": "60px",
+        "title": "Image with text",
+        "title_color": "#000000",
+        "mobile_title_color": "#000000",
+        "label_font_family_header": "'Poppins', Light",
+        "turnpup_title_size": "22px",
+        "turnpup_mobile_title_size": "24px",
+        "turnpup_title_weight": "700",
+        "header_margin_below": "12px;",
+        "mobile_header_margin_below": "10px;",
+        "text": "Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+        "text_2": "Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+        "text_color": "#000000",
+        "mobile_text_color": "#000000",
+        "turnpup_subtitle_family": "",
+        "turnpup_subtitle_size": "24px",
+        "turnpup_mobile_subtitle_size": "24px",
+        "turnpup_desc_family": "",
+        "turnpup_desc_size": "18px",
+        "turnpup_desc_weight": "400",
+        "turnpup_mobile_desc_size": "12px",
+        "button_label": "",
+        "button_link": "",
+        "is_hero_button": false,
+        "bottom_background_color": "#28499c",
+        "middle_background_color": "#ea5e33",
+        "top_background_color": "#f4b237",
+        "button_text_color": "#f4b237",
+        "button_text_size": "",
+        "mobile_button_text_size": "",
+        "button_text_weight": "",
+        "button_text_family": ""
+      }
+    },
+    "turnpup_multicolumn_JxhK7g": {
+      "type": "turnpup-multicolumn",
+      "blocks": {
+        "template--21548699484434__13648ee8-4def-4c5e-b221-a6f262e62d34-column-1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/fast-shipping.png",
+            "image_border_radius": "0px",
+            "desktopMarginTopBottom": "0px",
+            "mobileMarginTopBottom": "0px",
+            "title": "Fast & free shipping",
+            "title_h": "h2",
+            "title_font_size": "18px",
+            "title_font_size_mobile": "18px",
+            "title_font_family": "'Helvetica Neue'",
+            "title_font_color": "#000000",
+            "title_line_height": "1.0",
+            "title_font_weight": "500",
+            "title_margin_top": "0px",
+            "text": "Every single order ships for free. No minimums, no tiers, no fine print whatsoever.",
+            "text_font_size": "16px",
+            "text_font_size_mobile": "16px",
+            "text_font_family": "'Helvetica Neue'",
+            "text_font_color": "#000000",
+            "text_line_height": "1.3",
+            "text_font_weight": "400",
+            "subtitle_margin_top": "8px",
+            "description": "",
+            "description_font_size": "0px",
+            "description_font_size_mobile": "0px",
+            "description_font_family": "'Helvetica Neue'",
+            "description_font_color": "#000000",
+            "description_line_height": "0",
+            "description_font_weight": "600",
+            "description_margin_top": "0px",
+            "description_margin_bottom": "0px",
+            "link_label": "",
+            "link": "",
+            "is_hero_button": false,
+            "link_label_two": "",
+            "link_two": "",
+            "is_hero_button_two": false,
+            "button_is_white_border_two": false,
+            "space_between_buttons": 0,
+            "block_linklist": "",
+            "vertically_align_center": false,
+            "top_margin_column": "",
+            "top_margin_column_mobile": "0px",
+            "width": "",
+            "text_max_width": "100%",
+            "hide_on_mobile": false,
+            "mobile_order": "",
+            "margin_bottom_container": "0px",
+            "remove_top_padding": true,
+            "remove_bottom_padding": false
+          }
+        },
+        "template--21548699484434__13648ee8-4def-4c5e-b221-a6f262e62d34-column-2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/modular.png",
+            "image_border_radius": "0px",
+            "desktopMarginTopBottom": "0px",
+            "mobileMarginTopBottom": "0px",
+            "title": "Modular, easy-to-move design",
+            "title_h": "h2",
+            "title_font_size": "18px",
+            "title_font_size_mobile": "18px",
+            "title_font_family": "'Helvetica Neue'",
+            "title_font_color": "#000000",
+            "title_line_height": "1.0",
+            "title_font_weight": "500",
+            "title_margin_top": "8px",
+            "text": "Our innovative modular design is driven by the belief that furniture should fit this home, and the next one.",
+            "text_font_size": "16px",
+            "text_font_size_mobile": "16px",
+            "text_font_family": "'Helvetica Neue'",
+            "text_font_color": "#000000",
+            "text_line_height": "1.3",
+            "text_font_weight": "400",
+            "subtitle_margin_top": "8px",
+            "description": "",
+            "description_font_size": "30px",
+            "description_font_size_mobile": "14px",
+            "description_font_family": "'Helvetica Neue'",
+            "description_font_color": "#000000",
+            "description_line_height": "1.3",
+            "description_font_weight": "600",
+            "description_margin_top": "0px",
+            "description_margin_bottom": "0px",
+            "link_label": "",
+            "link": "/",
+            "is_hero_button": false,
+            "link_label_two": "",
+            "link_two": "",
+            "is_hero_button_two": false,
+            "button_is_white_border_two": false,
+            "space_between_buttons": 8,
+            "block_linklist": "",
+            "vertically_align_center": false,
+            "top_margin_column": "",
+            "top_margin_column_mobile": "0px",
+            "width": "",
+            "text_max_width": "100%",
+            "hide_on_mobile": false,
+            "mobile_order": "",
+            "margin_bottom_container": "0px",
+            "remove_top_padding": true,
+            "remove_bottom_padding": true
+          }
+        },
+        "acee3b10-781e-4ada-b964-a40fae87dfe4": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/swatches.png",
+            "image_border_radius": "0px",
+            "desktopMarginTopBottom": "0px",
+            "mobileMarginTopBottom": "0px",
+            "title": "Durable, premium materials",
+            "title_h": "h2",
+            "title_font_size": "18px",
+            "title_font_size_mobile": "18px",
+            "title_font_family": "'Helvetica Neue'",
+            "title_font_color": "#000000",
+            "title_line_height": "1.0",
+            "title_font_weight": "500",
+            "title_margin_top": "8px",
+            "text": "We use materials like sustainably-forested wood, strengthened steel hardware, and top-grain Italian leather.",
+            "text_font_size": "16px",
+            "text_font_size_mobile": "16px",
+            "text_font_family": "'Helvetica Neue'",
+            "text_font_color": "#000000",
+            "text_line_height": "1.3",
+            "text_font_weight": "400",
+            "subtitle_margin_top": "8px",
+            "description": "",
+            "description_font_size": "30px",
+            "description_font_size_mobile": "14px",
+            "description_font_family": "'Helvetica Neue'",
+            "description_font_color": "#000000",
+            "description_line_height": "1.3",
+            "description_font_weight": "600",
+            "description_margin_top": "0px",
+            "description_margin_bottom": "0px",
+            "link_label": "",
+            "link": "/",
+            "is_hero_button": false,
+            "link_label_two": "",
+            "link_two": "",
+            "is_hero_button_two": false,
+            "button_is_white_border_two": false,
+            "space_between_buttons": 8,
+            "block_linklist": "",
+            "vertically_align_center": false,
+            "top_margin_column": "",
+            "top_margin_column_mobile": "0px",
+            "width": "",
+            "text_max_width": "100%",
+            "hide_on_mobile": false,
+            "mobile_order": "",
+            "margin_bottom_container": "0px",
+            "remove_top_padding": true,
+            "remove_bottom_padding": false
+          }
+        }
+      },
+      "block_order": [
+        "template--21548699484434__13648ee8-4def-4c5e-b221-a6f262e62d34-column-1",
+        "template--21548699484434__13648ee8-4def-4c5e-b221-a6f262e62d34-column-2",
+        "acee3b10-781e-4ada-b964-a40fae87dfe4"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "p {line-height: 1.1;}",
+        "img {max-width: 150px;}"
+      ],
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_right": 40,
+        "padding_left": 40,
+        "mobile_padding_top": 28,
+        "mobile_padding_bottom": 0,
+        "mobile_padding_right": 24,
+        "mobile_padding_left": 24,
+        "max_height_desktop": 80,
+        "mobile_max_height_desktop": 90,
+        "enabled_border": false,
+        "swipe_on_mobile": true,
+        "enable_url_param_image_swap": false,
+        "url_param_image_key": "multicolumn_product",
+        "mobile_columns": 1,
+        "desktop_image_width": "100%",
+        "mobile_image_width": "100%",
+        "image_width": "full",
+        "column_alignment": "center",
+        "text_column_alignment": "left",
+        "column_gap": "40px",
+        "button_padding": "10px 20px",
+        "hero_button_font_family": "'Helvetica Neue'",
+        "hero_button_font_size": "18px",
+        "hero_button_font_weight": "400",
+        "button_border_radius": "0px",
+        "button_border_color": "#000000",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "button_border_color_hover": "#ffffff",
+        "button_background_color_hover": "#000000",
+        "button_text_color_hover": "#ffffff",
+        "button_label": "",
+        "button_link": "",
+        "title": "Why shop with us?",
+        "title_h": "h2",
+        "title_font_size": "22px",
+        "mobile_title_font_size": "22px",
+        "title_font_family": "'Helvetica Neue'",
+        "section_title_font_weight": "700",
+        "section_title_padding": "0px",
+        "sub_title": "We work to make sure you have the best possible experience.",
+        "subtitle_font_size": "18px",
+        "section_subtitle_padding": "0px",
+        "subtitle_font_family": "'Helvetica Neue'",
+        "title_alignment": "left",
+        "section_text_color": "#000000",
+        "overall_background_image_url": "",
+        "section_background_color": "#f1ece7",
+        "section_background_color_inner": "#f1ece7",
+        "section_background_color_inner_opacity": 100
+      }
+    },
+    "tp_article_carousel_V6LRPf": {
+      "type": "tp-article-carousel",
+      "custom_css": [
+        ".custom-carousel-outer-template--16071486996687__tp_article_carousel_V6LRPf {border-top: 0px solid black;}"
+      ],
+      "settings": {
+        "input_metaobject": "{{ product.metafields.custom.similar_products.value }}",
+        "input_product_list": [],
+        "product_list_title": "",
+        "product_list_shop_all_text": "",
+        "product_list_shop_all_link": "",
+        "show_price": false,
+        "show_description": false,
+        "max_items": 6,
+        "enable_scroll": true,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_right": 40,
+        "padding_left": 40,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 24,
+        "mobile_padding_right": 24,
+        "mobile_padding_left": 24,
+        "max_height_desktop": 80,
+        "mobile_max_height_desktop": 90,
+        "border_color": "#000000",
+        "border_width": 0,
+        "border_radius": 20,
+        "cell_title_color": "#000000",
+        "cell_subtitle_color": "#555555",
+        "cell_title_fontsize": "16px",
+        "cell_subtitle_fontsize": "16px",
+        "cell_title_fontfamily": "Arial",
+        "cell_subtitle_fontfamily": "Arial",
+        "cell_title_fontwegith": "700",
+        "cell_subtitle_fontweight": "400",
+        "arrow_icon_right": "",
+        "arrow_color": "#000000",
+        "swipe_on_mobile": false,
+        "image_width": "full",
+        "column_alignment": "left",
+        "column_gap": "0px",
+        "button_padding": "10px 20px",
+        "hero_button_font_family": "'Helvetica Neue'",
+        "hero_button_font_size": "18px",
+        "hero_button_font_weight": "400",
+        "button_border_radius": "0px",
+        "button_border_color": "#000000",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "button_border_color_hover": "#ffffff",
+        "button_background_color_hover": "#000000",
+        "button_text_color_hover": "#ffffff",
+        "button_label": "all",
+        "button_link": "",
+        "header": "",
+        "title_font_size": "30px",
+        "mobile_title_size": "2rem",
+        "title_font_family": "'Josefin-Sans', sans-serif",
+        "title_font_weight": "600",
+        "title_font_color": "#000000",
+        "section_title_padding": "0px",
+        "subtitle": "",
+        "subtitle_font_size": "14px",
+        "section_subtitle_padding": "0px",
+        "subtitle_font_family": "'Josefin-Sans', sans-serif",
+        "subtitle_font_weight": "700",
+        "overall_titles_margin_top": 0,
+        "overall_titles_margin_bottom": 0,
+        "overall_titles_margin_right": 0,
+        "overall_titles_margin_left": 0,
+        "title_alignment": "left",
+        "section_text_color": "#000000",
+        "overall_background_image_url": "",
+        "section_background_color": "rgba(0,0,0,0)"
+      }
+    },
+    "tp_pdp_products_in_collection_K8bNmF": {
+      "type": "tp-pdp-products-in-collection",
+      "name": "TP - PDP Other Products",
+      "settings": {
+        "top_border_color": "#f4b237",
+        "margin": "0px auto",
+        "title": "Other Products in Collection",
+        "header_font_size": "1.8em",
+        "center_heading": false,
+        "button_label": "",
+        "button_link": "",
+        "collection": "{{ product.metafields.custom.other_products_in_collection.value }}",
+        "product_count_range": 4
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "custom_css": [
+        "h2 {font-weight: 600; font-family: \"Josefin-Sans\", sans-serif !important; font-size: 30px;}",
+        ".card__heading {font-weight: 400;}",
+        ".product-recommendations {margin: 0 0 !important; padding-right: 24px !important; padding-left: 24px !important;}",
+        "@media screen and (min-width: 750px) {.product-recommendations {margin: 0 0 !important; padding-right: 40px !important; padding-left: 40px !important; }}"
+      ],
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "tp_related_results_by_tag_FpiHWc": {
+      "type": "tp-related-results-by-tag",
+      "name": "TP Related Results (Blog Tag)",
+      "settings": {
+        "blog": "",
+        "filter_tag": "{{ product.metafields.custom.related_results_tag.value }}",
+        "blog_handles": "how-to,inspiration,trends,local",
+        "text_alignment": "left",
+        "turnpup_title_size": "24px",
+        "turnpup_mobile_title_size": "24px",
+        "turnpup_title_color": "#3c64b1",
+        "turnpup_text_size": "18px",
+        "turnpup_mobile_text_size": "16px",
+        "turnpup_text_color": "#373f41",
+        "turnpup_note_text_size": "18px",
+        "turnpup_mobile_note_text_size": "16px",
+        "turnpup_note_text_color": "#373f41",
+        "turnpup_note_text_weight": "700",
+        "tp_margin_top_bottom": "40px",
+        "tp_margin_left_right": "40px",
+        "tp_mobile_margin_top_bottom": "60px",
+        "tp_mobile_margin_left_right": "20px",
+        "turnpup_header_background": "#fff8f1",
+        "turnpup_text_background": "#fff8f1",
+        "link": "",
+        "button_label": "",
+        "turnpup_button_size": "18px",
+        "button_link": "",
+        "color_text": "#ffffff",
+        "color_accent": "#331b25",
+        "turnpup_hover_txt_color": "#331b25",
+        "turnpup_hover_background_color": "#ffffff",
+        "turnpup_top_border_color": "#331b25",
+        "turnpup_bottom_border_color": "#331b25"
+      }
+    },
+    "tp_seo_footer_xe6XF9": {
+      "type": "tp-seo-footer",
+      "settings": {
+        "text_one": "",
+        "text_two": "",
+        "text_three": "",
+        "text_alignment": "left",
+        "turnpup_title_size": "24px",
+        "turnpup_mobile_title_size": "24px",
+        "turnpup_title_color": "#3c64b1",
+        "turnpup_text_size": "18px",
+        "turnpup_mobile_text_size": "16px",
+        "turnpup_text_color": "#373f41",
+        "turnpup_note_text_size": "18px",
+        "turnpup_mobile_note_text_size": "16px",
+        "turnpup_note_text_color": "#373f41",
+        "turnpup_note_text_weight": "700",
+        "tp_margin": "40px",
+        "tp_mobile_margin": "40px 20px",
+        "tp_margin_top_bottom": "60px",
+        "tp_margin_left_right": "40px",
+        "tp_mobile_margin_top_bottom": "40px",
+        "tp_mobile_margin_left_right": "20px",
+        "turnpup_header_background": "#fff8f1",
+        "turnpup_text_background": "#fff8f1",
+        "link": "",
+        "button_label": "",
+        "turnpup_button_size": "18px",
+        "button_link": "",
+        "color_text": "#ffffff",
+        "color_accent": "#331b25",
+        "turnpup_hover_txt_color": "#331b25",
+        "turnpup_hover_background_color": "#ffffff",
+        "turnpup_top_border_color": "rgba(0,0,0,0)",
+        "turnpup_bottom_border_color": "#331b25"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "turnpup_marquee_DGNi7J",
+    "tp_trust_bar_fGyp7m",
+    "tp_image_rows_HL9zJE",
+    "tp_questions_tYPppc",
+    "tp_quiz_LYAkfE",
+    "featured_row_j4Ri8j",
+    "featured_row_TH4hPR",
+    "tp_shop_the_scene_BreMVh",
+    "turnpup_prod_carousel_RTzjKP",
+    "turnpup_mock_reviews_4Dw3Kp",
+    "174329153483acb687",
+    "flwr_one_long_sentence_Hz8tCw",
+    "tp_auto_col_banners_tb99zR",
+    "turnpup_multicolumn_JxhK7g",
+    "tp_article_carousel_V6LRPf",
+    "tp_pdp_products_in_collection_K8bNmF",
+    "product-recommendations",
+    "tp_related_results_by_tag_FpiHWc",
+    "tp_seo_footer_xe6XF9"
+  ]
+}
