@@ -239,6 +239,7 @@
       capture fd_hide_fs_badge
         render 'fd-hide-free-shipping', product: product, text: fd_fs_text
       endcapture
+      assign fd_hide_fs_badge = fd_hide_fs_badge | strip
     -%}
     {%- unless fd_hide_fs_badge == 'true' -%}
     <div class="pdp-elevated-card__badge">

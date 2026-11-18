@@ -15,6 +15,7 @@
     capture fd_hide_fs_item
       render 'fd-hide-free-shipping', product: item.product
     endcapture
+    assign fd_hide_fs_item = fd_hide_fs_item | strip
     if fd_hide_fs_item == 'true'
       assign fd_cart_has_motor_freight = true
       break
