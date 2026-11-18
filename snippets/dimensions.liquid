@@ -1,4 +1,16 @@
+{% comment %}
+  Renders product dimensions parsed from text like "16 W X 24 H X 16 D (in)".
+
+  Accepts:
+  - dimensions: {String} Raw dimensions text
+  - layout: {String} 'table' (default) or 'row', a definition list of
+    label and value pairs (optional)
+{% endcomment %}
 {%- assign raw_dimensions = dimensions | default: '' -%}
+{%- if layout == 'row' -%}
+  {%- comment -%} Some products write 48"W X 17"H. Turn the inch marks into spaces so each part splits into value and unit. {%- endcomment -%}
+  {%- assign raw_dimensions = raw_dimensions | replace: '&quot;', ' ' | replace: '&#34;', ' ' | replace: '"', ' ' | replace: '”', ' ' -%}
+{%- endif -%}
 {%- if raw_dimensions != '' -%}
 
   {%- assign has_multiple_sizes = false -%}
@@ -19,9 +31,14 @@
         {%- assign clean_dimensions = dimension_part | replace: '(', '' | replace: ')', '' | replace: 'IN', '' | replace: 'in', '' | strip_html | strip_newlines | strip | upcase -%}
         {%- assign dims = clean_dimensions | split: ' X ' -%}
 
-        <h4>{{ size_label }}</h4>
-        <table style="border:  1px solid black !important; border-collapse: collapse; width: 200px; margin-bottom: 20px;">
-          <tbody>
+        {%- if layout == 'row' -%}
+          <p class="dimensions-row__label">{{ size_label }}</p>
+          <dl class="dimensions-row">
+        {%- else -%}
+          <h4>{{ size_label }}</h4>
+          <table style="border:  1px solid black !important; border-collapse: collapse; width: 200px; margin-bottom: 20px;">
+            <tbody>
+        {%- endif -%}
             {%- for dim in dims -%}
               {%- assign parts = dim | split: ' ' -%}
               {%- assign value = parts[0] | strip -%}
@@ -39,13 +56,24 @@
                 {%- assign label = unit -%}
               {%- endif -%}
 
-              <tr>
-                <td style="width: 100px; background-color: #eee; border: 1px solid black; padding: 8px;">{{ label }}</td>
-                <td style="width: 100px; border: 1px solid black; padding: 8px;">{{ value }} inches</td>
-              </tr>
+              {%- if layout == 'row' -%}
+                <div class="dimensions-row__item">
+                  <dt>{{ label | default: 'Size' }}</dt>
+                  <dd>{{ value }} in</dd>
+                </div>
+              {%- else -%}
+                <tr>
+                  <td style="width: 100px; background-color: #eee; border: 1px solid black; padding: 8px;">{{ label }}</td>
+                  <td style="width: 100px; border: 1px solid black; padding: 8px;">{{ value }} inches</td>
+                </tr>
+              {%- endif -%}
             {%- endfor -%}
-          </tbody>
-        </table>
+        {%- if layout == 'row' -%}
+          </dl>
+        {%- else -%}
+            </tbody>
+          </table>
+        {%- endif -%}
 
       {%- endif -%}
     {%- endfor -%}
@@ -54,8 +82,12 @@
     {%- assign clean_dimensions = raw_dimensions | replace: '(', '' | replace: ')', '' | replace: 'IN', '' | replace: 'in', '' | strip_html | strip_newlines | strip | upcase -%}
     {%- assign dims = clean_dimensions | split: ' X ' -%}
 
-    <table style="border: 1px solid black !important; border-collapse: collapse; width: 250px;">
-      <tbody>
+    {%- if layout == 'row' -%}
+      <dl class="dimensions-row">
+    {%- else -%}
+      <table style="border: 1px solid black !important; border-collapse: collapse; width: 250px;">
+        <tbody>
+    {%- endif -%}
         {%- for dim in dims -%}
           {%- assign parts = dim | split: ' ' -%}
           {%- assign value = parts[0] | strip -%}
@@ -87,13 +119,24 @@
             {%- assign label = unit -%}
           {%- endif -%}
 
-          <tr>
-            <td style="width: 100px; background-color: #eee; border: 1px solid black; padding: 8px;">{{ label }}</td>
-            <td style="width: 100px; border: 1px solid black; padding: 8px;">{{ value }} inches</td>
-          </tr>
+          {%- if layout == 'row' -%}
+            <div class="dimensions-row__item">
+              <dt>{{ label | default: 'Size' }}</dt>
+              <dd>{{ value }} in</dd>
+            </div>
+          {%- else -%}
+            <tr>
+              <td style="width: 100px; background-color: #eee; border: 1px solid black; padding: 8px;">{{ label }}</td>
+              <td style="width: 100px; border: 1px solid black; padding: 8px;">{{ value }} inches</td>
+            </tr>
+          {%- endif -%}
         {%- endfor -%}
-      </tbody>
-    </table>
+    {%- if layout == 'row' -%}
+      </dl>
+    {%- else -%}
+        </tbody>
+      </table>
+    {%- endif -%}
   {%- endif -%}
 
 {%- endif -%}

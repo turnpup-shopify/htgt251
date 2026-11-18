@@ -6,6 +6,9 @@
   - use_variant: {Boolean} Renders selected or first variant price instead of overall product pricing (optional)
   - show_badges: {Boolean} Renders 'Sale' and 'Sold Out' tags if the product matches the condition (optional)
   - price_class: {String} Adds a price class to the price element (optional)
+  - show_savings: {Boolean} Renders "Save $X" next to a sale price (optional)
+  - countdown_style: {String} 'badge' (default) puts the sale countdown in the sale badge.
+    'band' renders it as a ticking band below the price instead (optional)
 
   Usage:
   {% render 'price', product: product %}
@@ -79,6 +82,16 @@
                 {% endif %}
               </s>
             </span>
+            {%- if show_savings and compare_at_price > price -%}
+              <span class="price__savings">
+                {{- 'Save ' -}}
+                {%- if settings.currency_code_enabled -%}
+                  {{- compare_at_price | minus: price | money_with_currency -}}
+                {%- else -%}
+                  {{- compare_at_price | minus: price | money_without_trailing_zeros -}}
+                {%- endif -%}
+              </span>
+            {%- endif -%}
           {%- endunless -%}
         {% comment %} <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <span class="price-item price-item--sale price-item--last">
@@ -102,7 +115,7 @@
       </div>
       {%- if show_badges -%}
         <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}" style="{% if sale_countdown_end != blank and countdown_bg != blank %}background-color: {{ countdown_bg }};{% endif %}{% if sale_countdown_end != blank and countdown_border != blank %} border: 1px solid {{ countdown_border }};{% endif %}">
-          {%- if sale_countdown_end != blank -%}
+          {%- if sale_countdown_end != blank and countdown_style != 'band' -%}
             <span class="timer" data-start="{{ settings.timer_start_date }}" data-end="{{ sale_countdown_end }}" data-block-id="price-sale-badge" data-label-color="transparent">
               <span class="timer-block">
                 <span class="timer-block__num js-timer" style="{% if countdown_text != blank %}color: {{ countdown_text }};{% endif %}">{{ 'products.product.on_sale' | t }}</span>
@@ -119,6 +132,39 @@
       {%- else -%}
       {%- endif -%}
     </div>
+    {%- if sale_countdown_end != blank and countdown_style == 'band' -%}
+      <pdp-sale-countdown
+        class="price__countdown"
+        role="timer"
+        data-start="{{ settings.timer_start_date }}"
+        data-end="{{ sale_countdown_end }}"
+        data-starts-label="Sale starts in"
+        hidden
+      >
+        <span class="price__countdown-label">
+          <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5M9 2h6"/></svg>
+          <span data-countdown-label>Sale ends in</span>
+        </span>
+        <span class="price__countdown-digits" aria-hidden="true">
+          <span class="price__countdown-group" data-countdown-group hidden>
+            <span class="price__countdown-num" data-countdown-d>0</span>
+            <span class="price__countdown-unit"><span class="price__countdown-unit--long">Days</span><span class="price__countdown-unit--short">D</span></span>
+          </span>
+          <span class="price__countdown-group">
+            <span class="price__countdown-num" data-countdown-h>00</span>
+            <span class="price__countdown-unit"><span class="price__countdown-unit--long">Hrs</span><span class="price__countdown-unit--short">H</span></span>
+          </span>
+          <span class="price__countdown-group">
+            <span class="price__countdown-num" data-countdown-m>00</span>
+            <span class="price__countdown-unit"><span class="price__countdown-unit--long">Min</span><span class="price__countdown-unit--short">M</span></span>
+          </span>
+          <span class="price__countdown-group">
+            <span class="price__countdown-num" data-countdown-s>00</span>
+            <span class="price__countdown-unit"><span class="price__countdown-unit--long">Sec</span><span class="price__countdown-unit--short">S</span></span>
+          </span>
+        </span>
+      </pdp-sale-countdown>
+    {%- endif -%}
   {%- endif -%}
 {%- elsif template contains 'collection' %}
   {%- if price == 0 -%}

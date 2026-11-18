@@ -10,13 +10,13 @@
             {% if product.metafields.custom.breadcrumb_metaobject.value != blank %}
             {% if product.metafields.custom.breadcrumb_metaobject.value.collection_list != blank %}
             {% if product.metafields.custom.breadcrumb_metaobject.value.collection_list.value != blank %}
-            <a href="{{ routes.root_url }}" style="text-transform:capitalize;" title="Back to the frontpage">Home</a>
+            <a href="{{ routes.root_url }}" title="Back to the frontpage">Home</a>
             {%- assign first_link = nil -%}
             {%- assign first_name = nil -%}
             {%- assign second_link = nil -%}
             {%- assign second_name = nil -%}
             {%- for c in product.metafields.custom.breadcrumb_metaobject.value.collection_list.value %}
-                <a href="{{c.url}}" title="{{c.title}}">- {{ c.title }}</a>
+                <a href="{{c.url}}" title="{{c.title}}"><span class="breadcrumb__sep" aria-hidden="true">- </span>{{ c.title }}</a>
             {%- if forloop.index0 == 0 -%} {%- assign first_link = c.url -%}{%- assign first_name = c.title -%} {%- endif -%}
             {%- if forloop.index0 == 1 -%} {%- assign second_link = c.url -%}{%- assign second_name = c.title -%} {%- endif -%}
             {%- endfor -%}
