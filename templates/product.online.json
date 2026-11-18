@@ -12,35 +12,31 @@
     "main": {
       "type": "main-product-alt",
       "blocks": {
-        "vendor": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
-          }
-        },
-        "breadcrumb_yfxxfH": {
+        "breadcrumb": {
           "type": "breadcrumb",
           "settings": {}
+        },
+        "eyebrow": {
+          "type": "eyebrow",
+          "settings": {
+            "max_styles": 2,
+            "fallback_text": ""
+          }
         },
         "title": {
           "type": "title",
           "settings": {
-            "title_font_family": "comfortaa_n3_preview, Comfortaa, sans-serif",
-            "title_font_weight": "300"
+            "title_font_family": "",
+            "title_font_weight": "",
+            "split_subtitle": false
           }
         },
-        "mock_reviews_link_ACaAeW": {
+        "mock_reviews_link": {
           "type": "mock_reviews_link",
           "settings": {
-            "review_count": 4
+            "review_count": 4,
+            "show_rating_value": true
           }
-        },
-        "judge_me_reviews_preview_badge_rGQ9HX": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
-          "settings": {}
         },
         "price": {
           "type": "price",
@@ -48,20 +44,17 @@
             "show_sale_countdown": true,
             "countdown_badge_bg_color": "#f1ece7",
             "countdown_badge_text_color": "#121212",
-            "countdown_badge_border_color": "#f1ece7"
+            "countdown_badge_border_color": "#f1ece7",
+            "countdown_style": "band",
+            "show_savings": true
           }
         },
-        "back_in_stock_kRphzB": {
+        "back_in_stock": {
           "type": "back_in_stock",
           "settings": {
             "label": "Back in stock:",
             "fallback_date": ""
           }
-        },
-        "countdown_hyqeK8": {
-          "type": "countdown",
-          "disabled": true,
-          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -69,30 +62,17 @@
             "picker_type": "button"
           }
         },
-        "caption": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "{{ product.metafields.descriptors.subtitle.value }}",
-            "text_style": "subtitle"
-          }
-        },
-        "description": {
-          "type": "description",
-          "disabled": true,
+        "short_description": {
+          "type": "short_description",
           "settings": {}
         },
-        "6e3cb80f-7395-4806-8a51-8eb62abc629e": {
-          "type": "custom_item_number",
-          "disabled": true,
+        "dimensions": {
+          "type": "dimensions",
           "settings": {
-            "show_custom_item_number": true
+            "text": "<p>{{ product.metafields.pdp.dimensions | metafield_tag }}</p>",
+            "default_open": true,
+            "display_style": "row"
           }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "disabled": true,
-          "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
@@ -112,7 +92,7 @@
             "badge_4_line2": "7 days a week"
           }
         },
-        "notify_me_XXLHwE": {
+        "notify_me": {
           "type": "notify_me",
           "settings": {
             "button_label": "Notify me when available",
@@ -128,31 +108,29 @@
             "modal_button_text_color": ""
           }
         },
-        "trust_text_aFQgxV": {
+        "shipping_line": {
           "type": "trust_text",
-          "disabled": true,
           "settings": {
-            "text": "30-day returns. Free US shipping."
+            "text": "Ships free in 3 to 6 business days"
           }
         },
-        "trust_badges_yUK4rP": {
+        "trust_badges": {
           "type": "trust_badges",
-          "disabled": true,
           "settings": {
             "badge_1_icon": "box",
-            "badge_1_label": "Free Shipping (USA Mainland)",
-            "badge_2_icon": "shield",
-            "badge_2_label": "Hassle Free 30 Day Returns*",
-            "badge_3_icon": "plane",
-            "badge_3_label": "Premium Packaging",
+            "badge_1_label": "Free shipping",
+            "badge_2_icon": "return",
+            "badge_2_label": "30 day returns",
+            "badge_3_icon": "headset",
+            "badge_3_label": "Design experts",
             "badge_4_icon": "heart",
-            "badge_4_label": "24/7 Customer Support",
+            "badge_4_label": "",
             "show_delivery_date": false,
             "delivery_label": "Estimated Delivery Date:",
             "delivery_from_days": 5,
             "delivery_to_days": 10,
-            "block_margin_top": 12,
-            "block_margin_bottom": 12,
+            "block_margin_top": 0,
+            "block_margin_bottom": 0,
             "badge_gap": 8,
             "badge_col_gap_mobile": 8,
             "badge_row_gap_mobile": 16,
@@ -162,139 +140,102 @@
             "label_font_size": 11,
             "delivery_padding_v": 10,
             "delivery_padding_h": 14,
-            "delivery_font_size": 13
+            "delivery_font_size": 13,
+            "badge_1_subline": "Nationwide",
+            "badge_2_subline": "Easy and simple",
+            "badge_3_subline": "7 days a week",
+            "badge_4_subline": ""
           }
         },
-        "collapsible_tab_QV88KF": {
-          "type": "collapsible_tab",
-          "disabled": true,
-          "settings": {
-            "heading": "Offers",
-            "default_open": true,
-            "icon": "none",
-            "content": "{{ product.metafields.custom.offers | metafield_tag }}",
-            "page": ""
-          }
-        },
-        "collapsible_tab_DAkg6R": {
+        "materials": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Description",
-            "default_open": true,
-            "icon": "none",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-1": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Free Shipping",
-            "default_open": true,
-            "icon": "none",
-            "content": "<p>Same day order processing! Free nationwide shipping. 90% of items ship out within 3-6 business days. Bulky items,  heavy items, mirrors, art, etc ship out through courier freight with lift gates and may take a little longer. </p>",
-            "page": ""
-          }
-        },
-        "collapsible-row-2": {
-          "type": "collapsible_tab",
-          "disabled": true,
-          "settings": {
-            "heading": "Dimensions",
-            "default_open": true,
-            "icon": "none",
-            "content": "<p>{{ product.metafields.pdp.dimensions | metafield_tag }}</p>",
-            "page": ""
-          }
-        },
-        "dimensions_q4tmAx": {
-          "type": "dimensions",
-          "settings": {
-            "text": "<p>{{ product.metafields.pdp.dimensions | metafield_tag }}</p>",
-            "default_open": true
-          }
-        },
-        "collapsible-row-0": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Materials",
+            "heading": "Materials and craft",
             "default_open": true,
             "icon": "none",
             "content": "<p>{{ product.metafields.custom.materials | metafield_tag }}</p>",
             "page": ""
           }
         },
-        "collapsible-row-3": {
+        "care": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Care Instructions",
-            "default_open": true,
+            "heading": "Care",
+            "default_open": false,
             "icon": "none",
             "content": "<p>{{ product.metafields.custom.care_instructions | metafield_tag }}</p>",
             "page": ""
           }
         },
-        "collapsible_tab_HMYJVH": {
+        "design_styles": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Related Interior Design Styles",
+            "heading": "Design styles",
             "default_open": false,
             "icon": "none",
             "content": "{{ product.metafields.custom.design_style | metafield_tag }}",
             "page": ""
           }
         },
-        "share": {
-          "type": "share",
-          "disabled": true,
+        "shipping_returns": {
+          "type": "collapsible_tab",
           "settings": {
-            "share_label": "Share"
+            "heading": "Shipping and returns",
+            "default_open": false,
+            "icon": "none",
+            "content": "<p>Same day order processing! Free nationwide shipping. 90% of items ship out within 3-6 business days. Bulky items,  heavy items, mirrors, art, etc ship out through courier freight with lift gates and may take a little longer. </p>",
+            "page": ""
           }
         },
-        "upsell_yJXGBT": {
+        "description": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Description",
+            "default_open": false,
+            "icon": "none",
+            "content": "",
+            "page": ""
+          }
+        },
+        "upsell": {
           "type": "upsell",
           "settings": {}
+        },
+        "expert_link": {
+          "type": "expert_link",
+          "settings": {
+            "text": "Questions? Talk to a design expert",
+            "link": "shopify://pages/contact-us"
+          }
         }
       },
       "block_order": [
-        "vendor",
-        "breadcrumb_yfxxfH",
+        "breadcrumb",
+        "eyebrow",
         "title",
-        "mock_reviews_link_ACaAeW",
-        "judge_me_reviews_preview_badge_rGQ9HX",
+        "mock_reviews_link",
         "price",
-        "back_in_stock_kRphzB",
-        "countdown_hyqeK8",
+        "back_in_stock",
         "variant_picker",
-        "caption",
-        "description",
-        "6e3cb80f-7395-4806-8a51-8eb62abc629e",
-        "quantity_selector",
+        "short_description",
+        "dimensions",
         "buy_buttons",
-        "notify_me_XXLHwE",
-        "trust_text_aFQgxV",
-        "trust_badges_yUK4rP",
-        "collapsible_tab_QV88KF",
-        "collapsible_tab_DAkg6R",
-        "collapsible-row-1",
-        "collapsible-row-2",
-        "dimensions_q4tmAx",
-        "collapsible-row-0",
-        "collapsible-row-3",
-        "collapsible_tab_HMYJVH",
-        "share",
-        "upsell_yJXGBT"
-      ],
-      "custom_css": [
-        ".product__info-wrapper .grid__item {margin: 0; padding-left: 0 !important;}",
-        ".trust-badges__icons .trust-badges__item:nth-of-type(2) {display: block;}",
-        "@media screen and (max-width: 750px) {.grid__item {margin: 0px; padding: 0px; }}"
+        "notify_me",
+        "shipping_line",
+        "trust_badges",
+        "materials",
+        "care",
+        "design_styles",
+        "shipping_returns",
+        "description",
+        "upsell",
+        "expert_link"
       ],
       "settings": {
-        "enable_sticky_info": true,
-        "gallery_layout": "stacked",
+        "enable_sticky_info": false,
+        "gallery_layout": "thumbnail",
         "media_size": "large",
-        "mobile_thumbnails": "hide",
+        "mobile_thumbnails": "show",
         "hide_variants": true,
         "variant_images_first": false,
         "enable_video_looping": false,
@@ -309,7 +250,8 @@
         "discount_banner_bg_color": "#262214",
         "discount_banner_text_color": "#ffffff",
         "discount_banner_font_size_desktop": 16,
-        "discount_banner_font_size_mobile": 13
+        "discount_banner_font_size_mobile": 13,
+        "visual_style": "luxury"
       }
     },
     "turnpup_marquee_DGNi7J": {

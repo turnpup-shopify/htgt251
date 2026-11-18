@@ -120,6 +120,24 @@
     display: none;
   }
 
+  /* Mobile peek. With more than four images the row runs to the screen edge
+     and the fifth thumbnail is cut off, so it reads as scrollable. */
+  @media screen and (max-width: 749px) {
+    {{ r }} .thumbnail-slider {
+      padding: 0;
+    }
+
+    {{ r }} .thumbnail-list,
+    {{ r }} .thumbnail-list.slider {
+      padding: 0 var(--pdp-gutter);
+      scroll-padding-left: var(--pdp-gutter);
+    }
+
+    {{ r }} .thumbnail-list:has(> :nth-child(5)) > .thumbnail-list__item {
+      flex-basis: calc((100% - var(--pdp-thumb-gap) * 4) / 4.5);
+    }
+  }
+
   {{ r }} .thumbnail-list__item,
   {{ r }} .thumbnail-list__item.slider__slide {
     flex: 0 0 calc((100% - var(--pdp-thumb-gap) * 3) / 4);
