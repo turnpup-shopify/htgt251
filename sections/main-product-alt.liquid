@@ -653,6 +653,7 @@
                 capture fd_hide_fs_block
                   render 'fd-hide-free-shipping', product: product, text: fd_fs_text
                 endcapture
+                assign fd_hide_fs_block = fd_hide_fs_block | strip
             endcase
           -%}
           {%- if fd_hide_fs_block == 'true' -%}{%- continue -%}{%- endif -%}
@@ -1288,6 +1289,7 @@
                     capture fd_hide_fs_badge
                       render 'fd-hide-free-shipping', product: product, text: fd_fs_text
                     endcapture
+                    assign fd_hide_fs_badge = fd_hide_fs_badge | strip
                   -%}
                   {%- unless fd_hide_fs_badge == 'true' -%}
                   <div class="pdp-atc-card__badge">
@@ -1527,6 +1529,7 @@
                       capture fd_hide_fs_badge
                         render 'fd-hide-free-shipping', product: product, text: fd_fs_text
                       endcapture
+                      assign fd_hide_fs_badge = fd_hide_fs_badge | strip
                       if fd_hide_fs_badge == 'true'
                         assign tb_label = ''
                       endif
