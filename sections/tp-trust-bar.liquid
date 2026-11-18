@@ -73,11 +73,19 @@
     {%- endif -%}
 
     <ul class="trust-bar__list" role="list">
+      {%- assign fd_trust_items_shown = 0 -%}
       {%- for block in section.blocks -%}
-        {%- if block.type == 'trust_item' -%}
+        {%- liquid
+          assign fd_fs_text = block.settings.title | append: ' ' | append: block.settings.text
+          capture fd_hide_fs_block
+            render 'fd-hide-free-shipping', product: product, text: fd_fs_text
+          endcapture
+        -%}
+        {%- if block.type == 'trust_item' and fd_hide_fs_block != 'true' -%}
+          {%- assign fd_trust_items_shown = fd_trust_items_shown | plus: 1 -%}
           <li class="trust-bar__item" {{ block.shopify_attributes }}>
 
-            {%- if section.settings.show_dividers and forloop.index > 1 -%}
+            {%- if section.settings.show_dividers and fd_trust_items_shown > 1 -%}
               <span class="trust-bar__divider" aria-hidden="true"></span>
             {%- endif -%}
 

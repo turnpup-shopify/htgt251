@@ -1,0 +1,27 @@
+{% comment %}
+  Outputs `true` when free shipping messaging must be hidden for a product.
+
+  Motor Freight products (product metafield `custom.shipping_method`) do not
+  ship free. When `text` is passed, it must also mention free shipping, so
+  unrelated copy in the same block stays visible. Capture the output:
+
+    {%- capture hide_fs -%}{%- render 'fd-hide-free-shipping', product: product, text: block.settings.text -%}{%- endcapture -%}
+    {%- unless hide_fs == 'true' -%} ... {%- endunless -%}
+
+  Accepts:
+  - product {Object} required
+  - text {String} optional. Copy to test for free shipping wording. Omit to
+    test only the shipping method.
+{% endcomment %}
+{%- liquid
+  if product.metafields.custom.shipping_method.value == 'Motor Freight'
+    if text == nil
+      echo 'true'
+    else
+      assign fd_fs_text = text | strip_html | downcase
+      if fd_fs_text contains 'free shipping' or fd_fs_text contains 'ship free' or fd_fs_text contains 'ships free' or fd_fs_text contains 'free us shipping' or fd_fs_text contains 'free nationwide shipping' or fd_fs_text contains 'free delivery'
+        echo 'true'
+      endif
+    endif
+  endif
+-%}

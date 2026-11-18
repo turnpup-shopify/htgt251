@@ -251,7 +251,14 @@
           {%- when 'custom_liquid' -%}
             {{ block.settings.custom_liquid }}
           {%- when 'collapsible_tab' -%}
-            {% if block.settings.content != "" %}
+            {%- liquid
+              assign fd_fs_text = block.settings.heading | append: ' ' | append: block.settings.content
+              capture fd_hide_fs_block
+                render 'fd-hide-free-shipping', product: product, text: fd_fs_text
+              endcapture
+            -%}
+            {% if fd_hide_fs_block == 'true' %}
+            {% elsif block.settings.content != "" %}
               <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                 <details id="Details-{{ block.id }}-{{ section.id }}">
                   <summary>

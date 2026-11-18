@@ -645,6 +645,17 @@
             </div>
             {%- assign _buybox_open = false -%}
           {%- endif -%}
+          {%- liquid
+            assign fd_hide_fs_block = ''
+            case block.type
+              when 'text', 'trust_text', 'collapsible_tab'
+                assign fd_fs_text = block.settings.heading | append: ' ' | append: block.settings.text | append: ' ' | append: block.settings.content
+                capture fd_hide_fs_block
+                  render 'fd-hide-free-shipping', product: product, text: fd_fs_text
+                endcapture
+            endcase
+          -%}
+          {%- if fd_hide_fs_block == 'true' -%}{%- continue -%}{%- endif -%}
           {%- case block.type -%}
             {%- when '@app' -%}
               {% render block %}
@@ -1272,6 +1283,13 @@
                 </div>
 
                 <div class="pdp-atc-card__badges">
+                  {%- liquid
+                    assign fd_fs_text = block.settings.badge_1_line1 | default: 'Free shipping'
+                    capture fd_hide_fs_badge
+                      render 'fd-hide-free-shipping', product: product, text: fd_fs_text
+                    endcapture
+                  -%}
+                  {%- unless fd_hide_fs_badge == 'true' -%}
                   <div class="pdp-atc-card__badge">
                     <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
@@ -1280,6 +1298,7 @@
                     </svg>
                     <span>{{- block.settings.badge_1_line1 | default: 'Free shipping' -}}<br>{{- block.settings.badge_1_line2 | default: 'on orders $99+' -}}</span>
                   </div>
+                  {%- endunless -%}
                   <div class="pdp-atc-card__badge">
                     <svg class="pdp-atc-card__badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -1504,6 +1523,13 @@
                           assign tb_icon = b4_icon
                           assign tb_label = block.settings.badge_4_label
                       endcase
+                      assign fd_fs_text = tb_label | append: ''
+                      capture fd_hide_fs_badge
+                        render 'fd-hide-free-shipping', product: product, text: fd_fs_text
+                      endcapture
+                      if fd_hide_fs_badge == 'true'
+                        assign tb_label = ''
+                      endif
                     -%}
                     {%- if tb_label != blank -%}
                       <div class="trust-badges__item">

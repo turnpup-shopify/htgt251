@@ -51,8 +51,20 @@
           class="ann-marquee__track{% if rotate_enabled %} ann-marquee__track--animated{% endif %}"
           data-sep="{{ section.settings.separator_text }}"
           aria-label="Promotions">
+          {%- assign fd_ann_shown = 0 -%}
           {% for block in marquee_items %}
             {% assign b = block.settings %}
+            {%- liquid
+              assign fd_fs_text = b.text | append: ''
+              capture fd_hide_fs_block
+                render 'fd-hide-free-shipping', product: product, text: fd_fs_text
+              endcapture
+            -%}
+            {%- if fd_hide_fs_block == 'true' -%}{%- continue -%}{%- endif -%}
+            {% if section.settings.separator_text != blank and fd_ann_shown > 0 %}
+              <div class="ann-sep" aria-hidden="true">{{ section.settings.separator_text }}</div>
+            {% endif %}
+            {%- assign fd_ann_shown = fd_ann_shown | plus: 1 -%}
             <div class="ann-item" {{ block.shopify_attributes }}>
               {% if b.url != blank %}
                 <a
@@ -67,9 +79,6 @@
                 <span class="ann-text">{{ b.text }}</span>
               {% endif %}
             </div>
-            {% if section.settings.separator_text != blank and forloop.index != marquee_items.size %}
-              <div class="ann-sep" aria-hidden="true">{{ section.settings.separator_text }}</div>
-            {% endif %}
           {% endfor %}
         </div>
       </div>
