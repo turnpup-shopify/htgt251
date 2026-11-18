@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "section_background_color": "#F7F4EF",
+    "section_background_color": "#FBFAF7",
     "button_primary_hero_color": "#121212",
     "button_secondary_hero_color": "#fa6d12",
     "button_padding": "10px 20px",
@@ -499,8 +499,6 @@
         "settings": {
           "greeting_message": "🙋‍♂️ Hello — I'm Alice from California let me know if you have any questions on price, shipping, or availability!",
           "button_color": "#202a36",
-          "secondary_color": "#ffffff",
-          "ternary_color": "#6a6a6a",
           "button_icon": "chat_bubble",
           "button_text": "chat_with_us",
           "button_horizontal_position": "bottom_right",

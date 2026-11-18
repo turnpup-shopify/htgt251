@@ -564,7 +564,7 @@
         "image_border_radius": 0,
         "column_gap": 28,
         "thumb_count": 3,
-        "section_background_color": "#f7f4ef",
+        "section_background_color": "#FBFAF7",
         "text_color": "#121212",
         "handle_color": "#8a8378",
         "room_font_family": "'josefin-sans', sans-serif",

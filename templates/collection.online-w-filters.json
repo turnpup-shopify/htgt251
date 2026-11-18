@@ -166,7 +166,7 @@
         "image_border_radius": 0,
         "column_gap": 28,
         "thumb_count": 3,
-        "section_background_color": "#f7f4ef",
+        "section_background_color": "#FBFAF7",
         "text_color": "#121212",
         "handle_color": "#8a8378",
         "room_font_family": "'josefin-sans', sans-serif",
@@ -284,9 +284,9 @@
         "overall_width_text": "760px",
         "turnpup_bottom_border_color": "#dcd7ce",
         "turnpup_container_margin_top_bottom": "60px",
-        "background_color": "#f7f4ef",
+        "background_color": "#FBFAF7",
         "background_opacity": "1",
-        "mobile_background_color": "#f7f4ef"
+        "mobile_background_color": "#FBFAF7"
       }
     },
     "1655249273615617be": {
@@ -583,7 +583,7 @@
         "title_alignment": "left",
         "section_text_color": "#736c64",
         "overall_background_image_url": "",
-        "section_background_color": "#f7f4ef",
+        "section_background_color": "#FBFAF7",
         "overlay_gradient": true,
         "text_position": "bottom-left",
         "tile_aspect_ratio": "4:3",
