@@ -370,7 +370,7 @@
     >
   {%- endif -%}
 
-  <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.gallery_layout }} {% if pdp_lux %}pdp-lux__layout{% else %}grid grid--1-col{% endif %} {% if product.media.size > 0 %}{% unless pdp_lux %}grid--2-col-tablet{% endunless %}{% else %}product--no-media{% endif %}">
+  <div class="product {% unless pdp_lux %}product--{{ section.settings.media_size }} {% endunless %}product--{{ section.settings.gallery_layout }} {% if pdp_lux %}pdp-lux__layout{% else %}grid grid--1-col{% endif %} {% if product.media.size > 0 %}{% unless pdp_lux %}grid--2-col-tablet{% endunless %}{% else %}product--no-media{% endif %}">
     <div class="{% unless pdp_lux %}grid__item {% endunless %}product__media-wrapper">
       <media-gallery
         id="MediaGallery-{{ section.id }}"

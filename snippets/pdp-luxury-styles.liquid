@@ -748,13 +748,16 @@
 
     {{ r }} .pdp-lux__layout {
       flex-direction: row;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       align-items: flex-start;
+      justify-content: center;
       gap: 64px;
     }
 
+    /* The gallery column hugs the height capped image, so the space it frees
+       goes to the details column instead of a gap between them. */
     {{ r }} .product__media-wrapper {
-      flex: 999 1 560px;
+      flex: 0 1 calc(var(--pdp-rail-width) + 16px + var(--pdp-gallery-max));
       width: auto;
     }
 
@@ -763,8 +766,9 @@
     }
 
     {{ r }} .product__info-wrapper {
-      flex: 1 1 420px;
+      flex: 1 0 420px;
       width: auto;
+      max-width: 640px;
       padding: 8px 0 0;
     }
 
