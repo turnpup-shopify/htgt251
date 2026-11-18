@@ -19,7 +19,7 @@
           "settings": {
             "title_font_family": "",
             "title_font_weight": "",
-            "split_subtitle": true
+            "split_subtitle": false
           }
         },
         "mock_reviews_link": {
