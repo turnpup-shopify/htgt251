@@ -138,6 +138,50 @@
     }
   }
 
+  /* Tablet and desktop rail. Thumbnails run down the left of the main image
+     and the image is capped to the screen height, so the whole image and the
+     thumbnails are visible together. */
+  @media screen and (min-width: 750px) {
+    {{ r }} {
+      --pdp-rail-width: 80px;
+      --pdp-gallery-max: calc(100vh - 170px);
+    }
+
+    {{ r }} media-gallery {
+      padding: 0 var(--pdp-gutter);
+      display: grid;
+      grid-template-columns: var(--pdp-rail-width) minmax(0, var(--pdp-gallery-max));
+      column-gap: 16px;
+      align-items: start;
+    }
+
+    {{ r }} media-gallery > * {
+      grid-column: 1 / -1;
+    }
+
+    {{ r }} media-gallery > #GalleryViewer-{{ section_id }} {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    {{ r }} media-gallery > .thumbnail-slider {
+      grid-column: 1;
+      grid-row: 2;
+      margin: 0;
+      padding: 0;
+    }
+
+    {{ r }} .thumbnail-list,
+    {{ r }} .thumbnail-list.slider {
+      --pdp-thumb-gap: 12px;
+      flex-direction: column;
+      max-height: var(--pdp-gallery-max);
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+    }
+  }
+
   {{ r }} .thumbnail-list__item,
   {{ r }} .thumbnail-list__item.slider__slide {
     flex: 0 0 calc((100% - var(--pdp-thumb-gap) * 3) / 4);
@@ -145,6 +189,14 @@
     max-width: none;
     margin: 0;
     scroll-snap-align: start;
+  }
+
+  @media screen and (min-width: 750px) {
+    {{ r }} .thumbnail-list__item,
+    {{ r }} .thumbnail-list__item.slider__slide {
+      flex: 0 0 auto;
+      width: 100%;
+    }
   }
 
   {{ r }} .thumbnail {
@@ -706,20 +758,14 @@
       width: auto;
     }
 
+    {{ r }} media-gallery {
+      padding: 0;
+    }
+
     {{ r }} .product__info-wrapper {
       flex: 1 1 420px;
       width: auto;
       padding: 8px 0 0;
-    }
-
-    {{ r }} .thumbnail-slider {
-      margin-top: 16px;
-      padding: 0;
-    }
-
-    {{ r }} .thumbnail-list,
-    {{ r }} .thumbnail-list.slider {
-      --pdp-thumb-gap: 16px;
     }
 
     {{ r }} .product__eyebrow {
