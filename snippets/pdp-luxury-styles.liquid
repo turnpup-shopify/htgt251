@@ -405,12 +405,16 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    /* An open line between hairlines, not a filled box, so it reads as
-       information rather than a button. */
-    padding: 12px 0;
-    background: transparent;
-    border-top: 1px solid var(--pdp-timer-border, #D6C7AE);
-    border-bottom: 1px solid var(--pdp-timer-border, #D6C7AE);
+    /* A soft wash of the timer color that fades out to the right. No rules
+       of its own, since the price block already draws the lines. */
+    padding: 12px 16px;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--pdp-timer-bg, #EDE5D7) 75%, transparent) 0%,
+      color-mix(in srgb, var(--pdp-timer-bg, #EDE5D7) 35%, transparent) 60%,
+      color-mix(in srgb, var(--pdp-timer-bg, #EDE5D7) 0%, transparent) 100%
+    );
+    border: 0;
   }
 
   {{ r }} .price__countdown[hidden] {
@@ -842,7 +846,7 @@
 
     {{ r }} .price__countdown {
       gap: 16px;
-      padding: 14px 0;
+      padding: 14px 20px;
     }
 
     {{ r }} .price__countdown-label {
