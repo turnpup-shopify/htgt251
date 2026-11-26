@@ -795,8 +795,6 @@
       gap: 64px;
     }
 
-    /* The gallery column hugs the height capped image, so the space it frees
-       goes to the details column instead of a gap between them. */
     /* flwr.css sets overflow-x hidden on #MainContent, which makes it a scroll
        container and stops the gallery from sticking to the viewport. Clip
        still hides horizontal overflow without creating one. */
@@ -804,7 +802,9 @@
       overflow-x: clip;
     }
 
-    /* The gallery stays pinned while the details column scrolls past it. */
+    /* The gallery column hugs the height capped image, so the space it frees
+       goes to the details column instead of a gap between them. It stays
+       pinned while the details column scrolls past it. */
     {{ r }} .product__media-wrapper {
       flex: 0 1 calc(var(--pdp-rail-width) + 16px + var(--pdp-gallery-max));
       width: auto;
