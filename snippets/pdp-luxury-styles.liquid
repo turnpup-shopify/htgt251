@@ -405,10 +405,15 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    /* No fill and no rules of its own. It sits inside the price block,
-       which already draws the lines above and below. */
-    padding: 0;
-    background: transparent;
+    /* A soft wash of the timer color that fades out to the right. No rules
+       of its own, since the price block already draws the lines. */
+    padding: 12px 16px;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--pdp-timer-bg, #EDE5D7) 75%, transparent) 0%,
+      color-mix(in srgb, var(--pdp-timer-bg, #EDE5D7) 35%, transparent) 60%,
+      color-mix(in srgb, var(--pdp-timer-bg, #EDE5D7) 0%, transparent) 100%
+    );
     border: 0;
   }
 
@@ -841,6 +846,7 @@
 
     {{ r }} .price__countdown {
       gap: 16px;
+      padding: 14px 20px;
     }
 
     {{ r }} .price__countdown-label {
