@@ -405,9 +405,12 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding: 10px 14px;
-    background: var(--pdp-timer-bg, #EDE5D7);
-    border: 1px solid var(--pdp-timer-border, #D6C7AE);
+    /* An open line between hairlines, not a filled box, so it reads as
+       information rather than a button. */
+    padding: 12px 0;
+    background: transparent;
+    border-top: 1px solid var(--pdp-timer-border, #D6C7AE);
+    border-bottom: 1px solid var(--pdp-timer-border, #D6C7AE);
   }
 
   {{ r }} .price__countdown[hidden] {
@@ -839,7 +842,7 @@
 
     {{ r }} .price__countdown {
       gap: 16px;
-      padding: 12px 18px;
+      padding: 14px 0;
     }
 
     {{ r }} .price__countdown-label {
