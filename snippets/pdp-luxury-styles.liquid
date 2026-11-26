@@ -773,9 +773,13 @@
 
     /* The gallery column hugs the height capped image, so the space it frees
        goes to the details column instead of a gap between them. */
+    /* The gallery stays pinned while the details column scrolls past it. */
     {{ r }} .product__media-wrapper {
       flex: 0 1 calc(var(--pdp-rail-width) + 16px + var(--pdp-gallery-max));
       width: auto;
+      position: sticky;
+      top: var(--pdp-sticky-top, 24px);
+      align-self: flex-start;
     }
 
     {{ r }} media-gallery {

@@ -21,6 +21,8 @@
   {%- endif -%}
 
   {%- if has_multiple_sizes -%}
+    {%- comment -%} Row layout puts every set in one line, prefixing each label with its set name, e.g. Shade Height. {%- endcomment -%}
+    {%- if layout == 'row' -%}<dl class="dimensions-row">{%- endif -%}
     {%- for size_set in size_sets -%}
       {%- assign check = size_set | strip_html %}
       {%- if check != "" and check != null -%}
@@ -28,17 +30,22 @@
         {%- assign size_parts = current_set | split: ':' -%}
         {%- assign size_label = size_parts[0] | strip -%}
         {%- assign dimension_part = size_parts[1] | default: '' | strip -%}
+        {%- if size_parts.size == 1 -%}
+          {%- assign dimension_part = size_label -%}
+          {%- assign size_label = '' -%}
+        {%- endif -%}
+        {%- assign label_prefix = size_label | strip_html | strip -%}
+        {%- if label_prefix == 'Overall' or label_prefix == 'Summary' -%}
+          {%- assign label_prefix = '' -%}
+        {%- endif -%}
         {%- assign clean_dimensions = dimension_part | replace: '(', '' | replace: ')', '' | replace: 'IN', '' | replace: 'in', '' | strip_html | strip_newlines | strip | upcase -%}
         {%- assign dims = clean_dimensions | split: ' X ' -%}
 
-        {%- if layout == 'row' -%}
-          <p class="dimensions-row__label">{{ size_label }}</p>
-          <dl class="dimensions-row">
-        {%- else -%}
+        {%- unless layout == 'row' -%}
           <h4>{{ size_label }}</h4>
           <table style="border:  1px solid black !important; border-collapse: collapse; width: 200px; margin-bottom: 20px;">
             <tbody>
-        {%- endif -%}
+        {%- endunless -%}
             {%- for dim in dims -%}
               {%- assign parts = dim | split: ' ' -%}
               {%- assign value = parts[0] | strip -%}
@@ -58,7 +65,7 @@
 
               {%- if layout == 'row' -%}
                 <div class="dimensions-row__item">
-                  <dt>{{ label | default: 'Size' }}</dt>
+                  <dt>{% if label_prefix != '' %}{{ label_prefix }} {% endif %}{{ label | default: 'Size' }}</dt>
                   <dd>{{ value }} in</dd>
                 </div>
               {%- else -%}
@@ -68,15 +75,14 @@
                 </tr>
               {%- endif -%}
             {%- endfor -%}
-        {%- if layout == 'row' -%}
-          </dl>
-        {%- else -%}
+        {%- unless layout == 'row' -%}
             </tbody>
           </table>
-        {%- endif -%}
+        {%- endunless -%}
 
       {%- endif -%}
     {%- endfor -%}
+    {%- if layout == 'row' -%}</dl>{%- endif -%}
 
   {%- else -%}
     {%- assign clean_dimensions = raw_dimensions | replace: '(', '' | replace: ')', '' | replace: 'IN', '' | replace: 'in', '' | strip_html | strip_newlines | strip | upcase -%}
